@@ -1,5 +1,5 @@
-patronage-2013-szczecin-sandbox
-===============================
+Capture The Flag
+================
 
 Mobile Client: Windows Phone
 ============================
