@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:oauth="http://www.springframework.org/schema/security/oauth2" xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <sec:http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
+          xmlns="http://www.springframework.org/schema/security">
+        <intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+        <anonymous enabled="false" />
+        <http-basic entry-point-ref="clientAuthenticationEntryPoint" />
+        <!-- include this only if you need to authenticate clients via request parameters -->
+        <custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" />
+        <access-denied-handler ref="oauthAccessDeniedHandler" />
+    </sec:http>
+
+    <sec:http pattern="/api/secured/.*" request-matcher="regex" create-session="stateless" entry-point-ref="oauthAuthenticationEntryPoint"
+          use-expressions="true" xmlns="http://www.springframework.org/schema/security">
+        <anonymous enabled="false" />
+
+        <intercept-url pattern="/api/secured/players/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+
+        <intercept-url pattern="/api/secured/users/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+        <intercept-url pattern="/api/secured/(users|players)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="POST" />
+
+        <intercept-url pattern="/api/secured/.*" access="denyAll()"/>
+
+        <custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+        <access-denied-handler ref="oauthAccessDeniedHandler" />
+        <expression-handler ref="oauthWebExpressionHandler" />
+    </sec:http>
+
+    <sec:http pattern="/api/players/.*" request-matcher="regex" xmlns="http://www.springframework.org/schema/security">
+        <http-basic/>
+
+        <intercept-url pattern="/api/players/add" access="IS_AUTHENTICATED_ANONYMOUSLY" method="POST"/>
+
+        <anonymous/>
+    </sec:http>
+
+    <sec:authentication-manager id="clientAuthenticationManager">
+        <sec:authentication-provider user-service-ref="clientDetailsUserService" />
+    </sec:authentication-manager>
+
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider ref="restAuthenticationProvider" />
+    </sec:authentication-manager>
+
+    <bean id="oauthAccessDeniedHandler" class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
+
+    <bean id="clientCredentialsTokenEndpointFilter" class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">
+        <property name="authenticationManager" ref="clientAuthenticationManager" />
+    </bean>
+
+    <bean id="clientAuthenticationEntryPoint" class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint">
+        <property name="realmName" value="ctf/client" />
+        <property name="typeName" value="Basic" />
+    </bean>
+
+    <bean id="oauthAuthenticationEntryPoint" class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint">
+        <property name="realmName" value="ctf" />
+    </bean>
+
+    <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+        <constructor-arg ref="clientDetails" />
+    </bean>
+
+    <bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
+
+    <bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+        <property name="tokenStore" ref="tokenStore" />
+        <property name="supportRefreshToken" value="true" />
+        <property name="clientDetailsService" ref="clientDetails" />
+    </bean>
+
+    <bean id="userApprovalHandler" class="com.blstream.patronage.ctf.security.TokenHandler">
+        <property name="autoApproveClients">
+            <set>
+                <value>mobile_android</value>
+            </set>
+        </property>
+        <property name="tokenServices" ref="tokenServices" />
+    </bean>
+    <!--<bean id="userApprovalHandler" class="org.springframework.security.oauth2.provider.approval.TokenServicesUserApprovalHandler">-->
+        <!--<property name="tokenServices" ref="tokenServices" />-->
+    <!--</bean>-->
+
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <constructor-arg name="strength" value="256"/>
+    </bean>
+
+    <bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <property name="userPropertyToUse" value="hashCode"/>
+    </bean>
+
+    <oauth:resource-server id="resourceServerFilter" resource-id="ctf" token-services-ref="tokenServices" auth-details-source-ref="" />
+
+    <oauth:authorization-server client-details-service-ref="clientDetails" token-services-ref="tokenServices"
+            user-approval-handler-ref="userApprovalHandler">
+        <oauth:authorization-code />
+        <oauth:implicit />
+        <oauth:refresh-token />
+        <oauth:client-credentials />
+        <oauth:password />
+    </oauth:authorization-server>
+
+    <oauth:client-details-service id="clientDetails">
+        <!--<oauth:client client-id="mobile_android" authorized-grant-types="password,refresh-token" authorities="ROLE_CLIENT" scope="read,write" secret="secret" />-->
+        <!--<oauth:client client-id="mobile_android" authorized-grant-types="password,authorization_code,refresh_token,implicit" authorities="ROLE_CLIENT" scope="read" secret="secret" />-->
+        <!--<oauth:client client-id="test" resource-ids="ctf" authorized-grant-types="authorization_code,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" />-->
+
+        <oauth:client client-id="mobile_android" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="mobile_ios" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="mobile_windows" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="web_www" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+    </oauth:client-details-service>
+
+    <sec:global-method-security pre-post-annotations="enabled" proxy-target-class="true">
+        <!--you could also wire in the expression handler up at the layer of the http filters. See https://jira.springsource.org/browse/SEC-1452 -->
+        <sec:expression-handler ref="oauthExpressionHandler" />
+    </sec:global-method-security>
+
+    <oauth:expression-handler id="oauthExpressionHandler" />
+
+    <oauth:web-expression-handler id="oauthWebExpressionHandler" />
+
+</beans>

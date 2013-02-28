@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Capture the flag :: API - use examples</title>
+</head>
+<body>
+    <h1>Capture the flag :: API - use examples</h1>
+
+    <div>
+        <h3>Login example</h3>
+        username: <input id="j_username" type="text" value="michal.krawczak@blstream.com"><br/>
+        password: <input id="j_password" type="password" value="FKA13#aqFR3"><br/><br/>
+        <input id="btn_login" type="button" value="Login"><br/><br/>
+        Token: <span id="txt_token">undefined</span>
+    </div>
+
+    <br/>
+
+    <div>
+        <h3>Get list of all users example</h3>
+        <input id="btn_getAllUsers" type="button" value="Get all users"><br/><br/>
+        User list:<br/>
+        <ul id="txt_allUserList">undefined</ul>
+    </div>
+
+    <div>
+        <h3>Get list of all players example</h3>
+        <input id="btn_getAllPlayers" type="button" value="Get all players"><br/><br/>
+        Player list:<br/>
+        <ul id="txt_allPlayerList">undefined</ul>
+    </div>
+
+    <script language="JavaScript" src="resources/js/lib/jquery-1.9.0.min.js"></script>
+    <script language="JavaScript" src="resources/js/main.js"></script>
+    <script language="JavaScript" src="resources/js/api/login-api.js"></script>
+    <script language="JavaScript" src="resources/js/api/user-api.js"></script>
+    <script language="JavaScript" src="resources/js/api/player-api.js"></script>
+</body>
+</html>
