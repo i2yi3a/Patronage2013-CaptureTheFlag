@@ -1,5 +1,5 @@
 Capture The Flag
 ================
 
-Mobile Client: Windows Phone
-============================
+Mobile Client: Windows Phone 8
+==============================
