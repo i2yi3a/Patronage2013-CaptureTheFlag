@@ -1,0 +1,7 @@
+ios-client/build
+*~
+.DS_Store
+xcschememanagement.plist
+CaptureTheFlag.xcscheme
+UserInterfaceState.xcuserstate
+*.ipa
