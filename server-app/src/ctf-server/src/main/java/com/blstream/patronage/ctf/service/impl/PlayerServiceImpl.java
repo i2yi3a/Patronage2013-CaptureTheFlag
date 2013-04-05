@@ -7,6 +7,7 @@ import com.blstream.patronage.ctf.model.PlayerType;
 import com.blstream.patronage.ctf.model.PortalRole;
 import com.blstream.patronage.ctf.model.PortalUser;
 import com.blstream.patronage.ctf.repository.PlayerRepository;
+import com.blstream.patronage.ctf.security.PasswordEncoderService;
 import com.blstream.patronage.ctf.service.PlayerService;
 import com.blstream.patronage.ctf.service.PortalRoleService;
 import com.blstream.patronage.ctf.service.PortalUserService;
@@ -48,6 +49,7 @@ public class PlayerServiceImpl extends CrudServiceImpl<Player, String, PlayerRep
 
     private static final Logger logger = LoggerFactory.getLogger(PlayerServiceImpl.class);
 
+    private PasswordEncoderService passwordEncoderService;
     private PortalUserService portalUserService;
     private PortalRoleService portalRoleService;
 
@@ -89,6 +91,11 @@ public class PlayerServiceImpl extends CrudServiceImpl<Player, String, PlayerRep
         portalUser.setCredentialsNonExpired(true);
         portalUser.setEnabled(true);
         portalUser.setRoles(loadDefaultRolesForPlayer());
+
+        String encodedPassword = passwordEncoderService.encodePassword(portalUser);
+        Assert.notNull(encodedPassword, "Encoded password cannot be null");
+        portalUser.setPassword(encodedPassword);
+
         portalUser = portalUserService.create(portalUser);
 
         if (logger.isDebugEnabled()) {
@@ -174,5 +181,11 @@ public class PlayerServiceImpl extends CrudServiceImpl<Player, String, PlayerRep
     @Named("portalRoleService")
     public void setPortalRoleService(PortalRoleService portalRoleService) {
         this.portalRoleService = portalRoleService;
+    }
+
+    @Inject
+    @Named("passwordEncoderService")
+    public void setPasswordEncoderService(PasswordEncoderService passwordEncoderService) {
+        this.passwordEncoderService = passwordEncoderService;
     }
 }

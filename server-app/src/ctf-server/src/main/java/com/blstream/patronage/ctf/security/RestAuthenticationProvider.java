@@ -77,6 +77,7 @@ public class RestAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 
         String presentedPassword = authentication.getCredentials().toString();
 
+        // TODO: Remove this log! It's stores in log file password in plaintext.
         if (logger.isDebugEnabled()) {
             logger.debug(
                     String.format(
@@ -86,9 +87,7 @@ public class RestAuthenticationProvider extends AbstractUserDetailsAuthenticatio
             );
         }
 
-        // TODO: make user's password encrypted!
-        // if (!passwordEncoder.isPasswordValid(userDetails.getPassword(), presentedPassword, salt)) {
-        if (!userDetails.getPassword().equals(presentedPassword)) {
+        if (!passwordEncoder.isPasswordValid(userDetails.getPassword(), presentedPassword, salt)) {
             if (logger.isWarnEnabled()) {
                 logger.warn("Authentication failed: password does not match stored value");
             }
