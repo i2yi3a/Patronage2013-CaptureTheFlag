@@ -5,3 +5,4 @@ xcschememanagement.plist
 CaptureTheFlag.xcscheme
 UserInterfaceState.xcuserstate
 *.ipa
+*.xcbkptlist
