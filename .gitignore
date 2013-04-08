@@ -5,3 +5,8 @@ xcschememanagement.plist
 CaptureTheFlag.xcscheme
 UserInterfaceState.xcuserstate
 *.ipa
+/windows-phone-client/Ctf/Ctf/Bin
+
+/windows-phone-client/Ctf/Ctf/obj
+*.user
+*.suo
