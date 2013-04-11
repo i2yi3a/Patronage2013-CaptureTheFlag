@@ -17,7 +17,8 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
-            Login logNow = new Login();
+            //Login logNow = new Login();
+            Registration registerNow = new Registration();
             
 
             // Sample code to localize the ApplicationBar
