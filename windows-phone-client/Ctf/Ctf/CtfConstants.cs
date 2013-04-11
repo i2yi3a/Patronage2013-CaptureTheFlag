@@ -8,7 +8,7 @@ namespace Ctf
 {
     static class CtfConstants
     {
-        public const String SERVER_BASE_URL = "http://capturetheflag.blstream.com:18080/demo/";
+        public const String SERVER_BASE_URL = "http://capturetheflag.blstream.com:18080/demo";
         public const String CLIENT_ID = "mobile_windows";
     }
 }

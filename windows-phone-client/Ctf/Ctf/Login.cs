@@ -42,8 +42,7 @@ namespace Ctf
             // TODO: Handle exception when incorrect URI: An exception of type 'System.Xml.XmlException' occurred in System.Xml.ni.dll and wasn't handled before a managed/native boundary
             // TODO: Handle two exceptionsalways occuring: An exception of type 'System.Net.WebException' occurred in System.Windows.ni.dll and wasn't handled before a managed/native boundary
             // TODO: Consider Uri with proper UriKind instead of String
-            RestRequest request = new RestRequest("/oauth/{token}", Method.POST);
-            request.AddUrlSegment("token", "token");
+            RestRequest request = new RestRequest("/oauth/token", Method.POST);
 
             request.AddHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -68,23 +67,28 @@ namespace Ctf
         //        "token_type": "bearer",
         //        "scope": "read write"
         //      }
-        public void RequestCallbackOnSuccess(IRestResponse<LoginResponse> response)
-        {
-            if (response != null)
-            {
-                if (response.Data != null)
-                {
-                    Debug.WriteLine("response.Data.error_code: " + response.Data.error_code);
-                }
-            }
-        }
-
         //Response (FAILED):
         //    Body (JSON):
         //      {
         //        "error": "invalid_grant",
         //        "error_description": "Bad credentials"
         //      }
+        public void RequestCallbackOnSuccess(IRestResponse<LoginResponse> response)
+        {
+            if (response != null)
+            {
+                if (response.Data != null)
+                {
+                    Debug.WriteLine("response.Data.access_token: " + response.Data.access_token);
+                    Debug.WriteLine("response.Data.token_type: " + response.Data.token_type);
+                    Debug.WriteLine("response.Data.scope: " + response.Data.scope);
+
+                    Debug.WriteLine("response.Data.error_code: " + response.Data.error);
+                    Debug.WriteLine("response.Data.error_code: " + response.Data.error_description);
+                }
+            }
+        }
+
         public void RequestCallbackOnFail(String errorMessage)
         {
             Debug.WriteLine(errorMessage);
