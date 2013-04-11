@@ -17,10 +17,13 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
+            Login logNow = new Login();
+            
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
+
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
