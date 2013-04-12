@@ -12,11 +12,10 @@ namespace Ctf
     {
         private RequestHandler requestHandler;
 
+        // NOTE: do not make requests in constructor even for testing purposes
         public Registration()
         {
             requestHandler = new RequestHandler(CtfConstants.SERVER_BASE_URL);
-            RestRequest r = createRequest();
-            makeRequest(r);
         }
 
         public RestRequest createRequest()
