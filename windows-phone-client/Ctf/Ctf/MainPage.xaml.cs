@@ -17,9 +17,9 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
-            //Login logNow = new Login();
-            Registration registerNow = new Registration();
-            registerNow.makeRequest(registerNow.createRequest());
+
+            //Registration registerNow = new Registration();
+            //registerNow.makeRequest(registerNow.createRequest());
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
