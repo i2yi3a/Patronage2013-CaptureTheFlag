@@ -20,7 +20,7 @@ namespace Ctf
         {
             InitializeComponent();
             ApplicationSettings s = ApplicationSettings.Instance;
-            //s.clearSettings();
+            s.clearSettings();
             LoginResponse r = s.RetriveLoginSession();
             
             Debug.WriteLine("Retrieved from ApplicationSettings:");
@@ -31,11 +31,12 @@ namespace Ctf
                 Debug.WriteLine("response.Data.scope: " + r.scope);
 
                 Debug.WriteLine("response.Data.error_code: " + r.error);
-                Debug.WriteLine("response.Data.error_code: " + r.error_description);
+                Debug.WriteLine("response.Data.error_description: " + r.error_description);
             }
             Login logNow = new Login();
             logNow.makeRequest(logNow.createRequest());
 
+            //X.Text = r.access_token;
 
 
             // Sample code to localize the ApplicationBar

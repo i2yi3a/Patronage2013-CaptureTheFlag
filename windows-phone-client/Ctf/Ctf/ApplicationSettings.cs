@@ -8,6 +8,9 @@ using System.IO.IsolatedStorage;
 
 namespace Ctf
 {
+
+    // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-92
+    // TODO incorporate events
     public sealed class ApplicationSettings
     {
         static readonly ApplicationSettings instance = new ApplicationSettings();
@@ -41,9 +44,6 @@ namespace Ctf
             {
                 if (!settings.Contains("session"))
                 {
-                    session.access_token = "";
-                    session.scope = "";
-                    session.token_type = "";
                     Debug.WriteLineIf(settings == null, "Settings is null!");
                     settings.Add("session", session);
                 }
