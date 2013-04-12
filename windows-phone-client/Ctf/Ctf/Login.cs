@@ -24,8 +24,6 @@ namespace Ctf
         public Login()
         {
             requestHandler = new RequestHandler(CtfConstants.SERVER_BASE_URL);
-            RestRequest r = createRequest();
-            makeRequest(r);
         }
 
         //      Request:
@@ -79,12 +77,17 @@ namespace Ctf
             {
                 if (response.Data != null)
                 {
+                    Debug.WriteLine("Response Data:");
                     Debug.WriteLine("response.Data.access_token: " + response.Data.access_token);
                     Debug.WriteLine("response.Data.token_type: " + response.Data.token_type);
                     Debug.WriteLine("response.Data.scope: " + response.Data.scope);
 
                     Debug.WriteLine("response.Data.error_code: " + response.Data.error);
                     Debug.WriteLine("response.Data.error_code: " + response.Data.error_description);
+
+
+                    ApplicationSettings s = ApplicationSettings.Instance;
+                    s.SaveLoginSession(response.Data);
                 }
             }
         }

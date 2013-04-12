@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Login.cs" />
     <Compile Include="RequestHandler.cs" />
+    <Compile Include="ApplicationSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

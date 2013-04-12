@@ -8,6 +8,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Ctf.Resources;
+using System.Diagnostics;
+
 
 namespace Ctf
 {
@@ -17,8 +19,24 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
-            Login logNow = new Login();
+            ApplicationSettings s = ApplicationSettings.Instance;
+            //s.clearSettings();
+            LoginResponse r = s.RetriveLoginSession();
             
+            Debug.WriteLine("Retrieved from ApplicationSettings:");
+            if (r != null)
+            {
+                Debug.WriteLine("response.Data.access_token: " + r.access_token);
+                Debug.WriteLine("response.Data.token_type: " + r.token_type);
+                Debug.WriteLine("response.Data.scope: " + r.scope);
+
+                Debug.WriteLine("response.Data.error_code: " + r.error);
+                Debug.WriteLine("response.Data.error_code: " + r.error_description);
+            }
+            Login logNow = new Login();
+            logNow.makeRequest(logNow.createRequest());
+
+
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
