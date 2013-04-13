@@ -22,7 +22,7 @@ namespace Ctf
             requestHandler = new RequestHandler(CtfConstants.SERVER_BASE_URL);
         }
 
-        private RestRequest createRequest()
+        private RestRequest createRequest(string aUsername, string aPassword)
         {
             RestRequest request = new RestRequest("/api/players/add", Method.POST);
 
@@ -30,7 +30,7 @@ namespace Ctf
             request.AddHeader("Content-type", "application/json");
 
             request.RequestFormat = DataFormat.Json;
-            request.AddBody(new { username = "a", password = "b" });
+            request.AddBody(new { username = aUsername, password = aPassword });
 
             return request;
         }
@@ -61,17 +61,15 @@ namespace Ctf
             Debug.WriteLine(errorMessage);
         }
 
-        //* Hasło musi mieć minimum 5 znaków,
-        //* Nazwa użytkownika musi mieć minimum 5 znaków,
         // TODO: Create UserCredentials class?
-
-
-        //* Można się zarejestrować,
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-88
         public bool register(string username, string firstPassword, string secondPassword)
         {
-
-            RestRequest r = createRequest();
+            //TODO: check username length (minimum 5 chars)
+            //TODO: check password length (minimum 5 chars)
+            //TODO: check password equality
+            RestRequest r = createRequest(username, secondPassword);
+            //TODO: async
             makeRequest(r);
 
             return false;
