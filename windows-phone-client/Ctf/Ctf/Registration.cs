@@ -19,7 +19,7 @@ namespace Ctf
         // NOTE: Above note doesn't seem to be correct in all cases ? (see login exceptions)
         public Registration()
         {
-            requestHandler = new RequestHandler(CtfConstants.SERVER_BASE_URL);
+            requestHandler = new RequestHandler();
         }
 
         private RestRequest createRequest(string aUsername, string aPassword)

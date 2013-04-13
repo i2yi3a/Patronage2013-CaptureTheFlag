@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Ctf
 {
@@ -12,101 +13,89 @@ namespace Ctf
     class Login
     {
         private RequestHandler requestHandler;
+        private RestRequest request;
+        private string username;
 
         public Login()
         {
-            requestHandler = new RequestHandler(CtfConstants.SERVER_BASE_URL);
-        }
+            requestHandler = new RequestHandler();
 
-        //client_secret=secret
-        //Aktualnie dla celów deweloperskich jego wartość wynosi secret. Ważne jest aby ten parametr dla każdego z klientów był konfigurowalny.
-        public RestRequest createRequest()
-        {
-            // TODO: Handle exception when incorrect URI: An exception of type 'System.Xml.XmlException' occurred in System.Xml.ni.dll and wasn't handled before a managed/native boundary
-            // TODO: Handle two exceptionsalways occuring: An exception of type 'System.Net.WebException' occurred in System.Windows.ni.dll and wasn't handled before a managed/native boundary
-            // TODO: Consider Uri with proper UriKind instead of String
-            RestRequest request = new RestRequest("/oauth/token", Method.POST);
-
+            request = new RestRequest("/oauth/token", Method.POST);
             request.AddHeader("Content-type", "application/x-www-form-urlencoded");
-
-            request.AddParameter("client_id", CtfConstants.CLIENT_ID);
-            request.AddParameter("client_secret", "secret");
-            request.AddParameter("grant_type", "password");
-            request.AddParameter("username", "piotrekm44@o2.pl");
-            request.AddParameter("password", "weakPassword");
-
-            return request;
+            request.AddParameter("client_id", "mobile_windows");
+            request.AddParameter("grant_type", "password"); 
         }
 
-        public async void makeRequest(RestRequest request)
-        {
-            await requestHandler.ExecuteAsync<LoginResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
-        }
-
-
+        
+        //* Wprowadzenie złego hasła i loginu powoduje błąd,
         //* Wprowadzenie poprawnych danych tworzy token wymiany którym autoryzowane są wszystkie inne wywołania funkcjonalności.
-        public void RequestCallbackOnSuccess(IRestResponse<LoginResponse> response)
+        // TODO: Error handling
+        public void RequestCallbackOnSuccess(IRestResponse<JsonResponse> response)
         {
-            if (response != null)
+            if ( (response != null) && (response.Data != null) )
             {
-                if (response.Data != null)
-                {
-                    Debug.WriteLine("Response Data:");
-                    Debug.WriteLine("response.Data.access_token: " + response.Data.access_token);
-                    Debug.WriteLine("response.Data.token_type: " + response.Data.token_type);
-                    Debug.WriteLine("response.Data.scope: " + response.Data.scope);
-
-                    Debug.WriteLine("response.Data.error_code: " + response.Data.error);
-                    Debug.WriteLine("response.Data.error_code: " + response.Data.error_description);
-
-
-                    ApplicationSettings s = ApplicationSettings.Instance;
-                    s.SaveLoginSession(response.Data);
-
-                    LoginResponse r = s.RetriveLoginSession();
-
-                    Debug.WriteLine("In ApplicationSettings Right after saved:");
-                    if (r != null)
+                    if (String.IsNullOrEmpty(response.Data.error))
                     {
-                        Debug.WriteLine("response.Data.access_token: " + r.access_token);
-                        Debug.WriteLine("response.Data.token_type: " + r.token_type);
-                        Debug.WriteLine("response.Data.scope: " + r.scope);
-
-                        Debug.WriteLine("response.Data.error_code: " + r.error);
-                        Debug.WriteLine("response.Data.error_description: " + r.error_description);
+                        if (String.IsNullOrEmpty(response.Data.access_token) && String.IsNullOrEmpty(response.Data.token_type) && String.IsNullOrEmpty(response.Data.scope))
+                        {
+                            Debug.WriteLine("Response Data is NULL or EMPTY.");
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Response Data retrieved SUCCESSFULY.");
+                            ApplicationSettings.Instance.SaveLoggedUser(new User(username, response.Data.access_token, response.Data.token_type, response.Data.scope));
+                        }
+                        
+                        Debug.WriteLine("response.Data.access_token: " + response.Data.access_token);
+                        Debug.WriteLine("response.Data.token_type: " + response.Data.token_type);
+                        Debug.WriteLine("response.Data.scope: " + response.Data.scope);
                     }
                     else
                     {
-                        Debug.WriteLine("r == NULL");
+                        Debug.WriteLine("Response Data is an ERROR:");
+                        Debug.WriteLine("response.Data.error_code: " + response.Data.error);
+                        Debug.WriteLine("response.Data.error_code: " + response.Data.error_description);
                     }
-                }
             }
         }
 
         public void RequestCallbackOnFail(String errorMessage)
         {
-            Debug.WriteLine(errorMessage);
+            Debug.WriteLine("Exception thrown: " + errorMessage);
+            throw new Exception(errorMessage);
         }
 
-
-        //* Logowanie odbywa się w oparciu o login i hasło,
-        //* Wprowadzenie złego hasła i loginu powoduje błąd,
+        // TODO: Check if is async
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-87
-        public void logIn(string login, string password)
+        public async Task<RestRequestAsyncHandle> logInAs(UserCredentials user, string secret)
         {
-
+            if (loggedAs() != null)
+                return null; //TODO: throw exception
+            if (String.IsNullOrWhiteSpace(secret))
+                return null; //TODO: throw exception
+            else
+                request.AddParameter("client_secret", secret);
+            if (user == null)
+                return null; //TODO: throw exception
+            else
+            {
+                request.AddParameter("username", user.getUsername());
+                request.AddParameter("password", user.getPassword());
+                username = user.getUsername();
+            }
+            return await requestHandler.ExecuteAsync<JsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-89
-        public string getUsername()
+        public User loggedAs()
         {
-            return "";
+            return ApplicationSettings.Instance.RetriveLoggedUser();
         }
 
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-89
-        public void logOut()
+        public bool logOut()
         {
-
+            return ApplicationSettings.Instance.removeFromSettings("user");
         }
     }
 }

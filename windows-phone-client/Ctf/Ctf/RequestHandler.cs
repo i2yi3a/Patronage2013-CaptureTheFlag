@@ -11,6 +11,11 @@ namespace Ctf
     {
         private RestClient client;
 
+        public RequestHandler()
+        {
+            client = new RestClient("http://capturetheflag.blstream.com:18080/demo");
+        }
+
         public RequestHandler(String baseUrl)
         {
             client = new RestClient(baseUrl);

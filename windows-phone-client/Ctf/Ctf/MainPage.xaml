@@ -47,6 +47,9 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Button Content="Login" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Click="LoginTest"/>
+            <Button Content="Register" HorizontalAlignment="Left" Margin="147,87,0,0" VerticalAlignment="Top" Click="RegisterTest"/>
+            <Button Content="Logout" HorizontalAlignment="Left" Margin="157,164,0,0" VerticalAlignment="Top" Click="LogoutTest"/>
 
         </Grid>
 

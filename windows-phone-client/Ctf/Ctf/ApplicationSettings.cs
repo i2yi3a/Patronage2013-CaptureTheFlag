@@ -20,13 +20,15 @@ namespace Ctf
         // not to mark type as beforefieldinit
         static ApplicationSettings()
         {
-            Debug.WriteLine("static constr");
+            Debug.WriteLine("static ApplicationSettings() [Constructor]");
         }
 
         ApplicationSettings()
         {
+            Debug.WriteLine("ApplicationSettings() [Constructor]");
+            
             settings = IsolatedStorageSettings.ApplicationSettings;
-            Debug.WriteLine("private constr");
+            Debug.WriteLineIf(settings == null, "ApplicationSettings() : IsolatedStorageSettings settings is NULL");
         }
 
         public static ApplicationSettings Instance
@@ -38,32 +40,54 @@ namespace Ctf
         }
 
         // Reference : http://www.geekchamp.com/tips/all-about-wp7-isolated-storage-store-data-in-isolatedstoragesettings
-        public void SaveLoginSession(LoginResponse session)
+        public void SaveLoggedUser(User user)
         {
-            if (session != null)
+            Debug.WriteLineIf(user == null, "SaveLoggedUser's user is NULL");
+            if (user != null)
             {
-                if (!settings.Contains("session"))
+                Debug.WriteLineIf(settings == null, "SaveLoggedUser's settings is NULL");
+                Debug.WriteLineIf(!settings.Contains("user"), "SaveLoggedUser's settings does NOT contain user");
+                Debug.WriteLineIf(settings.Contains("user"), "SaveLoggedUser's settings CONTAINS user");
+                if ((settings != null) && (!settings.Contains("user")))
                 {
-                    Debug.WriteLineIf(settings == null, "Settings is null!");
-                    settings.Add("session", session);
+                    Debug.WriteLine("SaveLoggedUser added user");
+                    settings.Add("user", user);
                 }
             }
         }
 
-        public LoginResponse RetriveLoginSession()
+        public User RetriveLoggedUser()
         {
-            LoginResponse session = null;
-            if (settings.Contains("session"))
+            User user = null;
+            Debug.WriteLineIf(settings == null, "RetriveLoggedUser's settings is NULL");
+            Debug.WriteLineIf(!settings.Contains("user"), "RetriveLoggedUser's settings does NOT contain user");
+            Debug.WriteLineIf(settings.Contains("user"), "RetriveLoggedUser's settings CONTAINS user");
+            if ((settings != null) && settings.Contains("user"))
             {
-                settings.TryGetValue<LoginResponse>("session", out session);
+                user = new User(null, null, null, null);
+                //TODO: handle exceptions
+                settings.TryGetValue<User>("user", out user);
+                
+                if (user.hasNullOrEmpty())
+                {
+                    Debug.WriteLine("RetriveLoggedUser's user.hasNullOrEmpty() == true");
+                    user = null;
+                }
             }
-            return session;
+            Debug.WriteLineIf(user == null, "RetriveLoggedUser's user is NULL");
+            return user;
         }
 
 
-        public void clearSettings()
+        public bool removeFromSettings(string keyword)
         {
-            settings.Remove("session");
+            if ((settings != null) && settings.Contains(keyword))
+            {
+                Debug.WriteLine("Removed from settings: " + keyword);
+                settings.Remove(keyword);
+                return true;
+            }
+            return false;
         }
 
     }

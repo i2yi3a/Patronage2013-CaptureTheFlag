@@ -19,28 +19,35 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
-            ApplicationSettings s = ApplicationSettings.Instance;
-            s.clearSettings();
-            LoginResponse r = s.RetriveLoginSession();
-            
-            Debug.WriteLine("Retrieved from ApplicationSettings:");
-            if (r != null)
-            {
-                Debug.WriteLine("response.Data.access_token: " + r.access_token);
-                Debug.WriteLine("response.Data.token_type: " + r.token_type);
-                Debug.WriteLine("response.Data.scope: " + r.scope);
-
-                Debug.WriteLine("response.Data.error_code: " + r.error);
-                Debug.WriteLine("response.Data.error_description: " + r.error_description);
-            }
-            Login logNow = new Login();
-            logNow.makeRequest(logNow.createRequest());
-
-            //X.Text = r.access_token;
-
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private async void LoginTest(object sender, RoutedEventArgs e)
+        {
+            Login Logger = new Login();
+            Debug.WriteLine(Logger.loggedAs());
+
+            await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
+
+            //TODO: NullPointerException
+            //if(Logger.loggedAs().username != null)
+            //    Debug.WriteLine(Logger.loggedAs().username);
+        }
+
+        private void RegisterTest(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutTest(object sender, RoutedEventArgs e)
+        {
+            Login Logger = new Login();
+            if(Logger.logOut())
+                Debug.WriteLine("Logout SUCCESSFUL");
+            else
+                Debug.WriteLine("Logout FAILED");
         }
 
 
@@ -59,5 +66,32 @@ namespace Ctf
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
+
+
+        private void makeTestUserCredentials()
+        {
+            UserCredentials user = null;
+            string username = "aaaaaaaa";
+            string password = "bbbbb";
+            try
+            {
+                user = new UserCredentials(username, password);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message);
+            }
+            if (user != null)
+            {
+                Debug.WriteLine("username: " + user.getUsername());
+                Debug.WriteLine("password: " + user.getPassword());
+            }
+            if (user.hasMatchingPassword(password))
+                Debug.WriteLine("match: " + user.getPassword() + " == " + password);
+            if (user.hasMatchingPassword(username))
+                Debug.WriteLine("match: " + user.getPassword() + " == " + username);
+        }
+
+
     }
 }
