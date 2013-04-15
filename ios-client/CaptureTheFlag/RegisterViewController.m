@@ -19,6 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -82,11 +87,14 @@ else
         }
         else if (textField == self.passwordField2) {
             [textField resignFirstResponder];
-     //   self.passwordField2.editable = NO;
     }
     return YES;
     }
 
-
+-(void)dismissKeyboard {
+    [_userEmailField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+    [_passwordField2 resignFirstResponder];
+}
 @end
 

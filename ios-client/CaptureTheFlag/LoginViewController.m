@@ -19,6 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -72,5 +78,20 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.userEmailField) {
+        [textField resignFirstResponder];
+        [self.passwordField becomeFirstResponder];
+    }
+    else if (textField == self.passwordField) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+-(void)dismissKeyboard {
+    [_userEmailField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+}
 
 @end
