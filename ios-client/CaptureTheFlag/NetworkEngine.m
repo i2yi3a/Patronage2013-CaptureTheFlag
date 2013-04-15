@@ -75,32 +75,7 @@
           withPassword:(NSString *)password
        completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
-    MKNetworkOperation *op = [self operationWithPath:@"login"
-                                              params:@{@"username" : email, @"password" : password}
-                                          httpMethod:@"POST"
-                                                 ssl:NO];
-    
-    [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
-    
-    [op addCompletionHandler:^(MKNetworkOperation *operation) {
-        NSDictionary* response = operation.responseJSON;
-        
-        NSNumber* errorCode = response[@"error_code"];
-        
-        if (!errorCode || [errorCode integerValue] != 0)
-        {
-            completionBlock([NSError errorWithDescription:@"Failed to login."]);
-        }
-        else
-        {
-            completionBlock(nil);
-        }
-    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
-        completionBlock(error);
-    }];
-    
-    [self enqueueOperation:op];
-
+ //waiting for this part of code, can't test my login implementation :(  
 }
 
 @end

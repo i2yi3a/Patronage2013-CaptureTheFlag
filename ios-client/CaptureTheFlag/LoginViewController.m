@@ -16,6 +16,25 @@
 @end
 @implementation LoginViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 -(void)loginWithUserEmail:(NSString *)userEmail andPassword:(NSString *)password
 {
     [[NetworkEngine getInstance]
@@ -32,7 +51,8 @@
                                   }
                                   else
                                   {
-                                     //przejscie na ekran glowny
+                                      [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
+
                                   }
                               }];
 }
@@ -48,6 +68,30 @@
 {
     [self.userEmailField resignFirstResponder];
     [self.passwordField resignFirstResponder];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterLogin"])
+    {
+        
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.userEmailField) {
+        [textField resignFirstResponder];
+        [self.passwordField becomeFirstResponder];
+    }
+    else if (textField == self.passwordField) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+-(void)dismissKeyboard {
+    [_userEmailField resignFirstResponder];
+    [_passwordField resignFirstResponder];
 }
 
 @end
