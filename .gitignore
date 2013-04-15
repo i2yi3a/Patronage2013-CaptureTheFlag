@@ -6,3 +6,5 @@ CaptureTheFlag.xcscheme
 UserInterfaceState.xcuserstate
 *.ipa
 *.xcbkptlist
+ios-client/CaptureTheFlag/en.lproj/MainStoryboard_old.storyboard
+ios-client/CaptureTheFlag/pl.lproj/MainStoryboard_old.storyboard
