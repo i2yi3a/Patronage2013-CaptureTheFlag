@@ -53,6 +53,7 @@
 		23D22901171353F700073C0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228FF171353E900073C0B /* SystemConfiguration.framework */; };
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
 		C881A483171AA52E00C7F09E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C881A482171AA52E00C7F09E /* MainViewController.m */; };
+		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C881A481171AA52E00C7F09E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C881A482171AA52E00C7F09E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
+		E765073C171C744A00799648 /* ShowInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowInformation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,8 @@
 			children = (
 				23D228F5171352CF00073C0B /* NSError+Description.h */,
 				23D228F6171352CF00073C0B /* NSError+Description.m */,
+				E765073B171C744A00799648 /* ShowInformation.h */,
+				E765073C171C744A00799648 /* ShowInformation.m */,
 				233035DB170DAAC9002E1A92 /* AppDelegate.h */,
 				233035DC170DAAC9002E1A92 /* AppDelegate.m */,
 				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
@@ -407,6 +412,7 @@
 				23D228F7171352CF00073C0B /* NSError+Description.m in Sources */,
 				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
 				C881A483171AA52E00C7F09E /* MainViewController.m in Sources */,
+				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

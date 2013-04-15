@@ -10,4 +10,6 @@
 
 @interface ShowInformation : NSObject
 
++ (void)showError:(NSString *)error;
+
 @end

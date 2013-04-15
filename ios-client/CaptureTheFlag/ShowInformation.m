@@ -10,4 +10,14 @@
 
 @implementation ShowInformation
 
++ (void)showError:(NSString *)error
+{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:error
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+}
+
 @end
