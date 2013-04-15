@@ -29,22 +29,23 @@ namespace Ctf
             Login Logger = new Login();
             Debug.WriteLine(Logger.loggedAs());
 
-            await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
-
+            //await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
+            await Logger.logInAs(new UserCredentials("abcdef", "abcdef"), "secret");
             //TODO: NullPointerException
             //if(Logger.loggedAs().username != null)
             //    Debug.WriteLine(Logger.loggedAs().username);
         }
 
-        private void RegisterTest(object sender, RoutedEventArgs e)
+        private async void RegisterTest(object sender, RoutedEventArgs e)
         {
-
+            Registration Register = new Registration();
+            await Register.register(new UserCredentials("abcdef", "abcdef"), "abcdef");
         }
 
         private void LogoutTest(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            if(Logger.logOut())
+            if (Logger.logOut())
                 Debug.WriteLine("Logout SUCCESSFUL");
             else
                 Debug.WriteLine("Logout FAILED");

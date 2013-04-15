@@ -24,6 +24,8 @@ namespace Ctf
             this.password = password;
         }
 
+        // TODO: check null
+
         public static bool isUsernameProperLength(string username)
         {
             return (username.Length >= MINIMAL_USERNAME_LENGTH);
