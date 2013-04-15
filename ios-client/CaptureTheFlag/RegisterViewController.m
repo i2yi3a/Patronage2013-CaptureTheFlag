@@ -68,6 +68,9 @@ else
 }
 }
 
+- (IBAction)cancellRegister:(id)sender{
+[self performSegueWithIdentifier:@"segueToMainScreenAfterCancell" sender:self];
+}
 
 -(void)beginReginster
 
@@ -96,5 +99,15 @@ else
     [_passwordField resignFirstResponder];
     [_passwordField2 resignFirstResponder];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterCancell"])
+    {
+       // [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+
 @end
 

@@ -10,5 +10,6 @@
 
 @interface RegisterViewController : UIViewController
 - (IBAction)reginster:(id)sender;
+- (IBAction)cancellRegister:(id)sender;
 
 @end

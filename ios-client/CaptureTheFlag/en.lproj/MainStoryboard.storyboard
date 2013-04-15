@@ -77,6 +77,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="P88-CW-SGC"/>
                     <connections>
                         <outlet property="passwordField" destination="dZw-Ma-bDh" id="4xI-xF-ExP"/>
                         <outlet property="userEmailField" destination="TjK-Rj-Zwq" id="2pA-G7-3bV"/>
@@ -143,7 +144,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2" kind="modal" id="3PH-Po-hd3"/>
+                                    <action selector="cancellRegister:" destination="aUU-WS-QMV" eventType="touchUpInside" id="CZK-gE-L0a"/>
+                                    <segue destination="2" kind="modal" identifier="segueToMainScreenAfterCancell" id="0dn-6E-bZy"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="MSi-Dp-wyS">
@@ -226,6 +228,7 @@
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancellRegister:"/>
                 <relationship kind="action" name="reginster:"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField2" candidateClass="UITextField"/>
