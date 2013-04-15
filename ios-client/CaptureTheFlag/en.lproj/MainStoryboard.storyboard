@@ -74,6 +74,7 @@
                     <connections>
                         <outlet property="passwordField" destination="dZw-Ma-bDh" id="4xI-xF-ExP"/>
                         <outlet property="userEmailField" destination="TjK-Rj-Zwq" id="2pA-G7-3bV"/>
+                        <segue destination="35t-Lb-0N9" kind="push" identifier="segueToMainScreenAfterLogin" id="Kwe-XV-7wO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -188,6 +189,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TU5-W1-l1U"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZE-aY-rHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

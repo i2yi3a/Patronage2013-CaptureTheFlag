@@ -16,6 +16,19 @@
 @end
 @implementation LoginViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 -(void)loginWithUserEmail:(NSString *)userEmail andPassword:(NSString *)password
 {
     [[NetworkEngine getInstance]
@@ -32,7 +45,8 @@
                                   }
                                   else
                                   {
-                                     //przejscie na ekran glowny
+                                      [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
+
                                   }
                               }];
 }
@@ -49,5 +63,14 @@
     [self.userEmailField resignFirstResponder];
     [self.passwordField resignFirstResponder];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterLogin"])
+    {
+        
+    }
+}
+
 
 @end
