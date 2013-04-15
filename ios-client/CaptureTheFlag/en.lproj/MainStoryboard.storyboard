@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KA5-K0-MLp">
-                                <rect key="frame" x="122" y="154" width="60" height="44"/>
+                                <rect key="frame" x="122" y="162" width="60" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="login">
@@ -118,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LuK-Mh-c59">
-                                <rect key="frame" x="120" y="283" width="80" height="44"/>
+                                <rect key="frame" x="120" y="278" width="80" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="register">
@@ -145,7 +145,6 @@
                                 </state>
                                 <connections>
                                     <action selector="cancellRegister:" destination="aUU-WS-QMV" eventType="touchUpInside" id="CZK-gE-L0a"/>
-                                    <segue destination="2" kind="modal" identifier="segueToMainScreenAfterCancell" id="0dn-6E-bZy"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="MSi-Dp-wyS">
