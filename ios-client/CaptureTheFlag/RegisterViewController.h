@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 BLStream. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+ #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface RegisterViewController : UIViewController
+- (IBAction)reginster:(id)sender;
 
 @end

@@ -17,7 +17,7 @@
 		233035E1170DAAC9002E1A92 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 233035E0170DAAC9002E1A92 /* Default@2x.png */; };
 		233035E3170DAAC9002E1A92 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 233035E2170DAAC9002E1A92 /* Default-568h@2x.png */; };
 		233035E6170DAAC9002E1A92 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */; };
-		233035E9170DAAC9002E1A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233035E8170DAAC9002E1A92 /* ViewController.m */; };
+		233035E9170DAAC9002E1A92 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233035E8170DAAC9002E1A92 /* RegisterViewController.m */; };
 		233035F1170DAAC9002E1A92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233035F0170DAAC9002E1A92 /* SenTestingKit.framework */; };
 		233035F2170DAAC9002E1A92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233035CC170DAAC9002E1A92 /* UIKit.framework */; };
 		233035F3170DAAC9002E1A92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233035CE170DAAC9002E1A92 /* Foundation.framework */; };
@@ -51,6 +51,8 @@
 		23D228FB1713537300073C0B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228F91713536100073C0B /* Security.framework */; };
 		23D22900171353E900073C0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228FF171353E900073C0B /* SystemConfiguration.framework */; };
 		23D22901171353F700073C0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228FF171353E900073C0B /* SystemConfiguration.framework */; };
+		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
+		C881A483171AA52E00C7F09E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C881A482171AA52E00C7F09E /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +80,7 @@
 		233035E0170DAAC9002E1A92 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		233035E2170DAAC9002E1A92 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		233035E5170DAAC9002E1A92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		233035E7170DAAC9002E1A92 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		233035E8170DAAC9002E1A92 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		233035E8170DAAC9002E1A92 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		233035EF170DAAC9002E1A92 /* CaptureTheFlagTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureTheFlagTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		233035F0170DAAC9002E1A92 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		233035F8170DAAC9002E1A92 /* CaptureTheFlagTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CaptureTheFlagTests-Info.plist"; sourceTree = "<group>"; };
@@ -113,6 +114,11 @@
 		23D228F6171352CF00073C0B /* NSError+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Description.m"; sourceTree = "<group>"; };
 		23D228F91713536100073C0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		23D228FF171353E900073C0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C80556761718799B00C43A1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		C80556771718991A00C43A1C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C881A481171AA52E00C7F09E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C881A482171AA52E00C7F09E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +189,12 @@
 				233035DB170DAAC9002E1A92 /* AppDelegate.h */,
 				233035DC170DAAC9002E1A92 /* AppDelegate.m */,
 				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
-				233035E7170DAAC9002E1A92 /* ViewController.h */,
-				233035E8170DAAC9002E1A92 /* ViewController.m */,
+				C80556771718991A00C43A1C /* LoginViewController.h */,
+				C80556781718991A00C43A1C /* LoginViewController.m */,
+				C881A481171AA52E00C7F09E /* MainViewController.h */,
+				C881A482171AA52E00C7F09E /* MainViewController.m */,
+				C80556761718799B00C43A1C /* RegisterViewController.h */,
+				233035E8170DAAC9002E1A92 /* RegisterViewController.m */,
 				23D228C517134EE900073C0B /* MKNetworkKit */,
 				23D228DD17134EE900073C0B /* NetworkEngine.h */,
 				23D228DE17134EE900073C0B /* NetworkEngine.m */,
@@ -382,7 +392,7 @@
 			files = (
 				233035D9170DAAC9002E1A92 /* main.m in Sources */,
 				233035DD170DAAC9002E1A92 /* AppDelegate.m in Sources */,
-				233035E9170DAAC9002E1A92 /* ViewController.m in Sources */,
+				233035E9170DAAC9002E1A92 /* RegisterViewController.m in Sources */,
 				23D228DF17134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				23D228E117134EE900073C0B /* NSData+MKBase64.m in Sources */,
 				23D228E317134EE900073C0B /* NSDate+RFC1123.m in Sources */,
@@ -395,6 +405,8 @@
 				23D228F117134EE900073C0B /* Reachability.m in Sources */,
 				23D228F317134EE900073C0B /* NetworkEngine.m in Sources */,
 				23D228F7171352CF00073C0B /* NSError+Description.m in Sources */,
+				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
+				C881A483171AA52E00C7F09E /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
