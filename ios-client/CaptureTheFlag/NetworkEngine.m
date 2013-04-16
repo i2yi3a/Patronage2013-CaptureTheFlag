@@ -77,30 +77,30 @@
           withPassword:(NSString *)password
        completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
-   /* MKNetworkOperation *op = [self operationWithPath:@"players/login"
-                                              params:@{@"client_id" : mobile_ios, @"client_secret" : secret, @"username" : email, @"password" : password}
+    MKNetworkOperation *op = [self operationWithPath:@"/oauth/token"
+                                              params:@{@"client_id" : CTF_API_CLIENT_ID, @"client_secret" : CTF_API_CLIENT_SECRET, @"username" : email, @"password" : password}
                                           httpMethod:@"POST"
                                                  ssl:NO];
     
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
+        NSString *error = response[@"error"];
         
-        NSNumber* errorCode = response[@"error_code"];
-        
-        if (!errorCode || [errorCode integerValue] != 0)
+        if (error!=nil || self.token!= response[@"access_token"])
         {
             completionBlock([NSError errorWithDescription:@"Failed to log in."]);
         }
         else
         {
-            completionBlock(nil);
+            completionBlock(self.token = response[@"access_token"]);
+            
         }
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
         completionBlock(error);
     }];
     
     [self enqueueOperation:op];
-*/
+
 }
 
 @end
