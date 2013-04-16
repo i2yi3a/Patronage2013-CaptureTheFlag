@@ -30,7 +30,7 @@ namespace Ctf
             this.scope = scope;
         }
 
-        public bool hasNullOrEmpty()
+        public bool HasNullOrEmpty()
         {
             return (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(access_token) || String.IsNullOrEmpty(token_type) || String.IsNullOrEmpty(scope));
         }

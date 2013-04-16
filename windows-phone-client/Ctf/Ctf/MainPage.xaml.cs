@@ -27,10 +27,10 @@ namespace Ctf
         private async void LoginTest(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            Debug.WriteLine(Logger.loggedAs());
+            Debug.WriteLine(Logger.LoggedAs());
 
             //await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
-            await Logger.logInAs(new UserCredentials("abcdef", "abcdef"), "secret");
+            await Logger.LogInAs(new UserCredentials("abcdef", "abcdef"), "secret");
             //TODO: NullPointerException
             //if(Logger.loggedAs().username != null)
             //    Debug.WriteLine(Logger.loggedAs().username);
@@ -39,13 +39,13 @@ namespace Ctf
         private async void RegisterTest(object sender, RoutedEventArgs e)
         {
             Registration Register = new Registration();
-            await Register.register(new UserCredentials("abcdef", "abcdef"), "abcdef");
+            await Register.Register(new UserCredentials("abcdef", "abcdef"), "abcdef");
         }
 
         private void LogoutTest(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            if (Logger.logOut())
+            if (Logger.LogOut())
                 Debug.WriteLine("Logout SUCCESSFUL");
             else
                 Debug.WriteLine("Logout FAILED");
@@ -69,7 +69,7 @@ namespace Ctf
         //}
 
 
-        private void makeTestUserCredentials()
+        private void MakeTestUserCredentials()
         {
             UserCredentials user = null;
             string username = "aaaaaaaa";
@@ -84,13 +84,13 @@ namespace Ctf
             }
             if (user != null)
             {
-                Debug.WriteLine("username: " + user.getUsername());
-                Debug.WriteLine("password: " + user.getPassword());
+                Debug.WriteLine("username: " + user.GetUsername());
+                Debug.WriteLine("password: " + user.GetPassword());
             }
-            if (user.hasMatchingPassword(password))
-                Debug.WriteLine("match: " + user.getPassword() + " == " + password);
-            if (user.hasMatchingPassword(username))
-                Debug.WriteLine("match: " + user.getPassword() + " == " + username);
+            if (user.HasMatchingPassword(password))
+                Debug.WriteLine("match: " + user.GetPassword() + " == " + password);
+            if (user.HasMatchingPassword(username))
+                Debug.WriteLine("match: " + user.GetPassword() + " == " + username);
         }
 
 

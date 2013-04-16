@@ -68,7 +68,7 @@ namespace Ctf
                 //TODO: handle exceptions
                 settings.TryGetValue<User>("user", out user);
                 
-                if (user.hasNullOrEmpty())
+                if (user.HasNullOrEmpty())
                 {
                     Debug.WriteLine("RetriveLoggedUser's user.hasNullOrEmpty() == true");
                     user = null;

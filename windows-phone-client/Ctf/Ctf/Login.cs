@@ -65,10 +65,10 @@ namespace Ctf
 
         // TODO: Check if is async
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-87
-        public async Task<RestRequestAsyncHandle> logInAs(UserCredentials user, string secret)
+        public async Task<RestRequestAsyncHandle> LogInAs(UserCredentials user, string secret)
         {
             Debug.WriteLine("secret could be: " + System.Guid.NewGuid().ToString());
-            if (loggedAs() != null)
+            if (LoggedAs() != null)
             {
                 Debug.WriteLine("Exception thrown: " + "Logged in as another user. Please, logout first");
                 throw new Exception("Logged in as another user. Please, logout first");
@@ -89,21 +89,21 @@ namespace Ctf
             }
             else
             {
-                request.AddParameter("username", user.getUsername());
-                request.AddParameter("password", user.getPassword());
-                username = user.getUsername();
+                request.AddParameter("username", user.GetUsername());
+                request.AddParameter("password", user.GetPassword());
+                username = user.GetUsername();
             }
             return await requestHandler.ExecuteAsync<JsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-89
-        public User loggedAs()
+        public User LoggedAs()
         {
             return ApplicationSettings.Instance.RetriveLoggedUser();
         }
 
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-89
-        public bool logOut()
+        public bool LogOut()
         {
             return ApplicationSettings.Instance.removeFromSettings("user");
         }

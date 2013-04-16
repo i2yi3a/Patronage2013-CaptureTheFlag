@@ -56,7 +56,7 @@ namespace Ctf
 
         // TODO: Check if is async
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-88
-        public async Task<RestRequestAsyncHandle> register(UserCredentials user, string verifyPassword)
+        public async Task<RestRequestAsyncHandle> Register(UserCredentials user, string verifyPassword)
         {
             if (user == null)
             {
@@ -65,9 +65,9 @@ namespace Ctf
             }
             else
             {
-                if (user.hasMatchingPassword(verifyPassword))
+                if (user.HasMatchingPassword(verifyPassword))
                 {
-                    request.AddBody(new { username = user.getUsername(), password = user.getPassword() });
+                    request.AddBody(new { username = user.GetUsername(), password = user.GetPassword() });
                 }
                 else
                 {

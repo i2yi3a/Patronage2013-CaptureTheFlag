@@ -15,9 +15,9 @@ namespace Ctf
 
         public UserCredentials(string username, string password)
         {
-            if (!isUsernameProperLength(username))
+            if (!IsUsernameProperLength(username))
                 throw new Exception("Username lenght should be at least " + MINIMAL_USERNAME_LENGTH + " characters long.");
-            if (!isPasswordProperLength(password))
+            if (!IsPasswordProperLength(password))
                 throw new Exception("Password lenght should be at least " + MINIMAL_PASSWORD_LENGTH + " characters long.");
 
             this.username = username;
@@ -26,27 +26,27 @@ namespace Ctf
 
         // TODO: check null
 
-        public static bool isUsernameProperLength(string username)
+        public static bool IsUsernameProperLength(string username)
         {
             return (username.Length >= MINIMAL_USERNAME_LENGTH);
         }
 
-        public static bool isPasswordProperLength(string password)
+        public static bool IsPasswordProperLength(string password)
         {
             return (password.Length >= MINIMAL_PASSWORD_LENGTH);
         }
 
-        public bool hasMatchingPassword(string password)
+        public bool HasMatchingPassword(string password)
         {
             return this.password.Equals(password);
         }
 
-        public string getUsername()
+        public string GetUsername()
         {
             return this.username;
         }
 
-        public string getPassword()
+        public string GetPassword()
         {
             return this.password;
         }
