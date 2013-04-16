@@ -13,6 +13,8 @@
 
 #define CTF_SERVER @"capturetheflag.blstream.com"
 #define CTF_API_PATH @"demo/api"
+#define CTF_API_CLIENT_SECRET @"secret"
+#define CTF_API_CLIENT_ID @"mobile_ios" 
 #define CTF_SERVER_PORT 18080
 
 @interface NetworkEngine()
@@ -75,7 +77,30 @@
           withPassword:(NSString *)password
        completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
- //waiting for this part of code, can't test my login implementation :(  
+   /* MKNetworkOperation *op = [self operationWithPath:@"players/login"
+                                              params:@{@"client_id" : mobile_ios, @"client_secret" : secret, @"username" : email, @"password" : password}
+                                          httpMethod:@"POST"
+                                                 ssl:NO];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *operation) {
+        NSDictionary* response = operation.responseJSON;
+        
+        NSNumber* errorCode = response[@"error_code"];
+        
+        if (!errorCode || [errorCode integerValue] != 0)
+        {
+            completionBlock([NSError errorWithDescription:@"Failed to log in."]);
+        }
+        else
+        {
+            completionBlock(nil);
+        }
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        completionBlock(error);
+    }];
+    
+    [self enqueueOperation:op];
+*/
 }
 
 @end
