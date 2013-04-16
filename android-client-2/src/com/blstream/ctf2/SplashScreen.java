@@ -5,27 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 
 /**
- * 
+ * SplashScreen class. 
+ * Display splash screen for 2 seconds.
  * @author Marcin Szmit
- * 
- *         SplashScreen class
- * 
- *         Display splash screen for 2 seconds.
- * 
  */
 public class SplashScreen extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
-
 		Thread splash = new Thread() {
 			public void run() {
 				try {
-					sleep(2000);
-
+					sleep(Constants.SPLASH_SHOW_TIME);
+					throw new InterruptedException();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
@@ -38,5 +31,4 @@ public class SplashScreen extends Activity {
 		};
 		splash.start();
 	}
-
 }
