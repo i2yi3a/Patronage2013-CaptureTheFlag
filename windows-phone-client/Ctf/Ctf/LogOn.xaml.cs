@@ -18,8 +18,16 @@ namespace Ctf
         {
             InitializeComponent();
 
+
+
+
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

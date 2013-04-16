@@ -94,6 +94,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="LoggedIn.xaml.cs">
+      <DependentUpon>LoggedIn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogOn.xaml.cs">
       <DependentUpon>LogOn.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="LoggedIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogOn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
