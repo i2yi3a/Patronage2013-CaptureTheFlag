@@ -1,5 +1,5 @@
 /**
- * @author Milosz Skalski
+ * @author Milosz_Skalski
  */
 package com.blstream.ctf1;
 
@@ -20,7 +20,7 @@ public class SplashScreen extends Activity {
     	new Handler().postDelayed(new Thread() {
     		@Override
     		public void run() {
-    			Intent register = new Intent(SplashScreen.this, MainActivity.class);
+    			Intent register = new Intent(SplashScreen.this, LoginActivity.class);
     			SplashScreen.this.startActivity(register);
     			SplashScreen.this.finish();
     		}

@@ -23,8 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blstream.ctf1.MainActivity"
+            android:name="com.blstream.ctf1.LoginActivity"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.blstream.ctf1.RegisterActivity"
+            android:label="@string/title_activity_register" >
         </activity>
     </application>
 
