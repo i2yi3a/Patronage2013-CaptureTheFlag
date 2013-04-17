@@ -15,6 +15,14 @@ namespace Ctf
         private RequestHandler requestHandler;
         private RestRequest request;
         private string username;
+        public event EventHandler<EventArgs> MessengerSent;
+
+        protected virtual void OnMessengerSent(EventArgs e)
+        {
+            var MessengerSentThreadPrivate = MessengerSent;
+            if (MessengerSentThreadPrivate != null)
+                MessengerSentThreadPrivate(this, e);
+        }
 
         public Login()
         {
@@ -37,6 +45,7 @@ namespace Ctf
                             Debug.WriteLine("Response Data is NULL or EMPTY.");
                             Debug.WriteLine("Exception thrown: " + "Unknown error, please try again later.");
                             //throw new Exception("Unknown error, please try again later.");
+                            OnMessengerSent(new MessengerSentEventArgs("Unknown error, please try again later."));
                         }
                         else
                         {
@@ -53,6 +62,7 @@ namespace Ctf
                         Debug.WriteLine("Response Data is an ERROR.");
                         Debug.WriteLine("Exception thrown: " + response.Data.error + ": " + response.Data.error_description);
                         //throw new Exception(response.Data.error + ": " + response.Data.error_description);
+                        OnMessengerSent(new MessengerSentEventArgs(response.Data.error + ": " + response.Data.error_description));
                     }
             }
         }
@@ -61,6 +71,7 @@ namespace Ctf
         {
             Debug.WriteLine("Exception thrown: " + errorMessage);
             //throw new Exception(errorMessage);
+            OnMessengerSent(new MessengerSentEventArgs(errorMessage));
         }
 
         // TODO: Check if is async
@@ -71,13 +82,15 @@ namespace Ctf
             if (LoggedAs() != null)
             {
                 Debug.WriteLine("Exception thrown: " + "Logged in as another user. Please, logout first");
-                throw new Exception("Logged in as another user. Please, logout first");
+                //throw new Exception("Logged in as another user. Please, logout first");
+                OnMessengerSent(new MessengerSentEventArgs("Logged in as another user. Please, logout first"));
             }
 
             if (String.IsNullOrWhiteSpace(secret))
             {
                 Debug.WriteLine("Exception thrown: " + "No secret key is set. Please reinstall this app.");
-                throw new Exception("No secret key is set. Please reinstall this app.");
+                //throw new Exception("No secret key is set. Please reinstall this app.");
+                OnMessengerSent(new MessengerSentEventArgs("No secret key is set. Please reinstall this app."));
             }
             else
                 request.AddParameter("client_secret", secret);
@@ -85,7 +98,8 @@ namespace Ctf
             if (user == null)
             {
                 Debug.WriteLine("Exception thrown: " + "Lost user credentials. Please login once more");
-                throw new Exception("Lost user credentials. Please login once more");
+                //throw new Exception("Lost user credentials. Please login once more");
+                OnMessengerSent(new MessengerSentEventArgs("Lost user credentials. Please login once more"));
             }
             else
             {
