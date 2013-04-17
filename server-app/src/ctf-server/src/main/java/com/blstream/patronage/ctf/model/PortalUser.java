@@ -1,6 +1,8 @@
 package com.blstream.patronage.ctf.model;
 
 import com.blstream.hooks.springframework.mongodb.mapping.DBRefCollectionCascade;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -34,7 +36,7 @@ import java.util.List;
  * TODO: make password encrypted using e.g. SHA-1!
  */
 @Document
-public class PortalUser implements Serializable {
+public class PortalUser implements BaseModel<String> {
 
     private static final long serialVersionUID = 5227112390633063751L;
 
@@ -58,20 +60,18 @@ public class PortalUser implements Serializable {
         this.password = password;
     }
 
+    @JsonIgnore
+    @Override
+    public String getId() {
+        return username;
+    }
+
     /**
      * Returns a username.
      * @return String
      */
     public String getUsername() {
         return username;
-    }
-
-    /**
-     * Sets a username.
-     * @param username
-     */
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     /**

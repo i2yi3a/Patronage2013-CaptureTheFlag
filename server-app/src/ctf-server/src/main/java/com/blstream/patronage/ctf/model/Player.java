@@ -31,7 +31,7 @@ import java.io.Serializable;
  * classes in this project. It's holds all player properties.
  */
 @Document
-public class Player implements Serializable {
+public class Player implements BaseModel<String> {
 
     private static final long serialVersionUID = 4434354945709061742L;
 

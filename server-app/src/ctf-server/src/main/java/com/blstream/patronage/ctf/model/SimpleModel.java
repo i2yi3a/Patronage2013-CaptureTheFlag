@@ -26,7 +26,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * TODO: remove this class and all dependencies like service, repository and controller.
  */
 @Document
-public class SimpleModel {
+public class SimpleModel implements BaseModel<String> {
 
     @Id
     private String id;

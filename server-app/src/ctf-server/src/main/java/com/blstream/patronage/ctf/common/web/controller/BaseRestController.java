@@ -1,6 +1,7 @@
 package com.blstream.patronage.ctf.common.web.controller;
 
 import com.blstream.patronage.ctf.common.service.CrudService;
+import com.blstream.patronage.ctf.model.BaseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ import java.io.Serializable;
  * @see com.blstream.patronage.ctf.common.web.controller.RestController
  * @see com.blstream.patronage.ctf.common.web.controller.AbstractRestController
  */
-public abstract class BaseRestController<T, ID extends Serializable, S extends CrudService<T, ID>> extends AbstractRestController implements RestController<T, ID> {
+public abstract class BaseRestController<T extends BaseModel<ID>, ID extends Serializable, S extends CrudService<T, ID>> extends AbstractRestController implements RestController<T, ID> {
 
     private static Logger logger = LoggerFactory.getLogger(BaseRestController.class);
 
@@ -47,7 +48,7 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
     protected abstract void setService(S service);
 
     /**
-     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(Object)
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.model.BaseModel)
      */
     @Override
     public T create(@RequestBody T resource) {
@@ -58,7 +59,7 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
     }
 
     /**
-     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(Object)
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.model.BaseModel)
      */
     @Override
     public T update(@PathVariable ID id, @RequestBody T resource) {
@@ -69,6 +70,7 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
 
         Assert.notNull(id, "ID cannot be null");
         Assert.notNull(resource, "Resources cannot be null");
+        Assert.isTrue(id.equals(resource.getId()), "Request ID and resource ID cannot be different from each other");
 
         return service.update(id, resource);
     }

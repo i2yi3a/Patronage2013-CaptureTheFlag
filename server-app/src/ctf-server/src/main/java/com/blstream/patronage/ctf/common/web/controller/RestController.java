@@ -1,5 +1,6 @@
 package com.blstream.patronage.ctf.common.web.controller;
 
+import com.blstream.patronage.ctf.model.BaseModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ import java.io.Serializable;
  *
  * This class is a representation of generic REST controller which works on CRUD logic model.
  */
-public interface RestController<T, ID extends Serializable> {
+public interface RestController<T extends BaseModel<ID>, ID extends Serializable> {
 
     /**
      * This method creates a new document.

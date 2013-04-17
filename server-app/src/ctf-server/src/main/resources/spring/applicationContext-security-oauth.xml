@@ -23,6 +23,14 @@
 
         <intercept-url pattern="/api/secured/players/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
 
+        <!-- Games API -->
+        <intercept-url pattern="/api/secured/games/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+        <intercept-url pattern="/api/secured/games/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="POST" />
+        <intercept-url pattern="/api/secured/games/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="PUT" />
+        <intercept-url pattern="/api/secured/games/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="DELETE" />
+        <!-- /Games API -->
+
+
         <intercept-url pattern="/api/secured/users/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
         <intercept-url pattern="/api/secured/(users|players)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="POST" />
 

@@ -11,17 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jack
- * Date: 17.04.13
- * Time: 00:42
- * To change this template use File | Settings | File Templates.
- */
-
 @Controller
 @RequestMapping("/api/secured/games")
-
 public class GameController extends BaseRestController<Game, String, GameService> {
 
     private static final Logger logger = LoggerFactory.getLogger(GameController.class);
@@ -31,7 +22,6 @@ public class GameController extends BaseRestController<Game, String, GameService
     @Override
     public void setService(GameService service) {
         super.service = service;
-
     }
 
 }

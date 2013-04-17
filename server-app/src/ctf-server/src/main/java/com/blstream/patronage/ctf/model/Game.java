@@ -1,22 +1,45 @@
 package com.blstream.patronage.ctf.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-
-
 @Document
-public class Game {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Game implements BaseModel<String> {
+
+    @Id
+    private String id;
 
     private String name;
-    private String descryption;
-    private Date time_start;
+    private String description;
+
+    @JsonProperty("time_start")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date timeStart;
+
     private Long duration;
-    private Integer points_max;
-    private Integer players_max;
+
+    @JsonProperty("points_max")
+    private Integer pointsMax;
+
+    @JsonProperty("players_max")
+    private Integer playersMax;
+
     private Localization localization;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -26,20 +49,20 @@ public class Game {
         this.name = name;
     }
 
-    public String getDescryption() {
-        return descryption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescryption(String descryption) {
-        this.descryption = descryption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getTime_start() {
-        return time_start;
+    public Date getTimeStart() {
+        return timeStart;
     }
 
-    public void setTime_start(Date time_start) {
-        this.time_start = time_start;
+    public void setTimeStart(Date timeStart) {
+        this.timeStart = timeStart;
     }
 
     public Long getDuration() {
@@ -50,20 +73,20 @@ public class Game {
         this.duration = duration;
     }
 
-    public Integer getPoints_max() {
-        return points_max;
+    public Integer getPointsMax() {
+        return pointsMax;
     }
 
-    public void setPoints_max(Integer points_max) {
-        this.points_max = points_max;
+    public void setPointsMax(Integer pointsMax) {
+        this.pointsMax = pointsMax;
     }
 
-    public Integer getPlayers_max() {
-        return players_max;
+    public Integer getPlayersMax() {
+        return playersMax;
     }
 
-    public void setPlayers_max(Integer players_max) {
-        this.players_max = players_max;
+    public void setPlayersMax(Integer playersMax) {
+        this.playersMax = playersMax;
     }
 
     public Localization getLocalization() {
