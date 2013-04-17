@@ -22,6 +22,12 @@ namespace Ctf
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+            ApplicationSettings.Instance.UserChanged += UserHasChanged;
+        }
+
+        public void UserHasChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("AppSett EVENT!. User has changed.");
         }
 
         private async void LoginTest(object sender, RoutedEventArgs e)
