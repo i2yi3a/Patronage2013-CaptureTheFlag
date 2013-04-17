@@ -8,13 +8,20 @@ using System.IO.IsolatedStorage;
 
 namespace Ctf
 {
-
     // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-92
     // TODO incorporate events
     public sealed class ApplicationSettings
     {
         static readonly ApplicationSettings instance = new ApplicationSettings();
         IsolatedStorageSettings settings;
+        public event EventHandler<EventArgs> UserChanged;
+
+        private void OnUserChanged(EventArgs e)
+        {
+            var UserChangedThreadPrivate = UserChanged;
+            if (UserChangedThreadPrivate != null)
+                UserChangedThreadPrivate(this, e);
+        }
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
@@ -26,17 +33,14 @@ namespace Ctf
         ApplicationSettings()
         {
             Debug.WriteLine("ApplicationSettings() [Constructor]");
-            
+
             settings = IsolatedStorageSettings.ApplicationSettings;
             Debug.WriteLineIf(settings == null, "ApplicationSettings() : IsolatedStorageSettings settings is NULL");
         }
 
         public static ApplicationSettings Instance
         {
-            get
-            {
-                return instance;
-            }
+            get { return instance; }
         }
 
         // Reference : http://www.geekchamp.com/tips/all-about-wp7-isolated-storage-store-data-in-isolatedstoragesettings
@@ -52,6 +56,7 @@ namespace Ctf
                 {
                     Debug.WriteLine("SaveLoggedUser added user");
                     settings.Add("user", user);
+                    OnUserChanged(EventArgs.Empty);
                 }
             }
         }
@@ -67,7 +72,7 @@ namespace Ctf
                 user = new User(null, null, null, null);
                 //TODO: handle exceptions
                 settings.TryGetValue<User>("user", out user);
-                
+
                 if (user.HasNullOrEmpty())
                 {
                     Debug.WriteLine("RetriveLoggedUser's user.hasNullOrEmpty() == true");
@@ -78,17 +83,16 @@ namespace Ctf
             return user;
         }
 
-
-        public bool removeFromSettings(string keyword)
+        public bool RemoveFromSettings(string keyword)
         {
             if ((settings != null) && settings.Contains(keyword))
             {
                 Debug.WriteLine("Removed from settings: " + keyword);
                 settings.Remove(keyword);
+                OnUserChanged(EventArgs.Empty);
                 return true;
             }
             return false;
         }
-
     }
 }

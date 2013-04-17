@@ -22,6 +22,12 @@ namespace Ctf
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+            ApplicationSettings.Instance.UserChanged += UserHasChanged;
+        }
+
+        public void UserHasChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("AppSett EVENT!. User has changed.");
         }
 
         private async void LoginTest(object sender, RoutedEventArgs e)
@@ -51,7 +57,6 @@ namespace Ctf
                 Debug.WriteLine("Logout FAILED");
         }
 
-
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{
@@ -67,7 +72,6 @@ namespace Ctf
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
-
 
         private void MakeTestUserCredentials()
         {
@@ -92,7 +96,5 @@ namespace Ctf
             if (user.HasMatchingPassword(username))
                 Debug.WriteLine("match: " + user.GetPassword() + " == " + username);
         }
-
-
     }
 }

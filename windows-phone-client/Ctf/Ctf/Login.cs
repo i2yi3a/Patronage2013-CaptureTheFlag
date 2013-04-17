@@ -105,7 +105,7 @@ namespace Ctf
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-89
         public bool LogOut()
         {
-            return ApplicationSettings.Instance.removeFromSettings("user");
+            return ApplicationSettings.Instance.RemoveFromSettings("user");
         }
     }
 }

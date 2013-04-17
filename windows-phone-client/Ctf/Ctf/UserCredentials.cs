@@ -25,7 +25,6 @@ namespace Ctf
         }
 
         // TODO: check null
-
         public static bool IsUsernameProperLength(string username)
         {
             return (username.Length >= MINIMAL_USERNAME_LENGTH);
