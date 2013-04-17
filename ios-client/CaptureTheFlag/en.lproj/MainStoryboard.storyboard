@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -81,7 +81,7 @@
                     <connections>
                         <outlet property="passwordField" destination="dZw-Ma-bDh" id="4xI-xF-ExP"/>
                         <outlet property="userEmailField" destination="TjK-Rj-Zwq" id="2pA-G7-3bV"/>
-                        <segue destination="35t-Lb-0N9" kind="push" identifier="segueToMainScreenAfterLogin" id="Kwe-XV-7wO"/>
+                        <segue destination="35t-Lb-0N9" kind="modal" identifier="segueToMainScreenAfterLogin" id="RCK-hA-Hql"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -209,9 +209,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZE-aY-rHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178" y="55"/>
+            <point key="canvasLocation" x="103" y="64"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userEmailField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+        </class>
+        <class className="RegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancellRegister:"/>
+                <relationship kind="action" name="reginster:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userEmailField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

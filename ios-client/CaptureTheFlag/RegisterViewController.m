@@ -48,7 +48,7 @@
                               else
                               {
                                   UIAlertView *reginsterSucessAlert = [[UIAlertView alloc]
-                                                                      initWithTitle:@"UIAlertView" message:@"Your's reginstration proces is complete" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                      initWithTitle:@"UIAlertView" message:@"Your's registration proces is complete" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                   [reginsterSucessAlert show];                              }
                           }];
 }
