@@ -85,14 +85,14 @@
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
-        
-        if (error!=nil || self.token!= response[@"access_token"])
+        self.token = response[@"access_token"];
+        if (error!=nil ||  _token == nil)
         {
             completionBlock([NSError errorWithDescription:@"Failed to log in."]);
         }
         else
         {
-            completionBlock(self.token = response[@"access_token"]);
+            completionBlock(_token);
             
         }
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
