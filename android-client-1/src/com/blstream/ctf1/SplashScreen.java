@@ -1,9 +1,14 @@
+/**
+ * @author Milosz Skalski
+ */
 package com.blstream.ctf1;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+
+
 
 public class SplashScreen extends Activity {
 
