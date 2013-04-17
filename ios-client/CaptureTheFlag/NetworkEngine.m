@@ -12,9 +12,10 @@
 #import "MKNetworkKit.h"
 
 #define CTF_SERVER @"capturetheflag.blstream.com"
-#define CTF_API_PATH @"demo/api"
+#define CTF_API_PATH @"demo"
 #define CTF_API_CLIENT_SECRET @"secret"
-#define CTF_API_CLIENT_ID @"mobile_ios" 
+#define CTF_API_CLIENT_ID @"mobile_ios"
+#define CTF_API_GRANT_TYPE @"password"
 #define CTF_SERVER_PORT 18080
 
 @interface NetworkEngine()
@@ -46,7 +47,7 @@
         withPassword:(NSString *)password
      completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
-    MKNetworkOperation *op = [self operationWithPath:@"players/add"
+    MKNetworkOperation *op = [self operationWithPath:@"api/players/add"
                                               params:@{@"username" : email, @"password" : password}
                                           httpMethod:@"POST"
                                                  ssl:NO];
@@ -77,8 +78,8 @@
           withPassword:(NSString *)password
        completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
-    MKNetworkOperation *op = [self operationWithPath:@"/oauth/token"
-                                              params:@{@"client_id" : CTF_API_CLIENT_ID, @"client_secret" : CTF_API_CLIENT_SECRET, @"username" : email, @"password" : password}
+    MKNetworkOperation *op = [self operationWithPath:@"oauth/token"
+                                              params:@{@"client_id" : CTF_API_CLIENT_ID, @"client_secret" : CTF_API_CLIENT_SECRET, @"grant_type" : CTF_API_GRANT_TYPE, @"username" : email, @"password" : password}
                                           httpMethod:@"POST"
                                                  ssl:NO];
     
@@ -97,7 +98,7 @@
         }
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
         completionBlock(error);
-    }];
+    } ];
     
     [self enqueueOperation:op];
 
