@@ -10,10 +10,10 @@
     <string name="registration">Rejestracja</string>
     <string name="login">Login</string>
     <string name="password">Hasło</string>
-    <string name="hint_login">Wpisz swoj login</string>
+    <string name="hint_login">Wpisz swój login</string>
     <string name="register">Rejestruj</string>
     <string name="back">Cofnij</string>
-    <string name="re_password">Powtorz hasło</string>
+    <string name="re_password">Powtórz hasło</string>
     <string name="register_login_error_with_5_characters">Login musi posiadać minimum 5 znaków</string>
     <string name="register_password_error_with_5_characters">Hasło musi posiadać minimum 5 znaków</string>
     <string name="register_password_error_equals">Hasła muszą być takie same</string>
