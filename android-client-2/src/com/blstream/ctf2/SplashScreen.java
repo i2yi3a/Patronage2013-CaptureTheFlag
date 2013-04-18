@@ -22,9 +22,9 @@ public class SplashScreen extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
-					Intent openMainActivity = new Intent(
-							"com.blstream.ctf2.MAINACTIVITY");
-					startActivity(openMainActivity);
+					Intent intent = new Intent(
+							"com.blstream.ctf2.REGISTERACTIVITY");
+					startActivity(intent);
 					finish();
 				}
 			}
