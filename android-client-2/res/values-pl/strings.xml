@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CaptureTheFlagAndroid2</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="hello_world">Witaj świecie!</string>
+    <string name="registration">Rejestracja</string>
+    <string name="register">Rejestruj</string>
+    <string name="username">Nazwa użytkownika</string>
+    <string name="password">Hasło</string>
+    <string name="repeat_password">Powtórz hasło</string>
+
+</resources>
