@@ -52,10 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textLogin"
         android:layout_alignBottom="@+id/textLogin"
-        android:layout_toRightOf="@+id/btnRegistration"
-        android:ems="10" 
-        android:hint="@string/hint_login"/>
-
+        android:layout_alignLeft="@+id/editPassword"
+        android:ems="10"
+        android:hint="@string/hint_login" />
 
     <EditText
         android:id="@+id/editPassword"
@@ -63,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textPassword"
         android:layout_alignBottom="@+id/textPassword"
-        android:layout_alignLeft="@+id/editLogin"
+        android:layout_toRightOf="@+id/textPassword"
         android:ems="10"
         android:inputType="textPassword" />
 

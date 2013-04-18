@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">CaptureTheFlagAndroid1</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="splash_screen">SplashScreen</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="registration">Rejestracja</string>
+    <string name="login">Login</string>
+    <string name="password">Hasło</string>
+    <string name="hint_login">Wpisz swoj login</string>
+    <string name="register">Rejestruj</string>
+    <string name="back">Cofnij</string>
+    <string name="re_password">Powtorz hasło</string>
+    <string name="register_login_error_with_5_characters">Login musi posiadać minimum 5 znaków</string>
+    <string name="register_password_error_with_5_characters">Hasło musi posiadać minimum 5 znaków</string>
+    <string name="register_password_error_equals">Hasła muszą być takie same</string>
+    <string name="register_login_error_exist">Login już istnieje</string>
+    <string name="register_successful">Rejestracja została ukończona pomyślnie</string>
+    
+</resources>

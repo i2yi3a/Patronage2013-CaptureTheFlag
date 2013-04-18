@@ -13,25 +13,28 @@ import android.widget.Toast;
 
 public class RegisterActivity extends Activity implements OnClickListener {
 
-	private Button btnBack;
-	private Button btnRegister;
-	private EditText editLoginReg;
-	private EditText editPasswordReg;
-	private EditText editPassword2Reg;
+	private Button mBtnBack;
+	private Button mBtnRegister;
+	private EditText mEditLoginReg;
+	private EditText mEditPasswordReg;
+	private EditText mEditPassword2Reg;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		
-		btnBack = (Button) findViewById(R.id.btnBack);
-		btnRegister = (Button) findViewById(R.id.btnRegister);
-		btnBack.setOnClickListener(this);
-		btnRegister.setOnClickListener(this);
+		mBtnBack = (Button) findViewById(R.id.btnBack);
+		mBtnRegister = (Button) findViewById(R.id.btnRegister);
+		mBtnBack.setOnClickListener(this);
+		mBtnRegister.setOnClickListener(this);
 		
-		editLoginReg = (EditText) findViewById(R.id.editLoginReg);
-		editPasswordReg = (EditText) findViewById(R.id.editPasswordReg);
-		editPassword2Reg = (EditText) findViewById(R.id.editPassword2Reg);
+		mEditLoginReg = (EditText) findViewById(R.id.editLoginReg);
+		mEditPasswordReg = (EditText) findViewById(R.id.editPasswordReg);
+		mEditPassword2Reg = (EditText) findViewById(R.id.editPassword2Reg);
+		
+		mBtnBack.setText(R.string.back);
+		mBtnRegister.setText(R.string.register);
 	}
 
 	@Override
@@ -45,11 +48,40 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btnRegister:
 			// instruction register
-			String login = editLoginReg.getText().toString();
-			String password = editPasswordReg.getText().toString();
-			String password2 = editPassword2Reg.getText().toString();
+			String login = mEditLoginReg.getText().toString();
+			String password = mEditPasswordReg.getText().toString();
+			String password2 = mEditPassword2Reg.getText().toString();
 			
-			Toast.makeText(this, "Registration was successful", Toast.LENGTH_SHORT).show();
+			if(login.length() < 5)
+			{
+				Toast.makeText(this, R.string.register_login_error_with_5_characters, Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				if(password.length() < 5)
+				{
+					Toast.makeText(this, R.string.register_password_error_with_5_characters, Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					if( !password.equals(password2) )
+					{
+						Toast.makeText(this, R.string.register_password_error_equals, Toast.LENGTH_SHORT).show();
+					}
+					else
+					{
+						// need check internet connection
+						if( 1!=1) // need to check login
+						{
+							Toast.makeText(this, R.string.register_login_error_exist, Toast.LENGTH_SHORT).show();
+						}
+						else
+						{
+							Toast.makeText(this, R.string.register_successful, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+			}
 			break;
 		}
 	}

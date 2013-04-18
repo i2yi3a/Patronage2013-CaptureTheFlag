@@ -14,5 +14,10 @@
     <string name="register">Register</string>
     <string name="back">Back</string>
     <string name="re_password">Re-Password</string>
-
+    <string name="register_login_error_with_5_characters">Login must be at least 5 characters</string>
+    <string name="register_password_error_with_5_characters">Password must be at least 5 characters</string>
+    <string name="register_password_error_equals">Password must be the same</string>
+    <string name="register_login_error_exist">Login already exists</string>
+    <string name="register_successful">Registration was successful</string>
+    
 </resources>

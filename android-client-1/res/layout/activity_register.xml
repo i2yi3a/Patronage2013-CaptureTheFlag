@@ -61,7 +61,7 @@
        android:layout_height="wrap_content"
        android:layout_alignBaseline="@+id/textLogin"
        android:layout_alignBottom="@+id/textLogin"
-       android:layout_alignRight="@+id/btnRegister"
+       android:layout_alignParentRight="true"
        android:layout_toRightOf="@+id/textView1"
        android:ems="10"
        android:hint="@string/hint_login" />
@@ -73,7 +73,7 @@
         android:layout_alignBaseline="@+id/textPassword"
         android:layout_alignBottom="@+id/textPassword"
         android:layout_alignLeft="@+id/editLoginReg"
-        android:layout_alignRight="@+id/editLoginReg"
+        android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPassword" />
 
@@ -84,9 +84,8 @@
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignLeft="@+id/editPasswordReg"
-        android:layout_alignRight="@+id/editPasswordReg"
+        android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPassword" />
-
 
 </RelativeLayout>
