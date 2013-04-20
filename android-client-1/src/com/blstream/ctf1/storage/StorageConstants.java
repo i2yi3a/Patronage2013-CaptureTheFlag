@@ -2,6 +2,10 @@ package com.blstream.ctf1.storage;
 
 
 
+/**
+ * @author Adrian Swarcewicz
+ */
+
 class StorageConstants {
 	public static final String DEBUG_TAG = "Storage";
 	public static final int DB_VERSION = 1;

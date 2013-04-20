@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
 
+/**
+ * @author Adrian Swarcewicz
+ */
 
 class StorageOpenHelper extends SQLiteOpenHelper {
 
