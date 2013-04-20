@@ -39,17 +39,12 @@
                           completionBlock:^(NSObject *response) {
                               if ([response isKindOfClass:[NSError class]])
                               {
-                                  UIAlertView *reginsterErrorAlert = [[UIAlertView alloc]
-                                                                  initWithTitle:@"UIAlertView" message:@"error" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                [reginsterErrorAlert show];
-                                  
-
+                                  [ShowInformation showError:@"Failed to register new user"];
                               }
                               else
                               {
-                                  UIAlertView *reginsterSucessAlert = [[UIAlertView alloc]
-                                                                      initWithTitle:@"UIAlertView" message:@"Your's registration proces is complete" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                  [reginsterSucessAlert show];                              }
+                                  [ShowInformation showError:@"Your registration proces is complete"];
+                              }
                           }];
 }
 
@@ -62,9 +57,7 @@ if ([self.passwordField.text isEqualToString:self.passwordField2.text])
 }
 else
 {
-    UIAlertView *reginsterPasswordAlert = [[UIAlertView alloc]
-                                         initWithTitle:@"UIAlertView" message:@"passwords didn't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [reginsterPasswordAlert show];
+    [ShowInformation showError:@"passwords didn't match"];
 }
 }
 

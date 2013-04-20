@@ -43,12 +43,7 @@
                                  completionBlock:^(NSObject *response) {
                                   if ([response isKindOfClass:[NSError class]])
                                   {
-                                      UIAlertView *loginErrorAlert = [[UIAlertView alloc]
-                                                                          initWithTitle:@"UIAlertView" message:@"error" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                      [loginErrorAlert show];
-                                      
-                                      
-                                  }
+                                       [ShowInformation showError:@"Incorrect user name or password"];                                  }
                                   else
                                   {
                                       [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
