@@ -7,43 +7,53 @@ import java.util.List;
 import com.blstream.ctf2.storage.entity.User;
 import com.blstream.ctf2.storage.utils.UserSQLiteHelper;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 
+ * @author Marcin Sareło
+ *
+ */
 public class UserDAO {
 
 	private SQLiteDatabase db;
 	private UserSQLiteHelper dbHelper;
+	private Context context;
 
-	private String[] allColumns = { 
+	private String[] allColumns = {
 			UserSQLiteHelper.COLUMN_ID,
-			UserSQLiteHelper.COLUMN_NAME, 
+			UserSQLiteHelper.COLUMN_NAME,
 			UserSQLiteHelper.COLUMN_TOKEN,
-			UserSQLiteHelper.COLUMN_CREATED, 
+			UserSQLiteHelper.COLUMN_CREATED,
 			UserSQLiteHelper.COLUMN_LASTLOGIN,
-			UserSQLiteHelper.COLUMN_VERSION };
+			UserSQLiteHelper.COLUMN_VERSION 
+			};
 
 	public UserDAO(Context context) {
+		this.context=context;
+	}
+
+	public void open(){
 		dbHelper = new UserSQLiteHelper(context);
 		db = dbHelper.getWritableDatabase();
 	}
-
+	
 	public void close() {
 		db.close();
 	}
 
-	public User createUser(String name) {
+	public User createUser(User user) {
+		open();
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(UserSQLiteHelper.COLUMN_NAME, name);
-		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN, "");
+		contentValues.put(UserSQLiteHelper.COLUMN_NAME, user.getName());
+		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN, user.getToken());
 		contentValues.put(UserSQLiteHelper.COLUMN_CREATED,
 				new Date().toString());
 		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN, "");
 		contentValues.put(UserSQLiteHelper.COLUMN_VERSION, new Integer(1));
-
 
 		long insertId = db.insert(UserSQLiteHelper.TABLE_USER, null,
 				contentValues);
@@ -55,34 +65,32 @@ public class UserDAO {
 		cursor.moveToFirst();
 		User newUser = cursorToUser(cursor);
 		cursor.close();
+		close();
 		return newUser;
 	}
-	
-	
+
 	public void deleteUser(User user) {
-	    long id = user.getId();
-	   
-	    db.delete(UserSQLiteHelper.TABLE_USER, UserSQLiteHelper.COLUMN_ID
-	        + " = " + id, null);
-	  }
+		open();
+		long id = user.getId();
+
+		db.delete(UserSQLiteHelper.TABLE_USER, UserSQLiteHelper.COLUMN_ID
+				+ " = " + id, null);
+		close();
+	}
 
 	private User cursorToUser(Cursor cursor) {
 
 		User user = new User();
-//		user.setId(cursor.getInt(0));
-//		user.setName(cursor.getString(1));
-//		user.setToken(cursor.getString(2));
-//		user.setCreated(cursor.getString(3));
-//		user.setLastLogin(cursor.getString(4));
-//		user.setVersion(cursor.getInt(5));
-	
-		user=fillAllFields(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
-		
+		user = fillAllFields(cursor.getInt(0), cursor.getString(1),
+				cursor.getString(2), cursor.getString(3), cursor.getString(4),
+				cursor.getInt(5));
+
 		return user;
 	}
-	
-	private User fillAllFields(Integer id, String name, String token, String created, String lastLogin, Integer version){
-		User user= new User();
+
+	private User fillAllFields(Integer id, String name, String token,
+			String created, String lastLogin, Integer version) {
+		User user = new User();
 		user.setId(id);
 		user.setName(name);
 		user.setToken(token);
@@ -93,34 +101,39 @@ public class UserDAO {
 	}
 
 	public List<User> getUsers() {
+		open();
 		List<User> userList = new ArrayList<User>();
-		
-		Cursor cursor = db.query(UserSQLiteHelper.TABLE_USER, allColumns, null, null, null, null, null);
+
+		Cursor cursor = db.query(UserSQLiteHelper.TABLE_USER, allColumns, null,
+				null, null, null, null);
 		cursor.moveToFirst();
-		
-	    while (!cursor.isAfterLast()) {
-	    	User user = new User();
-	    		user =fillAllFields(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
-	    		userList.add(user);
-	    	cursor.moveToNext();
-	    }
+
+		while (!cursor.isAfterLast()) {
+			User user = new User();
+			user = fillAllFields(cursor.getInt(0), cursor.getString(1),
+					cursor.getString(2), cursor.getString(3),
+					cursor.getString(4), cursor.getInt(5));
+			userList.add(user);
+			cursor.moveToNext();
+		}
+		close();
 		return userList;
 	}
-	
-	public void update(User user){
-		String where = UserSQLiteHelper.COLUMN_ID + user.getId();
+
+	public User update(User user) {
+		open();
+		String where = UserSQLiteHelper.COLUMN_ID + "=" + user.getId();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(UserSQLiteHelper.COLUMN_NAME, user.getName());
 		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN, user.getToken());
-		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN, user.getLastLogin());
-		contentValues.put(UserSQLiteHelper.COLUMN_VERSION, user.getVersion()+1);
-		db.update(UserSQLiteHelper.TABLE_USER, contentValues, where, null);		
+		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN,
+				user.getLastLogin());
+		contentValues.put(UserSQLiteHelper.COLUMN_VERSION,
+				(user.getVersion() + 1));
+		db.update(UserSQLiteHelper.TABLE_USER, contentValues, where, null);
+
+		close();
+		return user;
 	}
-	
-	
-	public void createMockData() {
-		createUser("Marcin");
-		createUser("Marek");
-		createUser("Wiesiek");
-	}
+
 }

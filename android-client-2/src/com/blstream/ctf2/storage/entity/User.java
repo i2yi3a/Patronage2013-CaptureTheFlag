@@ -1,6 +1,10 @@
 package com.blstream.ctf2.storage.entity;
 
-
+/**
+ * 
+ * @author Marcin Sareło
+ *
+ */
 public class User {
 	
 	private Integer id;
