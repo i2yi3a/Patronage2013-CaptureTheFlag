@@ -9,5 +9,10 @@
     <string name="username">Nazwa użytkownika</string>
     <string name="password">Hasło</string>
     <string name="repeat_password">Powtórz hasło</string>
-
+    <string name="ok">OK</string>
+    <string name="incorrect_data_description">Hasło i login muszą mieć minimum 5 znaków, podane hasła muszą być jednakowe</string>
+    <string name="incorrect_data">Niepoprawne dane!</string>
+    <string name="recorded">Zarejestrowano</string>
+    <string name="registration_successful">Rejestracja przebiegła pomyślnie!</string>
+    <string name="player_already_exists">Gracz już istnieje</string>
 </resources>

@@ -9,5 +9,10 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="repeat_password">Repeat password</string>
-
+    <string name="ok">OK</string>
+    <string name="incorrect_data_description">Login and password must be at least 5 characters, given password must be the same</string>
+    <string name="incorrect_data">Incorrect data!</string>
+    <string name="recorded">Recorded</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="player_already_exists">Player already exists</string>
 </resources>
