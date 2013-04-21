@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 /**
  * Player registration class
- * 
  * @author Rafal Tatol
  */
 public class RegisterActivity extends Activity {
@@ -36,10 +35,6 @@ public class RegisterActivity extends Activity {
 	private EditText mUsernameEditText;
 	private EditText mPasswordEditText;
 	private EditText mRepeatPassEditText;
-
-	String mUsername;
-	String mPassword;
-	String mRepPass;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +58,9 @@ public class RegisterActivity extends Activity {
 	}
 
 	public void onClickRegisterButton(View v) {
-		mUsername = mUsernameEditText.getText().toString();
-		mPassword = mPasswordEditText.getText().toString();
-		mRepPass = mRepeatPassEditText.getText().toString();
+		String mUsername = mUsernameEditText.getText().toString();
+		String mPassword = mPasswordEditText.getText().toString();
+		String mRepPass = mRepeatPassEditText.getText().toString();
 
 		if (isOnline() && correctData(mUsername, mPassword, mRepPass)) {
 			JSONObject newPlayer = new JSONObject();

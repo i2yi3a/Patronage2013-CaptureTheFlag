@@ -15,4 +15,5 @@
     <string name="recorded">Zarejestrowano</string>
     <string name="registration_successful">Rejestracja przebiegła pomyślnie!</string>
     <string name="player_already_exists">Gracz już istnieje</string>
+
 </resources>
