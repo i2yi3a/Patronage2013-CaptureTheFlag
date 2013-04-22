@@ -3,6 +3,8 @@ package com.blstream.patronage.ctf.web.controller.secured;
 import com.blstream.patronage.ctf.common.web.controller.BaseRestController;
 import com.blstream.patronage.ctf.model.PortalUser;
 import com.blstream.patronage.ctf.service.PortalUserService;
+import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
+import com.blstream.patronage.ctf.web.ui.PortalUserUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -36,14 +38,25 @@ import javax.inject.Named;
  */
 @Controller
 @RequestMapping("/api/secured/users")
-public class PortalUserController extends BaseRestController<PortalUser, String, PortalUserService> {
+public class PortalUserController extends BaseRestController<PortalUserUI, PortalUser, String, PortalUserService> {
 
     private static final Logger logger = LoggerFactory.getLogger(PortalUserController.class);
+
+    public PortalUserController() {
+        super(PortalUserUI.class);
+    }
 
     @Inject
     @Named("portalUserService")
     @Override
     public void setService(PortalUserService service) {
         super.service = service;
+    }
+
+    @Inject
+    @Named("portalUserUIConverter")
+    @Override
+    protected void setConverter(BaseUIConverter<PortalUserUI, PortalUser, String> converter) {
+        super.converter = converter;
     }
 }

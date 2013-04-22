@@ -3,11 +3,11 @@ package com.blstream.patronage.ctf.common.web.controller;
 import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
 import com.blstream.patronage.ctf.common.exception.BadRequestException;
 import com.blstream.patronage.ctf.web.ui.MessageUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -33,10 +33,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 public abstract class AbstractRestController {
 
-    @Value("${error.3}")
+    private static final Logger logger = LoggerFactory.getLogger(AbstractRestController.class);
+
+    @Value("${error.1}")
     private String badRequestMessage;
 
-    @Value("${error.4}")
+    @Value("${error.2}")
     private String failedMessage;
 
 
@@ -58,6 +60,8 @@ public abstract class AbstractRestController {
         messageUI.setError(badRequestMessage);
         messageUI.setErrorCode(ErrorCodeType.BAD_REQUEST);
 
+        logger.error("handleBadRequestException", e);
+
         return messageUI;
     }
 
@@ -73,7 +77,9 @@ public abstract class AbstractRestController {
 
         messageUI.setErrorDescription(e.getMessage());
         messageUI.setError(failedMessage);
-        messageUI.setErrorCode(ErrorCodeType.FAILED);
+        messageUI.setErrorCode(ErrorCodeType.INTERNAL_ERROR);
+
+        logger.error("handleException", e);
 
         return messageUI;
     }

@@ -1,6 +1,8 @@
 package com.blstream.patronage.ctf.common.service;
 
+import com.blstream.patronage.ctf.common.exception.AlreadyExistsException;
 import com.blstream.patronage.ctf.common.exception.NotFoundException;
+import com.blstream.patronage.ctf.model.BaseModel;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -30,7 +32,7 @@ import java.util.List;
  *
  * @see com.blstream.patronage.ctf.common.service.CrudService
  */
-public abstract class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSortingRepository<T, ID>> implements CrudService<T, ID> {
+public abstract class CrudServiceImpl<T extends BaseModel<ID>, ID extends Serializable, R extends PagingAndSortingRepository<T, ID>> implements CrudService<T, ID> {
 
     protected R repository;
 
@@ -47,6 +49,10 @@ public abstract class CrudServiceImpl<T, ID extends Serializable, R extends Pagi
     @Transactional
     public T create(T resource) {
         Assert.notNull(resource, "Resource couldn't be null");
+
+        if (resource.getId() != null && repository.exists(resource.getId()))
+            throw new AlreadyExistsException(String.format("Resource with ID: %s already exists.", resource.getId()));
+
         return repository.save(resource);
     }
 
@@ -60,7 +66,7 @@ public abstract class CrudServiceImpl<T, ID extends Serializable, R extends Pagi
         Assert.notNull(resource, "Resource couldn't be null");
 
         if (!repository.exists(id))
-            throw new NotFoundException();
+            throw new NotFoundException(String.format("Resource with ID: %s doesn't exist.", resource.getId()));
 
         return repository.save(resource);
     }
@@ -72,6 +78,10 @@ public abstract class CrudServiceImpl<T, ID extends Serializable, R extends Pagi
     @Transactional
     public void delete(ID id) {
         Assert.notNull(id, "Resource ID couldn't be null");
+
+        if (!repository.exists(id))
+            throw new NotFoundException(String.format("Resource with ID: %s doesn't exist.", id));
+
         repository.delete(id);
     }
 
@@ -97,6 +107,10 @@ public abstract class CrudServiceImpl<T, ID extends Serializable, R extends Pagi
     @Override
     public T findById(ID id) {
         Assert.notNull(id, "Resource ID couldn't be null");
+
+        if (!repository.exists(id))
+            throw new NotFoundException(String.format("Resource with ID: %s doesn't exist.", id));
+
         return repository.findOne(id);
     }
 

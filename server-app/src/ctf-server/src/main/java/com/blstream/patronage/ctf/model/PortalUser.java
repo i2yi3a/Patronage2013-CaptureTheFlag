@@ -1,14 +1,11 @@
 package com.blstream.patronage.ctf.model;
 
 import com.blstream.hooks.springframework.mongodb.mapping.DBRefCollectionCascade;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +30,7 @@ import java.util.List;
  * This class is a representation of portal user object. This is a basic user model
  * with username, password and other security properties.
  *
- * TODO: make password encrypted using e.g. SHA-1!
+ * Password is encrypted using e.g. SHA-1.
  */
 @Document
 public class PortalUser implements BaseModel<String> {
@@ -60,7 +57,6 @@ public class PortalUser implements BaseModel<String> {
         this.password = password;
     }
 
-    @JsonIgnore
     @Override
     public String getId() {
         return username;
@@ -72,6 +68,10 @@ public class PortalUser implements BaseModel<String> {
      */
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**

@@ -31,7 +31,7 @@ import java.io.Serializable;
  * @see com.blstream.patronage.ctf.model.PortalUser
  */
 @Document
-public class PortalRole implements GrantedAuthority, Serializable {
+public class PortalRole implements BaseModel<String>, GrantedAuthority, Serializable {
 
     private static final long serialVersionUID = -6176379095019368456L;
 
@@ -46,6 +46,11 @@ public class PortalRole implements GrantedAuthority, Serializable {
     public PortalRole(String authority) {
         super();
         this.authority = authority;
+    }
+
+    @Override
+    public String getId() {
+        return authority;
     }
 
     /**

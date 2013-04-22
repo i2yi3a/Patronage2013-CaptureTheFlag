@@ -20,7 +20,7 @@ package com.blstream.patronage.ctf.common.exception;
  *
  * This class is a representation of already exists exception.
  */
-public class AlreadyExistsException extends Exception {
+public class AlreadyExistsException extends RuntimeException {
 
     public AlreadyExistsException() {
         super();

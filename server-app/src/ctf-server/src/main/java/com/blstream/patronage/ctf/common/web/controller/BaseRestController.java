@@ -1,7 +1,13 @@
 package com.blstream.patronage.ctf.common.web.controller;
 
+import com.blstream.patronage.ctf.common.ResourceGenericFactory;
+import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
+import com.blstream.patronage.ctf.common.exception.AlreadyExistsException;
+import com.blstream.patronage.ctf.common.exception.NotFoundException;
 import com.blstream.patronage.ctf.common.service.CrudService;
 import com.blstream.patronage.ctf.model.BaseModel;
+import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
+import com.blstream.patronage.ctf.web.ui.BaseUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -10,6 +16,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Copyright 2013 BLStream
@@ -35,11 +42,19 @@ import java.io.Serializable;
  * @see com.blstream.patronage.ctf.common.web.controller.RestController
  * @see com.blstream.patronage.ctf.common.web.controller.AbstractRestController
  */
-public abstract class BaseRestController<T extends BaseModel<ID>, ID extends Serializable, S extends CrudService<T, ID>> extends AbstractRestController implements RestController<T, ID> {
+public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseModel<ID>, ID extends Serializable, S extends CrudService<T, ID>> extends AbstractRestController implements RestController<UI, T, ID> {
 
     private static Logger logger = LoggerFactory.getLogger(BaseRestController.class);
 
     protected S service;
+
+    protected BaseUIConverter<UI, T, ID> converter;
+
+    private final Class<UI> uiClassType;
+
+    protected BaseRestController(Class<UI> uiClassType) {
+        this.uiClassType = uiClassType;
+    }
 
     /**
      * This is an abstract method where service is set.
@@ -48,71 +63,136 @@ public abstract class BaseRestController<T extends BaseModel<ID>, ID extends Ser
     protected abstract void setService(S service);
 
     /**
-     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.model.BaseModel)
+     * This is an abstract method where UI converter is set.
+     * @param converter
+     */
+    protected abstract void setConverter(BaseUIConverter<UI, T, ID> converter);
+
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.web.ui.BaseUI)
      */
     @Override
-    public T create(@RequestBody T resource) {
+    public UI create(@RequestBody UI request) {
         if (logger.isDebugEnabled()) {
             logger.debug("---- create method invoked ----");
         }
-        return service.create(resource);
+
+        UI response;
+        T resource = converter.convert(request);
+
+        try {
+            resource = service.create(resource);
+            response = converter.convert(resource);
+        } catch (AlreadyExistsException e) {
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_ALREADY_EXISTS, e.getMessage());
+        } catch (Exception e) {
+            response = createResponseErrorMessage(ErrorCodeType.INTERNAL_ERROR, e.getMessage());
+        }
+
+        return response;
     }
 
     /**
-     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.model.BaseModel)
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(com.blstream.patronage.ctf.web.ui.BaseUI)
      */
     @Override
-    public T update(@PathVariable ID id, @RequestBody T resource) {
+    public UI update(@PathVariable ID id, @RequestBody UI request) {
         if (logger.isDebugEnabled()) {
             logger.debug("---- update method invoked ----");
             logger.debug(String.format("id: %s", id));
         }
 
         Assert.notNull(id, "ID cannot be null");
-        Assert.notNull(resource, "Resources cannot be null");
-        Assert.isTrue(id.equals(resource.getId()), "Request ID and resource ID cannot be different from each other");
+        Assert.notNull(request, "Resources cannot be null");
+        Assert.isTrue(id.equals(request.getId()), "Request ID and resource ID cannot be different from each other");
 
-        return service.update(id, resource);
+        UI response;
+        T resource = converter.convert(request);
+
+        try {
+            resource = service.update(id, resource);
+            response = converter.convert(resource);
+        } catch (NotFoundException e) {
+            logger.error("Not found exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_NOT_FOUND, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.INTERNAL_ERROR, e.getMessage());
+        }
+
+        return response;
     }
 
     /**
      * @see com.blstream.patronage.ctf.common.web.controller.RestController#findAll()
      */
     @Override
-    public Iterable<T> findAll() {
+    public Iterable<UI> findAll() {
         if (logger.isDebugEnabled()) {
             logger.debug("---- findAll method invoked ----");
         }
 
-        return service.findAll();
+        List<T> modelList = service.findAll();
+        List<UI> uiList = converter.convertModelList(modelList);
+
+        return uiList;
     }
 
     /**
      * @see com.blstream.patronage.ctf.common.web.controller.RestController#findById(java.io.Serializable)
      */
     @Override
-    public T findById(@PathVariable ID id) {
+    public UI findById(@PathVariable ID id) {
         if (logger.isDebugEnabled()) {
             logger.debug("---- findById method invoked ----");
             logger.debug(String.format("id: %s", id));
         }
 
         Assert.notNull(id, "ID cannot be null");
-        return service.findById(id);
+
+        T resource;
+        UI response;
+
+        try {
+            resource = service.findById(id);
+            response = converter.convert(resource);
+        } catch (NotFoundException e) {
+            logger.error("Not found exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_NOT_FOUND, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.INTERNAL_ERROR, e.getMessage());
+        }
+
+        return response;
     }
 
     /**
      * @see com.blstream.patronage.ctf.common.web.controller.RestController#delete(java.io.Serializable)
      */
     @Override
-    public void delete(@PathVariable ID id) {
+    public UI delete(@PathVariable ID id) {
         if (logger.isDebugEnabled()) {
             logger.debug("---- delete method invoked ----");
             logger.debug(String.format("id: %s", id));
         }
 
         Assert.notNull(id, "ID cannot be null");
-        service.delete(id);
+
+        UI response;
+
+        try {
+            service.delete(id);
+            response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+        } catch (NotFoundException e) {
+            logger.error("Not found exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_NOT_FOUND, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Exception occurred.", e);
+            response = createResponseErrorMessage(ErrorCodeType.INTERNAL_ERROR, e.getMessage());
+        }
+
+        return response;
     }
 
     /**
@@ -128,5 +208,24 @@ public abstract class BaseRestController<T extends BaseModel<ID>, ID extends Ser
         }
 
         return "It's alive!";
+    }
+
+    protected UI createResponseErrorMessage(ErrorCodeType type) {
+        return createResponseErrorMessage(type, null);
+    }
+
+    protected UI createResponseErrorMessage(ErrorCodeType type, String errorMessage) {
+        Assert.notNull(uiClassType, "UI class type cannot by null");
+
+        UI response = ResourceGenericFactory.createInstance(uiClassType);
+        response.setErrorCode(type);
+
+        if (ErrorCodeType.SUCCESS.equals(type)) {
+            response.setMessage(type.getMessage());
+        } else {
+            response.setError(type.getMessage());
+            response.setDescription(errorMessage);
+        }
+        return response;
     }
 }

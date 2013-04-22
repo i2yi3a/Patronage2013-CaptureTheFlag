@@ -22,23 +22,32 @@ package com.blstream.patronage.ctf.common.errors;
  * All error codes are stored in error-codes.properties file.
  */
 public enum ErrorCodeType {
-    SUCCESS(0),
+    SUCCESS(0, "OK"),
+    BAD_REQUEST(1, "Bad request"),
+    INTERNAL_ERROR(2, "Internal error"),
 
-    CANNOT_CREATE_NEW_PLAYER(1),
-    PLAYER_ALREADY_EXISTS(2),
+    RESOURCE_NOT_FOUND(3, "Resource not found"),
+    RESOURCE_ALREADY_EXISTS(4, "Resource already exists"),
+    RESOURCE_CANNOT_BE_DELETED(5, "Resource cannot be deleted"),
 
-    BAD_REQUEST(3),
-    FAILED(4)
+    CANNOT_CREATE_NEW_PLAYER(100, "Cannot create a new player"),
+    PLAYER_ALREADY_EXISTS(101, "Player already exists"),
     ;
 
     private Integer code;
+    private String message;
 
-    private ErrorCodeType(Integer code) {
+    private ErrorCodeType(Integer code, String message) {
         this.code = code;
+        this.message = message;
     }
 
     public Integer getCode() {
         return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     @Override

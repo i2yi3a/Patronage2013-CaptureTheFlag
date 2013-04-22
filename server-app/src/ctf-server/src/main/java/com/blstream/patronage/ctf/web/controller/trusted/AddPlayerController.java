@@ -68,6 +68,8 @@ public class AddPlayerController extends AbstractRestController {
         }
 
         Assert.notNull(playerUI, "PlayerUI cannot be null");
+        Assert.notNull(playerUI.getUsername(), "Username cannot be null");
+        Assert.notNull(playerUI.getPassword(), "Password cannot be null");
 
         MessageUI message = new MessageUI();
 
@@ -78,15 +80,12 @@ public class AddPlayerController extends AbstractRestController {
                 logger.debug(String.format("Player %s was created successfully", player.getPortalUser().getUsername()));
             }
 
-            // TODO: get message from properties file: error-codes.properties
-            // message.setMessage(SUCCESS);
             message.setErrorCode(ErrorCodeType.SUCCESS);
+            message.setMessage(ErrorCodeType.SUCCESS.getMessage());
         } catch (AlreadyExistsException e) {
             if (logger.isWarnEnabled()) {
                 logger.warn("New player was not created.");
             }
-
-            // TODO: get message from properties file: error-codes.properties
             message.setError(ErrorCodeType.PLAYER_ALREADY_EXISTS.toString());
             message.setErrorDescription(e.getMessage());
             message.setErrorCode(ErrorCodeType.PLAYER_ALREADY_EXISTS);
@@ -94,8 +93,6 @@ public class AddPlayerController extends AbstractRestController {
             if (logger.isErrorEnabled()) {
                 logger.error("New player was not created.", e);
             }
-
-            // TODO: get message from properties file: error-codes.properties
             message.setError(ErrorCodeType.CANNOT_CREATE_NEW_PLAYER.toString());
             message.setErrorDescription(e.getMessage());
             message.setErrorCode(ErrorCodeType.CANNOT_CREATE_NEW_PLAYER);

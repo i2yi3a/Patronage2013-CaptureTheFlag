@@ -1,5 +1,6 @@
 package com.blstream.patronage.ctf.web.ui;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -25,7 +26,7 @@ import java.io.Serializable;
  * This class is a representation of player UI object.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PlayerUI implements Serializable {
+public class PlayerUI extends BaseUI<String> {
 
     private static final long serialVersionUID = -5141746381035307435L;
 
@@ -39,6 +40,12 @@ public class PlayerUI implements Serializable {
     public PlayerUI(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    @JsonIgnore
+    @Override
+    public String getId() {
+        return username;
     }
 
     /**

@@ -20,7 +20,7 @@ package com.blstream.patronage.ctf.common.exception;
  *
  * This class is a representation of bad request exception.
  */
-public class BadRequestException extends Exception {
+public class BadRequestException extends RuntimeException {
 
     public BadRequestException() {
         super();

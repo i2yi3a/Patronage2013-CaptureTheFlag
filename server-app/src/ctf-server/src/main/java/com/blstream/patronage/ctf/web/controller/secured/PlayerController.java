@@ -3,6 +3,8 @@ package com.blstream.patronage.ctf.web.controller.secured;
 import com.blstream.patronage.ctf.common.web.controller.BaseRestController;
 import com.blstream.patronage.ctf.model.Player;
 import com.blstream.patronage.ctf.service.PlayerService;
+import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
+import com.blstream.patronage.ctf.web.ui.PlayerUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -36,14 +38,25 @@ import javax.inject.Named;
  */
 @Controller
 @RequestMapping("/api/secured/players")
-public class PlayerController extends BaseRestController<Player, String, PlayerService> {
+public class PlayerController extends BaseRestController<PlayerUI, Player, String, PlayerService> {
 
     private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
+
+    public PlayerController() {
+        super(PlayerUI.class);
+    }
 
     @Inject
     @Named("playerService")
     @Override
     public void setService(PlayerService service) {
         super.service = service;
+    }
+
+    @Inject
+    @Named("playerUIConverter")
+    @Override
+    protected void setConverter(BaseUIConverter<PlayerUI, Player, String> converter) {
+        super.converter = converter;
     }
 }

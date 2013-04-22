@@ -1,6 +1,7 @@
 package com.blstream.patronage.ctf.common.web.controller;
 
 import com.blstream.patronage.ctf.model.BaseModel;
+import com.blstream.patronage.ctf.web.ui.BaseUI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ import java.io.Serializable;
  *
  * This class is a representation of generic REST controller which works on CRUD logic model.
  */
-public interface RestController<T extends BaseModel<ID>, ID extends Serializable> {
+public interface RestController<UI extends BaseUI<ID>, T extends BaseModel<ID>, ID extends Serializable> {
 
     /**
      * This method creates a new document.
@@ -36,7 +37,7 @@ public interface RestController<T extends BaseModel<ID>, ID extends Serializable
      */
     @RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody T create(@RequestBody T resource);
+    @ResponseBody UI create(@RequestBody UI resource);
 
     /**
      * This method updates an existing document.
@@ -45,14 +46,14 @@ public interface RestController<T extends BaseModel<ID>, ID extends Serializable
      * @return T
      */
     @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody T update(@PathVariable ID id, @RequestBody T resource);
+    @ResponseBody UI update(@PathVariable ID id, @RequestBody UI resource);
 
     /**
      * This method finds all existing documents.
      * @return List
      */
     @RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody Iterable<T> findAll();
+    @ResponseBody Iterable<UI> findAll();
 
     /**
      * This method finds existing document based on id.
@@ -60,7 +61,7 @@ public interface RestController<T extends BaseModel<ID>, ID extends Serializable
      * @return T
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody T findById(@PathVariable ID id);
+    @ResponseBody UI findById(@PathVariable ID id);
 
     /**
      * This method removes existing document based on id.
@@ -68,5 +69,5 @@ public interface RestController<T extends BaseModel<ID>, ID extends Serializable
      */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable ID id);
+    UI delete(@PathVariable ID id);
 }
