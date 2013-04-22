@@ -24,7 +24,7 @@ public class SplashScreen extends Activity {
     			SplashScreen.this.startActivity(register);
     			SplashScreen.this.finish();
     		}
-    	}, Constans.SPLASHSCREEN_DELAY);
+    	}, Constants.SPLASHSCREEN_DELAY);
    
     }
     
