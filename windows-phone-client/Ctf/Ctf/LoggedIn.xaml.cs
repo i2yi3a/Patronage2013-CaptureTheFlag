@@ -21,14 +21,16 @@ namespace Ctf
         {
 
             base.OnNavigatedTo(e);
+           
+        
             welcomeBlock.Text = "Jesteś zalogowany jako " + NavigationContext.QueryString["text"];
-            
-            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+         NavigationService.GoBack();
+            
+
         }
 
     }

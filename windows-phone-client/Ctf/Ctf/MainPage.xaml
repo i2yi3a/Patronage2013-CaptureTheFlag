@@ -48,8 +48,6 @@
             	<Run/>
             </TextBlock>
             <TextBlock Text="Zaloguj się" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock x:Name="X" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -58,7 +56,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="10,21,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="273" Height="41"/>
             <TextBlock HorizontalAlignment="Left" Margin="12,161,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Height="41" Width="273"/>
             <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="0,207,0,0" VerticalAlignment="Top" Width="414" />
-            <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="285,279,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click_1"/>
+            <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="285,279,0,0" VerticalAlignment="Top" Width="146" Click="LogIn"/>
             <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="124,279,0,0" VerticalAlignment="Top" Width="161">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -67,9 +65,9 @@
                 </i:Interaction.Triggers>
             </Button>
             
-            <Button Content="Login" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Click="LoginTest"/>
-            <Button Content="Register" HorizontalAlignment="Left" Margin="147,87,0,0" VerticalAlignment="Top" Click="RegisterTest"/>
-            <Button Content="Logout" HorizontalAlignment="Left" Margin="157,164,0,0" VerticalAlignment="Top" Click="LogoutTest"/>
+            <!--<Button Content="Login" HorizontalAlignment="Left" Margin="23,505,0,0" VerticalAlignment="Top" Click="LoginTest"/>
+            <Button Content="Register" HorizontalAlignment="Left" Margin="168,505,0,0" VerticalAlignment="Top" Click="RegisterTest"/>-->
+            <Button Content="Logout" HorizontalAlignment="Left" Margin="322,505,0,0" VerticalAlignment="Top" Click="LogoutTest"/>
 
         </Grid>
 
