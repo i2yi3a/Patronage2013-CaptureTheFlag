@@ -1,37 +1,26 @@
 package com.blstream.patronage.ctf.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Document
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Game implements BaseModel<String> {
 
     @Id
     private String id;
-
     private String name;
     private String description;
-
-    @JsonProperty("time_start")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeStart;
-
     private Long duration;
-
-    @JsonProperty("points_max")
     private Integer pointsMax;
-
-    @JsonProperty("players_max")
     private Integer playersMax;
-
     private Localization localization;
-
+    private GameStatusType status;
+    private List<String> players;
 
     public String getId() {
         return id;
@@ -95,5 +84,23 @@ public class Game implements BaseModel<String> {
 
     public void setLocalization(Localization localization) {
         this.localization = localization;
+    }
+
+    public GameStatusType getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameStatusType status) {
+        this.status = status;
+    }
+
+    public List<String> getPlayers() {
+        if (players == null)
+            players = new ArrayList<String>();
+        return players;
+    }
+
+    public void setPlayers(List<String> players) {
+        this.players = players;
     }
 }
