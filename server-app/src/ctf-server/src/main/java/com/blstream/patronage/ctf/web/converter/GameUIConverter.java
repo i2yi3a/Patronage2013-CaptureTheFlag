@@ -29,6 +29,7 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
         target.setLocalization(source.getLocalization());
         target.setStatus(source.getStatus());
         target.setPlayers(source.getPlayers());
+        target.setOwner(source.getOwner());
 
         return target;
     }
@@ -48,6 +49,7 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
             target.setLocalization(source.getLocalization());
             target.setStatus(source.getStatus());
             target.setPlayers(source.getPlayers());
+            target.setOwner(source.getOwner());
         }
 
         return target;

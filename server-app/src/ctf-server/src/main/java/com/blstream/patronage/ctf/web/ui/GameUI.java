@@ -39,6 +39,9 @@ public class GameUI extends BaseUI<String> {
 
     private List<String> players;
 
+    private String owner;
+
+
     public String getId() {
         return id;
     }
@@ -119,5 +122,13 @@ public class GameUI extends BaseUI<String> {
 
     public void setPlayers(List<String> players) {
         this.players = players;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

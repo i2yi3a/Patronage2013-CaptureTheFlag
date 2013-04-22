@@ -12,6 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -230,5 +234,29 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
             response.setDescription(errorMessage);
         }
         return response;
+    }
+
+    protected String getCurrentUsername() {
+        if (logger.isDebugEnabled())
+            logger.debug("---- getCurrentUsername");
+
+        SecurityContext ctx = SecurityContextHolder.getContext();
+        Assert.notNull(ctx, "Security context cannot be null");
+
+        Authentication auth = ctx.getAuthentication();
+        Assert.notNull(auth, "Authentication cannot be null");
+
+        User principal = (User) auth.getPrincipal();
+        Assert.notNull(principal, "Principal cannot be null");
+        Assert.notNull(principal.getUsername(), "Principal username cannot be null");
+
+        if (logger.isInfoEnabled()) {
+            logger.info(String.format("Current logged user is: %s", principal));
+        }
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- /getCurrentUsername");
+
+        return principal.getUsername();
     }
 }
