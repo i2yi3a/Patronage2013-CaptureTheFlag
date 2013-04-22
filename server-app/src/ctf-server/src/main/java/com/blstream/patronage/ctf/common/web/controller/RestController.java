@@ -68,6 +68,5 @@ public interface RestController<UI extends BaseUI<ID>, T extends BaseModel<ID>, 
      * @param id
      */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    UI delete(@PathVariable ID id);
+    @ResponseBody UI delete(@PathVariable ID id);
 }

@@ -192,6 +192,9 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
             response = createResponseErrorMessage(ErrorCodeType.INTERNAL_ERROR, e.getMessage());
         }
 
+        if (logger.isDebugEnabled())
+            logger.debug(String.format("response error code: %s", response.getErrorCode()));
+
         return response;
     }
 
