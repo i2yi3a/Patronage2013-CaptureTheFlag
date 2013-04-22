@@ -19,5 +19,12 @@
     <string name="register_password_error_equals">Hasła muszą być takie same</string>
     <string name="register_login_error_exist">Login już istnieje</string>
     <string name="register_successful">Rejestracja została ukończona pomyślnie</string>
+    <string name="crash_toast_text">Coś poszło nie tak! Aplikacja została zatrzymana, ale raport zostanie wysłany do jej twórców !</string>
+    <string name="crash_dialog_title">CaptureTheFlag zostało zatrzymane</string>
+	<string name="crash_dialog_text">Niespodziewany błąd sprawił, że aplikacja została zatrzymana. 
+	    Możesz zapobiec takim sytuacjom dodając swój komentarz o powstałym błędzie.
+	    Wystarczy kliknąć OK.</string>
+	<string name="crash_dialog_comment_prompt">Twój komentarz:</string>
+	<string name="crash_dialog_ok_toast">Dzięki!</string>
     
 </resources>

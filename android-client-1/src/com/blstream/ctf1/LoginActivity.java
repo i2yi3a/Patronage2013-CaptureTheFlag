@@ -1,14 +1,14 @@
 /**
  * @author Milosz_Skalski
+ * @author Rafal_Olichwer
  */
 package com.blstream.ctf1;
 
-import java.util.Locale;
+import java.util.ArrayList;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,10 +24,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		Locale locale = new Locale("pl");
-		Configuration config = new Configuration();
-		config.locale = locale;
-		getBaseContext().getResources().updateConfiguration(config, null);
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
@@ -46,18 +42,19 @@ public class LoginActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		Intent intent = null;
 
-		switch(v.getId())
-		{
-		case R.id.btnLogin:
-			// instruction login
-			String login = mEditLogin.getText().toString();
-			String password = mEditPassword.getText().toString();
-			
-			break;
-		case R.id.btnRegistration:
-			intent = new Intent(this, RegisterActivity.class);
-			startActivity(intent);
-			break;
+		switch(v.getId()) {
+			case R.id.btnLogin:
+				// instruction login
+				String login = mEditLogin.getText().toString();
+				String password = mEditPassword.getText().toString();
+				ArrayList<String> nazwa = new ArrayList<String>();
+				nazwa.get(0);
+				
+				break;
+			case R.id.btnRegistration:
+				intent = new Intent(this, RegisterActivity.class);
+				startActivity(intent);
+				break;
 		}
 	}
 }
