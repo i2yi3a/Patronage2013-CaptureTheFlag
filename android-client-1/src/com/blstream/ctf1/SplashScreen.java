@@ -12,12 +12,15 @@ import android.content.Intent;
 
 public class SplashScreen extends Activity {
 
+	private Handler mHandler;
+	private Thread mThread;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        
-    	new Handler().postDelayed(new Thread() {
+        mHandler = new Handler();
+        mHandler.postDelayed(mThread = new Thread() {
     		@Override
     		public void run() {
     			Intent register = new Intent(SplashScreen.this, LoginActivity.class);
@@ -27,5 +30,12 @@ public class SplashScreen extends Activity {
     	}, Constants.SPLASHSCREEN_DELAY);
    
     }
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		mHandler.removeCallbacks(mThread);
+		finish();
+	}
     
 }
