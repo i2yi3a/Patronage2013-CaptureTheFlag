@@ -1,5 +1,6 @@
 /**
  * @author Milosz_Skalski
+ * @author Rafal_Olichwer
  */
 package com.blstream.ctf1;
 
@@ -51,37 +52,24 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			String login = mEditLoginReg.getText().toString();
 			String password = mEditPasswordReg.getText().toString();
 			String password2 = mEditPassword2Reg.getText().toString();
+			String info="";
+			if(login.length() < 5) {
+				info+=getResources().getString(R.string.login_too_short)+'\n';
+			} 
+			if(password.length() < 5) {
+				info+=getResources().getString(R.string.password_too_short)+'\n';
+			} 
+			if( !password.equals(password2) ) {
+				info+=getResources().getString(R.string.passwords_not_equal)+'\n';
+			}
+					
+			// need check internet connection
 			
-			if(login.length() < 5)
-			{
-				Toast.makeText(this, R.string.register_login_error_with_5_characters, Toast.LENGTH_SHORT).show();
+			if( 1!=1) {// need to check login
+				info+=getResources().getString(R.string.login_exists)+'\n';
 			}
-			else
-			{
-				if(password.length() < 5)
-				{
-					Toast.makeText(this, R.string.register_password_error_with_5_characters, Toast.LENGTH_SHORT).show();
-				}
-				else
-				{
-					if( !password.equals(password2) )
-					{
-						Toast.makeText(this, R.string.register_password_error_equals, Toast.LENGTH_SHORT).show();
-					}
-					else
-					{
-						// need check internet connection
-						if( 1!=1) // need to check login
-						{
-							Toast.makeText(this, R.string.register_login_error_exist, Toast.LENGTH_SHORT).show();
-						}
-						else
-						{
-							Toast.makeText(this, R.string.register_successful, Toast.LENGTH_SHORT).show();
-						}
-					}
-				}
-			}
+						
+			Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}

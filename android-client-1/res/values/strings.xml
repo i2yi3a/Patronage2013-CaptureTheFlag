@@ -14,17 +14,18 @@
     <string name="register">Register</string>
     <string name="back">Back</string>
     <string name="re_password">Re-Password</string>
-    <string name="register_login_error_with_5_characters">Login must be at least 5 characters</string>
-    <string name="register_password_error_with_5_characters">Password must be at least 5 characters</string>
-    <string name="register_password_error_equals">Password must be the same</string>
-    <string name="register_login_error_exist">Login already exists</string>
+    <string name="passwords_not_equal">Password must be the same</string>
+    <string name="login_exists">Login already exists</string>
+	<string name="login_too_short">Login must be at least 5 characters long</string>
+	<string name="password_too_short">Password must be at least 5 characters long</string>
     <string name="register_successful">Registration was successful</string>
     <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
     <string name="crash_dialog_title">CrashTest has crashed</string>
 	<string name="crash_dialog_text">An unexpected error occurred forcing the
 	    application to stop. Please help us fix this by sending us error data,
-	    all you have to do is click OK.</string>
+	    all you have to do is click OK</string>
 	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
-	<string name="crash_dialog_ok_toast">Thank you !</string>
+	<string name="crash_dialog_ok_toast">Thank you !</string>	
+    
     
 </resources>

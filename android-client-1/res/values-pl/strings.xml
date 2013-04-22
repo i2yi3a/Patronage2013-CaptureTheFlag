@@ -14,17 +14,17 @@
     <string name="register">Rejestruj</string>
     <string name="back">Cofnij</string>
     <string name="re_password">Powtórz hasło</string>
-    <string name="register_login_error_with_5_characters">Login musi posiadać minimum 5 znaków</string>
-    <string name="register_password_error_with_5_characters">Hasło musi posiadać minimum 5 znaków</string>
-    <string name="register_password_error_equals">Hasła muszą być takie same</string>
-    <string name="register_login_error_exist">Login już istnieje</string>
+    <string name="passwords_not_equal">Hasła muszą być takie same</string>
+    <string name="login_exists">Login już istnieje</string>
+	<string name="login_too_short">Login musi się składać z przynajmniej 5 znaków</string>
+	<string name="password_too_short">Hasło musi się składać z przynajmniej 5 znaków</string>
     <string name="register_successful">Rejestracja została ukończona pomyślnie</string>
     <string name="crash_toast_text">Coś poszło nie tak! Aplikacja została zatrzymana, ale raport zostanie wysłany do jej twórców !</string>
     <string name="crash_dialog_title">CaptureTheFlag zostało zatrzymane</string>
 	<string name="crash_dialog_text">Niespodziewany błąd sprawił, że aplikacja została zatrzymana. 
 	    Możesz zapobiec takim sytuacjom dodając swój komentarz o powstałym błędzie.
-	    Wystarczy kliknąć OK.</string>
+	    Wystarczy kliknąć OK</string>
 	<string name="crash_dialog_comment_prompt">Twój komentarz:</string>
-	<string name="crash_dialog_ok_toast">Dzięki!</string>
+	<string name="crash_dialog_ok_toast">Dzięki!</string>	
     
 </resources>

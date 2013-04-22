@@ -4,8 +4,6 @@
  */
 package com.blstream.ctf1;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener {
 
@@ -47,9 +46,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 				// instruction login
 				String login = mEditLogin.getText().toString();
 				String password = mEditPassword.getText().toString();
-				ArrayList<String> nazwa = new ArrayList<String>();
-				nazwa.get(0);
+				String info="";
 				
+				if(login.length()<5) {
+					info+=getResources().getString(R.string.login_too_short) + '\n';
+				}
+				if(password.length()<5) {
+					info+=getResources().getString(R.string.password_too_short) + '\n';
+				}
+				Toast.makeText(this, info, Toast.LENGTH_LONG).show();
 				break;
 			case R.id.btnRegistration:
 				intent = new Intent(this, RegisterActivity.class);
