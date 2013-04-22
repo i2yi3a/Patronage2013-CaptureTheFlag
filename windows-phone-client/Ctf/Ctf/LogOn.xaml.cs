@@ -18,7 +18,7 @@ namespace Ctf
         {
             InitializeComponent();
 
-
+          
 
 
             // Sample code to localize the ApplicationBar
@@ -27,8 +27,15 @@ namespace Ctf
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
-        }
+            
+            if ((usernameBox.Text != "" )&& (passwordBox.Password != ""))
+            {
+                NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
+            }
+            else {
+                MessageBox.Show("Nie wprowadzono nazwy lub hasła", "Brak danych", MessageBoxButton.OK);
+            }
+            }
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()

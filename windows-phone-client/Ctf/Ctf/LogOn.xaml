@@ -55,7 +55,7 @@
             <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Height="72" Margin="0,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="414"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,21,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="273" Height="41"/>
             <TextBlock HorizontalAlignment="Left" Margin="12,161,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Height="41" Width="273"/>
-            <TextBox x:Name="passwordBox" HorizontalAlignment="Left" Height="72" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="414"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="0,207,0,0" VerticalAlignment="Top" Width="414" />
             <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="285,279,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click_1"/>
             <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="124,279,0,0" VerticalAlignment="Top" Width="161">
                 <i:Interaction.Triggers>
@@ -64,6 +64,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
+            
 
         </Grid>
 
