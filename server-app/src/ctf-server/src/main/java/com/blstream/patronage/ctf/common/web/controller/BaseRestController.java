@@ -228,10 +228,11 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         response.setErrorCode(type);
 
         if (ErrorCodeType.SUCCESS.equals(type)) {
-            response.setMessage(type.getMessage());
+            response.setMessage(type.getName());
+            response.setDescription(type.getMessage());
         } else {
-            response.setError(type.getMessage());
-            response.setDescription(errorMessage);
+            response.setError(type.getName());
+            response.setErrorDescription(errorMessage);
         }
         return response;
     }

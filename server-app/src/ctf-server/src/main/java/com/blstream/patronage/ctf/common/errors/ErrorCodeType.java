@@ -42,6 +42,10 @@ public enum ErrorCodeType {
         this.message = message;
     }
 
+    public String getName() {
+        return name().toLowerCase();
+    }
+
     public Integer getCode() {
         return code;
     }
