@@ -17,8 +17,6 @@ public class UserSQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";
 	public static final String COLUMN_TOKEN = "token";
-	public static final String COLUMN_TOKEN_TYPE = "tokenType";
-	public static final String COLUMN_SCOPE = "scope";
 	public static final String COLUMN_CREATED = "created";
 	public static final String COLUMN_LASTLOGIN = "lastLogin";
 	public static final String COLUMN_VERSION = "version";
@@ -29,8 +27,6 @@ public class UserSQLiteHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_USER + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" +
 			", " + COLUMN_NAME + " TEXT NOT NULL" +
 			", " + COLUMN_TOKEN + " TEXT NOT NULL" +
-			", " + COLUMN_TOKEN_TYPE + " TEXT NOT NULL" +
-			", " + COLUMN_SCOPE+ " TEXT NOT NULL" +
 			", " + COLUMN_CREATED + " TEXT NOT NULL" +
 			", " + COLUMN_LASTLOGIN + " TEXT NOT NULL" +
 			", " + COLUMN_VERSION + " INTEGER NOT NULL);";

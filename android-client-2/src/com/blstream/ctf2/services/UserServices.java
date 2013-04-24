@@ -17,17 +17,20 @@ public class UserServices extends Services {
 		this.uDAO = new UserDAO(context);
 	}
 	
-	public User addNewPlayer(String name){
-		
+	public User addNewPlayer(String name, String password){
 		User newUser = new User();
+		newUser.setToken(registryNewUser(name, password));
 		newUser.setName(name);
+
 		newUser=uDAO.createUser(newUser);	
 		return newUser;
 	}
 	
-	public User getUser() {
-		
-		return uDAO.getUsers().get(0);
+	public String registryNewUser(String name, String password) {
+		String token="";	
+		//TODO implement REST registration 
+		//token= doSomeMagic(name,password);
+		return token;
 	} 
 	
 	public User updateUser(User user) {
