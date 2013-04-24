@@ -27,9 +27,11 @@ public class UserDAO {
 			UserSQLiteHelper.COLUMN_ID,
 			UserSQLiteHelper.COLUMN_NAME,
 			UserSQLiteHelper.COLUMN_TOKEN,
+			UserSQLiteHelper.COLUMN_TOKEN_TYPE,
+			UserSQLiteHelper.COLUMN_SCOPE,
 			UserSQLiteHelper.COLUMN_CREATED,
 			UserSQLiteHelper.COLUMN_LASTLOGIN,
-			UserSQLiteHelper.COLUMN_VERSION 
+			
 			};
 
 	public UserDAO(Context context) {
@@ -50,8 +52,9 @@ public class UserDAO {
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(UserSQLiteHelper.COLUMN_NAME, user.getName());
 		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN, user.getToken());
-		contentValues.put(UserSQLiteHelper.COLUMN_CREATED,
-				new Date().toString());
+		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN_TYPE, user.getTokenType());
+		contentValues.put(UserSQLiteHelper.COLUMN_SCOPE, user.getScope());
+		contentValues.put(UserSQLiteHelper.COLUMN_CREATED,new Date().toString());
 		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN, "");
 		contentValues.put(UserSQLiteHelper.COLUMN_VERSION, new Integer(1));
 
@@ -83,17 +86,21 @@ public class UserDAO {
 		User user = new User();
 		user = fillAllFields(cursor.getInt(0), cursor.getString(1),
 				cursor.getString(2), cursor.getString(3), cursor.getString(4),
-				cursor.getInt(5));
+				cursor.getString(5),
+				cursor.getString(6),
+				cursor.getInt(7));
 
 		return user;
 	}
 
-	private User fillAllFields(Integer id, String name, String token,
+	private User fillAllFields(Integer id, String name, String token,String tokenType,String scope,
 			String created, String lastLogin, Integer version) {
 		User user = new User();
 		user.setId(id);
 		user.setName(name);
 		user.setToken(token);
+		user.setTokenType(tokenType);
+		user.setScope(scope);
 		user.setCreated(created);
 		user.setLastLogin(lastLogin);
 		user.setVersion(version);
@@ -105,14 +112,14 @@ public class UserDAO {
 		List<User> userList = new ArrayList<User>();
 
 		Cursor cursor = db.query(UserSQLiteHelper.TABLE_USER, allColumns, null,
-				null, null, null, null);
+				null, null, null, null, null);
 		cursor.moveToFirst();
 
 		while (!cursor.isAfterLast()) {
 			User user = new User();
 			user = fillAllFields(cursor.getInt(0), cursor.getString(1),
 					cursor.getString(2), cursor.getString(3),
-					cursor.getString(4), cursor.getInt(5));
+					cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getInt(7));
 			userList.add(user);
 			cursor.moveToNext();
 		}
@@ -126,6 +133,7 @@ public class UserDAO {
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(UserSQLiteHelper.COLUMN_NAME, user.getName());
 		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN, user.getToken());
+		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN_TYPE, user.getTokenType());
 		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN,
 				user.getLastLogin());
 		contentValues.put(UserSQLiteHelper.COLUMN_VERSION,
