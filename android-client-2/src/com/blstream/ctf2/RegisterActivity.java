@@ -15,6 +15,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
@@ -33,6 +34,7 @@ import android.widget.Toast;
  */
 public class RegisterActivity extends Activity {
 	
+	private ProgressDialog progressDialog;	
 	private EditText mUsernameEditText;
 	private EditText mPasswordEditText;
 	private EditText mRepeatPassEditText;
@@ -41,6 +43,10 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setIndeterminate(true);
+		progressDialog.setCancelable(false);
+		progressDialog.setMessage("Connecting...");
 		mUsernameEditText = (EditText) findViewById(R.id.editTextUserame);
 		mPasswordEditText = (EditText) findViewById(R.id.editTextPassword);
 		mRepeatPassEditText = (EditText) findViewById(R.id.editTextRepeatPassword);
@@ -98,9 +104,19 @@ public class RegisterActivity extends Activity {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * @author Rafal Tatol
+	 */
 	private class PostDataTask extends AsyncTask<JSONObject, Void, JSONObject> {
-
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			if (!progressDialog.isShowing()) {
+				progressDialog.show();
+			}
+		}
+		
 		@Override
 		protected JSONObject doInBackground(JSONObject... params) {		
 			JSONObject jsonObject = params[0];
@@ -175,6 +191,11 @@ public class RegisterActivity extends Activity {
 			} catch (Exception e) {
 				Log.e("onPostExecute Exception", e.toString());
 			}
+			
+			if (progressDialog.isShowing()) {
+				progressDialog.dismiss();
+			}
+			
 		}
 	}
 }
