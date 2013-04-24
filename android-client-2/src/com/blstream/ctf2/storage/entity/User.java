@@ -10,6 +10,8 @@ public class User {
 	private Integer id;
 	private String name;
 	private String token;
+	private String tokenType;
+	private String scope;
 	private String created;
 	private String lastLogin;
 	private Integer version;
@@ -60,6 +62,22 @@ public class User {
 
 	public void setLastLogin(String lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+	public String getTokenType() {
+		return tokenType;
+	}
+
+	public void setTokenType(String tokenType) {
+		this.tokenType = tokenType;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
 	}
 
 
