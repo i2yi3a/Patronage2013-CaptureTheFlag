@@ -15,5 +15,7 @@
     <string name="recorded">Zarejestrowano</string>
     <string name="registration_successful">Rejestracja przebiegła pomyślnie!</string>
     <string name="player_already_exists">Gracz już istnieje</string>
+    <string name="login">Logowanie</string>
+    <string name="login_button">Zaloguj</string>
 
 </resources>

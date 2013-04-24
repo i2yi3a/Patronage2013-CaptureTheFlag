@@ -23,7 +23,7 @@ public class SplashScreen extends Activity {
 					e.printStackTrace();
 				} finally {
 					Intent intent = new Intent(
-							"com.blstream.ctf2.REGISTERACTIVITY");
+							"com.blstream.ctf2.LOGINACTIVITY");
 					startActivity(intent);
 					finish();
 				}
