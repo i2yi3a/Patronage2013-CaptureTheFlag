@@ -4,8 +4,13 @@
  */
 package com.blstream.ctf1;
 
-import android.os.Bundle;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,24 +58,54 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			String password = mEditPasswordReg.getText().toString();
 			String password2 = mEditPassword2Reg.getText().toString();
 			String info="";
-			if(login.length() < 5) {
-				info+=getResources().getString(R.string.login_too_short)+'\n';
-			} 
-			if(password.length() < 5) {
-				info+=getResources().getString(R.string.password_too_short)+'\n';
-			} 
-			if( !password.equals(password2) ) {
-				info+=getResources().getString(R.string.passwords_not_equal)+'\n';
-			}
-					
-			// need check internet connection
+			if(login.length() < 5)
+				info+=getResources().getString(R.string.login_too_short);
 			
-			if( 1!=1) {// need to check login
-				info+=getResources().getString(R.string.login_exists)+'\n';
+			if(password.length() < 5)
+			{
+				if(!info.isEmpty())
+					info+='\n';
+				info+=getResources().getString(R.string.password_too_short);
 			}
-						
-			Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
-			break;
+			if( !password.equals(password2) )
+			{
+				if(!info.isEmpty())
+					info+='\n';
+				info+=getResources().getString(R.string.passwords_not_equal);
+			}
+			if(info.isEmpty())
+			{
+				ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+				// TODO zapakowaæ sprawdzanie sieci jakos fajnie, zeby mozna bylo wywolywac z kazdej aktywnosci.
+				if(!(cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting()))
+				{	
+				    info+=getResources().getString(R.string.no_internet_connection);
+				}
+				
+				JSONObject user = new JSONObject();
+				try {
+					user.put("username", login);
+					user.put("password", password);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+					/*if(!info.isEmpty())
+						info+='\n';
+					info+=getResources().getString(R.string.login_exists);*/
+				
+				
+				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
+				break;
+			}	
+			else
+			{
+				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
+				break;
+			}	
+			
 		}
 	}
 

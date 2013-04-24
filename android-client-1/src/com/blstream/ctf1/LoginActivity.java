@@ -5,7 +5,9 @@
 package com.blstream.ctf1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,14 +50,46 @@ public class LoginActivity extends Activity implements OnClickListener {
 				String password = mEditPassword.getText().toString();
 				String info="";
 				
-				if(login.length()<5) {
-					info+=getResources().getString(R.string.login_too_short) + '\n';
+				if(login.length()<5) 
+				{
+					info+=getResources().getString(R.string.login_too_short);
 				}
-				if(password.length()<5) {
+				if(password.length()<5) 
+				{
+					if(!info.isEmpty())
+						info+='\n';
 					info+=getResources().getString(R.string.password_too_short) + '\n';
 				}
-				Toast.makeText(this, info, Toast.LENGTH_LONG).show();
-				break;
+				if(info.isEmpty())
+				{
+					ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+					
+					if(cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting())
+					    info+=getResources().getString(R.string.no_internet_connection);
+					
+					if(true) // need to check login
+					{
+						if(!info.isEmpty())
+							info+='\n';
+						info+=getResources().getString(R.string.login_exists);
+					}
+					if(!info.isEmpty())
+					{	
+						Toast.makeText(this, info, Toast.LENGTH_LONG).show();
+						break;
+					}
+					else
+					{
+						
+							
+						
+					}
+				}
+				else
+				{
+					Toast.makeText(this, info, Toast.LENGTH_LONG).show();
+					break;
+				}
 			case R.id.btnRegistration:
 				intent = new Intent(this, RegisterActivity.class);
 				startActivity(intent);

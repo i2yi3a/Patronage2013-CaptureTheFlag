@@ -64,6 +64,7 @@
         android:layout_alignBottom="@+id/textPassword"
         android:layout_toRightOf="@+id/textPassword"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint="@string/hint_password" />
 
 </RelativeLayout>
