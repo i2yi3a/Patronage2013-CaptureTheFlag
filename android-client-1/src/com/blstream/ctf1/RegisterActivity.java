@@ -93,9 +93,9 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		
 		if (info.isEmpty()) {
 			result = true;
+		} else {
+			Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
 		}
-		
-		Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
 		return result;
 	}
 
