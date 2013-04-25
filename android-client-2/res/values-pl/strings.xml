@@ -20,5 +20,6 @@
     <string name="login_failed">Logowanie nie udane</string>
     <string name="login_successful">Logowanie udane</string>
     <string name="no_connection">Brak połączenia z serverem. Sprawdź swoje połączenie</string>
+    <string name="no_internet_connection">Brak połączenia z internetem</string>
 
 </resources>

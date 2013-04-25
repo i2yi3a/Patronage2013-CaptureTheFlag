@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Player registration class
@@ -35,7 +34,7 @@ import android.widget.Toast;
  */
 public class RegisterActivity extends Activity {
 	
-	private ProgressDialog progressDialog;	
+	private ProgressDialog mProgressDialog;	
 	private EditText mUsernameEditText;
 	private EditText mPasswordEditText;
 	private EditText mRepeatPassEditText;
@@ -44,10 +43,10 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setIndeterminate(true);
-		progressDialog.setCancelable(false);
-		progressDialog.setMessage("Connecting...");
+		mProgressDialog = new ProgressDialog(this);
+		mProgressDialog.setIndeterminate(true);
+		mProgressDialog.setCancelable(false);
+		mProgressDialog.setMessage("Connecting...");
 		mUsernameEditText = (EditText) findViewById(R.id.editTextUserame);
 		mPasswordEditText = (EditText) findViewById(R.id.editTextPassword);
 		mRepeatPassEditText = (EditText) findViewById(R.id.editTextRepeatPassword);
@@ -90,7 +89,11 @@ public class RegisterActivity extends Activity {
 		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
 		} else {
-			Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.no_internet_connection);
+			builder.setPositiveButton(R.string.ok, null);
+			AlertDialog dialog = builder.create();
+			dialog.show();
 			return false;
 		}
 	}
@@ -115,26 +118,24 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			if (!progressDialog.isShowing()) {
-				progressDialog.show();
+			if (!mProgressDialog.isShowing()) {
+				mProgressDialog.show();
 			}
 		}
 		
 		@Override
 		protected JSONObject doInBackground(JSONObject... params) {		
-			JSONObject jsonObject = params[0];
+			JSONObject playerData = params[0];
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(Constants.URL_SERVER + Constants.URI_PLAYERS_ADD);
-			HttpResponse response = null;
-			String jsonString = null;
 			JSONObject jsonResponse = null;
 			try {
-				StringEntity se = new StringEntity(jsonObject.toString());
+				StringEntity se = new StringEntity(playerData.toString());
 				httppost.setEntity(se);
 				httppost.setHeader("Accept", "application/json");
 				httppost.setHeader("Content-type", "application/json");
-				response = httpclient.execute(httppost);
-				jsonString = EntityUtils.toString(response.getEntity());
+				HttpResponse response = httpclient.execute(httppost);
+				String jsonString = EntityUtils.toString(response.getEntity());
 				jsonResponse = new JSONObject(jsonString);
 			} catch (ParseException e) {
 				Log.e("PostDataTask ParseException", e.toString());
@@ -179,9 +180,8 @@ public class RegisterActivity extends Activity {
 					dialog.show();
 					break;
 				default:
-					String unknownError = "error_code" + errorCode;
+					String unknownError = "error_code " + errorCode;
 					builder.setMessage(unknownError);
-					builder.setTitle(unknownError);
 					builder.setPositiveButton(R.string.ok, null);
 					dialog = builder.create();
 					dialog.show();
@@ -195,8 +195,8 @@ public class RegisterActivity extends Activity {
 				Log.e("onPostExecute Exception", e.toString());
 			}
 			
-			if (progressDialog.isShowing()) {
-				progressDialog.dismiss();
+			if (mProgressDialog.isShowing()) {
+				mProgressDialog.dismiss();
 			}
 			
 		}
