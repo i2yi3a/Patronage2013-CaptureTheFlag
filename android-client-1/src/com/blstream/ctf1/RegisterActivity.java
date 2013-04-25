@@ -57,26 +57,13 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			String login = mEditLoginReg.getText().toString();
 			String password = mEditPasswordReg.getText().toString();
 			String password2 = mEditPassword2Reg.getText().toString();
-			String info="";
-			if(login.length() < 5)
-				info+=getResources().getString(R.string.login_too_short);
 			
-			if(password.length() < 5)
-			{
-				if(!info.isEmpty())
-					info+='\n';
-				info+=getResources().getString(R.string.password_too_short);
-			}
-			if( !password.equals(password2) )
-			{
-				if(!info.isEmpty())
-					info+='\n';
-				info+=getResources().getString(R.string.passwords_not_equal);
-			}
-			if(info.isEmpty())
+			String info="";
+
+			if( correctData(login, password, password2) )
 			{
 				ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-				// TODO zapakowaæ sprawdzanie sieci jakos fajnie, zeby mozna bylo wywolywac z kazdej aktywnosci.
+				// TODO zapakowaï¿½ sprawdzanie sieci jakos fajnie, zeby mozna bylo wywolywac z kazdej aktywnosci.
 				if(!(cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting()))
 				{	
 				    info+=getResources().getString(R.string.no_internet_connection);
@@ -95,18 +82,39 @@ public class RegisterActivity extends Activity implements OnClickListener {
 					/*if(!info.isEmpty())
 						info+='\n';
 					info+=getResources().getString(R.string.login_exists);*/
-				
-				
 				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
-				break;
 			}	
-			else
-			{
-				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
-				break;
-			}	
-			
+			break;
 		}
+	}
+	
+	private boolean correctData(String login, String password, String password2)
+	{
+		String info="";
+		if(login.length() < 5)
+			info+=getResources().getString(R.string.login_too_short);
+		
+		if(password.length() < 5)
+		{
+			if(!info.isEmpty())
+				info+='\n';
+			info+=getResources().getString(R.string.password_too_short);
+		}
+		
+		if( !password.equals(password2) )
+		{
+			if(!info.isEmpty())
+				info+='\n';
+			info+=getResources().getString(R.string.passwords_not_equal);
+		}
+		
+		if(info.isEmpty())
+		{
+			return true;
+		}
+		
+		Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
+		return false;
 	}
 
 }
