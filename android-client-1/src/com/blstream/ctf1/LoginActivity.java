@@ -50,17 +50,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				String password = mEditPassword.getText().toString();
 				String info="";
 				
-				if(login.length()<5) 
-				{
-					info+=getResources().getString(R.string.login_too_short);
-				}
-				if(password.length()<5) 
-				{
-					if(!info.isEmpty())
-						info+='\n';
-					info+=getResources().getString(R.string.password_too_short) + '\n';
-				}
-				if(info.isEmpty())
+				if(correctData(login, password))
 				{
 					ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 					
@@ -85,15 +75,36 @@ public class LoginActivity extends Activity implements OnClickListener {
 						
 					}
 				}
-				else
-				{
-					Toast.makeText(this, info, Toast.LENGTH_LONG).show();
-					break;
-				}
+				break;
+					
 			case R.id.btnRegistration:
 				intent = new Intent(this, RegisterActivity.class);
 				startActivity(intent);
 				break;
 		}
+	}
+	private boolean correctData(String login, String password)
+	{
+		String info="";
+		
+		if(login.length()<5) 
+		{
+			info+=getResources().getString(R.string.login_too_short);
+		}
+		
+		if(password.length()<5) 
+		{
+			if(!info.isEmpty())
+				info+='\n';
+			info+=getResources().getString(R.string.password_too_short) + '\n';
+		}
+		
+		if(info.isEmpty())
+		{
+			return true;
+		}
+		
+		Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
+		return false;
 	}
 }
