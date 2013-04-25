@@ -31,6 +31,7 @@ import android.widget.Toast;
  * Player registration class
  * 
  * @author Rafal Tatol
+ * @author Lukasz Dmitrowski
  */
 public class RegisterActivity extends Activity {
 	

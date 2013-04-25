@@ -12,6 +12,7 @@ import android.widget.EditText;
 /**
  * 
  * @author Rafal Tatol
+ * @author Lukasz Dmitrowski
  * 
  */
 public class LoginActivity extends Activity {
