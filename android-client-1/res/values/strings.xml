@@ -19,7 +19,7 @@
     <string name="login_exists">Login already exists</string>
 	<string name="login_too_short">Login must be at least 5 characters long</string>
 	<string name="password_too_short">Password must be at least 5 characters long</string>
-    <string name="register_successful">Registration was successful</string>
+    
     <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
     <string name="crash_dialog_title">CrashTest has crashed</string>
 	<string name="crash_dialog_text">An unexpected error occurred forcing the
@@ -28,5 +28,12 @@
 	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
 	<string name="crash_dialog_ok_toast">Thank you !</string>	
 	<string name="no_internet_connection">There is no internet connection!</string>	
+	
+	<!-- Register -->
+	<string name="register_successful">Registration was successful</string>
+	
+	<!-- Error codes -->
+    <string name="error_code_101">Login already in use</string>
+    <string name="error_code_500">Internal server error</string>
     
 </resources>

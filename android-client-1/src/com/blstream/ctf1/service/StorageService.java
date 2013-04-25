@@ -1,4 +1,4 @@
-package com.blstream.ctf1.storage;
+package com.blstream.ctf1.service;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,7 +17,7 @@ import com.blstream.ctf1.domain.LoggedPlayer;
  * @author Adrian Swarcewicz
  */
 
-public class Storage {
+public class StorageService {
 	
 	private StorageOpenHelper mStorageOpenHelper;
 	
@@ -29,7 +29,7 @@ public class Storage {
 	
 	
 	
-	public Storage(Context context) {
+	public StorageService(Context context) {
 		this.mContext = context;
 	}
 	

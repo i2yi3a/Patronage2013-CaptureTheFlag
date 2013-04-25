@@ -1,4 +1,4 @@
-package com.blstream.ctf1.storage;
+package com.blstream.ctf1.service;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

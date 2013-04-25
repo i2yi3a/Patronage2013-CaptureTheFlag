@@ -1,21 +1,22 @@
 /**
  * @author Milosz_Skalski
- * @author Rafal_Olichwer
+ * Rafal_Olichwer
+ * Adrian Swarcewicz
  */
 package com.blstream.ctf1;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.content.Context;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.blstream.ctf1.asynchronous.Register;
+import com.blstream.ctf1.service.NetworkService;
+
+
 
 public class RegisterActivity extends Activity implements OnClickListener {
 
@@ -45,68 +46,58 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-		switch(v.getId())
-		{
-		case R.id.btnBack:
-			finish();
-			break;
-		case R.id.btnRegister:
-			// instruction register
-			String login = mEditLoginReg.getText().toString();
-			String password = mEditPasswordReg.getText().toString();
-			String password2 = mEditPassword2Reg.getText().toString();
-			String info="";
-			if(login.length() < 5)
-				info+=getResources().getString(R.string.login_too_short);
-			
-			if(password.length() < 5)
-			{
-				if(!info.isEmpty())
-					info+='\n';
-				info+=getResources().getString(R.string.password_too_short);
-			}
-			if( !password.equals(password2) )
-			{
-				if(!info.isEmpty())
-					info+='\n';
-				info+=getResources().getString(R.string.passwords_not_equal);
-			}
-			if(info.isEmpty())
-			{
-				ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-				// TODO zapakowaæ sprawdzanie sieci jakos fajnie, zeby mozna bylo wywolywac z kazdej aktywnosci.
-				if(!(cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting()))
-				{	
-				    info+=getResources().getString(R.string.no_internet_connection);
+		switch (v.getId()) {
+			case R.id.btnBack:
+				finish();
+				break;
+			case R.id.btnRegister:
+
+				String login = mEditLoginReg.getText().toString();
+				String password = mEditPasswordReg.getText().toString();
+				String password2 = mEditPassword2Reg.getText().toString();
+
+				
+				if (correctData(login, password, password2)) {
+					if (NetworkService.isDeviceOnline(this)) {
+						Register register = new Register(this, LoginActivity.class, login, password);
+						register.execute();
+					}
+					else {
+						Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+					}
 				}
 				
-				JSONObject user = new JSONObject();
-				try {
-					user.put("username", login);
-					user.put("password", password);
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
-					/*if(!info.isEmpty())
-						info+='\n';
-					info+=getResources().getString(R.string.login_exists);*/
-				
-				
-				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
 				break;
-			}	
-			else
-			{
-				Toast.makeText(this,info, Toast.LENGTH_SHORT).show();
-				break;
-			}	
-			
 		}
+	}
+	
+	
+	
+	private boolean correctData(String login, String password, String password2) {
+		boolean result = false;
+		String info = "";
+		if (login.length() < 5) {
+			info+=getResources().getString(R.string.login_too_short);
+		}
+		
+		if (password.length() < 5) {
+			if(!info.isEmpty()) info += '\n';
+			
+			info += getResources().getString(R.string.password_too_short);
+		}
+		
+		if (!password.equals(password2)) {
+			if(!info.isEmpty())	info += '\n';
+			info += getResources().getString(R.string.passwords_not_equal);
+		}
+		
+		if (info.isEmpty()) {
+			result = true;
+		} else {
+			Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+		}
+		
+		return result;
 	}
 
 }
