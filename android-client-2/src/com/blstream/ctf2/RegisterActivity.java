@@ -69,6 +69,8 @@ public class RegisterActivity extends Activity {
 		String mPassword = mPasswordEditText.getText().toString();
 		String mRepPass = mRepeatPassEditText.getText().toString();
 		
+		EasyTracker.getTracker().sendEvent("ui_action", "button_press", "register_click", null);
+		
 		if (isOnline() && correctData(mUsername, mPassword, mRepPass)) {
 			JSONObject newPlayer = new JSONObject();
 			try {
