@@ -48,6 +48,8 @@
             	<Run/>
             </TextBlock>
             <TextBlock Text="Zaloguj się" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
+            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock x:Name="X" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -65,6 +67,9 @@
                 </i:Interaction.Triggers>
             </Button>
             
+            <Button Content="Login" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Click="LoginTest"/>
+            <Button Content="Register" HorizontalAlignment="Left" Margin="147,87,0,0" VerticalAlignment="Top" Click="RegisterTest"/>
+            <Button Content="Logout" HorizontalAlignment="Left" Margin="157,164,0,0" VerticalAlignment="Top" Click="LogoutTest"/>
 
         </Grid>
 
