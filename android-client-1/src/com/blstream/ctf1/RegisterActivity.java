@@ -1,11 +1,12 @@
 /**
  * @author Milosz_Skalski
- * Rafal_Olichwer
- * Adrian Swarcewicz
+ * @author Rafal_Olichwer
+ * @author Adrian Swarcewicz
  */
 package com.blstream.ctf1;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +26,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	private EditText mEditLoginReg;
 	private EditText mEditPasswordReg;
 	private EditText mEditPassword2Reg;
+	private SharedPreferences preferences;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +44,33 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		
 		mBtnBack.setText(R.string.back);
 		mBtnRegister.setText(R.string.register);
+		preferences = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
 	}
 
 	@Override
 	public void onClick(View v) {
+		String log;
+		SharedPreferences.Editor editor;
 		switch (v.getId()) {
+		
 			case R.id.btnBack:
+				log = preferences.getString("LOG", "defValue");
+				log+="Back Button Clicked in LoginActivity";
+				editor = preferences.edit();
+				editor.putString("LOG", log);
+				editor.commit();
 				finish();
 				break;
 			case R.id.btnRegister:
 
+				log = preferences.getString("LOG", "defValue");
+				log+="Register Button Clicked in LoginActivity";
+				editor = preferences.edit();
+				editor.putString("LOG", log);
+				editor.commit();
 				String login = mEditLoginReg.getText().toString();
 				String password = mEditPasswordReg.getText().toString();
 				String password2 = mEditPassword2Reg.getText().toString();
-
 				
 				if (correctData(login, password, password2)) {
 					if (NetworkService.isDeviceOnline(this)) {

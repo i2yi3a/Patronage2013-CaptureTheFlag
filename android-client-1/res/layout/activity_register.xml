@@ -75,7 +75,8 @@
         android:layout_alignLeft="@+id/editLoginReg"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint="@string/hint_password" />
 
     <EditText
         android:id="@+id/editPassword2Reg"
@@ -86,6 +87,7 @@
         android:layout_alignLeft="@+id/editPasswordReg"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+       	android:hint="@string/hint_re_password" />
 
 </RelativeLayout>

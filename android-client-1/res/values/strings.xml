@@ -12,6 +12,7 @@
     <string name="password">Password</string>
     <string name="hint_login">Enter your login</string>
     <string name="hint_password">Enter your password</string>
+    <string name="hint_re_password">Re-type your password</string>
     <string name="register">Register</string>
     <string name="back">Back</string>
     <string name="re_password">Re-Password</string>
@@ -28,9 +29,14 @@
 	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
 	<string name="crash_dialog_ok_toast">Thank you !</string>	
 	<string name="no_internet_connection">There is no internet connection!</string>	
+	<string name="loading">Loading...</string>
+	<string name="loading_message">Loading data, please wait...</string>
 	
 	<!-- Register -->
 	<string name="register_successful">Registration was successful</string>
+	
+	<!-- Login -->
+	<string name="login_successful">Successfully logged in</string>
 	
 	<!-- Error codes -->
     <string name="error_code_101">Login already in use</string>

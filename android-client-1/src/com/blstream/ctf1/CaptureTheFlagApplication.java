@@ -5,12 +5,12 @@ import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-
 import android.app.Application;
+import android.content.SharedPreferences;
 
 @ReportsCrashes(formKey = "", // will not be used
 formUri = "http://ctfcrashreports.cba.pl/dodaj.php",
-customReportContent = { ReportField.USER_COMMENT,ReportField.USER_CRASH_DATE,ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL, ReportField.CUSTOM_DATA, ReportField.STACK_TRACE, ReportField.LOGCAT },
+customReportContent = { ReportField.USER_COMMENT,ReportField.USER_CRASH_DATE,ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL, ReportField.SHARED_PREFERENCES, ReportField.STACK_TRACE, ReportField.LOGCAT },
 mode = ReportingInteractionMode.DIALOG,
 resToastText = R.string.crash_toast_text, // optional, displayed as soon as the crash occurs, before collecting data which can take a few seconds
 resDialogText = R.string.crash_dialog_text,
@@ -27,9 +27,18 @@ resDialogOkToast = R.string.crash_dialog_ok_toast // optional. displays a Toast 
  */
 public class CaptureTheFlagApplication extends Application {
 	
+	private SharedPreferences preferences;
+	
 	public void onCreate() {
 	    // The following line triggers the initialization of ACRA
 	    super.onCreate();
 	    ACRA.init(this);
+	    preferences = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+	    SharedPreferences.Editor preferencesEditor = preferences.edit();
+	    preferencesEditor.putString("LOG", "");
+	    preferencesEditor.commit();
+	    
+	    
 	}
+	
 }

@@ -7,7 +7,11 @@ public class Constants {
 	
 	public static final String URI_REGISTER_PLAYER = "/api/players/add";
 	
+	public static final String URI_LOGIN_PLAYER = "/oauth/token";
+	
 	public static final String PACKAGE_NAME = "com.blstream.ctf1";
+	
+	public static final String LOGIN_REQUEST_BODY = "client_id=mobile_android&client_secret=secret&grant_type=password";
 	
 	public static final String PREFIX_ERROR_CODE= "error_code_"; 
 }

@@ -12,6 +12,7 @@
     <string name="password">Hasło</string>
     <string name="hint_login">Wpisz swój login</string>
     <string name="hint_password">Wpisz hasło</string>
+    <string name="hint_re_password">Powtórz hasło</string>
     <string name="register">Rejestruj</string>
     <string name="back">Cofnij</string>
     <string name="re_password">Powtórz hasło</string>
@@ -28,10 +29,13 @@
 	<string name="crash_dialog_comment_prompt">Twój komentarz:</string>
 	<string name="crash_dialog_ok_toast">Dzięki!</string>	
 	<string name="no_internet_connection">Brak połączenia z internetem!</string>	
+	<string name="loading">Ładowanie...</string>
+	<string name="loading_message">Ładowanie danych, proszę czekać...</string>
 	
 	<!-- Register -->
 	<string name="register_successful">Rejestracja została ukończona pomyślnie</string>
-	
+	<!-- Login -->
+	<string name="login_successful">Pomyślnie zalogowano</string>
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>

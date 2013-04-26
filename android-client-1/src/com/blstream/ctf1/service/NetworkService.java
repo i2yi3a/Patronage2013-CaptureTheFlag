@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -27,6 +28,7 @@ import com.blstream.ctf1.exception.CTFException;
 
 /**
  * @author Adrian Swarcewicz
+ * @author Rafal Olichwer
  */
 public class NetworkService {
 	
@@ -71,11 +73,9 @@ public class NetworkService {
 	 */
 	public JSONObject request(String url, JSONObject jsonObject) throws ClientProtocolException, IOException, JSONException {
 		HttpClient client = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(url);
-
-		httpPost.setHeader("Accept", "application/json");
-		httpPost.setHeader("Content-Type", "application/json");
-		httpPost.setEntity(new StringEntity(jsonObject.toString()));
+		
+		
+		HttpPost httpPost = createPost(url,jsonObject);
 
 		HttpResponse response = client.execute(httpPost);
 		StatusLine statusLine = response.getStatusLine();
@@ -123,9 +123,51 @@ public class NetworkService {
 	
 	
 	
-	//TODO;
-	public LoggedPlayer login(String username, String password) throws CTFException {
-		return null;
+	
+	public LoggedPlayer login(String username, String password) throws CTFException, JSONException, ClientProtocolException, IOException {
+		
+		LoggedPlayer result= new LoggedPlayer();
+		JSONObject jsonObjectParam = new JSONObject();
+		jsonObjectParam.put("username", username);
+		jsonObjectParam.put("password", password);
+		
+		JSONObject jsonObjectResult = request(Constants.URL_SERVER
+				+ Constants.URI_LOGIN_PLAYER, jsonObjectParam);
+		//TODO Czekamy na error-code , zeby moc obsluzyc.
+		if (jsonObjectResult.getInt("error_code") != 0) {
+			throw new CTFException(mResources,
+					jsonObjectResult.getInt("error_code"),
+					jsonObjectResult.getString("error_description"));
+		}
+		result.setAccessToken(jsonObjectResult.getString("access_token").toString());
+		result.setScope(jsonObjectResult.getString("scope").toString());
+		result.setTokenType(jsonObjectResult.getString("token_type").toString());
+		
+		return result;
+	}
+	
+	public HttpPost createPost(String url, JSONObject jsonObject) throws UnsupportedEncodingException, JSONException {
+		HttpPost result = new HttpPost(url);
+		if(url.equals(Constants.URL_SERVER+Constants.URI_REGISTER_PLAYER)) {
+			result.setHeader("Accept", "application/json");
+			result.setHeader("Content-Type", "application/json");
+			result.setEntity(new StringEntity(jsonObject.toString()));
+		} else if(url.equals(Constants.URL_SERVER+Constants.URI_LOGIN_PLAYER)) { 
+			StringBuilder builder = new StringBuilder();
+			builder.append(Constants.LOGIN_REQUEST_BODY);
+			builder.append("&");
+			builder.append(jsonObject.keys().next());
+			builder.append("=");
+			builder.append(jsonObject.getString("username"));
+			builder.append("&");
+			builder.append(jsonObject.keys().next());
+			builder.append("=");
+			builder.append(jsonObject.getString("password"));
+			result.setHeader("Content-type", "application/x-www-form-urlencoded");
+			result.setEntity(new StringEntity (builder.toString()));
+		}
+		
+		return result;
 	}
 	
 }
