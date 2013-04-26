@@ -82,7 +82,7 @@ public class LoginActivityTest extends
 	}
 
 	// TODO Robotium enterText password visible
-	public void testCredentialsLength() throws Exception {
+	public void testLoginFormInput() throws Exception {
 		mSolo.enterText(mLoginEditText, mLoginShort);
 		mSolo.enterText(mPasswordEditText, mPasswordLong);
 		mSolo.clickOnButton(mLoginButton);
@@ -102,7 +102,7 @@ public class LoginActivityTest extends
 		mSolo.enterText(mLoginEditText, mLoginShort);
 		mSolo.enterText(mPasswordEditText, mPasswordShort);
 		mSolo.clickOnButton(mLoginButton);
-		Assert.assertTrue("Expected too short password message.",
+		Assert.assertTrue("Expected too short login and password message.",
 				mSolo.searchText(mBothTooShortMessage));
 		mSolo.clearEditText(mLoginEditText);
 		mSolo.clearEditText(mPasswordEditText);
@@ -110,6 +110,9 @@ public class LoginActivityTest extends
 		mSolo.enterText(mLoginEditText, mLoginLong);
 		mSolo.enterText(mPasswordEditText, mPasswordLong);
 		mSolo.clickOnButton(mLoginButton);
+	}
+	
+	public void testLoggingIn() {
 		fail();
 	}
 
