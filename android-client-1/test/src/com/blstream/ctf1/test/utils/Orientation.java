@@ -4,6 +4,11 @@ import android.content.res.Configuration;
 
 import com.jayway.android.robotium.solo.Solo;
 
+/**
+ * 
+ * @author Piotr Marczycki
+ * 
+ */
 public class Orientation {
 	public static void change(Solo mSolo) {
 		if (mSolo.getCurrentActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)

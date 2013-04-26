@@ -68,6 +68,11 @@ public class SplashScreenTest extends
 	@Override
 	protected void tearDown() throws Exception {
 		mSolo.finishOpenedActivities();
+		try {
+			mSolo.finalize();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		super.tearDown();
 	}
 }
