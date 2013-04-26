@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Ctf
 {
@@ -19,7 +20,7 @@ namespace Ctf
                 throw new Exception("Username lenght should be at least " + MINIMAL_USERNAME_LENGTH + " characters long.");
             if (!IsPasswordProperLength(password))
                 throw new Exception("Password lenght should be at least " + MINIMAL_PASSWORD_LENGTH + " characters long.");
-
+            
             this.username = username;
             this.password = password;
         }
