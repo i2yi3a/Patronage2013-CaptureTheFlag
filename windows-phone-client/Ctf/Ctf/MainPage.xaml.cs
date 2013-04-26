@@ -33,23 +33,42 @@ namespace Ctf
             Debug.WriteLine("AppSett EVENT!. User has changed.");
         }
 
-        private async void LoginTest(object sender, RoutedEventArgs e)
+        //private async void LoginTest(object sender, RoutedEventArgs e)
+        //{
+        //    Login Logger = new Login();
+        //    Debug.WriteLine(Logger.LoggedAs());
+
+        //    //await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
+        //    await Logger.LogInAs(new UserCredentials("abcdef", "abcdef"), "secret");
+        //    //TODO: NullPointerException
+        //    //if(Logger.loggedAs().username != null)
+        //    //    Debug.WriteLine(Logger.loggedAs().username);
+        //}
+
+        //private async void RegisterTest(object sender, RoutedEventArgs e)
+        //{
+        //    Registration Register = new Registration();
+        //    await Register.Register(new UserCredentials("abcdef", "abcdef"), "abcdef");
+        //}
+
+        private async void LogIn(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            Debug.WriteLine(Logger.LoggedAs());
+            // Debug.WriteLine(Logger.LoggedAs());
+            if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password))
+            {
+                await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+                NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
+                
 
-            //await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
-            await Logger.LogInAs(new UserCredentials("abcdef", "abcdef"), "secret");
-            //TODO: NullPointerException
-            //if(Logger.loggedAs().username != null)
-            //    Debug.WriteLine(Logger.loggedAs().username);
+            }
+
+            else
+            {
+                MessageBox.Show("Nie wprowadzono nazwy lub hasła", "Brak danych", MessageBoxButton.OK);
+            }
         }
 
-        private async void RegisterTest(object sender, RoutedEventArgs e)
-        {
-            Registration Register = new Registration();
-            await Register.Register(new UserCredentials("abcdef", "abcdef"), "abcdef");
-        }
 
         private void LogoutTest(object sender, RoutedEventArgs e)
         {
@@ -60,17 +79,7 @@ namespace Ctf
                 Debug.WriteLine("Logout FAILED");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-            if ((usernameBox.Text != "" )&& (passwordBox.Password != ""))
-            {
-                NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
-            }
-            else {
-                MessageBox.Show("Nie wprowadzono nazwy lub hasła", "Brak danych", MessageBoxButton.OK);
-            }
-            }
+       
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()

@@ -17,10 +17,14 @@ namespace Ctf
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Registration Register = new Registration();
+            await Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Text), passwordRegister2.Text);
+            // await Register.Register(new UserCredentials("qazwsx", "qazwsx"), "qazwsx");
             NavigationService.GoBack();
 
         }
+
     }
 }
