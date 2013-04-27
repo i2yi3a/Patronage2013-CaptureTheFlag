@@ -1,0 +1,13 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="CtfTest" EntryPointType="CtfTest.App" RuntimeVersion="4.7.50308.0">
+  <Deployment.Parts>
+    <AssemblyPart x:Name="CtfTest" Source="CtfTest.dll" />
+    <AssemblyPart x:Name="Microsoft.VisualStudio.TestPlatform.Core" Source="Microsoft.VisualStudio.TestPlatform.Core.dll" />
+    <AssemblyPart x:Name="Microsoft.VisualStudio.TestPlatform.TestExecutor.Core" Source="Microsoft.VisualStudio.TestPlatform.TestExecutor.Core.dll" />
+    <AssemblyPart x:Name="Microsoft.VisualStudio.TestPlatform.UnitTestFramework" Source="Microsoft.VisualStudio.TestPlatform.UnitTestFramework.dll" />
+    <AssemblyPart x:Name="Ctf" Source="Ctf.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Toolkit.Testing" Source="Microsoft.Phone.Toolkit.Testing.dll" />
+    <AssemblyPart x:Name="Microsoft.VisualStudio.QualityTools.UnitTesting.Phone" Source="Microsoft.VisualStudio.QualityTools.UnitTesting.Phone.dll" />
+    <AssemblyPart x:Name="RestSharp.WindowsPhone" Source="RestSharp.WindowsPhone.dll" />
+  </Deployment.Parts>
+</Deployment>
