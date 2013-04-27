@@ -11,5 +11,6 @@
 @interface ShowInformation : NSObject
 
 + (void)showError:(NSString *)error;
++ (void)showMessage:(NSString *)message withTitle:(NSString *)title;
 
 @end

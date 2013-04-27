@@ -20,4 +20,14 @@
     [message show];
 }
 
++ (void)showMessage:(NSString *)message withTitle:(NSString *)title
+{
+    UIAlertView *pop_up = [[UIAlertView alloc] initWithTitle:title
+                                                     message:message
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    [pop_up show];
+ 
+}
 @end
