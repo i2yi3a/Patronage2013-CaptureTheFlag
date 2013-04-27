@@ -46,8 +46,7 @@ namespace Ctf
                         if (String.IsNullOrEmpty(response.Data.access_token) && String.IsNullOrEmpty(response.Data.token_type) && String.IsNullOrEmpty(response.Data.scope))
                         {
                             Debug.WriteLine("Response Data is NULL or EMPTY.");
-                            Debug.WriteLine("Exception thrown: " + "Unknown error, please try again later.");
-                            //throw new Exception("Unknown error, please try again later.");
+                            Debug.WriteLine("MessangerSent: " + "Unknown error, please try again later.");
                             OnMessengerSent(new MessengerSentEventArgs("Unknown error, please try again later."));
                         }
                         else
@@ -63,8 +62,7 @@ namespace Ctf
                     else
                     {
                         Debug.WriteLine("Response Data is an ERROR.");
-                        Debug.WriteLine("Exception thrown: " + response.Data.error + ": " + response.Data.error_description);
-                        //throw new Exception(response.Data.error + ": " + response.Data.error_description);
+                        Debug.WriteLine("MessangerSent: " + response.Data.error + ": " + response.Data.error_description);
                         OnMessengerSent(new MessengerSentEventArgs(response.Data.error + ": " + response.Data.error_description));
                     }
             }
@@ -72,8 +70,7 @@ namespace Ctf
 
         public void RequestCallbackOnFail(String errorMessage)
         {
-            Debug.WriteLine("Exception thrown: " + errorMessage);
-            //throw new Exception(errorMessage);
+            Debug.WriteLine("MessangerSent: " + errorMessage);
             OnMessengerSent(new MessengerSentEventArgs(errorMessage));
         }
 
@@ -84,15 +81,13 @@ namespace Ctf
             Debug.WriteLine("secret could be: " + System.Guid.NewGuid().ToString());
             if (LoggedAs() != null)
             {
-                Debug.WriteLine("Exception thrown: " + "Logged in as another user. Please, logout first");
-                //throw new Exception("Logged in as another user. Please, logout first");
+                Debug.WriteLine("MessangerSent: " + "Logged in as another user. Please, logout first");
                 OnMessengerSent(new MessengerSentEventArgs("Logged in as another user. Please, logout first"));
             }
 
             if (String.IsNullOrWhiteSpace(secret))
             {
-                Debug.WriteLine("Exception thrown: " + "No secret key is set. Please reinstall this app.");
-                //throw new Exception("No secret key is set. Please reinstall this app.");
+                Debug.WriteLine("MessangerSent: " + "No secret key is set. Please reinstall this app.");
                 OnMessengerSent(new MessengerSentEventArgs("No secret key is set. Please reinstall this app."));
             }
             else
@@ -100,8 +95,7 @@ namespace Ctf
 
             if (user == null)
             {
-                Debug.WriteLine("Exception thrown: " + "Lost user credentials. Please login once more");
-                //throw new Exception("Lost user credentials. Please login once more");
+                Debug.WriteLine("MessangerSent: " + "Lost user credentials. Please login once more");
                 OnMessengerSent(new MessengerSentEventArgs("Lost user credentials. Please login once more"));
             }
             else
