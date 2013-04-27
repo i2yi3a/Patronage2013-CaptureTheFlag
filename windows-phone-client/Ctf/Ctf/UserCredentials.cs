@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace Ctf
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserCredentials
     {
         public static int MINIMAL_USERNAME_LENGTH = 5;
@@ -16,6 +19,10 @@ namespace Ctf
 
         public static event EventHandler<EventArgs> MessengerSent;
 
+        /// <summary>
+        /// Raises the <see cref="E:MessengerSent" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected virtual void OnMessengerSent(EventArgs e)
         {
             var MessengerSentThreadPrivate = MessengerSent;
@@ -23,6 +30,11 @@ namespace Ctf
                 MessengerSentThreadPrivate(this, e);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserCredentials"/> class.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
         public UserCredentials(string username, string password)
         {
             if (!IsUsernameProperLength(username))
@@ -45,6 +57,13 @@ namespace Ctf
             }
         }
 
+        /// <summary>
+        /// Determines whether [is username proper length] [the specified username].
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///   <c>true</c> if [is username proper length] [the specified username]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUsernameProperLength(string username)
         {
             if(username == null)
@@ -52,6 +71,13 @@ namespace Ctf
             return (username.Length >= MINIMAL_USERNAME_LENGTH);
         }
 
+        /// <summary>
+        /// Determines whether [is password proper length] [the specified password].
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <returns>
+        ///   <c>true</c> if [is password proper length] [the specified password]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsPasswordProperLength(string password)
         {
             if(password == null)
@@ -59,6 +85,13 @@ namespace Ctf
             return (password.Length >= MINIMAL_PASSWORD_LENGTH);
         }
 
+        /// <summary>
+        /// Determines whether [has matching password] [the specified password].
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <returns>
+        ///   <c>true</c> if [has matching password] [the specified password]; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasMatchingPassword(string password)
         {
             if (password == null)
@@ -66,11 +99,19 @@ namespace Ctf
             return this.password.Equals(password);
         }
 
+        /// <summary>
+        /// Gets the username.
+        /// </summary>
+        /// <returns></returns>
         public string GetUsername()
         {
             return this.username;
         }
 
+        /// <summary>
+        /// Gets the password.
+        /// </summary>
+        /// <returns></returns>
         public string GetPassword()
         {
             return this.password;

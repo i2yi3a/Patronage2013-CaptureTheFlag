@@ -93,12 +93,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ErrorCode.cs" />
     <Compile Include="JsonResponse.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="LoggedIn.xaml.cs">
       <DependentUpon>LoggedIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.cs" />
+    <Compile Include="LoginJsonResponse.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +117,7 @@
     </Compile>
     <Compile Include="RequestHandler.cs" />
     <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="ServerJsonResponse.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserCredentials.cs" />
   </ItemGroup>
