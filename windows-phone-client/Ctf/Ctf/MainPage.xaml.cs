@@ -68,9 +68,7 @@ namespace Ctf
                     NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
 
                 }
-
             }
-
             else
             {
                 MessageBox.Show("Nie wprowadzono nazwy lub hasła", "Brak danych", MessageBoxButton.OK);

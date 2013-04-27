@@ -20,7 +20,7 @@ namespace Ctf
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Registration Register = new Registration();
-            await Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Text), passwordRegister2.Text);
+            await Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             // await Register.Register(new UserCredentials("qazwsx", "qazwsx"), "qazwsx");
             NavigationService.GoBack();
             

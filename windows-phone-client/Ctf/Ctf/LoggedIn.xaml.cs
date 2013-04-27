@@ -16,7 +16,6 @@ namespace Ctf
         public LoggedIn()
         {
             InitializeComponent();
-           
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -35,6 +34,11 @@ namespace Ctf
             else
                 Debug.WriteLine("Logout FAILED");
          NavigationService.GoBack();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
         }
 
 
