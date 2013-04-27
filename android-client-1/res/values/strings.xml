@@ -41,5 +41,8 @@
 	<!-- Error codes -->
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_500">Internal server error</string>
+    <string name="error_code_201">Wrong password</string>
+    <string name="error_code_202">Wrong username</string>
+    <string name="error_code_203">Bad token</string>
     
 </resources>

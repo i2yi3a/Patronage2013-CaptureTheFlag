@@ -39,5 +39,7 @@
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
-    
+    <string name="error_code_201">Niepoprawne hasło</string>
+    <string name="error_code_202">Niepoprawny login</string>
+    <string name="error_code_203">Niepoprawny token</string>
 </resources>

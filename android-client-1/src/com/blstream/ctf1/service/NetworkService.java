@@ -133,16 +133,26 @@ public class NetworkService {
 		
 		JSONObject jsonObjectResult = request(Constants.URL_SERVER
 				+ Constants.URI_LOGIN_PLAYER, jsonObjectParam);
-		//TODO Czekamy na error-code , zeby moc obsluzyc.
-		if (jsonObjectResult.getInt("error_code") != 0) {
-			throw new CTFException(mResources,
-					jsonObjectResult.getInt("error_code"),
+		if(jsonObjectResult.has("error")) {
+			if (jsonObjectResult.getString("error").equals("invalid_grant")) {
+				if(jsonObjectResult.getString("error_description").equals("Bad credentials"))
+					throw new CTFException(mResources,
+							Constants.ERROR_CODE_BAD_USERNAME,
+						jsonObjectResult.getString("error_description"));
+				else
+					throw new CTFException(mResources,
+							Constants.ERROR_CODE_BAD_PASSWORD,
+						jsonObjectResult.getString("error_description"));
+			} else if(jsonObjectResult.getString("error").equals("invalid_token"))
+				throw new CTFException(mResources,
+						Constants.ERROR_CODE_BAD_TOKEN,
 					jsonObjectResult.getString("error_description"));
+		} else {
+			result.setLogin(username);
+			result.setAccessToken(jsonObjectResult.getString("access_token").toString());
+			result.setScope(jsonObjectResult.getString("scope").toString());
+			result.setTokenType(jsonObjectResult.getString("token_type").toString());
 		}
-		result.setAccessToken(jsonObjectResult.getString("access_token").toString());
-		result.setScope(jsonObjectResult.getString("scope").toString());
-		result.setTokenType(jsonObjectResult.getString("token_type").toString());
-		
 		return result;
 	}
 	
@@ -156,11 +166,11 @@ public class NetworkService {
 			StringBuilder builder = new StringBuilder();
 			builder.append(Constants.LOGIN_REQUEST_BODY);
 			builder.append("&");
-			builder.append(jsonObject.keys().next());
+			builder.append("username");
 			builder.append("=");
 			builder.append(jsonObject.getString("username"));
 			builder.append("&");
-			builder.append(jsonObject.keys().next());
+			builder.append("password");
 			builder.append("=");
 			builder.append(jsonObject.getString("password"));
 			result.setHeader("Content-type", "application/x-www-form-urlencoded");
