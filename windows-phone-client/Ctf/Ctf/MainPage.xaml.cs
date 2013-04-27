@@ -51,6 +51,11 @@ namespace Ctf
         //    await Register.Register(new UserCredentials("abcdef", "abcdef"), "abcdef");
         //}
 
+        public void SomeMessage(object sender, EventArgs e)
+        {
+            Debug.WriteLine("MESSAGE.");
+        }
+
         private async void LogIn(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();

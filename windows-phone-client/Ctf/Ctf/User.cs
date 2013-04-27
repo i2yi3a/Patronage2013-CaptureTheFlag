@@ -22,12 +22,35 @@ namespace Ctf
         [DataMember]
         public string scope { get; set; }
 
+        public User()
+        {
+            username = String.Empty;
+            access_token = String.Empty;
+            token_type = String.Empty;
+            scope = String.Empty;
+        }
+
         public User(string username, string access_token, string token_type, string scope)
         {
-            this.username = username;
-            this.access_token = access_token;
-            this.token_type = token_type;
-            this.scope = scope;
+            if (username != null)
+                this.username = username;
+            else
+                this.username = String.Empty;
+
+            if (access_token != null)
+                this.access_token = access_token;
+            else
+                this.access_token = String.Empty;
+
+            if (token_type != null)
+                this.token_type = token_type;
+            else
+                this.token_type = String.Empty;
+
+            if (scope != null)
+                this.scope = scope;
+            else
+                this.scope = String.Empty;
         }
 
         public bool HasNullOrEmpty()

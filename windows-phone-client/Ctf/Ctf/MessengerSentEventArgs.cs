@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ctf
 {
-    class MessengerSentEventArgs : EventArgs
+    public class MessengerSentEventArgs : EventArgs
     {
         public readonly string message;
 

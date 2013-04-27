@@ -9,11 +9,12 @@ using System.IO.IsolatedStorage;
 namespace Ctf
 {
     // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-92
-    // TODO incorporate events
+    // Reference: http://csharpindepth.com/articles/general/singleton.aspx
     public sealed class ApplicationSettings
     {
         static readonly ApplicationSettings instance = new ApplicationSettings();
         IsolatedStorageSettings settings;
+        private static readonly string userKeyword = "user";
         public event EventHandler<EventArgs> UserChanged;
 
         private void OnUserChanged(EventArgs e)
@@ -23,19 +24,13 @@ namespace Ctf
                 UserChangedThreadPrivate(this, e);
         }
 
-        // Explicit static constructor to tell C# compiler
-        // not to mark type as beforefieldinit
         static ApplicationSettings()
         {
-            Debug.WriteLine("static ApplicationSettings() [Constructor]");
         }
 
         ApplicationSettings()
         {
-            Debug.WriteLine("ApplicationSettings() [Constructor]");
-
             settings = IsolatedStorageSettings.ApplicationSettings;
-            Debug.WriteLineIf(settings == null, "ApplicationSettings() : IsolatedStorageSettings settings is NULL");
         }
 
         public static ApplicationSettings Instance
@@ -44,52 +39,41 @@ namespace Ctf
         }
 
         // Reference : http://www.geekchamp.com/tips/all-about-wp7-isolated-storage-store-data-in-isolatedstoragesettings
-        public void SaveLoggedUser(User user)
+        public bool SaveLoggedUser(User user)
         {
-            Debug.WriteLineIf(user == null, "SaveLoggedUser's user is NULL");
-            if (user != null)
+            if ((user != null) && (!user.HasNullOrEmpty()) && (!settings.Contains(userKeyword)))
             {
-                Debug.WriteLineIf(settings == null, "SaveLoggedUser's settings is NULL");
-                Debug.WriteLineIf(!settings.Contains("user"), "SaveLoggedUser's settings does NOT contain user");
-                Debug.WriteLineIf(settings.Contains("user"), "SaveLoggedUser's settings CONTAINS user");
-                if ((settings != null) && (!settings.Contains("user")))
-                {
-                    Debug.WriteLine("SaveLoggedUser added user");
-                    settings.Add("user", user);
-                    OnUserChanged(EventArgs.Empty);
-                }
+                Debug.WriteLine("SaveLoggedUser added User");
+                settings.Add(userKeyword, user);
+                // TDOD Localize string
+                OnUserChanged(new MessengerSentEventArgs("User " + user.username + " has been saved."));
+                return true;
             }
+            return false;
         }
 
         public User RetriveLoggedUser()
         {
-            User user = null;
-            Debug.WriteLineIf(settings == null, "RetriveLoggedUser's settings is NULL");
-            Debug.WriteLineIf(!settings.Contains("user"), "RetriveLoggedUser's settings does NOT contain user");
-            Debug.WriteLineIf(settings.Contains("user"), "RetriveLoggedUser's settings CONTAINS user");
-            if ((settings != null) && settings.Contains("user"))
-            {
-                user = new User(null, null, null, null);
-                //TODO: handle exceptions
-                settings.TryGetValue<User>("user", out user);
+            Debug.WriteLine("public User RetriveLoggedUser()");
+            Debug.WriteLineIf(!settings.Contains(userKeyword), "ApplicationSettings does NOT contain User.");
+            Debug.WriteLineIf(settings.Contains(userKeyword), "ApplicationSettings CONTAINS User.");
 
-                if (user.HasNullOrEmpty())
-                {
-                    Debug.WriteLine("RetriveLoggedUser's user.hasNullOrEmpty() == true");
-                    user = null;
-                }
+            User user = new User();
+            if (settings.Contains(userKeyword))
+            {
+                settings.TryGetValue<User>(userKeyword, out user);
             }
-            Debug.WriteLineIf(user == null, "RetriveLoggedUser's user is NULL");
             return user;
         }
 
         public bool RemoveFromSettings(string keyword)
         {
-            if ((settings != null) && settings.Contains(keyword))
+            if (settings.Contains(keyword))
             {
                 Debug.WriteLine("Removed from settings: " + keyword);
                 settings.Remove(keyword);
-                OnUserChanged(EventArgs.Empty);
+                // TDOD Localize string
+                OnUserChanged(new MessengerSentEventArgs("User has been Removed"));
                 return true;
             }
             return false;

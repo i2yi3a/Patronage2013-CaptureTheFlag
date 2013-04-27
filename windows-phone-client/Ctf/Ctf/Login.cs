@@ -15,6 +15,7 @@ namespace Ctf
         private RequestHandler requestHandler;
         private RestRequest request;
         private string username;
+        
         public event EventHandler<EventArgs> MessengerSent;
 
         protected virtual void OnMessengerSent(EventArgs e)
@@ -26,6 +27,8 @@ namespace Ctf
 
         public Login()
         {
+            username = String.Empty;
+
             requestHandler = new RequestHandler();
 
             request = new RestRequest("/oauth/token", Method.POST);

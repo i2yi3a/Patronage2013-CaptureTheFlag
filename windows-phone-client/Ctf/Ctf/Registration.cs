@@ -15,6 +15,15 @@ namespace Ctf
         private RequestHandler requestHandler;
         private RestRequest request;
 
+        public event EventHandler<EventArgs> MessageSent;
+
+        protected virtual void OnMessageSent(EventArgs e)
+        {
+            var MessageSentThreadPrivate = MessageSent;
+            if (MessageSentThreadPrivate != null)
+                MessageSentThreadPrivate(this, e);
+        }
+
         public Registration()
         {
             requestHandler = new RequestHandler();
@@ -58,6 +67,7 @@ namespace Ctf
         // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-88
         public async Task<RestRequestAsyncHandle> Register(UserCredentials user, string verifyPassword)
         {
+            
             if (user == null)
             {
                 Debug.WriteLine("Exception thrown: " + "Lost user credentials. Please login once more");
