@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ctf
 {
-    class MessengerSentEventArgs : EventArgs
+    public class MessengerSentEventArgs : EventArgs
     {
         public readonly string message;
+        public readonly int errorCode;
 
-        public MessengerSentEventArgs(string message)
+        public MessengerSentEventArgs(string message, int errorCode = ErrorCode.APPLICATION_ERROR)
         {
             this.message = message;
+            this.errorCode = errorCode;
         }
     }
 }

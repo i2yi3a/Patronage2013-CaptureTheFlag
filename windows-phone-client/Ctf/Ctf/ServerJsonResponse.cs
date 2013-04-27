@@ -9,9 +9,8 @@ namespace Ctf
     /// <summary>
     /// 
     /// </summary>
-    class JsonResponse
+    class ServerJsonResponse : JsonResponse
     {
-        public string error { get; set; }
-        public string error_description { get; set; }        
+        public int error_code { get; set; }
     }
 }

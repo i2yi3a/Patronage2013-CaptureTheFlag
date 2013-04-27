@@ -9,9 +9,9 @@ namespace Ctf
     /// <summary>
     /// 
     /// </summary>
-    class JsonResponse
+    public static class ErrorCode
     {
-        public string error { get; set; }
-        public string error_description { get; set; }        
+        public const int APPLICATION_ERROR = -1;
+        public const int SUCCESS = 0;
     }
 }
