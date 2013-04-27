@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Diagnostics;
 
 namespace Ctf
 {
@@ -15,23 +16,27 @@ namespace Ctf
         public LoggedIn()
         {
             InitializeComponent();
+           
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-
+         
             base.OnNavigatedTo(e);
-           
-        
-            welcomeBlock.Text = "Jesteś zalogowany jako " + NavigationContext.QueryString["text"];
+            //welcomeBlock.Text = "Jesteś zalogowany jako " + NavigationContext.QueryString["text"];
+            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Logout(object sender, RoutedEventArgs e)
         {
+            Login Logger = new Login();
+            if (Logger.LogOut())
+                Debug.WriteLine("Logout SUCCESSFUL");
+            else
+                Debug.WriteLine("Logout FAILED");
          NavigationService.GoBack();
-            
-
         }
+
 
     }
 }

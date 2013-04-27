@@ -58,8 +58,11 @@ namespace Ctf
             if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password))
             {
                 await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-                NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
-                
+                if (ApplicationSettings.Instance.RetriveLoggedUser() != null)
+                {
+                    NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
+
+                }
 
             }
 

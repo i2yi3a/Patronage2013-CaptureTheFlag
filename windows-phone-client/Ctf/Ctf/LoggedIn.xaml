@@ -29,7 +29,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,10,10,-10">
             <TextBlock Name="welcomeBlock" HorizontalAlignment="Left" Margin="22,23,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="0.493,0.72" Height="131" Width="341"/>
-            <Button Content="Wyloguj" HorizontalAlignment="Left" Margin="257,208,0,0" VerticalAlignment="Top" Width="189" Click="Button_Click_1" />
+            <Button Content="Wyloguj" HorizontalAlignment="Left" Margin="257,208,0,0" VerticalAlignment="Top" Width="189" Click="Logout" />
 
         </Grid>
     </Grid>
