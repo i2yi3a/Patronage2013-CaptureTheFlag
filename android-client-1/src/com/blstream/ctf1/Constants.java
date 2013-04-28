@@ -11,8 +11,10 @@ public class Constants {
 	
 	public static final String PACKAGE_NAME = "com.blstream.ctf1";
 	
-	public static final String LOGIN_REQUEST_BODY = "client_id=mobile_android&client_secret=secret&grant_type=password";
+	public static final String CLIENT_ID = "mobile_android";
 	
+	public static final String CLIENT_SECRET = "secret";
+		
 	public static final String PREFIX_ERROR_CODE= "error_code_"; 
 	
 	public static final int ERROR_CODE_BAD_PASSWORD = 201;
