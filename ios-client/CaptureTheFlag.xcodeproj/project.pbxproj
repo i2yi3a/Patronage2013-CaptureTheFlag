@@ -450,11 +450,8 @@
 				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
 				C881A483171AA52E00C7F09E /* MainViewController.m in Sources */,
 				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
-<<<<<<< HEAD
 				C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */,
-=======
 				E760993F172D740000634D0A /* CTFGame.m in Sources */,
->>>>>>> 56c08366e7bf2523bf91d2d23bdfd7fe4c7d223f
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
