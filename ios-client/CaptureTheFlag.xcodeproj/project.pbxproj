@@ -56,6 +56,7 @@
 		C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C81313B7172D35DD000172BF /* MainTableViewCell.m */; };
 		C81313BA172D5465000172BF /* BLstream.png in Resources */ = {isa = PBXBuildFile; fileRef = C81313B9172D5465000172BF /* BLstream.png */; };
 		C881A483171AA52E00C7F09E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C881A482171AA52E00C7F09E /* MainViewController.m */; };
+		E760993F172D740000634D0A /* CTFGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E760993E172D740000634D0A /* CTFGame.m */; };
 		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,8 @@
 		C81313B9172D5465000172BF /* BLstream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BLstream.png; sourceTree = "<group>"; };
 		C881A481171AA52E00C7F09E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C881A482171AA52E00C7F09E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		E760993D172D740000634D0A /* CTFGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTFGame.h; path = ../CTFGame.h; sourceTree = "<group>"; };
+		E760993E172D740000634D0A /* CTFGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTFGame.m; path = ../CTFGame.m; sourceTree = "<group>"; };
 		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
 		E765073C171C744A00799648 /* ShowInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowInformation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +205,8 @@
 				23D228F6171352CF00073C0B /* NSError+Description.m */,
 				E765073B171C744A00799648 /* ShowInformation.h */,
 				E765073C171C744A00799648 /* ShowInformation.m */,
+				E760993D172D740000634D0A /* CTFGame.h */,
+				E760993E172D740000634D0A /* CTFGame.m */,
 				233035DB170DAAC9002E1A92 /* AppDelegate.h */,
 				233035DC170DAAC9002E1A92 /* AppDelegate.m */,
 				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
@@ -445,7 +450,11 @@
 				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
 				C881A483171AA52E00C7F09E /* MainViewController.m in Sources */,
 				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
+<<<<<<< HEAD
 				C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */,
+=======
+				E760993F172D740000634D0A /* CTFGame.m in Sources */,
+>>>>>>> 56c08366e7bf2523bf91d2d23bdfd7fe4c7d223f
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
