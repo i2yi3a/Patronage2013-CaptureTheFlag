@@ -104,4 +104,31 @@
 
 }
 
+- (void)createNewGame:(NSObject *)CTFGame
+{
+    MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
+                                              params:@{@"CTFGame" : CTFGame}
+                                          httpMethod:@"POST"
+                                                 ssl:NO];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *operation) {
+        NSDictionary* response = operation.responseJSON;
+        NSString *error = response[@"error"];
+        if (error==nil)
+        {
+            [ShowInformation showMessage:@"You've created a new game." withTitle:@"Success"];
+        }
+        else
+        {
+            //Chciałam to wpisać continue, tak jak to się robi w C czy C#, ale wyskakuje błąd, że nie można.
+        }
+            
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        [ShowInformation showError:@"Failed to create a new game. Make sure that all game parameters are correct and try again."];
+    } ];
+    
+   [self enqueueOperation:op];
+ 
+}
+
 @end
