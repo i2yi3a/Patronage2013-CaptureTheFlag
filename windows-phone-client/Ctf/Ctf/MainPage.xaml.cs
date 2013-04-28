@@ -43,6 +43,7 @@ namespace Ctf
             {
                 await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
                     NavigationService.Navigate(new Uri("/LoggedIn.xaml?", UriKind.Relative));
+                
             }
             else
             {

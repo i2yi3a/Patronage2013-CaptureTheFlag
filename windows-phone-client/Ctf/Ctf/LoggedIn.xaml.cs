@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Threading;
 
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
 
 
 namespace Ctf
@@ -18,20 +19,20 @@ namespace Ctf
     public partial class LoggedIn : PhoneApplicationPage
     {
         private Popup popup;
+        private BackgroundWorker backroungWorker;
 
         private void ShowSplash()
         {
             this.popup = new Popup();
             this.popup.Child = new LoadingScreen();
             this.popup.IsOpen = true;
-            // StartLoadingData();
+            StartLoadingData();
         }
 
         public LoggedIn()
-        {   
+        {                  
             InitializeComponent();
-            
-            ApplicationSettings.Instance.UserChanged += UserHasChanged;
+            //ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -39,9 +40,8 @@ namespace Ctf
          
             base.OnNavigatedTo(e);
             ShowSplash();
-            
-            //Thread.Sleep(10000);
-            
+
+
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -54,13 +54,47 @@ namespace Ctf
          NavigationService.GoBack();
         }
 
-        public void UserHasChanged(object sender, EventArgs e)
-        {
-            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
-            this.popup.IsOpen = false;
+        //public void UserHasChanged(object sender, EventArgs e)
+        //{
+            
+        //    this.popup.IsOpen = false;
+        //    welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+        //}
 
+        private void StartLoadingData()
+        {
+            backroungWorker = new BackgroundWorker();
+            backroungWorker.DoWork += new DoWorkEventHandler(backroungWorker_DoWork);
+            backroungWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backroungWorker_RunWorkerCompleted);
+            backroungWorker.RunWorkerAsync();
         }
 
-       
+        void backroungWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Dispatcher.BeginInvoke(() =>
+            {
+                this.popup.IsOpen = false;
+                if (ApplicationSettings.Instance.RetriveLoggedUser().access_token != String.Empty)
+                {
+                    welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Podano błędny login lub hasło", "Niezalogowano", MessageBoxButton.OK);
+                    NavigationService.GoBack();
+                }
+            }
+            );
+        }
+
+        void backroungWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //here we can load data
+            Thread.Sleep(1000);
+        }
+
+
+        
     }
 }

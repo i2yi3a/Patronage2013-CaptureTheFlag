@@ -22,9 +22,16 @@ namespace Ctf
             Registration Register = new Registration();
             await Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             // await Register.Register(new UserCredentials("qazwsx", "qazwsx"), "qazwsx");
-            NavigationService.GoBack();
+            if (Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password).IsCompleted)
+            {
+                NavigationService.GoBack();
+            }
+            
             
         }
+    
+
+      
 
     }
 }

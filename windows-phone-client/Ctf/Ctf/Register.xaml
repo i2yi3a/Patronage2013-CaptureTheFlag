@@ -36,15 +36,15 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="210"/>
             <TextBox x:Name="userNameRegister" HorizontalAlignment="Left" Height="72" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="391"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144">
+            <TextBlock HorizontalAlignment="Left" Margin="15,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="30">
             	<Run Text="Hasło"/>
             	<LineBreak/>
             	<Run/>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="10,237,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="12,256,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top"/>
             <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="278,358,0,0" VerticalAlignment="Top" Width="178" Click="Button_Click_1"/>
-            <PasswordBox x:Name="passwordRegister1" HorizontalAlignment="Left" Margin="1,148,0,0" VerticalAlignment="Top" Width="388"/>
-            <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Left" Margin="3,261,0,0" VerticalAlignment="Top" Width="387"/>
+            <PasswordBox x:Name="passwordRegister1" HorizontalAlignment="Left" Margin="1,161,0,0" VerticalAlignment="Top" Width="388"/>
+            <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Left" Margin="3,280,0,0" VerticalAlignment="Top" Width="387"/>
 
         </Grid>
     </Grid>
