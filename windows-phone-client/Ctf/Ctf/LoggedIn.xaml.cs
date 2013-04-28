@@ -10,13 +10,27 @@ using Microsoft.Phone.Shell;
 using System.Diagnostics;
 using System.Threading;
 
+using System.Windows.Controls.Primitives;
+
+
 namespace Ctf
 {
     public partial class LoggedIn : PhoneApplicationPage
     {
-        public LoggedIn()
+        private Popup popup;
+
+        private void ShowSplash()
         {
+            this.popup = new Popup();
+            this.popup.Child = new LoadingScreen();
+            this.popup.IsOpen = true;
+            // StartLoadingData();
+        }
+
+        public LoggedIn()
+        {   
             InitializeComponent();
+            
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
@@ -24,9 +38,10 @@ namespace Ctf
         {
          
             base.OnNavigatedTo(e);
-            //welcomeBlock.Text = "Jesteś zalogowany jako " + NavigationContext.QueryString["text"];
+            ShowSplash();
+            
             //Thread.Sleep(10000);
-            //welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -42,13 +57,10 @@ namespace Ctf
         public void UserHasChanged(object sender, EventArgs e)
         {
             welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            this.popup.IsOpen = false;
+
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
-        }
-
-
+       
     }
 }

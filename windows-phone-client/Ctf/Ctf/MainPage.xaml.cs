@@ -20,9 +20,6 @@ namespace Ctf
         {
             InitializeComponent();
 
-          
-
-
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
@@ -32,24 +29,6 @@ namespace Ctf
         {
             Debug.WriteLine("AppSett EVENT!. User has changed.");
         }
-
-        //private async void LoginTest(object sender, RoutedEventArgs e)
-        //{
-        //    Login Logger = new Login();
-        //    Debug.WriteLine(Logger.LoggedAs());
-
-        //    //await Logger.logInAs(new UserCredentials("piotrekm44@o2.pl", "weakPassword"), "secret");
-        //    await Logger.LogInAs(new UserCredentials("abcdef", "abcdef"), "secret");
-        //    //TODO: NullPointerException
-        //    //if(Logger.loggedAs().username != null)
-        //    //    Debug.WriteLine(Logger.loggedAs().username);
-        //}
-
-        //private async void RegisterTest(object sender, RoutedEventArgs e)
-        //{
-        //    Registration Register = new Registration();
-        //    await Register.Register(new UserCredentials("abcdef", "abcdef"), "abcdef");
-        //}
 
         public void SomeMessage(object sender, EventArgs e)
         {
@@ -63,11 +42,7 @@ namespace Ctf
             if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password))
             {
                 await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-                if (ApplicationSettings.Instance.RetriveLoggedUser() != null)
-                {
-                    NavigationService.Navigate(new Uri("/LoggedIn.xaml?text=" + usernameBox.Text, UriKind.Relative));
-
-                }
+                    NavigationService.Navigate(new Uri("/LoggedIn.xaml?", UriKind.Relative));
             }
             else
             {
