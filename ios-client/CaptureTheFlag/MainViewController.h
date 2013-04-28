@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 BLStream. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UITableViewController
+
+@property (nonatomic, strong) NSArray *mainViewControllerCellImages;
+@property (nonatomic, strong) NSArray *mainViewControllerCellLabels;
 
 @end
