@@ -1,5 +1,6 @@
 package com.blstream.patronage.ctf.web.controller.secured;
 
+import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
 import com.blstream.patronage.ctf.common.web.controller.BaseRestController;
 import com.blstream.patronage.ctf.model.Game;
 import com.blstream.patronage.ctf.model.GameStatusType;
@@ -92,4 +93,40 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         return response;
     }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody GameUI delete(@PathVariable String id) {
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- delete");
+
+        String currentUser = super.getCurrentUsername();
+        Assert.notNull(currentUser, "Current username cannot be null");
+        Assert.notNull(id, "ID cannot be null");
+        Game resource = service.findById(id);
+
+        if (logger.isInfoEnabled()) {
+            logger.info(String.format("User: %s tries to delete game: %s", currentUser, resource.getName()));
+        }
+
+        if (currentUser.equals(resource.getOwner())) {
+            if (resource.getStatus().equals(GameStatusType.NEW))   {
+                GameUI response = super.delete(id);
+
+                if (logger.isDebugEnabled())
+                    logger.debug("---- /delete");
+
+                return response;
+
+            }
+        }  else {
+            GameUI response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED);
+            return response;
+
+        }
+
+
+         return null;
+    }
+
 }
