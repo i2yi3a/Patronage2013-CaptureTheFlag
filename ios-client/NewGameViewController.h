@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewGameViewController : UIViewController
+- (IBAction)createNewGame:(id)sender;
+- (IBAction)cancelNewGame:(id)sender;
 
 @end
