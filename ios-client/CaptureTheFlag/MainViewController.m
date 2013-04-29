@@ -8,6 +8,10 @@
 
 #import "MainViewController.h"
 #import "MainTableViewCell.h"
+#import "NewGameViewController.h"
+#import "SearchViewController.h"
+#import "MyGamesViewController.h"
+#import "ProfileViewController.h"
 
 @interface MainViewController ()
 
@@ -57,6 +61,52 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+       [self performSegueWithIdentifier:@"segueToNewGame" sender:self];
+    }
+    if (indexPath.row == 1)
+    {
+        //[self performSegueWithIdentifier:@"segueToSearch" sender:self];
+        [tableView beginUpdates];
+        [tableView endUpdates];
+    }
+    if (indexPath.row == 2)
+    {
+        //[self performSegueWithIdentifier:@"segueToMyGames" sender:self];
+        [tableView beginUpdates];
+        [tableView endUpdates];
+    }
+    if (indexPath.row == 3)
+    {
+        [self performSegueWithIdentifier:@"segueToProfile" sender:self];
+    }
+    
+}
+                                                    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+        {
+            if ([[segue identifier] isEqualToString:@"segueToNewGame"])
+            {
+                
+            }
+            if ([[segue identifier] isEqualToString:@"segueToSearch"])
+            {
+                
+            }
+            if ([[segue identifier] isEqualToString:@"segueToMyGames"])
+            {
+                
+            }
+            if ([[segue identifier] isEqualToString:@"segueToProfile"])
+            {
+                
+            }
+        }
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -104,6 +154,17 @@
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row == 0) {
+        return 85.0f;
+    }
+    if ( indexPath.row == [tableView indexPathForSelectedRow].row) {
+        return 170.0f;
+    }
+    
+    return 85.0f;
+}
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,15 +206,15 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
+ 
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+ 
 }
-
+*/
 @end

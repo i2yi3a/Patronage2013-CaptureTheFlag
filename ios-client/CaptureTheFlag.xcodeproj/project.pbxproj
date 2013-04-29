@@ -56,6 +56,10 @@
 		C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C81313B7172D35DD000172BF /* MainTableViewCell.m */; };
 		C81313BA172D5465000172BF /* BLstream.png in Resources */ = {isa = PBXBuildFile; fileRef = C81313B9172D5465000172BF /* BLstream.png */; };
 		C881A483171AA52E00C7F09E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C881A482171AA52E00C7F09E /* MainViewController.m */; };
+		C8999F4C172E5BC70079B0A7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4B172E5BC70079B0A7 /* SearchViewController.m */; };
+		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
+		C8999F52172E5D780079B0A7 /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F51172E5D780079B0A7 /* NewGameViewController.m */; };
+		C8999F55172E5D8C0079B0A7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F54172E5D8C0079B0A7 /* ProfileViewController.m */; };
 		E760993F172D740000634D0A /* CTFGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E760993E172D740000634D0A /* CTFGame.m */; };
 		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
 /* End PBXBuildFile section */
@@ -132,6 +136,14 @@
 		C81313B9172D5465000172BF /* BLstream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BLstream.png; sourceTree = "<group>"; };
 		C881A481171AA52E00C7F09E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C881A482171AA52E00C7F09E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C8999F4A172E5BC70079B0A7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ../SearchViewController.h; sourceTree = "<group>"; };
+		C8999F4B172E5BC70079B0A7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ../SearchViewController.m; sourceTree = "<group>"; };
+		C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
+		C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
+		C8999F50172E5D780079B0A7 /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewGameViewController.h; path = ../NewGameViewController.h; sourceTree = "<group>"; };
+		C8999F51172E5D780079B0A7 /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewGameViewController.m; path = ../NewGameViewController.m; sourceTree = "<group>"; };
+		C8999F53172E5D8C0079B0A7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
+		C8999F54172E5D8C0079B0A7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
 		E760993D172D740000634D0A /* CTFGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTFGame.h; path = ../CTFGame.h; sourceTree = "<group>"; };
 		E760993E172D740000634D0A /* CTFGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTFGame.m; path = ../CTFGame.m; sourceTree = "<group>"; };
 		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
@@ -201,23 +213,31 @@
 		233035D2170DAAC9002E1A92 /* CaptureTheFlag */ = {
 			isa = PBXGroup;
 			children = (
-				23D228F5171352CF00073C0B /* NSError+Description.h */,
-				23D228F6171352CF00073C0B /* NSError+Description.m */,
-				E765073B171C744A00799648 /* ShowInformation.h */,
-				E765073C171C744A00799648 /* ShowInformation.m */,
-				E760993D172D740000634D0A /* CTFGame.h */,
-				E760993E172D740000634D0A /* CTFGame.m */,
 				233035DB170DAAC9002E1A92 /* AppDelegate.h */,
 				233035DC170DAAC9002E1A92 /* AppDelegate.m */,
-				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
+				23D228F5171352CF00073C0B /* NSError+Description.h */,
+				23D228F6171352CF00073C0B /* NSError+Description.m */,
+				E760993D172D740000634D0A /* CTFGame.h */,
+				E760993E172D740000634D0A /* CTFGame.m */,
+				E765073B171C744A00799648 /* ShowInformation.h */,
+				E765073C171C744A00799648 /* ShowInformation.m */,
 				C80556771718991A00C43A1C /* LoginViewController.h */,
 				C80556781718991A00C43A1C /* LoginViewController.m */,
+				C80556761718799B00C43A1C /* RegisterViewController.h */,
+				233035E8170DAAC9002E1A92 /* RegisterViewController.m */,
 				C881A481171AA52E00C7F09E /* MainViewController.h */,
 				C881A482171AA52E00C7F09E /* MainViewController.m */,
 				C81313B6172D35DD000172BF /* MainTableViewCell.h */,
 				C81313B7172D35DD000172BF /* MainTableViewCell.m */,
-				C80556761718799B00C43A1C /* RegisterViewController.h */,
-				233035E8170DAAC9002E1A92 /* RegisterViewController.m */,
+				C8999F50172E5D780079B0A7 /* NewGameViewController.h */,
+				C8999F51172E5D780079B0A7 /* NewGameViewController.m */,
+				C8999F4A172E5BC70079B0A7 /* SearchViewController.h */,
+				C8999F4B172E5BC70079B0A7 /* SearchViewController.m */,
+				C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */,
+				C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */,
+				C8999F53172E5D8C0079B0A7 /* ProfileViewController.h */,
+				C8999F54172E5D8C0079B0A7 /* ProfileViewController.m */,
+				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
 				23D228C517134EE900073C0B /* MKNetworkKit */,
 				23D228DD17134EE900073C0B /* NetworkEngine.h */,
 				23D228DE17134EE900073C0B /* NetworkEngine.m */,
@@ -452,6 +472,10 @@
 				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
 				C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */,
 				E760993F172D740000634D0A /* CTFGame.m in Sources */,
+				C8999F4C172E5BC70079B0A7 /* SearchViewController.m in Sources */,
+				C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */,
+				C8999F52172E5D780079B0A7 /* NewGameViewController.m in Sources */,
+				C8999F55172E5D8C0079B0A7 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
