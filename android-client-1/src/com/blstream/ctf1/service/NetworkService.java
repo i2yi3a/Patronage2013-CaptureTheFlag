@@ -20,6 +20,7 @@ import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -38,6 +39,8 @@ public class NetworkService {
 	
 	Resources mResources;
 	
+	Activity mCurrentActivity;
+	
 	
 	
 	
@@ -50,7 +53,10 @@ public class NetworkService {
 		mResources = resources;
 	}
 	
-	
+	public NetworkService(Activity activity) {
+		mCurrentActivity = activity;
+		mResources = activity.getResources();
+	}
 	
 	public static Boolean isDeviceOnline(Context context) {
 		Boolean result = false;
@@ -203,4 +209,43 @@ public class NetworkService {
 		return result;
 	}
 	
+	public void createGame(String gameName, String description, String timeStart, long duration,
+			int pointsMax, int playersMax, String localizationName, double lat,
+			double lng, int radius)
+			throws JSONException, ClientProtocolException, IOException,
+			CTFException {
+
+		JSONObject jsonObject = new JSONObject();
+		JSONObject localizationObject = new JSONObject();
+		JSONObject latlngObject = new JSONObject();
+		jsonObject.put("name", gameName);
+		jsonObject.put("description", description);
+		jsonObject.put("time_start", timeStart);
+		jsonObject.put("duration", duration);
+		jsonObject.put("points_max", pointsMax);
+		jsonObject.put("players_max", playersMax);
+		localizationObject.put("name", localizationName);
+		latlngObject.put("lat", lat);
+		latlngObject.put("lng", lng);
+		localizationObject.put("latLng", latlngObject);
+		jsonObject.put("localization", localizationObject);
+		jsonObject.put("radius",radius);
+
+		StorageService storageService = new StorageService(mCurrentActivity);
+		LoggedPlayer loggedPlayer = storageService.getLoggedPlayer();
+		List<Header> headers = new LinkedList<Header>();
+		headers.add(new BasicHeader("Accept", "application/json"));
+		headers.add(new BasicHeader("Content-Type", "application/json"));
+		headers.add(new BasicHeader("Authorization", "Bearer " + loggedPlayer.getAccessToken()));
+
+		JSONObject jsonObjectResult = requestPost(Constants.URL_SERVER
+				+ Constants.URI_CREATE_GAME, headers, jsonObject.toString());
+
+		if (jsonObjectResult.getInt("error_code") != 0) {
+			throw new CTFException(mResources,
+					jsonObjectResult.getInt("error_code"),
+					jsonObjectResult.getString("error_description"));
+		}
+
+	}
 }

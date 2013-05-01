@@ -36,6 +36,8 @@
 	<string name="register_successful">Rejestracja została ukończona pomyślnie</string>
 	<!-- Login -->
 	<string name="login_successful">Pomyślnie zalogowano</string>
+	<!-- CreateGame -->
+	<string name="game_created">Pomyślnie utworzono grę</string>
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>

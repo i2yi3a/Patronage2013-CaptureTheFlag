@@ -37,6 +37,8 @@
 	
 	<!-- Login -->
 	<string name="login_successful">Successfully logged in</string>
+	<!-- CreateGame -->
+	<string name="game_created">Succesfully created a game</string>
 	
 	<!-- Error codes -->
     <string name="error_code_101">Login already in use</string>
