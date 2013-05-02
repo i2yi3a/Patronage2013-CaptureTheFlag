@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.R;
-import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.service.GameService;
 
 
 /**
@@ -82,9 +82,9 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 	
 	@Override
 	protected Void doInBackground(Void... params) {
-		NetworkService networkService = new NetworkService(mCurrentActivity.getResources());
+		GameService gameService = new GameService(mCurrentActivity);
 		try {
-			networkService.createGame(mGameName,mDescription,mTimeStart,
+			gameService.createGame(mGameName,mDescription,mTimeStart,
 					mDuration,mPointsMax,mPlayersMax,mLocalizationName,mLat,mLng,mRadius);
 			
 		// no sense to catch others exceptions all are handled in that same way

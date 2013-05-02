@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.LoggedPlayer;
-import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.service.PlayerService;
 import com.blstream.ctf1.service.StorageService;
 
 
@@ -58,9 +58,9 @@ public class Login extends AsyncTask<Void, Void, Void> {
 	
 	@Override
 	protected Void doInBackground(Void... params) {
-		NetworkService networkService = new NetworkService(mCurrentActivity.getResources());
+		PlayerService playerService = new PlayerService(mCurrentActivity);
 		try {
-			LoggedPlayer loggedPlayer = networkService.login(mUsername, mPassword);
+			LoggedPlayer loggedPlayer = playerService.login(mUsername, mPassword);
 			StorageService storageService = new StorageService(mCurrentActivity);
 			storageService.open();
 			storageService.saveLoggedPlayer(loggedPlayer);

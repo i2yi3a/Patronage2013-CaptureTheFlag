@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.R;
-import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.service.PlayerService;
 
 
 /**
@@ -54,9 +54,9 @@ public class Register extends AsyncTask<Void, Void, Void> {
 	
 	@Override
 	protected Void doInBackground(Void... params) {
-		NetworkService networkService = new NetworkService(mCurrentActivity.getResources());
+		PlayerService playerService = new PlayerService(mCurrentActivity);
 		try {
-			networkService.registerPlayer(mUsername, mPassword);
+			playerService.registerPlayer(mUsername, mPassword);
 		// no sense to catch others exceptions all are handled in that same way
 		} catch (Exception e) {
 			errorString = e.getLocalizedMessage();

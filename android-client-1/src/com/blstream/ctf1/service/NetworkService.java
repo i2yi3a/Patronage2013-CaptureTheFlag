@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -16,18 +15,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import com.blstream.ctf1.Constants;
-import com.blstream.ctf1.domain.LoggedPlayer;
-import com.blstream.ctf1.exception.CTFException;
 
 
 
@@ -37,26 +31,21 @@ import com.blstream.ctf1.exception.CTFException;
  */
 public class NetworkService {
 	
-	Resources mResources;
-	
-	Activity mCurrentActivity;
+	Context mContext;
 	
 	
 	
 	
 	
 	/**
-	 * @param resources
+	 * @param context
 	 * 		needed to translate errorCode to error message stored in strings.xml
 	 */
-	public NetworkService(Resources resources) {
-		mResources = resources;
+	public NetworkService(Context context) {
+		mContext = context;
 	}
 	
-	public NetworkService(Activity activity) {
-		mCurrentActivity = activity;
-		mResources = activity.getResources();
-	}
+	
 	
 	public static Boolean isDeviceOnline(Context context) {
 		Boolean result = false;
@@ -125,8 +114,9 @@ public class NetworkService {
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() == 500) {
-			throw new IOException(mResources.getString(mResources
-					.getIdentifier(Constants.PREFIX_ERROR_CODE + 500, "string",
+			throw new IOException(mContext.getResources().getString(
+					mContext.getResources().getIdentifier(
+							Constants.PREFIX_ERROR_CODE + 500, "string",
 							Constants.PACKAGE_NAME)));
 		}
 
@@ -143,109 +133,4 @@ public class NetworkService {
 		return new JSONObject(builder.toString());
 	}
 	
-	
-	
-	public void registerPlayer(String username, String password)
-			throws JSONException, ClientProtocolException, IOException,
-			CTFException {
-
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("username", username);
-		jsonObject.put("password", password);
-
-		List<Header> headers = new LinkedList<Header>();
-		headers.add(new BasicHeader("Accept", "application/json"));
-		headers.add(new BasicHeader("Content-Type", "application/json"));
-
-		JSONObject jsonObjectResult = requestPost(Constants.URL_SERVER
-				+ Constants.URI_REGISTER_PLAYER, headers, jsonObject.toString());
-
-		if (jsonObjectResult.getInt("error_code") != 0) {
-			throw new CTFException(mResources,
-					jsonObjectResult.getInt("error_code"),
-					jsonObjectResult.getString("error_description"));
-		}
-
-	}
-	
-	
-	
-	public LoggedPlayer login(String username, String password) throws CTFException, JSONException, ClientProtocolException, IOException {
-		
-		LoggedPlayer result = new LoggedPlayer();
-		
-		List<Header> headers = new LinkedList<Header>();
-		headers.add(new BasicHeader("Content-type", "application/x-www-form-urlencoded"));
-		
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("client_id", Constants.CLIENT_ID);
-		jsonObject.put("client_secret", Constants.CLIENT_SECRET);
-		jsonObject.put("grant_type", "password");
-		jsonObject.put("username", username);
-		jsonObject.put("password", password);
-		
-		JSONObject jsonObjectResult = requestPost(Constants.URL_SERVER
-				+ Constants.URI_LOGIN_PLAYER, headers, jsonToQueryString(jsonObject));
-		if(jsonObjectResult.has("error")) {
-			if (jsonObjectResult.getString("error").equals("invalid_grant")) {
-				if(jsonObjectResult.getString("error_description").equals("Bad credentials"))
-					throw new CTFException(mResources,
-							Constants.ERROR_CODE_BAD_USERNAME,
-						jsonObjectResult.getString("error_description"));
-				else
-					throw new CTFException(mResources,
-							Constants.ERROR_CODE_BAD_PASSWORD,
-						jsonObjectResult.getString("error_description"));
-			} else if(jsonObjectResult.getString("error").equals("invalid_token"))
-				throw new CTFException(mResources,
-						Constants.ERROR_CODE_BAD_TOKEN,
-					jsonObjectResult.getString("error_description"));
-		} else {
-			result.setLogin(username);
-			result.setAccessToken(jsonObjectResult.getString("access_token").toString());
-			result.setScope(jsonObjectResult.getString("scope").toString());
-			result.setTokenType(jsonObjectResult.getString("token_type").toString());
-		}
-		return result;
-	}
-	
-	public void createGame(String gameName, String description, String timeStart, long duration,
-			int pointsMax, int playersMax, String localizationName, double lat,
-			double lng, int radius)
-			throws JSONException, ClientProtocolException, IOException,
-			CTFException {
-
-		JSONObject jsonObject = new JSONObject();
-		JSONObject localizationObject = new JSONObject();
-		JSONObject latlngObject = new JSONObject();
-		jsonObject.put("name", gameName);
-		jsonObject.put("description", description);
-		jsonObject.put("time_start", timeStart);
-		jsonObject.put("duration", duration);
-		jsonObject.put("points_max", pointsMax);
-		jsonObject.put("players_max", playersMax);
-		localizationObject.put("name", localizationName);
-		latlngObject.put("lat", lat);
-		latlngObject.put("lng", lng);
-		localizationObject.put("latLng", latlngObject);
-		jsonObject.put("localization", localizationObject);
-		jsonObject.put("radius",radius);
-
-		StorageService storageService = new StorageService(mCurrentActivity);
-		LoggedPlayer loggedPlayer = storageService.getLoggedPlayer();
-		List<Header> headers = new LinkedList<Header>();
-		headers.add(new BasicHeader("Accept", "application/json"));
-		headers.add(new BasicHeader("Content-Type", "application/json"));
-		headers.add(new BasicHeader("Authorization", "Bearer " + loggedPlayer.getAccessToken()));
-
-		JSONObject jsonObjectResult = requestPost(Constants.URL_SERVER
-				+ Constants.URI_CREATE_GAME, headers, jsonObject.toString());
-
-		if (jsonObjectResult.getInt("error_code") != 0) {
-			throw new CTFException(mResources,
-					jsonObjectResult.getInt("error_code"),
-					jsonObjectResult.getString("error_description"));
-		}
-
-	}
 }
