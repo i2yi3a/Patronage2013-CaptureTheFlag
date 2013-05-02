@@ -7,6 +7,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
+    
+    <!-- Register & Login -->
     <string name="registration">Registration</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -18,33 +20,47 @@
     <string name="re_password">Re-Password</string>
     <string name="passwords_not_equal">Password must be the same</string>
     <string name="login_exists">Login already exists</string>
-	<string name="login_too_short">Login must be at least 5 characters long</string>
-	<string name="password_too_short">Password must be at least 5 characters long</string>
-    
+    <string name="login_too_short">Login must be at least 5 characters long</string>
+    <string name="password_too_short">Password must be at least 5 characters long</string>
     <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
     <string name="crash_dialog_title">CrashTest has crashed</string>
-	<string name="crash_dialog_text">An unexpected error occurred forcing the
+    <string name="crash_dialog_text">An unexpected error occurred forcing the
 	    application to stop. Please help us fix this by sending us error data,
 	    all you have to do is click OK</string>
-	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
-	<string name="crash_dialog_ok_toast">Thank you !</string>	
-	<string name="no_internet_connection">There is no internet connection!</string>	
-	<string name="loading">Loading...</string>
-	<string name="loading_message">Loading data, please wait...</string>
-	
-	<!-- Register -->
-	<string name="register_successful">Registration was successful</string>
-	
-	<!-- Login -->
-	<string name="login_successful">Successfully logged in</string>
-	<!-- CreateGame -->
-	<string name="game_created">Succesfully created a game</string>
-	
-	<!-- Error codes -->
+    <string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
+    <string name="crash_dialog_ok_toast">Thank you !</string>
+    <string name="no_internet_connection">There is no internet connection!</string>
+    <string name="loading">Loading...</string>
+    <string name="loading_message">Loading data, please wait...</string>
+
+    <!-- Register -->
+    <string name="register_successful">Registration was successful</string>
+
+    <!-- Login -->
+    <string name="login_successful">Successfully logged in</string>
+    
+    <!-- CreateGame -->
+    <string name="game_created">Successfully created a game</string>
+    <string name="game_name">Game name:</string>
+    <string name="game_description">Description Game:</string>
+    <string name="location_name">Location name:</string>
+    <string name="start_date">Start date:</string>
+    <string name="start_time">Start time:</string>
+    <string name="playing_time">Playing time(min):</string>
+    <string name="maximum_players">Maximum players:</string>
+    <string name="maximum_scoring">Maximum points:</string>
+    <string name="cancel">Cancel</string>
+    <string name="create_edit_game">Create/Edit game</string>
+
+    <!-- Error codes -->
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_500">Internal server error</string>
     <string name="error_code_201">Wrong password</string>
     <string name="error_code_202">Wrong username</string>
     <string name="error_code_203">Bad token</string>
+    <string name="title_activity_create_game">CreateGameActivity</string>
+
+    
+    
     
 </resources>

@@ -7,6 +7,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
+    
+    <!-- Register & Login -->
     <string name="registration">Rejestracja</string>
     <string name="login">Login</string>
     <string name="password">Hasło</string>
@@ -34,14 +36,29 @@
 	
 	<!-- Register -->
 	<string name="register_successful">Rejestracja została ukończona pomyślnie</string>
+	
 	<!-- Login -->
 	<string name="login_successful">Pomyślnie zalogowano</string>
+	
 	<!-- CreateGame -->
 	<string name="game_created">Pomyślnie utworzono grę</string>
+	<string name="game_name">Nazwa gry:</string>
+	<string name="game_description">Opis gry:</string>
+	<string name="location_name">Nazwa lokalizacji:</string>
+	<string name="start_date">Data rozpoczęcia:</string>
+    <string name="start_time">Czas rozpoczęcia:</string>
+    <string name="playing_time">Czas rozgrywki(min):</string>
+    <string name="maximum_players">Max ilosc graczy:</string>
+    <string name="maximum_scoring">Max ilosc punktów:</string>
+    <string name="cancel">Anuluj</string>
+    <string name="create_edit_game">Twórz/Edytuj gre</string>
+	
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
     <string name="error_code_201">Niepoprawne hasło</string>
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
+    
+    
 </resources>

@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".CreateGameActivity" >
+
+    <EditText
+        android:id="@+id/editGameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textGameName"
+        android:layout_alignBottom="@+id/textGameName"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:hint="@string/game_name"
+        android:width="160dp" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textGameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/game_name" />
+
+    <TextView
+        android:id="@+id/textGameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textGameName"
+        android:layout_below="@+id/editGameName"
+        android:layout_marginTop="17dp"
+        android:text="@string/game_description" />
+
+    <EditText
+        android:id="@+id/editGameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editGameName"
+        android:layout_alignTop="@+id/textGameDescription"
+        android:ems="10"
+        android:hint="@string/game_description"
+        android:width="160dp" />
+
+    <TextView
+        android:id="@+id/textLocationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textGameDescription"
+        android:layout_below="@+id/editGameDescription"
+        android:text="@string/location_name" />
+
+    <EditText
+        android:id="@+id/editLocationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textLocationName"
+        android:layout_alignBottom="@+id/textLocationName"
+        android:layout_alignLeft="@+id/editGameDescription"
+        android:ems="10"
+        android:hint="@string/location_name"
+        android:width="160dp" />
+
+    <TextView
+        android:id="@+id/textStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textLocationName"
+        android:layout_below="@+id/editLocationName"
+        android:layout_marginTop="19dp"
+        android:text="@string/start_date" />
+
+    <EditText
+        android:id="@+id/editStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textStartDate"
+        android:layout_alignBottom="@+id/textStartDate"
+        android:layout_toRightOf="@+id/textGameDescription"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/textStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textStartDate"
+        android:layout_below="@+id/editStartDate"
+        android:layout_marginTop="15dp"
+        android:text="@string/start_time" />
+
+    <EditText
+        android:id="@+id/editStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textStartTime"
+        android:layout_alignBottom="@+id/textStartTime"
+        android:layout_alignLeft="@+id/editStartDate"
+        android:ems="10"
+        android:inputType="time" />
+
+    <TextView
+        android:id="@+id/textPlayingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textStartTime"
+        android:layout_below="@+id/editStartTime"
+        android:layout_marginTop="18dp"
+        android:text="@string/playing_time" />
+
+    <EditText
+        android:id="@+id/editPlayingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editLocationName"
+        android:layout_below="@+id/textStartTime"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textMaxPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textPlayingTime"
+        android:layout_below="@+id/editPlayingTime"
+        android:layout_marginTop="21dp"
+        android:text="@string/maximum_players" />
+
+    <EditText
+        android:id="@+id/editMaxPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textMaxPlayers"
+        android:layout_toRightOf="@+id/textMaxPlayers"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textMaxPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textMaxPlayers"
+        android:layout_below="@+id/textMaxPlayers"
+        android:layout_marginTop="17dp"
+        android:text="@string/maximum_scoring" />
+
+    <EditText
+        android:id="@+id/editMaxPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textMaxPoints"
+        android:layout_alignBottom="@+id/textMaxPoints"
+        android:layout_alignLeft="@+id/editMaxPlayers"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnCancel"
+        android:layout_alignBottom="@+id/btnCancel"
+        android:layout_alignRight="@+id/editMaxPoints"
+        android:text="@string/create_edit_game" />
+
+</RelativeLayout>
