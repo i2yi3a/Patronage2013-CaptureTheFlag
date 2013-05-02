@@ -11,6 +11,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * 
@@ -31,7 +32,7 @@ public class UserDAO {
 			UserSQLiteHelper.COLUMN_SCOPE,
 			UserSQLiteHelper.COLUMN_CREATED,
 			UserSQLiteHelper.COLUMN_LASTLOGIN,
-			
+			UserSQLiteHelper.COLUMN_VERSION
 			};
 
 	public UserDAO(Context context) {
@@ -55,7 +56,7 @@ public class UserDAO {
 		contentValues.put(UserSQLiteHelper.COLUMN_TOKEN_TYPE, user.getTokenType());
 		contentValues.put(UserSQLiteHelper.COLUMN_SCOPE, user.getScope());
 		contentValues.put(UserSQLiteHelper.COLUMN_CREATED,new Date().toString());
-		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN, "");
+		contentValues.put(UserSQLiteHelper.COLUMN_LASTLOGIN, " ");
 		contentValues.put(UserSQLiteHelper.COLUMN_VERSION, new Integer(1));
 
 		long insertId = db.insert(UserSQLiteHelper.TABLE_USER, null,
@@ -64,6 +65,7 @@ public class UserDAO {
 		Cursor cursor = db.query(UserSQLiteHelper.TABLE_USER, allColumns,
 				UserSQLiteHelper.COLUMN_ID + " = " + insertId, null, null,
 				null, null);
+		Log.i("Database", "User "+user.getName()+" was added");
 
 		cursor.moveToFirst();
 		User newUser = cursorToUser(cursor);
