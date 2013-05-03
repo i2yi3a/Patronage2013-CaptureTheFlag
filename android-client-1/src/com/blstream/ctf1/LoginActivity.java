@@ -6,7 +6,6 @@ package com.blstream.ctf1;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,8 +22,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private Button mBtnRegistration;
 	private EditText mEditLogin;
 	private EditText mEditPassword;
-	private SharedPreferences preferences;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -39,7 +36,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		
 		mEditLogin = (EditText) findViewById(R.id.editLogin);
 		mEditPassword = (EditText) findViewById(R.id.editPassword);
-		preferences = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
 		
 	}
 
@@ -47,23 +43,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		Intent intent = null;
-		String log;
-		SharedPreferences.Editor editor;
 		switch(v.getId()) {
 			case R.id.btnLogin:
-				// instruction login
+				ClickTracker.saveClick(this, mBtnLogin);
 				String login = mEditLogin.getText().toString();
 				String password = mEditPassword.getText().toString();
-				log = preferences.getString("LOG", "defValue");
-				log+="Login Button Clicked in LoginActivity";
-				editor = preferences.edit();
-				editor.putString("LOG", log);
-				editor.commit();
 				
 				
 				if(correctData(login, password)) {
 					if (NetworkService.isDeviceOnline(this)) {
-						Login loginTask = new Login(this, LoginActivity.class, login, password);
+						Login loginTask = new Login(this, CreateGameActivity.class, login, password);
 						loginTask.execute();
 					}
 					else {
@@ -73,12 +62,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 				break;
 					
 			case R.id.btnRegistration:
+				ClickTracker.saveClick(this, mBtnRegistration);
 				intent = new Intent(this, RegisterActivity.class);
-				log = preferences.getString("LOG", "defValue");
-				log+="Register Button Clicked in LoginActivity";
-				editor = preferences.edit();
-				editor.putString("LOG", log);
-				editor.commit();
 				startActivity(intent);
 				break;
 		}
