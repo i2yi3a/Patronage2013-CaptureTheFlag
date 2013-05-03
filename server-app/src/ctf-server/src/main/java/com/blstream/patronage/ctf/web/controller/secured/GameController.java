@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/api/secured/games")
@@ -124,9 +126,112 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
             return response;
 
         }
-
-
          return null;
     }
+
+
+    @RequestMapping(value = "{id}/players", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody List<String> players(@PathVariable String id) {
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- players");
+
+        Assert.notNull(id, "ID cannot be null");
+        Game resource = service.findById(id);
+
+            if (resource.getStatus().equals(GameStatusType.NEW))   {
+
+                List<String> players = resource.getPlayers();
+
+                 return players;
+
+            }
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- /players");
+
+        return null;
+
+    }
+
+    @RequestMapping(value = "{id}/signIn", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody List<String> playerSignIn(@PathVariable String id) {
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- SignIn");
+
+        String currentUser = super.getCurrentUsername();
+        Assert.notNull(currentUser, "Current username cannot be null");
+        Assert.notNull(id, "ID cannot be null");
+        Game resource = service.findById(id);
+        List<String> players = resource.getPlayers();
+
+        if (resource.getPlayers().size() < resource.getPlayersMax()) {
+        if (resource.getStatus().equals(GameStatusType.NEW))   {
+        if (!resource.getPlayers().contains(currentUser)) {
+
+                players.add(currentUser);
+                GameUI response = converter.convert(resource);
+                super.update(id, response);
+
+
+            return players;
+        }
+        }
+        }
+        if (logger.isDebugEnabled())
+            logger.debug("---- /SignIn");
+
+        return null;
+    }
+
+    @RequestMapping(value = "{id}/signOut", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody List<String> playerSignOut(@PathVariable String id) {
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- SignOut");
+
+        String currentUser = super.getCurrentUsername();
+        Assert.notNull(currentUser, "Current username cannot be null");
+        Assert.notNull(id, "ID cannot be null");
+        Game resource = service.findById(id);
+        List<String> players = resource.getPlayers();
+
+
+        if (resource.getPlayers().contains(currentUser)) {
+
+
+            players.remove(currentUser);
+            GameUI response = converter.convert(resource);
+            super.update(id, response);
+
+            return players;
+
+        }
+        if (logger.isDebugEnabled())
+            logger.debug("---- /SignOut");
+
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
