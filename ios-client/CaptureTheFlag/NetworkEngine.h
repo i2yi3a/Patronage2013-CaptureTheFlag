@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "MKNetworkEngine.h"
+#import "CTFGame.h"
 
 //object isClassOf NSError => error
 //else NSDictionary - JSON representation of response

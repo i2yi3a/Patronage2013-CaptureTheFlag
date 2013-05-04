@@ -10,6 +10,7 @@
 
 #import "NetworkEngine.h"
 #import "MKNetworkKit.h"
+#import "CTFGame.h"
 
 #define CTF_SERVER @"capturetheflag.blstream.com"
 #define CTF_API_PATH @"demo"
@@ -105,27 +106,34 @@
 
 }
 
-/*- (void)createNewGame: (CTFGame *) game
+- (void)createNewGame: (CTFGame *) game
    completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 {
     NSString* name=game.name;
-    NSString* description=[game getDescription];
+    NSString* description=game.description;
+    NSDate* date=game.date;
+    NSNumber* time=game.time;
+    NSNumber* duration=game.duration;
+    NSNumber* points_max=game.points_max;
+    NSNumber* players_max=game.players_max;
+    NSString* localization_name=game.localization_name;
+    CLLocation* localization_latLng=game.localization_latLng;
+    NSNumber* localization_radius=game.localization_radius;
     
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
-                                              params:@{}
+                                              params:@{@"name" : name, @"description" : description, @"date" : date, @"time" : time, @"duration" : duration, @"points_max" : points_max, @"players_max" : players_max, @"localization_name" : localization_name, @"localization_latLng" : localization_latLng, @"localization_radius" : localization_radius}
                                           httpMethod:@"POST"
                                                  ssl:NO];
+    NSString* token2=_token;
     
     [op addHeaders:@{@"Accept" : @"application/json"}];
     [op addHeaders:@{@"Content-type" : @"application/json"}];
-    [op addHeaders:@{@"Authorization" : @"Bearer 896c75b1-8f83-456b-8303-3e0d9f3c9e2a"}];
+    [op addHeaders:@{@"Authorization" : token2}];
     
     [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
-        NSString* token2=_token;
-        self.token=token2;
         if (error==nil)
         {
             completionBlock(nil);
@@ -142,5 +150,5 @@
    [self enqueueOperation:op];
  
 }
-*/
+
 @end 

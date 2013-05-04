@@ -17,7 +17,6 @@
 @property (strong, nonatomic) NSNumber *time;
 @property (strong, nonatomic) NSNumber *duration;
 @property (strong, nonatomic) NSNumber *points_max;
-@property (strong, nonatomic) NSNumber *points_min;
 @property (strong, nonatomic) NSNumber *players_max;
 @property (strong, nonatomic) NSString *localization_name;
 @property (strong, nonatomic) CLLocation *localization_latLng;
