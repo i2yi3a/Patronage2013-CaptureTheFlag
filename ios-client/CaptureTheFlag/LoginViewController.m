@@ -58,7 +58,8 @@
                                   if ([response isKindOfClass:[NSError class]])
                                   {
                                       [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                      [ShowInformation showError:@"Incorrect user name or password"];                                  }
+                                      [ShowInformation showError:@"Incorrect user name or password"];
+                                  }
                                   else
                                   {
                                       [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];

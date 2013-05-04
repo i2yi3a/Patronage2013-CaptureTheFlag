@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "MainTableViewCell.h"
 #import "NewGameViewController.h"
-#import "SearchViewController.h"
+#import "GamesViewController.h"
 #import "MyGamesViewController.h"
 #import "ProfileViewController.h"
 
@@ -37,7 +37,7 @@
     
     self.mainViewControllerCellLabels = [[NSArray alloc]
                      initWithObjects:@"new game",
-                     @"search",
+                     @"games",
                      @"my games",
                      @"profile",
                      @"logout", nil];
@@ -69,19 +69,18 @@
     }
     if (indexPath.row == 1)
     {
-        //[self performSegueWithIdentifier:@"segueToSearch" sender:self];
-        [tableView beginUpdates];
-        [tableView endUpdates];
+        [self performSegueWithIdentifier:@"segueToGames" sender:self];
     }
     if (indexPath.row == 2)
     {
-        //[self performSegueWithIdentifier:@"segueToMyGames" sender:self];
-        [tableView beginUpdates];
-        [tableView endUpdates];
+        [self performSegueWithIdentifier:@"segueToMyGames" sender:self];
+        
     }
     if (indexPath.row == 3)
     {
-        [self performSegueWithIdentifier:@"segueToProfile" sender:self];
+      [tableView beginUpdates];
+      [tableView endUpdates];
+        //[self performSegueWithIdentifier:@"segueToProfile" sender:self];
     }
     
 }
@@ -92,7 +91,7 @@
             {
                 
             }
-            if ([[segue identifier] isEqualToString:@"segueToSearch"])
+            if ([[segue identifier] isEqualToString:@"segueToGames"])
             {
                 
             }

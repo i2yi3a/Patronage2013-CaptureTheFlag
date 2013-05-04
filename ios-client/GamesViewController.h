@@ -1,5 +1,5 @@
 //
-//  NewGameViewController.h
+//  SearchViewController.h
 //  CaptureTheFlag
 //
 //  Created by Konrad Gnoinski on 29.04.2013.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewGameViewController : UIViewController
-- (IBAction)createNewGame:(id)sender;
+@interface GamesViewController : UITableViewController
 
 @end
