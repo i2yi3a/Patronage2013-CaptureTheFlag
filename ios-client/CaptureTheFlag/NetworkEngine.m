@@ -83,6 +83,7 @@
                                           httpMethod:@"POST"
                                                  ssl:NO];
     
+    
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
@@ -104,31 +105,42 @@
 
 }
 
-- (void)createNewGame:(NSObject *)CTFGame
+/*- (void)createNewGame: (CTFGame *) game
+   completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 {
+    NSString* name=game.name;
+    NSString* description=[game getDescription];
+    
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
-                                              params:@{@"CTFGame" : CTFGame}
+                                              params:@{}
                                           httpMethod:@"POST"
                                                  ssl:NO];
     
+    [op addHeaders:@{@"Accept" : @"application/json"}];
+    [op addHeaders:@{@"Content-type" : @"application/json"}];
+    [op addHeaders:@{@"Authorization" : @"Bearer 896c75b1-8f83-456b-8303-3e0d9f3c9e2a"}];
+    
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
+        NSString* token2=_token;
+        self.token=token2;
         if (error==nil)
         {
-            [ShowInformation showMessage:@"You've created a new game." withTitle:@"Success"];
+            completionBlock(nil);
         }
         else
         {
-            //Chciałam to wpisać continue, tak jak to się robi w C czy C#, ale wyskakuje błąd, że nie można.
+            completionBlock([NSError errorWithDescription:@"Failed to create a new game."]);
         }
             
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
-        [ShowInformation showError:@"Failed to create a new game. Make sure that all game parameters are correct and try again."];
+        completionBlock(error);
     } ];
     
    [self enqueueOperation:op];
  
 }
-
-@end
+*/
+@end 
