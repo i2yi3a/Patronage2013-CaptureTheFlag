@@ -45,12 +45,22 @@
     <string name="game_description">Description Game:</string>
     <string name="location_name">Location name:</string>
     <string name="start_date">Start date:</string>
+    <string name="start_date_hint">dd-MM-yyyy</string>
     <string name="start_time">Start time:</string>
+    <string name="start_time_hint">h:m</string>
     <string name="playing_time">Playing time(min):</string>
     <string name="maximum_players">Maximum players:</string>
     <string name="maximum_scoring">Maximum points:</string>
     <string name="cancel">Cancel</string>
     <string name="create_edit_game">Create/Edit game</string>
+    <string name="game_name_too_short">Game name is a required field</string>
+    <string name="location_name_too_short">Location name is a required field</string>
+    <string name="playing_time_too_short">Playing time is a required field</string>
+    <string name="start_date_too_short">Start date is a required field</string>
+    <string name="start_date_incorrect">Start date is incorrect. Try dd-MM-yyyy</string>
+    <string name="start_time_too_short">Start time is a required field</string>
+    <string name="start_time_incorrect">Start time is incorrect. Try h:m</string>
+    <string name="start_time_number_too_large">Start time is incorrect. Max hours:23 Max minutes:59</string>
 
     <!-- Error codes -->
     <string name="error_code_101">Login already in use</string>

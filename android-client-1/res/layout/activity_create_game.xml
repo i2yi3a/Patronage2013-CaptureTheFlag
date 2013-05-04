@@ -87,7 +87,9 @@
         android:layout_alignBottom="@+id/textStartDate"
         android:layout_toRightOf="@+id/textGameDescription"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date"
+        android:hint="@string/start_date_hint"
+        android:width="160dp" />
 
     <TextView
         android:id="@+id/textStartTime"
@@ -106,7 +108,9 @@
         android:layout_alignBottom="@+id/textStartTime"
         android:layout_alignLeft="@+id/editStartDate"
         android:ems="10"
-        android:inputType="time" />
+        android:inputType="time"
+        android:hint="@string/start_time_hint"
+        android:maxLength="5" />
 
     <TextView
         android:id="@+id/textPlayingTime"

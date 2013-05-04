@@ -46,12 +46,22 @@
 	<string name="game_description">Opis gry:</string>
 	<string name="location_name">Nazwa lokalizacji:</string>
 	<string name="start_date">Data rozpoczęcia:</string>
+	<string name="start_date_hint">dd-MM-rrrr</string>
     <string name="start_time">Czas rozpoczęcia:</string>
+    <string name="start_time_hint">g:m</string>
     <string name="playing_time">Czas rozgrywki(min):</string>
     <string name="maximum_players">Max ilosc graczy:</string>
     <string name="maximum_scoring">Max ilosc punktów:</string>
     <string name="cancel">Anuluj</string>
     <string name="create_edit_game">Twórz/Edytuj gre</string>
+    <string name="game_name_too_short">Nazwa gry jest wymaganym polem</string>
+    <string name="location_name_too_short">Nazwa lokalizacji jest wymaganym polem</string>
+    <string name="playing_time_too_short">Czas rozgrywki jest wymaganym polem</string>
+    <string name="start_date_too_short">Data rozpoczecia jest wymaganym polem</string>
+    <string name="start_date_incorrect">Data rozpoczecia is incorrect. Sprobuj dd-MM-rrrr</string>
+    <string name="start_time_too_short">Czas rozpoczecia jest wymaganym polem</string>
+    <string name="start_time_incorrect">Czas rozpoczecia jest niepoprawne. Sprobuj g:m</string>
+    <string name="start_time_number_too_large">Czas rozpoczecia jest niepoprawne. Max godzina:23 Max minuta:59</string>
 	
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
