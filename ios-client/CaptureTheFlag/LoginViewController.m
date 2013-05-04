@@ -25,14 +25,6 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-   /* self.activityAlertView = [[UIAlertView alloc] initWithTitle:@"Receiving data" message:@"\n\n"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:nil, nil];
-    [activityAlertView show];
-    */
-
-
 	// Do any additional setup after loading the view, typically from a nib.
     self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
                                                        delegate:self
@@ -58,8 +50,7 @@
                                   if ([response isKindOfClass:[NSError class]])
                                   {
                                       [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                      [ShowInformation showError:@"Incorrect user name or password"];
-                                  }
+                                      [ShowInformation showError:@"Incorrect user name or password"];                                  }
                                   else
                                   {
                                       [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];

@@ -11,7 +11,6 @@
 #import "NewGameViewController.h"
 #import "GamesViewController.h"
 #import "MyGamesViewController.h"
-#import "ProfileViewController.h"
 
 @interface MainViewController ()
 
@@ -82,9 +81,13 @@
       [tableView endUpdates];
         //[self performSegueWithIdentifier:@"segueToProfile" sender:self];
     }
-    
+    if (indexPath.row == 4)
+    {
+        [self performSegueWithIdentifier:@"segueLogout" sender:self];
+    }
+
 }
-                                                    
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
         {
             if ([[segue identifier] isEqualToString:@"segueToNewGame"])
@@ -103,6 +106,11 @@
             {
                 
             }
+            if ([[segue identifier] isEqualToString:@"segueLogout"])
+            {
+                
+            }
+
         }
 
 
