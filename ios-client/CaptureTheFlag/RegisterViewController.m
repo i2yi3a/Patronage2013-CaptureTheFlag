@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userEmailField; 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField; 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField2;
+@property (nonatomic, retain) UIAlertView *loginAlertView;
 @end
 
 @implementation RegisterViewController
@@ -24,6 +25,11 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
+                                                    delegate:self
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:nil, nil];
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -39,17 +45,21 @@
                           completionBlock:^(NSObject *response) {
                               if ([response isKindOfClass:[NSError class]])
                               {
+                                  [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
                                   [ShowInformation showError:@"Failed to register new user"];
                               }
                               else
                               {
-                                  [ShowInformation showError:@"Your registration proces is complete"];
+                                  [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+                                  [ShowInformation showMessage:@"Your registration proces is complete" withTitle:nil];
+                                  [self performSegueWithIdentifier:@"segueToMainScreenAfterRegister" sender:self];
                               }
                           }];
 }
 
 
-- (IBAction)reginster:(id)sender{ 
+- (IBAction)reginster:(id)sender{
+    [_loginAlertView show];
 if ([self.passwordField.text isEqualToString:self.passwordField2.text])
 {
     [self beginReginster];
@@ -91,6 +101,13 @@ else
     [_userEmailField resignFirstResponder];
     [_passwordField resignFirstResponder];
     [_passwordField2 resignFirstResponder];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterRegister"])
+    {
+        
+    }
 }
 
 @end

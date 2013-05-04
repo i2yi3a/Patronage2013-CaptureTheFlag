@@ -13,6 +13,7 @@
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userEmailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (nonatomic, retain) UIAlertView *loginAlertView;
 @end
 @implementation LoginViewController
 
@@ -24,9 +25,22 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+   /* self.activityAlertView = [[UIAlertView alloc] initWithTitle:@"Receiving data" message:@"\n\n"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:nil, nil];
+    [activityAlertView show];
+    */
+
 
 	// Do any additional setup after loading the view, typically from a nib.
+    self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:nil, nil];
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,11 +57,12 @@
                                  completionBlock:^(NSObject *response) {
                                   if ([response isKindOfClass:[NSError class]])
                                   {
-                                       [ShowInformation showError:@"Incorrect user name or password"];                                  }
+                                      [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+                                      [ShowInformation showError:@"Incorrect user name or password"];                                  }
                                   else
                                   {
                                       [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
-
+                                      [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
                                   }
                               }];
 }
@@ -56,6 +71,7 @@
 - (IBAction)login:(id)sender{
         [self beginLogin];
         [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
+    [_loginAlertView show];
 }
 
 -(void)beginLogin
@@ -63,7 +79,10 @@
 {
     [self.userEmailField resignFirstResponder];
     [self.passwordField resignFirstResponder];
+       
 }
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -72,6 +91,7 @@
         
     }
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.userEmailField) {
