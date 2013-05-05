@@ -21,13 +21,8 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
-            	<Run Text="Capture The Flag - Patronage 2013"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run/>
+        <StackPanel Grid.Row="0" Margin="6,18,6,27">
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding LocalizedResources.ApplicationTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
             </TextBlock>
             <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="36" Text="Załóż konto:"/>
         </StackPanel>
@@ -35,16 +30,16 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="210"/>
-            <TextBox x:Name="userNameRegister" HorizontalAlignment="Left" Height="72" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="391"/>
+            <TextBox x:Name="userNameRegister" HorizontalAlignment="Left" Height="72" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="391" TextChanged="txtChanged"/>
             <TextBlock HorizontalAlignment="Left" Margin="15,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="30">
             	<Run Text="Hasło"/>
             	<LineBreak/>
             	<Run/>
             </TextBlock>
             <TextBlock HorizontalAlignment="Left" Margin="12,256,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top"/>
-            <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="278,358,0,0" VerticalAlignment="Top" Width="178" Click="Button_Click_1"/>
-            <PasswordBox x:Name="passwordRegister1" HorizontalAlignment="Left" Margin="1,161,0,0" VerticalAlignment="Top" Width="388"/>
-            <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Left" Margin="3,280,0,0" VerticalAlignment="Top" Width="387"/>
+            <Button x:Name="registerButton" Content="Zarejestruj" HorizontalAlignment="Left" Margin="251,358,0,0" VerticalAlignment="Top" Width="178" Click="Button_Click_1"/>
+            <PasswordBox x:Name="passwordRegister1" HorizontalAlignment="Left" Margin="1,161,0,0" VerticalAlignment="Top" Width="388" PasswordChanged="txtChanged"/>
+            <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Left" Margin="3,280,0,0" VerticalAlignment="Top" Width="387" PasswordChanged="txtChanged"/>
 
         </Grid>
     </Grid>

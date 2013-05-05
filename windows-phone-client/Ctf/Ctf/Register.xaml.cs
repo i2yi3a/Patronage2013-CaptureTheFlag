@@ -7,6 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Diagnostics;
+
+
 
 namespace Ctf
 {
@@ -15,23 +18,45 @@ namespace Ctf
         public Register()
         {
             InitializeComponent();
+            registerButton.IsEnabled = false;
+            
         }
+
+        private void txtChanged(object sender, RoutedEventArgs e)
+        {
+
+            if (UserCredentials.IsUsernameProperLength(userNameRegister.Text) && UserCredentials.IsPasswordProperLength(passwordRegister1.Password) && UserCredentials.IsPasswordProperLength(passwordRegister2.Password))
+            {
+                registerButton.IsEnabled = true;
+            }
+            else
+            {
+                registerButton.IsEnabled = false;
+            }
+        }
+        
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Registration Register = new Registration();
-            await Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
-            // await Register.Register(new UserCredentials("qazwsx", "qazwsx"), "qazwsx");
-            if (Register.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password).IsCompleted)
+            Registration Registers = new Registration();
+            await Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            Registers.MessengerSent += Registers_MessengerSent;
+            
+        }
+
+        private void Registers_MessengerSent(object sender, EventArgs e)
+        {
+            MessengerSentEventArgs x;
+            x = (MessengerSentEventArgs) e;
+            MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+            if (x.errorCode == 0)
             {
                 NavigationService.GoBack();
             }
-            
-            
-        }
-    
 
-      
+        }
+
+
 
     }
 }

@@ -19,6 +19,7 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
+            loginButton.IsEnabled= false;
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -35,33 +36,24 @@ namespace Ctf
             Debug.WriteLine("MESSAGE.");
         }
 
+        private void txtChanged(object sender, RoutedEventArgs e)
+        {
+
+            if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password)){
+                loginButton.IsEnabled = true;
+            }
+            else{
+                loginButton.IsEnabled = false;}
+            }
+        
+
+
         private async void LogIn(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            // Debug.WriteLine(Logger.LoggedAs());
-            if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password))
-            {
-                await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-                    NavigationService.Navigate(new Uri("/LoggedIn.xaml?", UriKind.Relative));
-                
-            }
-            else
-            {
-                MessageBox.Show("Nie wprowadzono nazwy lub hasła", "Brak danych", MessageBoxButton.OK);
-            }
+              await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+              NavigationService.Navigate(new Uri("/LoggedIn.xaml?", UriKind.Relative));
         }
-
-
-        private void LogoutTest(object sender, RoutedEventArgs e)
-        {
-            Login Logger = new Login();
-            if (Logger.LogOut())
-                Debug.WriteLine("Logout SUCCESSFUL");
-            else
-                Debug.WriteLine("Logout FAILED");
-        }
-
-       
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()

@@ -14,6 +14,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -42,21 +43,18 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0">
-            	<Run Text="Capture The Flag - Patronage 2013"/>
-            	<LineBreak/>
-            	<Run/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Text="{Binding LocalizedResources.ApplicationTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
             </TextBlock>
             <TextBlock Text="Zaloguj się" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="14,146,10,10" Grid.RowSpan="2">
-            <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Height="72" Margin="0,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="414" />
+            <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Height="72" Margin="0,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="414" TextChanged="txtChanged"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,21,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="273" Height="41"/>
             <TextBlock HorizontalAlignment="Left" Margin="12,161,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Height="41" Width="273"/>
-            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="0,207,0,0" VerticalAlignment="Top" Width="414" />
-            <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="285,279,0,0" VerticalAlignment="Top" Width="146" Click="LogIn"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="0,207,0,0" VerticalAlignment="Top" Width="414" PasswordChanged="txtChanged"/>
+            <Button x:Name="loginButton" Content="Zaloguj" HorizontalAlignment="Left" Margin="285,279,0,0" VerticalAlignment="Top" Width="146" Click="LogIn"/>
             <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="124,279,0,0" VerticalAlignment="Top" Width="161">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -65,7 +63,7 @@
                 </i:Interaction.Triggers>
             </Button>
             
-            <Button Content="Logout" HorizontalAlignment="Left" Margin="307,424,0,0" VerticalAlignment="Top" Click="LogoutTest"/>
+           
 
         </Grid>
 

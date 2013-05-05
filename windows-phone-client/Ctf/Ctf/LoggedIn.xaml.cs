@@ -30,14 +30,14 @@ namespace Ctf
         }
 
         public LoggedIn()
-        {                  
+        {
             InitializeComponent();
+
             //ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-         
             base.OnNavigatedTo(e);
             ShowSplash();
 
@@ -51,12 +51,17 @@ namespace Ctf
                 Debug.WriteLine("Logout SUCCESSFUL");
             else
                 Debug.WriteLine("Logout FAILED");
-         NavigationService.GoBack();
+
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+            else { NavigationService.Navigate(new Uri("/MainPage.xaml?", UriKind.Relative)); }
         }
 
         //public void UserHasChanged(object sender, EventArgs e)
         //{
-            
+
         //    this.popup.IsOpen = false;
         //    welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
         //}
@@ -73,16 +78,22 @@ namespace Ctf
         {
             this.Dispatcher.BeginInvoke(() =>
             {
-                this.popup.IsOpen = false;
+                
                 if (ApplicationSettings.Instance.RetriveLoggedUser().access_token != String.Empty)
                 {
                     welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
-                    
+                    this.popup.IsOpen = false;
                 }
                 else
                 {
+
                     MessageBox.Show("Podano błędny login lub hasło", "Niezalogowano", MessageBoxButton.OK);
-                    NavigationService.GoBack();
+                    if (NavigationService.CanGoBack)
+                    {
+                        NavigationService.GoBack();
+                    }
+                    else { NavigationService.Navigate(new Uri("/MainPage.xaml?", UriKind.Relative)); }
+                    this.popup.IsOpen = false;
                 }
             }
             );
@@ -90,11 +101,10 @@ namespace Ctf
 
         void backroungWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            //here we can load data
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
+            
+            
+            
         }
-
-
-        
     }
 }

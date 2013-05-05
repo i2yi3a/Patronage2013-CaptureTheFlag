@@ -19,7 +19,7 @@ namespace Ctf
         private RestRequest request;
 
         public event EventHandler<EventArgs> MessengerSent;
-
+       
         /// <summary>
         /// Raises the <see cref="E:MessengerSent" /> event.
         /// </summary>
@@ -30,7 +30,7 @@ namespace Ctf
             if (MessengerSentThreadPrivate != null)
                 MessengerSentThreadPrivate(this, e);
         }
-
+         
         /// <summary>
         /// Initializes a new instance of the <see cref="Registration"/> class.
         /// </summary>
@@ -59,13 +59,17 @@ namespace Ctf
                     Debug.WriteLine("MessangerSent: " + "Response Data retrieved SUCCESSFULY.");
                     Debug.WriteLine("response.Data.error_code: " + response.Data.error_code);
                     OnMessengerSent(new MessengerSentEventArgs("Registration has been successful.", ErrorCode.SUCCESS));
+                    
                 }
                 else
                 {
                     Debug.WriteLine("Response Data is an ERROR.");
                     Debug.WriteLine("MessangerSent: " + response.Data.error + ": " + response.Data.error_description);
                     OnMessengerSent(new MessengerSentEventArgs(response.Data.error + ": " + response.Data.error_description));
+                    
                 }
+                
+                
             }
         }
 
