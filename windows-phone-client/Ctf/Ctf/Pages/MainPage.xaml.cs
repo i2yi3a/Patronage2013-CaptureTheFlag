@@ -52,7 +52,7 @@ namespace Ctf
         {
             Login Logger = new Login();
               await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-              NavigationService.Navigate(new Uri("/LoggedIn.xaml?", UriKind.Relative));
+              NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

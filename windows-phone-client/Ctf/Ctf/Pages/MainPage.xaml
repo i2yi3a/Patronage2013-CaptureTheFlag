@@ -58,7 +58,7 @@
             <Button Content="Zarejestruj" HorizontalAlignment="Left" Margin="124,279,0,0" VerticalAlignment="Top" Width="161">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Register.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Pages/Register.xaml"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

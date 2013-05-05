@@ -56,7 +56,7 @@ namespace Ctf
             {
                 NavigationService.GoBack();
             }
-            else { NavigationService.Navigate(new Uri("/MainPage.xaml?", UriKind.Relative)); }
+            else { NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative)); }
         }
 
         //public void UserHasChanged(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace Ctf
                     {
                         NavigationService.GoBack();
                     }
-                    else { NavigationService.Navigate(new Uri("/MainPage.xaml?", UriKind.Relative)); }
+                    else { NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative)); }
                     this.popup.IsOpen = false;
                 }
             }
@@ -102,7 +102,7 @@ namespace Ctf
         void backroungWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Thread.Sleep(2000);
-            
+
             
             
         }
