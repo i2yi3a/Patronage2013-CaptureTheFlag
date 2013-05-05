@@ -17,14 +17,20 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GameUI extends BaseUI<String> {
 
+    @JsonProperty(required = true)
     private String id;
+
+    @JsonProperty(required = true)
     private String name;
+
     private String description;
 
-    @JsonProperty("time_start")
+
+    @JsonProperty(value ="time_start", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeStart;
 
+    @JsonProperty(required = true)
     private Long duration;
 
     @JsonProperty("points_max")
@@ -33,6 +39,7 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty("players_max")
     private Integer playersMax;
 
+    @JsonProperty(required = true)
     private Localization localization;
 
     private GameStatusType status;
