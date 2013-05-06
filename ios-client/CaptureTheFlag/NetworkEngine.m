@@ -110,15 +110,15 @@
    completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 {
     NSString* name=game.name;
-    NSString* description=game.description;
+    NSString* description=game.gameDescription;
     NSDate* date=game.date;
     NSNumber* time=game.time;
     NSNumber* duration=game.duration;
     NSNumber* points_max=game.points_max;
     NSNumber* players_max=game.players_max;
     NSString* localization_name=game.localization_name;
-    CLLocation* localization_latLng=game.localization_latLng;
-    NSNumber* localization_radius=game.localization_radius;
+    CLLocation* localization_latLng=game.localizationLatLng;
+    NSNumber* localization_radius=game.localizationRadius;
     
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
                                               params:@{@"name" : name, @"description" : description, @"date" : date, @"time" : time, @"duration" : duration, @"points_max" : points_max, @"players_max" : players_max, @"localization_name" : localization_name, @"localization_latLng" : localization_latLng, @"localization_radius" : localization_radius}
