@@ -70,5 +70,17 @@
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
     
+    <!-- Game List -->
+    <string name="title_activity_game_list">GameListActivity</string>
+    <string name="create_new_game">Utwórz grę</string>
+    <string name="logout">Wyloguj</string>
+    <string name="gamestates_filter">Filtruj gry wg. stanu:</string>
+    <string-array name="states_filter_array">
+        <item>Zaplanowane</item>
+        <item>Trwające</item>
+        <item>Zakończone</item>
+    </string-array>
+    <string name="player_profile">Profil</string>
+    <string name="logout_succesful">Wylogowałeś się</string>
     
 </resources>

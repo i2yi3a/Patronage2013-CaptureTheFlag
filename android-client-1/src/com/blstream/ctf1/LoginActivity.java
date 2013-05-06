@@ -52,7 +52,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				
 				if(correctData(login, password)) {
 					if (NetworkService.isDeviceOnline(this)) {
-						Login loginTask = new Login(this, CreateGameActivity.class, login, password);
+						Login loginTask = new Login(this, GameListActivity.class, login, password);
 						loginTask.execute();
 					}
 					else {

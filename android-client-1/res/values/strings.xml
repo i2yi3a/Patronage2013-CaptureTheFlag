@@ -7,7 +7,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
-    
+
     <!-- Register & Login -->
     <string name="registration">Registration</string>
     <string name="login">Login</string>
@@ -38,7 +38,7 @@
 
     <!-- Login -->
     <string name="login_successful">Successfully logged in</string>
-    
+
     <!-- CreateGame -->
     <string name="game_created">Successfully created a game</string>
     <string name="game_name">Game name:</string>
@@ -69,8 +69,18 @@
     <string name="error_code_202">Wrong username</string>
     <string name="error_code_203">Bad token</string>
     <string name="title_activity_create_game">CreateGameActivity</string>
-
     
-    
-    
+    <!-- Game List -->
+    <string name="title_activity_game_list">GameListActivity</string>
+    <string name="create_new_game">Create game</string>
+    <string name="logout">Logout</string>
+    <string name="gamestates_filter">Gamestates filter:</string>
+    <string-array name="states_filter_array">
+        <item>Planned</item>
+        <item>Running</item>
+        <item>Finished</item>
+    </string-array>
+	<string name="player_profile">Profile</string>
+	<string name="logout_succesful">You are logged out</string>
+	
 </resources>
