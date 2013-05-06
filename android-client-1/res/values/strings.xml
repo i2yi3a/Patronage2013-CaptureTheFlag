@@ -42,12 +42,12 @@
     <!-- CreateGame -->
     <string name="game_created">Successfully created a game</string>
     <string name="game_name">Game name:</string>
-    <string name="game_description">Description Game:</string>
+    <string name="game_description">Game description:</string>
     <string name="location_name">Location name:</string>
     <string name="start_date">Start date:</string>
-    <string name="start_date_hint">dd-MM-yyyy</string>
+    <string name="start_date_hint">dd-mm-yyyy</string>
     <string name="start_time">Start time:</string>
-    <string name="start_time_hint">h:m</string>
+    <string name="start_time_hint">hh:mm</string>
     <string name="playing_time">Playing time(min):</string>
     <string name="maximum_players">Maximum players:</string>
     <string name="maximum_scoring">Maximum points:</string>
@@ -57,9 +57,9 @@
     <string name="location_name_too_short">Location name is a required field</string>
     <string name="playing_time_too_short">Playing time is a required field</string>
     <string name="start_date_too_short">Start date is a required field</string>
-    <string name="start_date_incorrect">Start date is incorrect. Try dd-MM-yyyy</string>
+    <string name="start_date_incorrect">Start date is incorrect. Try dd-mm-yyyy</string>
     <string name="start_time_too_short">Start time is a required field</string>
-    <string name="start_time_incorrect">Start time is incorrect. Try h:m</string>
+    <string name="start_time_incorrect">Start time is incorrect. Try hh:mm</string>
     <string name="start_time_number_too_large">Start time is incorrect. Max hours:23 Max minutes:59</string>
 
     <!-- Error codes -->

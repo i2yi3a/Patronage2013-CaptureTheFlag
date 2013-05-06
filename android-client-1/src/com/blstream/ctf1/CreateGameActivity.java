@@ -58,9 +58,11 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btnCancel:
+			ClickTracker.saveClick(this, mBtnCancel);
 			finish();
 			break;
-		case R.id.btnCreate:		
+		case R.id.btnCreate:	
+			ClickTracker.saveClick(this, mBtnCreate);
 			String mGameName = mEditGameName.getText().toString();
 			String mGameDescription = mEditGameDescription.getText().toString();
 			String mLocationName = mEditLocationName.getText().toString();
@@ -90,6 +92,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 					
 					CreateGame createGame = new CreateGame(this, CreateGameActivity.class, mGameName, mGameDescription, 
 							mStartDate + " " + mStartTime, mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
+					createGame.execute();
 				}
 				else{
 					Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
