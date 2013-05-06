@@ -20,6 +20,7 @@ namespace Ctf
         {
             InitializeComponent();
             loginButton.IsEnabled= false;
+            
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -52,8 +53,23 @@ namespace Ctf
         {
             Login Logger = new Login();
               await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-              NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+            //Logger.MessengerSent += Logger_MessengerSent;
+            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));   
         }
+
+        //void Logger_MessengerSent(object sender, EventArgs e)
+        //{
+        //    MessengerSentEventArgs x;
+        //    x = (MessengerSentEventArgs)e;
+        //    MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+        //    Debug.WriteLine(x.errorCode.ToString());
+        //    if (ApplicationSettings.Instance.RetriveLoggedUser().access_token == String.Empty)
+        //    {
+        //        NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+        //    }
+
+
+        //}
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
