@@ -12,6 +12,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.blstream.ctf2.services.UserServices;
+import com.blstream.ctf2.storage.entity.User;
+import com.google.analytics.tracking.android.Log;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -21,13 +25,14 @@ import android.net.NetworkInfo;
  * @author Karol Firmanty
  */
 public class Login {
-private Context ctx;
+private Context mCtx;
+private String mUserName;
 
 	public Login(Context ctx){
-		this.ctx = ctx;
+		mCtx = ctx;
 	}
 	
-	/*
+	/**
 	 * Return values
 	 * 0 everything ok
 	 * -1 bad credentials
@@ -36,6 +41,7 @@ private Context ctx;
 	public int userLogin(String userName, String password){
 		if(!isOnline()) return -2;
 		int result = -1;
+		mUserName = userName;
 		 HttpClient httpclient = new DefaultHttpClient();
 	        try {
 	            HttpPost httpPost = new HttpPost(Constants.URL_SERVER+Constants.URI_LOGIN);
@@ -46,11 +52,9 @@ private Context ctx;
 	            HttpResponse response = httpclient.execute(httpPost);
 	            result = afterLogin(response);
 	        } catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(e.toString());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(e.toString());
 			} finally {
 	            httpclient.getConnectionManager().shutdown();
 	        }
@@ -67,24 +71,25 @@ private Context ctx;
 				return -1;
 			}
 			else if(jsonObject.has("access_token")){
-				//SAVE TO DATABASE
+				// Zapisywanie do bazy, oczekuje na fixa US
+				UserServices userServices = new UserServices(mCtx);
+				User user = userServices.addNewPlayer(mUserName);
+				user.setToken(jsonObject.getString("access_token"));
+				userServices.updateUser(user);
 				return 0;
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e.toString());
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e.toString());
 		}
 		return -1;
 	}
 	
 	public boolean isOnline() {
-		ConnectivityManager connMgr = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connMgr = (ConnectivityManager) mCtx.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
