@@ -15,15 +15,12 @@ namespace Ctf
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
             loginButton.IsEnabled= false;
             
 
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
@@ -52,63 +49,18 @@ namespace Ctf
         private async void LogIn(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-              await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-            //Logger.MessengerSent += Logger_MessengerSent;
-            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));   
+            await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+            Logger.MessengerSent += Logger_MessengerSent;
+            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative)); 
         }
 
-        //void Logger_MessengerSent(object sender, EventArgs e)
-        //{
-        //    MessengerSentEventArgs x;
-        //    x = (MessengerSentEventArgs)e;
-        //    MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
-        //    Debug.WriteLine(x.errorCode.ToString());
-        //    if (ApplicationSettings.Instance.RetriveLoggedUser().access_token == String.Empty)
-        //    {
-        //        NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
-        //    }
-
-
-        //}
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
-
-        private void MakeTestUserCredentials()
+        void Logger_MessengerSent(object sender, EventArgs e)
         {
-            UserCredentials user = null;
-            string username = "aaaaaaaa";
-            string password = "bbbbb";
-            try
-            {
-                user = new UserCredentials(username, password);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Exception: " + ex.Message);
-            }
-            if (user != null)
-            {
-                Debug.WriteLine("username: " + user.GetUsername());
-                Debug.WriteLine("password: " + user.GetPassword());
-            }
-            if (user.HasMatchingPassword(password))
-                Debug.WriteLine("match: " + user.GetPassword() + " == " + password);
-            if (user.HasMatchingPassword(username))
-                Debug.WriteLine("match: " + user.GetPassword() + " == " + username);
+
+            MessengerSentEventArgs x;
+            x = (MessengerSentEventArgs)e;
+            MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
         }
+
     }
 }
