@@ -30,7 +30,7 @@ public class UserSQLiteHelper extends SQLiteOpenHelper {
 			", " + COLUMN_NAME + " TEXT NOT NULL" +
 			", " + COLUMN_TOKEN + " TEXT NOT NULL" +
 			", " + COLUMN_TOKEN_TYPE + " TEXT NOT NULL" +
-			", " + COLUMN_SCOPE+ " TEXT NOT NULL" +
+			", " + COLUMN_SCOPE + " TEXT NOT NULL" +
 			", " + COLUMN_CREATED + " TEXT NOT NULL" +
 			", " + COLUMN_LASTLOGIN + " TEXT NOT NULL" +
 			", " + COLUMN_VERSION + " INTEGER NOT NULL);";

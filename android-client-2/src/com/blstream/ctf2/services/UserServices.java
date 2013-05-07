@@ -1,5 +1,7 @@
 package com.blstream.ctf2.services;
 
+import java.util.List;
+
 import android.content.Context;
 
 import com.blstream.ctf2.storage.dao.UserDAO;
@@ -21,15 +23,22 @@ public class UserServices extends Services {
 		
 		User newUser = new User();
 		newUser.setName(name);
+		newUser.setScope("");
+		newUser.setToken("");
+		newUser.setTokenType("");
 		newUser=uDAO.createUser(newUser);	
 		return newUser;
 	}
 	
-	public User getUser() {
+	public List<User> getUsers() {
+		
+		return uDAO.getUsers();
+	} 
+	
+public User getUser() {
 		
 		return uDAO.getUsers().get(0);
 	} 
-	
 	public User updateUser(User user) {
 
 		return uDAO.update(user);
