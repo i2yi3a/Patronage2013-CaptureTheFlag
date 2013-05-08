@@ -32,6 +32,8 @@ public enum ErrorCodeType {
 
     CANNOT_CREATE_NEW_PLAYER(100, "Cannot create a new player"),
     PLAYER_ALREADY_EXISTS(101, "Player already exists"),
+    PLAYER_CANNOT_BE_ADDED(102, "Player cannot be added"),
+    PLAYER_CANNOT_BE_DELETED(103, "Player cannot be deleted"),
     ;
 
     private Integer code;

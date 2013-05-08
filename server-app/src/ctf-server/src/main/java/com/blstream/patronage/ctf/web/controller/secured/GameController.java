@@ -115,8 +115,8 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         if (currentUser.equals(resource.getOwner())) {
             if (resource.getStatus().equals(GameStatusType.NEW))   {
-                response = super.delete(id);
-
+                super.delete(id);
+                response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
             }else {
                 response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only New Games can be deleted");
             }
@@ -139,11 +139,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
         List<String> players = new ArrayList<String>();
-            if (resource.getStatus().equals(GameStatusType.NEW))   {
 
-                players = resource.getPlayers();
-
-            }
+        if (GameStatusType.NEW.equals(resource.getStatus())) {
+            players = resource.getPlayers();
+        }
 
         if (logger.isDebugEnabled())
             logger.debug("---- /players");
@@ -153,7 +152,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
     }
 
     @RequestMapping(value = "{id}/signIn", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody List<String> playerSignIn(@PathVariable String id) {
+    public @ResponseBody GameUI playerSignIn(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- SignIn");
@@ -163,25 +162,34 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
         List<String> players = resource.getPlayers();
+        GameUI response;
 
-        if (resource.getPlayers().size() < resource.getPlayersMax()) {
-            if (resource.getStatus().equals(GameStatusType.NEW))   {
+        if (resource.getStatus().equals(GameStatusType.NEW)) {
+            if (resource.getPlayers().size() < resource.getPlayersMax()) {
                 if (!resource.getPlayers().contains(currentUser)) {
 
                     players.add(currentUser);
                     GameUI gameUI = converter.convert(resource);
                     update(id, gameUI);
+                    response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+                } else {
+                    response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Player already signed to game");
                 }
+            } else {
+                response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Game reached maximum players");
             }
+        } else {
+            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Player cannot be added to game in progress");
         }
+
         if (logger.isDebugEnabled())
             logger.debug("---- /SignIn");
 
-        return players;
+        return response;
     }
 
     @RequestMapping(value = "{id}/signOut", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody List<String> playerSignOut(@PathVariable String id) {
+    public @ResponseBody GameUI playerSignOut(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- SignOut");
@@ -191,20 +199,21 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
         List<String> players = resource.getPlayers();
-
+        GameUI response;
 
         if (resource.getPlayers().contains(currentUser)) {
 
-
             players.remove(currentUser);
-            GameUI response = converter.convert(resource);
-            update(id, response);
-
+            GameUI convert = converter.convert(resource);
+            update(id, convert);
+            response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+        } else {
+            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_DELETED, "Player isnt signed to game");
         }
         if (logger.isDebugEnabled())
             logger.debug("---- /SignOut");
 
-        return players;
+        return response;
     }
 
 
