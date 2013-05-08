@@ -54,13 +54,13 @@ public class GameServiceImpl extends CrudServiceImpl<Game, String, GameRepositor
 
         Query query = new Query();
 
-        if (!name.isEmpty()) {
+        if (name != null && !name.isEmpty()) {
             query.addCriteria(Criteria.where("name").regex(name));
         }
-        if (!status.isEmpty()) {
+        if (status != null && !status.isEmpty()) {
             query.addCriteria(Criteria.where("status").is(status));
         }
-        if(myGames) {
+        if(myGames != null) {
             query.addCriteria(Criteria.where("owner").is(currentUser));
         }
 

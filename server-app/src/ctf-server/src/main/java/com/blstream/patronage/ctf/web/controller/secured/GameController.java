@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -137,19 +138,17 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
-
+        List<String> players = new ArrayList<String>();
             if (resource.getStatus().equals(GameStatusType.NEW))   {
 
-                List<String> players = resource.getPlayers();
-
-                 return players;
+                players = resource.getPlayers();
 
             }
 
         if (logger.isDebugEnabled())
             logger.debug("---- /players");
 
-        return null;
+        return players;
 
     }
 
@@ -171,17 +170,14 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
                     players.add(currentUser);
                     GameUI gameUI = converter.convert(resource);
-                    super.update(id, gameUI);
-
-
-                    return players;
+                    update(id, gameUI);
                 }
             }
         }
         if (logger.isDebugEnabled())
             logger.debug("---- /SignIn");
 
-        return null;
+        return players;
     }
 
     @RequestMapping(value = "{id}/signOut", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -202,20 +198,18 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
             players.remove(currentUser);
             GameUI response = converter.convert(resource);
-            super.update(id, response);
-
-            return players;
+            update(id, response);
 
         }
         if (logger.isDebugEnabled())
             logger.debug("---- /SignOut");
 
-        return null;
+        return players;
     }
 
 
     @RequestMapping(value = "", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", defaultValue = "empty") String name, @RequestParam(value = "status", defaultValue = "empty") String status, @RequestParam(value = "myGames", defaultValue = "false") Boolean myGames) {
+    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGames", required = false) Boolean myGames) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- filter");
@@ -225,7 +219,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         Iterable<GameUI> response;
 
-        if (name.equals("empty") & status.equals("empty") & !myGames) {
+        if (name == null && status == null && myGames == null) {
             response = super.findAll();
 
         } else {
