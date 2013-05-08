@@ -8,9 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.blstream.ctf1.asynchronous.CreateGame;
-import com.blstream.ctf1.service.NetworkService;
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +16,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.app.Activity;
+
+import com.blstream.ctf1.asynchronous.CreateGame;
+import com.blstream.ctf1.service.NetworkService;
 
 public class CreateGameActivity extends Activity implements OnClickListener {
 

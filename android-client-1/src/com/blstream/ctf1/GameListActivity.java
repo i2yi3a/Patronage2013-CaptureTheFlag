@@ -9,9 +9,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class GameListActivity extends Activity implements OnClickListener{
@@ -19,8 +17,6 @@ public class GameListActivity extends Activity implements OnClickListener{
 	private Button mBtnCreateNewGame; 
 	private Button mBtnLogout;
 	private Button mBtnPlayerProfile;
-	private Spinner mSpinGameStatesFilter;
-	private Spinner mSpinSearchGames;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +30,7 @@ public class GameListActivity extends Activity implements OnClickListener{
 		mBtnLogout.setOnClickListener(this);
 		
 		mBtnPlayerProfile = (Button) findViewById(R.id.btnPlayerProfile);
-		mBtnPlayerProfile.setOnClickListener(this);
-		
-		mSpinGameStatesFilter = (Spinner) findViewById(R.id.spinGameStates);
-		ArrayAdapter<CharSequence> adapterFilter = ArrayAdapter.
-				createFromResource(this, R.array.states_filter_array, R.layout.spinner_layout);
-		adapterFilter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mSpinGameStatesFilter.setAdapter(adapterFilter);
-		
-		mSpinSearchGames = (Spinner) findViewById(R.id.spinSearchGames);
-		ArrayAdapter<CharSequence> adapterSearch = ArrayAdapter.
-				createFromResource(this, R.string.app_name/*spis gier*/, R.layout.spinner_layout);
-		adapterSearch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mSpinSearchGames.setAdapter(adapterSearch);		
+		mBtnPlayerProfile.setOnClickListener(this);	
 	}
 
 	@Override
@@ -68,7 +52,7 @@ public class GameListActivity extends Activity implements OnClickListener{
 				break;
 			case R.id.btnPlayerProfile:
 				ClickTracker.saveClick(this, mBtnPlayerProfile);
-				//Dodanie okienka dialog
+				//nowe activity z profilem
 			case R.id.btnLogout:
 				ClickTracker.saveClick(this, mBtnLogout);
 				Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
