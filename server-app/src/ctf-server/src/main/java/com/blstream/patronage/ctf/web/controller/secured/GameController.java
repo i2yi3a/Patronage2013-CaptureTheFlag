@@ -106,6 +106,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(currentUser, "Current username cannot be null");
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
+        GameUI response;
 
         if (logger.isInfoEnabled()) {
             logger.info(String.format("User: %s tries to delete game: %s", currentUser, resource.getName()));
@@ -113,20 +114,18 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         if (currentUser.equals(resource.getOwner())) {
             if (resource.getStatus().equals(GameStatusType.NEW))   {
-                GameUI response = super.delete(id);
+                response = super.delete(id);
 
-                if (logger.isDebugEnabled())
-                    logger.debug("---- /delete");
-
-                return response;
-
+            }else {
+                response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only New Games can be deleted");
             }
-        }  else {
-            GameUI response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED);
-            return response;
+        }else {
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only Game Owner can delete game");
+              }
+        if (logger.isDebugEnabled())
+            logger.debug("---- /delete");
 
-        }
-         return null;
+         return response;
     }
 
 
@@ -167,17 +166,17 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         List<String> players = resource.getPlayers();
 
         if (resource.getPlayers().size() < resource.getPlayersMax()) {
-        if (resource.getStatus().equals(GameStatusType.NEW))   {
-        if (!resource.getPlayers().contains(currentUser)) {
+            if (resource.getStatus().equals(GameStatusType.NEW))   {
+                if (!resource.getPlayers().contains(currentUser)) {
 
-                players.add(currentUser);
-                GameUI response = converter.convert(resource);
-                super.update(id, response);
+                    players.add(currentUser);
+                    GameUI gameUI = converter.convert(resource);
+                    super.update(id, gameUI);
 
 
-            return players;
-        }
-        }
+                    return players;
+                }
+            }
         }
         if (logger.isDebugEnabled())
             logger.debug("---- /SignIn");
@@ -213,6 +212,37 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         return null;
     }
+
+
+    @RequestMapping(value = "", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", defaultValue = "empty") String name, @RequestParam(value = "status", defaultValue = "empty") String status, @RequestParam(value = "myGames", defaultValue = "false") Boolean myGames) {
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- filter");
+
+        String currentUser = super.getCurrentUsername();
+        Assert.notNull(currentUser, "Current username cannot be null");
+
+        Iterable<GameUI> response;
+
+        if (name.equals("empty") & status.equals("empty") & !myGames) {
+            response = super.findAll();
+
+        } else {
+            List<Game> resource = service.findByCriteria(name, status, myGames, currentUser);
+            response = converter.convertModelList(resource);
+        }
+
+        if (logger.isDebugEnabled())
+            logger.debug("---- /filter");
+
+        return response;
+
+
+    }
+
+
+
 
 
 

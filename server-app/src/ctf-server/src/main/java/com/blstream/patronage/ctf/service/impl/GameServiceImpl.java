@@ -7,10 +7,16 @@ import com.blstream.patronage.ctf.model.Game;
 import com.blstream.patronage.ctf.model.GameStatusType;
 import com.blstream.patronage.ctf.repository.GameRepository;
 import com.blstream.patronage.ctf.service.GameService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 
 @Named("gameService")
@@ -22,6 +28,10 @@ public class GameServiceImpl extends CrudServiceImpl<Game, String, GameRepositor
     public void setRepository(GameRepository repository) {
         super.repository = repository;
     }
+
+    @Qualifier("mongoTemplate")
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Override
     public void delete(String id) {
@@ -37,5 +47,24 @@ public class GameServiceImpl extends CrudServiceImpl<Game, String, GameRepositor
             throw new CannotDeleteException(String.format("Game: %s in progress."));
 
         repository.delete(id);
+    }
+
+    public List<Game> findByCriteria(String name, String status, Boolean myGames, String currentUser) {
+
+
+        Query query = new Query();
+
+        if (!name.isEmpty()) {
+            query.addCriteria(Criteria.where("name").regex(name));
+        }
+        if (!status.isEmpty()) {
+            query.addCriteria(Criteria.where("status").is(status));
+        }
+        if(myGames) {
+            query.addCriteria(Criteria.where("owner").is(currentUser));
+        }
+
+        return mongoTemplate.find(query, Game.class);
+
     }
 }
