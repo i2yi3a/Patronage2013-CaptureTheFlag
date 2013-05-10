@@ -31,8 +31,8 @@
 	<string name="crash_dialog_comment_prompt">Twój komentarz:</string>
 	<string name="crash_dialog_ok_toast">Dzięki!</string>	
 	<string name="no_internet_connection">Brak połączenia z internetem!</string>	
-	<string name="loading">Ładowanie&#8230;</string>
-	<string name="loading_message">Ładowanie danych, proszę czekać&#8230;</string>
+	<string name="loading">Ładowanie...</string>
+	<string name="loading_message">Ładowanie danych, proszę czekać...</string>
 	
 	<!-- Register -->
 	<string name="register_successful">Rejestracja została ukończona pomyślnie</string>
