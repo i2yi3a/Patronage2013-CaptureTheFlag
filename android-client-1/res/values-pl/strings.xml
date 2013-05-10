@@ -69,6 +69,7 @@
     <string name="error_code_201">Niepoprawne hasło</string>
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
+    <string name="title_activity_create_game">CreateGameActivity</string>
     
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>

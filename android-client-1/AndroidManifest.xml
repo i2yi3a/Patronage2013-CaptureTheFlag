@@ -45,8 +45,7 @@
         </activity>
         <activity
             android:name="com.blstream.ctf1.GameListActivity"
-            android:label="@string/title_activity_game_list"
-            android:screenOrientation="landscape" >
+            android:label="@string/title_activity_game_list" >
         </activity>
         <activity
             android:name="org.acra.CrashReportDialog"
