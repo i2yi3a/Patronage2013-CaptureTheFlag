@@ -170,8 +170,7 @@ public class RegisterActivity extends Activity {
 					dialog = builder.create();
 					dialog.show();
 					break;
-				case 2:
-				case 101: //someone from the Back-End changed the "error_code":2 to "error_code":101, so I leave temporarily
+				case 101:
 					String errorDescription = jsonResponse.getString(Constants.RESPONSE_DESCRIPTION);
 					builder.setMessage(errorDescription);
 					builder.setTitle(R.string.player_already_exists);
