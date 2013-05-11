@@ -7,6 +7,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
     
     <!-- Register & Login -->
     <string name="registration">Rejestracja</string>
