@@ -1,13 +1,13 @@
 package com.blstream.ctf2;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import com.google.analytics.tracking.android.EasyTracker;
 
 /**
  * 
@@ -27,7 +27,6 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		mUsernameEditText = (EditText) findViewById(R.id.editTextLoginUserame);
 		mPasswordEditText = (EditText) findViewById(R.id.editTextLoginPassword);
-		login = new Login(this.getApplicationContext());
 	}
 	
 	@Override
@@ -41,29 +40,33 @@ public class LoginActivity extends Activity {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
 	}
+	
+	public void loginResultNotification(int result){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		if(result == 0){
+			alertDialogBuilder.setMessage(R.string.login_successful);
+			alertDialogBuilder.setPositiveButton(R.string.ok, null);
+			alertDialogBuilder.show();
+		}
+		else if(result == -2){
+			alertDialogBuilder.setMessage(R.string.no_connection);
+			alertDialogBuilder.setPositiveButton(R.string.ok, null);
+			alertDialogBuilder.show();
+		}
+		else{
+			alertDialogBuilder.setMessage(R.string.login_failed);
+			alertDialogBuilder.setPositiveButton(R.string.ok, null);
+			alertDialogBuilder.show();
+		}
+	}
 
 	public void onClickButton(View v) {
 		switch (v.getId()) {
 		case R.id.loginButton:
 			EasyTracker.getTracker().sendEvent("ui_action", "button_press", "login_click", null);
 			if (!(mUsernameEditText.getText().toString().isEmpty()) && !(mPasswordEditText.getText().toString().isEmpty())){
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-				int result = login.userLogin(mUsernameEditText.getText().toString(), mPasswordEditText.getText().toString());
-				if(result == -1){
-					alertDialogBuilder.setMessage(R.string.login_failed);
-					alertDialogBuilder.setPositiveButton(R.string.ok, null);
-					alertDialogBuilder.show();
-				}
-				else if(result == 0){
-					alertDialogBuilder.setMessage(R.string.login_successful);
-					alertDialogBuilder.setPositiveButton(R.string.ok, null);
-					alertDialogBuilder.show();
-				}
-				else if(result == -2){
-					alertDialogBuilder.setMessage(R.string.no_connection);
-					alertDialogBuilder.setPositiveButton(R.string.ok, null);
-					alertDialogBuilder.show();
-				}
+				login = new Login(LoginActivity.this);
+				login.execute(mUsernameEditText.getText().toString(), mPasswordEditText.getText().toString());
 			}
 			break;
 		case R.id.registrationButton:

@@ -16,20 +16,24 @@ import com.blstream.ctf2.services.UserServices;
 import com.blstream.ctf2.storage.entity.User;
 import com.google.analytics.tracking.android.Log;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 
 /**
  * Login class
  * @author Karol Firmanty
  */
-public class Login {
+public class Login extends AsyncTask<String, Void, Integer>{
 private Context mCtx;
 private String mUserName;
+private ProgressDialog mProgressDialog;
 
 	public Login(Context ctx){
 		mCtx = ctx;
+		mProgressDialog = new ProgressDialog(mCtx);
 	}
 	
 	/**
@@ -71,7 +75,6 @@ private String mUserName;
 				return -1;
 			}
 			else if(jsonObject.has("access_token")){
-				// Zapisywanie do bazy, oczekuje na fixa US
 				UserServices userServices = new UserServices(mCtx);
 				User user = userServices.addNewPlayer(mUserName);
 				user.setToken(jsonObject.getString("access_token"));
@@ -96,6 +99,27 @@ private String mUserName;
 		} else {
 			return false;
 		}
+	}
+
+
+	@Override
+	protected Integer doInBackground(String... userCredentials) {
+		return (userLogin(userCredentials[0], userCredentials[1]));
+	}
+	
+	@Override
+	protected void onPreExecute(){
+		super.onPreExecute();
+		mProgressDialog.setTitle(R.string.login_progress);
+		mProgressDialog.show();
+	}
+	
+	@Override
+	protected void onPostExecute(Integer result){
+		super.onPostExecute(result);
+		if(mProgressDialog.isShowing()) mProgressDialog.dismiss();
+		LoginActivity loginActivity = (LoginActivity)mCtx;
+		loginActivity.loginResultNotification(result);
 	}
 	
 }

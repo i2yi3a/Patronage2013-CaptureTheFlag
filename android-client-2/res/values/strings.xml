@@ -17,6 +17,7 @@
     <string name="player_already_exists">Player already exists</string>
     <string name="login">Login</string>
     <string name="login_button">Login</string>
+    <string name="login_progress">Connecting to server</string>
     <string name="login_failed">Failed to login</string>
     <string name="login_successful">Login successful</string>
     <string name="no_connection">Could not connect to server. Please check Your internet connection</string>

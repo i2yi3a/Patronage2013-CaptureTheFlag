@@ -17,6 +17,7 @@
     <string name="player_already_exists">Gracz już istnieje</string>
     <string name="login">Logowanie</string>
     <string name="login_button">Zaloguj</string>
+    <string name="login_progress">Łączenie z serverem</string>
     <string name="login_failed">Logowanie nie udane</string>
     <string name="login_successful">Logowanie udane</string>
     <string name="no_connection">Brak połączenia z serverem. Sprawdź swoje połączenie</string>
