@@ -7,12 +7,15 @@ import java.util.List;
 import org.apache.http.Header;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicHeader;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
 
 import com.blstream.ctf1.Constants;
+import com.blstream.ctf1.domain.GameBasicInfo;
+import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 
@@ -25,7 +28,9 @@ public class GameService {
 
 	Context mContext;
 	
+	NetworkService mNetworkService;
 	
+	StorageService mStorageService;
 	
 	
 	
@@ -36,6 +41,8 @@ public class GameService {
 	 */
 	public GameService(Context context) {
 		mContext = context;
+		mNetworkService = new NetworkService(context);
+		mStorageService = new StorageService(context);
 	}
 
 	
@@ -46,12 +53,9 @@ public class GameService {
 			throws JSONException, ClientProtocolException, IOException,
 			CTFException {
 
-		StorageService storageService = new StorageService(mContext);
-		NetworkService networkService = new NetworkService(mContext);
-
-		storageService.open();
-		LoggedPlayer loggedPlayer = storageService.getLoggedPlayer();
-		storageService.close();
+		mStorageService.open();
+		LoggedPlayer loggedPlayer = mStorageService.getLoggedPlayer();
+		mStorageService.close();
 
 		List<Header> headers = new LinkedList<Header>();
 		headers.add(new BasicHeader("Accept", "application/json"));
@@ -75,7 +79,7 @@ public class GameService {
 		jsonObject.put("localization", localizationObject);
 		jsonObject.put("radius", radius);
 
-		JSONObject jsonObjectResult = networkService.requestPost(
+		JSONObject jsonObjectResult = mNetworkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
 				jsonObject.toString());
 
@@ -85,5 +89,61 @@ public class GameService {
 					jsonObjectResult.getString("error_description"));
 		}
 
+	}
+	
+	
+	
+	/**
+	 * before use, logged player data must be saved in storage
+	 * @param gameNameFilter
+	 *            - null to skip
+	 * @param gameStatusTypeFilter
+	 *            - null to skip
+	 * @param myGamesFilter
+	 *            - null to skip
+	 * @return
+	 * @throws JSONException
+	 * @throws IOException
+	 * @throws ClientProtocolException
+	 * @author Adrian Swarcewicz
+	 */
+	public List<GameBasicInfo> getGameList(String gameNameFilter,
+			GameStatusType gameStatusTypeFilter, Boolean myGamesFilter)
+			throws JSONException, ClientProtocolException, IOException {
+		List<GameBasicInfo> gameBasicInfos = new LinkedList<GameBasicInfo>();
+
+		mStorageService.open();
+		LoggedPlayer loggedPlayer = mStorageService.getLoggedPlayer();
+		mStorageService.close();
+
+		List<Header> headers = new LinkedList<Header>();
+		headers.add(new BasicHeader("Accept", "application/json"));
+		headers.add(new BasicHeader("Content-Type", "application/json"));
+		headers.add(new BasicHeader("Authorization", loggedPlayer
+				.getTokenType() + " " + loggedPlayer.getAccessToken()));
+
+		JSONObject jsonObjectFilter = new JSONObject();
+		jsonObjectFilter.put("name", gameNameFilter);
+		jsonObjectFilter.put("status", gameStatusTypeFilter);
+		jsonObjectFilter.put("myGames", myGamesFilter);
+
+		JSONArray jsonArrayResult = mNetworkService.requestGet(
+				Constants.URL_SERVER + Constants.URI_GAME_LIST, headers,
+				NetworkService.jsonToQueryString(jsonObjectFilter));
+
+		for (int i = 0; i < jsonArrayResult.length(); i++) {
+			GameBasicInfo gameBasicInfo = new GameBasicInfo();
+			JSONObject jo = jsonArrayResult.getJSONObject(i);
+
+			gameBasicInfo.setId(jo.getString("id"));
+			gameBasicInfo.setName(jo.getString("name"));
+			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo
+					.getString("status")));
+			gameBasicInfo.setOwner(jo.getString("owner"));
+
+			gameBasicInfos.add(gameBasicInfo);
+		}
+
+		return gameBasicInfos;
 	}
 }

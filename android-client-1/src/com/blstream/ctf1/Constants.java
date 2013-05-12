@@ -11,6 +11,8 @@ public class Constants {
 	
 	public static final String URI_CREATE_GAME = "/api/secured/games";
 	
+	public static final String URI_GAME_LIST = "/api/secured/games"; //maybe just URI_GAME?
+	
 	public static final String PACKAGE_NAME = "com.blstream.ctf1";
 	
 	public static final String CLIENT_ID = "mobile_android";
