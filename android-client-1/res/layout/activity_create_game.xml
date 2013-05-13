@@ -184,4 +184,13 @@
         android:layout_alignRight="@+id/editMaxPoints"
         android:text="@string/create_edit_game" />
 
+    <Button
+        android:id="@+id/btnStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnCreate"
+        android:layout_alignLeft="@+id/editMaxPoints"
+        android:layout_marginLeft="23dp"
+        android:text="@string/start_date" />
+
 </RelativeLayout>

@@ -22,7 +22,7 @@ import com.blstream.ctf1.exception.CTFException;
 
 
 /**
- * @author Adrian Swarcewicz, Rafa³ Olichwer
+ * @author Adrian Swarcewicz, Rafaï¿½ Olichwer
  */
 public class GameService {
 
@@ -73,18 +73,21 @@ public class GameService {
 		jsonObject.put("points_max", pointsMax);
 		jsonObject.put("players_max", playersMax);
 		localizationObject.put("name", localizationName);
+		localizationObject.put("radius", radius);
 		latlngObject.put("lat", lat);
 		latlngObject.put("lng", lng);
 		localizationObject.put("latLng", latlngObject);
 		jsonObject.put("localization", localizationObject);
-		jsonObject.put("radius", radius);
 
 		JSONObject jsonObjectResult = mNetworkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
 				jsonObject.toString());
 
-		if (jsonObjectResult.getInt("error_code") != 0) {
-			throw new CTFException(mContext.getResources(),
+		 if (jsonObjectResult.has("id")) {
+			 
+			 
+		 }else {
+			 throw new CTFException(mContext.getResources(),
 					jsonObjectResult.getInt("error_code"),
 					jsonObjectResult.getString("error_description"));
 		}

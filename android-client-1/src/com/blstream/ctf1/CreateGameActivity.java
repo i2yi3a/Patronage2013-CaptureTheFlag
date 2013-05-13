@@ -10,6 +10,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +28,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 
 	private Button mBtnCancel;
 	private Button mBtnCreate;
+	private Button mBtnStartDate;
 	private EditText mEditGameName;
 	private EditText mEditGameDescription;
 	private EditText mEditLocationName;
@@ -40,8 +45,10 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 		
 		mBtnCancel = (Button) findViewById(R.id.btnCancel);
 		mBtnCreate = (Button) findViewById(R.id.btnCreate);
+		mBtnStartDate = (Button) findViewById(R.id.btnStartDate);
 		mBtnCancel.setOnClickListener(this);
 		mBtnCreate.setOnClickListener(this);
+		mBtnStartDate.setOnClickListener(this);
 		
 		mEditGameName = (EditText) findViewById(R.id.editGameName);
 		mEditGameDescription = (EditText) findViewById(R.id.editGameDescription);
@@ -61,6 +68,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 			ClickTracker.saveClick(this, mBtnCancel);
 			finish();
 			break;
+			
 		case R.id.btnCreate:	
 			ClickTracker.saveClick(this, mBtnCreate);
 			String mGameName = mEditGameName.getText().toString();
@@ -91,13 +99,24 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 					int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
 					
 					CreateGame createGame = new CreateGame(this, CreateGameActivity.class, mGameName, mGameDescription, 
-							mStartDate + " " + mStartTime, mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
+							mStartDate + " " + mStartTime+ ":00", mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
 					createGame.execute();
 				}
 				else{
 					Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 				}
 			}
+			break;
+			
+		case R.id.btnStartDate:
+		//	DialogFragment newFragment = new DatePickerFragment();
+		//	FragmentActivity newFragment = new DatePickerFragment();
+			
+	//		FragmentManager fm = getFragmentManager();
+		//	android.support.v4.app.FragmentManager fm = getFragmentManager();
+		//	newFragment.show(fm, "datePicker");
+			
+		//    newFragment.show(getFragmentManager(), "datePicker");
 			break;
 		}
 	}
