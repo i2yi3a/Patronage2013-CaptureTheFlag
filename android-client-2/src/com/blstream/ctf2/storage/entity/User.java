@@ -80,6 +80,6 @@ public class User {
 		this.scope = scope;
 	}
 
-
+//TODO remove empty lines
 	
 }

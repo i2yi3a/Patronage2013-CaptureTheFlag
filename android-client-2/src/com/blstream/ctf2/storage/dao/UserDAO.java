@@ -82,7 +82,7 @@ public class UserDAO {
 				+ " = " + id, null);
 		close();
 	}
-
+	//TODO hardoced values 0,1,2.... convert to constatnts
 	private User cursorToUser(Cursor cursor) {
 
 		User user = new User();

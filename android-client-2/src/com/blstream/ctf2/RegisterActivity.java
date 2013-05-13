@@ -98,6 +98,7 @@ public class RegisterActivity extends Activity {
 		}
 	}
 
+	//TODO hardcoded value 5. create constant
 	public boolean correctData(String mUsername, String mPassword, String mRepPass) {
 		if (mUsername.length() < 5 || !mPassword.equals(mRepPass) || mPassword.length() < 5) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -157,7 +158,7 @@ public class RegisterActivity extends Activity {
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
 				AlertDialog dialog;
-
+				//TODO split this switch. Every part of case can be one method 
 				switch (errorCode) {
 				case 0:
 					builder.setMessage(R.string.registration_successful);

@@ -13,6 +13,8 @@ public class SplashScreen extends Activity {
 
 	private boolean mIsBackButtonPressed;
 
+	//TODO please use solution as in group 1
+	//User Handler.cancel in onBackPressed
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);

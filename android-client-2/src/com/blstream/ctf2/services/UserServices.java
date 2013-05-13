@@ -34,7 +34,7 @@ public class UserServices extends Services {
 		
 		return uDAO.getUsers();
 	} 
-	
+	//TODO use formatter
 public User getUser() {
 		
 		return uDAO.getUsers().get(0);

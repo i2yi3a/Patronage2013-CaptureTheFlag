@@ -36,6 +36,9 @@ public class Login extends AsyncTask<String, Void, Integer> {
 
 	}
 
+	//TODO I think better in Objected Oriented Language
+	//is using Exceptions when some issue exist instead of int value.
+	//try to push exception to UI
 	/**
 	 * Return values 0 everything ok -1 bad credentials -2 problem with
 	 * connection

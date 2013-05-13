@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  *
  */
 
-
+//TODO remove empty lines
 public class UserSQLiteHelper extends SQLiteOpenHelper {
 	
 	public static final String TABLE_USER = "user";
