@@ -1,4 +1,5 @@
 package com.blstream.ctf2;
+
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -12,87 +13,94 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blstream.ctf2.services.UserServices;
-import com.blstream.ctf2.storage.entity.User;
-import com.google.analytics.tracking.android.Log;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
+import com.blstream.ctf2.services.UserServices;
+import com.blstream.ctf2.storage.entity.User;
+import com.google.analytics.tracking.android.Log;
+
 /**
  * Login class
+ * 
  * @author Karol Firmanty
  */
-public class Login extends AsyncTask<String, Void, Integer>{
-private Context mCtx;
-private String mUserName;
-private ProgressDialog mProgressDialog;
+public class Login extends AsyncTask<String, Void, Integer> {
+	private Context mCtx;
+	private String mUserName;
 
-	public Login(Context ctx){
+	public Login(Context ctx) {
 		mCtx = ctx;
-		mProgressDialog = new ProgressDialog(mCtx);
+
 	}
-	
+
 	/**
-	 * Return values
-	 * 0 everything ok
-	 * -1 bad credentials
-	 * -2 problem with connection 
+	 * Return values 0 everything ok -1 bad credentials -2 problem with
+	 * connection
 	 */
-	public int userLogin(String userName, String password){
-		if(!isOnline()) return -2;
+	public int userLogin(String userName, String password) {
+		if (!isOnline())
+			return -2;
 		int result = -1;
 		mUserName = userName;
-		 HttpClient httpclient = new DefaultHttpClient();
-	        try {
-	            HttpPost httpPost = new HttpPost(Constants.URL_SERVER+Constants.URI_LOGIN);
-	            httpPost.addHeader("Content-type" ,"application/x-www-form-urlencoded");
-	            StringEntity stringEntity = new StringEntity("client_id=mobile_android&client_secret=secret&grant_type=password&username="+
-	            userName+"&password="+password);
-	            httpPost.setEntity(stringEntity);
-	            HttpResponse response = httpclient.execute(httpPost);
-	            result = afterLogin(response);
-	        } catch (ClientProtocolException e) {
-				Log.e(e.toString());
-			} catch (IOException e) {
-				Log.e(e.toString());
-			} finally {
-	            httpclient.getConnectionManager().shutdown();
-	        }
+		HttpClient httpclient = new DefaultHttpClient();
+		try {
+			HttpPost httpPost = new HttpPost(Constants.URL_SERVER
+					+ Constants.URI_LOGIN);
+			httpPost.addHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			StringEntity stringEntity = new StringEntity("client_id=mobile_android&client_secret=secret&grant_type=password&username="
+							+ userName + "&password=" + password);
+			httpPost.setEntity(stringEntity);
+			HttpResponse response = httpclient.execute(httpPost);
+			result = afterLogin(response);
+		} 
+		catch (ClientProtocolException e) {
+			Log.e(e.toString());
+		} 
+		catch (IOException e) {
+			Log.e(e.toString());
+		} 
+		finally {
+			httpclient.getConnectionManager().shutdown();
+		}
 		return result;
 	}
-	
-	public int afterLogin(HttpResponse response){
+
+	public int afterLogin(HttpResponse response) {
 		String jsonString;
 		JSONObject jsonObject;
 		try {
 			jsonString = EntityUtils.toString(response.getEntity());
 			jsonObject = new JSONObject(jsonString);
-			if(jsonObject.has("error")){
+			if (jsonObject.has("error")) {
 				return -1;
-			}
-			else if(jsonObject.has("access_token")){
+			} 
+			else if (jsonObject.has("access_token")) {
 				UserServices userServices = new UserServices(mCtx);
 				User user = userServices.addNewPlayer(mUserName);
 				user.setToken(jsonObject.getString("access_token"));
 				userServices.updateUser(user);
 				return 0;
 			}
-		} catch (ParseException e) {
+		} 
+		catch (ParseException e) {
 			Log.e(e.toString());
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			Log.e(e.toString());
-		} catch (JSONException e) {
+		} 
+		catch (JSONException e) {
 			Log.e(e.toString());
 		}
 		return -1;
 	}
-	
+
 	public boolean isOnline() {
-		ConnectivityManager connMgr = (ConnectivityManager) mCtx.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connMgr = (ConnectivityManager) mCtx
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
@@ -101,25 +109,21 @@ private ProgressDialog mProgressDialog;
 		}
 	}
 
-
 	@Override
 	protected Integer doInBackground(String... userCredentials) {
 		return (userLogin(userCredentials[0], userCredentials[1]));
 	}
-	
+
 	@Override
-	protected void onPreExecute(){
+	protected void onPreExecute() {
 		super.onPreExecute();
-		mProgressDialog.setTitle(R.string.login_progress);
-		mProgressDialog.show();
 	}
-	
+
 	@Override
-	protected void onPostExecute(Integer result){
+	protected void onPostExecute(Integer result) {
 		super.onPostExecute(result);
-		if(mProgressDialog.isShowing()) mProgressDialog.dismiss();
-		LoginActivity loginActivity = (LoginActivity)mCtx;
+		LoginActivity loginActivity = (LoginActivity) mCtx;
 		loginActivity.loginResultNotification(result);
 	}
-	
+
 }
