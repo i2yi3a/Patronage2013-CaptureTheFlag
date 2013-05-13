@@ -18,8 +18,8 @@ namespace Ctf
         public MainPage()
         {
             InitializeComponent();
-            loginButton.IsEnabled= false;
-            
+            loginButton.IsEnabled = false;
+
 
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
@@ -37,30 +37,32 @@ namespace Ctf
         private void txtChanged(object sender, RoutedEventArgs e)
         {
 
-            if (UserCredentials.IsUsernameProperLength(usernameBox.Text) && UserCredentials.IsPasswordProperLength(passwordBox.Password)){
+            if (usernameBox.Text.Length > 4 && passwordBox.Password.Length > 4)
+            {
                 loginButton.IsEnabled = true;
             }
-            else{
-                loginButton.IsEnabled = false;}
+            else
+            {
+                loginButton.IsEnabled = false;
             }
-        
+        }
 
 
-        private async void LogIn(object sender, RoutedEventArgs e)
+
+        private void LogIn(object sender, RoutedEventArgs e)
         {
             Login Logger = new Login();
-            await Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+            Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
             Logger.MessengerSent += Logger_MessengerSent;
-            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative)); 
+            
         }
+
 
         void Logger_MessengerSent(object sender, EventArgs e)
         {
-
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
             MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
         }
-
     }
 }

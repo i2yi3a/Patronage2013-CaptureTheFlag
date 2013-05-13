@@ -25,7 +25,7 @@ namespace Ctf
         private void txtChanged(object sender, RoutedEventArgs e)
         {
 
-            if (UserCredentials.IsUsernameProperLength(userNameRegister.Text) && UserCredentials.IsPasswordProperLength(passwordRegister1.Password) && UserCredentials.IsPasswordProperLength(passwordRegister2.Password))
+            if (userNameRegister.Text.Length>4 && passwordRegister1.Password.Length>4 && passwordRegister2.Password.Length>4)
             {
                 registerButton.IsEnabled = true;
             }
@@ -36,11 +36,11 @@ namespace Ctf
         }
         
 
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             waitIndicator.Visibility = Visibility.Visible;
             Registration Registers = new Registration();
-            await Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             Registers.MessengerSent += Registers_MessengerSent;
             
         }
