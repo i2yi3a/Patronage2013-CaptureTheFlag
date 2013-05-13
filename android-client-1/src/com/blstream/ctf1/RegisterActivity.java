@@ -17,7 +17,8 @@ import com.blstream.ctf1.asynchronous.Register;
 import com.blstream.ctf1.service.NetworkService;
 
 
-
+//TODO who is the autor of class
+//should be here header of class
 public class RegisterActivity extends Activity implements OnClickListener {
 
 	private Button mBtnBack;
@@ -71,7 +72,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				break;
 		}
 	}
-	
+	//TODO remove empty lines
 	
 	
 	private boolean correctData(String login, String password, String password2) {

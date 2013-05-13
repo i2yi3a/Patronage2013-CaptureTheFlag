@@ -16,7 +16,7 @@ import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 
-
+//TODO remove empty lines
 
 /**
  * @author Adrian Swarcewicz, Rafa³ Olichwer
@@ -62,7 +62,7 @@ public class PlayerService {
 	}
 
 	
-	
+	//TODO too long method. please split it
 	public LoggedPlayer login(String username, String password)
 			throws CTFException, JSONException, ClientProtocolException,
 			IOException {

@@ -43,7 +43,7 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 	
 	private ProgressDialog loadingDialog;
 	
-	
+	//TODO remvoe empty lines
 	
 	
 	

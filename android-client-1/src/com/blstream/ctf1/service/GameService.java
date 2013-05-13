@@ -19,7 +19,7 @@ import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 
-
+//TODO remove empty lines
 
 /**
  * @author Adrian Swarcewicz, Rafa� Olichwer
@@ -46,7 +46,9 @@ public class GameService {
 	}
 
 	
-	
+	//TODO method too long. please split it.
+	//for example json part may be another method etc...
+	//TODO hardoced values. Please convert all hardoced string to public/private final static fields
 	public void createGame(String gameName, String description,
 			String timeStart, long duration, int pointsMax, int playersMax,
 			String localizationName, double lat, double lng, int radius)
@@ -97,7 +99,7 @@ public class GameService {
 	}
 	
 	
-	
+	//TODO method too long. split it
 	/**
 	 * before use, logged player data must be saved in storage
 	 * @param gameNameFilter

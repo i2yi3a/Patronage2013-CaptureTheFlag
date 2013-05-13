@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteException;
 
 import com.blstream.ctf1.domain.LoggedPlayer;
 
-
+//TODO remove empty lines
 
 /**
  * Stores information in SQLite database. <br/>
@@ -67,7 +67,7 @@ public class StorageService {
 	}
 	
 	
-	
+	//TODO hardcoded value " = 1". convert to final static
 	public void deleteLoggedPlayer() {
 		String where = StorageConstants.KEY_ID + " = 1";
 		mDb.delete(StorageConstants.DB_LOGGED_PLAYER_TABLE, where, null);

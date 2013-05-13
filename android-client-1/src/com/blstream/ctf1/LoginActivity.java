@@ -16,16 +16,17 @@ import android.widget.Toast;
 import com.blstream.ctf1.asynchronous.Login;
 import com.blstream.ctf1.service.NetworkService;
 
+//TODO move header of class here
 public class LoginActivity extends Activity implements OnClickListener {
 
 	private Button mBtnLogin;
 	private Button mBtnRegistration;
 	private EditText mEditLogin;
 	private EditText mEditPassword;
-	@Override
+	@Override //TODO add empty line to seperate method from fields
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		
+		//TODO remove empty lines
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
@@ -80,7 +81,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		if(password.length()<5) 
 		{
 			if(!info.isEmpty())
-				info+='\n';
+				info+='\n';//TODO hardcoded value should be final static 
 			info+=getResources().getString(R.string.password_too_short) + '\n';
 		}
 		

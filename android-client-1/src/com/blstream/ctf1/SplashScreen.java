@@ -9,7 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 
-
+//TODO header of class should be here
 public class SplashScreen extends Activity {
 
 	private Handler mHandler;
@@ -33,7 +33,7 @@ public class SplashScreen extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub //TODO please remove Auto-generated comments
 		mHandler.removeCallbacks(mThread);
 		finish();
 	}

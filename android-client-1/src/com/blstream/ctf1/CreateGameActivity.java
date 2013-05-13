@@ -10,6 +10,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.os.Bundle;
+//TODO CLEAN CODE: Remove unused import
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -62,6 +63,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		//TODO remove auto generated stub
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btnCancel:
@@ -70,6 +72,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 			break;
 			
 		case R.id.btnCreate:	
+			//TODO move this part to method and name it for example onCreateGameBtnClicked
 			ClickTracker.saveClick(this, mBtnCreate);
 			String mGameName = mEditGameName.getText().toString();
 			String mGameDescription = mEditGameDescription.getText().toString();
@@ -109,6 +112,8 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 			break;
 			
 		case R.id.btnStartDate:
+			//TODO Remove commented code
+			
 		//	DialogFragment newFragment = new DatePickerFragment();
 		//	FragmentActivity newFragment = new DatePickerFragment();
 			
@@ -121,6 +126,9 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	//TODO Refactor this method.
+	//It is too long. Split it into smaller methods
+	//All hardoced constatns should be moved final stati
 	private boolean correctData(String gameName, String locationName, String mStartDate, String mStartTime, String playingTime){
 		String info = "";
 		boolean result = false;

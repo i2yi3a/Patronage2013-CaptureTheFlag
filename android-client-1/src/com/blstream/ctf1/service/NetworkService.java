@@ -25,7 +25,7 @@ import android.net.ConnectivityManager;
 
 import com.blstream.ctf1.Constants;
 
-
+//TODO remove empty lines
 
 /**
  * @author Adrian Swarcewicz

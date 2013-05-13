@@ -30,7 +30,7 @@ public class Login extends AsyncTask<Void, Void, Void> {
 	
 	private ProgressDialog loadingDialog;
 	
-	
+	//TODO remove empty lines
 	
 	
 	

@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+//TODO header of class (/** @author */ should be just before declaration of class
+//please move it here
 public class GameListActivity extends Activity implements OnClickListener{
 
 	private Button mBtnCreateNewGame; 
@@ -42,6 +44,7 @@ public class GameListActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		//TODO remove auto genereated stub
 		// TODO Auto-generated method stub
 		Intent intent = null;	
 		switch (v.getId()) {

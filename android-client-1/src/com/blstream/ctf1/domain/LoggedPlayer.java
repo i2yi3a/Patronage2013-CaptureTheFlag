@@ -1,6 +1,6 @@
 package com.blstream.ctf1.domain;
 
-
+//TODO remove empty lines
 
 /**
  * Contain logged player data

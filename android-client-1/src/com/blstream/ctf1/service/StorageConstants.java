@@ -1,6 +1,6 @@
 package com.blstream.ctf1.service;
 
-
+//TODO remove empty lines
 
 /**
  * @author Adrian Swarcewicz

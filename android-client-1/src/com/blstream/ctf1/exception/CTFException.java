@@ -5,7 +5,7 @@ import android.content.res.Resources.NotFoundException;
 
 import com.blstream.ctf1.Constants;
 
-
+//TODO remove empty lines
 
 
 
