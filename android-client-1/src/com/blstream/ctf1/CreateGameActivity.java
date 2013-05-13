@@ -91,7 +91,7 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 					int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
 					
 					CreateGame createGame = new CreateGame(this, CreateGameActivity.class, mGameName, mGameDescription, 
-							mStartDate + " " + mStartTime, mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
+							mStartDate + " " + mStartTime + ":00", mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
 					createGame.execute();
 				}
 				else{

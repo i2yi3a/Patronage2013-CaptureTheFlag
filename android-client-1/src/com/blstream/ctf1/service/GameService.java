@@ -76,14 +76,17 @@ public class GameService {
 		latlngObject.put("lat", lat);
 		latlngObject.put("lng", lng);
 		localizationObject.put("latLng", latlngObject);
+		localizationObject.put("radius", radius);
 		jsonObject.put("localization", localizationObject);
-		jsonObject.put("radius", radius);
 
 		JSONObject jsonObjectResult = mNetworkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
 				jsonObject.toString());
 
-		if (jsonObjectResult.getInt("error_code") != 0) {
+		if (jsonObjectResult.has("id")) {
+			
+			
+		}else {
 			throw new CTFException(mContext.getResources(),
 					jsonObjectResult.getInt("error_code"),
 					jsonObjectResult.getString("error_description"));
