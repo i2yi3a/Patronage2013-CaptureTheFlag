@@ -109,27 +109,17 @@
 - (void)createNewGame: (CTFGame *) game
    completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 {
-    NSString* name=game.name;
-    NSString* description=game.description;
-    NSDate* date=game.date;
-    NSNumber* time=game.time;
-    NSNumber* duration=game.duration;
-    NSNumber* points_max=game.points_max;
-    NSNumber* players_max=game.players_max;
-    NSString* localization_name=game.localization_name;
-    CLLocation* localization_latLng=game.localization_latLng;
-    NSNumber* localization_radius=game.localization_radius;
+   
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mma:ss"];
+   NSString *dateString = [dateFormat stringFromDate:game.timeStart];
     
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
-                                              params:@{@"name" : name, @"description" : description, @"date" : date, @"time" : time, @"duration" : duration, @"points_max" : points_max, @"players_max" : players_max, @"localization_name" : localization_name, @"localization_latLng" : localization_latLng, @"localization_radius" : localization_radius}
+                                              params:@{@"name" : game.name, @"description" : game.description, @"time_start" : dateString, @"duration" : game.duration, @"points_max" : game.pointsMax, @"players_max" : game.playersMax, @"localization" :@{@"name" : game.localizationName, @"latLng" :@{@"lat" : game.localizationLat, @"lng" : game.localizationLng},  @"radius" : game.localizationRadius}}
                                           httpMethod:@"POST"
                                                  ssl:NO];
-    NSString* token2=_token;
-    
-    [op addHeaders:@{@"Accept" : @"application/json"}];
-    [op addHeaders:@{@"Content-type" : @"application/json"}];
-    [op addHeaders:@{@"Authorization" : token2}];
-    
+
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
     [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
