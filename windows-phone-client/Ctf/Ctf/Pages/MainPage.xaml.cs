@@ -19,7 +19,7 @@ namespace Ctf
         {
             InitializeComponent();
             loginButton.IsEnabled = false;
-
+            registerButton.IsEnabled = false;
 
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
@@ -47,6 +47,19 @@ namespace Ctf
             }
         }
 
+        private void txtChangedRegister(object sender, RoutedEventArgs e)
+        {
+
+            if (userNameRegister.Text.Length > 4 && passwordRegister1.Password.Length > 4 && passwordRegister2.Password.Length > 4)
+            {
+                registerButton.IsEnabled = true;
+            }
+            else
+            {
+                registerButton.IsEnabled = false;
+            }
+        }
+
 
 
         private void LogIn(object sender, RoutedEventArgs e)
@@ -54,7 +67,7 @@ namespace Ctf
             Login Logger = new Login();
             Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
             Logger.MessengerSent += Logger_MessengerSent;
-            
+            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
         }
 
 
@@ -63,6 +76,30 @@ namespace Ctf
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
             MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+        }
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            waitIndicator.Visibility = Visibility.Visible;
+            Registration Registers = new Registration();
+            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            Registers.MessengerSent += Registers_MessengerSent;
+
+        }
+
+        private void Registers_MessengerSent(object sender, EventArgs e)
+        {
+            MessengerSentEventArgs x;
+            x = (MessengerSentEventArgs)e;
+            MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+            if (m == MessageBoxResult.OK)
+            { waitIndicator.Visibility = Visibility.Collapsed; }
+            if (x.errorCode == 0)
+            {
+               pano.DefaultItem = pano.Items[0];
+            }
+
         }
     }
 }
