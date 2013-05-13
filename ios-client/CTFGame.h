@@ -14,7 +14,7 @@
 
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *gameDescription;
 @property (strong, nonatomic) NSDate *timeStart;
 @property (strong, nonatomic) NSNumber *duration;
 @property (strong, nonatomic) NSNumber *pointsMax;

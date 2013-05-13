@@ -5,3 +5,4 @@
   Created by Sebastian Jędruszkiewicz on 4/15/13.
   Copyright (c) 2013 BLStream. All rights reserved.
 */
+"server.error.bad.request" = "Server returned error: bad request.";

@@ -115,7 +115,7 @@
    NSString *dateString = [dateFormat stringFromDate:game.timeStart];
     
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
-                                              params:@{@"name" : game.name, @"description" : game.description, @"time_start" : dateString, @"duration" : game.duration, @"points_max" : game.pointsMax, @"players_max" : game.playersMax, @"localization" :@{@"name" : game.localizationName, @"latLng" :@{@"lat" : game.localizationLat, @"lng" : game.localizationLng},  @"radius" : game.localizationRadius}}
+                                              params:@{@"name" : game.name, @"description" : game.gameDescription, @"time_start" : dateString, @"duration" : game.duration, @"points_max" : game.pointsMax, @"players_max" : game.playersMax, @"localization" :@{@"name" : game.localizationName, @"latLng" :@{@"lat" : game.localizationLat, @"lng" : game.localizationLng},  @"radius" : game.localizationRadius}}
                                           httpMethod:@"POST"
                                                  ssl:NO];
 
