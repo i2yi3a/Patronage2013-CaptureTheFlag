@@ -84,19 +84,12 @@ public class GameService {
 				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
 				jsonObject.toString());
 
-<<<<<<< HEAD
-		 if (jsonObjectResult.has("id")) {
-			 
-			 
-		 }else {
-			 throw new CTFException(mContext.getResources(),
-=======
+
 		if (jsonObjectResult.has("id")) {
 			
 			
 		}else {
 			throw new CTFException(mContext.getResources(),
->>>>>>> b280d1d339fbd0e9b90d0a76b6c1f380f5288f4a
 					jsonObjectResult.getInt("error_code"),
 					jsonObjectResult.getString("error_description"));
 		}
