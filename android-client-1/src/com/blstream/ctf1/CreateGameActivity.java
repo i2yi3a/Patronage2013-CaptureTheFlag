@@ -1,15 +1,13 @@
 package com.blstream.ctf1;
-/**
- * @author Milosz_Skalski
- * @TODO in switch btnCreate: where to get: lat lng and radius
- **/
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +19,12 @@ import com.blstream.ctf1.asynchronous.CreateGame;
 import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
-public class CreateGameActivity extends Activity implements OnClickListener {
+/**
+ * @author Milosz_Skalski
+ **/
+
+public class CreateGameActivity extends FragmentActivity implements
+		OnClickListener {
 
 	private Button mBtnCancel;
 	private Button mBtnCreate;
@@ -34,19 +37,19 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 	private EditText mEditPlayingTime;
 	private EditText mEditMaxPlayers;
 	private EditText mEditMaxPoints;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_game);
-		
+
 		mBtnCancel = (Button) findViewById(R.id.btnCancel);
 		mBtnCreate = (Button) findViewById(R.id.btnCreate);
 		mBtnStartDate = (Button) findViewById(R.id.btnStartDate);
 		mBtnCancel.setOnClickListener(this);
 		mBtnCreate.setOnClickListener(this);
 		mBtnStartDate.setOnClickListener(this);
-		
+
 		mEditGameName = (EditText) findViewById(R.id.editGameName);
 		mEditGameDescription = (EditText) findViewById(R.id.editGameDescription);
 		mEditLocationName = (EditText) findViewById(R.id.editLocationName);
@@ -54,145 +57,165 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 		mEditStartTime = (EditText) findViewById(R.id.editStartTime);
 		mEditPlayingTime = (EditText) findViewById(R.id.editPlayingTime);
 		mEditMaxPlayers = (EditText) findViewById(R.id.editMaxPlayers);
-		mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);	
+		mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);
 	}
 
 	@Override
 	public void onClick(View v) {
-		//TODO remove auto generated stub
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btnCancel:
 			IssueTracker.saveClick(this, mBtnCancel);
 			finish();
 			break;
-			
-		case R.id.btnCreate:	
-			//TODO move this part to method and name it for example onCreateGameBtnClicked
+
+		case R.id.btnCreate:
+			// TODO move this part to method and name it for example
+			// onCreateGameBtnClicked
 			IssueTracker.saveClick(this, mBtnCreate);
 			String mGameName = mEditGameName.getText().toString();
 			String mGameDescription = mEditGameDescription.getText().toString();
 			String mLocationName = mEditLocationName.getText().toString();
-			
+
 			String mStartDate = mEditStartDate.getText().toString();
 			mStartDate = mStartDate.replace(".", "-");
 			mStartDate = mStartDate.replace("/", "-");
-			
+
 			String mStartTime = mEditStartTime.getText().toString();
 
 			String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
 			String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
 			String mMaxPointsTmp = mEditMaxPoints.getText().toString();
-			
-			if(correctData(mGameName, mLocationName, mStartDate, mStartTime, mPlayingTimeTmp)){
+
+			if (correctData(mGameName, mLocationName, mStartDate, mStartTime,
+					mPlayingTimeTmp)) {
 				if (NetworkService.isDeviceOnline(this)) {
-					Log.d("Data", "" +mStartDate + "  " + mStartTime);
-					
-					if(mMaxPlayersTmp.length() == 0)
+					Log.d("Data", "" + mStartDate + "  " + mStartTime);
+
+					if (mMaxPlayersTmp.length() == 0)
 						mMaxPlayersTmp = "120"; // no limits?
-					if(mMaxPointsTmp.length() == 0)
+					if (mMaxPointsTmp.length() == 0)
 						mMaxPointsTmp = "120"; // no limits?
-					
-					long mPlayingTime = Integer.parseInt(mPlayingTimeTmp)*60*1000; // convert min on milliseconds
+
+					long mPlayingTime = Integer.parseInt(mPlayingTimeTmp) * 60 * 1000;
 					int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
 					int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
-					
-					CreateGame createGame = new CreateGame(this, CreateGameActivity.class, mGameName, mGameDescription, 
-							mStartDate + " " + mStartTime + ":00", mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0 ,0.0 ,1 ); // here change: lat lng and radius
+
+					CreateGame createGame = new CreateGame(this,
+							CreateGameActivity.class, mGameName,
+							mGameDescription, mStartDate + " " + mStartTime
+									+ ":00", mPlayingTime, mMaxPoints,
+							mMaxPlayers, mLocationName, 0.0, 0.0, 1);
 					createGame.execute();
-				}
-				else{
-					Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(this, R.string.no_internet_connection,
+							Toast.LENGTH_SHORT).show();
 				}
 			}
 			break;
-			
+
 		case R.id.btnStartDate:
-			//TODO Remove commented code
-			
-		//	DialogFragment newFragment = new DatePickerFragment();
-		//	FragmentActivity newFragment = new DatePickerFragment();
-			
-	//		FragmentManager fm = getFragmentManager();
-		//	android.support.v4.app.FragmentManager fm = getFragmentManager();
-		//	newFragment.show(fm, "datePicker");
-			
-		//    newFragment.show(getFragmentManager(), "datePicker");
+			DialogFragment newFragment = new DatePickerFragment();
+			newFragment.show(getSupportFragmentManager(), "datePicker");
 			break;
 		}
 	}
-	
-	//TODO Refactor this method.
-	//It is too long. Split it into smaller methods
-	//All hardoced constatns should be moved final stati
-	private boolean correctData(String gameName, String locationName, String mStartDate, String mStartTime, String playingTime){
+
+	// TODO Refactor this method.
+	// It is too long. Split it into smaller methods
+	// All hardoced constatns should be moved final stati
+	private boolean correctData(String gameName, String locationName,
+			String mStartDate, String mStartTime, String playingTime) {
 		String info = "";
 		boolean result = false;
-		
-		if(gameName.length() < 1){
-			info+=getResources().getString(R.string.game_name_too_short);
+
+		if (gameName.length() < 1) {
+			info += getResources().getString(R.string.game_name_too_short);
 		}
-		
-		if(locationName.length() < 1){
-			if(!info.isEmpty()) info += '\n';
-			info+=getResources().getString(R.string.location_name_too_short);
+
+		if (locationName.length() < 1) {
+			if (!info.isEmpty())
+				info += '\n';
+			info += getResources().getString(R.string.location_name_too_short);
 		}
-				
-		if(mStartDate.length() < 1){
-			if(!info.isEmpty()) info += '\n';
-			info+=getResources().getString(R.string.start_date_too_short);			
+
+		if (mStartDate.length() < 1) {
+			if (!info.isEmpty())
+				info += '\n';
+			info += getResources().getString(R.string.start_date_too_short);
 		} else {
 			int tmp = 0;
-			for(int i=0; i<mStartDate.length(); i++){
-				if(mStartDate.charAt(i) == '-') 
+			for (int i = 0; i < mStartDate.length(); i++) {
+				if (mStartDate.charAt(i) == '-')
 					tmp++;
 			}
-			if(tmp != 2){
-				if(!info.isEmpty()) info += '\n';
-				info+=getResources().getString(R.string.start_date_incorrect);	
-			}else{
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy"); 
+			if (tmp != 2) {
+				if (!info.isEmpty())
+					info += '\n';
+				info += getResources().getString(R.string.start_date_incorrect);
+			} else {
+				SimpleDateFormat dateFormatter = new SimpleDateFormat(
+						"dd-MM-yyyy");
 				Date startDate = null;
 				try {
 					startDate = dateFormatter.parse(mStartDate);
 					Log.d("Data", startDate.toString());
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-					if(!info.isEmpty()) info += '\n';
-					info+=getResources().getString(R.string.start_date_incorrect);	
-				}	
-			}
-		}
-		
-		if(mStartTime.length() < 1){
-			if(!info.isEmpty()) info += '\n';
-			info+=getResources().getString(R.string.start_time_too_short);			
-		} else{ 
-			if( mStartTime.indexOf(":") == -1 || mStartTime.indexOf(":") == mStartTime.length()-1 || mStartTime.indexOf(":") == 0 || mStartTime.indexOf(":") != mStartTime.lastIndexOf(":") ){ //  no there ":" || ":" is end line || ":" is first char || ":" only one can be used
-				if(!info.isEmpty()) info += '\n';
-				info+=getResources().getString(R.string.start_time_incorrect);
-			}else{
-				Log.d("Data", "H:" + mStartTime.substring(0, mStartTime.indexOf(":")) + " M:" + mStartTime.substring(mStartTime.indexOf(":")+1, mStartTime.length()) );
-				if( Integer.parseInt( mStartTime.substring(0, mStartTime.indexOf(":")) ) > 23 || Integer.parseInt(mStartTime.substring(mStartTime.indexOf(":")+1, mStartTime.length()))  > 59 )  {
-					if(!info.isEmpty()) info += '\n';
-					info+=getResources().getString(R.string.start_time_number_too_large);					
+					if (!info.isEmpty())
+						info += '\n';
+					info += getResources().getString(
+							R.string.start_date_incorrect);
 				}
 			}
 		}
-		
-		if(playingTime.length() < 1){
-			if(!info.isEmpty()) info += '\n';
-			info+=getResources().getString(R.string.playing_time_too_short);
+
+		if (mStartTime.length() < 1) {
+			if (!info.isEmpty())
+				info += '\n';
+			info += getResources().getString(R.string.start_time_too_short);
+		} else {
+			if (mStartTime.indexOf(":") == -1
+					|| mStartTime.indexOf(":") == mStartTime.length() - 1
+					|| mStartTime.indexOf(":") == 0
+					|| mStartTime.indexOf(":") != mStartTime.lastIndexOf(":")) {
+
+				if (!info.isEmpty())
+					info += '\n';
+				info += getResources().getString(R.string.start_time_incorrect);
+			} else {
+				Log.d("Data",
+						"H:"
+								+ mStartTime.substring(0,
+										mStartTime.indexOf(":"))
+								+ " M:"
+								+ mStartTime.substring(
+										mStartTime.indexOf(":") + 1,
+										mStartTime.length()));
+				if (Integer.parseInt(mStartTime.substring(0,
+						mStartTime.indexOf(":"))) > 23
+						|| Integer.parseInt(mStartTime.substring(
+								mStartTime.indexOf(":") + 1,
+								mStartTime.length())) > 59) {
+					if (!info.isEmpty())
+						info += '\n';
+					info += getResources().getString(
+							R.string.start_time_number_too_large);
+				}
+			}
 		}
-		
+
+		if (playingTime.length() < 1) {
+			if (!info.isEmpty())
+				info += '\n';
+			info += getResources().getString(R.string.playing_time_too_short);
+		}
+
 		if (info.isEmpty()) {
 			result = true;
 		} else {
 			Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
 		}
-		
+
 		return result;
 	}
-
 }

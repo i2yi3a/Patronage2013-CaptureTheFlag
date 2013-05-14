@@ -1,8 +1,3 @@
-/**
- * @author Milosz_Skalski
- * @author Rafal_Olichwer
- * @author Adrian Swarcewicz
- */
 package com.blstream.ctf1;
 
 import android.app.Activity;
@@ -17,9 +12,13 @@ import com.blstream.ctf1.asynchronous.Register;
 import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
-
+/**
+ * @author Milosz_Skalski
+ * @author Rafal_Olichwer
+ * @author Adrian Swarcewicz
+ */
 //TODO who is the autor of class
-//should be here header of class
+
 public class RegisterActivity extends Activity implements OnClickListener {
 
 	private Button mBtnBack;
@@ -54,12 +53,12 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				IssueTracker.saveClick(this, mBtnBack);
 				finish();
 				break;
+				
 			case R.id.btnRegister:
 				IssueTracker.saveClick(this, mBtnRegister);
 				String login = mEditLoginReg.getText().toString();
 				String password = mEditPasswordReg.getText().toString();
 				String password2 = mEditPassword2Reg.getText().toString();
-				
 				if (correctData(login, password, password2)) {
 					if (NetworkService.isDeviceOnline(this)) {
 						Register register = new Register(this, LoginActivity.class, login, password);
@@ -69,12 +68,9 @@ public class RegisterActivity extends Activity implements OnClickListener {
 						Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 					}
 				}
-				
 				break;
 		}
 	}
-	//TODO remove empty lines
-	
 	
 	private boolean correctData(String login, String password, String password2) {
 		boolean result = false;
@@ -99,6 +95,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		} else {
 			Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
 		}
+		
 		return result;
 	}
 
