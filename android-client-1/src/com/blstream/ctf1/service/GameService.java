@@ -3,24 +3,18 @@ package com.blstream.ctf1.service;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.apache.http.Header;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
-
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
-
-//TODO remove empty lines
-
 /**
  * @author Adrian Swarcewicz, Rafa� Olichwer
  */
@@ -87,10 +81,7 @@ public class GameService {
 				jsonObject.toString());
 
 
-		if (jsonObjectResult.has("id")) {
-			
-			
-		}else {
+		if (!jsonObjectResult.has("id")) {
 			throw new CTFException(mContext.getResources(),
 					jsonObjectResult.getInt("error_code"),
 					jsonObjectResult.getString("error_description"));

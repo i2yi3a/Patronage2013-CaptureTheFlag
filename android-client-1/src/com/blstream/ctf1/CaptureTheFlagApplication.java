@@ -1,11 +1,12 @@
 package com.blstream.ctf1;
 
-import org.acra.ACRA;
 import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
 import android.app.Application;
+
+import com.blstream.ctf1.tracker.IssueTracker;
 
 @ReportsCrashes(formKey = "", // will not be used
 formUri = "http://ctfcrashreports.cba.pl/dodaj.php",
@@ -19,7 +20,6 @@ resDialogTitle = R.string.crash_dialog_title, // optional. default is your appli
 resDialogCommentPrompt = R.string.crash_dialog_comment_prompt, // optional. when defined, adds a user text field input with this text resource as a label
 resDialogOkToast = R.string.crash_dialog_ok_toast // optional. displays a Toast message when the user accepts to send a report.
 )
-
 /**
  * 	
  * @author Rafal_Olichwer
@@ -27,16 +27,11 @@ resDialogOkToast = R.string.crash_dialog_ok_toast // optional. displays a Toast 
  */
 public class CaptureTheFlagApplication extends Application {
 	
-	public static ClickTracker sClickTracker;
+	public static IssueTracker sIssueTracker;
 	
 	public void onCreate() {
-	    // The following line triggers the initialization of ACRA
 	    super.onCreate();
-	    ACRA.init(this);
-	    sClickTracker = new ClickTracker(this);
-	    ClickTracker.init(this);
-	    
-	    
+	    sIssueTracker = new IssueTracker(this); 
 	    
 	}
 	

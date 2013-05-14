@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.Register;
 import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.tracker.ClickTracker;
 
 
 //TODO who is the autor of class

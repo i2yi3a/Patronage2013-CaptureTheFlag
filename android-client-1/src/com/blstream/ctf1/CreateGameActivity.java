@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 //TODO CLEAN CODE: Remove unused import
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.CreateGame;
 import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.tracker.ClickTracker;
 
 public class CreateGameActivity extends Activity implements OnClickListener {
 
