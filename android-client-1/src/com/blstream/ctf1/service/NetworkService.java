@@ -14,6 +14,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
@@ -138,6 +139,48 @@ public class NetworkService {
 		return new JSONObject(builder.toString());
 	}
 
+	/**
+	 * @param url
+	 * @param headers
+	 * @param body
+	 * @return JSONObject received from server
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 * @author Adrian Swarcewicz
+	 */
+	public JSONObject requestPut(String url, List<Header> headers, String body)
+			throws ClientProtocolException, IOException, JSONException {
+
+		HttpClient client = new DefaultHttpClient();
+
+		HttpPut httpPut = new HttpPut(url);
+		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers
+				.size()]));
+		httpPut.setEntity(new StringEntity(body));
+
+		HttpResponse response = client.execute(httpPut);
+		StatusLine statusLine = response.getStatusLine();
+
+		if (statusLine.getStatusCode() == 500) {
+			throw new IOException(mContext.getResources().getString(
+					mContext.getResources().getIdentifier(
+							Constants.PREFIX_ERROR_CODE + 500, "string",
+							Constants.PACKAGE_NAME)));
+		}
+
+		InputStream content = response.getEntity().getContent();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+				content));
+
+		String line;
+		StringBuilder builder = new StringBuilder();
+		while ((line = reader.readLine()) != null) {
+			builder.append(line);
+		}
+
+		return new JSONObject(builder.toString());
+	}
 	
 	
 	/**

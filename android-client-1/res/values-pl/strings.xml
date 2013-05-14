@@ -64,6 +64,8 @@
     <string name="start_time_incorrect">Czas rozpoczęcia jest niepoprawne. Spróbuj gg:mm</string>
     <string name="start_time_number_too_large">Czas rozpoczęcia jest niepoprawne. Max godzina:23 Max minuta:59</string>
 	
+    <!--  EditGame -->
+    <string name="game_edited">Pomyślnie zmieniono grę</string>
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>

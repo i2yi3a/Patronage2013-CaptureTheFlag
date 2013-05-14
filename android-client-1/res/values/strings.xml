@@ -41,7 +41,7 @@
     <string name="login_successful">Successfully logged in</string>
 
     <!-- CreateGame -->
-    <string name="game_created">Successfully created a game</string>
+    <string name="game_created">Game succssfully created</string>
     <string name="game_name">Game name:</string>
     <string name="game_description">Game description:</string>
     <string name="location_name">Location name:</string>
@@ -63,6 +63,10 @@
     <string name="start_time_incorrect">Start time is incorrect. Try hh:mm</string>
     <string name="start_time_number_too_large">Start time is incorrect. Max hours:23 Max minutes:59</string>
 
+    
+    <!--  EditGame -->
+    <string name="game_edited">Game successfully edited</string>
+    
     <!-- Error codes -->
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_500">Internal server error</string>
