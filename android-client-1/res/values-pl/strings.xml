@@ -8,6 +8,7 @@
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_game_details">GameDetailsActivity</string>
     
     <!-- Register & Login -->
     <string name="registration">Rejestracja</string>
@@ -66,6 +67,11 @@
 	
     <!--  EditGame -->
     <string name="game_edited">Pomyślnie zmieniono grę</string>
+    <string name="game_owner">Właściciel gry</string>
+    <string name="game_id">ID gry</string>
+    <string name="game_status">Status gry</string>
+    <string name="game_radius">Promień gry</string>
+    
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>

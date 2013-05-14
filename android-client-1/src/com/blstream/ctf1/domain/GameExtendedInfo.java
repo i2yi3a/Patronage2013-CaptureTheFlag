@@ -19,9 +19,9 @@ public class GameExtendedInfo {
 	
 	Date timeStart; // maybe to change if will be problems with json
 	
-	Long pointsMax;
+	Integer pointsMax;
 	
-	Long playersMax;
+	Integer playersMax;
 
 	public String getId() {
 		return id;
@@ -87,19 +87,19 @@ public class GameExtendedInfo {
 		this.timeStart = timeStart;
 	}
 
-	public Long getPointsMax() {
+	public Integer getPointsMax() {
 		return pointsMax;
 	}
 
-	public void setPointsMax(Long pointsMax) {
+	public void setPointsMax(Integer pointsMax) {
 		this.pointsMax = pointsMax;
 	}
 
-	public Long getPlayersMax() {
+	public Integer getPlayersMax() {
 		return playersMax;
 	}
 
-	public void setPlayersMax(Long playersMax) {
+	public void setPlayersMax(Integer playersMax) {
 		this.playersMax = playersMax;
 	}
 }

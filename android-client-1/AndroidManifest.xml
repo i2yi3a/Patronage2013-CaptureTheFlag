@@ -56,6 +56,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.blstream.ctf1.GameDetailsActivity"
+            android:label="@string/title_activity_game_details" 
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="org.acra.CrashReportDialog"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"

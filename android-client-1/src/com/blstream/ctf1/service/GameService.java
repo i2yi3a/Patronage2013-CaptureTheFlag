@@ -3,16 +3,21 @@ package com.blstream.ctf1.service;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.content.Context;
+
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.domain.GameBasicInfo;
+import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
+import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 /**
@@ -38,8 +43,8 @@ public class GameService {
 		mNetworkService = new NetworkService(context);
 		mStorageService = new StorageService(context);
 	}
-
-	public JSONObject JSONCreate(String gameName, String description,
+	
+	public JSONObject JSON(String id,String gameName, String description,
 			String timeStart, long duration, int pointsMax, int playersMax,
 			String localizationName, double lat, double lng, int radius)
 			throws JSONException, ClientProtocolException, IOException,
@@ -48,6 +53,8 @@ public class GameService {
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
 		JSONObject latlngObject = new JSONObject();
+		if(id != null)
+			jsonObject.put("id", id);
 		jsonObject.put("name", gameName);
 		jsonObject.put("description", description);
 		jsonObject.put("time_start", timeStart);
@@ -65,33 +72,26 @@ public class GameService {
 		return jsonObject;
 	}
 	
-	public JSONObject JSONEdit(String id,String gameName, String description,
-			String timeStart, long duration, int pointsMax, int playersMax,
-			String localizationName, double lat, double lng, int radius)
-			throws JSONException, ClientProtocolException, IOException,
-			CTFException {
+	public GameExtendedInfo JSONtoGameExtInfo(JSONObject jsonObject) throws JSONException {
+		GameExtendedInfo result= new GameExtendedInfo();
+		result.setDescription(jsonObject.getString("description"));
+		result.setDuration(jsonObject.getLong("duration"));
+		result.setGameStatusType(GameStatusType.fromString(jsonObject.getString("status")));
+		JSONObject jsonLocalization = jsonObject.getJSONObject("localization");
+		//JSONObject jsonLatLng = jsonLocalization.getJSONObject("latLng");
+		Localization localization = new Localization();
+		localization.setName(jsonLocalization.getString("name"));
+		localization.setRadius(jsonLocalization.getLong("radius"));
+		result.setLocalization(localization);
+		result.setId(jsonObject.getString("id"));
+		result.setName(jsonObject.getString("name"));
+		result.setOwner(jsonObject.getString("owner"));
+		result.setPlayersMax(jsonObject.getInt("players_max"));
+		result.setPointsMax(jsonObject.getInt("points_max"));
 		
-		JSONObject jsonObject = new JSONObject();
-		JSONObject localizationObject = new JSONObject();
-		JSONObject latlngObject = new JSONObject();
-		jsonObject.put("id", id);
-		jsonObject.put("name", gameName);
-		jsonObject.put("description", description);
-		jsonObject.put("time_start", timeStart);
-		jsonObject.put("duration", duration);
-		jsonObject.put("points_max", pointsMax);
-		jsonObject.put("players_max", playersMax);
-		localizationObject.put("name", localizationName);
-		localizationObject.put("radius", radius);
-		latlngObject.put("lat", lat);
-		latlngObject.put("lng", lng);
-		localizationObject.put("latLng", latlngObject);
-		localizationObject.put("radius", radius);
-		jsonObject.put("localization", localizationObject);
-		
-		return jsonObject;
+		return result;
+		//result.setTimeStart(timeStart);
 	}
-	
 	//TODO method too long. please split it.
 	//for example json part may be another method etc...
 	//TODO hardoced values. Please convert all hardoced string to public/private final static fields
@@ -111,11 +111,11 @@ public class GameService {
 		headers.add(new BasicHeader("Authorization", "Bearer "
 				+ loggedPlayer.getAccessToken()));
 
-		JSONObject jsonObject = JSONCreate(gameName,description,timeStart,
+		JSONObject jsonObject = JSON(null,gameName,description,timeStart,
 				duration,pointsMax,playersMax,localizationName,lat,lng,radius);
 
 		JSONObject jsonObjectResult = mNetworkService.requestPost(
-				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
+				Constants.URL_SERVER + Constants.URI_GAME, headers,
 				jsonObject.toString());
 
 
@@ -143,11 +143,11 @@ public class GameService {
 		headers.add(new BasicHeader("Authorization", "Bearer "
 				+ loggedPlayer.getAccessToken()));
 
-		JSONObject jsonObject = JSONEdit(id,gameName,description,timeStart,
+		JSONObject jsonObject = JSON(id,gameName,description,timeStart,
 				duration,pointsMax,playersMax,localizationName,lat,lng,radius);
 
 		JSONObject jsonObjectResult = mNetworkService.requestPut(
-				Constants.URL_SERVER + Constants.URI_CREATE_GAME, headers,
+				Constants.URL_SERVER + Constants.URI_GAME, headers,
 				jsonObject.toString());
 
 
@@ -155,6 +155,36 @@ public class GameService {
 			throw new CTFException(mContext.getResources(),
 					jsonObjectResult.getInt("error_code"),
 					jsonObjectResult.getString("error_description"));
+		}
+
+	}
+	
+	public GameExtendedInfo getGameDetails(String id)
+			throws JSONException, ClientProtocolException, IOException,
+			CTFException {
+
+		mStorageService.open();
+		LoggedPlayer loggedPlayer = mStorageService.getLoggedPlayer();
+		mStorageService.close();
+
+		List<Header> headers = new LinkedList<Header>();
+		headers.add(new BasicHeader("Accept", "application/json"));
+		headers.add(new BasicHeader("Content-Type", "application/json"));
+		headers.add(new BasicHeader("Authorization", "Bearer "
+				+ loggedPlayer.getAccessToken()));
+
+		JSONObject jsonObjectResult = mNetworkService.requestGetO(
+				Constants.URL_SERVER + Constants.URI_GAME + '/' + id , headers,
+				null);
+
+		
+		if (jsonObjectResult.has("error_code")) {
+			throw new CTFException(mContext.getResources(),
+					jsonObjectResult.getInt("error_code"),
+					jsonObjectResult.getString("error_description"));
+		} else {
+			GameExtendedInfo result = JSONtoGameExtInfo(jsonObjectResult);
+			return result;
 		}
 
 	}
@@ -195,7 +225,7 @@ public class GameService {
 		jsonObjectFilter.put("myGames", myGamesFilter);
 
 		JSONArray jsonArrayResult = mNetworkService.requestGet(
-				Constants.URL_SERVER + Constants.URI_GAME_LIST, headers,
+				Constants.URL_SERVER + Constants.URI_GAME, headers,
 				NetworkService.jsonToQueryString(jsonObjectFilter));
 
 		for (int i = 0; i < jsonArrayResult.length(); i++) {

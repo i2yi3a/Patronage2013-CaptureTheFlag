@@ -66,6 +66,10 @@
     
     <!--  EditGame -->
     <string name="game_edited">Game successfully edited</string>
+    <string name="game_owner">Game owner</string>
+    <string name="game_id">Game ID</string>
+    <string name="game_status">Game status</string>
+    <string name="game_radius">Radius of the game</string>
     
     <!-- Error codes -->
     <string name="error_code_101">Login already in use</string>

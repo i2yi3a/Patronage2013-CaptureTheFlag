@@ -57,6 +57,8 @@ public class GameListActivity extends Activity implements OnClickListener{
 				break;
 			case R.id.btnPlayerProfile:
 				IssueTracker.saveClick(this, mBtnPlayerProfile);
+				intent = new Intent(this, GameDetailsActivity.class);
+				startActivity(intent);//w celu sprawdzenia czy dziala
 				//nowe activity z profilem
 			case R.id.btnLogout:
 				IssueTracker.saveClick(this, mBtnLogout);

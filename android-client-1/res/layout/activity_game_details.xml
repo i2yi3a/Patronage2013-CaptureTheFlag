@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".GameDetailsActivity" >
+<ScrollView android:id="@+id/ScrlView" android:layout_width="fill_parent" android:layout_height="fill_parent" >
+ <LinearLayout android:id="@+id/layoutForScroll" android:orientation="vertical"
+    android:layout_width="fill_parent" android:layout_height="wrap_content"        
+    >
+    <TextView
+        android:id="@+id/textDetailsDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_description"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/DetailsDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="opis"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textDetailsDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/playing_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/DetailsDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="duration"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textLocName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/location_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/LocName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nazwa lokalizacji"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_id"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IDgry"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_owner"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/Owner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ja"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textDetailsGameName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/DetailsGameName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gra"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textGamePointsMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/maximum_scoring"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GamePointsMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tyle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textGamePlayersMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/maximum_players"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GamePlayersMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       	android:text="tylu"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textGameStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_status"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GameStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="status"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textLocRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_radius"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/LocRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="promien"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>

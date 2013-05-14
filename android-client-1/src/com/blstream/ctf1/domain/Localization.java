@@ -10,7 +10,7 @@ public class Localization {
 	
 	Long radius;
 	
-	//LatLng latLng;
+//	LatLng latLng;
 
 	public String getName() {
 		return name;
@@ -28,11 +28,11 @@ public class Localization {
 		this.radius = radius;
 	}
 
-	/*public LatLng getLatLng() {
-		return latLng;
-	}
+//	public LatLng getLatLng() {
+	//	return latLng;
+	//}
 
-	public void setLatLng(LatLng latLng) {
-		this.latLng = latLng;
-	}*/
+	//public void setLatLng(LatLng latLng) {
+	//	this.latLng = latLng;
+	//}
 }
