@@ -20,6 +20,8 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mongodb.util.MyAsserts.assertNotNull;
+
 
 @Controller
 @RequestMapping("/api/secured/games")
@@ -240,31 +242,43 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
             logger.debug("---- /filter");
 
         return response;
-
-
     }
 
+    @RequestMapping(value = "/nearest", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody Iterable<GameUI> findNearest(
+            @RequestParam(value = "latLng", required = true) Double[] latLng,
+            @RequestParam(value = "range", required = false) Double range,
+            @RequestParam(value = "status", required = false) GameStatusType status) {
 
+        if (logger.isDebugEnabled())
+            logger.debug("---- findNearest");
 
+        Iterable<GameUI> response;
+        List<Game> games;
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("Finding nearest games...");
+        }
 
+        assertNotNull(latLng);
 
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("latLng: %s", latLng));
+            logger.debug(String.format("range: %s", range));
+            logger.debug(String.format("status: %s", status));
+        }
 
+        games = service.findNearest(latLng, range, status);
 
+        if (logger.isDebugEnabled())
+            logger.debug(String.format("Count of nearest games: %d", games.size()));
 
+        response = converter.convertModelList(games);
 
+        if (logger.isDebugEnabled())
+            logger.debug("---- /findNearest");
 
-
-
-
-
-
-
-
-
-
-
-
-
+        return response;
+    }
 
 }

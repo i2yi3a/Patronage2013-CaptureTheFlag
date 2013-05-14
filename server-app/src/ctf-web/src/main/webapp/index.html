@@ -9,7 +9,7 @@
     <div>
         <h3>Login example</h3>
         username: <input id="j_username" type="text" value="michal.krawczak@blstream.com"><br/>
-        password: <input id="j_password" type="password" value="FKA13#aqFR3"><br/><br/>
+        password: <input id="j_password" type="password" value="$Passw0rd!"><br/><br/>
         <input id="btn_login" type="button" value="Login"><br/><br/>
         Token: <span id="txt_token">undefined</span>
     </div>
@@ -30,10 +30,28 @@
         <ul id="txt_allPlayerList">undefined</ul>
     </div>
 
+    <div>
+        <h3>Get all games</h3>
+        <input id="btn_getAllGames" type="button" value="Get all games"><br/><br/>
+        Games list:<br/>
+        <ul id="txt_allGameList">undefined</ul>
+    </div>
+
+    <div>
+        <h3>Get nearest games</h3>
+        latLng: <input id="j_latLng" type="text" value="53.447529,14.535513"><br/>
+        range: <input id="j_range" type="text" value="950"><br/><br/>
+        status: <input id="j_status" type="text" value="NEW"><br/><br/>
+        <input id="btn_getNearestGames" type="button" value="Get nearest games"><br/><br/>
+        Games list (nearest):<br/>
+        <ul id="txt_nearestGameList">undefined</ul>
+    </div>
+
     <script language="JavaScript" src="resources/js/lib/jquery-1.9.0.min.js"></script>
     <script language="JavaScript" src="resources/js/main.js"></script>
     <script language="JavaScript" src="resources/js/api/login-api.js"></script>
     <script language="JavaScript" src="resources/js/api/user-api.js"></script>
     <script language="JavaScript" src="resources/js/api/player-api.js"></script>
+    <script language="JavaScript" src="resources/js/api/game-api.js"></script>
 </body>
 </html>

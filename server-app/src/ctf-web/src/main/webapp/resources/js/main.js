@@ -17,9 +17,9 @@
  * Date: 1/31/13
  */
 
-var server_host = "http://capturetheflag.blstream.com:18080/demo";
+//var server_host = "http://capturetheflag.blstream.com:18080/demo";
 //var server_host = "https://capturetheflag.blstream.com:8080/demo";
-//var server_host = "http://localhost:8080/";
+var server_host = "http://localhost:8080/";
 var access_token = null;
 
 $(document).ready(function () {
@@ -36,6 +36,16 @@ $(document).ready(function () {
 
     $("#btn_getAllPlayers").click(function () {
         getAllPlayersExample(access_token, playerListCallback);
+    });
+
+    $("#btn_getAllGames").click(function () {
+        getAllGames(access_token, allGameListCallback);
+    });
+    $("#btn_getNearestGames").click(function () {
+        var latLng = $("#j_latLng").val();
+        var range = $("#j_range").val();
+        var status = $("#j_status").val();
+        getNearestGames(access_token, latLng, range, status, nearestGameListCallback);
     });
 });
 
@@ -69,4 +79,26 @@ function playerListCallback(listData) {
         html += "<li>" + "id: " + player.id + " | " + player.type + " | " + user.username + "</li>";
     }
     $("#txt_allPlayerList").html(html);
+}
+
+function allGameListCallback(listData) {
+    var html = "";
+    for (var i=0; i<listData.length; i++) {
+        var game = listData[i];
+
+        html += "<li>" + "id: " + game.id + " | " + game.name + "</li>";
+//        html += "<li>" + "id: " + game.id + " | " + game.name + " | " + game.localization.latLng + "</li>";
+    }
+    $("#txt_allGameList").html(html);
+}
+
+function nearestGameListCallback(listData) {
+    var html = "";
+    for (var i=0; i<listData.length; i++) {
+        var game = listData[i];
+
+        html += "<li>" + "id: " + game.id + " | " + game.name + "</li>";
+//        html += "<li>" + "id: " + game.id + " | " + game.name + " | " + game.localization.latLng + "</li>";
+    }
+    $("#txt_nearestGameList").html(html);
 }
