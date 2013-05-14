@@ -4,8 +4,6 @@
  */
 package com.blstream.ctf1;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +15,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.Login;
 import com.blstream.ctf1.service.NetworkService;
-import com.blstream.ctf1.tracker.ClickTracker;
+import com.blstream.ctf1.tracker.IssueTracker;
 
 //TODO move header of class here
 public class LoginActivity extends Activity implements OnClickListener {
@@ -49,9 +47,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		Intent intent = null;
 		switch(v.getId()) {
 			case R.id.btnLogin:
-				ArrayList<String> tmp = new ArrayList<String>();
-				tmp.get(0);
-				ClickTracker.saveClick(this, mBtnLogin);
+				IssueTracker.saveClick(this, mBtnLogin);
 				String login = mEditLogin.getText().toString();
 				String password = mEditPassword.getText().toString();
 				
@@ -68,7 +64,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				break;
 					
 			case R.id.btnRegistration:
-				ClickTracker.saveClick(this, mBtnRegistration);
+				IssueTracker.saveClick(this, mBtnRegistration);
 				intent = new Intent(this, RegisterActivity.class);
 				startActivity(intent);
 				break;

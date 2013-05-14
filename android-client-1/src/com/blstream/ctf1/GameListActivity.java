@@ -3,16 +3,16 @@
  */
 package com.blstream.ctf1;
 
-import com.blstream.ctf1.tracker.ClickTracker;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.blstream.ctf1.tracker.IssueTracker;
 
 //TODO header of class (/** @author */ should be just before declaration of class
 //please move it here
@@ -51,15 +51,15 @@ public class GameListActivity extends Activity implements OnClickListener{
 		Intent intent = null;	
 		switch (v.getId()) {
 			case R.id.btnCreateNewGame:
-				ClickTracker.saveClick(this, mBtnCreateNewGame);
+				IssueTracker.saveClick(this, mBtnCreateNewGame);
 				intent = new Intent(this, CreateGameActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.btnPlayerProfile:
-				ClickTracker.saveClick(this, mBtnPlayerProfile);
+				IssueTracker.saveClick(this, mBtnPlayerProfile);
 				//nowe activity z profilem
 			case R.id.btnLogout:
-				ClickTracker.saveClick(this, mBtnLogout);
+				IssueTracker.saveClick(this, mBtnLogout);
 				Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
 				finish();
 				break;

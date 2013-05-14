@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.Register;
 import com.blstream.ctf1.service.NetworkService;
-import com.blstream.ctf1.tracker.ClickTracker;
+import com.blstream.ctf1.tracker.IssueTracker;
 
 
 //TODO who is the autor of class
@@ -51,11 +51,11 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		
 			case R.id.btnBack:
-				ClickTracker.saveClick(this, mBtnBack);
+				IssueTracker.saveClick(this, mBtnBack);
 				finish();
 				break;
 			case R.id.btnRegister:
-				ClickTracker.saveClick(this, mBtnRegister);
+				IssueTracker.saveClick(this, mBtnRegister);
 				String login = mEditLoginReg.getText().toString();
 				String password = mEditPasswordReg.getText().toString();
 				String password2 = mEditPassword2Reg.getText().toString();

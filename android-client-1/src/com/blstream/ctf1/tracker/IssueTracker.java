@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Button;
 
 public class IssueTracker {
 	
@@ -30,6 +31,10 @@ public class IssueTracker {
 	
 	public static void setClickFlag(boolean arg) {
 		ClickTracker.setFlag(arg);
+	}
+	
+	public static void saveClick(Context context, Button btn) {
+		ClickTracker.saveClick(context, btn);
 	}
 
 }

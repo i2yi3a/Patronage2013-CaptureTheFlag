@@ -8,14 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 import android.app.Activity;
 import android.os.Bundle;
-//TODO CLEAN CODE: Remove unused import
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +19,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.CreateGame;
 import com.blstream.ctf1.service.NetworkService;
-import com.blstream.ctf1.tracker.ClickTracker;
+import com.blstream.ctf1.tracker.IssueTracker;
 
 public class CreateGameActivity extends Activity implements OnClickListener {
 
@@ -69,13 +63,13 @@ public class CreateGameActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btnCancel:
-			ClickTracker.saveClick(this, mBtnCancel);
+			IssueTracker.saveClick(this, mBtnCancel);
 			finish();
 			break;
 			
 		case R.id.btnCreate:	
 			//TODO move this part to method and name it for example onCreateGameBtnClicked
-			ClickTracker.saveClick(this, mBtnCreate);
+			IssueTracker.saveClick(this, mBtnCreate);
 			String mGameName = mEditGameName.getText().toString();
 			String mGameDescription = mEditGameDescription.getText().toString();
 			String mLocationName = mEditLocationName.getText().toString();
