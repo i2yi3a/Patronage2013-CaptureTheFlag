@@ -69,48 +69,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			break;
 
 		case R.id.btnCreate:
-			// TODO move this part to method and name it for example
-			// onCreateGameBtnClicked
-			IssueTracker.saveClick(this, mBtnCreate);
-			String mGameName = mEditGameName.getText().toString();
-			String mGameDescription = mEditGameDescription.getText().toString();
-			String mLocationName = mEditLocationName.getText().toString();
-
-			String mStartDate = mEditStartDate.getText().toString();
-			mStartDate = mStartDate.replace(".", "-");
-			mStartDate = mStartDate.replace("/", "-");
-
-			String mStartTime = mEditStartTime.getText().toString();
-
-			String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
-			String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
-			String mMaxPointsTmp = mEditMaxPoints.getText().toString();
-
-			if (correctData(mGameName, mLocationName, mStartDate, mStartTime,
-					mPlayingTimeTmp)) {
-				if (NetworkService.isDeviceOnline(this)) {
-					Log.d("Data", "" + mStartDate + "  " + mStartTime);
-
-					if (mMaxPlayersTmp.length() == 0)
-						mMaxPlayersTmp = "120"; // no limits?
-					if (mMaxPointsTmp.length() == 0)
-						mMaxPointsTmp = "120"; // no limits?
-
-					long mPlayingTime = Integer.parseInt(mPlayingTimeTmp) * 60 * 1000;
-					int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
-					int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
-
-					CreateGame createGame = new CreateGame(this,
-							CreateGameActivity.class, mGameName,
-							mGameDescription, mStartDate + " " + mStartTime
-									+ ":00", mPlayingTime, mMaxPoints,
-							mMaxPlayers, mLocationName, 0.0, 0.0, 1);
-					createGame.execute();
-				} else {
-					Toast.makeText(this, R.string.no_internet_connection,
-							Toast.LENGTH_SHORT).show();
-				}
-			}
+			onCreateGameBtnClicked();
 			break;
 
 		case R.id.btnStartDate:
@@ -120,25 +79,65 @@ public class CreateGameActivity extends FragmentActivity implements
 		}
 	}
 
-	// TODO Refactor this method.
+	private void onCreateGameBtnClicked() {
+		IssueTracker.saveClick(this, mBtnCreate);
+		String mGameName = mEditGameName.getText().toString();
+		String mGameDescription = mEditGameDescription.getText().toString();
+		String mLocationName = mEditLocationName.getText().toString();
+
+		String mStartDate = mEditStartDate.getText().toString();
+		mStartDate = mStartDate.replace(".", "-");
+		mStartDate = mStartDate.replace("/", "-");
+
+		String mStartTime = mEditStartTime.getText().toString();
+
+		String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
+		String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
+		String mMaxPointsTmp = mEditMaxPoints.getText().toString();
+
+		if (correctData(mGameName, mLocationName, mStartDate, mStartTime,
+				mPlayingTimeTmp)) {
+			if (NetworkService.isDeviceOnline(this)) {
+				Log.d("Data", "" + mStartDate + "  " + mStartTime);
+
+				if (mMaxPlayersTmp.length() == 0)
+					mMaxPlayersTmp = "120"; // no limits?
+				if (mMaxPointsTmp.length() == 0)
+					mMaxPointsTmp = "120"; // no limits?
+
+				long mPlayingTime = Integer.parseInt(mPlayingTimeTmp) * 60 * 1000;
+				int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
+				int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
+
+				CreateGame createGame = new CreateGame(this,
+						CreateGameActivity.class, mGameName, mGameDescription,
+						mStartDate + " " + mStartTime + ":00", mPlayingTime,
+						mMaxPoints, mMaxPlayers, mLocationName, 0.0, 0.0, 1);
+				createGame.execute();
+			} else {
+				Toast.makeText(this, R.string.no_internet_connection,
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
 	// It is too long. Split it into smaller methods
-	// All hardoced constatns should be moved final stati
 	private boolean correctData(String gameName, String locationName,
 			String mStartDate, String mStartTime, String playingTime) {
 		String info = "";
 		boolean result = false;
 
-		if (gameName.length() < 1) {
+		if (!gameName.isEmpty()) {
 			info += getResources().getString(R.string.game_name_too_short);
 		}
 
-		if (locationName.length() < 1) {
+		if (!locationName.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.location_name_too_short);
 		}
 
-		if (mStartDate.length() < 1) {
+		if (!mStartDate.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.start_date_too_short);
@@ -169,7 +168,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			}
 		}
 
-		if (mStartTime.length() < 1) {
+		if (!mStartTime.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.start_time_too_short);
@@ -204,7 +203,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			}
 		}
 
-		if (playingTime.length() < 1) {
+		if (!playingTime.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.playing_time_too_short);

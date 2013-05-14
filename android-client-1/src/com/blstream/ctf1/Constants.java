@@ -1,17 +1,21 @@
 package com.blstream.ctf1;
 
 public class Constants {
+	
 	public static final int SPLASHSCREEN_DELAY = 1000;
+	// Register & Login
+	public static final int MIN_SIZE_LOGIN = 5;
+	public static final int MIN_SIZE_PASSWORD = 5;
 	
 	public static final String URL_SERVER = "http://capturetheflag.blstream.com:18080/demo/";
 	
-	public static final String URI_REGISTER_PLAYER = "api/players/add/";
+	public static final String URI_REGISTER_PLAYER = "api/players/add";
 	
-	public static final String URI_LOGIN_PLAYER = "oauth/token/";
+	public static final String URI_LOGIN_PLAYER = "oauth/token";
 	
-	public static final String URI_CREATE_GAME = "api/secured/games/";
+	public static final String URI_CREATE_GAME = "api/secured/games";
 	
-	public static final String URI_GAME_LIST = "api/secured/games/"; //maybe just URI_GAME?
+	public static final String URI_GAME_LIST = "api/secured/games"; //maybe just URI_GAME?
 	
 	public static final String PACKAGE_NAME = "com.blstream.ctf1";
 	

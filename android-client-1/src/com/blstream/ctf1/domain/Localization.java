@@ -1,6 +1,6 @@
 package com.blstream.ctf1.domain;
 
-import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Adrian Swarcewicz
@@ -10,7 +10,7 @@ public class Localization {
 	
 	Long radius;
 	
-	LatLng latLng;
+	//LatLng latLng;
 
 	public String getName() {
 		return name;
@@ -28,11 +28,11 @@ public class Localization {
 		this.radius = radius;
 	}
 
-	public LatLng getLatLng() {
+	/*public LatLng getLatLng() {
 		return latLng;
 	}
 
 	public void setLatLng(LatLng latLng) {
 		this.latLng = latLng;
-	}
+	}*/
 }
