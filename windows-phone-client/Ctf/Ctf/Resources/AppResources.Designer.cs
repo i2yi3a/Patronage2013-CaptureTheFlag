@@ -88,6 +88,87 @@ namespace Ctf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zaloguj.
+        /// </summary>
+        public static string MainpageLoginButton {
+            get {
+                return ResourceManager.GetString("MainpageLoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logowanie.
+        /// </summary>
+        public static string MainPageLoginHeader {
+            get {
+                return ResourceManager.GetString("MainPageLoginHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło.
+        /// </summary>
+        public static string MainpageLoginPassword {
+            get {
+                return ResourceManager.GetString("MainpageLoginPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nazwa użytkownika.
+        /// </summary>
+        public static string MainpageLoginUsername {
+            get {
+                return ResourceManager.GetString("MainpageLoginUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zarejestruj.
+        /// </summary>
+        public static string MainpageRegisterButton {
+            get {
+                return ResourceManager.GetString("MainpageRegisterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejestracja.
+        /// </summary>
+        public static string MainPageRegisterHeader {
+            get {
+                return ResourceManager.GetString("MainPageRegisterHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Powtórz hasło.
+        /// </summary>
+        public static string MainpageRegisterPasswordConfirm {
+            get {
+                return ResourceManager.GetString("MainpageRegisterPasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nazwa użytkownika.
+        /// </summary>
+        public static string MainpageRegisterUsername {
+            get {
+                return ResourceManager.GetString("MainpageRegisterUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło.
+        /// </summary>
+        public static string MainpageRegsiterPassword {
+            get {
+                return ResourceManager.GetString("MainpageRegsiterPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

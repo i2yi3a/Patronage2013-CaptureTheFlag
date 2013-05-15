@@ -18,7 +18,7 @@
         <Grid Background="Transparent" VerticalAlignment="Top" Height="757" Canvas.ZIndex="0"  Margin="0,0,0,0" Width="477" Canvas.Top="8">
 
             <phone:Panorama x:Name="pano" HorizontalAlignment="Left" Height="745" Margin="3,0,0,0" VerticalAlignment="Top" Width="472" FontSize="6">
-                <phone:PanoramaItem CacheMode="{x:Null}" Header="Logowanie" Width="466" >
+                <phone:PanoramaItem CacheMode="{x:Null}" Header="{Binding LocalizedResources.MainPageLoginHeader, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Width="466" >
                     <phone:PanoramaItem.RenderTransform>
                         <TranslateTransform/>
                     </phone:PanoramaItem.RenderTransform>
@@ -26,11 +26,11 @@
 
                         <!--This code creates two TextBlock controls and places them in a StackPanel control.-->
                         <StackPanel Margin="0,20,0,0" >
-                            <TextBlock Margin="88,20,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Height="41" FontSize="18" HorizontalAlignment="Left" Width="262"/>
+                            <TextBlock Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageLoginUsername, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Height="41" FontSize="18" HorizontalAlignment="Left" Width="262"/>
                             <TextBox x:Name="usernameBox" Height="60" Margin="77,0,77,0" TextWrapping="Wrap" VerticalAlignment="Top" SelectionForeground="White" Width="300" TextChanged="txtChanged" FontSize="18" />
-                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Height="41" Width="229" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageLoginPassword, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Height="41" Width="229" FontSize="18"/>
                             <PasswordBox x:Name="passwordBox" Margin="77,0,77,0" VerticalAlignment="Top" Width="300" Height="60" FontSize="18" PasswordChanged="txtChanged"/>
-                            <Button x:Name="loginButton" Content="Zaloguj" Margin="137,0,145,0" VerticalAlignment="Center" Click="LogIn"/>
+                            <Button x:Name="loginButton" Content="{Binding LocalizedResources.MainpageLoginButton, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Margin="137,0,145,0" VerticalAlignment="Center" Click="LogIn"/>
                         </StackPanel>
 
                     </Grid>
@@ -40,19 +40,19 @@
 
 
                 </phone:PanoramaItem>
-                <phone:PanoramaItem CacheMode="{x:Null}" Header="Rejestracja" Orientation="Horizontal" Width="466" >
+                <phone:PanoramaItem CacheMode="{x:Null}" Header="{Binding LocalizedResources.MainPageRegisterHeader, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Orientation="Horizontal" Width="466" >
                     <!--<phone:PanoramaItem.RenderTransform>
                         <TranslateTransform/>
                     </phone:PanoramaItem.RenderTransform>-->
                     <Grid>
                         <StackPanel Margin="0,20,0,0">
-                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="Nazwa użytkownika" VerticalAlignment="Top" Width="210" FontSize="18" Height="41"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageRegisterUsername, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Width="210" FontSize="18" Height="41"/>
                             <TextBox x:Name="userNameRegister" Height="60" Margin="77,0,77,0" TextWrapping="Wrap" VerticalAlignment="Center" TextChanged="txtChangedRegister" FontSize="18"/>
-                            <TextBlock Text="Hasło" HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="41" FontSize="18" />
+                            <TextBlock Text="{Binding LocalizedResources.MainpageRegsiterPassword, Mode=OneWay, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="41" FontSize="18" />
                             <PasswordBox x:Name="passwordRegister1" HorizontalAlignment="Center" Margin="77,0,77,0"  VerticalAlignment="Center" Width="300" Height="60" PasswordChanged="txtChangedRegister" FontSize="18"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top" FontSize="18" Height="41"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageRegisterPasswordConfirm, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" FontSize="18" Height="41"/>
                             <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Center" Margin="77,0,77,0"  VerticalAlignment="Center" Width="300" Height="60" PasswordChanged="txtChangedRegister" FontSize="18"/>
-                            <Button x:Name="registerButton" Content="Zarejestruj" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="178" Click="Button_Click_1" />
+                            <Button x:Name="registerButton" Content="{Binding LocalizedResources.MainpageRegisterButton, Mode=OneWay, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="178" Click="Button_Click_1" />
                         </StackPanel>
                     </Grid>
                 </phone:PanoramaItem>
