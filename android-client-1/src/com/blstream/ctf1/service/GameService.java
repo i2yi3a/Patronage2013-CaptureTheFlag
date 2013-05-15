@@ -182,9 +182,10 @@ public class GameService {
 		headers.add(new BasicHeader("Authorization", "Bearer "
 				+ loggedPlayer.getAccessToken()));
 
-		JSONObject jsonObjectResult = mNetworkService.requestGetO(
-				Constants.URL_SERVER + Constants.URI_GAME + '/' + id , headers,
-				null);
+		JSONArray jsonArrayResult = mNetworkService.requestGet(
+				Constants.URL_SERVER + Constants.URI_GAME + '/' + id , headers);
+
+		JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(0);
 
 		
 		if (jsonObjectResult.has("error_code")) {

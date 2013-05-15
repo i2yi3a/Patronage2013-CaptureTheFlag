@@ -1,14 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".GameDetailsActivity" >
-<ScrollView android:id="@+id/ScrlView" android:layout_width="fill_parent" android:layout_height="fill_parent" >
  <LinearLayout android:id="@+id/layoutForScroll" android:orientation="vertical"
     android:layout_width="fill_parent" android:layout_height="wrap_content"        
     >
@@ -23,7 +18,7 @@
         android:id="@+id/DetailsDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="opis"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -37,7 +32,7 @@
         android:id="@+id/DetailsDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="duration"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -51,7 +46,7 @@
         android:id="@+id/LocName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nazwa lokalizacji"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -65,7 +60,7 @@
         android:id="@+id/ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IDgry"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -79,7 +74,7 @@
         android:id="@+id/Owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ja"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -93,7 +88,7 @@
         android:id="@+id/DetailsGameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="gra"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -107,7 +102,7 @@
         android:id="@+id/GamePointsMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="tyle"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -121,7 +116,7 @@
         android:id="@+id/GamePlayersMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       	android:text="tylu"
+       	android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -135,7 +130,7 @@
         android:id="@+id/GameStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="status"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -149,10 +144,9 @@
         android:id="@+id/LocRadius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="promien"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
 </LinearLayout>
 </ScrollView>
-</LinearLayout>

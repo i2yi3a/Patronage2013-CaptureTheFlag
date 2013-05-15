@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.net.ConnectivityManager;
 
-import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.exception.CTFException;
 
 /**
@@ -206,34 +205,4 @@ public class NetworkService {
 		return stringToJSONArray(responseContent);
 	}
 
-	public JSONObject requestGetO(String url, List<Header> headers, String queryString) throws ClientProtocolException, IOException, JSONException {
-
-		if (queryString != null && !queryString.isEmpty()) {
-			url += "?" + queryString;
-		}
-
-		HttpClient client = new DefaultHttpClient();
-
-		HttpGet httpGet = new HttpGet(url);
-		httpGet.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
-
-		HttpResponse response = client.execute(httpGet);
-		StatusLine statusLine = response.getStatusLine();
-
-		if (statusLine.getStatusCode() == 500) {
-			throw new IOException(mContext.getResources().getString(
-					mContext.getResources().getIdentifier(Constants.PREFIX_ERROR_CODE + 500, "string", Constants.PACKAGE_NAME)));
-		}
-
-		InputStream content = response.getEntity().getContent();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-
-		String line;
-		StringBuilder builder = new StringBuilder();
-		while ((line = reader.readLine()) != null) {
-			builder.append(line);
-		}
-
-		return new JSONObject(builder.toString());
-	}
 }

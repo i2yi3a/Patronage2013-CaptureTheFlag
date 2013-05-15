@@ -1,6 +1,4 @@
-/**
- * @author Mateusz Wiœniewski
- */
+
 package com.blstream.ctf1;
 
 import android.app.Activity;
@@ -14,8 +12,9 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.tracker.IssueTracker;
 
-//TODO header of class (/** @author */ should be just before declaration of class
-//please move it here
+/**
+ * @author Mateusz Wiœniewski
+ */
 public class GameListActivity extends Activity implements OnClickListener{
 
 	private Button mBtnCreateNewGame; 
@@ -46,8 +45,6 @@ public class GameListActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		//TODO remove auto genereated stub
-		// TODO Auto-generated method stub
 		Intent intent = null;	
 		switch (v.getId()) {
 			case R.id.btnCreateNewGame:
@@ -60,6 +57,7 @@ public class GameListActivity extends Activity implements OnClickListener{
 				intent = new Intent(this, GameDetailsActivity.class);
 				startActivity(intent);//w celu sprawdzenia czy dziala
 				//nowe activity z profilem
+				break;
 			case R.id.btnLogout:
 				IssueTracker.saveClick(this, mBtnLogout);
 				Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
