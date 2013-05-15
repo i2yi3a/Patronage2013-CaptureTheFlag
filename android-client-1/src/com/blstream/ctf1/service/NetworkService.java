@@ -23,7 +23,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.content.Context;
-import android.content.res.Resources.NotFoundException;
 import android.net.ConnectivityManager;
 
 import com.blstream.ctf1.exception.CTFException;
@@ -180,11 +179,9 @@ public class NetworkService {
 	 * @throws IOException
 	 * @throws JSONException
 	 * @throws CTFException
-	 * @throws NotFoundException
 	 * @author Adrian Swarcewicz
 	 */
-	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, NotFoundException,
-			CTFException {
+	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
 		HttpClient client = new DefaultHttpClient();
 	
 		HttpPut httpPut = new HttpPut(url);
