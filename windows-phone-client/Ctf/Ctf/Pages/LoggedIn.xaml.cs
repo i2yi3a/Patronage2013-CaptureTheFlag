@@ -23,12 +23,19 @@ namespace Ctf
             InitializeComponent();
 
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
+            if (ApplicationSettings.Instance.HasLoginInfo())
+            {
+                welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            
+            if (ApplicationSettings.Instance.HasLoginInfo())
+            {
+                welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            }
         }
 
         private void Logout(object sender, RoutedEventArgs e)
