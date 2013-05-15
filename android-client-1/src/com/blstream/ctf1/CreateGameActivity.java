@@ -127,17 +127,17 @@ public class CreateGameActivity extends FragmentActivity implements
 		String info = "";
 		boolean result = false;
 
-		if (!gameName.isEmpty()) {
+		if (gameName.isEmpty()) {
 			info += getResources().getString(R.string.game_name_too_short);
 		}
 
-		if (!locationName.isEmpty()) {
+		if (locationName.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.location_name_too_short);
 		}
 
-		if (!mStartDate.isEmpty()) {
+		if (mStartDate.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.start_date_too_short);
@@ -168,7 +168,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			}
 		}
 
-		if (!mStartTime.isEmpty()) {
+		if (mStartTime.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.start_time_too_short);
@@ -203,7 +203,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			}
 		}
 
-		if (!playingTime.isEmpty()) {
+		if (playingTime.isEmpty()) {
 			if (!info.isEmpty())
 				info += '\n';
 			info += getResources().getString(R.string.playing_time_too_short);
