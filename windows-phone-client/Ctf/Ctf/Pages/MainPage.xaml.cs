@@ -30,7 +30,7 @@ namespace Ctf
             {
                 if (NavigationService.CanGoBack)
                 {
-                    //while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
+                    while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
                 }
             }
             base.OnNavigatedTo(e);
@@ -79,8 +79,10 @@ namespace Ctf
         {
             waitIndicator.Visibility = Visibility.Visible;
             Login Logger = new Login();
-            Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
             Logger.MessengerSent += Logger_MessengerSent;
+            Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+            usernameBox.Text = String.Empty;
+            passwordBox.Password = String.Empty;
         }
 
 
@@ -106,6 +108,9 @@ namespace Ctf
             Registration Registers = new Registration();
             Registers.MessengerSent += Registers_MessengerSent;
             Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            userNameRegister.Text = String.Empty;
+            passwordRegister1.Password = String.Empty;
+            passwordRegister2.Password = String.Empty;
         }
 
         private void Registers_MessengerSent(object sender, EventArgs e)

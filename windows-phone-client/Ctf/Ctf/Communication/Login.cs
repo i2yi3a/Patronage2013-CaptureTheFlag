@@ -104,7 +104,7 @@ namespace Ctf
         public async Task<RestRequestAsyncHandle> LogInAs(UserCredentials user, string secret)
         {
             Debug.WriteLine("secret could be: " + System.Guid.NewGuid().ToString());
-            if (LoggedAs() != null)
+            if (ApplicationSettings.Instance.HasLoginInfo())
             {
                 Debug.WriteLine("MessangerSent: " + "Logged in as another user. Please, logout first");
                 OnMessengerSent(new MessengerSentEventArgs("Logged in as another user. Please, logout first"));
