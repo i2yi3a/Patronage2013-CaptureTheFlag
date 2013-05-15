@@ -57,6 +57,7 @@ namespace Ctf
             {
                 if (String.IsNullOrEmpty(response.Data.error))
                 {
+                    //Uproscic jak na JIRA, if-else do usuniecia/modyf
                     if (String.IsNullOrEmpty(response.Data.access_token) && String.IsNullOrEmpty(response.Data.token_type) && String.IsNullOrEmpty(response.Data.scope))
                     {
                         Debug.WriteLine("Response Data is NULL or EMPTY.");

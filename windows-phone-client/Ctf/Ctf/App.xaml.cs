@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Ctf.Resources;
+using Ctf.Pages;
 
 namespace Ctf
 {
@@ -63,12 +64,17 @@ namespace Ctf
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            RootFrame.UriMapper = new LoginUriMapper();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            if (e.IsApplicationInstancePreserved == false)
+            {
+                RootFrame.UriMapper = new LoginUriMapper();
+            } 
         }
 
         // Code to execute when the application is deactivated (sent to background)

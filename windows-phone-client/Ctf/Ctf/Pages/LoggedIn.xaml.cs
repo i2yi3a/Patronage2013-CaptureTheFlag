@@ -21,12 +21,16 @@ namespace Ctf
         public LoggedIn()
         {
             InitializeComponent();
+            ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            if (ApplicationSettings.Instance.HasLoginInfo())
+            {
+                welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            }
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -37,18 +41,32 @@ namespace Ctf
             else
                 Debug.WriteLine("Logout FAILED");
 
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-            }
-            else { NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative)); }
+            //if (NavigationService.CanGoBack)
+            //{
+            //    NavigationService.GoBack();
+            //}
+            //else
+            //{
+            //    NavigationService.Navigate(new Uri("/Pages/LaunchPage.xaml?", UriKind.Relative));
+            //}
         }
 
+        //Check if it still works when deleted UserHasChanged
+        public void UserHasChanged(object sender, EventArgs e)
+        {
+            if (ApplicationSettings.Instance.HasLoginInfo())
+            {
+                welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
+            }
+        }
 
         private void PhoneApplicaitonPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
         }
-
     }
 }

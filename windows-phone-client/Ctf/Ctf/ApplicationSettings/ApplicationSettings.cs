@@ -111,5 +111,10 @@ namespace Ctf
             }
             return false;
         }
+
+        public bool HasLoginInfo()
+        {
+            return settings.Contains(userKeyword);
+        }
     }
 }

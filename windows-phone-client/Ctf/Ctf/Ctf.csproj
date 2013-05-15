@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Communication\Login.cs" />
     <Compile Include="Communication\LoginJsonResponse.cs" />
+    <Compile Include="Pages\LoginUriMapper.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

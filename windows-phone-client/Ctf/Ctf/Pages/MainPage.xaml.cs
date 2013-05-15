@@ -24,6 +24,18 @@ namespace Ctf
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (!ApplicationSettings.Instance.HasLoginInfo())
+            {
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.RemoveBackEntry();
+                }
+            }
+            base.OnNavigatedTo(e);
+        }
+
         public void UserHasChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("AppSett EVENT!. User has changed.");
@@ -60,8 +72,6 @@ namespace Ctf
             }
         }
 
-
-
         private void LogIn(object sender, RoutedEventArgs e)
         {
             waitIndicator.Visibility = Visibility.Visible;
@@ -89,9 +99,8 @@ namespace Ctf
         {
             waitIndicator.Visibility = Visibility.Visible;
             Registration Registers = new Registration();
-            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             Registers.MessengerSent += Registers_MessengerSent;
-            
+            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
         }
 
         private void Registers_MessengerSent(object sender, EventArgs e)
