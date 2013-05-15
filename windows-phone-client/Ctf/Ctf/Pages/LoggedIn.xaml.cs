@@ -21,14 +21,12 @@ namespace Ctf
         public LoggedIn()
         {
             InitializeComponent();
-
-            ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            
+            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -44,11 +42,6 @@ namespace Ctf
                 NavigationService.GoBack();
             }
             else { NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative)); }
-        }
-
-        public void UserHasChanged(object sender, EventArgs e)
-        {
-            welcomeBlock.Text = ApplicationSettings.Instance.RetriveLoggedUser().username;
         }
 
 

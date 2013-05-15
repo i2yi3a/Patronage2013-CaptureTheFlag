@@ -70,6 +70,7 @@ namespace Ctf
                         Debug.WriteLine("response.Data.token_type: " + response.Data.token_type);
                         Debug.WriteLine("response.Data.scope: " + response.Data.scope);
                         ApplicationSettings.Instance.SaveLoggedUser(new User(username, response.Data.access_token, response.Data.token_type, response.Data.scope));
+                        OnMessengerSent(new MessengerSentEventArgs("Login has been successful.", ErrorCode.SUCCESS));
                     }
                 }
                 else

@@ -64,10 +64,10 @@ namespace Ctf
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
+            waitIndicator.Visibility = Visibility.Visible;
             Login Logger = new Login();
             Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
             Logger.MessengerSent += Logger_MessengerSent;
-            NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
         }
 
 
@@ -75,7 +75,13 @@ namespace Ctf
         {
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
-            MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+            MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
+            if (m == MessageBoxResult.OK)
+            { waitIndicator.Visibility = Visibility.Collapsed; }
+            if (x.errorCode == 0)
+            {
+                NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+            }  
         }
 
 
@@ -85,7 +91,7 @@ namespace Ctf
             Registration Registers = new Registration();
             Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             Registers.MessengerSent += Registers_MessengerSent;
-
+            
         }
 
         private void Registers_MessengerSent(object sender, EventArgs e)
