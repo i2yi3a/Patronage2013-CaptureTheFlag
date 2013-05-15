@@ -24,6 +24,18 @@ namespace Ctf
             ApplicationSettings.Instance.UserChanged += UserHasChanged;
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (!ApplicationSettings.Instance.HasLoginInfo())
+            {
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.RemoveBackEntry();
+                }
+            }
+            base.OnNavigatedTo(e);
+        }
+
         public void UserHasChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("AppSett EVENT!. User has changed.");

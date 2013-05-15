@@ -13,13 +13,13 @@ namespace Ctf.Pages
         {
             if (uri.OriginalString == "/Pages/LaunchPage.xaml")
             {
-                if (ApplicationSettings.Instance.HasLoginInfo() == false)
+                if (ApplicationSettings.Instance.HasLoginInfo())
                 {
-                    uri = new Uri("/Pages/MainPage.xaml", UriKind.Relative);
+                    uri = new Uri("/Pages/LoggedIn.xaml", UriKind.Relative);
                 }
                 else
                 {
-                    uri = new Uri("/Pages/LoggedIn.xaml", UriKind.Relative);
+                    uri = new Uri("/Pages/MainPage.xaml", UriKind.Relative);
                 }
             }
             return uri;
