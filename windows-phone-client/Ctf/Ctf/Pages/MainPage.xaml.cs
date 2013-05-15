@@ -95,8 +95,9 @@ namespace Ctf
         {
             waitIndicator.Visibility = Visibility.Visible;
             Registration Registers = new Registration();
-            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
             Registers.MessengerSent += Registers_MessengerSent;
+            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            
 
         }
 
