@@ -45,117 +45,16 @@ public class NetworkService {
 		mContext = context;
 	}
 
-	public static Boolean isDeviceOnline(Context context) {
-		Boolean result = false;
-		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-		if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
-			result = true;
-		}
-
-		return result;
-	}
-
-	/**
-	 * @param jsonObject
-	 * @return query string based on jsonObject or null if no keys-value pair
-	 *         found in jsonObject
-	 * @throws JSONException
-	 * @author Adrian Swarcewicz
-	 */
-	public static String jsonToQueryString(JSONObject jsonObject) throws JSONException {
-		StringBuilder stringBuilder = new StringBuilder();
-		Iterator<?> jsonIterator = jsonObject.keys();
-
-		if (!jsonIterator.hasNext()) {
-			return null;
-		}
-
-		while (jsonIterator.hasNext()) {
-			String key = (String) jsonIterator.next();
-			Object value = jsonObject.get(key);
-			stringBuilder.append(key + "=" + value + "&");
-		}
-
-		stringBuilder.setLength(stringBuilder.length() - 1);
-
-		return stringBuilder.toString();
-	}
-
-	/**
-	 * @param url
-	 * @param headers
-	 * @param body
-	 * @return JSONObject received from server
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws JSONException
-	 * @throws CTFException
-	 * @author Adrian Swarcewicz
-	 */
-	public JSONArray requestPost(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
-		HttpClient client = new DefaultHttpClient();
-
-		HttpPost httpPost = new HttpPost(url);
-		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
-		httpPost.setEntity(new StringEntity(body));
-
-		HttpResponse response = client.execute(httpPost);
-		StatusLine statusLine = response.getStatusLine();
-
-		if (statusLine.getStatusCode() > 400) {
-			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
-		}
-
-		String responseContent = inputStreamToString(response.getEntity().getContent());
-
-		return stringToJSONArray(responseContent);
-	}
-
-	/**
-	 * @param url
-	 * @param headers
-	 * @param body
-	 * @return JSONArray received from server, or null if no json received
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws JSONException
-	 * @author Adrian Swarcewicz
-	 * @throws CTFException
-	 * @throws NotFoundException
-	 */
-	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, NotFoundException,
-			CTFException {
-		HttpClient client = new DefaultHttpClient();
-
-		HttpPut httpPut = new HttpPut(url);
-		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
-		httpPut.setEntity(new StringEntity(body));
-
-		HttpResponse response = client.execute(httpPut);
-		StatusLine statusLine = response.getStatusLine();
-
-		if (statusLine.getStatusCode() > 400) {
-			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
-		}
-
-		String responseContent = inputStreamToString(response.getEntity().getContent());
-
-		return stringToJSONArray(responseContent);
-	}
-
 	/**
 	 * @author Adrian Swarcewicz
 	 */
 	private String inputStreamToString(InputStream content) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-
 		String line;
 		StringBuilder builder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
 			builder.append(line);
 		}
-
 		return builder.toString();
 	}
 
@@ -174,6 +73,43 @@ public class NetworkService {
 			result = (JSONArray) json;
 		}
 		return result;
+	}
+
+	public static Boolean isDeviceOnline(Context context) {
+		Boolean result = false;
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	
+		if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
+			result = true;
+		}
+	
+		return result;
+	}
+
+	/**
+	 * @param jsonObject
+	 * @return query string based on jsonObject or null if no keys-value pair
+	 *         found in jsonObject
+	 * @throws JSONException
+	 * @author Adrian Swarcewicz
+	 */
+	public static String jsonToQueryString(JSONObject jsonObject) throws JSONException {
+		StringBuilder stringBuilder = new StringBuilder();
+		Iterator<?> jsonIterator = jsonObject.keys();
+	
+		if (!jsonIterator.hasNext()) {
+			return null;
+		}
+	
+		while (jsonIterator.hasNext()) {
+			String key = (String) jsonIterator.next();
+			Object value = jsonObject.get(key);
+			stringBuilder.append(key + "=" + value + "&");
+		}
+	
+		stringBuilder.setLength(stringBuilder.length() - 1);
+	
+		return stringBuilder.toString();
 	}
 
 	/**
@@ -202,6 +138,68 @@ public class NetworkService {
 
 		String responseContent = inputStreamToString(response.getEntity().getContent());
 
+		return stringToJSONArray(responseContent);
+	}
+
+	/**
+	 * @param url
+	 * @param headers
+	 * @param body
+	 * @return JSONObject received from server
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 * @throws CTFException
+	 * @author Adrian Swarcewicz
+	 */
+	public JSONArray requestPost(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
+		HttpClient client = new DefaultHttpClient();
+	
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
+		httpPost.setEntity(new StringEntity(body));
+	
+		HttpResponse response = client.execute(httpPost);
+		StatusLine statusLine = response.getStatusLine();
+	
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+		}
+	
+		String responseContent = inputStreamToString(response.getEntity().getContent());
+	
+		return stringToJSONArray(responseContent);
+	}
+
+	/**
+	 * @param url
+	 * @param headers
+	 * @param body
+	 * @return JSONArray received from server, or null if no json received
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 * @throws CTFException
+	 * @throws NotFoundException
+	 * @author Adrian Swarcewicz
+	 */
+	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, NotFoundException,
+			CTFException {
+		HttpClient client = new DefaultHttpClient();
+	
+		HttpPut httpPut = new HttpPut(url);
+		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
+		httpPut.setEntity(new StringEntity(body));
+	
+		HttpResponse response = client.execute(httpPut);
+		StatusLine statusLine = response.getStatusLine();
+	
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+		}
+	
+		String responseContent = inputStreamToString(response.getEntity().getContent());
+	
 		return stringToJSONArray(responseContent);
 	}
 
