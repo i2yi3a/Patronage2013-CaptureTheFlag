@@ -30,7 +30,7 @@ namespace Ctf
             {
                 if (NavigationService.CanGoBack)
                 {
-                    while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
+                    //while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
                 }
             }
             base.OnNavigatedTo(e);
@@ -86,8 +86,10 @@ namespace Ctf
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
             MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
-            if (m == MessageBoxResult.OK)
-            { waitIndicator.Visibility = Visibility.Collapsed; }
+            //if (m == MessageBoxResult.OK)
+            //{ 
+            waitIndicator.Visibility = Visibility.Collapsed;
+            //}
             if (x.errorCode == 0)
             {
                 NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
@@ -108,8 +110,10 @@ namespace Ctf
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
             MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
-            if (m == MessageBoxResult.OK)
-            { waitIndicator.Visibility = Visibility.Collapsed; }
+            //if (m == MessageBoxResult.OK)
+            //{ 
+            waitIndicator.Visibility = Visibility.Collapsed; 
+            //}
             if (x.errorCode == 0)
             {
                pano.DefaultItem = pano.Items[0];
