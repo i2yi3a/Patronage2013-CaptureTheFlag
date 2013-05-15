@@ -113,11 +113,12 @@ public class GameService {
 
 		JSONObject jsonObject = JSON(null,gameName,description,timeStart,
 				duration,pointsMax,playersMax,localizationName,lat,lng,radius);
-
-		JSONObject jsonObjectResult = mNetworkService.requestPost(
+		
+		JSONArray jsonArrayResult = mNetworkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_GAME, headers,
 				jsonObject.toString());
-
+		
+		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
 		if (!jsonObjectResult.has("id")) {
 			throw new CTFException(mContext.getResources(),
@@ -146,9 +147,17 @@ public class GameService {
 		JSONObject jsonObject = JSON(id,gameName,description,timeStart,
 				duration,pointsMax,playersMax,localizationName,lat,lng,radius);
 
-		JSONObject jsonObjectResult = mNetworkService.requestPut(
+		JSONArray jsonArrayResult = mNetworkService.requestPut(
 				Constants.URL_SERVER + Constants.URI_GAME, headers,
 				jsonObject.toString());
+		
+		if (jsonArrayResult == null) {
+			throw new CTFException(mContext.getResources(), Constants.ERROR_CODE_UNEXPECTED_SERVER_RESPONSE, mContext.getResources().getString(
+					mContext.getResources().getIdentifier(Constants.PREFIX_ERROR_CODE + Constants.ERROR_CODE_UNEXPECTED_SERVER_RESPONSE, "string",
+							Constants.PACKAGE_NAME)));
+		}
+		
+		JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(0);
 
 
 		if (jsonObjectResult.has("error_code")) {
@@ -203,10 +212,11 @@ public class GameService {
 	 * @throws IOException
 	 * @throws ClientProtocolException
 	 * @author Adrian Swarcewicz
+	 * @throws CTFException 
 	 */
 	public List<GameBasicInfo> getGameList(String gameNameFilter,
 			GameStatusType gameStatusTypeFilter, Boolean myGamesFilter)
-			throws JSONException, ClientProtocolException, IOException {
+			throws JSONException, ClientProtocolException, IOException, CTFException {
 		List<GameBasicInfo> gameBasicInfos = new LinkedList<GameBasicInfo>();
 
 		mStorageService.open();
@@ -225,8 +235,7 @@ public class GameService {
 		jsonObjectFilter.put("myGames", myGamesFilter);
 
 		JSONArray jsonArrayResult = mNetworkService.requestGet(
-				Constants.URL_SERVER + Constants.URI_GAME, headers,
-				NetworkService.jsonToQueryString(jsonObjectFilter));
+				Constants.URL_SERVER + Constants.URI_GAME + "?" + NetworkService.jsonToQueryString(jsonObjectFilter), headers);
 
 		for (int i = 0; i < jsonArrayResult.length(); i++) {
 			GameBasicInfo gameBasicInfo = new GameBasicInfo();

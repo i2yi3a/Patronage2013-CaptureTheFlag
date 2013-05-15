@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.http.Header;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicHeader;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,9 +50,11 @@ public class PlayerService {
 		jsonObject.put("username", username);
 		jsonObject.put("password", password);
 
-		JSONObject jsonObjectResult = networkService.requestPost(
+		JSONArray jsonArrayResult = networkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_REGISTER_PLAYER, headers,
 				jsonObject.toString());
+		
+		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
 		if (jsonObjectResult.getInt("error_code") != 0) {
 			throw new CTFException(mContext.getResources(),
@@ -81,9 +84,12 @@ public class PlayerService {
 		jsonObject.put("username", username);
 		jsonObject.put("password", password);
 
-		JSONObject jsonObjectResult = networkService.requestPost(
+		JSONArray jsonArrayResult = networkService.requestPost(
 				Constants.URL_SERVER + Constants.URI_LOGIN_PLAYER, headers,
 				NetworkService.jsonToQueryString(jsonObject));
+		
+		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
+		
 		if (jsonObjectResult.has("error")) {
 			if (jsonObjectResult.getString("error").equals("invalid_grant")) {
 				if (jsonObjectResult.getString("error_description").equals(

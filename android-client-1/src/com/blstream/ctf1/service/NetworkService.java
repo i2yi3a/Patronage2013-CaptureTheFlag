@@ -20,51 +20,43 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import android.content.Context;
+import android.content.res.Resources.NotFoundException;
 import android.net.ConnectivityManager;
 
 import com.blstream.ctf1.Constants;
-
-//TODO remove empty lines
+import com.blstream.ctf1.exception.CTFException;
 
 /**
  * @author Adrian Swarcewicz
  * @author Rafal Olichwer
  */
 public class NetworkService {
-	
+
 	Context mContext;
-	
-	
-	
-	
-	
+
 	/**
 	 * @param context
-	 * 		needed to translate errorCode to error message stored in strings.xml
+	 *            needed to translate errorCode to error message stored in
+	 *            strings.xml
 	 */
 	public NetworkService(Context context) {
 		mContext = context;
 	}
-	
-	
-	
+
 	public static Boolean isDeviceOnline(Context context) {
 		Boolean result = false;
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		
-		if (cm.getActiveNetworkInfo() != null
-				&& cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
 			result = true;
 		}
-		
+
 		return result;
 	}
-	
-	
-	
+
 	/**
 	 * @param jsonObject
 	 * @return query string based on jsonObject or null if no keys-value pair
@@ -72,9 +64,7 @@ public class NetworkService {
 	 * @throws JSONException
 	 * @author Adrian Swarcewicz
 	 */
-	public static String jsonToQueryString(JSONObject jsonObject)
-			throws JSONException {
-		
+	public static String jsonToQueryString(JSONObject jsonObject) throws JSONException {
 		StringBuilder stringBuilder = new StringBuilder();
 		Iterator<?> jsonIterator = jsonObject.keys();
 
@@ -92,9 +82,7 @@ public class NetworkService {
 
 		return stringBuilder.toString();
 	}
-	
-	
-	
+
 	/**
 	 * @param url
 	 * @param headers
@@ -103,75 +91,65 @@ public class NetworkService {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws JSONException
+	 * @throws CTFException
 	 * @author Adrian Swarcewicz
 	 */
-	// TODO: should return JSONArray like a requestGet?
-	public JSONObject requestPost(String url, List<Header> headers, String body)
-			throws ClientProtocolException, IOException, JSONException {
-
+	public JSONArray requestPost(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpPost httpPost = new HttpPost(url);
-		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers
-				.size()]));
+		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
 		httpPost.setEntity(new StringEntity(body));
 
 		HttpResponse response = client.execute(httpPost);
 		StatusLine statusLine = response.getStatusLine();
 
-		if (statusLine.getStatusCode() == 500) {
-			throw new IOException(mContext.getResources().getString(
-					mContext.getResources().getIdentifier(
-							Constants.PREFIX_ERROR_CODE + 500, "string",
-							Constants.PACKAGE_NAME)));
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		InputStream content = response.getEntity().getContent();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				content));
+		String responseContent = inputStreamToString(response.getEntity().getContent());
 
-		String line;
-		StringBuilder builder = new StringBuilder();
-		while ((line = reader.readLine()) != null) {
-			builder.append(line);
-		}
-
-		return new JSONObject(builder.toString());
+		return stringToJSONArray(responseContent);
 	}
 
 	/**
 	 * @param url
 	 * @param headers
 	 * @param body
-	 * @return JSONObject received from server
+	 * @return JSONArray received from server, or null if no json received
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws JSONException
 	 * @author Adrian Swarcewicz
+	 * @throws CTFException
+	 * @throws NotFoundException
 	 */
-	public JSONObject requestPut(String url, List<Header> headers, String body)
-			throws ClientProtocolException, IOException, JSONException {
-
+	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, NotFoundException,
+			CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpPut httpPut = new HttpPut(url);
-		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers
-				.size()]));
+		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
 		httpPut.setEntity(new StringEntity(body));
 
 		HttpResponse response = client.execute(httpPut);
 		StatusLine statusLine = response.getStatusLine();
 
-		if (statusLine.getStatusCode() == 500) {
-			throw new IOException(mContext.getResources().getString(
-					mContext.getResources().getIdentifier(
-							Constants.PREFIX_ERROR_CODE + 500, "string",
-							Constants.PACKAGE_NAME)));
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		InputStream content = response.getEntity().getContent();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				content));
+		String responseContent = inputStreamToString(response.getEntity().getContent());
+
+		return stringToJSONArray(responseContent);
+	}
+
+	/**
+	 * @author Adrian Swarcewicz
+	 */
+	private String inputStreamToString(InputStream content) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
 
 		String line;
 		StringBuilder builder = new StringBuilder();
@@ -179,82 +157,76 @@ public class NetworkService {
 			builder.append(line);
 		}
 
-		return new JSONObject(builder.toString());
+		return builder.toString();
 	}
-	
-	
+
+	/**
+	 * @return JSONArray if string can be converted, or null if not
+	 * @author Adrian Swarcewicz
+	 */
+	private JSONArray stringToJSONArray(String jsonString) throws JSONException {
+		JSONArray result = null;
+		Object json = new JSONTokener(jsonString).nextValue();
+		if (json instanceof JSONObject) {
+			JSONObject jsonObject = (JSONObject) json;
+			result = new JSONArray();
+			result.put(jsonObject);
+		} else if (json instanceof JSONArray) {
+			result = (JSONArray) json;
+		}
+		return result;
+	}
+
 	/**
 	 * @param url
+	 *            - possible query string should be appended to url
 	 * @param headers
-	 * @param queryString
-	 * @return JSONArray received from server
+	 * @return JSONArray received from server, or null if no json received
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws JSONException
+	 * @throws CTFException
 	 * @author Adrian Swarcewicz
 	 */
-	public JSONArray requestGet(String url, List<Header> headers, String queryString)
-			throws ClientProtocolException, IOException, JSONException {
-
-		if (queryString != null && !queryString.isEmpty()) {
-			url += "?" + queryString;
-		}
-		
+	public JSONArray requestGet(String url, List<Header> headers) throws ClientProtocolException, IOException, JSONException, CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpGet httpGet = new HttpGet(url);
-		httpGet.setHeaders((Header[]) headers.toArray(new Header[headers
-				.size()]));
+		httpGet.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
 
 		HttpResponse response = client.execute(httpGet);
 		StatusLine statusLine = response.getStatusLine();
 
-		if (statusLine.getStatusCode() == 500) {
-			throw new IOException(mContext.getResources().getString(
-					mContext.getResources().getIdentifier(
-							Constants.PREFIX_ERROR_CODE + 500, "string",
-							Constants.PACKAGE_NAME)));
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		InputStream content = response.getEntity().getContent();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				content));
+		String responseContent = inputStreamToString(response.getEntity().getContent());
 
-		String line;
-		StringBuilder builder = new StringBuilder();
-		while ((line = reader.readLine()) != null) {
-			builder.append(line);
-		}
-
-		return new JSONArray(builder.toString());
+		return stringToJSONArray(responseContent);
 	}
-	
-	public JSONObject requestGetO(String url, List<Header> headers, String queryString)
-			throws ClientProtocolException, IOException, JSONException {
+
+	public JSONObject requestGetO(String url, List<Header> headers, String queryString) throws ClientProtocolException, IOException, JSONException {
 
 		if (queryString != null && !queryString.isEmpty()) {
 			url += "?" + queryString;
 		}
-		
+
 		HttpClient client = new DefaultHttpClient();
 
 		HttpGet httpGet = new HttpGet(url);
-		httpGet.setHeaders((Header[]) headers.toArray(new Header[headers
-				.size()]));
+		httpGet.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
 
 		HttpResponse response = client.execute(httpGet);
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() == 500) {
 			throw new IOException(mContext.getResources().getString(
-					mContext.getResources().getIdentifier(
-							Constants.PREFIX_ERROR_CODE + 500, "string",
-							Constants.PACKAGE_NAME)));
+					mContext.getResources().getIdentifier(Constants.PREFIX_ERROR_CODE + 500, "string", Constants.PACKAGE_NAME)));
 		}
 
 		InputStream content = response.getEntity().getContent();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				content));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
 
 		String line;
 		StringBuilder builder = new StringBuilder();

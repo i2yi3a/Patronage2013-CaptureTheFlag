@@ -28,4 +28,6 @@ public class Constants {
 	public static final int ERROR_CODE_BAD_USERNAME = 202;
 	
 	public static final int ERROR_CODE_BAD_TOKEN = 203;
+	
+	public static final int ERROR_CODE_UNEXPECTED_SERVER_RESPONSE = 204;
 }
