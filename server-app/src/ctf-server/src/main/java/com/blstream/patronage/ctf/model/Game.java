@@ -22,6 +22,7 @@ public class Game implements BaseModel<String> {
     private GameStatusType status;
     private List<String> players;
     private String owner;
+    private TeamBase teamBase;
 
     public String getId() {
         return id;
@@ -111,5 +112,13 @@ public class Game implements BaseModel<String> {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public TeamBase getTeamBase() {
+        return teamBase;
+    }
+
+    public void setTeamBase(TeamBase teamBase) {
+        this.teamBase = teamBase;
     }
 }

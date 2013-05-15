@@ -32,7 +32,7 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
         target.setStatus(source.getStatus());
         target.setPlayers(source.getPlayers());
         target.setOwner(source.getOwner());
-
+        target.setTeamBase(source.getTeamBase());
         return target;
     }
 
@@ -52,6 +52,7 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
             target.setStatus(source.getStatus());
             target.setPlayers(source.getPlayers());
             target.setOwner(source.getOwner());
+            target.setTeamBase(source.getTeamBase());
         }
 
         return target;

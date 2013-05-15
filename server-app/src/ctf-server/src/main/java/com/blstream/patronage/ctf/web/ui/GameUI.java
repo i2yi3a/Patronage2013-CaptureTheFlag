@@ -2,6 +2,7 @@ package com.blstream.patronage.ctf.web.ui;
 
 import com.blstream.patronage.ctf.model.GameStatusType;
 import com.blstream.patronage.ctf.model.Localization;
+import com.blstream.patronage.ctf.model.TeamBase;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -48,6 +49,7 @@ public class GameUI extends BaseUI<String> {
 
     private String owner;
 
+    private TeamBase teamBase;
 
     public String getId() {
         return id;
@@ -137,5 +139,13 @@ public class GameUI extends BaseUI<String> {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public TeamBase getTeamBase() {
+        return teamBase;
+    }
+
+    public void setTeamBase(TeamBase teamBase) {
+        this.teamBase = teamBase;
     }
 }
