@@ -4,7 +4,7 @@ public class Localization {
 
     private String name;
 
-    private Integer radius;
+    private Double radius;
 
     private Double[] latLng;
 
@@ -17,11 +17,12 @@ public class Localization {
         this.name = name;
     }
 
-    public Integer getRadius() {
-        return radius;
+    public Double getRadius() {
+        double radiusDouble = Double.parseDouble(String.format("%.1f", radius));
+        return radiusDouble;
     }
 
-    public void setRadius(Integer radius) {
+    public void setRadius(Double radius) {
         this.radius = radius;
     }
 
