@@ -30,7 +30,7 @@ namespace Ctf
             {
                 if (NavigationService.CanGoBack)
                 {
-                    NavigationService.RemoveBackEntry();
+                    while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
                 }
             }
             base.OnNavigatedTo(e);
