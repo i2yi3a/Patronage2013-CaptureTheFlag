@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ctf
+namespace Ctf.ApplicationTools.DataObjects
 {
-    public class MessengerSentEventArgs : EventArgs
+    public class ApplicationEventArgs : EventArgs
     {
         public readonly string message;
         public readonly int errorCode;
 
-        //JIRA 3 [RC] podmienic eerror code dla apk
-        public MessengerSentEventArgs(string message, int errorCode = ErrorCode.APPLICATION_ERROR)
+        public ApplicationEventArgs(string message, int errorCode = ApplicationError.APPLICATION_ERROR)
         {
             this.message = message;
             this.errorCode = errorCode;

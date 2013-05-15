@@ -7,7 +7,7 @@ using System.IO;
 using System.Runtime.Serialization;
 
 
-namespace Ctf
+namespace Ctf.ApplicationTools.DataObjects
 {
     // reference : http://mobile.dzone.com/news/windows-phone-7-serialization-0
     /// <summary>

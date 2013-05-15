@@ -9,12 +9,12 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Diagnostics;
 using System.Threading;
-
+using Ctf.Communication;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
+using Ctf.ApplicationTools;
 
-
-namespace Ctf
+namespace Ctf.Pages
 {
     public partial class LoggedIn : PhoneApplicationPage
     {
@@ -35,7 +35,7 @@ namespace Ctf
 
         private void Logout(object sender, RoutedEventArgs e)
         {
-            Login Logger = new Login();
+            LoginCommand Logger = new LoginCommand();
             if (Logger.LogOut())
                 Debug.WriteLine("Logout SUCCESSFUL");
             else

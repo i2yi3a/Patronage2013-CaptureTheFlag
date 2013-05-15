@@ -8,10 +8,13 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Ctf.Resources;
+using Ctf.Communication;
 using System.Diagnostics;
+using Ctf.Communication.DataObjects;
+using Ctf.ApplicationTools.DataObjects;
+using Ctf.ApplicationTools;
 
-
-namespace Ctf
+namespace Ctf.Pages
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -48,7 +51,6 @@ namespace Ctf
 
         private void txtChanged(object sender, RoutedEventArgs e)
         {
-
             if (usernameBox.Text.Length > 4 && passwordBox.Password.Length > 4)
             {
                 loginButton.IsEnabled = true;
@@ -61,8 +63,10 @@ namespace Ctf
 
         private void txtChangedRegister(object sender, RoutedEventArgs e)
         {
-
-            if (userNameRegister.Text.Length > 4 && passwordRegister1.Password.Length > 4 && passwordRegister2.Password.Length > 4)
+            if (userNameRegister.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
+                passwordRegister1.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                passwordRegister2.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                passwordRegister1.Password.Equals(passwordRegister2.Password))
             {
                 registerButton.IsEnabled = true;
             }
@@ -75,36 +79,43 @@ namespace Ctf
         private void LogIn(object sender, RoutedEventArgs e)
         {
             waitIndicator.Visibility = Visibility.Visible;
-            Login Logger = new Login();
+            LoginCommand Logger = new LoginCommand();
+            Logger.RequestFinished += new RequestFinishedEventHandler(Logger_MessengerSent);
             Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-            Logger.MessengerSent += Logger_MessengerSent;
         }
 
-
-        void Logger_MessengerSent(object sender, EventArgs e)
+        void Logger_MessengerSent(object sender, RequestFinishedEventArgs e)
         {
-            MessengerSentEventArgs x;
-            x = (MessengerSentEventArgs)e;
-            MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
-            if (m == MessageBoxResult.OK)
-            { waitIndicator.Visibility = Visibility.Collapsed; }
-            if (x.errorCode == 0)
+            if (!e.Response.HasError())
             {
-                NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
-            }  
-        }
+                LoginJsonResponse x = e.Response as LoginJsonResponse;
+                MessageBoxResult m = MessageBox.Show("blabla1"/*x.error.ToString()*/, "blabla" /*x.error_description.ToString()*/, MessageBoxButton.OK);
+                if (m == MessageBoxResult.OK)
+                {
+                    waitIndicator.Visibility = Visibility.Collapsed;
+                }
+                //if (x.error.ToString() == "success")
+                //{
+                    NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+                //}
+            }
+            else
+            {
 
+            }
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             waitIndicator.Visibility = Visibility.Visible;
-            Registration Registers = new Registration();
-            Registers.MessengerSent += Registers_MessengerSent;
-            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password), passwordRegister2.Password);
+            RegisterCommand Registers = new RegisterCommand();
+            Registers.RequestFinished += new RequestFinishedEventHandler(Registers_MessengerSent);
+            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password));
         }
 
         private void Registers_MessengerSent(object sender, EventArgs e)
         {
+            /*
             MessengerSentEventArgs x;
             x = (MessengerSentEventArgs)e;
             MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
@@ -112,9 +123,9 @@ namespace Ctf
             { waitIndicator.Visibility = Visibility.Collapsed; }
             if (x.errorCode == 0)
             {
-               pano.DefaultItem = pano.Items[0];
+                pano.DefaultItem = pano.Items[0];
             }
-
+             * */
         }
     }
 }

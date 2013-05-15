@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 
-namespace Ctf.Pages
+namespace Ctf.ApplicationTools
 {
-    public class LoginUriMapper : UriMapperBase
+    public class CustomUriMapper : UriMapperBase
     {
         public override Uri MapUri(Uri uri)
         {

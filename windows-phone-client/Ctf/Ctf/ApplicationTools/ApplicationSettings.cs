@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Reflection;
 using System.IO.IsolatedStorage;
+using Ctf.ApplicationTools.DataObjects;
+using Ctf.Communication.DataObjects;
 
-namespace Ctf
+namespace Ctf.ApplicationTools
 {
-    // Issue: https://tracker.blstreamgroup.com/jira/browse/CTFPAT-92
+    public delegate void UserChangedEventHandler(object sender, ApplicationEventArgs e);
+
     // Reference: http://csharpindepth.com/articles/general/singleton.aspx
     /// <summary>
     /// 
@@ -16,15 +20,15 @@ namespace Ctf
     public sealed class ApplicationSettings
     {
         static readonly ApplicationSettings instance = new ApplicationSettings();
-        IsolatedStorageSettings settings;
-        private static readonly string userKeyword = "user";
-        public event EventHandler<EventArgs> UserChanged;
+        private IsolatedStorageSettings settings;
+        private const string userKeyword = "user";
+        public event UserChangedEventHandler UserChanged;
 
         /// <summary>
         /// Raises the <see cref="E:UserChanged" /> event.
         /// </summary>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void OnUserChanged(EventArgs e)
+        private void OnUserChanged(ApplicationEventArgs e)
         {
             var UserChangedThreadPrivate = UserChanged;
             if (UserChangedThreadPrivate != null)
@@ -67,10 +71,10 @@ namespace Ctf
         {
             if ((user != null) && (!user.HasNullOrEmpty()) && (!settings.Contains(userKeyword)))
             {
-                Debug.WriteLine("SaveLoggedUser added User");
+                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), String.Format("Adding user {0} to storage.", user.username)));
                 settings.Add(userKeyword, user);
                 // TDOD Localize string
-                OnUserChanged(new MessengerSentEventArgs("User " + user.username + " has been saved.", ErrorCode.SUCCESS));
+                OnUserChanged(new ApplicationEventArgs(String.Format("User {0} has been saved.", user.username), ApplicationError.SUCCESS));
                 return true;
             }
             return false;
@@ -82,10 +86,8 @@ namespace Ctf
         /// <returns></returns>
         public User RetriveLoggedUser()
         {
-            Debug.WriteLine("public User RetriveLoggedUser()");
-            Debug.WriteLineIf(!settings.Contains(userKeyword), "ApplicationSettings does NOT contain User.");
-            Debug.WriteLineIf(settings.Contains(userKeyword), "ApplicationSettings CONTAINS User.");
-
+            Debug.WriteLineIf(!settings.Contains(userKeyword), DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "IsolatedStorageSettings does NOT contain user."));
+            Debug.WriteLineIf(!settings.Contains(userKeyword), DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "IsolatedStorageSettings DOES contain user."));
             User user = new User();
             if (settings.Contains(userKeyword))
             {
@@ -103,15 +105,22 @@ namespace Ctf
         {
             if (settings.Contains(keyword))
             {
-                Debug.WriteLine("Removed from settings: " + keyword);
+                string username;
+                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), String.Format("Removing user {0} from storage.", username = RetriveLoggedUser().username)));
                 settings.Remove(keyword);
                 // TDOD Localize string
-                OnUserChanged(new MessengerSentEventArgs("User has been Removed", ErrorCode.SUCCESS));
+                OnUserChanged(new ApplicationEventArgs(String.Format("User {0} has been removed from IsolatedStorageSettings.", username), ApplicationError.SUCCESS));
                 return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Determines whether [has login info].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [has login info]; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasLoginInfo()
         {
             return settings.Contains(userKeyword);
