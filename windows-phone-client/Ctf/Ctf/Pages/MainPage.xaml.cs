@@ -62,7 +62,10 @@ namespace Ctf
         private void txtChangedRegister(object sender, RoutedEventArgs e)
         {
 
-            if (userNameRegister.Text.Length > 4 && passwordRegister1.Password.Length > 4 && passwordRegister2.Password.Length > 4)
+            if (userNameRegister.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
+                passwordRegister1.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                passwordRegister2.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                passwordRegister1.Password.Equals(passwordRegister2.Password))
             {
                 registerButton.IsEnabled = true;
             }
