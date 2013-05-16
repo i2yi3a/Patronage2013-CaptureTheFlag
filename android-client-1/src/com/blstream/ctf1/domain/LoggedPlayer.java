@@ -1,7 +1,5 @@
 package com.blstream.ctf1.domain;
 
-//TODO remove empty lines
-
 /**
  * Contain logged player data
  * 
@@ -9,65 +7,59 @@ package com.blstream.ctf1.domain;
  */
 
 public class LoggedPlayer {
-	
-	private String mLogin;
-	
-	private String mAccessToken;
-	
-	private String mTokenType;
-	
-	private String mScope;
-	
-	
-	
+
+	private String login;
+
+	private String accessToken;
+
+	private String tokenType;
+
+	private String scope;
+
 	public LoggedPlayer() {
 	}
 
-	public LoggedPlayer(String mLogin, String mAccessToken, String mTokenType,
-			String mScope) {
-		this.mLogin = mLogin;
-		this.mAccessToken = mAccessToken;
-		this.mTokenType = mTokenType;
-		this.mScope = mScope;
+	public LoggedPlayer(String mLogin, String mAccessToken, String mTokenType, String mScope) {
+		this.login = mLogin;
+		this.accessToken = mAccessToken;
+		this.tokenType = mTokenType;
+		this.scope = mScope;
 	}
 
 	public String getLogin() {
-		return mLogin;
+		return login;
 	}
 
 	public void setLogin(String login) {
-		this.mLogin = login;
+		this.login = login;
 	}
 
 	public String getAccessToken() {
-		return mAccessToken;
+		return accessToken;
 	}
 
 	public void setAccessToken(String accessToken) {
-		this.mAccessToken = accessToken;
+		this.accessToken = accessToken;
 	}
 
 	public String getTokenType() {
-		return mTokenType;
+		return tokenType;
 	}
 
 	public void setTokenType(String tokenType) {
-		this.mTokenType = tokenType;
+		this.tokenType = tokenType;
 	}
 
 	public String getScope() {
-		return mScope;
+		return scope;
 	}
 
 	public void setScope(String scope) {
-		this.mScope = scope;
+		this.scope = scope;
 	}
 
 	@Override
 	public String toString() {
-		return "LoggedPlayer [mLogin=" + mLogin + ", mAccessToken="
-				+ mAccessToken + ", mTokenType=" + mTokenType + ", mScope="
-				+ mScope + "]";
+		return "LoggedPlayer [mLogin=" + login + ", mAccessToken=" + accessToken + ", mTokenType=" + tokenType + ", mScope=" + scope + "]";
 	}
-	
 }

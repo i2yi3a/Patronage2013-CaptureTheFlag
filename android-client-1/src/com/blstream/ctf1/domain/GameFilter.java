@@ -4,6 +4,7 @@ package com.blstream.ctf1.domain;
  * @author Adrian Swarcewicz
  */
 public class GameFilter {
+	
 	private String name;
 	
 	private GameStatusType status;

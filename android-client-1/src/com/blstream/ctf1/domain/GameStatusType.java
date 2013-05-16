@@ -4,6 +4,7 @@ package com.blstream.ctf1.domain;
  * @author Adrian Swarcewicz
  */
 public enum GameStatusType {
+	
 	NEW("NEW"),
 	IN_PROGRESS("IN_PROGRESS"),
 	ON_HOLD("ON_HOLD"),
