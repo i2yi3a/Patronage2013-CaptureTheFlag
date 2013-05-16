@@ -14,7 +14,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <Canvas x:Name="LayoutRoot" Background="Black" Margin="0,0,0,0" >
+    <Canvas x:Name="LayoutRoot" Background="Transparent" Margin="0,0,0,0" >
         <Grid Background="Transparent" VerticalAlignment="Top" Height="757" Canvas.ZIndex="0"  Margin="0,0,0,0" Width="477" Canvas.Top="8">
 
             <phone:Panorama x:Name="pano" HorizontalAlignment="Left" Height="745" Margin="3,0,0,0" VerticalAlignment="Top" Width="472" FontSize="6">
