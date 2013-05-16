@@ -13,6 +13,7 @@ import static com.blstream.ctf1.service.StorageConstants.ID_LOGGED_PLAYER;
 /**
  * Stores information in SQLite database. <br/>
  * Use open(), then make operation and close() connection.
+ * 
  * @author Adrian Swarcewicz
  */
 public class StorageService {
@@ -29,6 +30,7 @@ public class StorageService {
 	/**
 	 * Open database connection to perform operations. If database operations
 	 * performed close() should be call.
+	 * 
 	 * @throws SQLiteException
 	 */
 	public void open() throws SQLiteException {
