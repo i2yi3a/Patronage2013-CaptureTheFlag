@@ -52,6 +52,9 @@ public class LoginActivity extends Activity {
 			alertDialogBuilder.setMessage(R.string.login_successful);
 			alertDialogBuilder.setPositiveButton(R.string.ok, null);
 			alertDialogBuilder.show();
+			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
+			startActivity(intent);
+			
 		} 
 		else if (result == -2) {
 			alertDialogBuilder.setMessage(R.string.no_connection);
