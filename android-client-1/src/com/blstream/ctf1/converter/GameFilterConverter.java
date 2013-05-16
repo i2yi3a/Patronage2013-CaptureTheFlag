@@ -25,4 +25,14 @@ public class GameFilterConverter {
 		}
 		return result;
 	}
+	
+	/**
+	 * @param gameFilter
+	 * @return
+	 * @throws JSONException 
+	 * @author Adrian Swarcewicz
+	 */
+	public static String toQueryString(GameFilter gameFilter) throws JSONException {
+		return JSONConverter.toQueryString(toJSONObject(gameFilter));
+	}
 }

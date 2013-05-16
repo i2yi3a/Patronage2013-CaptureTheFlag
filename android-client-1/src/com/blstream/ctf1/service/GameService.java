@@ -179,9 +179,7 @@ public class GameService {
 		headers.add(new BasicHeader("Content-Type", "application/json"));
 		headers.add(new BasicHeader("Authorization", loggedPlayer.getTokenType() + " " + loggedPlayer.getAccessToken()));
 
-		JSONObject jsonObjectFilter = GameFilterConverter.toJSONObject(gameFilter);
-
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + JSONConverter.toQueryString(jsonObjectFilter),
+		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameFilterConverter.toQueryString(gameFilter),
 				headers);
 
 		return JSONConverter.toGameBasicInfo(jsonArrayResult);
