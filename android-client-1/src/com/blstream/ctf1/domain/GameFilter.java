@@ -10,6 +10,15 @@ public class GameFilter {
 	
 	private Boolean myGames;
 
+	public GameFilter() {
+	}
+	
+	public GameFilter(String name, GameStatusType status, Boolean myGames) {
+		this.name = name;
+		this.status = status;
+		this.myGames = myGames;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -32,6 +41,11 @@ public class GameFilter {
 
 	public void setMyGames(Boolean myGames) {
 		this.myGames = myGames;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "GameFilter [name=" + name + ", status=" + status + ", myGames=" + myGames + "]";
+	}
 }
 

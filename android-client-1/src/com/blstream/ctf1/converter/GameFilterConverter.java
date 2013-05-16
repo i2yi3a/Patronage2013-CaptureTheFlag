@@ -1,4 +1,4 @@
-package com.blstream.ctf1.service;
+package com.blstream.ctf1.converter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,7 +8,7 @@ import com.blstream.ctf1.domain.GameFilter;
 /**
  * @author Adrian Swarcewicz
  */
-public class GameFilterService {
+public class GameFilterConverter {
 
 	/**
 	 * @param gameFilter

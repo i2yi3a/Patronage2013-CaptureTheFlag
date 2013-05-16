@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.blstream.ctf1.Constants;
+import com.blstream.ctf1.converter.GameFilterConverter;
 import com.blstream.ctf1.converter.JSONConverter;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
@@ -178,7 +179,7 @@ public class GameService {
 		headers.add(new BasicHeader("Content-Type", "application/json"));
 		headers.add(new BasicHeader("Authorization", loggedPlayer.getTokenType() + " " + loggedPlayer.getAccessToken()));
 
-		JSONObject jsonObjectFilter = GameFilterService.toJSONObject(gameFilter);
+		JSONObject jsonObjectFilter = GameFilterConverter.toJSONObject(gameFilter);
 
 		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + JSONConverter.toQueryString(jsonObjectFilter),
 				headers);
