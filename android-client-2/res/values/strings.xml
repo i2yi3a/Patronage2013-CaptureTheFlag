@@ -39,9 +39,10 @@
     <string name="game_localization">Localization</string>
     <string name="game_localization_pick">Pick localization</string>
     <string name="game_flag_quantity">Flag quantity</string>
-     <string name="game_flag_quantity_hint">12</string>
+    <string name="game_flag_quantity_hint">12</string>
     <string name="game_team">Team</string>
     <string name="game_team_hint">Red</string>
+    <string name="game_create_game">Create game</string>
     
 
 </resources>
