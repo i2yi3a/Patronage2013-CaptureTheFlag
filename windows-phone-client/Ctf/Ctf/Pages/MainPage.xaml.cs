@@ -92,19 +92,13 @@ namespace Ctf.Pages
             waitIndicator.Visibility = Visibility.Collapsed;
             if (!e.Response.HasError())
             {
-                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.access_token.ToString(), MessageBoxButton.OK);
-                if (m == MessageBoxResult.OK)
-                {
-                    NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
-                }
+                MessageBoxResult m = MessageBox.Show(ApplicationSettings.Instance.RetriveLoggedUser().username, x.access_token.ToString(), MessageBoxButton.OK);
+                NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
             }
             else
             {
-                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.error_description.ToString(), MessageBoxButton.OK);
-                if (m == MessageBoxResult.OK)
-                {
-                    NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
-                }
+                MessageBoxResult m = MessageBox.Show(x.error_description.ToString(), x.error.ToString(), MessageBoxButton.OK);
+                NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
             }
         }
 
@@ -125,11 +119,8 @@ namespace Ctf.Pages
             waitIndicator.Visibility = Visibility.Collapsed;
             if (!e.Response.HasError())
             {
-                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.message.ToString(), MessageBoxButton.OK);
-                if (m == MessageBoxResult.OK)
-                {
-                    pano.DefaultItem = pano.Items[0];
-                }
+                MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.error_code.ToString(), MessageBoxButton.OK);
+                pano.DefaultItem = pano.Items[0];
             }
             else
             {
