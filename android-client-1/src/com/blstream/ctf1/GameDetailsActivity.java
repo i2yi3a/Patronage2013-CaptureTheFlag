@@ -51,7 +51,13 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mBtnEdit.setOnClickListener(this);
 		mBtnJoin = (Button) findViewById(R.id.btnJoin);
 		mBtnJoin.setOnClickListener(this);
-		mId = "51927477e4b06da65947757b";
+		Bundle bundle = getIntent().getExtras();
+        if(bundle.getString(Constants.EXTRA_KEY_ID)!= null)
+        {
+            mId = bundle.getString(Constants.EXTRA_KEY_ID);
+        }
+        else//will be deleted after list implementation complete
+        	mId = "51927477e4b06da65947757b";
 		GameDetails gameDetails = new GameDetails(this,mId);
 		gameDetails.execute();
 	}
@@ -71,7 +77,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		case R.id.btnEdit:
 			IssueTracker.saveClick(this, mBtnEdit);
 			intent = new Intent(this, CreateGameActivity.class);
-			//intent.putExtra("ID", mId);
+			intent.putExtra(Constants.EXTRA_KEY_ID, mId);
 			startActivity(intent);
 			break;
 		
