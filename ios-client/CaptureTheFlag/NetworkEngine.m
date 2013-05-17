@@ -106,6 +106,12 @@
 
 }
 
+- (void)logout:(NetworkEngineCompletionBlock)completionBlock
+{
+    //There is no api at the moment, so this method can simply call completion block.
+    completionBlock(nil);
+}
+
 - (void)createNewGame: (CTFGame *) game
    completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 {

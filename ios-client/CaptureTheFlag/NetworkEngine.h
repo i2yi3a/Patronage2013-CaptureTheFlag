@@ -27,6 +27,8 @@ typedef void (^NetworkEngineCompletionBlock)(NSObject* object);
           withPassword:(NSString *)password
        completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 
+- (void)logout:(NetworkEngineCompletionBlock)completionBlock;
+
 - (void)createNewGame:(CTFGame *) game
         completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 
