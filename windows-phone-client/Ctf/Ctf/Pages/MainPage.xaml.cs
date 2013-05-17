@@ -33,7 +33,7 @@ namespace Ctf.Pages
             {
                 if (NavigationService.CanGoBack)
                 {
-                    NavigationService.RemoveBackEntry();
+                    while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
                 }
             }
             base.OnNavigatedTo(e);
@@ -82,26 +82,29 @@ namespace Ctf.Pages
             LoginCommand Logger = new LoginCommand();
             Logger.RequestFinished += new RequestFinishedEventHandler(Logger_MessengerSent);
             Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
+            usernameBox.Text = String.Empty;
+            passwordBox.Password = String.Empty;
         }
 
         void Logger_MessengerSent(object sender, RequestFinishedEventArgs e)
         {
+            LoginJsonResponse x = e.Response as LoginJsonResponse;
+            waitIndicator.Visibility = Visibility.Collapsed;
             if (!e.Response.HasError())
             {
-                LoginJsonResponse x = e.Response as LoginJsonResponse;
-                MessageBoxResult m = MessageBox.Show("blabla1"/*x.error.ToString()*/, "blabla" /*x.error_description.ToString()*/, MessageBoxButton.OK);
+                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.access_token.ToString(), MessageBoxButton.OK);
                 if (m == MessageBoxResult.OK)
                 {
-                    waitIndicator.Visibility = Visibility.Collapsed;
-                }
-                //if (x.error.ToString() == "success")
-                //{
                     NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
-                //}
+                }
             }
             else
             {
-
+                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.error_description.ToString(), MessageBoxButton.OK);
+                if (m == MessageBoxResult.OK)
+                {
+                    NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
+                }
             }
         }
 
@@ -111,21 +114,27 @@ namespace Ctf.Pages
             RegisterCommand Registers = new RegisterCommand();
             Registers.RequestFinished += new RequestFinishedEventHandler(Registers_MessengerSent);
             Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password));
+            userNameRegister.Text = String.Empty;
+            passwordRegister1.Password = String.Empty;
+            passwordRegister2.Password = String.Empty;
         }
 
-        private void Registers_MessengerSent(object sender, EventArgs e)
+        private void Registers_MessengerSent(object sender, RequestFinishedEventArgs e)
         {
-            /*
-            MessengerSentEventArgs x;
-            x = (MessengerSentEventArgs)e;
-            MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.errorCode.ToString(), MessageBoxButton.OK);
-            if (m == MessageBoxResult.OK)
-            { waitIndicator.Visibility = Visibility.Collapsed; }
-            if (x.errorCode == 0)
+            ServerJsonResponse x = e.Response as ServerJsonResponse;
+            waitIndicator.Visibility = Visibility.Collapsed;
+            if (!e.Response.HasError())
             {
-                pano.DefaultItem = pano.Items[0];
+                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.message.ToString(), MessageBoxButton.OK);
+                if (m == MessageBoxResult.OK)
+                {
+                    pano.DefaultItem = pano.Items[0];
+                }
             }
-             * */
+            else
+            {
+                MessageBoxResult m = MessageBox.Show(x.error.ToString(), x.error_description.ToString(), MessageBoxButton.OK);
+            }
         }
     }
 }
