@@ -44,6 +44,9 @@ public class GameService {
 		mStorageService = new StorageService(context);
 	}
 
+	/**
+	 * @author Adrian Swarcewicz
+	 */
 	private LoggedPlayer getLoggedPlayer() {
 		LoggedPlayer loggedPlayer = null;
 		mStorageService.open();
@@ -52,6 +55,9 @@ public class GameService {
 		return loggedPlayer;
 	}
 
+	/**
+	 * @author Adrian Swarcewicz
+	 */
 	private List<Header> getGameHeaders() {
 		LoggedPlayer loggedPlayer = getLoggedPlayer();
 
@@ -146,10 +152,10 @@ public class GameService {
 	 *            - null to skip
 	 * @return
 	 * @throws JSONException
-	 * @throws IOException
 	 * @throws ClientProtocolException
-	 * @author Adrian Swarcewicz
+	 * @throws IOException
 	 * @throws CTFException
+	 * @author Adrian Swarcewicz
 	 */
 	public List<GameBasicInfo> getGameList(GameFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameFilterConverter.toQueryString(gameFilter),
