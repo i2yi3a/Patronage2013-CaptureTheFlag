@@ -6,34 +6,36 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.DialogFragment;
+import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.DatePicker;
-import android.app.DatePickerDialog;
+import android.widget.TimePicker;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 
 /**
  * @author Milosz_Skalski
  */
 
-public class DatePickerFragment extends DialogFragment implements
-		DatePickerDialog.OnDateSetListener {
+public class TimePickerFragment extends DialogFragment implements
+		TimePickerDialog.OnTimeSetListener {
 
 	private Handler dialogPickerHandler;
 	
+	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final Calendar c = Calendar.getInstance();
-		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH);
-		int day = c.get(Calendar.DAY_OF_MONTH);
-		return new DatePickerDialog(getActivity(), this, year, month, day);
+		int hour = c.get(Calendar.HOUR_OF_DAY);
+		int minute = c.get(Calendar.MINUTE);
+		return new TimePickerDialog(getActivity(), this, hour, minute,
+				DateFormat.is24HourFormat(getActivity()));
 	}
 
 	@Override
-	public void onDateSet(DatePicker view, int year, int month, int day) {
-		Log.d("Picker ", "Picker " + day + ":" + month + ":" + year);
+	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+		Log.d("Picker ", "Picker " + hourOfDay + ":" + minute);
 		Message msg = new Message();
         Bundle data = new Bundle();
-        data.putString("data", day + ":" + month + ":" + year);
+        data.putString("time", hourOfDay + ":" + minute);
         msg.setData(data);
         dialogPickerHandler.sendMessage(msg);
 	}

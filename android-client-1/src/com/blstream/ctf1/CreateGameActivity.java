@@ -1,12 +1,8 @@
 package com.blstream.ctf1;
 
-import java.text.ParseException;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,14 +25,32 @@ public class CreateGameActivity extends FragmentActivity implements
 	private Button mBtnCancel;
 	private Button mBtnCreate;
 	private Button mBtnStartDate;
+	private Button mBtnStartTime;
+	private Button mBtnMap;
 	private EditText mEditGameName;
 	private EditText mEditGameDescription;
 	private EditText mEditLocationName;
-	private EditText mEditStartDate;
-	private EditText mEditStartTime;
 	private EditText mEditPlayingTime;
 	private EditText mEditMaxPlayers;
 	private EditText mEditMaxPoints;
+
+	Handler handlerTime = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// Button button = (Button) findViewById(R.id.btn);
+			// button.setText(msg.getData().getString("btn"));
+			String time = msg.getData().getString("time");
+			String data = msg.getData().getString("data");
+			if (!(time == null)) {
+				Log.d("Picker ", "Picker czas:" + time);
+				mBtnStartTime.setText(time);
+			}
+			if (!(data == null)) {
+				Log.d("Picker ", "Picker data:" + data);
+				mBtnStartDate.setText(data);
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +60,17 @@ public class CreateGameActivity extends FragmentActivity implements
 		mBtnCancel = (Button) findViewById(R.id.btnCancel);
 		mBtnCreate = (Button) findViewById(R.id.btnCreate);
 		mBtnStartDate = (Button) findViewById(R.id.btnStartDate);
+		mBtnStartTime = (Button) findViewById(R.id.btnStartTime);
+		mBtnMap = (Button) findViewById(R.id.btnMap);
 		mBtnCancel.setOnClickListener(this);
 		mBtnCreate.setOnClickListener(this);
 		mBtnStartDate.setOnClickListener(this);
+		mBtnStartTime.setOnClickListener(this);
+		mBtnMap.setOnClickListener(this);
 
 		mEditGameName = (EditText) findViewById(R.id.editGameName);
 		mEditGameDescription = (EditText) findViewById(R.id.editGameDescription);
 		mEditLocationName = (EditText) findViewById(R.id.editLocationName);
-		mEditStartDate = (EditText) findViewById(R.id.editStartDate);
-		mEditStartTime = (EditText) findViewById(R.id.editStartTime);
 		mEditPlayingTime = (EditText) findViewById(R.id.editPlayingTime);
 		mEditMaxPlayers = (EditText) findViewById(R.id.editMaxPlayers);
 		mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);
@@ -73,9 +89,22 @@ public class CreateGameActivity extends FragmentActivity implements
 			break;
 
 		case R.id.btnStartDate:
-			DialogFragment newFragment = new DatePickerFragment();
-			newFragment.show(getSupportFragmentManager(), "datePicker");
+			DatePickerFragment datePicker;
+			datePicker = new DatePickerFragment();
+			datePicker.setHandler(handlerTime);
+			datePicker.show(getSupportFragmentManager(), "datePicker");
 			break;
+
+		case R.id.btnStartTime:
+			TimePickerFragment timePicker;
+			timePicker = new TimePickerFragment();
+			timePicker.setHandler(handlerTime);
+			timePicker.show(getSupportFragmentManager(), "timePicker");
+			break;
+
+		case R.id.btnMap:
+			break;
+
 		}
 	}
 
@@ -85,11 +114,9 @@ public class CreateGameActivity extends FragmentActivity implements
 		String mGameDescription = mEditGameDescription.getText().toString();
 		String mLocationName = mEditLocationName.getText().toString();
 
-		String mStartDate = mEditStartDate.getText().toString();
-		mStartDate = mStartDate.replace(".", "-");
-		mStartDate = mStartDate.replace("/", "-");
+		String mStartDate = "";
 
-		String mStartTime = mEditStartTime.getText().toString();
+		String mStartTime = "";
 
 		String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
 		String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
@@ -138,69 +165,11 @@ public class CreateGameActivity extends FragmentActivity implements
 		}
 
 		if (mStartDate.isEmpty()) {
-			if (!info.isEmpty())
-				info += '\n';
-			info += getResources().getString(R.string.start_date_too_short);
-		} else {
-			int tmp = 0;
-			for (int i = 0; i < mStartDate.length(); i++) {
-				if (mStartDate.charAt(i) == '-')
-					tmp++;
-			}
-			if (tmp != 2) {
-				if (!info.isEmpty())
-					info += '\n';
-				info += getResources().getString(R.string.start_date_incorrect);
-			} else {
-				SimpleDateFormat dateFormatter = new SimpleDateFormat(
-						"dd-MM-yyyy");
-				Date startDate = null;
-				try {
-					startDate = dateFormatter.parse(mStartDate);
-					Log.d("Data", startDate.toString());
-				} catch (ParseException e) {
-					e.printStackTrace();
-					if (!info.isEmpty())
-						info += '\n';
-					info += getResources().getString(
-							R.string.start_date_incorrect);
-				}
-			}
+			
 		}
 
 		if (mStartTime.isEmpty()) {
-			if (!info.isEmpty())
-				info += '\n';
-			info += getResources().getString(R.string.start_time_too_short);
-		} else {
-			if (mStartTime.indexOf(":") == -1
-					|| mStartTime.indexOf(":") == mStartTime.length() - 1
-					|| mStartTime.indexOf(":") == 0
-					|| mStartTime.indexOf(":") != mStartTime.lastIndexOf(":")) {
 
-				if (!info.isEmpty())
-					info += '\n';
-				info += getResources().getString(R.string.start_time_incorrect);
-			} else {
-				Log.d("Data",
-						"H:"
-								+ mStartTime.substring(0,
-										mStartTime.indexOf(":"))
-								+ " M:"
-								+ mStartTime.substring(
-										mStartTime.indexOf(":") + 1,
-										mStartTime.length()));
-				if (Integer.parseInt(mStartTime.substring(0,
-						mStartTime.indexOf(":"))) > 23
-						|| Integer.parseInt(mStartTime.substring(
-								mStartTime.indexOf(":") + 1,
-								mStartTime.length())) > 59) {
-					if (!info.isEmpty())
-						info += '\n';
-					info += getResources().getString(
-							R.string.start_time_number_too_large);
-				}
-			}
 		}
 
 		if (playingTime.isEmpty()) {
@@ -217,4 +186,5 @@ public class CreateGameActivity extends FragmentActivity implements
 
 		return result;
 	}
+
 }
