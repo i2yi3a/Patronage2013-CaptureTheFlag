@@ -8,6 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -114,6 +115,7 @@ public class NetworkService {
 	 * @param url
 	 * @param headers
 	 * @param body
+	 *            - null to skip
 	 * @return JSONArray received from server, or null if no json received
 	 * @throws ClientProtocolException
 	 * @throws IOException
@@ -126,7 +128,9 @@ public class NetworkService {
 
 		HttpPut httpPut = new HttpPut(url);
 		httpPut.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
-		httpPut.setEntity(new StringEntity(body));
+		if (body != null) {
+			httpPut.setEntity(new StringEntity(body));
+		}
 
 		HttpResponse response = client.execute(httpPut);
 		StatusLine statusLine = response.getStatusLine();
@@ -140,4 +144,31 @@ public class NetworkService {
 		return StringConverter.toJSONArray(responseContent);
 	}
 
+	/**
+	 * @param url
+	 * @param headers
+	 * @return JSONArray received from server, or null if no json received
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 * @throws CTFException
+	 * @author Adrian Swarcewicz
+	 */
+	public JSONArray requestDelete(String url, List<Header> headers) throws ClientProtocolException, IOException, JSONException, CTFException {
+		HttpClient client = new DefaultHttpClient();
+
+		HttpDelete httpDelete = new HttpDelete(url);
+		httpDelete.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
+
+		HttpResponse response = client.execute(httpDelete);
+		StatusLine statusLine = response.getStatusLine();
+
+		if (statusLine.getStatusCode() > 400) {
+			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+		}
+
+		String responseContent = InputStreamConverter.toString(response.getEntity().getContent());
+
+		return StringConverter.toJSONArray(responseContent);
+	}
 }

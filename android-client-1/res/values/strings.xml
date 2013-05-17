@@ -76,7 +76,10 @@
     <string name="game_edit">Edit game</string>
     
     <!-- Error codes -->
+    <string name="error_code_5">Only Game Owner can delete game</string>
     <string name="error_code_101">Login already in use</string>
+    <string name="error_code_102">You are already signed to game</string>
+    <string name="error_code_103">You are not signed to game</string>
     <string name="error_code_500">Internal server error</string>
     <string name="error_code_201">Wrong password</string>
     <string name="error_code_202">Wrong username</string>
