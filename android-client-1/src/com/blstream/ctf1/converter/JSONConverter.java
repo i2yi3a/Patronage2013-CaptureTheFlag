@@ -21,6 +21,18 @@ import com.blstream.ctf1.domain.Localization;
 public class JSONConverter {
 
 	/**
+	 * @author Adrian Swarcewicz
+	 */
+	public static List<String> toPlayerNameStrings(JSONArray jsonArrayPlayerNames) throws JSONException {
+		List<String> result = new LinkedList<String>();
+		for (int i = 0; i < jsonArrayPlayerNames.length(); i++) {
+			String playerName = (String) jsonArrayPlayerNames.get(i);
+			result.add(playerName);
+		}
+		return result;
+	}
+	
+	/**
 	 * @param jsonObject
 	 * @return query string based on jsonObject or null if no keys-value pair
 	 *         found in jsonObject
