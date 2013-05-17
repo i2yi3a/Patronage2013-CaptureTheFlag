@@ -42,9 +42,11 @@ public class NetworkService {
 
 	public static Boolean isDeviceOnline(Context context) {
 		Boolean result = false;
-		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-		if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
+		if (cm.getActiveNetworkInfo() != null
+				&& cm.getActiveNetworkInfo().isConnectedOrConnecting() == true) {
 			result = true;
 		}
 
@@ -62,7 +64,9 @@ public class NetworkService {
 	 * @throws CTFException
 	 * @author Adrian Swarcewicz
 	 */
-	public JSONArray requestGet(String url, List<Header> headers) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public JSONArray requestGet(String url, List<Header> headers)
+			throws ClientProtocolException, IOException, JSONException,
+			CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpGet httpGet = new HttpGet(url);
@@ -72,10 +76,12 @@ public class NetworkService {
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() > 400) {
-			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+			throw new CTFException(mContext.getResources(),
+					statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		String responseContent = InputStreamConverter.toString(response.getEntity().getContent());
+		String responseContent = InputStreamConverter.toString(response
+				.getEntity().getContent());
 
 		return StringConverter.toJSONArray(responseContent);
 	}
@@ -91,21 +97,26 @@ public class NetworkService {
 	 * @throws CTFException
 	 * @author Adrian Swarcewicz
 	 */
-	public JSONArray requestPost(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public JSONArray requestPost(String url, List<Header> headers, String body)
+			throws ClientProtocolException, IOException, JSONException,
+			CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpPost httpPost = new HttpPost(url);
-		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers.size()]));
+		httpPost.setHeaders((Header[]) headers.toArray(new Header[headers
+				.size()]));
 		httpPost.setEntity(new StringEntity(body));
 
 		HttpResponse response = client.execute(httpPost);
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() > 400) {
-			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+			throw new CTFException(mContext.getResources(),
+					statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		String responseContent = InputStreamConverter.toString(response.getEntity().getContent());
+		String responseContent = InputStreamConverter.toString(response
+				.getEntity().getContent());
 
 		return StringConverter.toJSONArray(responseContent);
 	}
@@ -121,7 +132,9 @@ public class NetworkService {
 	 * @throws CTFException
 	 * @author Adrian Swarcewicz
 	 */
-	public JSONArray requestPut(String url, List<Header> headers, String body) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public JSONArray requestPut(String url, List<Header> headers, String body)
+			throws ClientProtocolException, IOException, JSONException,
+			CTFException {
 		HttpClient client = new DefaultHttpClient();
 
 		HttpPut httpPut = new HttpPut(url);
@@ -132,10 +145,12 @@ public class NetworkService {
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() > 400) {
-			throw new CTFException(mContext.getResources(), statusLine.getStatusCode(), statusLine.toString());
+			throw new CTFException(mContext.getResources(),
+					statusLine.getStatusCode(), statusLine.toString());
 		}
 
-		String responseContent = InputStreamConverter.toString(response.getEntity().getContent());
+		String responseContent = InputStreamConverter.toString(response
+				.getEntity().getContent());
 
 		return StringConverter.toJSONArray(responseContent);
 	}
