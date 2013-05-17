@@ -1,12 +1,16 @@
 package com.blstream.ctf1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.GameDetails;
+import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
  * @author Rafal_Olichwer
@@ -24,6 +28,9 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public TextView mTextGamePlayersMax;
 	public TextView mTextGamePointsMax;
 	public TextView mTextGameID;
+	public Button mBtnEdit;
+	public Button mBtnJoin;
+	private String mId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +47,34 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mTextGamePlayersMax = (TextView) findViewById(R.id.GamePlayersMax);
 		mTextGamePointsMax = (TextView) findViewById(R.id.GamePointsMax);
 		mTextGameID = (TextView) findViewById(R.id.ID);
-		GameDetails gameDetails = new GameDetails(this,"51927477e4b06da65947757b");
+		mBtnEdit = (Button) findViewById(R.id.btnEdit);
+		mBtnEdit.setOnClickListener(this);
+		mBtnJoin = (Button) findViewById(R.id.btnJoin);
+		mBtnJoin.setOnClickListener(this);
+		mId = "51927477e4b06da65947757b";
+		GameDetails gameDetails = new GameDetails(this,mId);
 		gameDetails.execute();
 	}
 	
 
 	@Override
 	public void onClick(View v) {
-		//switch (v.getId()) {
-		
-		//}
-	}
-	
-	
+		Intent intent = null;
+		switch (v.getId()) {
+		case R.id.btnJoin:
+			IssueTracker.saveClick(this, mBtnJoin);
+			Toast.makeText(this, "Dołączanie do gry nie jest jeszcze zaimplementowane!",
+					Toast.LENGTH_SHORT).show();
+			//TODO Joining the game
+			break;
 
+		case R.id.btnEdit:
+			IssueTracker.saveClick(this, mBtnEdit);
+			intent = new Intent(this, CreateGameActivity.class);
+			//intent.putExtra("ID", mId);
+			startActivity(intent);
+			break;
+		
+		}
+	}
 }

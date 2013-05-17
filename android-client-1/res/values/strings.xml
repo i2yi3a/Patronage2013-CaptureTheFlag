@@ -71,6 +71,11 @@
     <string name="game_status">Game status</string>
     <string name="game_radius">Radius of the game</string>
     
+    
+    <!-- GameDetails -->
+    <string name="game_join">Join the game</string>
+    <string name="game_edit">Edit game</string>
+    
     <!-- Error codes -->
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_500">Internal server error</string>

@@ -72,6 +72,10 @@
     <string name="game_status">Status gry</string>
     <string name="game_radius">Promień gry</string>
     
+    <!-- GameDetails -->
+    <string name="game_join">Dołącz do gry</string>
+    <string name="game_edit">Edytuj grę</string>
+    
 	<!-- Error codes -->
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
