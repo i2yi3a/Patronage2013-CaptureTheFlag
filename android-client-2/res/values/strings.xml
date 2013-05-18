@@ -22,6 +22,7 @@
     <string name="login_successful">Login successful</string>
     <string name="no_connection">Could not connect to server. Please check Your internet connection</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="server_error">Server returned an error</string>
     
     <string name="after_list_games">List games</string>
     <string name="after_create_game">Create Game</string>

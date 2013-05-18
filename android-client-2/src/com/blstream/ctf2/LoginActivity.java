@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
@@ -45,34 +46,27 @@ public class LoginActivity extends Activity {
 		EasyTracker.getInstance().activityStop(this);
 	}
 
-	public void loginResultNotification(int result) {
+	public void loginResultNotification(String notification) {
+		System.out.println("LOGINRESULTNOTIFICATION");
+		System.out.println(notification);
+		login.cancel(true);
 		mProgressDialog.dismiss();
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-		if (result == 0) {
-			alertDialogBuilder.setMessage(R.string.login_successful);
-			alertDialogBuilder.setPositiveButton(R.string.ok, null);
-			alertDialogBuilder.show();
+		if(notification.equals(this.getString(R.string.login_successful))){
 			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
 			startActivity(intent);
-			
-		} 
-		else if (result == -2) {
-			alertDialogBuilder.setMessage(R.string.no_connection);
-			alertDialogBuilder.setPositiveButton(R.string.ok, null);
-			alertDialogBuilder.show();
-		} 
-		else {
-			alertDialogBuilder.setMessage(R.string.login_failed);
-			alertDialogBuilder.setPositiveButton(R.string.ok, null);
-			alertDialogBuilder.show();
+		}
+		else{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(notification);
+			builder.setPositiveButton(R.string.ok, null);
+			builder.show();
 		}
 	}
 
 	public void onClickButton(View v) {
 		switch (v.getId()) {
 		case R.id.loginButton:
-			EasyTracker.getTracker().sendEvent("ui_action", "button_press",
-					"login_click", null);
+			EasyTracker.getTracker().sendEvent("ui_action", "button_press", "login_click", null);
 			if (!(mUsernameEditText.getText().toString().isEmpty()) && !(mPasswordEditText.getText().toString().isEmpty())) {
 				mProgressDialog.setTitle(R.string.login_progress);
 				mProgressDialog.show();
@@ -81,8 +75,7 @@ public class LoginActivity extends Activity {
 			}
 			break;
 		case R.id.registrationButton:
-			EasyTracker.getTracker().sendEvent("ui_action", "button_press",
-					"registration_click", null);
+			EasyTracker.getTracker().sendEvent("ui_action", "button_press", "registration_click", null);
 			Intent intent = new Intent("com.blstream.ctf2.REGISTERACTIVITY");
 			startActivity(intent);
 			break;
