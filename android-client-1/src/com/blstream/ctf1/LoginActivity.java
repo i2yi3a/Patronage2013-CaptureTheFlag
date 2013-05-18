@@ -68,7 +68,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	private boolean correctData(String login, String password) {
-		String info = "";
+		String info = Constants.EMPTY_STRING;
 
 		if (login.length() < Constants.MIN_SIZE_LOGIN) {
 			info += getResources().getString(R.string.login_too_short);
@@ -76,7 +76,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		if (password.length() < Constants.MIN_SIZE_PASSWORD) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.password_too_short) + '\n';
 		}
 

@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.CreateGame;
+import com.blstream.ctf1.pickers.DatePickerFragment;
+import com.blstream.ctf1.pickers.TimePickerFragment;
 import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
@@ -89,7 +91,7 @@ public class CreateGameActivity extends FragmentActivity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		
+
 		case R.id.btnCancel:
 			IssueTracker.saveClick(this, mBtnCancel);
 			finish();
@@ -168,7 +170,7 @@ public class CreateGameActivity extends FragmentActivity implements
 	// It is too long. Split it into smaller methods
 	private boolean correctData(String gameName, String locationName,
 			String mStartDate, String mStartTime, String playingTime) {
-		String info = "";
+		String info = Constants.EMPTY_STRING;
 		boolean result = false;
 
 		if (gameName.isEmpty()) {
@@ -177,7 +179,7 @@ public class CreateGameActivity extends FragmentActivity implements
 
 		if (locationName.isEmpty()) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.location_name_too_short);
 		}
 
@@ -191,7 +193,7 @@ public class CreateGameActivity extends FragmentActivity implements
 
 		if (playingTime.isEmpty()) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.playing_time_too_short);
 		}
 

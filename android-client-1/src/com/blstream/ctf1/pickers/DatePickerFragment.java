@@ -1,4 +1,4 @@
-package com.blstream.ctf1;
+package com.blstream.ctf1.pickers;
 
 import java.util.Calendar;
 
@@ -18,7 +18,7 @@ public class DatePickerFragment extends DialogFragment implements
 		DatePickerDialog.OnDateSetListener {
 
 	private Handler dialogPickerHandler;
-	
+
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
@@ -30,12 +30,12 @@ public class DatePickerFragment extends DialogFragment implements
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
 		Message msg = new Message();
-        Bundle data = new Bundle();
-        data.putString("data", day + "-" + month + "-" + year);
-        msg.setData(data);
-        dialogPickerHandler.sendMessage(msg);
+		Bundle data = new Bundle();
+		data.putString("data", day + "-" + month + "-" + year);
+		msg.setData(data);
+		dialogPickerHandler.sendMessage(msg);
 	}
-	
+
 	public void setHandler(Handler h) {
 		dialogPickerHandler = h;
 	}

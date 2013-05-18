@@ -1,4 +1,4 @@
-package com.blstream.ctf1;
+package com.blstream.ctf1.pickers;
 
 import java.util.Calendar;
 
@@ -19,7 +19,7 @@ public class TimePickerFragment extends DialogFragment implements
 		TimePickerDialog.OnTimeSetListener {
 
 	private Handler dialogPickerHandler;
-	
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final Calendar c = Calendar.getInstance();
@@ -32,12 +32,12 @@ public class TimePickerFragment extends DialogFragment implements
 	@Override
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		Message msg = new Message();
-        Bundle data = new Bundle();
-        data.putString("time", hourOfDay + ":" + minute + ":00");
-        msg.setData(data);
-        dialogPickerHandler.sendMessage(msg);
+		Bundle data = new Bundle();
+		data.putString("time", hourOfDay + ":" + minute + ":00");
+		msg.setData(data);
+		dialogPickerHandler.sendMessage(msg);
 	}
-	
+
 	public void setHandler(Handler h) {
 		dialogPickerHandler = h;
 	}
