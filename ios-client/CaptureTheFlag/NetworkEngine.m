@@ -113,7 +113,7 @@
 }
 
 - (void)createNewGame: (CTFGame *) game
-   completionBlock:(NetworkEngineCompletionBlock)completionBlock;
+   completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -145,6 +145,23 @@
     
    [self enqueueOperation:op];
  
+}
+
+-(NSError *)errorFromServerErrorCode:(NSInteger)code
+{
+   NSString *msg;
+    switch (code) {
+        case 0: msg=NSLocalizedString(@"server.success", nil);
+        case 1: msg=NSLocalizedString(@"server.error.bad.request", nil);
+        case 2: msg=NSLocalizedString(@"server.error.internal.errort", nil);
+        case 3: msg=NSLocalizedString(@"server.error.resource.not.found", nil);
+        case 4: msg=NSLocalizedString(@"server.error.resource.already.exists", nil);
+        case 5: msg=NSLocalizedString(@"server.error.resource.cannot.be.delated", nil);
+        case 100: msg=NSLocalizedString(@"server.error.cannot.create.new.player", nil);
+        case 101: msg=NSLocalizedString(@"server.error.player.already.exists", nil);
+        default: msg=NSLocalizedString(@"server.error.general", nil);
+    }
+    return [NSError errorWithDescription:msg];
 }
 
 @end 

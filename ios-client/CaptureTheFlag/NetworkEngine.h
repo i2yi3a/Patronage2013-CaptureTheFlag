@@ -32,4 +32,6 @@ typedef void (^NetworkEngineCompletionBlock)(NSObject* object);
 - (void)createNewGame:(CTFGame *) game
         completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 
+-(NSError *)errorFromServerErrorCode:(NSInteger)code;
+
 @end

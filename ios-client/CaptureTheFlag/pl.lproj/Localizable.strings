@@ -5,4 +5,15 @@
   Created by Sebastian Jędruszkiewicz on 4/15/13.
   Copyright (c) 2013 BLStream. All rights reserved.
 */
-"server.error.bad.request" = "Server returned error: bad request.";
+"server.success" = "OK";
+"server.error.bad.request" = "Błąd serwera: nieprawidłowe żądanie.";
+"server.error.internal.error" = "Błąd serwera: błąd wewnętrzny.";
+"server.error.resource.not.found" = "Błąd serwera: zasób nie został odnaleziony.";
+"server.error.resource.already.exists" = "Błąd serwera: zasób już istnieje.";
+"server.error.resource.cannot.be.delated" = "Błąd serwera: nie można usunąć zasobu.";
+"server.error.cannot.create.new.player" = "Błąd serwera: nie można dodać nowego gracza.";
+"server.error.player.already.exists" = "Błąd serwera: gracz już istnieje.";
+//"server.error.invalid.grant.password" = "Server returned error: authentication failed - wrong password";
+//"server.error.invalid.grant.username" = "Server returned error: bad credentials";
+//"server.error.invalid.token" = "Server returned error: invalid access token - %@";
+"server.error.general" = "Błąd serwera."
