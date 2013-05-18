@@ -55,41 +55,36 @@
     <string name="game_name_too_short">Game name is a required field</string>
     <string name="location_name_too_short">Location name is a required field</string>
     <string name="playing_time_too_short">Playing time is a required field</string>
-    <string name="start_date_too_short">Start date is a required field</string>
-    <string name="start_date_incorrect">Start date is incorrect. Try dd-mm-yyyy</string>
-    <string name="start_time_too_short">Start time is a required field</string>
-    <string name="start_time_incorrect">Start time is incorrect. Try hh:mm</string>
-    <string name="start_time_number_too_large">Start time is incorrect. Max hours:23 Max minutes:59</string>
-     <string name="map">Map</string>
+    <string name="start_date_past">You can not create the game in the past</string>
+    <string name="map">Map</string>
 
-    
-    <!--  EditGame -->
+    <!-- EditGame -->
     <string name="game_edited">Game successfully edited</string>
     <string name="game_owner">Game owner</string>
     <string name="game_id">Game ID</string>
     <string name="game_status">Game status</string>
     <string name="game_radius">Radius of the game</string>
-    
+
     <!-- GameDetails -->
     <string name="game_join">Join this game</string>
     <string name="game_leave">Leave this game</string>
     <string name="game_delete">Delete this game</string>
     <string name="game_edit">Edit game</string>
-    
+
     <!-- JoinGame -->
     <string name="game_joined">You have successfully joined this game</string>
     <string name="game_already_joined">You have already joined this game</string>
-    
+
     <!-- LeaveGame -->
     <string name="game_left">You have left this game</string>
     <string name="game_notyet_joined">You have not yet joined this game</string>
-    
+
     <!-- DeleteGame -->
     <string name="game_deleted">You have deleted this game</string>
     <!-- TODO same as DeleteGame.java at line 54 -->
     <string name="game_already_deleted">This game was already deleted</string>
     <string name="not_game_owner">You are not an owner of this game</string>
-    
+
     <!-- Error codes -->
     <string name="error_code_5">Only Game Owner can delete game</string>
     <string name="error_code_101">Login already in use</string>
@@ -101,18 +96,20 @@
     <string name="error_code_203">Bad token</string>
     <string name="error_code_204">Unexpected server response</string>
     <string name="title_activity_create_game">CreateGameActivity</string>
-    
+
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
     <string name="create_new_game">Create game</string>
     <string name="logout">Logout</string>
     <string name="gamestates_filter">Gamestates filter:</string>
+
     <string-array name="states_filter_array">
         <item>Planned</item>
         <item>Running</item>
         <item>Finished</item>
     </string-array>
-	<string name="player_profile">Profile</string>
-	<string name="logout_succesful">You are logged out</string>
-	
+
+    <string name="player_profile">Profile</string>
+    <string name="logout_succesful">You are logged out</string>
+
 </resources>

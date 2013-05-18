@@ -38,6 +38,8 @@ public class CreateGameActivity extends FragmentActivity implements
 	private EditText mEditMaxPlayers;
 	private EditText mEditMaxPoints;
 
+	private String info;
+
 	Handler handlerTime = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -126,20 +128,18 @@ public class CreateGameActivity extends FragmentActivity implements
 		String mGameName = mEditGameName.getText().toString();
 		String mGameDescription = mEditGameDescription.getText().toString();
 		String mLocationName = mEditLocationName.getText().toString();
-
 		String mStartDate = mBtnStartDate.getText().toString();
 		String mStartTime = mBtnStartTime.getText().toString();
-		// check Data & Time
-
 		String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
 		String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
 		String mMaxPointsTmp = mEditMaxPoints.getText().toString();
 
-		if (correctData(mGameName, mLocationName, mStartDate, mStartTime,
-				mPlayingTimeTmp)) {
-			if (NetworkService.isDeviceOnline(this)) {
-				Log.d("Data", "" + mStartDate + "  " + mStartTime);
+		boolean correct = correctDateTime(mStartDate, mStartTime);
+		boolean correct2 = correctData(mGameName, mLocationName,
+				mPlayingTimeTmp);
 
+		if (correct && correct2) {
+			if (NetworkService.isDeviceOnline(this)) {
 				if (mMaxPlayersTmp.length() == 0)
 					mMaxPlayersTmp = "120"; // no limits?
 				if (mMaxPointsTmp.length() == 0)
@@ -167,13 +167,67 @@ public class CreateGameActivity extends FragmentActivity implements
 		}
 	}
 
+	private boolean correctDateTime(String mStartDate, String mStartTime) {
+		info = Constants.EMPTY_STRING;
+		final Calendar c = Calendar.getInstance();
+		int actualYear = c.get(Calendar.YEAR);
+		int actualMonth = c.get(Calendar.MONTH);
+		int actualDay = c.get(Calendar.DAY_OF_MONTH);
+		int actualHour = c.get(Calendar.HOUR_OF_DAY);
+		int actualMinute = c.get(Calendar.MINUTE);
+
+		int day = Integer.parseInt(mStartDate.substring(0,
+				mStartDate.indexOf("-")));
+		int month = Integer.parseInt(mStartDate.substring(
+				mStartDate.indexOf("-") + 1, mStartDate.lastIndexOf("-")));
+		int year = Integer.parseInt(mStartDate.substring(mStartDate
+				.lastIndexOf("-") + 1));
+		int hour = Integer.parseInt(mStartTime.substring(0,
+				mStartTime.indexOf(":")));
+		int minute = Integer.parseInt(mStartTime.substring(
+				mStartTime.indexOf(":") + 1, mStartTime.lastIndexOf(":")));
+		Log.d("CTF ", "CTF date correct " + day + ":" + month + ":" + year
+				+ "   " + hour + ":" + minute);
+
+		if (year > actualYear)
+			return true;
+		if (year < actualYear) {
+			info += getResources().getString(R.string.start_date_past);
+			return false;
+		}
+		if (month > actualMonth)
+			return true;
+		if (month < actualMonth) {
+			info += getResources().getString(R.string.start_date_past);
+			return false;
+		}
+		if (day > actualDay)
+			return true;
+		if (day < actualDay) {
+			info += getResources().getString(R.string.start_date_past);
+			return false;
+		}
+		if (hour > actualHour)
+			return true;
+		if (hour < actualHour) {
+			info += getResources().getString(R.string.start_date_past);
+			return false;
+		}
+		if (minute > actualMinute)
+			return true;
+
+		info += getResources().getString(R.string.start_date_past);
+		return false;
+	}
+
 	// It is too long. Split it into smaller methods
 	private boolean correctData(String gameName, String locationName,
-			String mStartDate, String mStartTime, String playingTime) {
-		String info = Constants.EMPTY_STRING;
+			String playingTime) {
 		boolean result = false;
 
 		if (gameName.isEmpty()) {
+			if (!info.isEmpty())
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.game_name_too_short);
 		}
 
@@ -181,14 +235,6 @@ public class CreateGameActivity extends FragmentActivity implements
 			if (!info.isEmpty())
 				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.location_name_too_short);
-		}
-
-		if (mStartDate.isEmpty()) {
-
-		}
-
-		if (mStartTime.isEmpty()) {
-
 		}
 
 		if (playingTime.isEmpty()) {
