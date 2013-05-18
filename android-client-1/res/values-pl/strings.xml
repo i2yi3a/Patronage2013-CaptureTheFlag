@@ -9,6 +9,7 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_game_details">GameDetailsActivity</string>
+    <string name="title_activity_create_game">CreateGameActivity</string>
 
     <!-- Register & Login -->
     <string name="registration">Rejestracja</string>
@@ -68,7 +69,22 @@
 
     <!-- GameDetails -->
     <string name="game_join">Dołącz do gry</string>
+    <string name="game_leave">Opuść grę</string>
+    <string name="game_delete">Usuń grę</string>
     <string name="game_edit">Edytuj grę</string>
+
+    <!-- JoinGame -->
+    <string name="game_joined">Dołączyłeś do gry</string>
+    <string name="game_already_joined">Już jesteś zapisany do gry</string>
+
+    <!-- LeaveGame -->
+    <string name="game_left">Opuściłeś grę</string>
+    <string name="game_notyet_joined">Nie dołączyłeś jeszcze do gry</string>
+
+    <!-- DeleteGame -->
+    <string name="game_deleted">Usunałeś grę</string>
+    <!-- TODO takie samo jak w DeleteGame.java w linii 54 -->
+    <string name="game_already_deleted">Ta gra została już usunieta</string>
 
     <!-- Error codes -->
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
@@ -80,7 +96,6 @@
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
     <string name="error_code_204">Nieoczekiwna odpowiedź serwera</string>
-    <string name="title_activity_create_game">CreateGameActivity</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>

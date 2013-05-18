@@ -8,6 +8,8 @@
     <string name="splash_screen">SplashScreen</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_game_details">GameDetailsActivity</string>
+    <string name="title_activity_create_game">CreateGameActivity</string>
 
     <!-- Register & Login -->
     <string name="registration">Registration</string>
@@ -73,17 +75,14 @@
 
     <!-- JoinGame -->
     <string name="game_joined">You have successfully joined this game</string>
-    <string name="game_already_joined">You have already joined this game</string>
 
     <!-- LeaveGame -->
     <string name="game_left">You have left this game</string>
-    <string name="game_notyet_joined">You have not yet joined this game</string>
 
     <!-- DeleteGame -->
     <string name="game_deleted">You have deleted this game</string>
     <!-- TODO same as DeleteGame.java at line 54 -->
     <string name="game_already_deleted">This game was already deleted</string>
-    <string name="not_game_owner">You are not an owner of this game</string>
 
     <!-- Error codes -->
     <string name="error_code_5">Only Game Owner can delete game</string>
@@ -95,7 +94,6 @@
     <string name="error_code_202">Wrong username</string>
     <string name="error_code_203">Bad token</string>
     <string name="error_code_204">Unexpected server response</string>
-    <string name="title_activity_create_game">CreateGameActivity</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>

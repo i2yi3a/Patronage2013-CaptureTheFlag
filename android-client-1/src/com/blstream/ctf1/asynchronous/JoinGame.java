@@ -36,7 +36,7 @@ public class JoinGame extends AsyncTask<Void, Void, Void> {
 			if (!mGameService.isLoggedPlayerSignedUpForGame(mGameId)) {
 				mGameService.signUpForGame(mGameId);
 			} else {
-				mErrorString = mCurrentActivity.getResources().getString(R.string.game_already_joined);
+				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_102);
 			}
 		} catch (Exception e) {
 			mErrorString = e.getLocalizedMessage();

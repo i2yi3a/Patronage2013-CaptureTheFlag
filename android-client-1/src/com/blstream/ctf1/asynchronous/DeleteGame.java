@@ -36,7 +36,7 @@ public class DeleteGame extends AsyncTask<Void, Void, Void> {
 			if (mGameService.isLoggedPlayerGameOwner(mGameId)) {
 				mGameService.deleteGame(mGameId);
 			} else {
-				mErrorString = mCurrentActivity.getResources().getString(R.string.not_game_owner);
+				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_5);
 			}
 		} catch (Exception e) {
 			mErrorString = e.getLocalizedMessage();

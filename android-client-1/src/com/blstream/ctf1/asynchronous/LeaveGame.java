@@ -36,7 +36,7 @@ public class LeaveGame extends AsyncTask<Void, Void, Void> {
 			if (mGameService.isLoggedPlayerSignedUpForGame(mGameId)) {
 				mGameService.signOutFromGame(mGameId);
 			} else {
-				mErrorString = mCurrentActivity.getResources().getString(R.string.game_notyet_joined);
+				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_103);
 			}
 		} catch (Exception e) {
 			mErrorString = e.getLocalizedMessage();
