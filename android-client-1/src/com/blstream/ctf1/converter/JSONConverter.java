@@ -72,7 +72,11 @@ public class JSONConverter {
 			JSONObject jo = jsonArray.getJSONObject(i);
 
 			gameBasicInfo.setId(jo.getString("id"));
-			gameBasicInfo.setName(jo.getString("name"));
+			try {
+				gameBasicInfo.setName(jo.getString("name"));
+			} catch (JSONException e) { // server sometimes not return name field
+				gameBasicInfo.setName(null);
+			}
 			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
 			gameBasicInfo.setOwner(jo.getString("owner"));
 
