@@ -47,8 +47,8 @@
 	<string name="game_name">Nazwa gry:</string>
 	<string name="game_description">Opis gry:</string>
 	<string name="location_name">Nazwa lokalizacji:</string>
-	<string name="start_date">Data rozpoczęcia</string>
-    <string name="start_time">Czas rozpoczęcia</string>
+	<string name="set_date">Ustaw date</string>
+    <string name="set_time">Ustaw czas</string>
     <string name="playing_time">Czas rozgrywki(min):</string>
     <string name="maximum_players">Max ilość graczy:</string>
     <string name="maximum_scoring">Max ilość punktów:</string>

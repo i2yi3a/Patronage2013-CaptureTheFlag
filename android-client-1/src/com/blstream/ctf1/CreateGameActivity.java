@@ -1,5 +1,7 @@
 package com.blstream.ctf1;
 
+import java.util.Calendar;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.CreateGame;
+import com.blstream.ctf1.pickers.DatePickerFragment;
+import com.blstream.ctf1.pickers.TimePickerFragment;
 import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
@@ -37,16 +41,14 @@ public class CreateGameActivity extends FragmentActivity implements
 	Handler handlerTime = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// Button button = (Button) findViewById(R.id.btn);
-			// button.setText(msg.getData().getString("btn"));
 			String time = msg.getData().getString("time");
 			String data = msg.getData().getString("data");
 			if (!(time == null)) {
-				Log.d("Picker ", "Picker czas:" + time);
+				Log.d("CTF ", "CTF czas:" + time);
 				mBtnStartTime.setText(time);
 			}
 			if (!(data == null)) {
-				Log.d("Picker ", "Picker data:" + data);
+				Log.d("CTF ", "CTF data:" + data);
 				mBtnStartDate.setText(data);
 			}
 		}
@@ -74,11 +76,22 @@ public class CreateGameActivity extends FragmentActivity implements
 		mEditPlayingTime = (EditText) findViewById(R.id.editPlayingTime);
 		mEditMaxPlayers = (EditText) findViewById(R.id.editMaxPlayers);
 		mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);
+
+		final Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		int hour = c.get(Calendar.HOUR_OF_DAY) + 2;
+		// int minute = c.get(Calendar.MINUTE);
+		int minute = 0;
+		mBtnStartTime.setText(hour + ":" + minute + ":00");
+		mBtnStartDate.setText(day + "-" + month + "-" + year);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+
 		case R.id.btnCancel:
 			IssueTracker.saveClick(this, mBtnCancel);
 			finish();
@@ -114,9 +127,9 @@ public class CreateGameActivity extends FragmentActivity implements
 		String mGameDescription = mEditGameDescription.getText().toString();
 		String mLocationName = mEditLocationName.getText().toString();
 
-		String mStartDate = "";
-
-		String mStartTime = "";
+		String mStartDate = mBtnStartDate.getText().toString();
+		String mStartTime = mBtnStartTime.getText().toString();
+		// check Data & Time
 
 		String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
 		String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
@@ -136,9 +149,15 @@ public class CreateGameActivity extends FragmentActivity implements
 				int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
 				int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
 
+				Log.d("CTF ", "CTF createGame: " + mGameName + " , "
+						+ mGameDescription + " , " + mStartDate + " , "
+						+ mStartTime + " , " + mPlayingTime + " , "
+						+ mMaxPoints + " , " + mMaxPlayers + " , "
+						+ mLocationName + " , " + 0.0 + " , " + 0.0 + " , " + 1);
+
 				CreateGame createGame = new CreateGame(this,
 						CreateGameActivity.class, mGameName, mGameDescription,
-						mStartDate + " " + mStartTime + ":00", mPlayingTime,
+						mStartDate + " " + mStartTime, mPlayingTime,
 						mMaxPoints, mMaxPlayers, mLocationName, 0.0, 0.0, 1);
 				createGame.execute();
 			} else {
@@ -151,7 +170,7 @@ public class CreateGameActivity extends FragmentActivity implements
 	// It is too long. Split it into smaller methods
 	private boolean correctData(String gameName, String locationName,
 			String mStartDate, String mStartTime, String playingTime) {
-		String info = "";
+		String info = Constants.EMPTY_STRING;
 		boolean result = false;
 
 		if (gameName.isEmpty()) {
@@ -160,12 +179,12 @@ public class CreateGameActivity extends FragmentActivity implements
 
 		if (locationName.isEmpty()) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.location_name_too_short);
 		}
 
 		if (mStartDate.isEmpty()) {
-			
+
 		}
 
 		if (mStartTime.isEmpty()) {
@@ -174,7 +193,7 @@ public class CreateGameActivity extends FragmentActivity implements
 
 		if (playingTime.isEmpty()) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.playing_time_too_short);
 		}
 

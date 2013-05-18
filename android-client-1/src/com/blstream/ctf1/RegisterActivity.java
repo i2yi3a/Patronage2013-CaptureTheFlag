@@ -74,21 +74,21 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
 	private boolean correctData(String login, String password, String password2) {
 		boolean result = false;
-		String info = "";
+		String info = Constants.EMPTY_STRING;
 		if (login.length() < Constants.MIN_SIZE_LOGIN) {
 			info += getResources().getString(R.string.login_too_short);
 		}
 
 		if (password.length() < Constants.MIN_SIZE_PASSWORD) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 
 			info += getResources().getString(R.string.password_too_short);
 		}
 
 		if (!password.equals(password2)) {
 			if (!info.isEmpty())
-				info += '\n';
+				info += Constants.NEW_LINE;
 			info += getResources().getString(R.string.passwords_not_equal);
 		}
 
