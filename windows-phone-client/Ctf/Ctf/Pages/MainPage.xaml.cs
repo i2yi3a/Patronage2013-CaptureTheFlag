@@ -51,7 +51,7 @@ namespace Ctf.Pages
 
         private void txtChanged(object sender, RoutedEventArgs e)
         {
-            if (usernameBox.Text.Length > 4 && passwordBox.Password.Length > 4)
+            if (usernameBox.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH && passwordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH)
             {
                 loginButton.IsEnabled = true;
             }
@@ -108,9 +108,7 @@ namespace Ctf.Pages
             RegisterCommand Registers = new RegisterCommand();
             Registers.RequestFinished += new RequestFinishedEventHandler(Registers_MessengerSent);
             Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password));
-            userNameRegister.Text = String.Empty;
-            passwordRegister1.Password = String.Empty;
-            passwordRegister2.Password = String.Empty;
+            
         }
 
         private void Registers_MessengerSent(object sender, RequestFinishedEventArgs e)
@@ -121,6 +119,10 @@ namespace Ctf.Pages
             {
                 MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.error_code.ToString(), MessageBoxButton.OK);
                 pano.DefaultItem = pano.Items[0];
+                usernameBox.Text = userNameRegister.Text;
+                userNameRegister.Text = String.Empty;
+                passwordRegister1.Password = String.Empty;
+                passwordRegister2.Password = String.Empty;
             }
             else
             {
