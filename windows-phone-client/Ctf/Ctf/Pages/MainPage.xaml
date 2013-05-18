@@ -31,6 +31,7 @@
                             <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageLoginPassword, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Height="41" Width="229" FontSize="18"/>
                             <PasswordBox x:Name="passwordBox" Margin="77,0,77,0" VerticalAlignment="Top" Width="300" Height="60" FontSize="18" PasswordChanged="txtChanged"/>
                             <Button x:Name="loginButton" Content="{Binding LocalizedResources.MainpageLoginButton, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Margin="137,0,145,0" VerticalAlignment="Center" Click="LogIn"/>
+                            <TextBlock x:Name="LoginErrorBlock" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="18"/>
                         </StackPanel>
 
                     </Grid>
@@ -53,6 +54,7 @@
                             <TextBlock HorizontalAlignment="Left" Margin="88,20,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.MainpageRegisterPasswordConfirm, Mode=OneWay, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" FontSize="18" Height="41"/>
                             <PasswordBox x:Name="passwordRegister2" HorizontalAlignment="Center" Margin="77,0,77,0"  VerticalAlignment="Center" Width="300" Height="60" PasswordChanged="txtChangedRegister" FontSize="18"/>
                             <Button x:Name="registerButton" Content="{Binding LocalizedResources.MainpageRegisterButton, Mode=OneWay, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="178" Click="Button_Click_1" />
+                            <TextBlock x:Name="RegisterErrorBlock" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="18"/>
                         </StackPanel>
                     </Grid>
                 </phone:PanoramaItem>

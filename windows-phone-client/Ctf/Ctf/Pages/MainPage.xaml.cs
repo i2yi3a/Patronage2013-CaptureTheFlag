@@ -51,18 +51,31 @@ namespace Ctf.Pages
 
         private void txtChanged(object sender, RoutedEventArgs e)
         {
+            String info = String.Empty;
+            loginButton.IsEnabled = false;
             if (usernameBox.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH && passwordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH)
             {
                 loginButton.IsEnabled = true;
             }
             else
             {
-                loginButton.IsEnabled = false;
+                if (usernameBox.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
+                {
+                    info += "Minimalna dlugosc loginu to " + UserCredentials.MINIMAL_USERNAME_LENGTH + " znakow.";
+                    info += "\n";
+                }
+                if (passwordBox.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
+                {
+                    info += "Minimalna dlugosc hasla to " + UserCredentials.MINIMAL_PASSWORD_LENGTH + " znakow.";
+                }
             }
+            LoginErrorBlock.Text = info;
         }
 
         private void txtChangedRegister(object sender, RoutedEventArgs e)
         {
+            String info = String.Empty;
+            registerButton.IsEnabled = false;
             if (userNameRegister.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
                 passwordRegister1.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
                 passwordRegister2.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
@@ -72,8 +85,22 @@ namespace Ctf.Pages
             }
             else
             {
-                registerButton.IsEnabled = false;
+                if (userNameRegister.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
+                {
+                    info += "Minimalna dlugosc loginu to " + UserCredentials.MINIMAL_USERNAME_LENGTH + " znakow.";
+                    info += "\n";
+                }
+                if (passwordRegister1.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
+                {
+                    info += "Minimalna dlugosc hasla to " + UserCredentials.MINIMAL_PASSWORD_LENGTH + " znakow.";
+                    info += "\n";
+                }
+                if (!passwordRegister1.Password.Equals(passwordRegister2.Password))
+                {
+                    info += "Podane haslamusza byc takie same.";
+                }
             }
+            RegisterErrorBlock.Text = info;
         }
 
         private void LogIn(object sender, RoutedEventArgs e)
