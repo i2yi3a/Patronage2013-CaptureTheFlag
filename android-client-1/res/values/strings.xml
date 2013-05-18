@@ -47,8 +47,6 @@
     <string name="game_name">Game name:</string>
     <string name="game_description">Game description:</string>
     <string name="location_name">Location name:</string>
-    <string name="set_date">Set date</string>
-    <string name="set_time">Set time</string>
     <string name="playing_time">Playing time(min):</string>
     <string name="maximum_players">Maximum players:</string>
     <string name="maximum_scoring">Maximum points:</string>
