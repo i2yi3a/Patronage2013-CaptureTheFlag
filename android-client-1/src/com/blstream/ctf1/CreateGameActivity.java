@@ -28,15 +28,15 @@ public class CreateGameActivity extends FragmentActivity implements
 
 	private Button mBtnCancel;
 	private Button mBtnCreate;
-	private Button mBtnStartDate;
-	private Button mBtnStartTime;
+	public Button mBtnStartDate;
+	public Button mBtnStartTime;
 	private Button mBtnMap;
-	private EditText mEditGameName;
-	private EditText mEditGameDescription;
-	private EditText mEditLocationName;
-	private EditText mEditPlayingTime;
-	private EditText mEditMaxPlayers;
-	private EditText mEditMaxPoints;
+	public EditText mEditGameName;
+	public EditText mEditGameDescription;
+	public EditText mEditLocationName;
+	public EditText mEditPlayingTime;
+	public EditText mEditMaxPlayers;
+	public EditText mEditMaxPoints;
 
 	private String info;
 
