@@ -64,12 +64,12 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
 					.show();
 		} else {
-			mCurrentActivity.mEditGameName.setText(result.getName());
-			mCurrentActivity.mEditGameDescription.setText(result.getDescription());
-			mCurrentActivity.mEditPlayingTime.setText(Long.toString(result.getDuration()));
-			mCurrentActivity.mEditLocationName.setText(result.getLocalization().getName());
-			mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result.getPlayersMax()));
-			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result.getPointsMax()));
+		//	mCurrentActivity.mEditGameName.setText(result.getName());
+		//	mCurrentActivity.mEditGameDescription.setText(result.getDescription());
+		//	mCurrentActivity.mEditPlayingTime.setText(Long.toString(result.getDuration()));
+		//	mCurrentActivity.mEditLocationName.setText(result.getLocalization().getName());
+		//	mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result.getPlayersMax()));
+		//	mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result.getPointsMax()));
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
 		}

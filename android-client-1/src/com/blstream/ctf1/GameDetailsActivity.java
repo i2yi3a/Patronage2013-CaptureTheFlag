@@ -62,8 +62,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		Bundle bundle = getIntent().getExtras();
         if(bundle.getString(Constants.EXTRA_KEY_ID) != null) {
             mId = bundle.getString(Constants.EXTRA_KEY_ID);
-        } else
-        	mId = "51824c70e4b03c6418a2fdaa";
+        }
 		GameDetails gameDetails = new GameDetails(this,mId);
 		gameDetails.execute();
 	}
