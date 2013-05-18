@@ -22,6 +22,8 @@ public class Constants {
 	public static final String CLIENT_SECRET = "secret";
 
 	public static final String EXTRA_KEY_ID = "ID";
+	
+	public static final String EMPTY_STRING = "";
 		
 	public static final String PREFIX_ERROR_CODE= "error_code_"; 
 	

@@ -13,13 +13,14 @@ import android.widget.Toast;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
- * @author Mateusz Wiœniewski
+ * @author Mateusz Wiï¿½niewski
  */
 public class GameListActivity extends Activity implements OnClickListener{
 
 	private Button mBtnCreateNewGame; 
 	private Button mBtnLogout;
 	private Button mBtnPlayerProfile;
+	private String mId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,8 @@ public class GameListActivity extends Activity implements OnClickListener{
 		mBtnLogout.setOnClickListener(this);
 		
 		mBtnPlayerProfile = (Button) findViewById(R.id.btnPlayerProfile);
-		mBtnPlayerProfile.setOnClickListener(this);	
+		mBtnPlayerProfile.setOnClickListener(this);
+		
 	}
 
 	@Override
@@ -55,8 +57,9 @@ public class GameListActivity extends Activity implements OnClickListener{
 			case R.id.btnPlayerProfile:
 				IssueTracker.saveClick(this, mBtnPlayerProfile);
 				intent = new Intent(this, GameDetailsActivity.class);
-				startActivity(intent);//w celu sprawdzenia czy dziala
-				//nowe activity z profilem
+				mId = "51927477e4b06da65947757b"; //will be deleted after list implementation complete
+				intent.putExtra(Constants.EXTRA_KEY_ID, mId);
+				startActivity(intent);
 				break;
 			case R.id.btnLogout:
 				IssueTracker.saveClick(this, mBtnLogout);
