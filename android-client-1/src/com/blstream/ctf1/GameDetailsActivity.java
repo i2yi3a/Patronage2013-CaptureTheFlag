@@ -7,13 +7,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.blstream.ctf1.asynchronous.DeleteGame;
 import com.blstream.ctf1.asynchronous.GameDetails;
+import com.blstream.ctf1.asynchronous.JoinGame;
+import com.blstream.ctf1.asynchronous.LeaveGame;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
- * @author Rafal_Olichwer
+ * @author Rafal_Olichwer, Piotr Marczycki
  */
 
 public class GameDetailsActivity extends Activity implements OnClickListener {
@@ -28,8 +30,10 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public TextView mTextGamePlayersMax;
 	public TextView mTextGamePointsMax;
 	public TextView mTextGameID;
-	public Button mBtnEdit;
 	public Button mBtnJoin;
+	public Button mBtnLeave;
+	public Button mBtnEdit;
+	public Button mBtnDelete;
 	private String mId;
 	
 	@Override
@@ -47,17 +51,19 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mTextGamePlayersMax = (TextView) findViewById(R.id.GamePlayersMax);
 		mTextGamePointsMax = (TextView) findViewById(R.id.GamePointsMax);
 		mTextGameID = (TextView) findViewById(R.id.ID);
-		mBtnEdit = (Button) findViewById(R.id.btnEdit);
-		mBtnEdit.setOnClickListener(this);
 		mBtnJoin = (Button) findViewById(R.id.btnJoin);
 		mBtnJoin.setOnClickListener(this);
+		mBtnLeave = (Button) findViewById(R.id.btnLeave);
+		mBtnLeave.setOnClickListener(this);
+		mBtnEdit = (Button) findViewById(R.id.btnEdit);
+		mBtnEdit.setOnClickListener(this);
+		mBtnDelete = (Button) findViewById(R.id.btnDelete);
+		mBtnDelete.setOnClickListener(this);
 		Bundle bundle = getIntent().getExtras();
-        if(bundle.getString(Constants.EXTRA_KEY_ID)!= null)
+        if(bundle.getString(Constants.EXTRA_KEY_ID) != null)
         {
             mId = bundle.getString(Constants.EXTRA_KEY_ID);
         }
-        else//will be deleted after list implementation complete
-        	mId = "51927477e4b06da65947757b";
 		GameDetails gameDetails = new GameDetails(this,mId);
 		gameDetails.execute();
 	}
@@ -69,18 +75,25 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btnJoin:
 			IssueTracker.saveClick(this, mBtnJoin);
-			Toast.makeText(this, "Dołączanie do gry nie jest jeszcze zaimplementowane!",
-					Toast.LENGTH_SHORT).show();
-			//TODO Joining the game
+			JoinGame joinGameAsync = new JoinGame(this, mId);
+			joinGameAsync.execute();
 			break;
-
+		case R.id.btnLeave:
+			IssueTracker.saveClick(this, mBtnLeave);
+			LeaveGame leaveGameAsync = new LeaveGame(this, mId);
+			leaveGameAsync.execute();
+			break;
 		case R.id.btnEdit:
 			IssueTracker.saveClick(this, mBtnEdit);
 			intent = new Intent(this, CreateGameActivity.class);
 			intent.putExtra(Constants.EXTRA_KEY_ID, mId);
 			startActivity(intent);
 			break;
-		
+		case R.id.btnDelete:
+			IssueTracker.saveClick(this, mBtnDelete);
+			DeleteGame deleteGameAsync = new DeleteGame(this, mId);
+			deleteGameAsync.execute();
+			break;
 		}
 	}
 }

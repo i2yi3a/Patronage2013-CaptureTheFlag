@@ -76,7 +76,10 @@
     <string name="game_edit">Edytuj grę</string>
     
 	<!-- Error codes -->
+	<string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
+    <string name="error_code_102">Wyraziłeś już chęć wzięcia udziału w tej grze</string>
+    <string name="error_code_103">Nie wyraziłeś wcześniej chęci wzięcia udziału w tej grze</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
     <string name="error_code_201">Niepoprawne hasło</string>
     <string name="error_code_202">Niepoprawny login</string>

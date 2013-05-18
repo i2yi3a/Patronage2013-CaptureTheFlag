@@ -70,13 +70,32 @@
     <string name="game_status">Game status</string>
     <string name="game_radius">Radius of the game</string>
     
-    
     <!-- GameDetails -->
-    <string name="game_join">Join the game</string>
+    <!-- TODO consider changing join to signup -->
+    <string name="game_join">Join this game</string>
+    <string name="game_leave">Leave this game</string>
+    <string name="game_delete">Delete this game</string>
     <string name="game_edit">Edit game</string>
     
+    <!-- JoinGame -->
+    <string name="game_joined">You have successfully joined this game</string>
+    <string name="game_already_joined">You have already joined this game</string>
+    
+    <!-- LeaveGame -->
+    <string name="game_left">You have left this game</string>
+    <string name="game_notyet_joined">You have not yet joined this game</string>
+    
+    <!-- DeleteGame -->
+    <string name="game_deleted">You have deleted this game</string>
+    <!-- TODO same as DeleteGame.java at line 54 -->
+    <string name="game_already_deleted">This game was already deleted</string>
+    <string name="not_game_owner">You are not an owner of this game</string>
+    
     <!-- Error codes -->
+    <string name="error_code_5">Only Game Owner can delete game</string>
     <string name="error_code_101">Login already in use</string>
+    <string name="error_code_102">You are already signed to game</string>
+    <string name="error_code_103">You are not signed to game</string>
     <string name="error_code_500">Internal server error</string>
     <string name="error_code_201">Wrong password</string>
     <string name="error_code_202">Wrong username</string>
