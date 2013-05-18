@@ -23,7 +23,7 @@ import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 
 /**
- * @author Adrian Swarcewicz, Rafał Olichwer
+ * @author Adrian Swarcewicz, Rafał Olichwer, Piotr Marczycki
  */
 public class GameService {
 
@@ -176,14 +176,14 @@ public class GameService {
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	public boolean isLoggedPlayerSignInInGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public boolean isLoggedPlayerSignedUpForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
 		return getPlayersForGame(gameId).contains(getLoggedPlayer().getLogin());
 	}
 
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	public void signInToGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public void signUpForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
 		JSONObject jsonObjectResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId + "/signIn", getGameHeaders(), null)
 				.getJSONObject(0);
 
@@ -214,5 +214,34 @@ public class GameService {
 		if (jsonObjectResult.getInt("error_code") != 0) {
 			throw new CTFException(mContext.getResources(), jsonObjectResult.getInt("error_code"), jsonObjectResult.getString("error_description"));
 		}
+	}
+
+	/**
+	 * @author Piotr Marczycki
+	 */
+	public String getLoggedPlayersLogin() {
+		String playersLogin = Constants.EMPTY_STRING;
+		LoggedPlayer loggedPlayer = null;
+		mStorageService.open();
+		loggedPlayer = mStorageService.getLoggedPlayer();
+		mStorageService.close();
+		if (loggedPlayer != null) {
+			playersLogin = loggedPlayer.getLogin();
+		}
+		return playersLogin;
+	}
+
+	/**
+	 * @author Piotr Marczycki
+	 * @throws CTFException
+	 * @throws IOException
+	 * @throws JSONException
+	 * @throws ClientProtocolException
+	 */
+	public boolean isLoggedPlayerGameOwner(String gameId) throws ClientProtocolException, JSONException, IOException, CTFException {
+		String gameOwner = Constants.EMPTY_STRING;
+		GameExtendedInfo gameExtendedInfo = getGameDetails(gameId);
+		gameOwner = gameExtendedInfo.getOwner();
+		return (!gameOwner.equals(Constants.EMPTY_STRING)) && gameOwner.equals(getLoggedPlayersLogin());
 	}
 }

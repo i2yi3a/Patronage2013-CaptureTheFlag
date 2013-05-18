@@ -57,7 +57,7 @@ public class GameListActivity extends Activity implements OnClickListener{
 			case R.id.btnPlayerProfile:
 				IssueTracker.saveClick(this, mBtnPlayerProfile);
 				intent = new Intent(this, GameDetailsActivity.class);
-				mId = "51927477e4b06da65947757b"; //will be deleted after list implementation complete
+				mId = "519753a2e4b06da6594775c0"; //will be deleted after list implementation complete
 				intent.putExtra(Constants.EXTRA_KEY_ID, mId);
 				startActivity(intent);
 				break;

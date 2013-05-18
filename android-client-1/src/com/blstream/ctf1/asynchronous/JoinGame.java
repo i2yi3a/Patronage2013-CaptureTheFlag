@@ -33,12 +33,11 @@ public class JoinGame extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			if (mGameService.isLoggedPlayerSignInInGame(mGameId) == false) {
-				mGameService.signInToGame(mGameId);
+			if (!mGameService.isLoggedPlayerSignedUpForGame(mGameId)) {
+				mGameService.signUpForGame(mGameId);
 			} else {
 				mErrorString = mCurrentActivity.getResources().getString(R.string.game_already_joined);
 			}
-			// TODO Figure out what to do with each kind of exception
 		} catch (Exception e) {
 			mErrorString = e.getLocalizedMessage();
 		}

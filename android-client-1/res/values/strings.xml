@@ -71,7 +71,6 @@
     <string name="game_radius">Radius of the game</string>
     
     <!-- GameDetails -->
-    <!-- TODO consider changing join to signup -->
     <string name="game_join">Join this game</string>
     <string name="game_leave">Leave this game</string>
     <string name="game_delete">Delete this game</string>

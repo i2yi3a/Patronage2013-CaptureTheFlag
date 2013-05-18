@@ -5,11 +5,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.R;
-import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.service.GameService;
-import com.blstream.ctf1.service.StorageService;
 
 /**
  * @author Piotr Marczycki
@@ -20,7 +17,6 @@ public class DeleteGame extends AsyncTask<Void, Void, Void> {
 	private String mErrorString;
 	private ProgressDialog mLoadingDialog;
 	private GameService mGameService;
-	private StorageService mStorageService;
 
 	@Override
 	protected void onPreExecute() {
@@ -32,19 +28,16 @@ public class DeleteGame extends AsyncTask<Void, Void, Void> {
 		mCurrentActivity = currentActivity;
 		mGameId = gameId;
 		mGameService = new GameService(mCurrentActivity);
-		mStorageService = new StorageService(currentActivity);
 	}
 
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			String gameOwner = mGameService.getGameDetails(mGameId).getOwner();
-			if (gameOwner.equals(getLoggedPlayersLogin())) {
+			if (mGameService.isLoggedPlayerGameOwner(mGameId)) {
 				mGameService.deleteGame(mGameId);
 			} else {
 				mErrorString = mCurrentActivity.getResources().getString(R.string.not_game_owner);
 			}
-			// TODO Figure out what to do with each kind of exception
 		} catch (Exception e) {
 			mErrorString = e.getLocalizedMessage();
 		}
@@ -61,17 +54,5 @@ public class DeleteGame extends AsyncTask<Void, Void, Void> {
 		} else {
 			Toast.makeText(mCurrentActivity, R.string.game_deleted, Toast.LENGTH_SHORT).show();
 		}
-	}
-
-	private String getLoggedPlayersLogin() {
-		String playersLogin = Constants.EMPTY_STRING;
-		LoggedPlayer loggedPlayer = null;
-		mStorageService.open();
-		loggedPlayer = mStorageService.getLoggedPlayer();
-		mStorageService.close();
-		if (loggedPlayer != null) {
-			playersLogin = loggedPlayer.getLogin();
-		}
-		return playersLogin;
 	}
 }
