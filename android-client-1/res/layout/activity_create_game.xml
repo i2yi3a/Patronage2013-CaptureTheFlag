@@ -99,7 +99,7 @@
                 android:id="@+id/btnStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/start_date" />
+                android:text="@string/set_date" />
 
             <Button
                 android:id="@+id/btnStartTime"
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:text="@string/start_time" />
+                android:text="@string/set_time" />
 
             <Button
                 android:id="@+id/btnMap"
