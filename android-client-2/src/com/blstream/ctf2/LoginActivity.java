@@ -47,9 +47,6 @@ public class LoginActivity extends Activity {
 	}
 
 	public void loginResultNotification(String notification) {
-		System.out.println("LOGINRESULTNOTIFICATION");
-		System.out.println(notification);
-		login.cancel(true);
 		mProgressDialog.dismiss();
 		if(notification.equals(this.getString(R.string.login_successful))){
 			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
