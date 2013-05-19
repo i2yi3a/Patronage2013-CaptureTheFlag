@@ -222,11 +222,13 @@ public class GameService {
 
 	/**
 	 * @author Piotr Marczycki
+	 * @throws ClientProtocolException
+	 * @throws JSONException
+	 * @throws IOException
+	 * @throws CTFException
 	 * @throws ParseException
 	 */
 	public boolean isLoggedPlayerGameOwner(String gameId) throws ClientProtocolException, JSONException, IOException, CTFException, ParseException {
-		GameExtendedInfo gameExtendedInfo = getGameDetails(gameId);
-		String gameOwner = gameExtendedInfo.getOwner();
-		return gameOwner.equals(getLoggedPlayer().getLogin());
+		return getGameDetails(gameId).getOwner().equals(getLoggedPlayer().getLogin());
 	}
 }
