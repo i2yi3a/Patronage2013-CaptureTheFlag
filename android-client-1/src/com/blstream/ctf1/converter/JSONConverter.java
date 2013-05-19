@@ -1,5 +1,8 @@
 package com.blstream.ctf1.converter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
@@ -92,10 +96,10 @@ public class JSONConverter {
 	 * @throws JSONException
 	 * @author Rafał Olichwer
 	 */
-	public static GameExtendedInfo toGameExtendedInfo(JSONObject jsonObject) throws JSONException {
+	public static GameExtendedInfo toGameExtendedInfo(JSONObject jsonObject) throws JSONException, ParseException {
 		GameExtendedInfo result = new GameExtendedInfo();
 		result.setDescription(jsonObject.getString("description"));
-		result.setDuration(jsonObject.getLong("duration"));
+		result.setDuration(toMinutes(jsonObject.getLong("duration")));
 		result.setGameStatusType(GameStatusType.fromString(jsonObject.getString("status")));
 		JSONObject jsonLocalization = jsonObject.getJSONObject("localization");
 		// JSONObject jsonLatLng = jsonLocalization.getJSONObject("latLng");
@@ -108,8 +112,12 @@ public class JSONConverter {
 		result.setOwner(jsonObject.getString("owner"));
 		result.setPlayersMax(jsonObject.getInt("players_max"));
 		result.setPointsMax(jsonObject.getInt("points_max"));
-
+		Date timeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).parse(jsonObject.getString("time_start"));
+		result.setTimeStart(timeStart);
 		return result;
-		// result.setTimeStart(timeStart);
+	}
+	
+	public static Long toMinutes(Long milis){
+		return milis/60000;
 	}
 }

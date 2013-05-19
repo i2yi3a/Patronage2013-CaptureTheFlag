@@ -1,9 +1,12 @@
 package com.blstream.ctf1.asynchronous;
 
+import java.text.SimpleDateFormat;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.CreateGameActivity;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameExtendedInfo;
@@ -68,11 +71,8 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 					.getPlayersMax()));
 			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result
 					.getPointsMax()));
-			// mCurrentActivity.mBtnStartDate.setText();
-			// mCurrentActivity.mBtnStartTime.setText();
-			// Intent intent = new Intent(mCurrentActivity,
-			// mSuccessfullActivity);
-			// mCurrentActivity.startActivity(intent);
+			mCurrentActivity.mBtnStartDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT).format(result.getTimeStart()));
+			mCurrentActivity.mBtnStartTime.setText(new SimpleDateFormat(Constants.TIME_FORMAT).format(result.getTimeStart()));
 		}
 	}
 

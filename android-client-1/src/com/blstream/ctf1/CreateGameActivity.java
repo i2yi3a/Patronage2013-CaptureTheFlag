@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.blstream.ctf1.asynchronous.CreateGame;
 import com.blstream.ctf1.asynchronous.EditGame;
 import com.blstream.ctf1.asynchronous.EditGameDetails;
+import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.pickers.DatePickerFragment;
 import com.blstream.ctf1.pickers.TimePickerFragment;
 import com.blstream.ctf1.service.NetworkService;
@@ -93,7 +94,7 @@ public class CreateGameActivity extends FragmentActivity implements
 			int hour = c.get(Calendar.HOUR_OF_DAY) + 2;
 			int minute = 0;
 			mBtnStartTime.setText(hour + ":" + minute + ":00");
-			mBtnStartDate.setText(day + "-" + month + "-" + year);
+			mBtnStartDate.setText(day + "-" + (month + 1) + "-" + year);
 			mBtnCreate.setText(R.string.create_game);
 		} else {
 			mBtnCreate.setText(R.string.edit_game);
@@ -175,8 +176,9 @@ public class CreateGameActivity extends FragmentActivity implements
 					createGame.execute();
 				} else {
 					EditGame editGame = new EditGame(this,
-							GameListActivity.class, mId, mGameName,
-							mGameDescription, mStartDate + mStartTime,
+							GameListActivity.class, mId,
+							GameStatusType.NEW.toString(), mGameName,
+							mGameDescription, mStartDate + " " + mStartTime,
 							mPlayingTime, mMaxPoints, mMaxPlayers,
 							mLocationName, 0.0, 0.0, 1);
 					editGame.execute();
@@ -193,7 +195,7 @@ public class CreateGameActivity extends FragmentActivity implements
 		final Calendar c = Calendar.getInstance();
 		int actualYear = c.get(Calendar.YEAR);
 		int actualMonth = c.get(Calendar.MONTH);
-		int actualDay = c.get(Calendar.DAY_OF_MONTH);
+		int actualDay = c.get(Calendar.DAY_OF_MONTH) + 1;
 		int actualHour = c.get(Calendar.HOUR_OF_DAY);
 		int actualMinute = c.get(Calendar.MINUTE);
 

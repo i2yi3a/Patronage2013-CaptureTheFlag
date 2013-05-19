@@ -22,6 +22,10 @@ public class Constants {
 	public static final String CLIENT_SECRET = "secret";
 
 	public static final String EXTRA_KEY_ID = "ID";
+
+	public static final String DATE_FORMAT = "dd-MM-yyyy";
+
+	public static final String TIME_FORMAT = "hh:mm:ss";
 	
 	public static final String EMPTY_STRING = "";
 	

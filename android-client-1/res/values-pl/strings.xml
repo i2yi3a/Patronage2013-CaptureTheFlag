@@ -62,6 +62,7 @@
     <!-- EditGame -->
     <string name="game_edited">Pomyślnie zmieniono grę</string>
     <string name="game_owner">Właściciel gry</string>
+    <string name="game_date">Data rozpoczęcia gry</string>
     <string name="game_id">ID gry</string>
     <string name="game_status">Status gry</string>
     <string name="game_radius">Promień gry</string>

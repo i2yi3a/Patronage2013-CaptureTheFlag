@@ -1,9 +1,12 @@
 package com.blstream.ctf1.asynchronous;
 
+import java.text.SimpleDateFormat;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameExtendedInfo;
@@ -64,6 +67,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextLocRadius.setText(Long.toString(result.getLocalization().getRadius()));
 			mCurrentActivity.mTextGameStatus.setText(result.getGameStatusType().toString());
 			mCurrentActivity.mTextGameOwner.setText(result.getOwner());
+			mCurrentActivity.mTextGameDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).format(result.getTimeStart()));
 			mCurrentActivity.mTextGamePlayersMax.setText(Integer.toString(result.getPlayersMax()));
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());

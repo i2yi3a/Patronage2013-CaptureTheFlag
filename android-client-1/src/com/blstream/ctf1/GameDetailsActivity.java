@@ -27,6 +27,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public TextView mTextLocRadius;
 	public TextView mTextGameStatus;
 	public TextView mTextGameOwner;
+	public TextView mTextGameDate;
 	public TextView mTextGamePlayersMax;
 	public TextView mTextGamePointsMax;
 	public TextView mTextGameID;
@@ -48,6 +49,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mTextLocRadius = (TextView) findViewById(R.id.LocRadius);
 		mTextGameStatus = (TextView) findViewById(R.id.GameStatus);
 		mTextGameOwner = (TextView) findViewById(R.id.Owner);
+		mTextGameDate = (TextView) findViewById(R.id.DetailsGameDate);
 		mTextGamePlayersMax = (TextView) findViewById(R.id.GamePlayersMax);
 		mTextGamePointsMax = (TextView) findViewById(R.id.GamePointsMax);
 		mTextGameID = (TextView) findViewById(R.id.ID);
