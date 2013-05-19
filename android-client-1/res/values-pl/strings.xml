@@ -87,6 +87,7 @@
     <string name="game_already_deleted">Ta gra została już usunieta</string>
 
     <!-- Error codes -->
+    <string name="error_code_3">Wybrana gra prawdopodobnie nie istnieje</string>
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_102">Wyraziłeś już chęć wzięcia udziału w tej grze</string>
@@ -96,6 +97,8 @@
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
     <string name="error_code_204">Nieoczekiwna odpowiedź serwera</string>
+    <!-- Errors from client app -->
+    <string name="error_code_1001">Błąd podczas pobierania informacji o zalogowanym graczu, spróbuj się wylogować i zalogować ponownie</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>

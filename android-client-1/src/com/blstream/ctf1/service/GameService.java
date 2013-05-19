@@ -46,20 +46,28 @@ public class GameService {
 	}
 
 	/**
+	 * If logged player data not found throw CTFException with error_code_1001
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
-	private LoggedPlayer getLoggedPlayer() {
+	private LoggedPlayer getLoggedPlayer() throws CTFException {
 		LoggedPlayer loggedPlayer = null;
 		mStorageService.open();
 		loggedPlayer = mStorageService.getLoggedPlayer();
 		mStorageService.close();
+
+		if (loggedPlayer == null) {
+			// TODO: to final variables
+			throw new CTFException(mContext.getResources(), 1001, "Error occurred while retrieving stored logged player data");
+		}
+
 		return loggedPlayer;
 	}
 
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	private List<Header> getGameHeaders() {
+	private List<Header> getGameHeaders() throws CTFException {
 		LoggedPlayer loggedPlayer = getLoggedPlayer();
 
 		List<Header> headers = new LinkedList<Header>();
