@@ -1,6 +1,7 @@
 package com.blstream.ctf2;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -10,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,6 +61,7 @@ public class Login extends AsyncTask<String, Void, Integer> {
 			httpPost.setEntity(stringEntity);
 			HttpResponse response = httpclient.execute(httpPost);
 			result = afterLogin(response);
+//			gameTest();
 		} 
 		catch (ClientProtocolException e) {
 			Log.e(e.toString());
@@ -85,6 +88,8 @@ public class Login extends AsyncTask<String, Void, Integer> {
 				UserServices userServices = new UserServices(mCtx);
 				User user = userServices.addNewPlayer(mUserName);
 				user.setToken(jsonObject.getString("access_token"));
+				user.setTokenType((jsonObject.getString("token_type")));
+				user.setScope(jsonObject.getString("scope"));
 				userServices.updateUser(user);
 				return 0;
 			}
@@ -128,5 +133,7 @@ public class Login extends AsyncTask<String, Void, Integer> {
 		LoginActivity loginActivity = (LoginActivity) mCtx;
 		loginActivity.loginResultNotification(result);
 	}
+	
+	
 
 }

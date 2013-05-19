@@ -49,9 +49,13 @@ public class LoginActivity extends Activity {
 		mProgressDialog.dismiss();
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 		if (result == 0) {
-			alertDialogBuilder.setMessage(R.string.login_successful);
-			alertDialogBuilder.setPositiveButton(R.string.ok, null);
-			alertDialogBuilder.show();
+//			alertDialogBuilder.setMessage(R.string.login_successful);
+//			alertDialogBuilder.setPositiveButton(R.string.ok, null);
+//			alertDialogBuilder.show();
+			EasyTracker.getTracker().sendEvent("ui_action", "after_login",
+					"show_game_list", null);
+			Intent intent = new Intent("com.blstream.ctf2.GAMELISTACTIVITY");
+			startActivity(intent);
 		} 
 		else if (result == -2) {
 			alertDialogBuilder.setMessage(R.string.no_connection);

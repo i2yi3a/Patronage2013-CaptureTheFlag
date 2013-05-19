@@ -20,6 +20,10 @@
     <string name="login_progress">Connecting to server</string>
     <string name="login_failed">Failed to login</string>
     <string name="login_successful">Login successful</string>
+    <string name="logout">Logout</string>
+    <string name="view_profile">View profile</string>
+     <string name="create_new_game">Create new Game</string>
+    <string name="gamelist">List of Games</string>
     <string name="no_connection">Could not connect to server. Please check Your internet connection</string>
     <string name="no_internet_connection">No internet connection</string>
 

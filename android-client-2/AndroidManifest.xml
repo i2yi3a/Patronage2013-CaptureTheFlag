@@ -55,6 +55,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+         <activity
+            android:name="com.blstream.ctf2.GameListActivity"
+            android:label="@string/gamelist" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.GAMELISTACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
