@@ -23,8 +23,6 @@
     <string name="no_connection">Brak połączenia z serverem. Sprawdź swoje połączenie</string>
     <string name="no_internet_connection">Brak połączenia z internetem</string>
     <string name="server_error">Serwer zwrócił błąd</string>
-
-    <!-- KAMIL NIE DODAŁEŚ TŁUMACZEŃ PRZETŁUMACZ TO CO JEST TWOJE -->
     <string name="after_list_games">Lista gier</string>
     <string name="after_create_game">Utwórz grę</string>
     <string name="edit_game">Edytuj grę</string>
@@ -44,7 +42,6 @@
     <string name="game_team">Team</string>
     <string name="game_team_hint">Red</string>
     <string name="game_create_game">Utwórz grę</string>
-    <!--  -->
     <string name="game_details_name">Szczegóły gry</string>
     <string name="game_id">ID</string>
     <string name="game_lat">Szerokość geograficzna</string>

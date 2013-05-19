@@ -18,6 +18,9 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/**
+ * @author Rafal Tatol
+ */
 public class GetGameDetails extends AsyncTask<String, Void, JSONObject> {
 
 	public final static String NAME = "name";

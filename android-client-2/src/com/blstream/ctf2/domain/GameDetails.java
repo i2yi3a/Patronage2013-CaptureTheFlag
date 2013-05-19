@@ -1,6 +1,8 @@
 package com.blstream.ctf2.domain;
 
-
+/**
+ * @author Rafal Tatol
+ */
 public class GameDetails {
 
 	private String id;

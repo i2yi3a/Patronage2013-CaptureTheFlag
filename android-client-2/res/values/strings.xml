@@ -42,7 +42,6 @@
     <string name="game_team">Team</string>
     <string name="game_team_hint">Red</string>
     <string name="game_create_game">Create game</string>
-    <!--  -->
     <string name="game_details_name">Game details</string>
     <string name="game_id">ID</string>
     <string name="game_lat">Latitude</string>
