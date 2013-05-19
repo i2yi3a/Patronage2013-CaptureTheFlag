@@ -98,16 +98,14 @@
             <Button
                 android:id="@+id/btnStartDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/set_date" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btnStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:text="@string/set_time" />
+                android:layout_alignParentTop="true" />
 
             <Button
                 android:id="@+id/btnMap"
@@ -123,8 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/btnMap"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/create_edit_game" />
+                android:layout_alignParentRight="true" />
 
             <Button
                 android:id="@+id/btnCancel"

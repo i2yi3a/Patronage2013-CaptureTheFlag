@@ -12,6 +12,7 @@ import com.blstream.ctf1.asynchronous.DeleteGame;
 import com.blstream.ctf1.asynchronous.GameDetails;
 import com.blstream.ctf1.asynchronous.JoinGame;
 import com.blstream.ctf1.asynchronous.LeaveGame;
+import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
@@ -27,6 +28,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public TextView mTextLocRadius;
 	public TextView mTextGameStatus;
 	public TextView mTextGameOwner;
+	public TextView mTextGameDate;
 	public TextView mTextGamePlayersMax;
 	public TextView mTextGamePointsMax;
 	public TextView mTextGameID;
@@ -35,12 +37,12 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public Button mBtnEdit;
 	public Button mBtnDelete;
 	private String mId;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_details);
-		
+
 		mTextGameName = (TextView) findViewById(R.id.DetailsGameName);
 		mTextGameDescription = (TextView) findViewById(R.id.DetailsDescription);
 		mTextGameDuration = (TextView) findViewById(R.id.DetailsDuration);
@@ -48,6 +50,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mTextLocRadius = (TextView) findViewById(R.id.LocRadius);
 		mTextGameStatus = (TextView) findViewById(R.id.GameStatus);
 		mTextGameOwner = (TextView) findViewById(R.id.Owner);
+		mTextGameDate = (TextView) findViewById(R.id.DetailsGameDate);
 		mTextGamePlayersMax = (TextView) findViewById(R.id.GamePlayersMax);
 		mTextGamePointsMax = (TextView) findViewById(R.id.GamePointsMax);
 		mTextGameID = (TextView) findViewById(R.id.ID);
@@ -60,14 +63,14 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mBtnDelete = (Button) findViewById(R.id.btnDelete);
 		mBtnDelete.setOnClickListener(this);
 		Bundle bundle = getIntent().getExtras();
-        if(bundle.getString(Constants.EXTRA_KEY_ID) != null)
-        {
-            mId = bundle.getString(Constants.EXTRA_KEY_ID);
-        }
-		GameDetails gameDetails = new GameDetails(this,mId);
+		if (bundle.getString(Constants.EXTRA_KEY_ID) != null) {
+			mId = bundle.getString(Constants.EXTRA_KEY_ID);
+		}
+		GameDetails gameDetails = new GameDetails(this, mId);
 		gameDetails.execute();
+		if (!mTextGameStatus.equals(GameStatusType.NEW))
+			mBtnEdit.setEnabled(false);
 	}
-	
 
 	@Override
 	public void onClick(View v) {

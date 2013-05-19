@@ -31,7 +31,7 @@ public class DatePickerFragment extends DialogFragment implements
 	public void onDateSet(DatePicker view, int year, int month, int day) {
 		Message msg = new Message();
 		Bundle data = new Bundle();
-		data.putString("data", day + "-" + month + "-" + year);
+		data.putString("data", day + "-" + (month+1) + "-" + year);
 		msg.setData(data);
 		dialogPickerHandler.sendMessage(msg);
 	}

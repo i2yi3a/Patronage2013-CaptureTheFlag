@@ -47,13 +47,12 @@
     <string name="game_name">Nazwa gry:</string>
     <string name="game_description">Opis gry:</string>
     <string name="location_name">Nazwa lokalizacji:</string>
-    <string name="set_date">Ustaw date</string>
-    <string name="set_time">Ustaw czas</string>
     <string name="playing_time">Czas rozgrywki(min):</string>
     <string name="maximum_players">Max ilość graczy:</string>
     <string name="maximum_scoring">Max ilość punktów:</string>
     <string name="cancel">Anuluj</string>
-    <string name="create_edit_game">Twórz/Edytuj gre</string>
+    <string name="create_game">Twórz gre</string>
+    <string name="edit_game">Edytuj gre</string>
     <string name="game_name_too_short">Nazwa gry jest wymaganym polem</string>
     <string name="location_name_too_short">Nazwa lokalizacji jest wymaganym polem</string>
     <string name="playing_time_too_short">Czas rozgrywki jest wymaganym polem</string>
@@ -63,6 +62,7 @@
     <!-- EditGame -->
     <string name="game_edited">Pomyślnie zmieniono grę</string>
     <string name="game_owner">Właściciel gry</string>
+    <string name="game_date">Data rozpoczęcia gry</string>
     <string name="game_id">ID gry</string>
     <string name="game_status">Status gry</string>
     <string name="game_radius">Promień gry</string>
@@ -87,6 +87,7 @@
     <string name="game_already_deleted">Ta gra została już usunieta</string>
 
     <!-- Error codes -->
+    <string name="error_code_3">Wybrana gra prawdopodobnie nie istnieje</string>
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_102">Wyraziłeś już chęć wzięcia udziału w tej grze</string>
@@ -96,6 +97,8 @@
     <string name="error_code_202">Niepoprawny login</string>
     <string name="error_code_203">Niepoprawny token</string>
     <string name="error_code_204">Nieoczekiwna odpowiedź serwera</string>
+    <!-- Errors from client app -->
+    <string name="error_code_1001">Błąd podczas pobierania informacji o zalogowanym graczu, spróbuj się wylogować i zalogować ponownie</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>

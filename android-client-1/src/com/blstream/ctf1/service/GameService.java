@@ -1,6 +1,7 @@
 package com.blstream.ctf1.service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,20 +46,28 @@ public class GameService {
 	}
 
 	/**
+	 * If logged player data not found throw CTFException with error_code_1001
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
-	private LoggedPlayer getLoggedPlayer() {
+	private LoggedPlayer getLoggedPlayer() throws CTFException {
 		LoggedPlayer loggedPlayer = null;
 		mStorageService.open();
 		loggedPlayer = mStorageService.getLoggedPlayer();
 		mStorageService.close();
+
+		if (loggedPlayer == null) {
+			// TODO: to final variables
+			throw new CTFException(mContext.getResources(), 1001, "Error occurred while retrieving stored logged player data");
+		}
+
 		return loggedPlayer;
 	}
 
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	private List<Header> getGameHeaders() {
+	private List<Header> getGameHeaders() throws CTFException {
 		LoggedPlayer loggedPlayer = getLoggedPlayer();
 
 		List<Header> headers = new LinkedList<Header>();
@@ -76,10 +85,10 @@ public class GameService {
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
 		JSONObject latlngObject = new JSONObject();
-		if (id != null && status != null) {
+		if (id != null)
 			jsonObject.put("id", id);
+		if (status != null)
 			jsonObject.put("status", status);
-		}
 		jsonObject.put("name", gameName);
 		jsonObject.put("description", description);
 		jsonObject.put("time_start", timeStart);
@@ -131,7 +140,7 @@ public class GameService {
 
 	}
 
-	public GameExtendedInfo getGameDetails(String id) throws JSONException, ClientProtocolException, IOException, CTFException {
+	public GameExtendedInfo getGameDetails(String id) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + '/' + id, getGameHeaders());
 
 		JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(0);
@@ -148,14 +157,9 @@ public class GameService {
 	/**
 	 * before use, logged player data must be saved in storage
 	 * 
+	 * @author Adrian Swarcewicz
 	 * @param gameFilter
 	 *            - null to skip
-	 * @return
-	 * @throws JSONException
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws CTFException
-	 * @author Adrian Swarcewicz
 	 */
 	public List<GameBasicInfo> getGameList(GameFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameFilterConverter.toQueryString(gameFilter),
@@ -176,14 +180,14 @@ public class GameService {
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	public boolean isLoggedPlayerSignedUpForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public boolean isLoggedPlayerSignedInForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
 		return getPlayersForGame(gameId).contains(getLoggedPlayer().getLogin());
 	}
 
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	public void signUpForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
+	public void signInForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
 		JSONObject jsonObjectResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId + "/signIn", getGameHeaders(), null)
 				.getJSONObject(0);
 
@@ -218,30 +222,13 @@ public class GameService {
 
 	/**
 	 * @author Piotr Marczycki
-	 */
-	public String getLoggedPlayersLogin() {
-		String playersLogin = Constants.EMPTY_STRING;
-		LoggedPlayer loggedPlayer = null;
-		mStorageService.open();
-		loggedPlayer = mStorageService.getLoggedPlayer();
-		mStorageService.close();
-		if (loggedPlayer != null) {
-			playersLogin = loggedPlayer.getLogin();
-		}
-		return playersLogin;
-	}
-
-	/**
-	 * @author Piotr Marczycki
-	 * @throws CTFException
-	 * @throws IOException
-	 * @throws JSONException
 	 * @throws ClientProtocolException
+	 * @throws JSONException
+	 * @throws IOException
+	 * @throws CTFException
+	 * @throws ParseException
 	 */
-	public boolean isLoggedPlayerGameOwner(String gameId) throws ClientProtocolException, JSONException, IOException, CTFException {
-		String gameOwner = Constants.EMPTY_STRING;
-		GameExtendedInfo gameExtendedInfo = getGameDetails(gameId);
-		gameOwner = gameExtendedInfo.getOwner();
-		return (!gameOwner.equals(Constants.EMPTY_STRING)) && gameOwner.equals(getLoggedPlayersLogin());
+	public boolean isLoggedPlayerGameOwner(String gameId) throws ClientProtocolException, JSONException, IOException, CTFException, ParseException {
+		return getGameDetails(gameId).getOwner().equals(getLoggedPlayer().getLogin());
 	}
 }

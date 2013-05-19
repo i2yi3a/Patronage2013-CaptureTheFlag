@@ -47,13 +47,12 @@
     <string name="game_name">Game name:</string>
     <string name="game_description">Game description:</string>
     <string name="location_name">Location name:</string>
-    <string name="set_date">Set date</string>
-    <string name="set_time">Set time</string>
     <string name="playing_time">Playing time(min):</string>
     <string name="maximum_players">Maximum players:</string>
     <string name="maximum_scoring">Maximum points:</string>
     <string name="cancel">Cancel</string>
-    <string name="create_edit_game">Create/Edit game</string>
+    <string name="create_game">Create game</string>
+    <string name="edit_game">Edit game</string>
     <string name="game_name_too_short">Game name is a required field</string>
     <string name="location_name_too_short">Location name is a required field</string>
     <string name="playing_time_too_short">Playing time is a required field</string>
@@ -63,6 +62,7 @@
     <!-- EditGame -->
     <string name="game_edited">Game successfully edited</string>
     <string name="game_owner">Game owner</string>
+    <string name="game_date">Game start date</string>
     <string name="game_id">Game ID</string>
     <string name="game_status">Game status</string>
     <string name="game_radius">Radius of the game</string>
@@ -85,6 +85,7 @@
     <string name="game_already_deleted">This game was already deleted</string>
 
     <!-- Error codes -->
+    <string name="error_code_3">Selected game probably does not exist</string>
     <string name="error_code_5">Only Game Owner can delete game</string>
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_102">You are already signed to game</string>
@@ -94,6 +95,8 @@
     <string name="error_code_202">Wrong username</string>
     <string name="error_code_203">Bad token</string>
     <string name="error_code_204">Unexpected server response</string>
+    <!-- Errors from client app -->
+    <string name="error_code_1001">Error occurred while retrieving stored logged player data, try to log out and log in again</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
