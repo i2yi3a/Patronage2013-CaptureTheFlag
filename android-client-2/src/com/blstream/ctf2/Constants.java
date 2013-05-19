@@ -15,4 +15,9 @@ public class Constants {
 	public final static String RESPONSE_DESCRIPTION = "error_description";
 	public final static String PLAYER_USERNAME = "username";
 	public final static String PLAYER_PASSWORD = "password";	
+	public final static int MIN_LENGTH_LOGIN = 5;	
+	public final static int MIN_LENGTH_PASSWORD = 5;
+	public final static String ERROR = "error";
+	public final static String ERROR_CODE = "error_code";
+	public final static String ERROR_DESCRIPTION = "error_description";
 }
