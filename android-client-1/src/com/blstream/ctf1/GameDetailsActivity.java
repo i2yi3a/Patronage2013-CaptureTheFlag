@@ -68,8 +68,6 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		}
 		GameDetails gameDetails = new GameDetails(this, mId);
 		gameDetails.execute();
-		if (!mTextGameStatus.equals(GameStatusType.NEW))
-			mBtnEdit.setEnabled(false);
 	}
 
 	@Override
@@ -98,5 +96,12 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 			deleteGameAsync.execute();
 			break;
 		}
+	}
+	
+	public void isStatusNew(String status) {
+		if(status.equals(GameStatusType.NEW.toString()))
+			mBtnEdit.setEnabled(true);
+		else
+			mBtnEdit.setEnabled(false);
 	}
 }
