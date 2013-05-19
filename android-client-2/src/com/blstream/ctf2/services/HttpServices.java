@@ -1,7 +1,6 @@
 package com.blstream.ctf2.services;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -13,7 +12,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
@@ -26,7 +24,7 @@ import android.net.ParseException;
 /**
  * 
  * @author Karol Firmanty
- * 
+ * [mod] Rafal Tatol
  */
 public class HttpServices {
 
@@ -65,7 +63,7 @@ public class HttpServices {
 		}
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(Constants.URL_SERVER + URI);
-		httpGet.setHeaders((Header[]) headersList.toArray());
+		httpGet.setHeaders((Header[]) headersList.toArray(new Header[headersList.size()]));
 		HttpResponse response = httpClient.execute(httpGet);
 		return EntityUtils.toString(response.getEntity());
 	}

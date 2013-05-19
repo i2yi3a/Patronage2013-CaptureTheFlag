@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
@@ -48,11 +47,10 @@ public class LoginActivity extends Activity {
 
 	public void loginResultNotification(String notification) {
 		mProgressDialog.dismiss();
-		if(notification.equals(this.getString(R.string.login_successful))){
+		if (notification.equals(this.getString(R.string.login_successful))) {
 			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
 			startActivity(intent);
-		}
-		else{
+		} else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(notification);
 			builder.setPositiveButton(R.string.ok, null);

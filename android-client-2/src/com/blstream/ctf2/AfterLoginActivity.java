@@ -46,5 +46,20 @@ public class AfterLoginActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
+	
+	public void onClickButton(View v) {
+		switch (v.getId()) {
+		case R.id.testButton: // TODO temporarily
+			
+			//519898b2e4b06da6594775e0 517629cee4b0b5f7642aa84d
+			String gameId = "517629cee4b0b5f7642aa84d"; // TODO gameId == id of the selected game from the list
+			
+			Intent game_details_intent = new Intent("com.blstream.ctf2.GAMEDETAILSACTIVITY");
+			game_details_intent.putExtra(Constants.ID, gameId);
+			startActivity(game_details_intent);
+			
+			break;
+		}
+	}
 
 }

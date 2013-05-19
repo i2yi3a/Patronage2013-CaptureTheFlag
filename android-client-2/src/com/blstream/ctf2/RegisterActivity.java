@@ -178,10 +178,10 @@ public class RegisterActivity extends Activity {
 				int errorCode = jsonResponse.getInt(Constants.RESPONSE_ERROR_CODE);
 
 				switch (errorCode) {
-				case 0:
+				case Constants.ERROR_CODE_SUCCESS:
 					showSuccessDialog();
 					break;
-				case 101:
+				case Constants.ERROR_CODE_PLAYER_ALREADY_EXISTS:
 					String errorMessage = jsonResponse.getString(Constants.RESPONSE_DESCRIPTION);
 					int errorTitle = R.string.player_already_exists;
 					showErrorDialog(errorTitle, errorMessage);
