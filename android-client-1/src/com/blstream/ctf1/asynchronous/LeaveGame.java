@@ -33,7 +33,7 @@ public class LeaveGame extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			if (mGameService.isLoggedPlayerSignedInForGame(mGameId)) {
+			if (mGameService.isLoggedPlayerSignedUpForGame(mGameId)) {
 				mGameService.signOutFromGame(mGameId);
 			} else {
 				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_103);
