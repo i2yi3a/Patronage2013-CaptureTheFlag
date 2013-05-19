@@ -91,6 +91,7 @@
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_102">Nie możesz dołączyć do gry już rozpoczętej</string>
+     <string name="error_code_already_signed">Jesteś już zapisany do tej gry</string>
     <string name="error_code_103">Nie wyraziłeś wcześniej chęci wzięcia udziału w tej grze</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
     <string name="error_code_201">Niepoprawne hasło</string>
