@@ -1,36 +1,17 @@
 package com.blstream.ctf2.domain;
 
 /**
- * @author Rafal Tatol
+ * @author Rafal Tatol 
+ * [mod] Marcin Sareło
  */
-public class GameDetails {
+public class GameDetails extends Game {
 
-	private String id;
-	private String name;
 	private String description;
 	private Integer duration;
 	private GameLocalization localization;
-	private String status;
-	private String owner;
 	private String timeStart;
 	private Integer pointsMax;
 	private Integer playersMax;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getDescription() {
 		return description;
@@ -54,22 +35,6 @@ public class GameDetails {
 
 	public void setLocalization(GameLocalization localization) {
 		this.localization = localization;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
 	}
 
 	public String getTimeStart() {

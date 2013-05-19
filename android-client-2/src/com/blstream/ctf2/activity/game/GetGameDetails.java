@@ -1,4 +1,4 @@
-package com.blstream.ctf2;
+package com.blstream.ctf2.activity.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +8,17 @@ import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blstream.ctf2.domain.GameDetails;
-import com.blstream.ctf2.domain.GameLocalization;
-import com.blstream.ctf2.services.HttpServices;
-import com.blstream.ctf2.services.UserServices;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.R;
+import com.blstream.ctf2.domain.GameDetails;
+import com.blstream.ctf2.domain.GameLocalization;
+import com.blstream.ctf2.services.HttpServices;
+import com.blstream.ctf2.services.UserServices;
 
 /**
  * @author Rafal Tatol

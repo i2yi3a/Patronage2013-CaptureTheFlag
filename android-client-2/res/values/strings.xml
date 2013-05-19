@@ -21,6 +21,7 @@
     <string name="login_failed">Failed to login</string>
     <string name="login_successful">Login successful</string>
     <string name="logout">Logout</string>
+     <string name="logout_succesful">Logout succesful</string>
     <string name="view_profile">View profile</string>
      <string name="create_new_game">Create new Game</string>
     <string name="gamelist">List of Games</string>

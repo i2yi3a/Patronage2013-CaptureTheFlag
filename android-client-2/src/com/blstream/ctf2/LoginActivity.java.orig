@@ -47,14 +47,7 @@ public class LoginActivity extends Activity {
 
 	public void loginResultNotification(String notification) {
 		mProgressDialog.dismiss();
-		if (notification.equals(this.getString(R.string.login_successful))) {
-			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
-			startActivity(intent);
-		} else {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(notification);
-			builder.setPositiveButton(R.string.ok, null);
-			builder.show();
+<<<<<<< HEAD
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 		if (result == 0) {
 //			alertDialogBuilder.setMessage(R.string.login_successful);
@@ -74,6 +67,16 @@ public class LoginActivity extends Activity {
 			alertDialogBuilder.setMessage(R.string.login_failed);
 			alertDialogBuilder.setPositiveButton(R.string.ok, null);
 			alertDialogBuilder.show();
+=======
+		if (notification.equals(this.getString(R.string.login_successful))) {
+			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
+			startActivity(intent);
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(notification);
+			builder.setPositiveButton(R.string.ok, null);
+			builder.show();
+>>>>>>> 271b1302cf02e723b110db0599bb201b1c628445
 		}
 	}
 

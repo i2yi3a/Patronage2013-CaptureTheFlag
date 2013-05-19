@@ -1,4 +1,4 @@
-package com.blstream.ctf2;
+package com.blstream.ctf2.activity.game;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.DatePicker;
+
+import com.blstream.ctf2.R;
 
 /**
  * Game creation class
