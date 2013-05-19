@@ -69,17 +69,15 @@ public class GameService {
 		return headers;
 	}
 
-	public JSONObject toJSONObject(String id, String status, String gameName, String description, String timeStart, long duration, int pointsMax,
+	public JSONObject toJSONObject(String id, String gameName, String description, String timeStart, long duration, int pointsMax,
 			int playersMax, String localizationName, double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException,
 			CTFException {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
 		JSONObject latlngObject = new JSONObject();
-		if (id != null && status != null) {
+		if (id != null)
 			jsonObject.put("id", id);
-			jsonObject.put("status", status);
-		}
 		jsonObject.put("name", gameName);
 		jsonObject.put("description", description);
 		jsonObject.put("time_start", timeStart);
@@ -99,7 +97,7 @@ public class GameService {
 
 	public void createGame(String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax, String localizationName,
 			double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONObject jsonObject = toJSONObject(null, null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
+		JSONObject jsonObject = toJSONObject(null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
 
 		JSONArray jsonArrayResult = mNetworkService.requestPost(Constants.URL_SERVER + Constants.URI_GAME, getGameHeaders(), jsonObject.toString());
 
@@ -111,9 +109,9 @@ public class GameService {
 
 	}
 
-	public void editGame(String id, String status, String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax,
+	public void editGame(String id, String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax,
 			String localizationName, double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONObject jsonObject = toJSONObject(id, status, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
+		JSONObject jsonObject = toJSONObject(id, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
 
 		JSONArray jsonArrayResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + '/' + id, getGameHeaders(), jsonObject.toString());
 
