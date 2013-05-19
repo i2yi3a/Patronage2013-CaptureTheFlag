@@ -26,5 +26,34 @@
     <string name="gamelist">List of Games</string>
     <string name="no_connection">Could not connect to server. Please check Your internet connection</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="server_error">Server returned an error</string>
+    <string name="after_list_games">List games</string>
+    <string name="after_create_game">Create Game</string>
+    <string name="edit_game">Edit game</string>
+    <string name="after_logout">Logout</string>
+    <string name="game_name">Game name</string>
+    <string name="game_description">Game description</string>
+    <string name="game_time_start">Time start</string>
+    <string name="game_duration">Duration</string>
+    <string name="game_points_max">Points max</string>
+    <string name="game_points_max_hint">12</string>
+    <string name="game_players_max">Points max</string>
+    <string name="game_players_max_hint">12</string>
+    <string name="game_localization">Localization</string>
+    <string name="game_localization_pick">Pick localization</string>
+    <string name="game_flag_quantity">Flag quantity</string>
+    <string name="game_flag_quantity_hint">12</string>
+    <string name="game_team">Team</string>
+    <string name="game_team_hint">Red</string>
+    <string name="game_create_game">Create game</string>
+    <string name="game_details_name">Game details</string>
+    <string name="game_id">ID</string>
+    <string name="game_lat">Latitude</string>
+    <string name="game_lng">Longitude</string>
+    <string name="game_radius">Radius</string>
+    <string name="game_status">Status</string>
+    <string name="game_owner">Owner</string>
+    <string name="game_join">Join</string>
+    <string name="game_edit">Edit game</string>
 
 </resources>

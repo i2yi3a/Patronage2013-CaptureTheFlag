@@ -8,8 +8,19 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="17" />
 
+    <permission
+        android:name="com.blstream.ctf2.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="com.blstream.ctf2.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -46,7 +57,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blstream.ctf2.LoginActivity"
+            android:name="com.blstream.ctf2.activity.login.LoginActivity"
             android:label="@string/login"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -55,14 +66,58 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-         <activity
-            android:name="com.blstream.ctf2.GameListActivity"
-            android:label="@string/gamelist" >
+               <activity
+            android:name="com.blstream.ctf2.activity.game.GameListActivity"
+            android:label="@string/gamelist"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.blstream.ctf2.GAMELISTACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.blstream.ctf2.AfterLoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.AFTERLOGINACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.blstream.ctf2.activity.game.CreateGameActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.CREATEGAMEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.blstream.ctf2.PickLocalizationActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.PICKLOCALIZATIONACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.blstream.ctf2.activity.game.GameDetailsActivity"
+            android:label="@string/game_details_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.GAMEDETAILSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDydbJSayLfJBjjp44A40Di2xbT-FO_kn0" />
+
+        <uses-library android:name="com.google.android.maps" />
     </application>
 
 </manifest>

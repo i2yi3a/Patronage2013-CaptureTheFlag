@@ -1,16 +1,16 @@
 package com.blstream.ctf2;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.http.HttpResponse;
+import org.apache.http.Header;
 import org.apache.http.ParseException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.blstream.ctf2.services.HttpServices;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Activity;
@@ -33,8 +33,8 @@ import android.widget.EditText;
  * @author Lukasz Dmitrowski
  */
 public class RegisterActivity extends Activity {
-	
-	private ProgressDialog mProgressDialog;	
+
+	private ProgressDialog mProgressDialog;
 	private EditText mUsernameEditText;
 	private EditText mPasswordEditText;
 	private EditText mRepeatPassEditText;
@@ -68,9 +68,9 @@ public class RegisterActivity extends Activity {
 		String mUsername = mUsernameEditText.getText().toString();
 		String mPassword = mPasswordEditText.getText().toString();
 		String mRepPass = mRepeatPassEditText.getText().toString();
-		
+
 		EasyTracker.getTracker().sendEvent("ui_action", "button_press", "register_click", null);
-		
+
 		if (isOnline() && correctData(mUsername, mPassword, mRepPass)) {
 			JSONObject newPlayer = new JSONObject();
 			try {
@@ -79,7 +79,7 @@ public class RegisterActivity extends Activity {
 			} catch (JSONException e) {
 				Log.e("onClickRegisterButton JSONException", e.toString());
 			}
-			new PostDataTask().execute(newPlayer);
+			new RegisterPlayer().execute(newPlayer);
 		}
 	}
 
@@ -98,9 +98,8 @@ public class RegisterActivity extends Activity {
 		}
 	}
 
-	//TODO hardcoded value 5. create constant
 	public boolean correctData(String mUsername, String mPassword, String mRepPass) {
-		if (mUsername.length() < 5 || !mPassword.equals(mRepPass) || mPassword.length() < 5) {
+		if (mUsername.length() < Constants.MIN_LENGTH_LOGIN || !mPassword.equals(mRepPass) || mPassword.length() < Constants.MIN_LENGTH_PASSWORD) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(R.string.incorrect_data_description);
 			builder.setTitle(R.string.incorrect_data);
@@ -111,11 +110,35 @@ public class RegisterActivity extends Activity {
 		}
 		return true;
 	}
-	
+
+	public void showSuccessDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+		AlertDialog dialog;
+		builder.setMessage(R.string.registration_successful);
+		builder.setTitle(R.string.recorded);
+		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				finish();
+			}
+		});
+		dialog = builder.create();
+		dialog.show();
+	}
+
+	public void showErrorDialog(int errorTitle, String errorMessage) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+		AlertDialog dialog;
+		builder.setMessage(errorMessage);
+		builder.setTitle(errorTitle);
+		builder.setPositiveButton(R.string.ok, null);
+		dialog = builder.create();
+		dialog.show();
+	}
+
 	/**
 	 * @author Rafal Tatol
 	 */
-	private class PostDataTask extends AsyncTask<JSONObject, Void, JSONObject> {
+	private class RegisterPlayer extends AsyncTask<JSONObject, Void, JSONObject> {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -123,27 +146,25 @@ public class RegisterActivity extends Activity {
 				mProgressDialog.show();
 			}
 		}
-		
+
 		@Override
-		protected JSONObject doInBackground(JSONObject... params) {		
+		protected JSONObject doInBackground(JSONObject... params) {
 			JSONObject playerData = params[0];
-			DefaultHttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(Constants.URL_SERVER + Constants.URI_PLAYERS_ADD);
 			JSONObject jsonResponse = null;
 			try {
-				StringEntity se = new StringEntity(playerData.toString());
-				httppost.setEntity(se);
-				httppost.setHeader("Accept", "application/json");
-				httppost.setHeader("Content-type", "application/json");
-				HttpResponse response = httpclient.execute(httppost);
-				String jsonString = EntityUtils.toString(response.getEntity());
-				jsonResponse = new JSONObject(jsonString);
+				String body = playerData.toString();
+				List<Header> headers = new ArrayList<Header>();
+				headers.add(new BasicHeader("Accept", "application/json"));
+				headers.add(new BasicHeader("Content-Type", "application/json"));
+				HttpServices httpService = new HttpServices(RegisterActivity.this);
+				String response = httpService.postRequest(Constants.URI_PLAYERS_ADD, body, headers);
+				jsonResponse = new JSONObject(response);
 			} catch (ParseException e) {
 				Log.e("PostDataTask ParseException", e.toString());
 			} catch (IOException e) {
 				Log.e("PostDataTask IOException", e.toString());
 			} catch (JSONException e) {
-				Log.e("PostDataTask JSONException", e.toString());				
+				Log.e("PostDataTask JSONException", e.toString());
 			} catch (Exception e) {
 				Log.e("PostDataTask", e.toString());
 			}
@@ -156,35 +177,19 @@ public class RegisterActivity extends Activity {
 				Log.i("response JSON string", jsonResponse.toString());
 				int errorCode = jsonResponse.getInt(Constants.RESPONSE_ERROR_CODE);
 
-				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-				AlertDialog dialog;
-				//TODO split this switch. Every part of case can be one method 
 				switch (errorCode) {
-				case 0:
-					builder.setMessage(R.string.registration_successful);
-					builder.setTitle(R.string.recorded);
-					builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-							finish();
-						}
-					});
-					dialog = builder.create();
-					dialog.show();
+				case Constants.ERROR_CODE_SUCCESS:
+					showSuccessDialog();
 					break;
-				case 101:
-					String errorDescription = jsonResponse.getString(Constants.RESPONSE_DESCRIPTION);
-					builder.setMessage(errorDescription);
-					builder.setTitle(R.string.player_already_exists);
-					builder.setPositiveButton(R.string.ok, null);
-					dialog = builder.create();
-					dialog.show();
+				case Constants.ERROR_CODE_PLAYER_ALREADY_EXISTS:
+					String errorMessage = jsonResponse.getString(Constants.RESPONSE_DESCRIPTION);
+					int errorTitle = R.string.player_already_exists;
+					showErrorDialog(errorTitle, errorMessage);
 					break;
 				default:
-					String unknownError = "error_code " + errorCode;
-					builder.setMessage(unknownError);
-					builder.setPositiveButton(R.string.ok, null);
-					dialog = builder.create();
-					dialog.show();
+					String unknownErrorMessage = Constants.ERROR_CODE + errorCode;
+					int unknownErrorTitle = errorCode;
+					showErrorDialog(unknownErrorTitle, unknownErrorMessage);
 					break;
 				}
 			} catch (ParseException e) {
@@ -194,11 +199,11 @@ public class RegisterActivity extends Activity {
 			} catch (Exception e) {
 				Log.e("onPostExecute Exception", e.toString());
 			}
-			
+
 			if (mProgressDialog.isShowing()) {
 				mProgressDialog.dismiss();
 			}
-			
+
 		}
 	}
 }

@@ -22,5 +22,34 @@
     <string name="login_successful">Logowanie udane</string>
     <string name="no_connection">Brak połączenia z serverem. Sprawdź swoje połączenie</string>
     <string name="no_internet_connection">Brak połączenia z internetem</string>
+    <string name="server_error">Serwer zwrócił błąd</string>
+    <string name="after_list_games">Lista gier</string>
+    <string name="after_create_game">Utwórz grę</string>
+    <string name="edit_game">Edytuj grę</string>
+    <string name="after_logout">Wyloguj</string>
+    <string name="game_name">Nazwa gry</string>
+    <string name="game_description">Opis</string>
+    <string name="game_time_start">Czas rozpoczęcia gry</string>
+    <string name="game_duration">Czas trwania gry</string>
+    <string name="game_points_max">Maksymalna ilość punktów</string>
+    <string name="game_players_max">Maksymalna ilość graczy w drużynie</string>
+    <string name="game_points_max_hint">12</string>
+    <string name="game_players_max_hint">12</string>
+    <string name="game_localization">Nazwa lokalizacji</string>
+    <string name="game_localization_pick">Wybierz lokalizację</string>
+    <string name="game_flag_quantity">Ilość flag</string>
+    <string name="game_flag_quantity_hint">12</string>
+    <string name="game_team">Team</string>
+    <string name="game_team_hint">Red</string>
+    <string name="game_create_game">Utwórz grę</string>
+    <string name="game_details_name">Szczegóły gry</string>
+    <string name="game_id">ID</string>
+    <string name="game_lat">Szerokość geograficzna</string>
+    <string name="game_lng">Długość geograficzna</string>
+    <string name="game_radius">Promień gry</string>
+    <string name="game_status">Status</string>
+    <string name="game_owner">Właściciel</string>
+    <string name="game_join">Dołącz do gry</string>
+    <string name="game_edit">Edytuj grę</string>
 
 </resources>

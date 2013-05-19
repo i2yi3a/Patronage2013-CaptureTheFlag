@@ -45,8 +45,16 @@ public class LoginActivity extends Activity {
 		EasyTracker.getInstance().activityStop(this);
 	}
 
-	public void loginResultNotification(int result) {
+	public void loginResultNotification(String notification) {
 		mProgressDialog.dismiss();
+		if (notification.equals(this.getString(R.string.login_successful))) {
+			Intent intent = new Intent("com.blstream.ctf2.AFTERLOGINACTIVITY");
+			startActivity(intent);
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(notification);
+			builder.setPositiveButton(R.string.ok, null);
+			builder.show();
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 		if (result == 0) {
 //			alertDialogBuilder.setMessage(R.string.login_successful);
@@ -72,8 +80,7 @@ public class LoginActivity extends Activity {
 	public void onClickButton(View v) {
 		switch (v.getId()) {
 		case R.id.loginButton:
-			EasyTracker.getTracker().sendEvent("ui_action", "button_press",
-					"login_click", null);
+			EasyTracker.getTracker().sendEvent("ui_action", "button_press", "login_click", null);
 			if (!(mUsernameEditText.getText().toString().isEmpty()) && !(mPasswordEditText.getText().toString().isEmpty())) {
 				mProgressDialog.setTitle(R.string.login_progress);
 				mProgressDialog.show();
@@ -82,8 +89,7 @@ public class LoginActivity extends Activity {
 			}
 			break;
 		case R.id.registrationButton:
-			EasyTracker.getTracker().sendEvent("ui_action", "button_press",
-					"registration_click", null);
+			EasyTracker.getTracker().sendEvent("ui_action", "button_press", "registration_click", null);
 			Intent intent = new Intent("com.blstream.ctf2.REGISTERACTIVITY");
 			startActivity(intent);
 			break;
