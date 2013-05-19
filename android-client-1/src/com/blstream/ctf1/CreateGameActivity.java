@@ -168,14 +168,14 @@ public class CreateGameActivity extends FragmentActivity implements
 						+ mLocationName + " , " + 0.0 + " , " + 0.0 + " , " + 1);
 				if (mId == null) {
 					CreateGame createGame = new CreateGame(this,
-							CreateGameActivity.class, mGameName,
+							GameListActivity.class, mGameName,
 							mGameDescription, mStartDate + " " + mStartTime,
 							mPlayingTime, mMaxPoints, mMaxPlayers,
 							mLocationName, 0.0, 0.0, 1);
 					createGame.execute();
 				} else {
 					EditGame editGame = new EditGame(this,
-							CreateGameActivity.class, mId, mGameName,
+							GameListActivity.class, mId, mGameName,
 							mGameDescription, mStartDate + mStartTime,
 							mPlayingTime, mMaxPoints, mMaxPlayers,
 							mLocationName, 0.0, 0.0, 1);
