@@ -2,6 +2,7 @@ package com.blstream.ctf1;
 
 import java.util.Calendar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blstream.ctf1.asynchronous.CreateGame;
+import com.blstream.ctf1.asynchronous.EditGame;
+import com.blstream.ctf1.asynchronous.EditGameDetails;
 import com.blstream.ctf1.pickers.DatePickerFragment;
 import com.blstream.ctf1.pickers.TimePickerFragment;
 import com.blstream.ctf1.service.NetworkService;
@@ -39,6 +42,7 @@ public class CreateGameActivity extends FragmentActivity implements
 	public EditText mEditMaxPoints;
 
 	private String info;
+	private String mId;
 
 	Handler handlerTime = new Handler() {
 		@Override
@@ -79,15 +83,23 @@ public class CreateGameActivity extends FragmentActivity implements
 		mEditMaxPlayers = (EditText) findViewById(R.id.editMaxPlayers);
 		mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);
 
-		final Calendar c = Calendar.getInstance();
-		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH);
-		int day = c.get(Calendar.DAY_OF_MONTH);
-		int hour = c.get(Calendar.HOUR_OF_DAY) + 2;
-		// int minute = c.get(Calendar.MINUTE);
-		int minute = 0;
-		mBtnStartTime.setText(hour + ":" + minute + ":00");
-		mBtnStartDate.setText(day + "-" + month + "-" + year);
+		Intent intent = getIntent();
+		mId = intent.getStringExtra(Constants.EXTRA_KEY_ID);
+		if (mId == null) {
+			final Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH);
+			int day = c.get(Calendar.DAY_OF_MONTH);
+			int hour = c.get(Calendar.HOUR_OF_DAY) + 2;
+			int minute = 0;
+			mBtnStartTime.setText(hour + ":" + minute + ":00");
+			mBtnStartDate.setText(day + "-" + month + "-" + year);
+			mBtnCreate.setText(R.string.create_game);
+		} else {
+			mBtnCreate.setText(R.string.edit_game);
+			EditGameDetails editGameDetails = new EditGameDetails(this, mId);
+			editGameDetails.execute();
+		}
 	}
 
 	@Override
@@ -154,12 +166,21 @@ public class CreateGameActivity extends FragmentActivity implements
 						+ mStartTime + " , " + mPlayingTime + " , "
 						+ mMaxPoints + " , " + mMaxPlayers + " , "
 						+ mLocationName + " , " + 0.0 + " , " + 0.0 + " , " + 1);
-
-				CreateGame createGame = new CreateGame(this,
-						CreateGameActivity.class, mGameName, mGameDescription,
-						mStartDate + " " + mStartTime, mPlayingTime,
-						mMaxPoints, mMaxPlayers, mLocationName, 0.0, 0.0, 1);
-				createGame.execute();
+				if (mId == null) {
+					CreateGame createGame = new CreateGame(this,
+							CreateGameActivity.class, mGameName,
+							mGameDescription, mStartDate + " " + mStartTime,
+							mPlayingTime, mMaxPoints, mMaxPlayers,
+							mLocationName, 0.0, 0.0, 1);
+					createGame.execute();
+				} else {
+					EditGame editGame = new EditGame(this,
+							CreateGameActivity.class, mId, mGameName,
+							mGameDescription, mStartDate + mStartTime,
+							mPlayingTime, mMaxPoints, mMaxPlayers,
+							mLocationName, 0.0, 0.0, 1);
+					editGame.execute();
+				}
 			} else {
 				Toast.makeText(this, R.string.no_internet_connection,
 						Toast.LENGTH_SHORT).show();

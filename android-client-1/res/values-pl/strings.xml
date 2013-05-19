@@ -51,7 +51,8 @@
     <string name="maximum_players">Max ilość graczy:</string>
     <string name="maximum_scoring">Max ilość punktów:</string>
     <string name="cancel">Anuluj</string>
-    <string name="create_edit_game">Twórz/Edytuj gre</string>
+    <string name="create_game">Twórz gre</string>
+    <string name="edit_game">Edytuj gre</string>
     <string name="game_name_too_short">Nazwa gry jest wymaganym polem</string>
     <string name="location_name_too_short">Nazwa lokalizacji jest wymaganym polem</string>
     <string name="playing_time_too_short">Czas rozgrywki jest wymaganym polem</string>

@@ -51,7 +51,8 @@
     <string name="maximum_players">Maximum players:</string>
     <string name="maximum_scoring">Maximum points:</string>
     <string name="cancel">Cancel</string>
-    <string name="create_edit_game">Create/Edit game</string>
+    <string name="create_game">Create game</string>
+    <string name="edit_game">Edit game</string>
     <string name="game_name_too_short">Game name is a required field</string>
     <string name="location_name_too_short">Location name is a required field</string>
     <string name="playing_time_too_short">Playing time is a required field</string>

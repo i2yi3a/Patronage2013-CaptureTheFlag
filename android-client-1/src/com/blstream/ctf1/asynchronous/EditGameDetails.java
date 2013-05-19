@@ -1,7 +1,6 @@
 package com.blstream.ctf1.asynchronous;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -16,8 +15,6 @@ import com.blstream.ctf1.service.GameService;
 public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	private CreateGameActivity mCurrentActivity;
-	
-	private Class<?> mSuccessfullActivity;
 
 	private String mId;
 
@@ -33,10 +30,8 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	}
 
-	public EditGameDetails(CreateGameActivity currentActivity, Class<?> successfullActivity,
-			String id) {
+	public EditGameDetails(CreateGameActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
-		mSuccessfullActivity = successfullActivity;
 		mId = id;
 	}
 
@@ -63,15 +58,21 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 					.show();
 		} else {
 			mCurrentActivity.mEditGameName.setText(result.getName());
-			mCurrentActivity.mEditGameDescription.setText(result.getDescription());
-			mCurrentActivity.mEditPlayingTime.setText(Long.toString(result.getDuration()));
-			mCurrentActivity.mEditLocationName.setText(result.getLocalization().getName());
-			mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result.getPlayersMax()));
-			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result.getPointsMax()));
-	//		mCurrentActivity.mBtnStartDate.setText();
-	//		mCurrentActivity.mBtnStartTime.setText();
-			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
-			mCurrentActivity.startActivity(intent);
+			mCurrentActivity.mEditGameDescription.setText(result
+					.getDescription());
+			mCurrentActivity.mEditPlayingTime.setText(Long.toString(result
+					.getDuration()));
+			mCurrentActivity.mEditLocationName.setText(result.getLocalization()
+					.getName());
+			mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result
+					.getPlayersMax()));
+			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result
+					.getPointsMax()));
+			// mCurrentActivity.mBtnStartDate.setText();
+			// mCurrentActivity.mBtnStartTime.setText();
+			// Intent intent = new Intent(mCurrentActivity,
+			// mSuccessfullActivity);
+			// mCurrentActivity.startActivity(intent);
 		}
 	}
 
