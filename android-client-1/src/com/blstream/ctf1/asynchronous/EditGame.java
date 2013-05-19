@@ -19,7 +19,7 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 	private Class<?> mSuccessfullActivity;
 
 	private String mId;
-	
+
 	private String mStatus;
 
 	private String mGameName;
@@ -48,16 +48,13 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity
-				.getResources().getString(R.string.loading), mCurrentActivity
-				.getResources().getString(R.string.loading_message));
+		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
+				.getString(R.string.loading_message));
 
 	}
 
-	public EditGame(Activity currentActivity, Class<?> successfullActivity,
-			String id,String status, String gameName, String description, String timeStart,
-			long duration, int pointsMax, int playersMax,
-			String localizationName, double lat, double lng, int radius) {
+	public EditGame(Activity currentActivity, Class<?> successfullActivity, String id, String status, String gameName, String description, String timeStart,
+			long duration, int pointsMax, int playersMax, String localizationName, double lat, double lng, int radius) {
 		mCurrentActivity = currentActivity;
 		mSuccessfullActivity = successfullActivity;
 		mId = id;
@@ -78,9 +75,7 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 		GameService gameService = new GameService(mCurrentActivity);
 		try {
-			gameService.editGame(mId,mStatus, mGameName, mDescription, mTimeStart,
-					mDuration, mPointsMax, mPlayersMax, mLocalizationName,
-					mLat, mLng, mRadius);
+			gameService.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
 
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -94,11 +89,9 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		loadingDialog.dismiss();
 		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(mCurrentActivity, R.string.game_edited,
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(mCurrentActivity, R.string.game_edited, Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
 		}

@@ -27,8 +27,7 @@ import com.blstream.ctf1.tracker.IssueTracker;
  * @author Milosz_Skalski
  **/
 
-public class CreateGameActivity extends FragmentActivity implements
-		OnClickListener {
+public class CreateGameActivity extends FragmentActivity implements OnClickListener {
 
 	private Button mBtnCancel;
 	private Button mBtnCreate;
@@ -148,8 +147,7 @@ public class CreateGameActivity extends FragmentActivity implements
 		String mMaxPointsTmp = mEditMaxPoints.getText().toString();
 
 		boolean correct = correctDateTime(mStartDate, mStartTime);
-		boolean correct2 = correctData(mGameName, mLocationName,
-				mPlayingTimeTmp);
+		boolean correct2 = correctData(mGameName, mLocationName, mPlayingTimeTmp);
 
 		if (correct && correct2) {
 			if (NetworkService.isDeviceOnline(this)) {
@@ -162,30 +160,19 @@ public class CreateGameActivity extends FragmentActivity implements
 				int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
 				int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
 
-				Log.d("CTF ", "CTF createGame: " + mGameName + " , "
-						+ mGameDescription + " , " + mStartDate + " , "
-						+ mStartTime + " , " + mPlayingTime + " , "
-						+ mMaxPoints + " , " + mMaxPlayers + " , "
-						+ mLocationName + " , " + 0.0 + " , " + 0.0 + " , " + 1);
+				Log.d("CTF ", "CTF createGame: " + mGameName + " , " + mGameDescription + " , " + mStartDate + " , " + mStartTime + " , " + mPlayingTime
+						+ " , " + mMaxPoints + " , " + mMaxPlayers + " , " + mLocationName + " , " + 0.0 + " , " + 0.0 + " , " + 1);
 				if (mId == null) {
-					CreateGame createGame = new CreateGame(this,
-							GameListActivity.class, mGameName,
-							mGameDescription, mStartDate + " " + mStartTime,
-							mPlayingTime, mMaxPoints, mMaxPlayers,
-							mLocationName, 0.0, 0.0, 1);
+					CreateGame createGame = new CreateGame(this, GameListActivity.class, mGameName, mGameDescription, mStartDate + " " + mStartTime,
+							mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0, 0.0, 1);
 					createGame.execute();
 				} else {
-					EditGame editGame = new EditGame(this,
-							GameListActivity.class, mId,
-							GameStatusType.NEW.toString(), mGameName,
-							mGameDescription, mStartDate + " " + mStartTime,
-							mPlayingTime, mMaxPoints, mMaxPlayers,
-							mLocationName, 0.0, 0.0, 1);
+					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), mGameName, mGameDescription, mStartDate
+							+ " " + mStartTime, mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, 0.0, 0.0, 1);
 					editGame.execute();
 				}
 			} else {
-				Toast.makeText(this, R.string.no_internet_connection,
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -199,18 +186,12 @@ public class CreateGameActivity extends FragmentActivity implements
 		int actualHour = c.get(Calendar.HOUR_OF_DAY);
 		int actualMinute = c.get(Calendar.MINUTE);
 
-		int day = Integer.parseInt(mStartDate.substring(0,
-				mStartDate.indexOf("-")));
-		int month = Integer.parseInt(mStartDate.substring(
-				mStartDate.indexOf("-") + 1, mStartDate.lastIndexOf("-")));
-		int year = Integer.parseInt(mStartDate.substring(mStartDate
-				.lastIndexOf("-") + 1));
-		int hour = Integer.parseInt(mStartTime.substring(0,
-				mStartTime.indexOf(":")));
-		int minute = Integer.parseInt(mStartTime.substring(
-				mStartTime.indexOf(":") + 1, mStartTime.lastIndexOf(":")));
-		Log.d("CTF ", "CTF date correct " + day + ":" + month + ":" + year
-				+ "   " + hour + ":" + minute);
+		int day = Integer.parseInt(mStartDate.substring(0, mStartDate.indexOf("-")));
+		int month = Integer.parseInt(mStartDate.substring(mStartDate.indexOf("-") + 1, mStartDate.lastIndexOf("-")));
+		int year = Integer.parseInt(mStartDate.substring(mStartDate.lastIndexOf("-") + 1));
+		int hour = Integer.parseInt(mStartTime.substring(0, mStartTime.indexOf(":")));
+		int minute = Integer.parseInt(mStartTime.substring(mStartTime.indexOf(":") + 1, mStartTime.lastIndexOf(":")));
+		Log.d("CTF ", "CTF date correct " + day + ":" + month + ":" + year + "   " + hour + ":" + minute);
 
 		if (year > actualYear)
 			return true;
@@ -244,8 +225,7 @@ public class CreateGameActivity extends FragmentActivity implements
 	}
 
 	// It is too long. Split it into smaller methods
-	private boolean correctData(String gameName, String locationName,
-			String playingTime) {
+	private boolean correctData(String gameName, String locationName, String playingTime) {
 		boolean result = false;
 
 		if (gameName.isEmpty()) {

@@ -27,13 +27,12 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity
-				.getResources().getString(R.string.loading), mCurrentActivity
-				.getResources().getString(R.string.loading_message));
+		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
+				.getString(R.string.loading_message));
 
 	}
 
-	public GameDetails(GameDetailsActivity currentActivity,String id) {
+	public GameDetails(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
 	}
@@ -57,8 +56,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	protected void onPostExecute(GameExtendedInfo result) {
 		loadingDialog.dismiss();
 		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
 		} else {
 			mCurrentActivity.mTextGameName.setText(result.getName());
 			mCurrentActivity.mTextGameDescription.setText(result.getDescription());

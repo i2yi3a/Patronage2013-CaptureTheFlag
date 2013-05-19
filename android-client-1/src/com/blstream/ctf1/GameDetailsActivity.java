@@ -12,6 +12,7 @@ import com.blstream.ctf1.asynchronous.DeleteGame;
 import com.blstream.ctf1.asynchronous.GameDetails;
 import com.blstream.ctf1.asynchronous.JoinGame;
 import com.blstream.ctf1.asynchronous.LeaveGame;
+import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
@@ -36,12 +37,12 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 	public Button mBtnEdit;
 	public Button mBtnDelete;
 	private String mId;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_details);
-		
+
 		mTextGameName = (TextView) findViewById(R.id.DetailsGameName);
 		mTextGameDescription = (TextView) findViewById(R.id.DetailsDescription);
 		mTextGameDuration = (TextView) findViewById(R.id.DetailsDuration);
@@ -62,13 +63,14 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mBtnDelete = (Button) findViewById(R.id.btnDelete);
 		mBtnDelete.setOnClickListener(this);
 		Bundle bundle = getIntent().getExtras();
-        if(bundle.getString(Constants.EXTRA_KEY_ID) != null) {
-            mId = bundle.getString(Constants.EXTRA_KEY_ID);
-        }
-		GameDetails gameDetails = new GameDetails(this,mId);
+		if (bundle.getString(Constants.EXTRA_KEY_ID) != null) {
+			mId = bundle.getString(Constants.EXTRA_KEY_ID);
+		}
+		GameDetails gameDetails = new GameDetails(this, mId);
 		gameDetails.execute();
+		if (!mTextGameStatus.equals(GameStatusType.NEW))
+			mBtnEdit.setEnabled(false);
 	}
-	
 
 	@Override
 	public void onClick(View v) {
