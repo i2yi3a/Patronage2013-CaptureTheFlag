@@ -1,72 +1,57 @@
-
 package com.blstream.ctf1;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.blstream.ctf1.tracker.IssueTracker;
 
-/**
- * @author Mateusz Wi�niewski
- */
-public class GameListActivity extends Activity implements OnClickListener{
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
-	private Button mBtnCreateNewGame; 
-	private Button mBtnLogout;
-	private Button mBtnPlayerProfile;
-	private String mId;
+/**
+ * @author Mateusz Wisniewski
+ */
+public class GameListActivity extends ListActivity implements OnClickListener{
+	
+	private Button mBtnCreateGame;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_game_list);
+		setContentView(R.layout.activity_game_list);		
 		
-		mBtnCreateNewGame = (Button) findViewById(R.id.btnCreateNewGame);
-		mBtnCreateNewGame.setOnClickListener(this);
+		mBtnCreateGame = (Button) findViewById(R.id.btnCreateGame);
+		mBtnCreateGame.setOnClickListener(this);
 		
-		mBtnLogout = (Button) findViewById(R.id.btnLogout);
-		mBtnLogout.setOnClickListener(this);
-		
-		mBtnPlayerProfile = (Button) findViewById(R.id.btnPlayerProfile);
-		mBtnPlayerProfile.setOnClickListener(this);
-		
+		ListView lv = getListView();
+        lv.setOnItemClickListener(new OnItemClickListener() { // listening to single list item on click
+    		@Override
+        	public void onItemClick(AdapterView<?> parent, View view,
+              int position, long id) {
+        	  String gameName = ((TextView) view).getText().toString(); // selected item 
+        	  // Launching new Activity on selecting single List Item
+        	  Intent intent = new Intent(getApplicationContext(), GameDetailsActivity.class);
+        	  // sending data to new activity
+        	  intent.putExtra("game_name", gameName);
+        	  startActivity(intent);
+          }
+        });
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.game_list, menu);
-		return true;
-	}
-
-	@Override
-	public void onClick(View v) {
-		Intent intent = null;	
-		switch (v.getId()) {
-			case R.id.btnCreateNewGame:
-				IssueTracker.saveClick(this, mBtnCreateNewGame);
-				intent = new Intent(this, CreateGameActivity.class);
-				startActivity(intent);
-				break;
-			case R.id.btnPlayerProfile:
-				IssueTracker.saveClick(this, mBtnPlayerProfile);
-				intent = new Intent(this, GameDetailsActivity.class);
-				mId = "519753a2e4b06da6594775c0"; //will be deleted after list implementation complete
-				intent.putExtra(Constants.EXTRA_KEY_ID, mId);
-				startActivity(intent);
-				break;
-			case R.id.btnLogout:
-				IssueTracker.saveClick(this, mBtnLogout);
-				Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
-				finish();
-				break;
+	public void onClick(View view) {
+		Intent intent = null;
+		switch (view.getId()) {
+		case R.id.btnCreateGame:
+			IssueTracker.saveClick(this, mBtnCreateGame);
+			intent = new Intent(this, CreateGameActivity.class);
+			startActivity(intent);
+			break;		
 		}
 	}
-
 }
