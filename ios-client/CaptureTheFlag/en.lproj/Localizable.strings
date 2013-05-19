@@ -13,7 +13,4 @@
 "server.error.resource.cannot.be.delated" = "Server returned error: resource cannot be delated.";
 "server.error.cannot.create.new.player" = "Server returned error: cannot create new player.";
 "server.error.player.already.exists" = "Server returned error: player already exists.";
-//"server.error.invalid.grant.password" = "Server returned error: authentication failed - wrong password";
-//"server.error.invalid.grant.username" = "Server returned error: bad credentials";
-//"server.error.invalid.token" = "Server returned error: invalid access token - %@";
-"server.error.general" = "Server error."
+"server.error.general" = "Server error.";
