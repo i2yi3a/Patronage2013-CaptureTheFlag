@@ -19,8 +19,6 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 	private Class<?> mSuccessfullActivity;
 	
 	private String mId;
-	
-	private String mStatus;
 
 	private String mGameName;
 
@@ -61,7 +59,6 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 		mCurrentActivity = currentActivity;
 		mSuccessfullActivity = successfullActivity;
 		mId = id;
-		mStatus = status;
 		mGameName = gameName;
 		mDescription = description;
 		mTimeStart = timeStart;
@@ -78,7 +75,7 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 		GameService gameService = new GameService(mCurrentActivity);
 		try {
-			gameService.editGame(mId,mStatus,mGameName, mDescription, mTimeStart,
+			gameService.editGame(mId,mGameName, mDescription, mTimeStart,
 					mDuration, mPointsMax, mPlayersMax, mLocalizationName,
 					mLat, mLng, mRadius);
 
