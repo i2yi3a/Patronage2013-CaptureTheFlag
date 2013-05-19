@@ -69,6 +69,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGamePlayersMax.setText(Integer.toString(result.getPlayersMax()));
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());
+			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
 		}
 	}
 
