@@ -84,6 +84,7 @@
     <string name="game_already_deleted">This game was already deleted</string>
 
     <!-- Error codes -->
+    <string name="error_code_3">Selected game probably does not exist</string>
     <string name="error_code_5">Only Game Owner can delete game</string>
     <string name="error_code_101">Login already in use</string>
     <string name="error_code_102">You are already signed to game</string>
@@ -93,6 +94,8 @@
     <string name="error_code_202">Wrong username</string>
     <string name="error_code_203">Bad token</string>
     <string name="error_code_204">Unexpected server response</string>
+    <!-- Errors from client app -->
+    <string name="error_code_1001">Error occurred while retrieving stored logged player data, try to log out and log in again</string>
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
