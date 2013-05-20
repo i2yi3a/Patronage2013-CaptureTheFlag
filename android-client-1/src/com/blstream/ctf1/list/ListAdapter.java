@@ -41,7 +41,7 @@ public class ListAdapter extends ArrayAdapter<GameBasicInfo>{
 	    	if(gameName != null) {
 	    		gameName.setText(value.getName());
 	    	}
-	    	if(gameName != null) {
+	    	if(gameID != null) {
 	    		gameID.setText(value.getId());
 	    	}
 	    }
