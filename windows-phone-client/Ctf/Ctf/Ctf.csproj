@@ -98,6 +98,7 @@
     <Compile Include="Communication\DataObjects\JsonResponse.cs" />
     <Compile Include="ApplicationTools\DataObjects\ApplicationEventArgs.cs" />
     <Compile Include="ApplicationTools\DebugInfo.cs" />
+    <Compile Include="Communication\EditGameCommand.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Pages\LoggedIn.xaml.cs">
       <DependentUpon>LoggedIn.xaml</DependentUpon>

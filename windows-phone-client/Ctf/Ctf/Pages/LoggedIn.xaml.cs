@@ -69,5 +69,10 @@ namespace Ctf.Pages
         {
             e.Cancel = true;
         }
+
+        private void EditGame_Button_Click(object sender, RoutedEventArgs e)
+        {
+            EditGameCommand EditGame = new EditGameCommand("56gameidshouldbehere98");
+        }
     }
 }
