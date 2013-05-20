@@ -25,10 +25,11 @@ import com.blstream.ctf2.storage.entity.Game;
 
 /**
  * 
- * @author Marcin Sareło
+ * @author Marcin Sareło [mod] Rafal Tatol
  * 
  */
 public class GameServices extends Services {
+
 	public final static String NAME = "name";
 	public final static String DESCRIPTION = "description";
 	public final static String DURATION = "duration";
@@ -44,27 +45,30 @@ public class GameServices extends Services {
 	public final static String LNG = "lng";
 	public final static String STATUS_NEW = "NEW";
 	public final static String STATUS_IN_PROGRESS = "IN_PROGRESS";
-	String playerToken = "";
-	String typeToken = "";
-
-	public void getGames(GameListActivity gameListActivity) {
-		GetGames getGames = new GetGames(gameListActivity);
-		getGames.execute("");
-	}
-
-	public void getGameDetails(GameDetailsActivity gameDetailsActivity, String mGameId) {
-		GetGameDetails getGameDetails = new GetGameDetails(gameDetailsActivity);
-		getGameDetails.execute(mGameId);
-	}
+	public final static String GAME_LIST_EMPTY = "Game list is empty";
+	private String playerToken = "";
+	private String typeToken = "";
 
 	public GameServices(Context mCtx) {
-
 		UserServices userServices = new UserServices(mCtx);
 		this.playerToken = userServices.getUser().getToken();
 		this.typeToken = userServices.getUser().getTokenType();
 	}
 
+	public void getGames(GameListActivity gameListActivity) {
+		GetGames getGamesTask = new GetGames(gameListActivity);
+		getGamesTask.execute("");
+	}
+
+	public void getGameDetails(GameDetailsActivity gameDetailsActivity, String mGameId) {
+		GetGameDetails getGameDetailsTask = new GetGameDetails(gameDetailsActivity);
+		getGameDetailsTask.execute(mGameId);
+	}
+
+
+		
 	/**
+	 * 
 	 * @author Rafal Tatol [mod] Marcin Sareło
 	 */
 	private class GetGameDetails extends AsyncTask<String, Void, JSONObject> {
@@ -189,6 +193,12 @@ public class GameServices extends Services {
 		}
 	}
 
+
+	
+	/**
+	 * 
+	 * @author Marcin Sareło [mod] Rafal Tatol
+	 */
 	private class GetGames extends AsyncTask<String, Void, JSONArray> {
 
 		private GameListActivity mGameListActivity;
@@ -230,7 +240,7 @@ public class GameServices extends Services {
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(mGameListActivity);
 					AlertDialog dialog;
-					builder.setMessage("Game list is empty");
+					builder.setMessage(GAME_LIST_EMPTY);
 					builder.setTitle(Constants.ERROR);
 					builder.setPositiveButton(R.string.ok, null);
 					dialog = builder.create();
@@ -246,12 +256,10 @@ public class GameServices extends Services {
 
 		public void fillGameListActivity(List<Game> games) {
 			mGameListActivity.setGames(games);
-
 		}
 
 		public String getGames() {
 			String result = null;
-
 			try {
 				List<Header> headers = new ArrayList<Header>();
 				headers.add(new BasicHeader("Accept", "application/json"));
@@ -268,7 +276,6 @@ public class GameServices extends Services {
 		}
 
 		public List<Game> getGamesFromJson(JSONArray jsonArray) {
-
 			List<Game> games = new ArrayList<Game>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
@@ -277,18 +284,21 @@ public class GameServices extends Services {
 				try {
 					jsonObject = jsonArray.getJSONObject(i);
 					game.setId(jsonObject.getString(Constants.ID));
+					// TODO temporarily
+					try {
+						game.setName(jsonObject.getString(NAME));
+					} catch (JSONException e) {
+						game.setName("SERVER FAIL :)");
+					}
 					game.setName(jsonObject.getString(NAME));
 					game.setStatus(jsonObject.getString(STATUS));
 					game.setOwner(jsonObject.getString(OWNER));
 				} catch (JSONException e) {
 					Log.e("getGame ERROR", e.toString());
 				}
-
 				games.add(game);
 			}
-
 			return games;
 		}
 	}
-
 }

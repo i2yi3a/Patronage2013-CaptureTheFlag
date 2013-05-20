@@ -13,13 +13,13 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.blstream.ctf2.Constants;
-import com.blstream.ctf2.R;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.ParseException;
+
+import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.R;
 
 /**
  * 

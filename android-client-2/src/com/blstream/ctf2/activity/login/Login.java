@@ -12,7 +12,6 @@ import android.os.AsyncTask;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
-import com.blstream.ctf2.R.string;
 import com.blstream.ctf2.services.HttpServices;
 import com.blstream.ctf2.services.UserServices;
 import com.blstream.ctf2.storage.entity.User;

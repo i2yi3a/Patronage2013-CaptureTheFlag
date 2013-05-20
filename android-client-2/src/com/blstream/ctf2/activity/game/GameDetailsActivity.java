@@ -1,7 +1,6 @@
 package com.blstream.ctf2.activity.game;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
+import com.blstream.ctf2.services.GameServices;
 
 /**
  * @author Rafal Tatol
@@ -31,9 +31,6 @@ public class GameDetailsActivity extends Activity {
 	public TextView mPlayersMaxTextView;
 	public Button mJoinButton;
 	public Button mEditButton;
-	private Context mCtx;
-	
-//	private GameServices mGameServices = new GameServices(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +57,8 @@ public class GameDetailsActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		//mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
-		GetGameDetails getGameDetails = new GetGameDetails(this);
-		getGameDetails.execute(mGameId);
+		GameServices mGameServices = new GameServices(this);
+		mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
 	}
 
 	public void onClickButton(View v) {
@@ -73,6 +69,4 @@ public class GameDetailsActivity extends Activity {
 			break;
 		}
 	}
-
-	
 }

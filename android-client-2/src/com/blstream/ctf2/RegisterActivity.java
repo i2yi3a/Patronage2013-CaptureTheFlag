@@ -10,9 +10,6 @@ import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blstream.ctf2.services.HttpServices;
-import com.google.analytics.tracking.android.EasyTracker;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -25,6 +22,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.blstream.ctf2.services.HttpServices;
+import com.google.analytics.tracking.android.EasyTracker;
 
 /**
  * Player registration class

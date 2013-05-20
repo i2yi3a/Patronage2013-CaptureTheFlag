@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.blstream.ctf2.storage.entity.User;
-import com.blstream.ctf2.storage.utils.UserSQLiteHelper;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.blstream.ctf2.storage.entity.User;
+import com.blstream.ctf2.storage.utils.UserSQLiteHelper;
 
 /**
  * 

@@ -1,10 +1,8 @@
 package com.blstream.ctf2;
 
-import com.google.android.maps.MapActivity;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.*;
+
+import com.google.android.maps.MapActivity;
 
 
 

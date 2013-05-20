@@ -24,14 +24,13 @@ import com.google.analytics.tracking.android.EasyTracker;
 /**
  * 
  * @author Marcin Sareło
- * 
+ * [mod] Rafal Tatol
  */
 public class GameListActivity extends Activity implements OnClickListener {
 
 	private ListView list;
 	private ArrayAdapter<String> adapter;
 	private List<Game> games = new ArrayList<Game>();
-	private GameServices mGameServices;
 	private Button mBtnVieProfile;
 	private Button mBtnCreateNewGame;
 	private Button mBtnLogout;
@@ -40,6 +39,7 @@ public class GameListActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_list);
+		
 		list = (ListView) findViewById(R.id.listView);
 		list.setClickable(true);
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -60,6 +60,13 @@ public class GameListActivity extends Activity implements OnClickListener {
 		mBtnLogout.setOnClickListener(this);
 	}
 
+	@Override
+	protected void onResume() {
+		GameServices mGameServices = new GameServices(this);
+		mGameServices.getGames(this);
+		super.onResume();
+	}
+
 	public void onClick(View v) {
 		Intent intent = null;
 		switch (v.getId()) {
@@ -67,16 +74,10 @@ public class GameListActivity extends Activity implements OnClickListener {
 			intent = new Intent(this, CreateGameActivity.class);
 			startActivity(intent);
 			break;
-		// case R.id.view_profile_button:
-		// intent = new Intent(this, UserProfile/DetailsActivity.class);
-		// intent.putExtra();
-		// startActivity(intent);
-		// break;
 		case R.id.logout_button:
 			Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
 			finish();
 			break;
-
 		}
 	}
 
@@ -106,13 +107,4 @@ public class GameListActivity extends Activity implements OnClickListener {
 		EasyTracker.getInstance().activityStop(this);
 		super.onStop();
 	}
-
-	@Override
-	protected void onResume() {
-		// mGameServices.getGames(this);
-		GetGames getGames = new GetGames(this);
-		getGames.execute("");
-		super.onResume();
-	}
-
 }
