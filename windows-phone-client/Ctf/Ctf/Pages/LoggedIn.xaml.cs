@@ -74,22 +74,22 @@ namespace Ctf.Pages
 
         private void GameInfo_Button_Click(object sender, RoutedEventArgs e)
         {
-            GameInfoCommand GameInfo = new GameInfoCommand("5197917be4b06da6594775cc");
+            GameInfoCommand GameInfo = new GameInfoCommand("519a6d6de4b06da65947762a");
             GameInfo.GetGameInfo();
         }
         
         private void EditGame_Button_Click(object sender, RoutedEventArgs e)
         {
-            EditGameCommand EditGame = new EditGameCommand("5182570ee4b03c6418a2fdab");
-            EditGame.EditGame(new Game("choleras", "jasna", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Jasne błonia, Szczecin, Polska", new LatLng(15, 15), 1500)));
+            EditGameCommand EditGame = new EditGameCommand("519a6d6de4b06da65947762a");
+            EditGame.EditGame(new Game("zzzzz", "zzzzzz", "519a6d6de4b06da65947762a" , "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new LatLng(15, 15), 1500)));
+                  
         }
 
         private void creategamebox_Click(object sender, RoutedEventArgs e)
         {
             CreateCommand gaame = new CreateCommand();
             gaame.RequestFinished += new RequestFinishedEventHandler(gaame_RequestFinished);
-            gaame.CreateGame(new Game("choleras", "jasna", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Jasne błonia, Szczecin, Polska", new LatLng(15, 15), 1500)));
-           
+            gaame.CreateGame(new Game("sproba", "jasna", "10-06-2013 10:13:00", 5400000, 12, 10, new Localization("Jasne błonia, Szczecin, Polska", new LatLng(15, 15), 1500)));
         }
 
         void gaame_RequestFinished(object sender, RequestFinishedEventArgs e)
@@ -98,7 +98,7 @@ namespace Ctf.Pages
             
             if (!e.Response.HasError())
             {
-               CreateJsonResponse x = e.Response as CreateJsonResponse;
+               Game x = e.Response as Game; 
                MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.id.ToString(), MessageBoxButton.OK);
             }
             else

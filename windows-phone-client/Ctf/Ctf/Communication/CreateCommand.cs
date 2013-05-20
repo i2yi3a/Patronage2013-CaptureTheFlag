@@ -28,26 +28,12 @@ namespace Ctf.Communication
 
         public Task<RestRequestAsyncHandle> CreateGame(Game game)
         {
-            request.AddBody(new
-            {
-                name = game.name,
-                description = game.description,
-                time_start = game.time_start,
-                duration = game.duration,
-                points_max = game.points_max,
-                players_max = game.players_max,
-                localization = new
-                {
-                    name = game.localization.name,
-                    latLng = new { lat = game.localization.latLng.lat, lng = game.localization.latLng.lng },
-                    radius = game.localization.radius
-                },
-            });
-            return requestHandler.ExecuteAsync<CreateJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            request.AddBody(game);
+            return requestHandler.ExecuteAsync<Game>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
 
-        private void RequestCallbackOnSuccess(IRestResponse<CreateJsonResponse> response)
+        private void RequestCallbackOnSuccess(IRestResponse<Game> response)
         {
             if ((response != null) && (response.Data != null))
             {

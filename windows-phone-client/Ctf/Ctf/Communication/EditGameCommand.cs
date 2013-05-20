@@ -45,7 +45,6 @@ namespace Ctf.Communication
 
         public async Task<RestRequestAsyncHandle> EditGame(Game GameInfo)
         {
-            GameInfo.description = "piotrek";
             request.AddBody(GameInfo);
             return await requestHandler.ExecuteAsync<ServerJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
