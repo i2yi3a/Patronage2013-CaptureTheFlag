@@ -13,6 +13,8 @@ using Ctf.Communication;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 using Ctf.ApplicationTools;
+using Ctf.Communication.DataObjects;
+using Ctf.ApplicationTools.DataObjects;
 
 namespace Ctf.Pages
 {
@@ -69,5 +71,31 @@ namespace Ctf.Pages
         {
             e.Cancel = true;
         }
+
+        private void creategamebox_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCommand gaame = new CreateCommand();
+            gaame.RequestFinished += new RequestFinishedEventHandler(gaame_RequestFinished);
+            gaame.CreateGame(new Game("choleras", "jasna", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Jasne błonia, Szczecin, Polska", new LatLng(15, 15), 1500)));
+           
+        }
+
+        void gaame_RequestFinished(object sender, RequestFinishedEventArgs e)
+        {
+            
+            
+            if (!e.Response.HasError())
+            {
+               CreateJsonResponse x = e.Response as CreateJsonResponse;
+               MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.id.ToString(), MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBoxResult m = MessageBox.Show(e.Response.error_description.ToString(), e.Response.error.ToString(), MessageBoxButton.OK);
+            }
+
+
+        }
+        
     }
 }
