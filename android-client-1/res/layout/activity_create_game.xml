@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/game_name"
+            android:singleLine="true"
             android:width="160dp" />
 
         <TextView
@@ -36,6 +37,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/game_description"
+            android:singleLine="false"
             android:width="160dp" />
 
         <TextView
@@ -50,6 +52,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/location_name"
+            android:singleLine="true"
             android:width="160dp" />
 
         <TextView

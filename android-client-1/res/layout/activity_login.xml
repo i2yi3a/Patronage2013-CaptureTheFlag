@@ -18,7 +18,8 @@
         android:layout_marginTop="33dp"
         android:ems="10"
         android:hint="@string/hint_password"
-        android:inputType="textPassword" >
+        android:inputType="textPassword"
+        android:singleLine="true" >
 
         <requestFocus />
     </EditText>
@@ -40,7 +41,8 @@
         android:layout_below="@+id/btnRegistration"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="@string/hint_login" />
+        android:hint="@string/hint_login"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/btnLogin"
