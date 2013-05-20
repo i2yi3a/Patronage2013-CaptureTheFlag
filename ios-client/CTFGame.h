@@ -20,8 +20,7 @@
 @property (strong, nonatomic) NSNumber *pointsMax;
 @property (strong, nonatomic) NSNumber *playersMax;
 @property (strong, nonatomic) NSString *localizationName;
-@property (strong, nonatomic) CLLocation *localizationLat;
-@property (strong, nonatomic) CLLocation *localizationLng;
+@property (strong, nonatomic) CLLocation *localization;
 @property (strong, nonatomic) NSNumber *localizationRadius;
 
 @end
