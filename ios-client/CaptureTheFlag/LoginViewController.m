@@ -17,6 +17,13 @@
 @end
 @implementation LoginViewController
 
+- (IBAction)switchcontrol:(id)sender{
+    if (control.selectedSegmentIndex == 1) {
+        [self performSegueWithIdentifier:@"segueToRegister" sender:self];
+    }
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,6 +89,11 @@
     {
         
     }
+    if ([[segue identifier] isEqualToString:@"segueToRegister"])
+    {
+        
+    }
+
 }
 
 
@@ -92,6 +104,9 @@
     }
     else if (textField == self.passwordField) {
         [textField resignFirstResponder];
+        [self beginLogin];
+        [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
+        [_loginAlertView show];
     }
     return YES;
 }

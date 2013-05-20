@@ -65,7 +65,7 @@
 
 
 - (IBAction)reginster:(id)sender{
-    [_loginAlertView show];
+            [_loginAlertView show];
 if ([self.passwordField.text isEqualToString:self.passwordField2.text])
 {
     [self beginReginster];
@@ -74,12 +74,10 @@ if ([self.passwordField.text isEqualToString:self.passwordField2.text])
 else
 {
     [ShowInformation showError:@"passwords didn't match"];
+    [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 }
 
-- (IBAction)cancellRegister:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 -(void)beginReginster
 
@@ -99,6 +97,18 @@ else
         }
         else if (textField == self.passwordField2) {
             [textField resignFirstResponder];
+            [_loginAlertView show];
+            if ([self.passwordField.text isEqualToString:self.passwordField2.text])
+            {
+                [self beginReginster];
+                [self reginsterWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
+            }
+            else
+            {
+                [ShowInformation showError:@"passwords didn't match"];
+                [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+            }
+
     }
     return YES;
     }

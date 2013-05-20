@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController{
+    IBOutlet UISegmentedControl *control;
+}
 - (IBAction)login:(id)sender;
+- (IBAction)switchcontrol:(id)sender;
 @end

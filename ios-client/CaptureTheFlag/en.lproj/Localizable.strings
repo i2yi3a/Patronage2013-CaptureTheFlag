@@ -5,12 +5,3 @@
   Created by Sebastian Jędruszkiewicz on 4/15/13.
   Copyright (c) 2013 BLStream. All rights reserved.
 */
-"server.success" = "OK";
-"server.error.bad.request" = "Server returned error: bad request.";
-"server.error.internal.error" = "Server returned error: internal error.";
-"server.error.resource.not.found" = "Server returned error: resource not found.";
-"server.error.resource.already.exists" = "Server returned error: resource already exists.";
-"server.error.resource.cannot.be.delated" = "Server returned error: resource cannot be delated.";
-"server.error.cannot.create.new.player" = "Server returned error: cannot create new player.";
-"server.error.player.already.exists" = "Server returned error: player already exists.";
-"server.error.general" = "Server error.";

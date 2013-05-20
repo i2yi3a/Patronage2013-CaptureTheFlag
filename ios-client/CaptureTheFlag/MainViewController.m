@@ -104,7 +104,7 @@
             }
             if ([[segue identifier] isEqualToString:@"segueToProfile"])
             {
-                
+
             }
             if ([[segue identifier] isEqualToString:@"segueLogout"])
             {
