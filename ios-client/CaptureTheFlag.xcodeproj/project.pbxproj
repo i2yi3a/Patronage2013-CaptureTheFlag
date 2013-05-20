@@ -23,6 +23,8 @@
 		233035F3170DAAC9002E1A92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233035CE170DAAC9002E1A92 /* Foundation.framework */; };
 		233035FB170DAAC9002E1A92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 233035F9170DAAC9002E1A92 /* InfoPlist.strings */; };
 		233035FE170DAAC9002E1A92 /* CaptureTheFlagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 233035FD170DAAC9002E1A92 /* CaptureTheFlagTests.m */; };
+		234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */; };
+		234A9D1D174A8A4100D6D5AB /* UIColor+customColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */; };
 		23D228DF17134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D228C817134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m */; };
 		23D228E017134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D228C817134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m */; };
 		23D228E117134EE900073C0B /* NSData+MKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D228CA17134EE900073C0B /* NSData+MKBase64.m */; };
@@ -95,6 +97,8 @@
 		233035FA170DAAC9002E1A92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		233035FC170DAAC9002E1A92 /* CaptureTheFlagTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaptureTheFlagTests.h; sourceTree = "<group>"; };
 		233035FD170DAAC9002E1A92 /* CaptureTheFlagTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaptureTheFlagTests.m; sourceTree = "<group>"; };
+		234A9D1A174A8A4100D6D5AB /* UIColor+customColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+customColors.h"; sourceTree = "<group>"; };
+		234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+customColors.m"; sourceTree = "<group>"; };
 		23D228C717134EE900073C0B /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		23D228C817134EE900073C0B /* NSAlert+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
 		23D228C917134EE900073C0B /* NSData+MKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKBase64.h"; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				23D228DD17134EE900073C0B /* NetworkEngine.h */,
 				23D228DE17134EE900073C0B /* NetworkEngine.m */,
 				233035D3170DAAC9002E1A92 /* Supporting Files */,
+				234A9D1A174A8A4100D6D5AB /* UIColor+customColors.h */,
+				234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */,
 			);
 			path = CaptureTheFlag;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				C8999F4C172E5BC70079B0A7 /* GamesViewController.m in Sources */,
 				C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */,
 				C8999F52172E5D780079B0A7 /* NewGameViewController.m in Sources */,
+				234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +497,7 @@
 				23D228F217134EE900073C0B /* Reachability.m in Sources */,
 				23D228F417134EE900073C0B /* NetworkEngine.m in Sources */,
 				23D228F8171352CF00073C0B /* NSError+Description.m in Sources */,
+				234A9D1D174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
