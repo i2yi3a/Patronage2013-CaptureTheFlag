@@ -33,9 +33,6 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 		mBtnLogout.setOnClickListener(this);
 		mBtnProfile = (Button) findViewById(R.id.btnProfile);
 		mBtnProfile.setOnClickListener(this);
-		
-		GameList gameList = new GameList(this);
-		gameList.execute();
 
 		ListView lv = getListView();
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -52,6 +49,14 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 			}
 		});
 	}
+	
+	@Override
+	protected void onResume() {
+		GameList gameList = new GameList(this);
+		gameList.execute();
+		super.onResume();
+	}
+
 	@Override
 	public void onClick(View view) {
 		Intent intent = null;
