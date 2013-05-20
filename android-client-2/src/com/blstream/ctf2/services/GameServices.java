@@ -65,8 +65,6 @@ public class GameServices extends Services {
 		getGameDetailsTask.execute(mGameId);
 	}
 
-
-		
 	/**
 	 * 
 	 * @author Rafal Tatol [mod] Marcin Sareło
@@ -193,8 +191,6 @@ public class GameServices extends Services {
 		}
 	}
 
-
-	
 	/**
 	 * 
 	 * @author Marcin Sareło [mod] Rafal Tatol
@@ -284,12 +280,6 @@ public class GameServices extends Services {
 				try {
 					jsonObject = jsonArray.getJSONObject(i);
 					game.setId(jsonObject.getString(Constants.ID));
-					// TODO temporarily
-					try {
-						game.setName(jsonObject.getString(NAME));
-					} catch (JSONException e) {
-						game.setName("SERVER FAIL :)");
-					}
 					game.setName(jsonObject.getString(NAME));
 					game.setStatus(jsonObject.getString(STATUS));
 					game.setOwner(jsonObject.getString(OWNER));
