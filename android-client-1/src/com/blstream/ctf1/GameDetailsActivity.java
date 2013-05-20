@@ -16,7 +16,7 @@ import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
- * @author Rafal_Olichwer, Piotr Marczycki
+ * @author Rafal_Olichwer, Piotr Marczycki, Mateusz Wisniewski
  */
 
 public class GameDetailsActivity extends Activity implements OnClickListener {

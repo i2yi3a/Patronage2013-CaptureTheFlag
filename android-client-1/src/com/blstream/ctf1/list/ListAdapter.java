@@ -1,3 +1,7 @@
+/**
+ * @author Mateusz Wisniewski
+ */
+
 package com.blstream.ctf1.list;
 
 import java.util.List;

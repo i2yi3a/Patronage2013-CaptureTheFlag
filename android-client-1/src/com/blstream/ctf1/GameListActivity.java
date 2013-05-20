@@ -1,3 +1,7 @@
+/**
+ * @author Mateusz Wisniewski
+ */
+
 package com.blstream.ctf1;
 
 import java.util.ArrayList;
@@ -19,9 +23,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-/**
- * @author Mateusz Wisniewski
- */
 public class GameListActivity extends ListActivity implements OnClickListener {
 
 	private Button mBtnCreateGame, mBtnLogout, mBtnProfile;
