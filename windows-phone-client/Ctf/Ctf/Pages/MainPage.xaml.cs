@@ -70,6 +70,7 @@ namespace Ctf.Pages
                 }
             }
             LoginErrorBlock.Text = info;
+            //TODO do not display error info after login
         }
 
         private void txtChangedRegister(object sender, RoutedEventArgs e)

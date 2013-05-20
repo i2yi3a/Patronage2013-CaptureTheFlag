@@ -70,9 +70,16 @@ namespace Ctf.Pages
             e.Cancel = true;
         }
 
-        private void EditGame_Button_Click(object sender, RoutedEventArgs e)
+        private void GameInfo_Button_Click(object sender, RoutedEventArgs e)
         {
-            EditGameCommand EditGame = new EditGameCommand("56gameidshouldbehere98");
+            GameInfoCommand GameInfo = new GameInfoCommand("5197917be4b06da6594775cc");
+            GameInfo.GetGameInfo();
         }
+        private void GameInfo_Button_Click(object sender, RoutedEventArgs e)
+        {
+            EditGameCommand EditGame = new EditGameCommand("5182570ee4b03c6418a2fdab");
+            EditGame.EditGame();
+        }
+
     }
 }

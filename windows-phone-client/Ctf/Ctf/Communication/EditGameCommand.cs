@@ -19,7 +19,7 @@ namespace Ctf.Communication
             request = new RestRequest(String.Format("/api/secured/games/{0}", gameId), Method.PUT);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-type", "application/json");
-            request.AddHeader("Authorization", String.Format("Bearer {0}", ApplicationSettings.Instance.RetriveLoggedUser().access_token));
+            request.AddHeader("Authorization", String.Format("{0} {1}", ApplicationSettings.Instance.RetriveLoggedUser().token_type, ApplicationSettings.Instance.RetriveLoggedUser().access_token));
             request.RequestFormat = DataFormat.Json;
         }
 
@@ -43,9 +43,10 @@ namespace Ctf.Communication
             OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         }
 
-        public async Task<RestRequestAsyncHandle> Register(UserCredentials user)
+        public async Task<RestRequestAsyncHandle> EditGame(GameInfoFull GameInfo)
         {
-            request.AddBody(new { username = user.username, password = user.password });
+            GameInfo.description = "piotrek";
+            request.AddBody(GameInfo);
             return await requestHandler.ExecuteAsync<ServerJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
