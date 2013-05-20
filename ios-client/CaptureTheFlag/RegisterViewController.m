@@ -17,6 +17,12 @@
 
 @implementation RegisterViewController
 
+- (IBAction)switchcontrol:(id)sender{
+    if (control.selectedSegmentIndex == 0) {
+        [self performSegueWithIdentifier:@"segueToMainScreenAfterRegister" sender:self];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
