@@ -24,7 +24,7 @@ namespace Ctf.Communication
             //request.RequestFormat = DataFormat.Json;
         }
 
-        private void RequestCallbackOnSuccess(IRestResponse<GameInfoFull> response)
+        private void RequestCallbackOnSuccess(IRestResponse<Game> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -43,7 +43,7 @@ namespace Ctf.Communication
 
         public async Task<RestRequestAsyncHandle> GetGameInfo()
         {
-            return await requestHandler.ExecuteAsync<GameInfoFull>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await requestHandler.ExecuteAsync<Game>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

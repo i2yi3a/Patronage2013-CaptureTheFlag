@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Ctf.Communication.DataObjects;
 
 namespace Ctf.ApplicationTools.DataObjects
 {
-    
-    public class Game
+
+    public class Game : ServerJsonResponse
     {
         
         public string name { get; set; }
@@ -20,6 +21,11 @@ namespace Ctf.ApplicationTools.DataObjects
         public Localization localization { get; set; }
         public int flag_quantity { get; set; }
         public Flag flag { get; set; }
+
+        public Game()
+        {
+
+        }
 
         public Game(string name, string description, string time_start, int duration, int points_max, int players_max, Localization localization)
         {
@@ -41,6 +47,11 @@ namespace Ctf.ApplicationTools.DataObjects
         public LatLng latLng { get; set; }
         public int radius { get; set; }
 
+        public Localization()
+        {
+
+        }
+
         public Localization(string name, LatLng latLng, int radius)
         {
                 this.name = name;
@@ -54,6 +65,11 @@ namespace Ctf.ApplicationTools.DataObjects
         public double lat { get; set; }
         public double lng { get; set; }
 
+        public LatLng()
+        {
+
+        }
+
         public LatLng(float lat, float lng)
         {
             this.lat = lat;
@@ -65,6 +81,11 @@ namespace Ctf.ApplicationTools.DataObjects
     {
         public string team { get; set; }
         public LatLng latLng { get; set; }
+
+        public Flag()
+        {
+
+        }
 
         public Flag(string team, LatLng latLng)
         {

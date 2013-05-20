@@ -94,8 +94,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationTools\DataObjects\ApplicationError.cs" />
+    <Compile Include="ApplicationTools\DataObjects\Game.cs" />
     <Compile Include="Communication\BaseCommand.cs" />
-    <Compile Include="Communication\DataObjects\GameInfoFull.cs" />
+    <Compile Include="Communication\CreateCommand.cs" />
+    <Compile Include="Communication\DataObjects\CreateJsonResponse.cs" />
     <Compile Include="Communication\DataObjects\JsonResponse.cs" />
     <Compile Include="ApplicationTools\DataObjects\ApplicationEventArgs.cs" />
     <Compile Include="ApplicationTools\DebugInfo.cs" />

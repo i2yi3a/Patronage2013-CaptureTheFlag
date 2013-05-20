@@ -43,7 +43,7 @@ namespace Ctf.Communication
             OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         }
 
-        public async Task<RestRequestAsyncHandle> EditGame(GameInfoFull GameInfo)
+        public async Task<RestRequestAsyncHandle> EditGame(Game GameInfo)
         {
             GameInfo.description = "piotrek";
             request.AddBody(GameInfo);
