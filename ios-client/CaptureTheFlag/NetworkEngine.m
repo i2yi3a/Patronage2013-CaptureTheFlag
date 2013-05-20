@@ -108,6 +108,7 @@
 
 - (void)logout:(NetworkEngineCompletionBlock)completionBlock
 {
+    self.token = nil;
     //There is no api at the moment, so this method can simply call completion block.
     completionBlock(nil);
 }
