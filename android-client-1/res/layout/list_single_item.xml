@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--  Single List Item Design -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:textIsSelectable="true"
-	android:id="@+id/game_name"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"  
-    android:textSize="20sp">
-</TextView>
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <!-- Single List Item Design -->
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/game_name"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:textIsSelectable="true" />
+
+</LinearLayout>

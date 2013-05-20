@@ -62,9 +62,13 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		mBtnEdit.setOnClickListener(this);
 		mBtnDelete = (Button) findViewById(R.id.btnDelete);
 		mBtnDelete.setOnClickListener(this);
-		Bundle bundle = getIntent().getExtras();
-		if (bundle.getString(Constants.EXTRA_KEY_ID) != null) {
-			mId = bundle.getString(Constants.EXTRA_KEY_ID);
+		Bundle extras = getIntent().getExtras();
+		if (extras.getString(Constants.EXTRA_KEY_ID) != null) {
+			mId = extras.getString(Constants.EXTRA_KEY_ID);
+			mTextGameID.setText(extras.getString(Constants.EXTRA_KEY_ID));
+			if (extras.getString("GAME_NAME") != null) {
+				mTextGameName.setText(extras.getString("GAME_NAME"));
+			}
 		}
 		GameDetails gameDetails = new GameDetails(this, mId);
 		gameDetails.execute();

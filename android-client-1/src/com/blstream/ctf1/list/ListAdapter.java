@@ -1,6 +1,7 @@
 package com.blstream.ctf1.list;
 
 import java.util.List;
+
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameBasicInfo;
 
@@ -13,31 +14,33 @@ import android.widget.TextView;
 
 public class ListAdapter extends ArrayAdapter<GameBasicInfo>{
 
-	private final Context context;
 	private List<GameBasicInfo> items;
 
 	public ListAdapter(Context context, List<GameBasicInfo> items) {
 		super(context, R.layout.list_single_item, items);
-		this.context = context;
+		this.items = items;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		 
-		View view = convertView;
-	    if (view == null) {
-	    	LayoutInflater inflater = (LayoutInflater) context
-	    			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    	view = inflater.inflate(R.layout.list_single_item, parent, false);
+	    View rowView = convertView;
+	    if (rowView == null) {
+	        LayoutInflater inflater = LayoutInflater.from(getContext());
+	        rowView = inflater.inflate(R.layout.list_single_item, null);
 	    }
 	    
-	    GameBasicInfo item = items.get(position);
-	    if (item != null) {
-	    	TextView textView = (TextView) view.findViewById(R.id.game_name);
-	    	if(textView != null) {
-	    		textView.setText(String.format("%s", item.getName()));
+	    GameBasicInfo value = items.get(position);
+	    
+	    if (value != null) {
+	    	TextView gameName = (TextView) rowView.findViewById(R.id.game_name);
+	    	TextView gameID = (TextView) rowView.findViewById(R.id.id);
+	    	if(gameName != null) {
+	    		gameName.setText(value.getName());
+	    	}
+	    	if(gameName != null) {
+	    		gameID.setText(value.getId());
 	    	}
 	    }
-		return view;
+		return rowView;
 	}
 }
