@@ -1,5 +1,6 @@
 package com.blstream.ctf2;
 
+import com.blstream.ctf2.activity.login.LoginActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,34 +8,32 @@ import android.os.Handler;
 
 /**
  * SplashScreen class. Display splash screen for 2 seconds.
+ * 
  * @author Marcin Szmit
  */
 public class SplashScreen extends Activity {
 
-	private boolean mIsBackButtonPressed;
+	private Handler handler;
+	private Thread thread;
 
-	//TODO please use solution as in group 1
-	//User Handler.cancel in onBackPressed
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
+		handler = new Handler();
+		handler.postDelayed(thread = new Thread() {
 			@Override
 			public void run() {
-				finish();
-				if (!mIsBackButtonPressed) {
-					Intent intent = new Intent(
-							"com.blstream.ctf2.LOGINACTIVITY");
-					startActivity(intent);
-				}
+				Intent login = new Intent(SplashScreen.this, LoginActivity.class);
+				SplashScreen.this.startActivity(login);
+				SplashScreen.this.finish();
 			}
 		}, Constants.SPLASH_SHOW_TIME);
 	}
 
 	@Override
 	public void onBackPressed() {
-		mIsBackButtonPressed = true;
-		super.onBackPressed();
+		handler.removeCallbacks(thread);
+		finish();
 	}
+
 }
