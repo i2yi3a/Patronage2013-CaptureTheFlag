@@ -21,26 +21,31 @@ import com.blstream.ctf1.exception.CTFException;
 /**
  * @author Adrian Swarcewicz, Rafał Olichwer
  */
-public class PlayerService {
+public class PlayerService implements NetworkOperationService {
 
 	private Context mContext;
+	
+	private NetworkService mNetworkService;
 
 	public PlayerService(Context context) {
 		mContext = context;
+		mNetworkService = new NetworkService(mContext);
 	}
 
+	@Override
+	public void abortNetworkOperation() throws UnsupportedOperationException {
+		mNetworkService.abortRequest();		
+	}
+	
+	@Override
+	public boolean isNetworkOperationAborted() {
+		return mNetworkService.isRequestAborted();
+	}
+	
 	/**
-	 * @param username
-	 * @param password
-	 * @throws JSONException
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws CTFException
-	 * @author Adrian Swarcewicz
+	 * @author Adrian Swarcewicz 
 	 */
 	public void registerPlayer(String username, String password) throws JSONException, ClientProtocolException, IOException, CTFException {
-		NetworkService networkService = new NetworkService(mContext);
-
 		List<Header> headers = new LinkedList<Header>();
 		headers.add(new BasicHeader("Accept", "application/json"));
 		headers.add(new BasicHeader("Content-Type", "application/json"));
@@ -49,7 +54,7 @@ public class PlayerService {
 		jsonObject.put("username", username);
 		jsonObject.put("password", password);
 
-		JSONArray jsonArrayResult = networkService.requestPost(Constants.URL_SERVER + Constants.URI_REGISTER_PLAYER, headers, jsonObject.toString());
+		JSONArray jsonArrayResult = mNetworkService.requestPost(Constants.URL_SERVER + Constants.URI_REGISTER_PLAYER, headers, jsonObject.toString());
 		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
 		if (jsonObjectResult.getInt("error_code") != 0) {
@@ -81,14 +86,13 @@ public class PlayerService {
 
 	public LoggedPlayer login(String username, String password) throws CTFException, JSONException, ClientProtocolException, IOException {
 		LoggedPlayer result = null;
-		NetworkService networkService = new NetworkService(mContext);
 
 		List<Header> headers = new LinkedList<Header>();
 		headers.add(new BasicHeader("Content-type", "application/x-www-form-urlencoded"));
 
 		JSONObject jsonObject = toJSONObject(username, password);
 
-		JSONArray jsonArrayResult = networkService.requestPost(Constants.URL_SERVER + Constants.URI_LOGIN_PLAYER, headers,
+		JSONArray jsonArrayResult = mNetworkService.requestPost(Constants.URL_SERVER + Constants.URI_LOGIN_PLAYER, headers,
 				JSONConverter.toQueryString(jsonObject));
 
 		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
@@ -106,5 +110,4 @@ public class PlayerService {
 		}
 		return result;
 	}
-
 }

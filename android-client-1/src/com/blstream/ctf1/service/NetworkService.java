@@ -32,6 +32,8 @@ import com.blstream.ctf1.exception.CTFException;
 public class NetworkService {
 
 	Context mContext;
+	
+	HttpUriRequest mHttpUriRequest;
 
 	/**
 	 * @param context
@@ -46,9 +48,10 @@ public class NetworkService {
 	 * @author Adrian Swarcewicz
 	 * @return JSONArray received from server, or null if no json received
 	 */
-	private JSONArray executeRequest(HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException, CTFException, JSONException {
+	private synchronized JSONArray executeRequest(HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException, CTFException, JSONException {
+		mHttpUriRequest = httpUriRequest;
+		
 		HttpClient client = new DefaultHttpClient();
-
 		HttpResponse response = client.execute(httpUriRequest);
 		StatusLine statusLine = response.getStatusLine();
 
@@ -59,6 +62,22 @@ public class NetworkService {
 		String responseContent = InputStreamConverter.toString(response.getEntity().getContent());
 
 		return StringConverter.toJSONArray(responseContent);
+	}
+	
+	/**
+	 * @author Adrian Swarcewicz
+	 */
+	public void abortRequest() {
+		if (mHttpUriRequest != null) {
+			mHttpUriRequest.abort();
+		}
+	}
+	
+	/**
+	 * @author Adrian Swarcewicz
+	 */
+	public boolean isRequestAborted() {
+		return mHttpUriRequest.isAborted();
 	}
 
 	public static Boolean isDeviceOnline(Context context) {

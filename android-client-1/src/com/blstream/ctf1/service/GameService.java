@@ -26,7 +26,7 @@ import com.blstream.ctf1.exception.CTFException;
 /**
  * @author Adrian Swarcewicz, Rafał Olichwer, Piotr Marczycki
  */
-public class GameService {
+public class GameService implements NetworkOperationService {
 
 	Context mContext;
 
@@ -43,6 +43,16 @@ public class GameService {
 		mContext = context;
 		mNetworkService = new NetworkService(context);
 		mStorageService = new StorageService(context);
+	}
+
+	@Override
+	public void abortNetworkOperation() throws UnsupportedOperationException {
+		mNetworkService.abortRequest();
+	}
+
+	@Override
+	public boolean isNetworkOperationAborted() {
+		return mNetworkService.isRequestAborted();
 	}
 
 	/**
@@ -106,6 +116,9 @@ public class GameService {
 		return jsonObject;
 	}
 
+	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 */
 	public void createGame(String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax, String localizationName,
 			double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONObject jsonObject = toJSONObject(null, null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
@@ -120,6 +133,9 @@ public class GameService {
 
 	}
 
+	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 */
 	public void editGame(String id, String status, String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax,
 			String localizationName, double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONObject jsonObject = toJSONObject(id, status, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
@@ -140,6 +156,9 @@ public class GameService {
 
 	}
 
+	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 */
 	public GameExtendedInfo getGameDetails(String id) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + '/' + id, getGameHeaders());
 
@@ -155,7 +174,7 @@ public class GameService {
 	}
 
 	/**
-	 * before use, logged player data must be saved in storage
+	 * Method perform request to server use abortNetworkOperation() to abort.
 	 * 
 	 * @author Adrian Swarcewicz
 	 * @param gameFilter
@@ -169,6 +188,8 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
 	public List<String> getPlayersForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
@@ -178,6 +199,8 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
 	public boolean isLoggedPlayerSignedInForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
@@ -185,6 +208,8 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
 	public void signInForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
@@ -197,6 +222,8 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
 	public void signOutFromGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
@@ -209,6 +236,8 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Adrian Swarcewicz
 	 */
 	public void deleteGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
@@ -221,12 +250,9 @@ public class GameService {
 	}
 
 	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
 	 * @author Piotr Marczycki
-	 * @throws ClientProtocolException
-	 * @throws JSONException
-	 * @throws IOException
-	 * @throws CTFException
-	 * @throws ParseException
 	 */
 	public boolean isLoggedPlayerGameOwner(String gameId) throws ClientProtocolException, JSONException, IOException, CTFException, ParseException {
 		return getGameDetails(gameId).getOwner().equals(getLoggedPlayer().getLogin());
