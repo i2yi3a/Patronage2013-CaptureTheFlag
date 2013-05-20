@@ -131,6 +131,8 @@ public class CreateGameActivity extends FragmentActivity implements
 			break;
 
 		case R.id.btnMap:
+			Intent intent = new Intent(this, GameAreaMapActivity.class);
+			startActivity(intent);
 			break;
 
 		}

@@ -113,5 +113,6 @@
 
     <string name="player_profile">Profile</string>
     <string name="logout_succesful">You are logged out</string>
+    <string name="title_activity_game_area_map">GameAreaMapActivity</string>
 
 </resources>
