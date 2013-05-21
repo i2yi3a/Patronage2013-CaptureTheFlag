@@ -64,9 +64,13 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         request.setOwner(currentUser);
 
         GameUI gameUI = super.create(request);
+
+        if (!ErrorCodeType.SUCCESS.equals(gameUI.getErrorCodeType())) {
+            return gameUI;
+        }
+
         GameUI response = new GameUI();
         response.setId(gameUI.getId());
-        response.setErrorCode(ErrorCodeType.SUCCESS);
         response.setMessage(String.format("Game with id: %s was created successfully.", response.getId()));
 
         if (logger.isDebugEnabled())
@@ -90,9 +94,13 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         request.setOwner(currentUser);
 
         GameUI gameUI = super.update(id, request);
+
+        if (!ErrorCodeType.SUCCESS.equals(gameUI.getErrorCodeType())) {
+            return gameUI;
+        }
+
         GameUI response = new GameUI();
         response.setId(gameUI.getId());
-        response.setErrorCode(ErrorCodeType.SUCCESS);
         response.setMessage(String.format("Game with id: %s was updated successfully.", response.getId()));
 
         if (logger.isDebugEnabled())

@@ -87,6 +87,7 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         try {
             resource = service.create(resource);
             response = converter.convert(resource);
+            response.setErrorCode(ErrorCodeType.SUCCESS);
         } catch (AlreadyExistsException e) {
             response = createResponseErrorMessage(ErrorCodeType.RESOURCE_ALREADY_EXISTS, e.getMessage());
         } catch (Exception e) {
@@ -116,6 +117,7 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         try {
             resource = service.update(id, resource);
             response = converter.convert(resource);
+            response.setErrorCode(ErrorCodeType.SUCCESS);
         } catch (NotFoundException e) {
             logger.error("Not found exception occurred.", e);
             response = createResponseErrorMessage(ErrorCodeType.RESOURCE_NOT_FOUND, e.getMessage());

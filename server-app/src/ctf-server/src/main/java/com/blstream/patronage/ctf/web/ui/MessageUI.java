@@ -1,9 +1,6 @@
 package com.blstream.patronage.ctf.web.ui;
 
 import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -28,8 +25,10 @@ import java.io.Serializable;
  * This class is a representation of UI message object. It's used for sending
  * all necessary message in JSON from server to clients.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties({ "errorCodeType" })
+@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+@org.codehaus.jackson.annotate.JsonWriteNullProperties(false)
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties({ "errorCodeType" })
+@org.codehaus.jackson.annotate.JsonIgnoreProperties({ "errorCodeType" })
 public class MessageUI implements Serializable {
 
     private static final long serialVersionUID = -5666869456289227620L;
@@ -38,13 +37,16 @@ public class MessageUI implements Serializable {
 
     private String error;
 
-    @JsonProperty("message_description")
+    @com.fasterxml.jackson.annotation.JsonProperty("message_description")
+    @org.codehaus.jackson.annotate.JsonProperty("message_description")
     private String description;
 
-    @JsonProperty("error_description")
+    @com.fasterxml.jackson.annotation.JsonProperty("error_description")
+    @org.codehaus.jackson.annotate.JsonProperty("error_description")
     private String errorDescription;
 
-    @JsonProperty("error_code")
+    @com.fasterxml.jackson.annotation.JsonProperty("error_code")
+    @org.codehaus.jackson.annotate.JsonProperty("error_code")
     private ErrorCodeType errorCode;
 
 
@@ -69,6 +71,8 @@ public class MessageUI implements Serializable {
      * @return String
      */
     public String getError() {
+        if (error != null)
+            error = error.toLowerCase();
         return error;
     }
 
