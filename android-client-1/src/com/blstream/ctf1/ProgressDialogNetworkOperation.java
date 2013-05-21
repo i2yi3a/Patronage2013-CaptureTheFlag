@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.blstream.ctf1.asynchronous.AbortNetworkOperation;
 import com.blstream.ctf1.service.NetworkOperationService;
 
 /**
@@ -14,7 +13,7 @@ import com.blstream.ctf1.service.NetworkOperationService;
  */
 public class ProgressDialogNetworkOperation extends ProgressDialog {
 
-	boolean mBackButtonPressedBefore = false;
+	boolean mCancelAttemptBefore = false;
 
 	private AsyncTask<?, ?, ?> mAsyncTask;
 
@@ -35,14 +34,16 @@ public class ProgressDialogNetworkOperation extends ProgressDialog {
 	}
 
 	@Override
-	public void onBackPressed() {
-		if (mBackButtonPressedBefore == false) {
-			mBackButtonPressedBefore = true;
-			AbortNetworkOperation abortNetworkOperation = new AbortNetworkOperation(mNetworkOperationService);
-			abortNetworkOperation.execute();
+	public void cancel() {
+		if (mCancelAttemptBefore == false) {
+			mCancelAttemptBefore = true;
+//			AbortNetworkOperation abortNetworkOperation = new AbortNetworkOperation(mNetworkOperationService);
+//			abortNetworkOperation.execute(); // why so much time to start execute on 4.2?
+			mNetworkOperationService.abortNetworkOperation();
 		} else {
 			mAsyncTask.cancel(true);
-			super.onBackPressed();
+			super.cancel();
 		}
 	}
+
 }
