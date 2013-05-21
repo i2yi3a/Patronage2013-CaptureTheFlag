@@ -66,6 +66,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         GameUI gameUI = super.create(request);
         GameUI response = new GameUI();
         response.setId(gameUI.getId());
+        response.setErrorCode(ErrorCodeType.SUCCESS);
         response.setMessage(String.format("Game with id: %s was created successfully.", response.getId()));
 
         if (logger.isDebugEnabled())
@@ -91,6 +92,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         GameUI gameUI = super.update(id, request);
         GameUI response = new GameUI();
         response.setId(gameUI.getId());
+        response.setErrorCode(ErrorCodeType.SUCCESS);
         response.setMessage(String.format("Game with id: %s was updated successfully.", response.getId()));
 
         if (logger.isDebugEnabled())
@@ -175,13 +177,13 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
                     update(id, gameUI);
                     response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
                 } else {
-                    response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Player already signed to game");
+                    response = createResponseErrorMessage(ErrorCodeType.PLAYER_IS_ALREADY_SIGNED_IN);
                 }
             } else {
-                response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Game reached maximum players");
+                response = createResponseErrorMessage(ErrorCodeType.GAME_REACHED_MAXIMUM_OF_PLAYERS);
             }
         } else {
-            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_ADDED, "Player cannot be added to game in progress");
+            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_SIGN_IN);
         }
 
         if (logger.isDebugEnabled())
@@ -210,7 +212,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
             update(id, convert);
             response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
         } else {
-            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_DELETED, "Player isnt signed to game");
+            response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_SIGN_OUT);
         }
         if (logger.isDebugEnabled())
             logger.debug("---- /SignOut");

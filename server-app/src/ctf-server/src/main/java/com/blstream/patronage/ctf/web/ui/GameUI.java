@@ -2,7 +2,6 @@ package com.blstream.patronage.ctf.web.ui;
 
 import com.blstream.patronage.ctf.model.GameStatusType;
 import com.blstream.patronage.ctf.model.Localization;
-import com.blstream.patronage.ctf.model.TeamBase;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,7 +24,6 @@ public class GameUI extends BaseUI<String> {
     private String name;
 
     private String description;
-
 
     @JsonProperty(value ="time_start", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

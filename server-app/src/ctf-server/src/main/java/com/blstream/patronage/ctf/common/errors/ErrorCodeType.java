@@ -32,8 +32,11 @@ public enum ErrorCodeType {
 
     CANNOT_CREATE_NEW_PLAYER(100, "Cannot create a new player"),
     PLAYER_ALREADY_EXISTS(101, "Player already exists"),
-    PLAYER_CANNOT_BE_ADDED(102, "Player cannot be added"),
-    PLAYER_CANNOT_BE_DELETED(103, "Player cannot be deleted"),
+    PLAYER_CANNOT_BE_SIGN_IN(102, "Player cannot be sign in"),
+    PLAYER_CANNOT_BE_SIGN_OUT(103, "Player cannot be sign out"),
+
+    PLAYER_IS_ALREADY_SIGNED_IN(104, "Player is already signed in"),
+    GAME_REACHED_MAXIMUM_OF_PLAYERS(105, "Game reached maximum of players"),
     ;
 
     private Integer code;
