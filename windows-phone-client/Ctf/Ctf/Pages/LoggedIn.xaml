@@ -33,6 +33,8 @@
             <Button Content="Wyloguj" HorizontalAlignment="Left" Margin="118,195,0,0" VerticalAlignment="Top" Width="189" Click="Logout" />
             <Button Content="Info o grze" HorizontalAlignment="Left" Margin="118,267,0,0" VerticalAlignment="Top" Click="GameInfo_Button_Click"/>
             <Button Content="Edit gre" HorizontalAlignment="Left" Margin="118,344,0,0" VerticalAlignment="Top" Click="EditGame_Button_Click"/>
+            <Button Content="Dołącz do gry" HorizontalAlignment="Left" Margin="118,498,0,0" VerticalAlignment="Top" Click="GameSignIn_Button_Click"/>
+            <Button Content="Wypisz się z gry" HorizontalAlignment="Left" Margin="118,570,0,0" VerticalAlignment="Top" Click="GameSignOut_Button_Click"/>
             <Button x:Name="creategamebox" Content="Stwórz grę" HorizontalAlignment="Left" Margin="118,421,0,0" VerticalAlignment="Top" Width="173" Click="creategamebox_Click"/>
         </Grid>
     </Grid>

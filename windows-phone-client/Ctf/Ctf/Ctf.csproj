@@ -102,6 +102,8 @@
     <Compile Include="ApplicationTools\DebugInfo.cs" />
     <Compile Include="Communication\EditGameCommand.cs" />
     <Compile Include="Communication\GameInfoCommand.cs" />
+    <Compile Include="Communication\SignInCommand.cs" />
+    <Compile Include="Communication\SignOutCommand.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Pages\LoggedIn.xaml.cs">
       <DependentUpon>LoggedIn.xaml</DependentUpon>

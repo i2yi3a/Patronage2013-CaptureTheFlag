@@ -85,6 +85,20 @@ namespace Ctf.Pages
                   
         }
 
+        private void GameSignIn_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SignInCommand SignInGame = new SignInCommand("519a6d6de4b06da65947762a");
+            SignInGame.SignIn();
+
+        }
+
+        private void GameSignOut_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SignOutCommand SignOutGame = new SignOutCommand("519a6d6de4b06da65947762a");
+            SignOutGame.SignOut();
+
+        }
+
         private void creategamebox_Click(object sender, RoutedEventArgs e)
         {
             CreateCommand gaame = new CreateCommand();
