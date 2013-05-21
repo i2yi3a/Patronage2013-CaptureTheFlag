@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface GameService extends CrudService<Game, String> {
 
-    List<Game> findByCriteria(String name, String status, Boolean myGames, String currentUser);
+    List<Game> findByCriteria(String name, String status, Boolean myGamesOnly, String currentUser);
 
     List<Game> findNearest(Double[] latLng, Double range, GameStatusType status);
 }

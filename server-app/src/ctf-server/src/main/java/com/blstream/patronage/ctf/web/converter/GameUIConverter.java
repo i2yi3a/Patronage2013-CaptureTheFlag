@@ -1,7 +1,9 @@
 package com.blstream.patronage.ctf.web.converter;
 
 import com.blstream.patronage.ctf.model.Game;
+import com.blstream.patronage.ctf.model.TeamBase;
 import com.blstream.patronage.ctf.web.ui.GameUI;
+import com.blstream.patronage.ctf.web.ui.TeamBaseUI;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -32,7 +34,21 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
         target.setStatus(source.getStatus());
         target.setPlayers(source.getPlayers());
         target.setOwner(source.getOwner());
-        target.setTeamBase(source.getTeamBase());
+
+        if (source.getRedTeamBase() != null) {
+            TeamBase redTeamBase = new TeamBase();
+            redTeamBase.setName(source.getRedTeamBase().getName());
+            redTeamBase.setLatLng(source.getRedTeamBase().getLatLng());
+            target.setRedTeamBase(redTeamBase);
+        }
+
+        if (source.getBlueTeamBase() != null) {
+            TeamBase blueTeamBase = new TeamBase();
+            blueTeamBase.setName(source.getBlueTeamBase().getName());
+            blueTeamBase.setLatLng(source.getBlueTeamBase().getLatLng());
+            target.setBlueTeamBase(blueTeamBase);
+        }
+
         return target;
     }
 
@@ -52,7 +68,20 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
             target.setStatus(source.getStatus());
             target.setPlayers(source.getPlayers());
             target.setOwner(source.getOwner());
-            target.setTeamBase(source.getTeamBase());
+
+            if (source.getRedTeamBase() != null) {
+                TeamBaseUI redTeamBase = new TeamBaseUI();
+                redTeamBase.setName(source.getRedTeamBase().getName());
+                redTeamBase.setLatLng(source.getRedTeamBase().getLatLng());
+                target.setRedTeamBase(redTeamBase);
+            }
+
+            if (source.getBlueTeamBase() != null) {
+                TeamBaseUI blueTeamBase = new TeamBaseUI();
+                blueTeamBase.setName(source.getBlueTeamBase().getName());
+                blueTeamBase.setLatLng(source.getBlueTeamBase().getLatLng());
+                target.setBlueTeamBase(blueTeamBase);
+            }
         }
 
         return target;

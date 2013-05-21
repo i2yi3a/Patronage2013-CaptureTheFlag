@@ -49,7 +49,12 @@ public class GameUI extends BaseUI<String> {
 
     private String owner;
 
-    private TeamBase teamBase;
+    @JsonProperty("red_team_base")
+    private TeamBaseUI redTeamBase;
+
+    @JsonProperty("blue_team_base")
+    private TeamBaseUI blueTeamBase;
+
 
     public String getId() {
         return id;
@@ -141,11 +146,19 @@ public class GameUI extends BaseUI<String> {
         this.owner = owner;
     }
 
-    public TeamBase getTeamBase() {
-        return teamBase;
+    public TeamBaseUI getRedTeamBase() {
+        return redTeamBase;
     }
 
-    public void setTeamBase(TeamBase teamBase) {
-        this.teamBase = teamBase;
+    public void setRedTeamBase(TeamBaseUI redTeamBase) {
+        this.redTeamBase = redTeamBase;
+    }
+
+    public TeamBaseUI getBlueTeamBase() {
+        return blueTeamBase;
+    }
+
+    public void setBlueTeamBase(TeamBaseUI blueTeamBase) {
+        this.blueTeamBase = blueTeamBase;
     }
 }

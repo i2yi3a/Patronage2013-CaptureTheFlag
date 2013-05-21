@@ -1,29 +1,27 @@
 package com.blstream.patronage.ctf.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+@Document
 public class TeamBase {
 
-    @JsonProperty(required = false, value = "red_Team_Base")
-    private BlueTeamBase blueTeamBase;
+    private String name;
+    private Double[] latLng;
 
-    @JsonProperty(required = false, value = "blue_Team_Base")
-    private RedTeamBase redTeamBase;
 
-    public BlueTeamBase getBlueTeamBase() {
-        return blueTeamBase;
+    public String getName() {
+        return name;
     }
 
-    public void setBlueTeamBase(BlueTeamBase blueTeamBase) {
-        this.blueTeamBase = blueTeamBase;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public RedTeamBase getRedTeamBase() {
-        return redTeamBase;
+    public Double[] getLatLng() {
+        return latLng;
     }
 
-    public void setRedTeamBase(RedTeamBase redTeamBase) {
-        this.redTeamBase = redTeamBase;
+    public void setLatLng(Double[] latLng) {
+        this.latLng = latLng;
     }
 }

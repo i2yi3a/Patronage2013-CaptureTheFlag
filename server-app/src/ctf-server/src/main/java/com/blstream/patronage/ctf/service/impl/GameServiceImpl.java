@@ -57,7 +57,7 @@ public class GameServiceImpl extends CrudServiceImpl<Game, String, GameRepositor
         repository.delete(id);
     }
 
-    public List<Game> findByCriteria(String name, String status, Boolean myGames, String currentUser) {
+    public List<Game> findByCriteria(String name, String status, Boolean myGamesOnly, String currentUser) {
 
         Query query = new Query();
 
@@ -67,7 +67,7 @@ public class GameServiceImpl extends CrudServiceImpl<Game, String, GameRepositor
         if (status != null && !status.isEmpty()) {
             query.addCriteria(Criteria.where("status").is(status));
         }
-        if(myGames != null && myGames) {
+        if(myGamesOnly != null && myGamesOnly) {
             query.addCriteria(Criteria.where("owner").is(currentUser));
         }
 

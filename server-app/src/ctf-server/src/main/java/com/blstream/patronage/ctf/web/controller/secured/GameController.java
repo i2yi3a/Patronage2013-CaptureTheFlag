@@ -220,7 +220,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
 
     @RequestMapping(value = "", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGames", required = false) Boolean myGames) {
+    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- filter");
@@ -230,11 +230,11 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         Iterable<GameUI> response;
 
-        if (name == null && status == null && myGames == null) {
+        if (name == null && status == null && myGamesOnly == null) {
             response = super.findAll();
 
         } else {
-            List<Game> resource = service.findByCriteria(name, status, myGames, currentUser);
+            List<Game> resource = service.findByCriteria(name, status, myGamesOnly, currentUser);
             response = converter.convertModelList(resource);
         }
 
@@ -261,6 +261,8 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         }
 
         assertNotNull(latLng);
+        assertNotNull(latLng[0]);
+        assertNotNull(latLng[1]);
 
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("latLng: %s", latLng));
