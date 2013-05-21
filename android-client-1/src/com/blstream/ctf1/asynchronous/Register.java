@@ -33,7 +33,7 @@ public class Register extends AsyncTask<Void, Void, Void> {
 	protected void onPreExecute() {
 //		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
 //				.getString(R.string.loading_message));
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity);
+		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
 		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
 		loadingDialog.show();
