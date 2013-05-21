@@ -50,7 +50,7 @@ public class HttpServices {
 		}
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(Constants.URL_SERVER + URI);
-		httpPost.setHeaders((Header[]) (headersList.toArray(new Header[headersList.size()])));
+		httpPost.setHeaders((headersList.toArray(new Header[headersList.size()])));
 		StringEntity stringEntity = new StringEntity(params);
 		httpPost.setEntity(stringEntity);
 		HttpResponse response = httpclient.execute(httpPost);
@@ -63,7 +63,7 @@ public class HttpServices {
 		}
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(Constants.URL_SERVER + URI);
-		httpGet.setHeaders((Header[]) headersList.toArray(new Header[headersList.size()]));
+		httpGet.setHeaders(headersList.toArray(new Header[headersList.size()]));
 		HttpResponse response = httpClient.execute(httpGet);
 		return EntityUtils.toString(response.getEntity());
 	}
