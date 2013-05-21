@@ -118,12 +118,12 @@ namespace Ctf.Pages
         {
             LoginJsonResponse x = e.Response as LoginJsonResponse;
             waitIndicator.Visibility = Visibility.Collapsed;
-            if (!e.Response.HasError())
-            {
-                MessageBoxResult m = MessageBox.Show(ApplicationSettings.Instance.RetriveLoggedUser().username, x.access_token.ToString(), MessageBoxButton.OK);
-                NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
-            }
-            else
+            //if (!e.Response.HasError())
+            //{
+            //    MessageBoxResult m = MessageBox.Show(ApplicationSettings.Instance.RetriveLoggedUser().username, x.access_token.ToString(), MessageBoxButton.OK);
+            //    NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+            //}
+            if (e.Response.HasError())
             {
                 MessageBoxResult m = MessageBox.Show(x.error_description.ToString(), x.error.ToString(), MessageBoxButton.OK);
                 NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
