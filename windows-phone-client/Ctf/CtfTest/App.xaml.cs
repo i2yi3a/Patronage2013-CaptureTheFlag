@@ -6,11 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Ctf.Resources;
-using Ctf.Pages;
-using Ctf.ApplicationTools;
+using CtfTest.Resources;
 
-namespace Ctf
+namespace CtfTest
 {
     public partial class App : Application
     {
@@ -36,8 +34,6 @@ namespace Ctf
 
             // Language display initialization
             InitializeLanguage();
-
-            ApplicationSettings a = ApplicationSettings.Instance;
 
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
@@ -65,17 +61,12 @@ namespace Ctf
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            RootFrame.UriMapper = new CustomUriMapper();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            if (e.IsApplicationInstancePreserved == false)
-            {
-                RootFrame.UriMapper = new CustomUriMapper();
-            } 
         }
 
         // Code to execute when the application is deactivated (sent to background)
