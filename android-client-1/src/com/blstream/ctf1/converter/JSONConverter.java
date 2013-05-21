@@ -81,7 +81,11 @@ public class JSONConverter {
 			} catch (JSONException e) { // server sometimes not return name field
 				gameBasicInfo.setName(null);
 			}
-			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
+			try {
+				gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
+			} catch (JSONException e) { // server sometimes not return name field
+				gameBasicInfo.setGameStatusType(null);
+			}
 			gameBasicInfo.setOwner(jo.getString("owner"));
 
 			gameBasicInfos.add(gameBasicInfo);

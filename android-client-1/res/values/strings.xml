@@ -101,18 +101,14 @@
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
-    <string name="create_new_game">Create game</string>
+    <string name="create_new_game">New game</string>
     <string name="logout">Logout</string>
-    <string name="gamestates_filter">Gamestates filter:</string>
-
-    <string-array name="states_filter_array">
-        <item>Planned</item>
-        <item>Running</item>
-        <item>Finished</item>
-    </string-array>
-
     <string name="player_profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
     <string name="logout_succesful">You are logged out</string>
+    
+    <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>
 
 </resources>
