@@ -33,6 +33,8 @@ public class NetworkService {
 
 	Context mContext;
 	
+	HttpClient mClient;
+	
 	HttpUriRequest mHttpUriRequest;
 
 	/**
@@ -51,8 +53,8 @@ public class NetworkService {
 	private synchronized JSONArray executeRequest(HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException, CTFException, JSONException {
 		mHttpUriRequest = httpUriRequest;
 		
-		HttpClient client = new DefaultHttpClient();
-		HttpResponse response = client.execute(httpUriRequest);
+		mClient = new DefaultHttpClient();
+		HttpResponse response = mClient.execute(httpUriRequest);
 		StatusLine statusLine = response.getStatusLine();
 
 		if (statusLine.getStatusCode() > 400) {
@@ -68,8 +70,9 @@ public class NetworkService {
 	 * @author Adrian Swarcewicz
 	 */
 	public void abortRequest() {
-		if (mHttpUriRequest != null) {
+		if (mHttpUriRequest != null && mClient != null) {
 			mHttpUriRequest.abort();
+//			mClient.getConnectionManager().shutdown();
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package com.blstream.ctf1;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.blstream.ctf1.asynchronous.AbortNetworkOperation;
@@ -13,23 +13,21 @@ import com.blstream.ctf1.service.NetworkOperationService;
  * @author Adrian Swarcewicz
  */
 public class ProgressDialogNetworkOperation extends ProgressDialog {
-	
-	boolean mPressedBefore = false;
-	
+
+	boolean mBackButtonPressedBefore = false;
+
 	private AsyncTask<?, ?, ?> mAsyncTask;
 
 	private NetworkOperationService mNetworkOperationService;
 
-	private Activity mCurrentActivity;
-
-	public ProgressDialogNetworkOperation(Activity currentActivity, AsyncTask<?, ?, ?> currentAsyncTask) {
-		super(currentActivity);
-		mAsyncTask = currentAsyncTask;
+	public ProgressDialogNetworkOperation(Context context, AsyncTask<?, ?, ?> asyncTask) {
+		super(context);
+		mAsyncTask = asyncTask;
 	}
 
-	public ProgressDialogNetworkOperation(Activity currentActivity, AsyncTask<?, ?, ?> currentAsyncTask, int theme) {
-		super(currentActivity, theme);
-		mAsyncTask = currentAsyncTask;
+	public ProgressDialogNetworkOperation(Context context, AsyncTask<?, ?, ?> asyncTask, int theme) {
+		super(context, theme);
+		mAsyncTask = asyncTask;
 	}
 
 	public void setNetworkOperationService(NetworkOperationService networkOperationService) {
@@ -38,9 +36,9 @@ public class ProgressDialogNetworkOperation extends ProgressDialog {
 
 	@Override
 	public void onBackPressed() {
-		if (mPressedBefore == false) {
-			mPressedBefore = true;
-			AbortNetworkOperation abortNetworkOperation = new AbortNetworkOperation(mCurrentActivity, mNetworkOperationService);
+		if (mBackButtonPressedBefore == false) {
+			mBackButtonPressedBefore = true;
+			AbortNetworkOperation abortNetworkOperation = new AbortNetworkOperation(mNetworkOperationService);
 			abortNetworkOperation.execute();
 		} else {
 			mAsyncTask.cancel(true);

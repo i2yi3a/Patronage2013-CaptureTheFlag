@@ -13,10 +13,8 @@ import com.blstream.ctf1.service.PlayerService;
  * @author Adrian Swarcewicz
  * @author Rafal Olichwer
  */
-public class Register extends AsyncTask<Void, Void, Void> {
-
-	private static final String REGISTRATION_CANCELED = "Registration canceled";
-
+public class Register extends AsyncTask<Void, Void, Boolean> {
+	
 	private Activity mCurrentActivity;
 
 	private Class<?> mSuccessfullActivity;
@@ -25,52 +23,52 @@ public class Register extends AsyncTask<Void, Void, Void> {
 
 	private String mPassword;
 
-	private String errorString;
+	private String mMessageToShow;
 
 	private ProgressDialogNetworkOperation loadingDialog;
+	
+	private PlayerService mPlayerService;
 
 	@Override
 	protected void onPreExecute() {
-//		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-//				.getString(R.string.loading_message));
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
 		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mPlayerService);
 		loadingDialog.show();
 	}
 
-	public Register(Activity currentActivity, Class<?> successfullActivity, String username, String password) {
+	public Register(Activity currentActivity, Class<?> successfulActivity, String username, String password) {
 		mCurrentActivity = currentActivity;
-		mSuccessfullActivity = successfullActivity;
+		mSuccessfullActivity = successfulActivity;
 		mUsername = username;
 		mPassword = password;
+		
+		mMessageToShow = mCurrentActivity.getResources().getString(R.string.registration_successful);
+		mPlayerService = new PlayerService(mCurrentActivity);
+		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 	}
 
 	@Override
-	protected Void doInBackground(Void... params) {
-		PlayerService playerService = new PlayerService(mCurrentActivity);
-		loadingDialog.setNetworkOperationService(playerService);
+	protected Boolean doInBackground(Void... params) {
+		Boolean successful = false;
 		try {
-			playerService.registerPlayer(mUsername, mPassword);
-			// no sense to catch others exceptions all are handled in that same
-			// way
+			mPlayerService.registerPlayer(mUsername, mPassword);
+			successful = true;
 		} catch (Exception e) {
-			if (playerService.isNetworkOperationAborted()) {
-				errorString = REGISTRATION_CANCELED;
+			if (mPlayerService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.registration_canceled);
 			} else {
-				errorString = e.getLocalizedMessage();
+				mMessageToShow = e.getLocalizedMessage();
 			}
 		}
-		return null;
+		return successful;
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
+	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(mCurrentActivity, R.string.register_successful, Toast.LENGTH_SHORT).show();
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if (successful == true) {
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
 		}

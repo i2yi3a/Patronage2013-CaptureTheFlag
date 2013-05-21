@@ -95,7 +95,7 @@ public class RegisterActivityTest extends
 				mPasswordDoesntMatchMessage);
 
 		mRegisterSuccessful = mRegisterActivity.getResources().getString(
-				R.string.register_successful);
+				R.string.registration_successful);
 		Assert.assertNotNull("R.string.register_successful String is null.",
 				mRegisterSuccessful);
 

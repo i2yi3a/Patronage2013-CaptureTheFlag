@@ -13,6 +13,8 @@
 
     <!-- Register & Login -->
     <string name="registration">Registration</string>
+    <string name="registration_canceled">Registration canceled</string>
+    <string name="registration_successful">Registration was successful</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="hint_login">Enter your login</string>
@@ -35,9 +37,6 @@
     <string name="no_internet_connection">There is no internet connection!</string>
     <string name="loading">Loading&#8230;</string>
     <string name="loading_message">Loading data, please wait&#8230;</string>
-
-    <!-- Register -->
-    <string name="register_successful">Registration was successful</string>
 
     <!-- Login -->
     <string name="login_successful">Successfully logged in</string>
