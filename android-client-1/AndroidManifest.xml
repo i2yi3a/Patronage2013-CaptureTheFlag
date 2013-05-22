@@ -41,7 +41,7 @@
         android:theme="@style/CTFTheme" >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDKVWKQNI5Xw6wk3OXQdGv0fMAVp5Wk1N0" />
+            android:value="AIzaSyCRjXlKNYdWlfVqCr4RECh7Q8-C4s48N7o" />
 
         <!-- <uses-library -->
         <!-- android:name="com.google.android.maps" -->
