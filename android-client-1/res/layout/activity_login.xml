@@ -12,7 +12,7 @@
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/editLogin"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editLogin"
         android:layout_marginTop="33dp"
@@ -36,10 +36,10 @@
         android:id="@+id/editLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/btnRegistration"
         android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imageView1"
         android:ems="10"
         android:hint="@string/hint_login"
         android:singleLine="true" />
@@ -56,5 +56,25 @@
         android:minHeight="72dp"
         android:text="@string/login"
         android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_alignTop="@+id/editPassword"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:src="@drawable/icons_pass" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editPassword"
+        android:layout_alignLeft="@+id/imageView2"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:src="@drawable/icons_login" />
 
 </RelativeLayout>

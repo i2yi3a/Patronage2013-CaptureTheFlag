@@ -42,6 +42,7 @@ public class GameAreaMapActivity extends FragmentActivity {
 		setContentView(R.layout.activity_game_area_map);
 		mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 		mGoogleMap = mSupportMapFragment.getMap();
+		mGoogleMap.getUiSettings().setRotateGesturesEnabled(false);
 
 		Intent intent = getIntent();
 		latitude = intent.getDoubleExtra("latitude", 0.0);
