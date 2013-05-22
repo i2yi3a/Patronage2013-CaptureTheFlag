@@ -42,7 +42,6 @@ public class GameAreaMapActivity extends FragmentActivity {
 		setContentView(R.layout.activity_game_area_map);
 		mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 		mGoogleMap = mSupportMapFragment.getMap();
-		mGoogleMap.getUiSettings().setRotateGesturesEnabled(false);
 
 		Intent intent = getIntent();
 		latitude = intent.getDoubleExtra("latitude", 0.0);
@@ -50,9 +49,13 @@ public class GameAreaMapActivity extends FragmentActivity {
 		radius = intent.getDoubleExtra("radius", 0.0);
 
 		LatLng coords = new LatLng(latitude, longitude);
-		calculatedCamera();
-		marker = mGoogleMap.addMarker(new MarkerOptions().position(coords).icon(BitmapDescriptorFactory.fromResource(R.drawable.center)));
-		circle = mGoogleMap.addCircle(new CircleOptions().center(coords).radius(radius).strokeColor(Color.GREEN));
+
+		if (mGoogleMap != null) {
+			mGoogleMap.getUiSettings().setRotateGesturesEnabled(false);
+			calculatedCamera();
+			marker = mGoogleMap.addMarker(new MarkerOptions().position(coords).icon(BitmapDescriptorFactory.fromResource(R.drawable.center)));
+			circle = mGoogleMap.addCircle(new CircleOptions().center(coords).radius(radius).strokeColor(Color.GREEN));
+		}
 	}
 
 	@Override
