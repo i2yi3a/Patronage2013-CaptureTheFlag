@@ -73,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnRegister"
         android:layout_alignTop="@+id/editPasswordReg"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/icons_pass" />
+        android:background="@drawable/field_for_icon"
+        android:src="@drawable/icons_pass"
+        android:contentDescription="@string/picture" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -83,9 +83,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView2"
         android:layout_alignTop="@+id/editPassword2Reg"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/icons_pass" />
+        android:background="@drawable/field_for_icon"
+        android:src="@drawable/icons_pass"
+        android:contentDescription="@string/picture" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -93,8 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/editPasswordReg"
         android:layout_alignLeft="@+id/imageView2"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/icons_login" />
+        android:background="@drawable/field_for_icon"
+        android:src="@drawable/icons_login"
+        android:contentDescription="@string/picture" />
 
 </RelativeLayout>
