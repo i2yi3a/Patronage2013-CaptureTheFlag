@@ -14,7 +14,10 @@
     <string name="incorrect_data">Niepoprawne dane!</string>
     <string name="recorded">Zarejestrowano</string>
     <string name="registration_successful">Rejestracja przebiegła pomyślnie!</string>
+    <string name="error">Błąd!</string>
     <string name="player_already_exists">Gracz już istnieje</string>
+    <string name="unknown_error">Nieznany błąd</string>
+    <string name="cannot_create_new_player">Nie można utworzyć nowego gracza</string>
     <string name="login">Logowanie</string>
     <string name="login_button">Zaloguj</string>
     <string name="login_progress">Łączenie z serverem</string>

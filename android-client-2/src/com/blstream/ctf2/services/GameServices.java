@@ -177,9 +177,9 @@ public class GameServices extends Services {
 			String result = null;
 			try {
 				List<Header> headers = new ArrayList<Header>();
-				headers.add(new BasicHeader("Accept", "application/json"));
-				headers.add(new BasicHeader("Content-Type", "application/json"));
-				headers.add(new BasicHeader("Authorization", typeToken + " " + playerToken));
+				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
 
 				HttpServices httpService = new HttpServices(mGameDetailsActivity);
 				result = httpService.getRequest(Constants.URI_GAMES + "/" + gameId, headers);

@@ -125,7 +125,7 @@ public class RegisterActivity extends Activity {
 		dialog.show();
 	}
 
-	public void showErrorDialog(int errorTitle, String errorMessage) {
+	public void showErrorDialog(int errorTitle, int errorMessage) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
 		AlertDialog dialog;
 		builder.setMessage(errorMessage);
@@ -139,6 +139,7 @@ public class RegisterActivity extends Activity {
 	 * @author Rafal Tatol
 	 */
 	private class RegisterPlayer extends AsyncTask<JSONObject, Void, JSONObject> {
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -154,8 +155,8 @@ public class RegisterActivity extends Activity {
 			try {
 				String body = playerData.toString();
 				List<Header> headers = new ArrayList<Header>();
-				headers.add(new BasicHeader("Accept", "application/json"));
-				headers.add(new BasicHeader("Content-Type", "application/json"));
+				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
 				HttpServices httpService = new HttpServices(RegisterActivity.this);
 				String response = httpService.postRequest(Constants.URI_PLAYERS_ADD, body, headers);
 				jsonResponse = new JSONObject(response);
@@ -182,14 +183,13 @@ public class RegisterActivity extends Activity {
 					showSuccessDialog();
 					break;
 				case Constants.ERROR_CODE_PLAYER_ALREADY_EXISTS:
-					String errorMessage = jsonResponse.getString(Constants.RESPONSE_DESCRIPTION);
-					int errorTitle = R.string.player_already_exists;
-					showErrorDialog(errorTitle, errorMessage);
+					showErrorDialog(R.string.error, R.string.player_already_exists);
+					break;
+				case Constants.ERROR_CODE_CANNOT_CREATE_NEW_PLAYER:
+					showErrorDialog(R.string.error, R.string.cannot_create_new_player);
 					break;
 				default:
-					String unknownErrorMessage = Constants.ERROR_CODE + errorCode;
-					int unknownErrorTitle = errorCode;
-					showErrorDialog(unknownErrorTitle, unknownErrorMessage);
+					showErrorDialog(R.string.unknown_error, R.string.unknown_error);
 					break;
 				}
 			} catch (ParseException e) {

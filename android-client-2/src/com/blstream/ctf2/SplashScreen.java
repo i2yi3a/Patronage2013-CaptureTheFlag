@@ -1,10 +1,11 @@
 package com.blstream.ctf2;
 
-import com.blstream.ctf2.activity.login.LoginActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.blstream.ctf2.activity.login.LoginActivity;
 
 /**
  * SplashScreen class. Display splash screen for 2 seconds.

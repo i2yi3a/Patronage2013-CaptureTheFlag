@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.services.GameServices;
+import com.google.analytics.tracking.android.EasyTracker;
 
 /**
  * @author Rafal Tatol
@@ -59,6 +60,18 @@ public class GameDetailsActivity extends Activity {
 		super.onResume();
 		GameServices mGameServices = new GameServices(this);
 		mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	public void onClickButton(View v) {
