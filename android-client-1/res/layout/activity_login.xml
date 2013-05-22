@@ -52,10 +52,9 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editPassword"
         android:layout_marginTop="35dp"
-        android:background="@drawable/yellow_button"
+        android:background="@drawable/button_blue"
         android:minHeight="72dp"
         android:text="@string/login"
-        android:textColor="#9D5B03"
         android:textSize="36sp" />
 
 </RelativeLayout>

@@ -211,9 +211,9 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 		int actualHour = c.get(Calendar.HOUR_OF_DAY);
 		int actualMinute = c.get(Calendar.MINUTE);
 
-		int day = Integer.parseInt(mStartDate.substring(0, mStartDate.indexOf("-")));
+		int year = Integer.parseInt(mStartDate.substring(0, mStartDate.indexOf("-")));
 		int month = Integer.parseInt(mStartDate.substring(mStartDate.indexOf("-") + 1, mStartDate.lastIndexOf("-")));
-		int year = Integer.parseInt(mStartDate.substring(mStartDate.lastIndexOf("-") + 1));
+		int day = Integer.parseInt(mStartDate.substring(mStartDate.lastIndexOf("-") + 1));
 		int hour = Integer.parseInt(mStartTime.substring(0, mStartTime.indexOf(":")));
 		int minute = Integer.parseInt(mStartTime.substring(mStartTime.indexOf(":") + 1, mStartTime.lastIndexOf(":")));
 		Log.d("CTF ", "CTF date correct " + year + ":" + month + ":" + day + "   " + hour + ":" + minute);

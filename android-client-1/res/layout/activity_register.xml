@@ -37,9 +37,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editPassword2Reg"
         android:layout_marginTop="35dp"
-        android:background="@drawable/yellow_button"
+        android:background="@drawable/button_blue"
         android:text="@string/register"
-        android:textColor="#9D5B03"
         android:textSize="28sp" />
 
     <EditText

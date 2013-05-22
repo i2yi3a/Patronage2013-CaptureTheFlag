@@ -56,7 +56,6 @@ public class GameAreaMapActivity extends FragmentActivity {
 
 	@Override
 	public void onBackPressed() {
-		// super.onBackPressed();
 		Bundle bundle = new Bundle();
 		bundle.putDouble("latitude", latitude);
 		bundle.putDouble("longitude", longitude);
@@ -108,9 +107,9 @@ public class GameAreaMapActivity extends FragmentActivity {
 	private void calculatedCamera() {
 		long Rad = 6371000; // distance of earth's radius in meters
 		double d = radius / (double) Rad;
+		double brng = Math.toRadians(90);
 		double lat1 = Math.toRadians(latitude);
 		double lng1 = Math.toRadians(longitude);
-		double brng = Math.toRadians(90);// 45
 		double resultLat1 = Math.asin(Math.sin(lat1) * Math.cos(d) + Math.cos(lat1) * Math.sin(d) * Math.cos(brng));
 		double resultLng1 = lng1 + Math.atan2(Math.sin(brng) * Math.sin(d) * Math.cos(lat1), Math.cos(d) - Math.sin(lat1) * Math.sin(resultLat1));
 		resultLat1 = Math.toDegrees(resultLat1);
@@ -119,8 +118,7 @@ public class GameAreaMapActivity extends FragmentActivity {
 
 		double lat2 = Math.toRadians(latitude);
 		double lng2 = Math.toRadians(longitude);
-		double brng2 = Math.toRadians(90);
-		double resultLat2 = Math.asin(Math.sin(lat2) * Math.cos(d) + Math.cos(lat2) * Math.sin(d) * Math.cos(brng2));
+		double resultLat2 = Math.asin(Math.sin(lat2) * Math.cos(d) + Math.cos(lat2) * Math.sin(d) * Math.cos(brng));
 		double resultLng2 = lng2 - Math.atan2(Math.sin(brng) * Math.sin(d) * Math.cos(lat2), Math.cos(d) - Math.sin(lat2) * Math.sin(resultLat2));
 		resultLat2 = Math.toDegrees(resultLat2);
 		resultLng2 = Math.toDegrees(resultLng2);
