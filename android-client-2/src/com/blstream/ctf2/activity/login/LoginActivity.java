@@ -14,7 +14,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 /**
  * 
  * @author Rafal Tatol
- * @author Lukasz Dmitrowski
+ * @author [Google Analytics] Lukasz Dmitrowski
  * @author Karol Firmanty
  * 
  */
