@@ -22,8 +22,7 @@ public class SplashScreen extends Activity {
 		mHandler.postDelayed(mThread = new Thread() {
 			@Override
 			public void run() {
-				Intent register = new Intent(SplashScreen.this,
-						LoginActivity.class);
+				Intent register = new Intent(SplashScreen.this, LoginActivity.class);
 				SplashScreen.this.startActivity(register);
 				SplashScreen.this.finish();
 			}

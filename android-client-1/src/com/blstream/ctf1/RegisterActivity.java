@@ -60,12 +60,10 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			String password2 = mEditPassword2Reg.getText().toString();
 			if (correctData(login, password, password2)) {
 				if (NetworkService.isDeviceOnline(this)) {
-					Register register = new Register(this, LoginActivity.class,
-							login, password);
+					Register register = new Register(this, LoginActivity.class, login, password);
 					register.execute();
 				} else {
-					Toast.makeText(this, R.string.no_internet_connection,
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 				}
 			}
 			break;

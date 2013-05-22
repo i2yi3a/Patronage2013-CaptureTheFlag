@@ -49,12 +49,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 			String password = mEditPassword.getText().toString();
 			if (correctData(login, password)) {
 				if (NetworkService.isDeviceOnline(this)) {
-					Login loginTask = new Login(this, GameListActivity.class,
-							login, password);
+					Login loginTask = new Login(this, GameListActivity.class, login, password);
 					loginTask.execute();
 				} else {
-					Toast.makeText(this, R.string.no_internet_connection,
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 				}
 			}
 			break;

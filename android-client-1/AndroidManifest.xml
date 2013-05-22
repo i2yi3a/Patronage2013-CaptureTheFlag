@@ -23,7 +23,7 @@
 
     <!--
          The following two permissions are not required to use
-	     Google Maps Android API v2, but are recommended.
+	     Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -98,7 +98,9 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name="com.blstream.ctf1.GameAreaMapActivity"
-            android:label="@string/title_activity_game_area_map" >
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_game_area_map"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
