@@ -8,7 +8,7 @@
     <style name="CTFTheme" parent="@android:style/Theme.NoTitleBar">
         <item name="android:background">#DBDBDB</item>
         <item name="android:colorBackground">#BEBEBE</item>
-        <item name="android:textColor">#FF0000</item>
+        <item name="android:textColor">#444444</item>
         <item name="android:buttonStyle">@style/CTFButton</item>
         <item name="android:editTextStyle">@style/CTFEditText</item>
     </style>

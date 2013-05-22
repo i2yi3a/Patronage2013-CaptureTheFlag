@@ -43,6 +43,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 		GameExtendedInfo result = null;
 		try {
 			result = gameService.getGameDetails(mId);
+			result.setPlayersList(gameService.getPlayersForGame(mId));
 
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -62,7 +63,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGameDescription.setText(result.getDescription());
 			mCurrentActivity.mTextGameDuration.setText(Long.toString(result.getDuration()));
 			mCurrentActivity.mTextLocName.setText(result.getLocalization().getName());
-			mCurrentActivity.mTextLocRadius.setText(Double.toString(result.getLocalization().getRadius()));
+			mCurrentActivity.mTextLocRadius.setText(Long.toString(result.getLocalization().getRadius()));
 			mCurrentActivity.mTextGameStatus.setText(result.getGameStatusType().toString());
 			mCurrentActivity.mTextGameOwner.setText(result.getOwner());
 			mCurrentActivity.mTextGameDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).format(result.getTimeStart()));
@@ -70,6 +71,9 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());
 			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
+			// mCurrentActivity.setListAdapter(new
+			// PlayersListAdapter(mCurrentActivity,
+			// result.getPlayersList()));
 		}
 	}
 

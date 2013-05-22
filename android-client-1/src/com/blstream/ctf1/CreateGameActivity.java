@@ -195,7 +195,7 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				gameInfo.setName(mEditGameName.getText().toString());
 				gameInfo.setDescription(mEditGameDescription.getText().toString());
 				localization.setName(mEditLocationName.getText().toString());
-				localization.setRadius(radius);
+				localization.setRadius((int)radius);
 				localization.setLatLng(new LatLng(latitude,longitude));
 				gameInfo.setLocalization(localization);
 				Date timeStart=null;
@@ -209,13 +209,13 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				gameInfo.setPlayersMax(mMaxPlayers);
 				gameInfo.setPointsMax(mMaxPoints);
 				
-//				if (mId == null) {
-//					CreateGame createGame = new CreateGame(this, GameListActivity.class, gameInfo);
-//					createGame.execute();
-//				} else {
-//					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), gameInfo);
-//					editGame.execute();
-//				}
+				if (mId == null) {
+					CreateGame createGame = new CreateGame(this, GameListActivity.class, gameInfo);
+					createGame.execute();
+				} else {
+					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), gameInfo);
+					editGame.execute();
+				}
 			} else {
 				Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 			}

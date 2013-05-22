@@ -63,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnLogin"
         android:layout_alignTop="@+id/editPassword"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/icons_pass" />
+        android:src="@drawable/icons_pass"
+        android:background="@drawable/field_for_icon"
+        android:contentDescription="@string/picture"/>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -73,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/editPassword"
         android:layout_alignLeft="@+id/imageView2"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/icons_login" />
+        android:background="@drawable/field_for_icon"
+        android:src="@drawable/icons_login"
+        android:contentDescription="@string/picture" />
 
 </RelativeLayout>
