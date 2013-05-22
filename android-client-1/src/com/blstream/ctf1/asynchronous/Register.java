@@ -16,17 +16,11 @@ import com.blstream.ctf1.service.PlayerService;
 public class Register extends AsyncTask<Void, Void, Boolean> {
 	
 	private Activity mCurrentActivity;
-
 	private Class<?> mSuccessfullActivity;
-
 	private String mUsername;
-
 	private String mPassword;
-
 	private String mMessageToShow;
-
 	private ProgressDialogNetworkOperation loadingDialog;
-	
 	private PlayerService mPlayerService;
 
 	@Override

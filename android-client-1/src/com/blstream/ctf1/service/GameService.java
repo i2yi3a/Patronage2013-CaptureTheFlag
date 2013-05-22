@@ -15,11 +15,13 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.blstream.ctf1.Constants;
-import com.blstream.ctf1.converter.GameFilterConverter;
+import com.blstream.ctf1.converter.GameBasicListFilterConverter;
+import com.blstream.ctf1.converter.GameLocalizationListFilterConverter;
 import com.blstream.ctf1.converter.JSONConverter;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
-import com.blstream.ctf1.domain.GameFilter;
+import com.blstream.ctf1.domain.GameBasicListFilter;
+import com.blstream.ctf1.domain.GameLocalizationListFilter;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
 
@@ -28,10 +30,10 @@ import com.blstream.ctf1.exception.CTFException;
  */
 public class GameService implements NetworkOperationService {
 
+	private static final String ERROR_LOGGED_PLAYER_DATA_RETRIEVING = "Error occurred while retrieving stored logged player data";
+	private static final int ERROR_CODE_LOGGED_PLAYER_DATA_RETRIEVING = 1001;
 	Context mContext;
-
 	NetworkService mNetworkService;
-
 	StorageService mStorageService;
 
 	/**
@@ -61,14 +63,12 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	private LoggedPlayer getLoggedPlayer() throws CTFException {
-		LoggedPlayer loggedPlayer = null;
 		mStorageService.open();
-		loggedPlayer = mStorageService.getLoggedPlayer();
+		LoggedPlayer loggedPlayer = mStorageService.getLoggedPlayer();
 		mStorageService.close();
 
 		if (loggedPlayer == null) {
-			// TODO: to final variables
-			throw new CTFException(mContext.getResources(), 1001, "Error occurred while retrieving stored logged player data");
+			throw new CTFException(mContext.getResources(), ERROR_CODE_LOGGED_PLAYER_DATA_RETRIEVING, ERROR_LOGGED_PLAYER_DATA_RETRIEVING);
 		}
 
 		return loggedPlayer;
@@ -180,8 +180,18 @@ public class GameService implements NetworkOperationService {
 	 * @param gameFilter
 	 *            - null to skip
 	 */
-	public List<GameBasicInfo> getGameList(GameFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameFilterConverter.toQueryString(gameFilter),
+	public List<GameBasicInfo> getGameList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
+		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameBasicListFilterConverter.toQueryString(gameFilter),
+				getGameHeaders());
+
+		return JSONConverter.toGameBasicInfo(jsonArrayResult);
+	}
+	
+	/**
+	 * @author Adrian Swarcewicz
+	 */
+	public List<GameBasicInfo> getGameListByLocalization(GameLocalizationListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
+		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "/nearest?" + GameLocalizationListFilterConverter.toQueryString(gameFilter),
 				getGameHeaders());
 
 		return JSONConverter.toGameBasicInfo(jsonArrayResult);
