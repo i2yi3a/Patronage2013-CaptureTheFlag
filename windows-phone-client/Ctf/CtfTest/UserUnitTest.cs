@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using Ctf;
+using Ctf.ApplicationTools.DataObjects;
 
 namespace CtfTest
 {

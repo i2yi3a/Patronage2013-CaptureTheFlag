@@ -10,7 +10,7 @@ namespace Ctf.Communication
     /// <summary>
     /// 
     /// </summary>
-    class RequestHandler
+    public class RequestHandler
     {
         private RestClient client;
 

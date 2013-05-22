@@ -10,7 +10,7 @@ namespace Ctf.Communication
 {
     public delegate void RequestFinishedEventHandler(object sender, RequestFinishedEventArgs e);
 
-    class BaseCommand
+    public class BaseCommand
     {
         protected RequestHandler requestHandler;
         protected RestRequest request;

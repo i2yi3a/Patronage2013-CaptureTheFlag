@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ctf.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ctf.Communication.DataObjects
 {
-    public class JsonResponse
+    public class JsonResponse : BaseModel
     {
         public string error { get; set; }
         public string error_description { get; set; }

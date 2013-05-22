@@ -122,5 +122,10 @@ namespace Ctf.Pages
 
 
         }
+
+        private void ListGames_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/ListGames.xaml?", UriKind.Relative));
+        }
     }
 }

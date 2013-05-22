@@ -105,6 +105,10 @@
     <Compile Include="Communication\SignInCommand.cs" />
     <Compile Include="Communication\SignOutCommand.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\GameDetails.cs" />
+    <Compile Include="Models\GameHeader.cs" />
+    <Compile Include="Models\JsonGames.cs" />
     <Compile Include="Pages\LoggedIn.xaml.cs">
       <DependentUpon>LoggedIn.xaml</DependentUpon>
     </Compile>
@@ -127,6 +131,13 @@
     <Compile Include="Communication\DataObjects\ServerJsonResponse.cs" />
     <Compile Include="ApplicationTools\DataObjects\User.cs" />
     <Compile Include="ApplicationTools\DataObjects\UserCredentials.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\DelegateCommand.cs" />
+    <Compile Include="ViewModels\FetchGamesCommand.cs" />
+    <Compile Include="ViewModels\ListGamesViewModel.cs" />
+    <Compile Include="Views\ListGames.xaml.cs">
+      <DependentUpon>ListGames.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -138,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListGames.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +195,7 @@
     <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="microsoft.advertising.mobile.ui, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
