@@ -99,7 +99,7 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 			int hour = c.get(Calendar.HOUR_OF_DAY) + 2;
 			int minute = 0;
 			mBtnStartTime.setText(hour + ":" + minute + ":00");
-			mBtnStartDate.setText(day + "-" + (month + 1) + "-" + year);
+			mBtnStartDate.setText(year + "-" + (month + 1) + "-" + day);
 			mBtnCreate.setText(R.string.create_game);
 		} else {
 			mBtnCreate.setText(R.string.edit_game);
