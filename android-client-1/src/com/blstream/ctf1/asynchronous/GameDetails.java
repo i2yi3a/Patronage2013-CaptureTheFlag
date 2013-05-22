@@ -62,7 +62,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGameDescription.setText(result.getDescription());
 			mCurrentActivity.mTextGameDuration.setText(Long.toString(result.getDuration()));
 			mCurrentActivity.mTextLocName.setText(result.getLocalization().getName());
-			mCurrentActivity.mTextLocRadius.setText(Long.toString(result.getLocalization().getRadius()));
+			mCurrentActivity.mTextLocRadius.setText(Double.toString(result.getLocalization().getRadius()));
 			mCurrentActivity.mTextGameStatus.setText(result.getGameStatusType().toString());
 			mCurrentActivity.mTextGameOwner.setText(result.getOwner());
 			mCurrentActivity.mTextGameDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).format(result.getTimeStart()));

@@ -30,6 +30,8 @@ import com.blstream.ctf1.exception.CTFException;
  */
 public class GameService implements NetworkOperationService {
 
+	private static final String URL_GAME_API = Constants.URL_SERVER + Constants.URI_GAME;
+	private static final String URL_GAME_DETAILS = URL_GAME_API + "/%s";
 	private static final String ERROR_LOGGED_PLAYER_DATA_RETRIEVING = "Error occurred while retrieving stored logged player data";
 	private static final int ERROR_CODE_LOGGED_PLAYER_DATA_RETRIEVING = 1001;
 	Context mContext;
@@ -94,7 +96,6 @@ public class GameService implements NetworkOperationService {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
-		JSONObject latlngObject = new JSONObject();
 		if (id != null)
 			jsonObject.put("id", id);
 		if (status != null)
@@ -107,9 +108,10 @@ public class GameService implements NetworkOperationService {
 		jsonObject.put("players_max", playersMax);
 		localizationObject.put("name", localizationName);
 		localizationObject.put("radius", radius);
-		latlngObject.put("lat", lat);
-		latlngObject.put("lng", lng);
-		localizationObject.put("latLng", latlngObject);
+		JSONArray latLng = new JSONArray();
+		latLng.put(lat);
+		latLng.put(lng);
+		localizationObject.put("latLng", latLng);
 		localizationObject.put("radius", radius);
 		jsonObject.put("localization", localizationObject);
 
@@ -123,7 +125,7 @@ public class GameService implements NetworkOperationService {
 			double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONObject jsonObject = toJSONObject(null, null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
 
-		JSONArray jsonArrayResult = mNetworkService.requestPost(Constants.URL_SERVER + Constants.URI_GAME, getGameHeaders(), jsonObject.toString());
+		JSONArray jsonArrayResult = mNetworkService.requestPost(URL_GAME_API, getGameHeaders(), jsonObject.toString());
 
 		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
@@ -140,7 +142,7 @@ public class GameService implements NetworkOperationService {
 			String localizationName, double lat, double lng, int radius) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONObject jsonObject = toJSONObject(id, status, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
 
-		JSONArray jsonArrayResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + '/' + id, getGameHeaders(), jsonObject.toString());
+		JSONArray jsonArrayResult = mNetworkService.requestPut(String.format(URL_GAME_DETAILS, id), getGameHeaders(), jsonObject.toString());
 
 		if (jsonArrayResult == null) {
 			throw new CTFException(mContext.getResources(), Constants.ERROR_CODE_UNEXPECTED_SERVER_RESPONSE, mContext.getResources().getString(
@@ -160,7 +162,7 @@ public class GameService implements NetworkOperationService {
 	 * Method perform request to server use abortNetworkOperation() to abort.
 	 */
 	public GameExtendedInfo getGameDetails(String id) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + '/' + id, getGameHeaders());
+		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_GAME_DETAILS, id), getGameHeaders());
 
 		JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(0);
 
@@ -181,7 +183,7 @@ public class GameService implements NetworkOperationService {
 	 *            - null to skip
 	 */
 	public List<GameBasicInfo> getGameList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "?" + GameBasicListFilterConverter.toQueryString(gameFilter),
+		JSONArray jsonArrayResult = mNetworkService.requestGet(URL_GAME_API + "?" + GameBasicListFilterConverter.toQueryString(gameFilter),
 				getGameHeaders());
 
 		return JSONConverter.toGameBasicInfo(jsonArrayResult);
@@ -191,7 +193,7 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public List<GameBasicInfo> getGameListByLocalization(GameLocalizationListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "/nearest?" + GameLocalizationListFilterConverter.toQueryString(gameFilter),
+		JSONArray jsonArrayResult = mNetworkService.requestGet(URL_GAME_API + "/nearest?" + GameLocalizationListFilterConverter.toQueryString(gameFilter),
 				getGameHeaders());
 
 		return JSONConverter.toGameBasicInfo(jsonArrayResult);
@@ -203,7 +205,7 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public List<String> getPlayersForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId + "/players", getGameHeaders());
+		JSONArray jsonArrayResult = mNetworkService.requestGet(URL_GAME_API + "/" + gameId + "/players", getGameHeaders());
 
 		return JSONConverter.toPlayerNameStrings(jsonArrayResult);
 	}
@@ -223,7 +225,7 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public void signInForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
-		JSONObject jsonObjectResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId + "/signIn", getGameHeaders(), null)
+		JSONObject jsonObjectResult = mNetworkService.requestPut(URL_GAME_API + "/" + gameId + "/signIn", getGameHeaders(), null)
 				.getJSONObject(0);
 
 		if (jsonObjectResult.getInt("error_code") != 0) {
@@ -237,7 +239,7 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public void signOutFromGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
-		JSONObject jsonObjectResult = mNetworkService.requestPut(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId + "/signOut", getGameHeaders(), null)
+		JSONObject jsonObjectResult = mNetworkService.requestPut(URL_GAME_API + "/" + gameId + "/signOut", getGameHeaders(), null)
 				.getJSONObject(0);
 
 		if (jsonObjectResult.getInt("error_code") != 0) {
@@ -251,7 +253,7 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public void deleteGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
-		JSONObject jsonObjectResult = mNetworkService.requestDelete(Constants.URL_SERVER + Constants.URI_GAME + "/" + gameId, getGameHeaders())
+		JSONObject jsonObjectResult = mNetworkService.requestDelete(URL_GAME_API + "/" + gameId, getGameHeaders())
 				.getJSONObject(0);
 
 		if (jsonObjectResult.getInt("error_code") != 0) {
