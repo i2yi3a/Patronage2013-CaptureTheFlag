@@ -94,7 +94,6 @@ public class GameService implements NetworkOperationService {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
-		JSONObject latlngObject = new JSONObject();
 		if (id != null)
 			jsonObject.put("id", id);
 		if (status != null)
@@ -107,9 +106,10 @@ public class GameService implements NetworkOperationService {
 		jsonObject.put("players_max", playersMax);
 		localizationObject.put("name", localizationName);
 		localizationObject.put("radius", radius);
-		latlngObject.put("lat", lat);
-		latlngObject.put("lng", lng);
-		localizationObject.put("latLng", latlngObject);
+		JSONArray latLng = new JSONArray();
+		latLng.put(lat);
+		latLng.put(lng);
+		localizationObject.put("latLng", latLng);
 		localizationObject.put("radius", radius);
 		jsonObject.put("localization", localizationObject);
 

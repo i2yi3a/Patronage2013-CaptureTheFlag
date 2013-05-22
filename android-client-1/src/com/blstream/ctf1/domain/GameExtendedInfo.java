@@ -1,6 +1,7 @@
 package com.blstream.ctf1.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Adrian Swarcewicz
@@ -26,6 +27,8 @@ public class GameExtendedInfo {
 	Integer pointsMax;
 
 	Integer playersMax;
+	
+	List<String> playersList;
 
 	public GameExtendedInfo() {
 	}
@@ -122,6 +125,14 @@ public class GameExtendedInfo {
 
 	public void setPlayersMax(Integer playersMax) {
 		this.playersMax = playersMax;
+	}
+	
+	public List<String> getPlayersList() {
+		return playersList;
+	}
+
+	public void setPlayersList(List<String> playersList) {
+		this.playersList = playersList;
 	}
 
 	@Override

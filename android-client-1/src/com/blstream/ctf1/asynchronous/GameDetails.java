@@ -10,6 +10,7 @@ import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameExtendedInfo;
+import com.blstream.ctf1.list.PlayersListAdapter;
 import com.blstream.ctf1.service.GameService;
 
 /**
@@ -43,6 +44,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 		GameExtendedInfo result = null;
 		try {
 			result = gameService.getGameDetails(mId);
+			result.setPlayersList(gameService.getPlayersForGame(mId));
 
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -70,6 +72,8 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());
 			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
+			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity,
+					result.getPlayersList()));
 		}
 	}
 

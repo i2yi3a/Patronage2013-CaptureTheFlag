@@ -109,7 +109,7 @@ public class JSONConverter {
 		// JSONObject jsonLatLng = jsonLocalization.getJSONObject("latLng");
 		Localization localization = new Localization();
 		localization.setName(jsonLocalization.getString("name"));
-		localization.setRadius(jsonLocalization.getLong("radius"));
+		localization.setRadius(jsonLocalization.getInt("radius"));
 		result.setLocalization(localization);
 		result.setId(jsonObject.getString("id"));
 		result.setName(jsonObject.getString("name"));

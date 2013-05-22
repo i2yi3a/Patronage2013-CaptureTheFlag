@@ -1,6 +1,9 @@
 package com.blstream.ctf1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +20,14 @@ import android.widget.Toast;
 import com.blstream.ctf1.asynchronous.CreateGame;
 import com.blstream.ctf1.asynchronous.EditGame;
 import com.blstream.ctf1.asynchronous.EditGameDetails;
+import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
+import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.pickers.DatePickerFragment;
 import com.blstream.ctf1.pickers.TimePickerFragment;
 import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Milosz_Skalski
@@ -162,9 +168,9 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 
 	private void onCreateGameBtnClicked() {
 		IssueTracker.saveClick(this, mBtnCreate);
+		
+		String mLocationName  = mEditLocationName.getText().toString();
 		String mGameName = mEditGameName.getText().toString();
-		String mGameDescription = mEditGameDescription.getText().toString();
-		String mLocationName = mEditLocationName.getText().toString();
 		String mStartDate = mBtnStartDate.getText().toString();
 		String mStartTime = mBtnStartTime.getText().toString();
 		String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
@@ -184,16 +190,30 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				long mPlayingTime = Integer.parseInt(mPlayingTimeTmp) * 60 * 1000;
 				int mMaxPlayers = Integer.parseInt(mMaxPlayersTmp);
 				int mMaxPoints = Integer.parseInt(mMaxPointsTmp);
-
-				Log.d("CTF ", "CTF createGame: " + mGameName + " , " + mGameDescription + " , " + mStartDate + " , " + mStartTime + " , " + mPlayingTime
-						+ " , " + mMaxPoints + " , " + mMaxPlayers + " , " + mLocationName + " , " + latitude + " , " + longitude + " , " + (int) radius);
+				Localization localization = new Localization();
+				GameExtendedInfo gameInfo = new GameExtendedInfo();
+				gameInfo.setName(mEditGameName.getText().toString());
+				gameInfo.setDescription(mEditGameDescription.getText().toString());
+				localization.setName(mEditLocationName.getText().toString());
+				localization.setRadius((int)radius);
+				localization.setLatLng(new LatLng(latitude,longitude));
+				gameInfo.setLocalization(localization);
+				Date timeStart=null;
+				try {
+					timeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).parse(mStartDate + " " + mStartTime);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				gameInfo.setTimeStart(timeStart);
+				gameInfo.setDuration(mPlayingTime);
+				gameInfo.setPlayersMax(mMaxPlayers);
+				gameInfo.setPointsMax(mMaxPoints);
+				
 				if (mId == null) {
-					CreateGame createGame = new CreateGame(this, GameListActivity.class, mGameName, mGameDescription, mStartDate + " " + mStartTime,
-							mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, latitude, longitude, (int) radius);
+					CreateGame createGame = new CreateGame(this, GameListActivity.class, gameInfo);
 					createGame.execute();
 				} else {
-					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), mGameName, mGameDescription, mStartDate
-							+ " " + mStartTime, mPlayingTime, mMaxPoints, mMaxPlayers, mLocationName, latitude, longitude, (int) radius);
+					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), gameInfo);
 					editGame.execute();
 				}
 			} else {

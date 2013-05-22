@@ -5,11 +5,12 @@
     android:orientation="vertical"
     tools:context=".GameDetailsActivity" >
 
-    <LinearLayout
-        android:id="@+id/layoutForScroll"
+<LinearLayout
+        android:id="@+id/forScroll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+    
 
         <TextView
             android:id="@+id/textDetailsDescription"
@@ -164,7 +165,22 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textIsSelectable="true" />
+	<TextView
+            android:id="@+id/textPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/game_players"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
 
+    <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:clickable="false" >
+    </ListView>
+
+	
         <Button
             android:id="@+id/btnJoin"
             android:layout_width="match_parent"
@@ -188,5 +204,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/game_delete" />
-    </LinearLayout>
-</ScrollView>
+
+	</LinearLayout>
+</ScrollView>

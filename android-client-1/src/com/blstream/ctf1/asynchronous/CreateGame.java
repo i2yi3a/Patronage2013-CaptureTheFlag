@@ -1,12 +1,18 @@
 package com.blstream.ctf1.asynchronous;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.domain.GameExtendedInfo;
+import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.service.GameService;
 
 /**
@@ -51,21 +57,21 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 	}
 
 	public CreateGame(Activity currentActivity, Class<?> successfullActivity,
-			String gameName, String description, String timeStart,
-			long duration, int pointsMax, int playersMax,
-			String localizationName, double lat, double lng, int radius) {
+			GameExtendedInfo gameInfo) {
 		mCurrentActivity = currentActivity;
 		mSuccessfullActivity = successfullActivity;
-		mGameName = gameName;
-		mDescription = description;
-		mTimeStart = timeStart;
-		mDuration = duration;
-		mPointsMax = pointsMax;
-		mPlayersMax = playersMax;
-		mLocalizationName = localizationName;
-		mLat = lat;
-		mLng = lng;
-		mRadius = radius;
+		mGameName = gameInfo.getName();
+		mDescription = gameInfo.getDescription();
+		Date timeStart = gameInfo.getTimeStart();
+		mTimeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).format(timeStart);
+		mDuration = gameInfo.getDuration();
+		mPointsMax = gameInfo.getPointsMax();
+		mPlayersMax = gameInfo.getPlayersMax();
+		Localization localization = gameInfo.getLocalization();
+		mLocalizationName = localization.getName();
+		mLat = localization.getLatLng().latitude;
+		mLng = localization.getLatLng().longitude;
+		mRadius = localization.getRadius();
 	}
 
 	@Override

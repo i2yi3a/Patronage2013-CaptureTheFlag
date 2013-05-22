@@ -1,5 +1,7 @@
 package com.blstream.ctf1.domain;
 
+import com.google.android.gms.maps.model.LatLng;
+
 //import com.google.android.gms.maps.model.LatLng;
 
 /**
@@ -9,17 +11,17 @@ public class Localization {
 
 	String name;
 
-	Long radius;
+	Integer radius;
 
-	// LatLng latLng;
+	LatLng latLng;
 
 	public Localization() {
 	}
 
-	public Localization(String name, Long radius/* , LatLng latLng */) {
+	public Localization(String name, Integer radius , LatLng latLng ) {
 		this.name = name;
 		this.radius = radius;
-		// this.latLng = latLng;
+		 this.latLng = latLng;
 	}
 
 	public String getName() {
@@ -30,21 +32,21 @@ public class Localization {
 		this.name = name;
 	}
 
-	public Long getRadius() {
+	public Integer getRadius() {
 		return radius;
 	}
 
-	public void setRadius(Long radius) {
+	public void setRadius(Integer radius) {
 		this.radius = radius;
 	}
 
-	// public LatLng getLatLng() {
-	// return latLng;
-	// }
+	 public LatLng getLatLng() {
+	 return latLng;
+	 }
 
-	// public void setLatLng(LatLng latLng) {
-	// this.latLng = latLng;
-	// }
+	 public void setLatLng(LatLng latLng) {
+	 this.latLng = latLng;
+	 }
 
 	@Override
 	public String toString() {

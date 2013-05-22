@@ -1,6 +1,6 @@
 package com.blstream.ctf1;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +19,7 @@ import com.blstream.ctf1.tracker.IssueTracker;
  * @author Rafal_Olichwer, Piotr Marczycki, Mateusz Wisniewski
  */
 
-public class GameDetailsActivity extends Activity implements OnClickListener {
+public class GameDetailsActivity extends ListActivity implements OnClickListener {
 
 	public TextView mTextGameName;
 	public TextView mTextGameDescription;
@@ -65,10 +65,7 @@ public class GameDetailsActivity extends Activity implements OnClickListener {
 		Bundle extras = getIntent().getExtras();
 		if (extras.getString(Constants.EXTRA_KEY_ID) != null) {
 			mId = extras.getString(Constants.EXTRA_KEY_ID);
-			mTextGameID.setText(extras.getString(Constants.EXTRA_KEY_ID));
-			if (extras.getString("GAME_NAME") != null) {
-				mTextGameName.setText(extras.getString("GAME_NAME"));
-			}
+			
 		}
 		GameDetails gameDetails = new GameDetails(this, mId);
 		gameDetails.execute();
