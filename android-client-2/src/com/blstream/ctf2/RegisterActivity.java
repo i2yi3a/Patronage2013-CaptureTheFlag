@@ -30,7 +30,7 @@ import com.google.analytics.tracking.android.EasyTracker;
  * Player registration class
  * 
  * @author Rafal Tatol
- * @author Lukasz Dmitrowski
+ * @author [Google Analytics] Lukasz Dmitrowski
  */
 public class RegisterActivity extends Activity {
 
