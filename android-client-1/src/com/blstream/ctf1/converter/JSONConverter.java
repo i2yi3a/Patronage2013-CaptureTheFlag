@@ -35,7 +35,7 @@ public class JSONConverter {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @param jsonObject
 	 * @return query string based on jsonObject or null if no keys-value pair
@@ -46,22 +46,22 @@ public class JSONConverter {
 	public static String toQueryString(JSONObject jsonObject) throws JSONException {
 		StringBuilder stringBuilder = new StringBuilder();
 		Iterator<?> jsonIterator = jsonObject.keys();
-	
+
 		if (!jsonIterator.hasNext()) {
 			return null;
 		}
-	
+
 		while (jsonIterator.hasNext()) {
 			String key = (String) jsonIterator.next();
 			Object value = jsonObject.get(key);
 			stringBuilder.append(key + "=" + value + "&");
 		}
-	
+
 		stringBuilder.setLength(stringBuilder.length() - 1);
-	
+
 		return stringBuilder.toString();
 	}
-	
+
 	/**
 	 * @param jsonArray
 	 * @return
@@ -78,12 +78,14 @@ public class JSONConverter {
 			gameBasicInfo.setId(jo.getString("id"));
 			try {
 				gameBasicInfo.setName(jo.getString("name"));
-			} catch (JSONException e) { // server sometimes not return name field
+			} catch (JSONException e) { // server sometimes not return name
+										// field
 				gameBasicInfo.setName(null);
 			}
 			try {
 				gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
-			} catch (JSONException e) { // server sometimes not return name field
+			} catch (JSONException e) { // server sometimes not return type
+										// field
 				gameBasicInfo.setGameStatusType(null);
 			}
 			gameBasicInfo.setOwner(jo.getString("owner"));
@@ -93,7 +95,7 @@ public class JSONConverter {
 
 		return gameBasicInfos;
 	}
-	
+
 	/**
 	 * @param jsonObject
 	 * @return
@@ -109,7 +111,7 @@ public class JSONConverter {
 		// JSONObject jsonLatLng = jsonLocalization.getJSONObject("latLng");
 		Localization localization = new Localization();
 		localization.setName(jsonLocalization.getString("name"));
-		localization.setRadius(jsonLocalization.getInt("radius"));
+		localization.setRadius(jsonLocalization.getDouble("radius"));
 		result.setLocalization(localization);
 		result.setId(jsonObject.getString("id"));
 		result.setName(jsonObject.getString("name"));
@@ -120,8 +122,8 @@ public class JSONConverter {
 		result.setTimeStart(timeStart);
 		return result;
 	}
-	
-	public static Long toMinutes(Long milis){
-		return milis/60000;
+
+	public static Long toMinutes(Long milis) {
+		return milis / 60000;
 	}
 }

@@ -40,4 +40,8 @@ public class Constants {
 	public static final int ERROR_CODE_BAD_TOKEN = 203;
 	
 	public static final int ERROR_CODE_UNEXPECTED_SERVER_RESPONSE = 204;
+	
+	public static final String SERVER_RESPONSE_ERROR_CODE = "error_code";
+	
+	public static final String SERVER_RESPONSE_ERROR_DESCRIPTION = "error_description";
 }

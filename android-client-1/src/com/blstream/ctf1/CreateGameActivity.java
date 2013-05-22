@@ -168,8 +168,8 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 
 	private void onCreateGameBtnClicked() {
 		IssueTracker.saveClick(this, mBtnCreate);
-		
-		String mLocationName  = mEditLocationName.getText().toString();
+
+		String mLocationName = mEditLocationName.getText().toString();
 		String mGameName = mEditGameName.getText().toString();
 		String mStartDate = mBtnStartDate.getText().toString();
 		String mStartTime = mBtnStartTime.getText().toString();
@@ -195,10 +195,10 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				gameInfo.setName(mEditGameName.getText().toString());
 				gameInfo.setDescription(mEditGameDescription.getText().toString());
 				localization.setName(mEditLocationName.getText().toString());
-				localization.setRadius((int)radius);
-				localization.setLatLng(new LatLng(latitude,longitude));
+				localization.setRadius(radius);
+				localization.setLatLng(new LatLng(latitude, longitude));
 				gameInfo.setLocalization(localization);
-				Date timeStart=null;
+				Date timeStart = null;
 				try {
 					timeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).parse(mStartDate + " " + mStartTime);
 				} catch (ParseException e) {
@@ -208,7 +208,7 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				gameInfo.setDuration(mPlayingTime);
 				gameInfo.setPlayersMax(mMaxPlayers);
 				gameInfo.setPointsMax(mMaxPoints);
-				
+
 				if (mId == null) {
 					CreateGame createGame = new CreateGame(this, GameListActivity.class, gameInfo);
 					createGame.execute();

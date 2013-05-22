@@ -42,7 +42,7 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 
 	private double mLng;
 
-	private int mRadius;
+	private double mRadius;
 
 	private String errorString;
 
@@ -50,14 +50,12 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity
-				.getResources().getString(R.string.loading), mCurrentActivity
-				.getResources().getString(R.string.loading_message));
+		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
+				.getString(R.string.loading_message));
 
 	}
 
-	public CreateGame(Activity currentActivity, Class<?> successfullActivity,
-			GameExtendedInfo gameInfo) {
+	public CreateGame(Activity currentActivity, Class<?> successfullActivity, GameExtendedInfo gameInfo) {
 		mCurrentActivity = currentActivity;
 		mSuccessfullActivity = successfullActivity;
 		mGameName = gameInfo.getName();
@@ -78,10 +76,7 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 		GameService gameService = new GameService(mCurrentActivity);
 		try {
-			gameService.createGame(mGameName, mDescription, mTimeStart,
-					mDuration, mPointsMax, mPlayersMax, mLocalizationName,
-					mLat, mLng, mRadius);
-
+			gameService.createGame(mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
@@ -94,11 +89,9 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		loadingDialog.dismiss();
 		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(mCurrentActivity, R.string.game_created,
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(mCurrentActivity, R.string.game_created, Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
 		}

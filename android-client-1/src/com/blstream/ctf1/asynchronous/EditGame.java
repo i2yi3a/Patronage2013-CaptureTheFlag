@@ -46,7 +46,7 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 
 	private double mLng;
 
-	private int mRadius;
+	private double mRadius;
 
 	private String errorString;
 
@@ -59,7 +59,7 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 
 	}
 
-	public EditGame(Activity currentActivity, Class<?> successfullActivity, String id, String status,GameExtendedInfo gameInfo) {
+	public EditGame(Activity currentActivity, Class<?> successfullActivity, String id, String status, GameExtendedInfo gameInfo) {
 		mCurrentActivity = currentActivity;
 		mSuccessfullActivity = successfullActivity;
 		mId = id;
