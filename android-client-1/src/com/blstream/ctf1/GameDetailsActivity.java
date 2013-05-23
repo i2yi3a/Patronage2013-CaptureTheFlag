@@ -12,6 +12,7 @@ import com.blstream.ctf1.asynchronous.DeleteGame;
 import com.blstream.ctf1.asynchronous.GameDetails;
 import com.blstream.ctf1.asynchronous.JoinGame;
 import com.blstream.ctf1.asynchronous.LeaveGame;
+import com.blstream.ctf1.asynchronous.RefreshPlayersList;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
@@ -79,11 +80,15 @@ public class GameDetailsActivity extends ListActivity implements OnClickListener
 			IssueTracker.saveClick(this, mBtnJoin);
 			JoinGame joinGameAsync = new JoinGame(this, mId);
 			joinGameAsync.execute();
+			RefreshPlayersList refreshPlayersListJoin = new RefreshPlayersList(this,mId);
+			refreshPlayersListJoin.execute();
 			break;
 		case R.id.btnLeave:
 			IssueTracker.saveClick(this, mBtnLeave);
 			LeaveGame leaveGameAsync = new LeaveGame(this, mId);
 			leaveGameAsync.execute();
+			RefreshPlayersList refreshPlayersListLeave = new RefreshPlayersList(this,mId);
+			refreshPlayersListLeave.execute();
 			break;
 		case R.id.btnEdit:
 			IssueTracker.saveClick(this, mBtnEdit);

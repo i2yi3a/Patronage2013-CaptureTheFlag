@@ -169,17 +169,16 @@
             android:id="@+id/textPlayers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
+            android:text="@string/game_players"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         
-
     <ListView
             android:id="@android:id/list"
+            android:tag="red"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
             android:clickable="false" >
     </ListView>
-
 	
         <Button
             android:id="@+id/btnJoin"

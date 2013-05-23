@@ -73,6 +73,7 @@
     <string name="game_leave">Opuść grę</string>
     <string name="game_delete">Usuń grę</string>
     <string name="game_edit">Edytuj grę</string>
+    <string name="game_players">Zapisani gracze</string>
 
     <!-- JoinGame -->
     <string name="game_joined">Dołączyłeś do gry</string>
