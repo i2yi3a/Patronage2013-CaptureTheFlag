@@ -220,7 +220,7 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
     }
 
     protected UI createResponseErrorMessage(ErrorCodeType type) {
-        return createResponseErrorMessage(type, null);
+        return createResponseErrorMessage(type, type.getMessage());
     }
 
     protected UI createResponseErrorMessage(ErrorCodeType type, String errorMessage) {

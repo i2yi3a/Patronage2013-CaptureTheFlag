@@ -176,7 +176,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         List<String> players = resource.getPlayers();
         GameUI response;
 
-        if (resource.getStatus().equals(GameStatusType.NEW)) {
+        if (resource.getStatus().equals(GameStatusType.NEW) || resource.getStatus().equals(GameStatusType.IN_PROGRESS)) {
             if (resource.getPlayers().size() < resource.getPlayersMax()) {
                 if (!resource.getPlayers().contains(currentUser)) {
 
@@ -214,7 +214,6 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         GameUI response;
 
         if (resource.getPlayers().contains(currentUser)) {
-
             players.remove(currentUser);
             GameUI convert = converter.convert(resource);
             update(id, convert);
@@ -242,7 +241,6 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         if (name == null && status == null && myGamesOnly == null) {
             response = super.findAll();
-
         } else {
             List<Game> resource = service.findByCriteria(name, status, myGamesOnly, currentUser);
             response = converter.convertModelList(resource);
