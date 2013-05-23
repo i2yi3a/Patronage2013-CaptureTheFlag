@@ -2,13 +2,14 @@ package com.blstream.ctf1.asynchronous;
 
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.GameListActivity;
+import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameBasicInfo;
+import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.list.ListAdapter;
 import com.blstream.ctf1.service.GameService;
 
@@ -17,33 +18,43 @@ import com.blstream.ctf1.service.GameService;
  */
 public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 
-	private ProgressDialog mLoadingDialog;
-
 	private GameListActivity mCurrentActivity;
+	private GameBasicListFilter gameBasicListFilter;
+	private ProgressDialogNetworkOperation mLoadingDialog;
+	private GameService mGameService;
+	private String mMessageToShow;
+	private boolean doInBackgrounSuccessful = false;
 
-	private String errorString;
-
-	public GameList(GameListActivity currentActivity) {
-		super();
+	public GameList(GameListActivity currentActivity, GameBasicListFilter gameBasicListFilter) {
 		this.mCurrentActivity = currentActivity;
+		this.gameBasicListFilter = gameBasicListFilter;
+
+		mGameService = new GameService(mCurrentActivity);
+		mLoadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 	}
 
 	@Override
 	protected void onPreExecute() {
-		mLoadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
+		mLoadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		mLoadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		mLoadingDialog.setNetworkOperationService(mGameService);
+		mLoadingDialog.show();
 	}
 
 	@Override
 	protected List<GameBasicInfo> doInBackground(Void... params) {
-		GameService gameService = new GameService(mCurrentActivity);
 
 		List<GameBasicInfo> gameBasicInfos = null;
 		try {
-			// TODO: FILTER
-			gameBasicInfos = gameService.getGameList(null);
+			gameBasicInfos = mGameService.getGameList(gameBasicListFilter);
+			doInBackgrounSuccessful = true;
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				// TODO: change message
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.registration_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
 
 		return gameBasicInfos;
@@ -52,8 +63,8 @@ public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 	@Override
 	protected void onPostExecute(List<GameBasicInfo> result) {
 		mLoadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
+		if (doInBackgrounSuccessful == false) {
+			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		} else {
 			mCurrentActivity.setListAdapter(new ListAdapter(mCurrentActivity, result));
 		}

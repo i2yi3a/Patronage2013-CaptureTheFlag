@@ -21,13 +21,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
+import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 public class GameListActivity extends ListActivity implements OnClickListener {
 
 	private Button mBtnCreateGame, mBtnSearch, mContextMenu;
 	private EditText mSearchGames;
-	
+	private GameBasicListFilter gameBasicListFilter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,31 +42,32 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 		mContextMenu = (Button) findViewById(R.id.contextMenu);
 		mContextMenu.setOnClickListener(this);
 		mSearchGames = (EditText) findViewById(R.id.editTextSearchGame);
-		
+		gameBasicListFilter = new GameBasicListFilter();
+
 		ListView lv = getListView();
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				String mID = ((TextView) view.findViewById(R.id.id)).getText().toString();
 				String gameName = ((TextView) view.findViewById(R.id.game_name)).getText().toString();
-				Intent intent = new Intent(getApplicationContext(),	GameDetailsActivity.class);
+				Intent intent = new Intent(getApplicationContext(), GameDetailsActivity.class);
 				intent.putExtra(Constants.EXTRA_KEY_ID, mID);
 				intent.putExtra("GAME_NAME", gameName);
 				startActivity(intent);
 			}
 		});
 	}
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.context_menu, menu);
+		inflater.inflate(R.menu.context_menu, menu);
 	}
-	
+
 	@Override
 	protected void onResume() {
-		GameList gameList = new GameList(this);
+		GameList gameList = new GameList(this, gameBasicListFilter);
 		gameList.execute();
 		super.onResume();
 	}
@@ -79,6 +82,9 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.btnSearch:
+			gameBasicListFilter = new GameBasicListFilter(mSearchGames.getText().toString(), null, null);
+			GameList gameList = new GameList(this, gameBasicListFilter);
+			gameList.execute();
 			break;
 		case R.id.contextMenu:
 			registerForContextMenu(view);
@@ -86,9 +92,11 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 			break;
 		}
 	}
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		//AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		// AdapterContextMenuInfo info = (AdapterContextMenuInfo)
+		// item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.Profile:
 			return true;
@@ -100,5 +108,5 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 		default:
 			return super.onContextItemSelected(item);
 		}
-	}	
+	}
 }

@@ -8,6 +8,7 @@
 	    android:id="@+id/splashScreenImage"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
+	    android:scaleType="fitXY"
 	    android:layout_alignParentLeft="true"
 	    android:contentDescription="@string/splash_screen"
 	    android:src="@drawable/splashscreen" />
