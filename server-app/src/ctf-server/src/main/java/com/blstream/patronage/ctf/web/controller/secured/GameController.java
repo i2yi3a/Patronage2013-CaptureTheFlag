@@ -90,18 +90,19 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (logger.isInfoEnabled()) {
             logger.info(String.format("User: %s tries to update an existing game: %s", currentUser, request.getName()));
         }
-
-        request.setOwner(currentUser);
-
-        GameUI gameUI = super.update(id, request);
-
-        if (!ErrorCodeType.SUCCESS.equals(gameUI.getErrorCodeType())) {
-            return gameUI;
+        GameUI response;
+        Game resource = service.findById(id);
+        if (GameStatusType.NEW.equals(resource.getStatus())) {
+            if (currentUser.equals(resource.getOwner())) {
+                super.update(id, request);
+                response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+                response.setMessage(String.format("Game with id: %s was updated successfully.", resource.getId()));
+            } else {
+                response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_UPDATED, "Only game owner can update game");
+            }
+        } else {
+            response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_UPDATED, "Only New games can be updated");
         }
-
-        GameUI response = new GameUI();
-        response.setId(gameUI.getId());
-        response.setMessage(String.format("Game with id: %s was updated successfully.", response.getId()));
 
         if (logger.isDebugEnabled())
             logger.debug("---- /update");
