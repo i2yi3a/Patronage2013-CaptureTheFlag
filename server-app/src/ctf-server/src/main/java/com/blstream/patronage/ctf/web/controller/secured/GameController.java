@@ -150,11 +150,8 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
-        List<String> players = new ArrayList<String>();
 
-        if (GameStatusType.NEW.equals(resource.getStatus())) {
-            players = resource.getPlayers();
-        }
+        List<String> players = resource.getPlayers();
 
         if (logger.isDebugEnabled())
             logger.debug("---- /players");
