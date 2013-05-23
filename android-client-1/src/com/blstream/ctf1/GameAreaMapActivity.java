@@ -26,7 +26,7 @@ import android.view.MenuItem;
  * @author Miłosz Skalski
  **/
 
-public class GameAreaMapActivity extends FragmentActivity {
+public class    GameAreaMapActivity extends FragmentActivity {
 
 	private GoogleMap mGoogleMap;
 	private SupportMapFragment mSupportMapFragment;
