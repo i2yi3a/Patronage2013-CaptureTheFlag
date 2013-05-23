@@ -33,20 +33,31 @@ public class StringConverter {
 	 * @author Adrian Swarcewicz
 	 */
 	public static String urlEncode(String parameter) {
-		// parameter = parameter.replace(";", "%3B");
+		// TODO: optimize this
+		parameter = parameter.replace(" ", "%20");
+		parameter = parameter.replace("\"", "%22");
+		parameter = parameter.replace("^", "%5E");
+		parameter = parameter.replace("&", "%26");
+		parameter = parameter.replace("%", "%25");
+		parameter = parameter.replace("<", "%3C");
+		parameter = parameter.replace(">", "%3E");
+		parameter = parameter.replace("`", "%60");
+		parameter = parameter.replace("\\", "%5C");
+		parameter = parameter.replace("/", "%2F");
+		parameter = parameter.replace("{", "%7B");
+		parameter = parameter.replace("{", "%7D");
+		parameter = parameter.replace("[", "%5B");
+		parameter = parameter.replace("[", "%5D");
+		parameter = parameter.replace("|", "%7C");
 		// parameter = parameter.replace("?", "%3F");
+		// parameter = parameter.replace(";", "%3B");
 		// parameter = parameter.replace("/", "%2F");
 		// parameter = parameter.replace(":", "%3A");
 		// parameter = parameter.replace("#", "%23");
-		// parameter = parameter.replace("&", "%26");
 		// parameter = parameter.replace("=", "%3D");
 		// parameter = parameter.replace("+", "%2B");
 		// parameter = parameter.replace("$", "%24");
 		// parameter = parameter.replace(",", "%2C");
-		parameter = parameter.replace(" ", "%20");
-		// parameter = parameter.replace("%", "%25");
-		// parameter = parameter.replace("<", "%3C");
-		// parameter = parameter.replace(">", "%3E");
 		// parameter = parameter.replace("~", "%7E");
 		return parameter;
 	}
