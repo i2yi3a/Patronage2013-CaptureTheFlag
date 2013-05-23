@@ -108,6 +108,7 @@
     <string name="settings">Settings</string>
     <string name="search">Search</string>
     <string name="logout_succesful">You are logged out</string>
+    <string name="get_game_list_canceled">Getting game list canceled</string>
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>

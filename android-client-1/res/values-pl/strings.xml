@@ -110,5 +110,6 @@
     <string name="settings">Ustawienia</string>
     <string name="search">Szukaj</string>
     <string name="logout_succesful">Wylogowałeś się</string>
+    <string name="get_game_list_canceled">Anulowano pobieranie listy gier</string>
 
 </resources>

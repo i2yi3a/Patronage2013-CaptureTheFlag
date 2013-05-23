@@ -31,11 +31,9 @@ import com.blstream.ctf1.exception.CTFException;
  */
 public class NetworkService {
 
-	Context mContext;
-	
-	HttpClient mClient;
-	
-	HttpUriRequest mHttpUriRequest;
+	private Context mContext;
+	private HttpClient mClient;
+	private HttpUriRequest mHttpUriRequest;
 
 	/**
 	 * @param context
@@ -52,7 +50,7 @@ public class NetworkService {
 	 */
 	private synchronized JSONArray executeRequest(HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException, CTFException, JSONException {
 		mHttpUriRequest = httpUriRequest;
-		
+
 		mClient = new DefaultHttpClient();
 		HttpResponse response = mClient.execute(httpUriRequest);
 		StatusLine statusLine = response.getStatusLine();
@@ -65,17 +63,17 @@ public class NetworkService {
 
 		return StringConverter.toJSONArray(responseContent);
 	}
-	
+
 	/**
 	 * @author Adrian Swarcewicz
 	 */
 	public void abortRequest() {
 		if (mHttpUriRequest != null && mClient != null) {
 			mHttpUriRequest.abort();
-//			mClient.getConnectionManager().shutdown();
+			// mClient.getConnectionManager().shutdown();
 		}
 	}
-	
+
 	/**
 	 * @author Adrian Swarcewicz
 	 */

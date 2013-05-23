@@ -53,8 +53,8 @@ public class JSONConverter {
 
 		while (jsonIterator.hasNext()) {
 			String key = (String) jsonIterator.next();
-			Object value = jsonObject.get(key);
-			stringBuilder.append(key + "=" + value + "&");
+			String value = jsonObject.get(key).toString();
+			stringBuilder.append(key + "=" + StringConverter.urlEncode(value) + "&");
 		}
 
 		stringBuilder.setLength(stringBuilder.length() - 1);
@@ -76,18 +76,8 @@ public class JSONConverter {
 			JSONObject jo = jsonArray.getJSONObject(i);
 
 			gameBasicInfo.setId(jo.getString("id"));
-			try {
-				gameBasicInfo.setName(jo.getString("name"));
-			} catch (JSONException e) { // server sometimes not return name
-										// field
-				gameBasicInfo.setName(null);
-			}
-			try {
-				gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
-			} catch (JSONException e) { // server sometimes not return type
-										// field
-				gameBasicInfo.setGameStatusType(null);
-			}
+			gameBasicInfo.setName(jo.getString("name"));
+			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
 			gameBasicInfo.setOwner(jo.getString("owner"));
 
 			gameBasicInfos.add(gameBasicInfo);

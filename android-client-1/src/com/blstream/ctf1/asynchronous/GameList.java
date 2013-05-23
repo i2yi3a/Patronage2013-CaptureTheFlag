@@ -50,8 +50,7 @@ public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 			doInBackgrounSuccessful = true;
 		} catch (Exception e) {
 			if (mGameService.isNetworkOperationAborted()) {
-				// TODO: change message
-				mMessageToShow = mCurrentActivity.getResources().getString(R.string.registration_canceled);
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.get_game_list_canceled);
 			} else {
 				mMessageToShow = e.getLocalizedMessage();
 			}
