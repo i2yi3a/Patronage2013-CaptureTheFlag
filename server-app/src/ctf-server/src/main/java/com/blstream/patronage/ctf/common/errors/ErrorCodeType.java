@@ -29,6 +29,7 @@ public enum ErrorCodeType {
     RESOURCE_NOT_FOUND(3, "Resource not found"),
     RESOURCE_ALREADY_EXISTS(4, "Resource already exists"),
     RESOURCE_CANNOT_BE_DELETED(5, "Resource cannot be deleted"),
+    RESOURCE_CANNOT_BE_UPDATED(6, "Resource cannot be updated"),
 
     CANNOT_CREATE_NEW_PLAYER(100, "Cannot create a new player"),
     PLAYER_ALREADY_EXISTS(101, "Player already exists"),
