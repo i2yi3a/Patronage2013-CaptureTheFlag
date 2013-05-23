@@ -17,38 +17,6 @@
  * Date: 1/31/13
  */
 
-
-/*
-REQUEST:
-
-How to get token?
-
-    > curl -H "Content-type: application/x-www-form-urlencoded" -X POST -d "client_id=mobile_test&client_secret=secret&grant_type=password&username=michal.krawczak@blstream.com&password=FKA13#aqFR3" http://localhost:8080/oauth/token
-
-    HEADERS: {
-        Content-type: application/x-www-form-urlencoded
-    }
-
-    POST DATA: {
-        client_id: "mobile_test",
-        client_secret: "secret",
-        grant_type: "password",
-        username: "michal.krawczak@blstream.com",
-        password: "FKA13#aqFR3"
-    }
-*/
-
-/*
-RESPONSE:
-
-    authData = {
-        "access_token": "ed756770-e752-4f54-a278-1eee91a47b4a",
-        "token_type": "bearer",
-        "expires_in": 4999,
-        "scope": "read write"
-    };
-*/
-
 var login_url = server_host + "/oauth/token";
 var client_id = "web_www";
 var client_secret = "secret";
