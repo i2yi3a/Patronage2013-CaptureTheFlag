@@ -1,6 +1,7 @@
 package com.blstream.ctf1.asynchronous;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -18,7 +19,7 @@ import com.blstream.ctf1.service.GameService;
 /**
  * @author Rafal Olichwer
  */
-public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
+public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 
 	private GameDetailsActivity mCurrentActivity;
 
@@ -35,18 +36,17 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	}
 
-	public GameDetails(GameDetailsActivity currentActivity, String id) {
+	public RefreshPlayersList(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
 	}
 
 	@Override
-	protected GameExtendedInfo doInBackground(Void... params) {
+	protected List<String> doInBackground(Void... params) {
 		GameService gameService = new GameService(mCurrentActivity);
-		GameExtendedInfo result = null;
+		List<String> result = null;
 		try {
-			result = gameService.getGameDetails(mId);
-			result.setPlayersList(gameService.getPlayersForGame(mId));
+			result = gameService.getPlayersForGame(mId);
 
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -57,27 +57,15 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	}
 
 	@Override
-	protected void onPostExecute(GameExtendedInfo result) {
+	protected void onPostExecute(List<String> result) {
 		loadingDialog.dismiss();
 		if (errorString != null) {
 			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
 		} else {
-			mCurrentActivity.mTextGameName.setText(result.getName());
-			mCurrentActivity.mTextGameDescription.setText(result.getDescription());
-			mCurrentActivity.mTextGameDuration.setText(Long.toString(result.getDuration()));
-			mCurrentActivity.mTextLocName.setText(result.getLocalization().getName());
-			mCurrentActivity.mTextLocRadius.setText(Double.toString(result.getLocalization().getRadius()));
-			mCurrentActivity.mTextGameStatus.setText(result.getGameStatusType().toString());
-			mCurrentActivity.mTextGameOwner.setText(result.getOwner());
-			mCurrentActivity.mTextGameDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).format(result.getTimeStart()));
-			mCurrentActivity.mTextGamePlayersMax.setText(Integer.toString(result.getPlayersMax()));
-			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
-			mCurrentActivity.mTextGameID.setText(result.getId());
-			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
 			
 			 mCurrentActivity.setListAdapter(new
 			 PlayersListAdapter(mCurrentActivity,
-			 result.getPlayersList()));
+			 result));
 			 ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
 			 Helper.getListViewSize(playersList);
 		}
