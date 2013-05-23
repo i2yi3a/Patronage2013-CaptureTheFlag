@@ -30,6 +30,10 @@ public class GameDetailsActivity extends Activity {
 	public TextView mTimeStartTextView;
 	public TextView mPointsMaxTextView;
 	public TextView mPlayersMaxTextView;
+	public TextView mTeamRedName;
+	public TextView mTeamRedBaseLocalization;
+	public TextView mTeamBlueName;
+	public TextView mTeamBlueBaseLocalization;
 	public Button mJoinButton;
 	public Button mEditButton;
 
@@ -51,6 +55,11 @@ public class GameDetailsActivity extends Activity {
 		mTimeStartTextView = (TextView) findViewById(R.id.textViewTimeStart);
 		mPointsMaxTextView = (TextView) findViewById(R.id.textViewPointsMax);
 		mPlayersMaxTextView = (TextView) findViewById(R.id.textViewPlayersMax);
+		mTeamRedName = (TextView) findViewById(R.id.textViewTeamRed);
+		mTeamRedBaseLocalization = (TextView) findViewById(R.id.textViewTeamRedLocalization);
+		mTeamBlueName = (TextView) findViewById(R.id.textViewTeamBlue);
+		mTeamBlueBaseLocalization = (TextView) findViewById(R.id.textViewTeamBlueLocalization);
+
 		mJoinButton = (Button) findViewById(R.id.joinButton);
 		mEditButton = (Button) findViewById(R.id.editButton);
 	}
@@ -58,6 +67,7 @@ public class GameDetailsActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		mGameIdTextView.setText(mGameId);
 		GameServices mGameServices = new GameServices(this);
 		mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
 	}

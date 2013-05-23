@@ -12,6 +12,8 @@ public class GameDetails extends Game {
 	private String timeStart;
 	private Integer pointsMax;
 	private Integer playersMax;
+	private Team teamRed;
+	private Team teamBlue;
 
 	public String getDescription() {
 		return description;
@@ -59,5 +61,21 @@ public class GameDetails extends Game {
 
 	public void setPlayersMax(Integer playersMax) {
 		this.playersMax = playersMax;
+	}
+
+	public Team getTeamRed() {
+		return teamRed;
+	}
+
+	public void setTeamRed(Team teamRed) {
+		this.teamRed = teamRed;
+	}
+
+	public Team getTeamBlue() {
+		return teamBlue;
+	}
+
+	public void setTeamBlue(Team teamBlue) {
+		this.teamBlue = teamBlue;
 	}
 }

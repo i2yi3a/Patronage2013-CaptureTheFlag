@@ -59,5 +59,8 @@
     <string name="game_owner">Owner</string>
     <string name="game_join">Join</string>
     <string name="game_edit">Edit game</string>
+    <string name="team_red">Red team</string>
+    <string name="team_blue">Blue Team</string>
+    <string name="team_base_localization">Base localization</string>
 
 </resources>

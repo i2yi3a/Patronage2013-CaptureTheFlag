@@ -21,6 +21,8 @@ import com.blstream.ctf2.activity.game.GameDetailsActivity;
 import com.blstream.ctf2.activity.game.GameListActivity;
 import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.domain.GameLocalization;
+import com.blstream.ctf2.domain.Localization;
+import com.blstream.ctf2.domain.Team;
 import com.blstream.ctf2.storage.entity.Game;
 
 /**
@@ -41,11 +43,12 @@ public class GameServices extends Services {
 	public final static String LOCALIZATION = "localization";
 	public final static String RADIUS = "radius";
 	public final static String LAT_LNG = "latLng";
-	public final static String LAT = "lat";
-	public final static String LNG = "lng";
 	public final static String STATUS_NEW = "NEW";
 	public final static String STATUS_IN_PROGRESS = "IN_PROGRESS";
+	public final static String RED_TEAM_BASE = "red_team_base";
+	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
+	
 	private String playerToken = "";
 	private String typeToken = "";
 
@@ -53,6 +56,7 @@ public class GameServices extends Services {
 		UserServices userServices = new UserServices(mCtx);
 		this.playerToken = userServices.getUser().getToken();
 		this.typeToken = userServices.getUser().getTokenType();
+		Log.i("MY TOKEN ", this.playerToken);
 	}
 
 	public void getGames(GameListActivity gameListActivity) {
@@ -140,6 +144,10 @@ public class GameServices extends Services {
 			mGameDetailsActivity.mTimeStartTextView.setText(gameDetails.getTimeStart());
 			mGameDetailsActivity.mPointsMaxTextView.setText(gameDetails.getPointsMax().toString());
 			mGameDetailsActivity.mPlayersMaxTextView.setText(gameDetails.getPlayersMax().toString());
+			mGameDetailsActivity.mTeamRedName.setText(gameDetails.getTeamRed().getName());
+			mGameDetailsActivity.mTeamRedBaseLocalization.setText(gameDetails.getTeamRed().getBaseLocalization().toString());
+			mGameDetailsActivity.mTeamBlueName.setText(gameDetails.getTeamBlue().getName());
+			mGameDetailsActivity.mTeamBlueBaseLocalization.setText(gameDetails.getTeamBlue().getBaseLocalization().toString());
 			if (gameDetails.getStatus().equals(STATUS_NEW)) {
 				mGameDetailsActivity.mJoinButton.setEnabled(true);
 				if (gameDetails.getOwner().equals(new UserServices(mGameDetailsActivity).getUser().getName())) {
@@ -149,8 +157,8 @@ public class GameServices extends Services {
 		}
 
 		public GameDetails jsonToGameDetails(JSONObject jsonObject) throws JSONException {
+			
 			GameDetails gameDetails = new GameDetails();
-
 			gameDetails.setId(jsonObject.getString(Constants.ID));
 			gameDetails.setName(jsonObject.getString(NAME));
 			gameDetails.setDescription(jsonObject.getString(DESCRIPTION));
@@ -165,10 +173,30 @@ public class GameServices extends Services {
 			JSONObject jsonLocalization = jsonObject.getJSONObject(LOCALIZATION);
 			localization.setName(jsonLocalization.getString(NAME));
 			localization.setRadius(jsonLocalization.getInt(RADIUS));
-			JSONObject jsonLatLng = jsonLocalization.getJSONObject(LAT_LNG);
-			localization.setLat(jsonLatLng.getDouble(LAT));
-			localization.setLng(jsonLatLng.getDouble(LNG));
+			JSONArray jsonLatLng = jsonLocalization.getJSONArray(LAT_LNG);
+			localization.setLat(jsonLatLng.getDouble(0));
+			localization.setLng(jsonLatLng.getDouble(1));
 			gameDetails.setLocalization(localization);
+			
+			Team teamRed = new Team();
+			JSONObject jsonTeamRed = jsonObject.getJSONObject(RED_TEAM_BASE);
+			teamRed.setName(jsonTeamRed.getString(NAME));
+			Localization localizationTeamRed = new Localization();
+			JSONArray jsonLatLngRed = jsonTeamRed.getJSONArray(LAT_LNG);
+			localizationTeamRed.setLat(jsonLatLngRed.getDouble(0));
+			localizationTeamRed.setLng(jsonLatLngRed.getDouble(1));
+			teamRed.setBaseLocalization(localizationTeamRed);
+			gameDetails.setTeamRed(teamRed);
+			
+			Team teamBlue = new Team();
+			JSONObject jsonTeamBlue = jsonObject.getJSONObject(BLUE_TEAM_BASE);
+			teamBlue.setName(jsonTeamBlue.getString(NAME));
+			Localization localizationTeamBlue = new Localization();
+			JSONArray jsonLatLngBlue = jsonTeamBlue.getJSONArray(LAT_LNG);
+			localizationTeamBlue.setLat(jsonLatLngBlue.getDouble(0));
+			localizationTeamBlue.setLng(jsonLatLngBlue.getDouble(1));
+			teamBlue.setBaseLocalization(localizationTeamBlue);			
+			gameDetails.setTeamBlue(teamBlue);
 
 			return gameDetails;
 		}
