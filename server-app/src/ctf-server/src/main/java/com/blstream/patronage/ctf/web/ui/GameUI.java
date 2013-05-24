@@ -5,6 +5,8 @@ import com.blstream.patronage.ctf.model.Localization;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,11 +22,15 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty(required = true)
     private String id;
 
+    @NotNull
+    @NotEmpty
     @JsonProperty(required = true)
     private String name;
 
     private String description;
 
+    @NotNull
+    @NotEmpty
     @JsonProperty(value ="time_start", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeStart;
@@ -38,6 +44,8 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty("players_max")
     private Integer playersMax;
 
+    @NotNull
+    @NotEmpty
     @JsonProperty(required = true)
     private Localization localization;
 

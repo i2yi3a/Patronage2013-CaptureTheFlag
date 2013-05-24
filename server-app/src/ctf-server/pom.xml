@@ -232,6 +232,13 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Oval dependencies -->
+        <dependency>
+            <groupId>net.sf.oval</groupId>
+            <artifactId>oval</artifactId>
+            <version>1.81</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -8,6 +8,8 @@ import com.blstream.patronage.ctf.common.service.CrudService;
 import com.blstream.patronage.ctf.model.BaseModel;
 import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
 import com.blstream.patronage.ctf.web.ui.BaseUI;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -84,6 +86,13 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         UI response;
         T resource = converter.convert(request);
 
+        Validator  validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(request);
+        if (violations.size()>0){
+            return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
+        }
+
+
         try {
             resource = service.create(resource);
             response = converter.convert(resource);
@@ -113,6 +122,12 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
         UI response;
         T resource = converter.convert(request);
+
+        Validator  validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(request);
+        if (violations.size()>0){
+            return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
+        }
 
         try {
             resource = service.update(id, resource);
