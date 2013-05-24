@@ -6,4 +6,5 @@
     <issue id="SelectableText">
         <ignore path="res\layout\list_single_item.xml" />
     </issue>
+    <issue id="SimpleDateFormat" severity="ignore" />
 </lint>
