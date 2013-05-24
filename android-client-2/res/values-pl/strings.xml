@@ -60,5 +60,17 @@
     <string name="team_red">Drużyna Red</string>
     <string name="team_blue">Drużyna Blue</string>
     <string name="team_base_localization">Lokalizacja bazy</string>
-
+    <!-- Error Codes -->
+    <string name="error_code_1">Niepoprawne żądanie</string>
+	<string name="error_code_2">Błąd wewnętrzny servera</string>
+	<string name="error_code_3">Zasób nie został znaleziony</string>
+	<string name="error_code_4">Zasób już istnieje</string>
+	<string name="error_code_5">Zasób nie może zostać usunięty</string>
+	<string name="error_code_100">Nie można stworzyć nowego gracza</string>
+	<string name="error_code_100">Gracz już istnieje</string>
+	<string name="error_code_102">Gracz nie może zostać zapisany</string>
+	<string name="error_code_103">Gracz nie może zostać wypisany</string>
+	<string name="error_code_104">Gracz już jest zapisany</string>
+	<string name="error_code_105">Maksymalna liczba graczy w grze została osiągnięta</string>
+	<string name="google_services_not_avalible">Brak google services na urządzeniu</string>
 </resources>

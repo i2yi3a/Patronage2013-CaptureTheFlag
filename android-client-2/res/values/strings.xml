@@ -24,7 +24,7 @@
     <string name="login_failed">Failed to login</string>
     <string name="login_successful">Login successful</string>
     <string name="logout">Logout</string>
-    <string name="logout_succesful">Logout succesful</string>
+    <string name="logout_succesful">Logout successful</string>
     <string name="view_profile">View profile</string>
     <string name="create_new_game">Create new Game</string>
     <string name="gamelist">List of Games</string>
@@ -65,6 +65,18 @@
     <string name="team_red">Red team</string>
     <string name="team_blue">Blue Team</string>
     <string name="team_base_localization">Base localization</string>
+    <!-- Error Codes -->
+    <string name="error_code_1">Bad request</string>
+	<string name="error_code_2">Internal error</string>
+	<string name="error_code_3">Resource not found</string>
+	<string name="error_code_4">Resource already exists</string>
+	<string name="error_code_5">Resource cannot be deleted</string>
+	<string name="error_code_100">Cannot create a new player</string>
+	<string name="error_code_100">Player already exists</string>
+	<string name="error_code_102">Player cannot be sign in</string>
+	<string name="error_code_103">Player cannot be sign out</string>
+	<string name="error_code_104">Player is already signed in</string>
+	<string name="error_code_105">Game reached maximum of players</string>
+	<string name="google_services_not_avalible">Google services are not currently avalible at this device</string>
     
-
 </resources>

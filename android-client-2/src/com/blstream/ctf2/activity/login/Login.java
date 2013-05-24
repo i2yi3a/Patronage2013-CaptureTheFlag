@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
+import com.blstream.ctf2.exception.CtfException;
 import com.blstream.ctf2.services.HttpServices;
 import com.blstream.ctf2.services.UserServices;
 import com.blstream.ctf2.storage.entity.User;
@@ -32,7 +33,7 @@ public class Login extends AsyncTask<String, Void, String> {
 
 	}
 
-	public void userLogin(String userName, String password) throws Exception{
+	public void userLogin(String userName, String password) throws CtfException,Exception{
 		mUserName = userName;
 		String params = "client_id=mobile_android&client_secret=secret&grant_type=password&username=" + userName + "&password=" + password;
 
@@ -41,7 +42,7 @@ public class Login extends AsyncTask<String, Void, String> {
 		String response = mHttpServices.postRequest(Constants.URI_LOGIN, params, headersList);
 		JSONObject jsonObject = new JSONObject(response);
 		if (jsonObject.has("error")) {
-			throw new Exception(jsonObject.getString("error_description"));
+			throw new CtfException(jsonObject.getString("error_description"));
 		} else if (jsonObject.has("access_token")) {
 			UserServices userServices = new UserServices(mCtx);
 			User user = userServices.addNewPlayer(mUserName);

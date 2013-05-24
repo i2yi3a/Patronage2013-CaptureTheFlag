@@ -7,6 +7,7 @@ package com.blstream.ctf2;
  */
 public class Constants {
 	public final static int SPLASH_SHOW_TIME = 2000;
+	public final static String PACKAGE = "com.blstream.ctf2";
 	public final static String URL_SERVER = "http://capturetheflag.blstream.com:18080/demo";
 	public final static String URI_PLAYERS_ADD = "/api/players/add";
 	public final static String URI_LOGIN = "/oauth/token";
@@ -32,4 +33,6 @@ public class Constants {
 	public final static int ERROR_CODE_CANNOT_CREATE_NEW_PLAYER = 100;
 	public final static int ERROR_CODE_PLAYER_ALREADY_EXISTS = 101;
 	public final static String ID = "id";
+	
+	public final static String ERROR_CODE_PREFIX = "error_code_";
 }
