@@ -12,6 +12,9 @@ import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.services.GameServices;
 
+/**
+ * @author Rafal Tatol
+ */
 public class GamePlayersActivity extends ListActivity {
 
 	private String mGameId;
