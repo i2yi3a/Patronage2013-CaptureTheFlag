@@ -4,18 +4,14 @@
 
     <style name="CTFTheme" parent="android:Theme.Light">
         <item name="android:windowBackground">@color/background</item>
-     <!--   <item name="android:background">#DBDBDB</item> -->
+        <!--   <item name="android:background">#DBDBDB</item> -->
         <item name="android:windowNoTitle">true</item>
         <item name="android:textColor">#444444</item>
         <item name="android:buttonStyle">@style/CTFButtonBlue</item>
         <item name="android:editTextStyle">@style/CTFEditText</item>
         <!-- Przy ScroolView obramowka -->
         <item name="android:colorBackgroundCacheHint">#54B2BD</item>
-
-        <item name="android:dialogTheme">@style/CTFDialog</item>
-
     </style>
-
 
     <style name="CTFButtonBlue" parent="android:style/Widget.Button">
         <item name="android:background">@drawable/button_blue</item>
@@ -35,7 +31,7 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
-    <style name="CTFDialog" parent="@android:style/Theme.Dialog"> <!-- @android:style/Theme.Dialog -->
+    <style name="CTFDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">#7BC047</item>
         <item name="android:textColor">#FF00FF</item>
         <item name="android:windowBackground">@null</item>

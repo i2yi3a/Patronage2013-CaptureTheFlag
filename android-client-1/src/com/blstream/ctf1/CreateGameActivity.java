@@ -48,9 +48,9 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 	public EditText mEditMaxPoints;
 
 	// default values
-	private double latitude = 53.432766;
-	private double longitude = 14.548001;
-	private double radius = 1000;
+    public double latitude = 53.432766;
+    public double longitude = 14.548001;
+    public double radius = 1000;
 
 	private String info;
 	private String mId;
