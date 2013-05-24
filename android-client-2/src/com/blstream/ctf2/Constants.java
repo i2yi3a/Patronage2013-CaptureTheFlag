@@ -11,6 +11,7 @@ public class Constants {
 	public final static String URI_PLAYERS_ADD = "/api/players/add";
 	public final static String URI_LOGIN = "/oauth/token";
 	public final static String URI_GAMES = "/api/secured/games";
+	public final static String PLAYERS = "/players";
 
 	public final static String CONTENT_TYPE = "Content-Type";
 	public final static String ACCEPT = "Accept";

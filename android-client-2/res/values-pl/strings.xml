@@ -54,6 +54,9 @@
     <string name="game_owner">Właściciel</string>
     <string name="game_join">Dołącz do gry</string>
     <string name="game_edit">Edytuj grę</string>
+    <string name="game_players_name">Gracze</string>
+    <string name="game_players_list">Lista graczy</string>
+    <string name="game_no_players">Gra nie posiada jeszcze graczy</string>
     <string name="team_red">Drużyna Red</string>
     <string name="team_blue">Drużyna Blue</string>
     <string name="team_base_localization">Lokalizacja bazy</string>

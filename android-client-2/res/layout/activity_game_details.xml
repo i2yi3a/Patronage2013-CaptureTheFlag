@@ -28,6 +28,13 @@
             android:text="@string/game_edit" />
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/playersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickButton"
+        android:text="@string/game_players_list" />
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >

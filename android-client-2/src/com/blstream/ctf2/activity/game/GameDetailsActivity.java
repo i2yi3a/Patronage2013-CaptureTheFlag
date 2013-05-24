@@ -1,6 +1,7 @@
 package com.blstream.ctf2.activity.game;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -89,6 +90,11 @@ public class GameDetailsActivity extends Activity {
 		case R.id.joinButton:
 			break;
 		case R.id.editButton:
+			break;
+		case R.id.playersButton:
+			Intent intent = new Intent("com.blstream.ctf2.GAMEPLAYERSACTIVITY");
+			intent.putExtra(Constants.ID, mGameId);
+			startActivity(intent);
 			break;
 		}
 	}

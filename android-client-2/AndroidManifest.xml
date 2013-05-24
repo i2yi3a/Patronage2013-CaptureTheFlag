@@ -66,12 +66,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-               <activity
+        <activity
             android:name="com.blstream.ctf2.activity.game.GameListActivity"
             android:label="@string/gamelist"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.blstream.ctf2.GAMELISTACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -108,6 +109,16 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.blstream.ctf2.GAMEDETAILSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.blstream.ctf2.activity.game.GamePlayersActivity"
+            android:label="@string/game_players_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.GAMEPLAYERSACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

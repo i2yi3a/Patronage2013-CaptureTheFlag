@@ -19,6 +19,7 @@ import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.activity.game.GameDetailsActivity;
 import com.blstream.ctf2.activity.game.GameListActivity;
+import com.blstream.ctf2.activity.game.GamePlayersActivity;
 import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.domain.GameLocalization;
 import com.blstream.ctf2.domain.Localization;
@@ -48,7 +49,7 @@ public class GameServices extends Services {
 	public final static String RED_TEAM_BASE = "red_team_base";
 	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
-	
+
 	private String playerToken = "";
 	private String typeToken = "";
 
@@ -56,7 +57,7 @@ public class GameServices extends Services {
 		UserServices userServices = new UserServices(mCtx);
 		this.playerToken = userServices.getUser().getToken();
 		this.typeToken = userServices.getUser().getTokenType();
-		Log.i("MY TOKEN ", this.playerToken);
+		Log.i("my token ", this.playerToken);
 	}
 
 	public void getGames(GameListActivity gameListActivity) {
@@ -67,6 +68,11 @@ public class GameServices extends Services {
 	public void getGameDetails(GameDetailsActivity gameDetailsActivity, String mGameId) {
 		GetGameDetails getGameDetailsTask = new GetGameDetails(gameDetailsActivity);
 		getGameDetailsTask.execute(mGameId);
+	}
+
+	public void getGamePlayers(GamePlayersActivity gamePlayersActivity, String mGameId) {
+		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gamePlayersActivity);
+		getGamePlayersTask.execute(mGameId);
 	}
 
 	/**
@@ -157,7 +163,7 @@ public class GameServices extends Services {
 		}
 
 		public GameDetails jsonToGameDetails(JSONObject jsonObject) throws JSONException {
-			
+
 			GameDetails gameDetails = new GameDetails();
 			gameDetails.setId(jsonObject.getString(Constants.ID));
 			gameDetails.setName(jsonObject.getString(NAME));
@@ -177,7 +183,7 @@ public class GameServices extends Services {
 			localization.setLat(jsonLatLng.getDouble(0));
 			localization.setLng(jsonLatLng.getDouble(1));
 			gameDetails.setLocalization(localization);
-			
+
 			Team teamRed = new Team();
 			JSONObject jsonTeamRed = jsonObject.getJSONObject(RED_TEAM_BASE);
 			teamRed.setName(jsonTeamRed.getString(NAME));
@@ -187,7 +193,7 @@ public class GameServices extends Services {
 			localizationTeamRed.setLng(jsonLatLngRed.getDouble(1));
 			teamRed.setBaseLocalization(localizationTeamRed);
 			gameDetails.setTeamRed(teamRed);
-			
+
 			Team teamBlue = new Team();
 			JSONObject jsonTeamBlue = jsonObject.getJSONObject(BLUE_TEAM_BASE);
 			teamBlue.setName(jsonTeamBlue.getString(NAME));
@@ -195,7 +201,7 @@ public class GameServices extends Services {
 			JSONArray jsonLatLngBlue = jsonTeamBlue.getJSONArray(LAT_LNG);
 			localizationTeamBlue.setLat(jsonLatLngBlue.getDouble(0));
 			localizationTeamBlue.setLng(jsonLatLngBlue.getDouble(1));
-			teamBlue.setBaseLocalization(localizationTeamBlue);			
+			teamBlue.setBaseLocalization(localizationTeamBlue);
 			gameDetails.setTeamBlue(teamBlue);
 
 			return gameDetails;
@@ -317,6 +323,79 @@ public class GameServices extends Services {
 				games.add(game);
 			}
 			return games;
+		}
+	}
+
+	/**
+	 * 
+	 * @author Rafal Tatol
+	 */
+	private class GetGamePlayers extends AsyncTask<String, Void, String> {
+
+		private GamePlayersActivity mGamePlayersActivity;
+		private ProgressDialog mProgressDialog;
+
+		public GetGamePlayers(GamePlayersActivity gamePlayersActivity) {
+			mGamePlayersActivity = gamePlayersActivity;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mProgressDialog = new ProgressDialog(mGamePlayersActivity);
+			mProgressDialog.setIndeterminate(true);
+			mProgressDialog.setCancelable(false);
+			mProgressDialog.setMessage("Connecting...");
+			mProgressDialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String response = null;
+			response = getGamePlayers(params[0]);
+			return response;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			try {
+				JSONArray jsonArray = new JSONArray(result);
+				fillPlayersList(jsonArray);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			if (mProgressDialog.isShowing()) {
+				mProgressDialog.dismiss();
+			}
+		}
+
+		public String getGamePlayers(String gameId) {
+			String result = null;
+			try {
+				List<Header> headers = new ArrayList<Header>();
+				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
+
+				HttpServices httpService = new HttpServices(mGamePlayersActivity);
+				result = httpService.getRequest(Constants.URI_GAMES + "/" + gameId + Constants.PLAYERS, headers);
+				Log.i("getGamePlayers result: ", result);
+			} catch (Exception e) {
+				Log.e("getGamePlayers ERROR", e.toString());
+			}
+			return result;
+		}
+
+		public void fillPlayersList(JSONArray jsonArray) throws JSONException {
+			ArrayList<String> playersList = new ArrayList<String>();
+			if (jsonArray != null) {
+				for (int i = 0; i < jsonArray.length(); i++) {
+					playersList.add(jsonArray.get(i).toString());
+				}
+			}
+			Log.i("playersList.size = ", String.valueOf(playersList.size()));
+			mGamePlayersActivity.setListView(playersList);
 		}
 	}
 }
