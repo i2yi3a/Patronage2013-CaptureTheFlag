@@ -13,15 +13,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
 import com.blstream.ctf1.domain.GameBasicListFilter;
+import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 public class GameListActivity extends ListActivity implements OnClickListener {
@@ -67,9 +64,13 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		GameList gameList = new GameList(this, gameBasicListFilter);
-		gameList.execute();
-		super.onResume();
+        super.onResume();
+        if(NetworkService.isDeviceOnline(this)){
+            GameList gameList = new GameList(this, gameBasicListFilter);
+            gameList.execute();
+        } else {
+            Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+        }
 	}
 
 	@Override

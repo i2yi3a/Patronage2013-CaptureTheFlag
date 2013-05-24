@@ -210,10 +210,10 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 				gameInfo.setPointsMax(mMaxPoints);
 
 				if (mId == null) {
-					CreateGame createGame = new CreateGame(this, GameListActivity.class, gameInfo);
+					CreateGame createGame = new CreateGame(this, gameInfo);
 					createGame.execute();
 				} else {
-					EditGame editGame = new EditGame(this, GameListActivity.class, mId, GameStatusType.NEW.toString(), gameInfo);
+					EditGame editGame = new EditGame(this, mId, GameStatusType.NEW.toString(), gameInfo);
 					editGame.execute();
 				}
 			} else {

@@ -65,6 +65,7 @@ public class Register extends AsyncTask<Void, Void, Boolean> {
 		if (successful == true) {
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
+            mCurrentActivity.finish();
 		}
 	}
 
