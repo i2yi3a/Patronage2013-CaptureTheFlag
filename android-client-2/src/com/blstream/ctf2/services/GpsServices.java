@@ -22,8 +22,8 @@ public class GpsServices {
 	}
 
 	public LatLng getYourLatLang() throws CtfException {
-		if(!areServicesAvalible()){
-			throw new CtfException(mCtx.getString(R.string.google_services_not_avalible));
+		if(!areServicesAvailable()){
+			throw new CtfException(mCtx.getString(R.string.google_services_not_available));
 		}
 		else{
 			LocationManager locationManager = (LocationManager)mCtx.getSystemService(Context.LOCATION_SERVICE); 
@@ -31,7 +31,7 @@ public class GpsServices {
 			return new LatLng(location.getLatitude(),location.getLongitude());
 		}
 	}
-	public boolean areServicesAvalible() {
+	public boolean areServicesAvailable() {
 		int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(mCtx);
 		if (ConnectionResult.SUCCESS == result) {
 			return true;

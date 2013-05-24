@@ -77,6 +77,6 @@
 	<string name="error_code_103">Player cannot be sign out</string>
 	<string name="error_code_104">Player is already signed in</string>
 	<string name="error_code_105">Game reached maximum of players</string>
-	<string name="google_services_not_avalible">Google services are not currently avalible at this device</string>
+	<string name="google_services_not_available">Google services are not currently avalible at this device</string>
     
 </resources>

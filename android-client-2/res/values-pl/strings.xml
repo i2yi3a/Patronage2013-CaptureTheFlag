@@ -72,5 +72,5 @@
 	<string name="error_code_103">Gracz nie może zostać wypisany</string>
 	<string name="error_code_104">Gracz już jest zapisany</string>
 	<string name="error_code_105">Maksymalna liczba graczy w grze została osiągnięta</string>
-	<string name="google_services_not_avalible">Brak google services na urządzeniu</string>
+	<string name="google_services_not_available">Brak google services na urządzeniu</string>
 </resources>
