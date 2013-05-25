@@ -16,6 +16,7 @@ import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.domain.Localization;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * From JSON to any class
@@ -88,7 +89,7 @@ public class JSONConverter {
 
 	/**
 	 * @param jsonObject
-	 * @return
+	 * @return GameExtendedInfo
 	 * @throws JSONException
 	 * @author Rafał Olichwer
 	 */
@@ -98,10 +99,12 @@ public class JSONConverter {
 		result.setDuration(toMinutes(jsonObject.getLong("duration")));
 		result.setGameStatusType(GameStatusType.fromString(jsonObject.getString("status")));
 		JSONObject jsonLocalization = jsonObject.getJSONObject("localization");
-		// JSONObject jsonLatLng = jsonLocalization.getJSONObject("latLng");
+		JSONArray jsonLatLng = jsonLocalization.getJSONArray("latLng");
+		
 		Localization localization = new Localization();
 		localization.setName(jsonLocalization.getString("name"));
 		localization.setRadius(jsonLocalization.getDouble("radius"));
+		localization.setLatLng(new LatLng(jsonLatLng.getDouble(0),jsonLatLng.getDouble(1)));
 		result.setLocalization(localization);
 		result.setId(jsonObject.getString("id"));
 		result.setName(jsonObject.getString("name"));
