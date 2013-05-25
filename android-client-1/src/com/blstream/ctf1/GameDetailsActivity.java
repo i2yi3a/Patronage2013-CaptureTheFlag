@@ -116,6 +116,7 @@ public class GameDetailsActivity extends ListActivity implements OnClickListener
             if (NetworkService.isDeviceOnline(this)) {
                 DeleteGame deleteGameAsync = new DeleteGame(this, mId);
                 deleteGameAsync.execute();
+                finish();
             } else {
                 Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
             }
