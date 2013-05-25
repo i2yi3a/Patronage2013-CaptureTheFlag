@@ -1,22 +1,33 @@
 package com.blstream.ctf2.activity.game;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint.Join;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
+import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.services.GameServices;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * @author Rafal Tatol
  */
-public class GameDetailsActivity extends Activity {
+public class GameDetailsActivity extends FragmentActivity {
 
 	private String mGameId;
 	public TextView mGameNameTextView;
@@ -38,10 +49,9 @@ public class GameDetailsActivity extends Activity {
 	public TextView mTeamBlueBaseLocalization;
 	public Button mJoinButton;
 	public Button mEditButton;
-	
 
 
-	@Override
+	private GoogleMap mMap;	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_details);
@@ -66,6 +76,8 @@ public class GameDetailsActivity extends Activity {
 
 		mJoinButton = (Button) findViewById(R.id.joinButton);
 		mEditButton = (Button) findViewById(R.id.editButton);
+
+		mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 	}
 
 	@Override
@@ -102,5 +114,44 @@ public class GameDetailsActivity extends Activity {
 			startActivity(intent);
 			break;
 		}
+	}
+
+	public void setMapElements(GameDetails d) {
+		int radius = d.getLocalization().getRadius();
+		LatLng centerPoint = new LatLng(d.getLocalization().getLat(), d.getLocalization().getLng());
+		LatLng pointBaseRed = new LatLng(d.getTeamRed().getBaseLocalization().getLat(), d.getTeamRed().getBaseLocalization().getLng());
+		LatLng pointBaseBlue = new LatLng(d.getTeamBlue().getBaseLocalization().getLat(), d.getTeamBlue().getBaseLocalization().getLng());
+
+		final int MAP_HEIGHT = 300;
+		final int MAP_PADDING = 50;
+
+		mMap.addMarker(new MarkerOptions().position(pointBaseRed).title(d.getTeamRed().getName()).icon(BitmapDescriptorFactory.fromResource(R.drawable.red)));
+
+		mMap.addMarker(new MarkerOptions().position(pointBaseBlue).title(d.getTeamBlue().getName()).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue)));
+
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int width = metrics.heightPixels;
+
+		mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(getBounds(radius, centerPoint), width, MAP_HEIGHT, MAP_PADDING));
+
+		CircleOptions circleOptions = new CircleOptions().center(centerPoint).radius(radius).strokeColor(Color.RED);
+
+		mMap.addCircle(circleOptions);
+	}
+
+	public LatLngBounds getBounds(double radius, LatLng centerPoint) {
+		final int DEGREE_180 = 180;
+		final double r = radius / 1000;
+		final double rEarth = 6378.137;
+		LatLngBounds bounds = null;
+
+		double leftLng = centerPoint.longitude - (r / rEarth) * (DEGREE_180 / Math.PI) / Math.cos(centerPoint.latitude * DEGREE_180 / Math.PI);
+		LatLng leftPoint = new LatLng(centerPoint.latitude, leftLng);
+		double rightLng = centerPoint.longitude + (r / rEarth) * (DEGREE_180 / Math.PI) / Math.cos(centerPoint.latitude * DEGREE_180 / Math.PI);
+		LatLng rightPoint = new LatLng(centerPoint.latitude, rightLng);
+
+		bounds = new LatLngBounds.Builder().include(rightPoint).include(leftPoint).build();
+		return bounds;
 	}
 }

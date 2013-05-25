@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.blstream.ctf2.R;
+<<<<<<< .merge_file_a03936
 import com.blstream.ctf2.exception.CtfException;
 import com.blstream.ctf2.services.GpsServices;
+=======
+>>>>>>> .merge_file_a08616
 import com.google.analytics.tracking.android.EasyTracker;
 
 /**

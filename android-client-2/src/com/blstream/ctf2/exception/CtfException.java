@@ -1,8 +1,14 @@
 package com.blstream.ctf2.exception;
 
+<<<<<<< .merge_file_a09012
 import com.blstream.ctf2.Constants;
 
 import android.content.res.Resources;
+=======
+import android.content.res.Resources;
+
+import com.blstream.ctf2.Constants;
+>>>>>>> .merge_file_a09116
 /**
  * 
  * @author Karol Firmanty
