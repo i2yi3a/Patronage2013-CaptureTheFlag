@@ -9,7 +9,7 @@ import com.blstream.ctf1.R;
 import com.blstream.ctf1.service.GameService;
 
 /**
- * @author Piotr Marczycki
+ * @author Piotr Marczycki,Rafal Olichwer
  */
 public class DeleteGame extends AsyncTask<Void, Void, Void> {
 	private Activity mCurrentActivity;
@@ -51,6 +51,7 @@ public class DeleteGame extends AsyncTask<Void, Void, Void> {
 		// to game_already_deleted or something similiar
 		if (mErrorString != null) {
 			Toast.makeText(mCurrentActivity, mErrorString, Toast.LENGTH_SHORT).show();
+            mCurrentActivity.finish();
 		} else {
 			Toast.makeText(mCurrentActivity, R.string.game_deleted, Toast.LENGTH_SHORT).show();
 		}
