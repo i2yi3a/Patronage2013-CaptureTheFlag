@@ -72,7 +72,7 @@
 	<string name="error_code_4">Resource already exists</string>
 	<string name="error_code_5">Resource cannot be deleted</string>
 	<string name="error_code_100">Cannot create a new player</string>
-	<string name="error_code_100">Player already exists</string>
+	<string name="error_code_101">Player already exists</string>
 	<string name="error_code_102">Player cannot be sign in</string>
 	<string name="error_code_103">Player cannot be sign out</string>
 	<string name="error_code_104">Player is already signed in</string>
