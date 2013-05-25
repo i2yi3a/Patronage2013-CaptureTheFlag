@@ -13,12 +13,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TabHost.TabSpec;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
 import com.blstream.ctf1.domain.GameBasicListFilter;
-import com.blstream.ctf1.service.NetworkService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 public class GameListActivity extends ListActivity implements OnClickListener {
@@ -26,7 +31,8 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 	private Button mBtnCreateGame, mBtnSearch, mContextMenu;
 	private EditText mSearchGames;
 	private GameBasicListFilter gameBasicListFilter;
-
+	private TabHost mTabHost;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,16 +46,16 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 		mContextMenu.setOnClickListener(this);
 		mSearchGames = (EditText) findViewById(R.id.editTextSearchGame);
 		gameBasicListFilter = new GameBasicListFilter();
-
+		
+	//	createTabHost();
+		
 		ListView lv = getListView();
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				String mID = ((TextView) view.findViewById(R.id.id)).getText().toString();
-				String gameName = ((TextView) view.findViewById(R.id.game_name)).getText().toString();
 				Intent intent = new Intent(getApplicationContext(), GameDetailsActivity.class);
 				intent.putExtra(Constants.EXTRA_KEY_ID, mID);
-				intent.putExtra("GAME_NAME", gameName);
 				startActivity(intent);
 			}
 		});
@@ -64,13 +70,9 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-        super.onResume();
-        if(NetworkService.isDeviceOnline(this)){
-            GameList gameList = new GameList(this, gameBasicListFilter);
-            gameList.execute();
-        } else {
-            Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
-        }
+		GameList gameList = new GameList(this, gameBasicListFilter);
+		gameList.execute();
+		super.onResume();
 	}
 
 	@Override
@@ -83,6 +85,7 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.btnSearch:
+			IssueTracker.saveClick(this, mBtnSearch);
 			gameBasicListFilter = new GameBasicListFilter(mSearchGames.getText().toString(), null, null);
 			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
@@ -96,8 +99,6 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		// AdapterContextMenuInfo info = (AdapterContextMenuInfo)
-		// item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.Profile:
 			return true;
@@ -109,5 +110,30 @@ public class GameListActivity extends ListActivity implements OnClickListener {
 		default:
 			return super.onContextItemSelected(item);
 		}
+	}
+	
+	public void createTabHost() {
+		mTabHost = (TabHost) findViewById(R.id.tabHost);
+		mTabHost.setup();
+		TabSpec spec1 = mTabHost.newTabSpec("TAB1");
+		spec1.setContent(R.id.tab1);
+		spec1.setIndicator("Wszystkie");
+		
+		TabSpec spec2 = mTabHost.newTabSpec("TAB2");
+		spec2.setContent(R.id.tab2);
+		spec2.setIndicator("Najblizej");
+		
+		TabSpec spec3 = mTabHost.newTabSpec("TAB3");
+		spec3.setContent(R.id.tab3);
+		spec3.setIndicator("Zakonczone");
+		
+		TabSpec spec4 = mTabHost.newTabSpec("TAB4");
+		spec4.setContent(R.id.tab4);
+		spec4.setIndicator("Moje");
+		
+		mTabHost.addTab(spec1);
+		mTabHost.addTab(spec2);
+		mTabHost.addTab(spec3);
+		mTabHost.addTab(spec4);
 	}
 }
