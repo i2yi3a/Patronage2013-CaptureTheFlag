@@ -213,8 +213,12 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 					CreateGame createGame = new CreateGame(this, gameInfo);
 					createGame.execute();
 				} else {
-					EditGame editGame = new EditGame(this, mId, GameStatusType.NEW.toString(), gameInfo);
-					editGame.execute();
+					if(NetworkService.isDeviceOnline(this)) {
+						EditGame editGame = new EditGame(this, mId, GameStatusType.NEW.toString(), gameInfo);
+						editGame.execute();
+					}else {
+						Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT);
+					}
 				}
 			} else {
 				Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
