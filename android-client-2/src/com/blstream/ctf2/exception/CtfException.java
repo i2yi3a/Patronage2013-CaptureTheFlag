@@ -1,8 +1,8 @@
 package com.blstream.ctf2.exception;
 
-import com.blstream.ctf2.Constants;
-
 import android.content.res.Resources;
+
+import com.blstream.ctf2.Constants;
 /**
  * 
  * @author Karol Firmanty
