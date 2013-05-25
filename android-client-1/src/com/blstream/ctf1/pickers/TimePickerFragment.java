@@ -16,29 +16,29 @@ import android.app.TimePickerDialog;
  */
 
 public class TimePickerFragment extends DialogFragment implements
-		TimePickerDialog.OnTimeSetListener {
+        TimePickerDialog.OnTimeSetListener {
 
-	private Handler dialogPickerHandler;
+    private Handler dialogPickerHandler;
 
-	@Override
-	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		final Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int minute = c.get(Calendar.MINUTE + 1);
-		return new TimePickerDialog(getActivity(), this, hour, minute,
-				DateFormat.is24HourFormat(getActivity()));
-	}
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE + 1);
+        return new TimePickerDialog(getActivity(), this, hour, minute,
+                DateFormat.is24HourFormat(getActivity()));
+    }
 
-	@Override
-	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-		Message msg = new Message();
-		Bundle data = new Bundle();
-		data.putString("time", hourOfDay + ":" + minute + ":00");
-		msg.setData(data);
-		dialogPickerHandler.sendMessage(msg);
-	}
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        Message msg = new Message();
+        Bundle data = new Bundle();
+        data.putString("time", hourOfDay + ":" + minute + ":00");
+        msg.setData(data);
+        dialogPickerHandler.sendMessage(msg);
+    }
 
-	public void setHandler(Handler h) {
-		dialogPickerHandler = h;
-	}
+    public void setHandler(Handler h) {
+        dialogPickerHandler = h;
+    }
 }
