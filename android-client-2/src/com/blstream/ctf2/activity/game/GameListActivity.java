@@ -76,6 +76,7 @@ public class GameListActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.logout_button:
 			Toast.makeText(this, R.string.logout_succesful, Toast.LENGTH_SHORT).show();
+			//TODO logout implementation (Marcin Sareło?)
 			finish();
 			break;
 		}

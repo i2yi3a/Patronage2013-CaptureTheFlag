@@ -2,6 +2,7 @@ package com.blstream.ctf2.activity.game;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint.Join;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,8 @@ public class GameDetailsActivity extends Activity {
 	public TextView mTeamBlueBaseLocalization;
 	public Button mJoinButton;
 	public Button mEditButton;
+	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,8 @@ public class GameDetailsActivity extends Activity {
 	public void onClickButton(View v) {
 		switch (v.getId()) {
 		case R.id.joinButton:
+			GameServices mGameServices = new GameServices(this);
+			mGameServices.joinTheGame(GameDetailsActivity.this, mGameId);
 			break;
 		case R.id.editButton:
 			break;

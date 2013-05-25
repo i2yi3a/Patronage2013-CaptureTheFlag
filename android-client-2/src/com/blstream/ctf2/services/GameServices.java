@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
@@ -73,6 +74,10 @@ public class GameServices extends Services {
 	public void getGamePlayers(GamePlayersActivity gamePlayersActivity, String mGameId) {
 		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gamePlayersActivity);
 		getGamePlayersTask.execute(mGameId);
+	}
+	public void joinTheGame(GameDetailsActivity mGameDetailsActivity, String mGameId) {
+		JoinTheGame joinTheGame = new JoinTheGame(mGameDetailsActivity);
+		joinTheGame.execute(mGameId);
 	}
 
 	/**
@@ -292,9 +297,9 @@ public class GameServices extends Services {
 			String result = null;
 			try {
 				List<Header> headers = new ArrayList<Header>();
-				headers.add(new BasicHeader("Accept", "application/json"));
-				headers.add(new BasicHeader("Content-Type", "application/json"));
-				headers.add(new BasicHeader("Authorization", typeToken + " " + playerToken));
+				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
 				HttpServices httpService = new HttpServices(mGameListActivity);
 
 				result = httpService.getRequest(Constants.URI_GAMES, headers);
@@ -396,6 +401,81 @@ public class GameServices extends Services {
 			}
 			Log.i("playersList.size = ", String.valueOf(playersList.size()));
 			mGamePlayersActivity.setListView(playersList);
+		}
+	}
+
+	/**
+	 * 
+	 * @author Marcin Sareło
+	 */
+	private class JoinTheGame extends AsyncTask<String, Void, String> {
+
+		private GameDetailsActivity mGameDetailsActivity;
+		private ProgressDialog mProgressDialog;
+
+		public JoinTheGame(GameDetailsActivity gameDetailsActivity) {
+			mGameDetailsActivity = gameDetailsActivity;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mProgressDialog = new ProgressDialog(mGameDetailsActivity);
+			mProgressDialog.setIndeterminate(true);
+			mProgressDialog.setCancelable(false);
+			mProgressDialog.setMessage("Joining the game...");
+			mProgressDialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String response = null;
+			response = joinTheGameRequest(params[0]);
+			return response;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			JSONObject jsonResult;
+			try {
+				jsonResult = new JSONObject(result);
+				if (!jsonResult.has(Constants.ERROR)) {
+					Toast.makeText(mGameDetailsActivity, R.string.game_sign_in, Toast.LENGTH_SHORT).show();
+
+				} else {
+					AlertDialog.Builder builder = new AlertDialog.Builder(mGameDetailsActivity);
+					AlertDialog dialog;
+					builder.setMessage(jsonResult.getString(Constants.ERROR_DESCRIPTION));
+					builder.setTitle(jsonResult.getString(Constants.ERROR));
+					builder.setPositiveButton(R.string.ok, null);
+					dialog = builder.create();
+					dialog.show();
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			if (mProgressDialog.isShowing()) {
+				mProgressDialog.dismiss();
+			}
+		}
+
+		public String joinTheGameRequest(String gameId) {
+			String result = null;
+			try {
+				List<Header> headers = new ArrayList<Header>();
+				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
+
+				HttpServices httpService = new HttpServices(mGameDetailsActivity);
+				result = httpService.putRequest(Constants.URI_GAMES + "/" + gameId + Constants.SIGN_IN, headers);
+				Log.i("joinTheGame result: ", result);
+			} catch (Exception e) {
+				Log.e("joinTheGame ERROR", e.toString());
+			}
+			return result;
 		}
 	}
 }
