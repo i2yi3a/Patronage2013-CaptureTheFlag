@@ -64,8 +64,8 @@ public class PlayerService implements NetworkOperationService {
 		JSONArray jsonArrayResult = mNetworkService.requestPost(Constants.URL_SERVER + Constants.URI_REGISTER_PLAYER, headers, jsonObject.toString());
 		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
-		if (jsonObjectResult.getInt("error_code") != 0) {
-			throw new CTFException(mContext.getResources(), jsonObjectResult.getInt("error_code"), jsonObjectResult.getString("error_description"));
+		if (jsonObjectResult.getInt(JSONFields.ERROR_CODE) != 0) {
+			throw new CTFException(mContext.getResources(), jsonObjectResult.getInt(JSONFields.ERROR_CODE), jsonObjectResult.getString("error_description"));
 		}
 
 	}
