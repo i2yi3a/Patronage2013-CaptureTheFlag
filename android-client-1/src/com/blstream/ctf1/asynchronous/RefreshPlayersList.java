@@ -1,6 +1,5 @@
 package com.blstream.ctf1.asynchronous;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -8,10 +7,8 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.R;
-import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.list.Helper;
 import com.blstream.ctf1.list.PlayersListAdapter;
 import com.blstream.ctf1.service.GameService;

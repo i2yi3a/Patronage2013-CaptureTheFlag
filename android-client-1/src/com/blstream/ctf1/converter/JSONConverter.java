@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.blstream.ctf1.Constants;
+import com.blstream.ctf1.JSONFields;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
@@ -76,10 +77,10 @@ public class JSONConverter {
 			GameBasicInfo gameBasicInfo = new GameBasicInfo();
 			JSONObject jo = jsonArray.getJSONObject(i);
 
-			gameBasicInfo.setId(jo.getString("id"));
-			gameBasicInfo.setName(jo.getString("name"));
-			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString("status")));
-			gameBasicInfo.setOwner(jo.getString("owner"));
+			gameBasicInfo.setId(jo.getString(JSONFields.ID));
+			gameBasicInfo.setName(jo.getString(JSONFields.NAME));
+			gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString(JSONFields.STATUS)));
+			gameBasicInfo.setOwner(jo.getString(JSONFields.OWNER));
 
 			gameBasicInfos.add(gameBasicInfo);
 		}
@@ -95,22 +96,22 @@ public class JSONConverter {
 	 */
 	public static GameExtendedInfo toGameExtendedInfo(JSONObject jsonObject) throws JSONException, ParseException {
 		GameExtendedInfo result = new GameExtendedInfo();
-		result.setDescription(jsonObject.getString("description"));
-		result.setDuration(toMinutes(jsonObject.getLong("duration")));
-		result.setGameStatusType(GameStatusType.fromString(jsonObject.getString("status")));
-		JSONObject jsonLocalization = jsonObject.getJSONObject("localization");
-		JSONArray jsonLatLng = jsonLocalization.getJSONArray("latLng");
+		result.setDescription(jsonObject.getString(JSONFields.DESCRIPTION));
+		result.setDuration(toMinutes(jsonObject.getLong(JSONFields.DURATION)));
+		result.setGameStatusType(GameStatusType.fromString(jsonObject.getString(JSONFields.STATUS)));
+		JSONObject jsonLocalization = jsonObject.getJSONObject(JSONFields.LOCALIZATION);
+		JSONArray jsonLatLng = jsonLocalization.getJSONArray(JSONFields.LAT_LNG);
 		
 		Localization localization = new Localization();
-		localization.setName(jsonLocalization.getString("name"));
-		localization.setRadius(jsonLocalization.getDouble("radius"));
+		localization.setName(jsonLocalization.getString(JSONFields.NAME));
+		localization.setRadius(jsonLocalization.getDouble(JSONFields.RADIUS));
 		localization.setLatLng(new LatLng(jsonLatLng.getDouble(0),jsonLatLng.getDouble(1)));
 		result.setLocalization(localization);
-		result.setId(jsonObject.getString("id"));
-		result.setName(jsonObject.getString("name"));
-		result.setOwner(jsonObject.getString("owner"));
-		result.setPlayersMax(jsonObject.getInt("players_max"));
-		result.setPointsMax(jsonObject.getInt("points_max"));
+		result.setId(jsonObject.getString(JSONFields.ID));
+		result.setName(jsonObject.getString(JSONFields.NAME));
+		result.setOwner(jsonObject.getString(JSONFields.OWNER));
+		result.setPlayersMax(jsonObject.getInt(JSONFields.PLAYERS_MAX));
+		result.setPointsMax(jsonObject.getInt(JSONFields.POINTS_MAX));
 		Date timeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).parse(jsonObject.getString("time_start"));
 		result.setTimeStart(timeStart);
 		return result;

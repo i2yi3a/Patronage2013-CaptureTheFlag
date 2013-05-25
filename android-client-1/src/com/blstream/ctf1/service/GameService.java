@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.blstream.ctf1.Constants;
+import com.blstream.ctf1.JSONFields;
 import com.blstream.ctf1.converter.GameBasicListFilterConverter;
 import com.blstream.ctf1.converter.GameLocalizationListFilterConverter;
 import com.blstream.ctf1.converter.JSONConverter;
@@ -106,23 +107,22 @@ public class GameService implements NetworkOperationService {
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
 		if (id != null)
-			jsonObject.put("id", id);
+			jsonObject.put(JSONFields.ID, id);
 		if (status != null)
-			jsonObject.put("status", status);
-		jsonObject.put("name", gameName);
-		jsonObject.put("description", description);
-		jsonObject.put("time_start", timeStart);
-		jsonObject.put("duration", duration);
-		jsonObject.put("points_max", pointsMax);
-		jsonObject.put("players_max", playersMax);
-		localizationObject.put("name", localizationName);
-		localizationObject.put("radius", radius);
+			jsonObject.put(JSONFields.STATUS, status);
+		jsonObject.put(JSONFields.NAME, gameName);
+		jsonObject.put(JSONFields.DESCRIPTION, description);
+		jsonObject.put(JSONFields.TIME_START, timeStart);
+		jsonObject.put(JSONFields.DURATION, duration);
+		jsonObject.put(JSONFields.POINTS_MAX, pointsMax);
+		jsonObject.put(JSONFields.PLAYERS_MAX, playersMax);
+		localizationObject.put(JSONFields.NAME, localizationName);
 		JSONArray latLng = new JSONArray();
 		latLng.put(lat);
 		latLng.put(lng);
-		localizationObject.put("latLng", latLng);
-		localizationObject.put("radius", radius);
-		jsonObject.put("localization", localizationObject);
+		localizationObject.put(JSONFields.LAT_LNG, latLng);
+		localizationObject.put(JSONFields.RADIUS, radius);
+		jsonObject.put(JSONFields.LOCALIZATION, localizationObject);
 
 		return jsonObject;
 	}
@@ -138,7 +138,7 @@ public class GameService implements NetworkOperationService {
 
 		JSONObject jsonObjectResult = (JSONObject) jsonArrayResult.get(0);
 
-		if (!jsonObjectResult.has("id")) {
+		if (!jsonObjectResult.has(JSONFields.ID)) {
 			throw new CTFException(mContext.getResources(), jsonObjectResult.getInt(SERVER_RESPONSE_ERROR_CODE),
 					jsonObjectResult.getString(SERVER_RESPONSE_ERROR_DESCRIPTION));
 		}
