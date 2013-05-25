@@ -17,10 +17,9 @@ import static com.blstream.ctf1.service.StorageConstants.ID_LOGGED_PLAYER;
  * @author Adrian Swarcewicz
  */
 public class StorageService {
+	
 	private StorageOpenHelper mStorageOpenHelper;
-
 	private Context mContext;
-
 	private SQLiteDatabase mDb;
 
 	public StorageService(Context context) {
@@ -60,7 +59,7 @@ public class StorageService {
 	}
 
 	/**
-	 * @return Last saved logged player data or null if logged player data not
+	 * @return Last saved logged player data, or null if logged player data not
 	 *         found
 	 */
 	public LoggedPlayer getLoggedPlayer() {
@@ -76,6 +75,7 @@ public class StorageService {
 			loggedPlayer.setTokenType(cursor.getString(StorageConstants.TOKEN_TYPE_COLUMN));
 			loggedPlayer.setScope(cursor.getString(StorageConstants.SCOPE_COLUMN));
 		}
+		cursor.close();
 		return loggedPlayer;
 	}
 }
