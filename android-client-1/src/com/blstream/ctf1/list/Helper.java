@@ -3,7 +3,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
+/**
+ * 
+ * @author Rafal Olichwer
+ * class responsible to expand the listView to its max size,
+ * so it won't be a scrolling element.
+ *
+ */
 public class Helper {
     public static void getListViewSize(ListView myListView) {
         PlayersListAdapter myListAdapter = (PlayersListAdapter) myListView.getAdapter();
