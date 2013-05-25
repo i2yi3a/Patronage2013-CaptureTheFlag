@@ -59,7 +59,7 @@ public class StorageService {
 	}
 
 	/**
-	 * @return Last saved logged player data or null if logged player data not
+	 * @return Last saved logged player data, or null if logged player data not
 	 *         found
 	 */
 	public LoggedPlayer getLoggedPlayer() {
