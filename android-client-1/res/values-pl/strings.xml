@@ -74,6 +74,8 @@
     <string name="game_delete">Usuń grę</string>
     <string name="game_edit">Edytuj grę</string>
     <string name="game_players">Zapisani gracze</string>
+    <string name="game_players_red">Czerwoni</string>
+    <string name="game_players_blue">Niebiescy</string>
 
     <!-- JoinGame -->
     <string name="game_joined">Dołączyłeś do gry</string>
@@ -93,6 +95,7 @@
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_102">Nie możesz dołączyć do gry już rozpoczętej</string>
+    <string name="error_code_105">Maksymalna ilość graczy została osiągnięta</string>
      <string name="error_code_already_signed">Jesteś już zapisany do tej gry</string>
     <string name="error_code_103">Nie wyraziłeś wcześniej chęci wzięcia udziału w tej grze</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>

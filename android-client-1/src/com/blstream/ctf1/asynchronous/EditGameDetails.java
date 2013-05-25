@@ -73,6 +73,9 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 					.getPointsMax()));
 			mCurrentActivity.mBtnStartDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT).format(result.getTimeStart()));
 			mCurrentActivity.mBtnStartTime.setText(new SimpleDateFormat(Constants.TIME_FORMAT).format(result.getTimeStart()));
+			mCurrentActivity.latitude = result.getLocalization().getLatLng().latitude;
+            mCurrentActivity.longitude= result.getLocalization().getLatLng().longitude;
+            mCurrentActivity.radius = result.getLocalization().getRadius();
 		}
 	}
 

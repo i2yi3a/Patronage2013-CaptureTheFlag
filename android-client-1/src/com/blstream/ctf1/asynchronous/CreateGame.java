@@ -5,7 +5,6 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -21,8 +20,6 @@ import com.blstream.ctf1.service.GameService;
 public class CreateGame extends AsyncTask<Void, Void, Void> {
 
 	private Activity mCurrentActivity;
-
-	private Class<?> mSuccessfullActivity;
 
 	private String mGameName;
 
@@ -55,9 +52,8 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 
 	}
 
-	public CreateGame(Activity currentActivity, Class<?> successfullActivity, GameExtendedInfo gameInfo) {
+	public CreateGame(Activity currentActivity, GameExtendedInfo gameInfo) {
 		mCurrentActivity = currentActivity;
-		mSuccessfullActivity = successfullActivity;
 		mGameName = gameInfo.getName();
 		mDescription = gameInfo.getDescription();
 		Date timeStart = gameInfo.getTimeStart();
@@ -92,8 +88,7 @@ public class CreateGame extends AsyncTask<Void, Void, Void> {
 			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
 		} else {
 			Toast.makeText(mCurrentActivity, R.string.game_created, Toast.LENGTH_SHORT).show();
-			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
-			mCurrentActivity.startActivity(intent);
+            mCurrentActivity.finish();
 		}
 	}
 

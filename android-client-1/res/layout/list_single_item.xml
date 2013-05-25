@@ -8,11 +8,22 @@
     <TextView
         android:id="@+id/id"
         android:layout_width="fill_parent"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/game_name"
         android:layout_width="fill_parent"
-        android:layout_height="30dp" />
+        android:layout_height="20dp" />
 
+	<TextView
+        android:id="@+id/game_owner"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp" />
+
+	<TextView
+        android:id="@+id/game_status"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp" />
+	
 </LinearLayout>
