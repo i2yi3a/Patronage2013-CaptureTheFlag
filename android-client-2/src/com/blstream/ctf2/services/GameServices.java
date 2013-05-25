@@ -154,6 +154,7 @@ public class GameServices extends Services {
 			mGameDetailsActivity.mTeamRedBaseLocalization.setText(gameDetails.getTeamRed().getBaseLocalization().toString());
 			mGameDetailsActivity.mTeamBlueName.setText(gameDetails.getTeamBlue().getName());
 			mGameDetailsActivity.mTeamBlueBaseLocalization.setText(gameDetails.getTeamBlue().getBaseLocalization().toString());
+			mGameDetailsActivity.setMapElements(gameDetails);
 			if (gameDetails.getStatus().equals(STATUS_NEW)) {
 				mGameDetailsActivity.mJoinButton.setEnabled(true);
 				if (gameDetails.getOwner().equals(new UserServices(mGameDetailsActivity).getUser().getName())) {
