@@ -22,5 +22,9 @@
 @property (strong, nonatomic) NSString *localizationName;
 @property (strong, nonatomic) CLLocation *localization;
 @property (strong, nonatomic) NSNumber *localizationRadius;
+@property (strong, nonatomic) NSString *redTeamBaseName;
+@property (strong, nonatomic) CLLocation *redTeamBaseLocalization;
+@property (strong, nonatomic) NSString *blueTeamBaseName;
+@property (strong, nonatomic) CLLocation *blueTeamBaseLocalization;
 
 @end
