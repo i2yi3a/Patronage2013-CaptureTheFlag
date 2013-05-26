@@ -1,7 +1,6 @@
 package com.blstream.ctf2.activity.game;
 
 import android.content.Intent;
-import android.graphics.Paint.Join;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -50,8 +49,9 @@ public class GameDetailsActivity extends FragmentActivity {
 	public Button mJoinButton;
 	public Button mEditButton;
 
+	private GoogleMap mMap;
 
-	private GoogleMap mMap;	@Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_details);

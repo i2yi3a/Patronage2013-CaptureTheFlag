@@ -11,10 +11,8 @@ import android.widget.ListView;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.services.GameServices;
-<<<<<<< .merge_file_a05248
-=======
 import com.google.analytics.tracking.android.EasyTracker;
->>>>>>> .merge_file_a01220
+
 
 /**
  * @author Rafal Tatol
@@ -43,10 +41,7 @@ public class GamePlayersActivity extends ListActivity {
 		GameServices mGameServices = new GameServices(this);
 		mGameServices.getGamePlayers(GamePlayersActivity.this, mGameId);
 	}
-<<<<<<< .merge_file_a05248
 
-=======
-	
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -58,8 +53,7 @@ public class GamePlayersActivity extends ListActivity {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
 	}
-	
->>>>>>> .merge_file_a01220
+
 	public void setListView(ArrayList<String> playersList) {
 		mPlayersList = playersList;
 		mListAdapter = new ArrayAdapter<String>(this, R.layout.players_list_item, mPlayersList);
