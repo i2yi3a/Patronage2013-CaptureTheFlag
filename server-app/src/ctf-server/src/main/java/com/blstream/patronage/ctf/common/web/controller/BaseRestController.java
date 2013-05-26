@@ -62,6 +62,15 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         this.uiClassType = uiClassType;
     }
 
+    private ErrorCodeType validator(UI request){
+        Validator  validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(request);
+        if (violations.size()>0){
+            return ErrorCodeType.VALIDATION_ERROR;
+        }
+        return  null;
+    }
+
     /**
      * This is an abstract method where service is set.
      * @param service
@@ -85,14 +94,9 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
         UI response;
         T resource = converter.convert(request);
-
-        Validator  validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(request);
-        if (violations.size()>0){
+        if(ErrorCodeType.VALIDATION_ERROR.equals(validator(request))){
             return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
         }
-
-
         try {
             resource = service.create(resource);
             response = converter.convert(resource);
@@ -122,13 +126,9 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
         UI response;
         T resource = converter.convert(request);
-
-        Validator  validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(request);
-        if (violations.size()>0){
+        if(ErrorCodeType.VALIDATION_ERROR.equals(validator(request))){
             return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
         }
-
         try {
             resource = service.update(id, resource);
             response = converter.convert(resource);

@@ -5,6 +5,7 @@ import com.blstream.patronage.ctf.model.Localization;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
@@ -22,16 +23,16 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty(required = true)
     private String id;
 
-    @NotNull
-    @NotEmpty
-    @JsonProperty(required = true)
+
+    @NotEmpty(message = "Game name cannot be empty")
+    @Length(min = 5, max = 60, message = "Name between 5 and 60 characters")
     private String name;
 
     private String description;
 
-    @NotNull
-    @NotEmpty
-    @JsonProperty(value ="time_start", required = true)
+
+    @NotEmpty(message = "time start cannot be empty")
+    @JsonProperty(value ="time_start")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeStart;
 
@@ -44,9 +45,8 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty("players_max")
     private Integer playersMax;
 
-    @NotNull
-    @NotEmpty
-    @JsonProperty(required = true)
+
+    @NotEmpty(message = "localization cannot be empty")
     private Localization localization;
 
     private GameStatusType status;

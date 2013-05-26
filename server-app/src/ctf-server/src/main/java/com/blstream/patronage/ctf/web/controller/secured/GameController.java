@@ -94,9 +94,11 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Game resource = service.findById(id);
         if (GameStatusType.NEW.equals(resource.getStatus())) {
             if (currentUser.equals(resource.getOwner())) {
-                super.update(id, request);
-                response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
-                response.setMessage(String.format("Game with id: %s was updated successfully.", resource.getId()));
+                request.setOwner(currentUser);
+                response = super.update(id, request);
+                if (ErrorCodeType.SUCCESS.equals(response)) {
+                    response.setMessage(String.format("Game with id: %s was updated successfully.", resource.getId()));
+                }
             } else {
                 response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_UPDATED, "Only game owner can update game");
             }
@@ -128,8 +130,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
         if (currentUser.equals(resource.getOwner())) {
             if (resource.getStatus().equals(GameStatusType.NEW))   {
-                super.delete(id);
-                response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+                response = super.delete(id);
+                if (ErrorCodeType.SUCCESS.equals(response)) {
+                response.setMessage(String.format("Game with id: %s was deleted successfully.", resource.getId()));
+                }
             }else {
                 response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only New Games can be deleted");
             }
