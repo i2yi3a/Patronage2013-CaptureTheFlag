@@ -14,7 +14,7 @@ public class Constants {
 	public final static String URI_GAMES = "/api/secured/games";
 	public final static String PLAYERS = "/players";
 	public final static String SIGN_IN = "/signIn";
-	
+
 
 	public final static String CONTENT_TYPE = "Content-Type";
 	public final static String ACCEPT = "Accept";
@@ -35,6 +35,6 @@ public class Constants {
 	public final static int ERROR_CODE_CANNOT_CREATE_NEW_PLAYER = 100;
 	public final static int ERROR_CODE_PLAYER_ALREADY_EXISTS = 101;
 	public final static String ID = "id";
-	
+
 	public final static String ERROR_CODE_PREFIX = "error_code_";
 }

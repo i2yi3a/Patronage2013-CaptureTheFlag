@@ -17,15 +17,15 @@ import com.google.android.maps.MapActivity;
 
 public class PickLocalizationActivity extends MapActivity {
 
-	
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_picklocalization);
-		
-		
+
+
 	}
 
 	@Override

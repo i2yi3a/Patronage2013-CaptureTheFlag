@@ -18,7 +18,7 @@ import com.blstream.ctf2.R;
  */
 
 public class CreateGameActivity extends Activity {
-	
+
 	private EditText mGameName;
 	private EditText mGameDescription;
 	private TimePicker mGameTimeStart;
@@ -29,12 +29,12 @@ public class CreateGameActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creategame);
-		
+
 		mGameName = (EditText) findViewById(R.id.editTextGameName);
 		mGameDescription = (EditText) findViewById(R.id.editTextGameDescription);
 		mGameTimeStart = (TimePicker) findViewById(R.id.timePickerTimeStart);
 		mPickLocalization = (Button) findViewById(R.id.buttonPickLocalization);
-		
+
 		mPickLocalization.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent1 = new Intent("com.blstream.ctf2.PICKLOCALIZATIONACTIVITY");
@@ -72,6 +72,6 @@ public class CreateGameActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
-	
+
 
 }
