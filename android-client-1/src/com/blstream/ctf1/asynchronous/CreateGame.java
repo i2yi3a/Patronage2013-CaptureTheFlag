@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;

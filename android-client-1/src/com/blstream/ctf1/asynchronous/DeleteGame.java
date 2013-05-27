@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.service.GameService;
@@ -30,11 +29,10 @@ public class DeleteGame extends AsyncTask<Void, Void, Boolean> {
 	public DeleteGame(Activity currentActivity, String gameId) {
 		mCurrentActivity = currentActivity;
 		mGameId = gameId;
-		
+
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_deleted);
 		mGameService = new GameService(mCurrentActivity);
 		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
-		
 	}
 
 	@Override
@@ -60,11 +58,11 @@ public class DeleteGame extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
-		
+
 		// TODO Change "Resource with ID ... doesn't exist" server response
 		// to game_already_deleted or something similiar
 		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
-		if(successful == true){
+		if (successful == true) {
 			mCurrentActivity.finish();
 		}
 	}

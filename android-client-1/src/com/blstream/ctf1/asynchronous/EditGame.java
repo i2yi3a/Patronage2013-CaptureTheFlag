@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
@@ -47,7 +46,7 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 	private double mRadius;
 
 	private String mMessageToShow;
-	
+
 	private GameService mGameService;
 	
 	private NetworkOperationProgressDialog loadingDialog;
@@ -86,7 +85,8 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 	protected Boolean doInBackground(Void... params) {
 		Boolean successful = false;
 		try {
-			mGameService.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
+			mGameService
+					.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
 			successful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -104,7 +104,7 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
 		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
-		if(successful == true){
+		if (successful == true) {
 			mCurrentActivity.finish();
 		}
 	}
