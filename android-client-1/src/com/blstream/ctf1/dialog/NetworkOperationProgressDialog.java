@@ -1,4 +1,4 @@
-package com.blstream.ctf1;
+package com.blstream.ctf1.dialog;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,7 +11,7 @@ import com.blstream.ctf1.service.NetworkOperationService;
  * 
  * @author Adrian Swarcewicz
  */
-public class ProgressDialogNetworkOperation extends ProgressDialog {
+public class NetworkOperationProgressDialog extends ProgressDialog {
 
 	boolean mCancelAttemptBefore = false;
 
@@ -19,12 +19,12 @@ public class ProgressDialogNetworkOperation extends ProgressDialog {
 
 	private NetworkOperationService mNetworkOperationService;
 
-	public ProgressDialogNetworkOperation(Context context, AsyncTask<?, ?, ?> asyncTask) {
+	public NetworkOperationProgressDialog(Context context, AsyncTask<?, ?, ?> asyncTask) {
 		super(context);
 		mAsyncTask = asyncTask;
 	}
 
-	public ProgressDialogNetworkOperation(Context context, AsyncTask<?, ?, ?> asyncTask, int theme) {
+	public NetworkOperationProgressDialog(Context context, AsyncTask<?, ?, ?> asyncTask, int theme) {
 		super(context, theme);
 		mAsyncTask = asyncTask;
 	}

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.service.PlayerService;
 import com.blstream.ctf1.service.StorageService;
@@ -31,7 +32,7 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
 	
 	private StorageService mStorageService;
 
-	private ProgressDialogNetworkOperation loadingDialog;
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
@@ -50,7 +51,8 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
 		
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.login_successful);
 		mPlayerService = new PlayerService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 		mStorageService = new StorageService(mCurrentActivity);
 		
 	}

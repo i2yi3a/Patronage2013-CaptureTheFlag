@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.service.GameService;
@@ -48,8 +49,8 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 	private String mMessageToShow;
 	
 	private GameService mGameService;
-
-	private ProgressDialogNetworkOperation loadingDialog;
+	
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
@@ -78,7 +79,7 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_edited);
 		mGameService = new GameService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override

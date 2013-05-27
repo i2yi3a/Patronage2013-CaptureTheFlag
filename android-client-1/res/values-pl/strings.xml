@@ -124,4 +124,14 @@
     <string name="game_leave_canceled">Opuszczanie gry anulowane</string>
     
 
+    
+    <!-- GPS messages -->
+    <string name="gps_disabled">Proszę włączyć GPS</string>
+    <string name="gps_first_fix_searching">Oczekiwanie na właściwy sygnał GPS</string>
+    <string name="gps_lost_fix">Utracono sygnał GPS. Trwa ponowne wyszukiwanie satelit</string>
+    <string name="gps_found_fix">Uzyskano sygnał GPS</string>
+    <string name="gps_default_dialog_title">GPS</string>
+    <string name="gps_default_dialog_message">Czy na pewno chcesz zaprzestać aktualizacji pozycji? Spowoduje to wyjście z bieżącej gry</string>
+    <string name="gps_default_dialog_accept_button">Tak</string>
+    <string name="gps_default_dialog_cancel_button">Anuluj</string>
 </resources>

@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.service.GameService;
 
 /**
@@ -15,7 +16,7 @@ public class DeleteGame extends AsyncTask<Void, Void, Boolean> {
 	private Activity mCurrentActivity;
 	private String mGameId;
 	private String mMessageToShow;
-	private ProgressDialogNetworkOperation loadingDialog;
+	private NetworkOperationProgressDialog loadingDialog;
 	private GameService mGameService;
 
 	@Override
@@ -32,7 +33,7 @@ public class DeleteGame extends AsyncTask<Void, Void, Boolean> {
 		
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_deleted);
 		mGameService = new GameService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 		
 	}
 

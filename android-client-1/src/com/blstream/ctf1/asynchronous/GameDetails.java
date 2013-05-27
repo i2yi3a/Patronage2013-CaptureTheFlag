@@ -10,6 +10,7 @@ import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.list.Helper;
 import com.blstream.ctf1.list.PlayersListAdapter;
@@ -29,8 +30,8 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	private GameService mGameService;
 
 	private boolean doInBackgroundSuccessful = false;
-
-	private ProgressDialogNetworkOperation loadingDialog;
+	
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
@@ -45,7 +46,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 		mId = id;
 
 		mGameService = new GameService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override

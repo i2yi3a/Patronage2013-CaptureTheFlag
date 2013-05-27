@@ -6,8 +6,8 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.GameListActivity;
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.list.ListAdapter;
@@ -20,7 +20,7 @@ public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 
 	private GameListActivity mCurrentActivity;
 	private GameBasicListFilter gameBasicListFilter;
-	private ProgressDialogNetworkOperation mLoadingDialog;
+	private NetworkOperationProgressDialog mLoadingDialog;
 	private GameService mGameService;
 	private String mMessageToShow;
 	private boolean doInBackgrounSuccessful = false;
@@ -30,7 +30,7 @@ public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 		this.gameBasicListFilter = gameBasicListFilter;
 
 		mGameService = new GameService(mCurrentActivity);
-		mLoadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		mLoadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override

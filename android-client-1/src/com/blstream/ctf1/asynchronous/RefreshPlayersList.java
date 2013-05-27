@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.list.Helper;
 import com.blstream.ctf1.list.PlayersListAdapter;
 import com.blstream.ctf1.service.GameService;
@@ -28,7 +29,7 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 
 	private Boolean doInBackgroundSuccessful = false;
 
-	private ProgressDialogNetworkOperation loadingDialog;
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
@@ -43,7 +44,8 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 		mId = id;
 
 		mGameService = new GameService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override

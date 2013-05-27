@@ -39,4 +39,8 @@ public class JSONFields {
 	public final static String ERROR_DESCRIPTION = "error_description";
 
 	public final static String ERROR_CODE = "error_code";
+
+	public final static String GAMES = "games";
+
+	public final static String PLAYERS = "players";
 }
