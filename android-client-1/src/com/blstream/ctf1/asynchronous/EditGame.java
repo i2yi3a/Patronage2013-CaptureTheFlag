@@ -4,11 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
+import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.Localization;
@@ -17,7 +17,7 @@ import com.blstream.ctf1.service.GameService;
 /**
  * @author Rafal Olichwer
  */
-public class EditGame extends AsyncTask<Void, Void, Void> {
+public class EditGame extends AsyncTask<Void, Void, Boolean> {
 
 	private Activity mCurrentActivity;
 
@@ -45,19 +45,23 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 
 	private double mRadius;
 
-	private String errorString;
+	private String mMessageToShow;
+	
+	private GameService mGameService;
 
-	private ProgressDialog loadingDialog;
+	private ProgressDialogNetworkOperation loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
-
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public EditGame(Activity currentActivity, String id, String status, GameExtendedInfo gameInfo) {
-		mCurrentActivity = currentActivity;mId = id;
+		mCurrentActivity = currentActivity;
+		mId = id;
 		mStatus = status;
 		mGameName = gameInfo.getName();
 		mDescription = gameInfo.getDescription();
@@ -71,29 +75,35 @@ public class EditGame extends AsyncTask<Void, Void, Void> {
 		mLat = localization.getLatLng().latitude;
 		mLng = localization.getLatLng().longitude;
 		mRadius = localization.getRadius();
+
+		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_edited);
+		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 	}
 
 	@Override
-	protected Void doInBackground(Void... params) {
-		GameService gameService = new GameService(mCurrentActivity);
+	protected Boolean doInBackground(Void... params) {
+		Boolean successful = false;
 		try {
-			gameService.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
-
+			mGameService.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
+			successful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.edit_game_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
-		return null;
+		return successful;
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
+	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(mCurrentActivity, R.string.game_edited, Toast.LENGTH_SHORT).show();
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if(successful == true){
 			mCurrentActivity.finish();
 		}
 	}

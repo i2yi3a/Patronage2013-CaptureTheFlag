@@ -116,5 +116,12 @@
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>
+    <string name="login_canceled">Logging in canceled</string>
+    <string name="delete_game_canceled">Deleting game canceled</string>
+    <string name="create_game_canceled">Creating game canceled</string>
+    <string name="edit_game_canceled">Editing game canceled</string>
+    <string name="game_details_canceled">Getting game details canceled</string>
+    <string name="game_join_canceled">Joining game canceled</string>
+    <string name="game_leave_canceled">Leaving game canceled</string>
 
 </resources>

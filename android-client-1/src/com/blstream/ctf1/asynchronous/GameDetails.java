@@ -2,13 +2,13 @@ package com.blstream.ctf1.asynchronous;
 
 import java.text.SimpleDateFormat;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
+import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.list.Helper;
@@ -24,34 +24,45 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	private String mId;
 
-	private String errorString;
+	private String mMessageToShow;
 
-	private ProgressDialog loadingDialog;
+	private GameService mGameService;
+
+	private boolean doInBackgroundSuccessful = false;
+
+	private ProgressDialogNetworkOperation loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
-
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public GameDetails(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
+
+		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 	}
 
 	@Override
 	protected GameExtendedInfo doInBackground(Void... params) {
-		GameService gameService = new GameService(mCurrentActivity);
 		GameExtendedInfo result = null;
 		try {
-			result = gameService.getGameDetails(mId);
-			result.setPlayersList(gameService.getPlayersForGame(mId));
-
+			result = mGameService.getGameDetails(mId);
+			result.setPlayersList(mGameService.getPlayersForGame(mId));
+			doInBackgroundSuccessful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_details_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
 		return result;
 	}
@@ -59,9 +70,8 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	@Override
 	protected void onPostExecute(GameExtendedInfo result) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
-		} else {
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if (doInBackgroundSuccessful == true) {
 			mCurrentActivity.mTextGameName.setText(result.getName());
 			mCurrentActivity.mTextGameDescription.setText(result.getDescription());
 			mCurrentActivity.mTextGameDuration.setText(Long.toString(result.getDuration()));
@@ -74,12 +84,10 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());
 			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
-			
-			 mCurrentActivity.setListAdapter(new
-			 PlayersListAdapter(mCurrentActivity,
-			 result.getPlayersList()));
-			 ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
-			 Helper.getListViewSize(playersList);
+
+			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity, result.getPlayersList()));
+			ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
+			Helper.getListViewSize(playersList);
 		}
 	}
 

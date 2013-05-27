@@ -115,5 +115,13 @@
     <string name="search">Szukaj</string>
     <string name="logout_succesful">Wylogowałeś się</string>
     <string name="get_game_list_canceled">Anulowano pobieranie listy gier</string>
+    <string name="login_canceled">Logownanie anulowane</string>
+    <string name="delete_game_canceled">Usuwanie gry anulowane</string>
+    <string name="create_game_canceled">Tworzenie gry anulowane</string>
+    <string name="edit_game_canceled">Edytowanie gry anulowane</string>
+    <string name="game_details_canceled">Pobieranie szczegółów anulowane</string>
+    <string name="game_join_canceled">Dołączanie do gry anulowane</string>
+    <string name="game_leave_canceled">Opuszczanie gry anulowane</string>
+    
 
 </resources>

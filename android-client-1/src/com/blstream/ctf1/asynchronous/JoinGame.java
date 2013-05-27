@@ -1,10 +1,10 @@
 package com.blstream.ctf1.asynchronous;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.service.GameService;
 
@@ -14,20 +14,25 @@ import com.blstream.ctf1.service.GameService;
 public class JoinGame extends AsyncTask<Void, Void, Void> {
 	private Activity mCurrentActivity;
 	private String mGameId;
-	private String mErrorString;
-	private ProgressDialog mLoadingDialog;
+	private String mMessageToShow;
+	private ProgressDialogNetworkOperation loadingDialog;
 	private GameService mGameService;
 
 	@Override
 	protected void onPreExecute() {
-		mLoadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public JoinGame(Activity currentActivity, String gameId) {
 		mCurrentActivity = currentActivity;
 		mGameId = gameId;
+
+		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_joined);
 		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
 	}
 
 	@Override
@@ -36,21 +41,22 @@ public class JoinGame extends AsyncTask<Void, Void, Void> {
 			if (!mGameService.isLoggedPlayerSignedInForGame(mGameId)) {
 				mGameService.signInForGame(mGameId);
 			} else {
-				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_already_signed);
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.error_code_already_signed);
 			}
 		} catch (Exception e) {
-			mErrorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_join_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
 		return null;
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
-		mLoadingDialog.dismiss();
-		if (mErrorString != null) {
-			Toast.makeText(mCurrentActivity, mErrorString, Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(mCurrentActivity, R.string.game_joined, Toast.LENGTH_SHORT).show();
-		}
+	protected void onPostExecute(Void successful) {
+		loadingDialog.dismiss();
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+
 	}
 }
