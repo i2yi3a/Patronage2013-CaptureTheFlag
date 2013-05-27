@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.service.PlayerService;
 
 /**
@@ -20,7 +20,7 @@ public class Register extends AsyncTask<Void, Void, Boolean> {
 	private String mUsername;
 	private String mPassword;
 	private String mMessageToShow;
-	private ProgressDialogNetworkOperation loadingDialog;
+	private NetworkOperationProgressDialog loadingDialog;
 	private PlayerService mPlayerService;
 
 	@Override
@@ -39,7 +39,7 @@ public class Register extends AsyncTask<Void, Void, Boolean> {
 		
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.registration_successful);
 		mPlayerService = new PlayerService(mCurrentActivity);
-		loadingDialog = new ProgressDialogNetworkOperation(mCurrentActivity, this);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override

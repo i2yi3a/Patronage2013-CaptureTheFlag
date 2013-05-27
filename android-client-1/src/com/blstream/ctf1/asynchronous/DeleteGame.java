@@ -1,59 +1,70 @@
 package com.blstream.ctf1.asynchronous;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.service.GameService;
 
 /**
  * @author Piotr Marczycki,Rafal Olichwer
  */
-public class DeleteGame extends AsyncTask<Void, Void, Void> {
+public class DeleteGame extends AsyncTask<Void, Void, Boolean> {
 	private Activity mCurrentActivity;
 	private String mGameId;
-	private String mErrorString;
-	private ProgressDialog mLoadingDialog;
+	private String mMessageToShow;
+	private NetworkOperationProgressDialog loadingDialog;
 	private GameService mGameService;
 
 	@Override
 	protected void onPreExecute() {
-		mLoadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public DeleteGame(Activity currentActivity, String gameId) {
 		mCurrentActivity = currentActivity;
 		mGameId = gameId;
+		
+		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_deleted);
 		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
+		
 	}
 
 	@Override
-	protected Void doInBackground(Void... params) {
+	protected Boolean doInBackground(Void... params) {
+		Boolean successful = false;
 		try {
 			if (mGameService.isLoggedPlayerGameOwner(mGameId)) {
 				mGameService.deleteGame(mGameId);
+				successful = true;
 			} else {
-				mErrorString = mCurrentActivity.getResources().getString(R.string.error_code_5);
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.error_code_5);
 			}
 		} catch (Exception e) {
-			mErrorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.delete_game_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
-		return null;
+		return successful;
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
-		mLoadingDialog.dismiss();
+	protected void onPostExecute(Boolean successful) {
+		loadingDialog.dismiss();
+		
 		// TODO Change "Resource with ID ... doesn't exist" server response
 		// to game_already_deleted or something similiar
-		if (mErrorString != null) {
-			Toast.makeText(mCurrentActivity, mErrorString, Toast.LENGTH_SHORT).show();
-            mCurrentActivity.finish();
-		} else {
-			Toast.makeText(mCurrentActivity, R.string.game_deleted, Toast.LENGTH_SHORT).show();
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if(successful == true){
+			mCurrentActivity.finish();
 		}
 	}
 }

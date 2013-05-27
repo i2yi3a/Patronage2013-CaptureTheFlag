@@ -2,13 +2,13 @@ package com.blstream.ctf1.asynchronous;
 
 import java.text.SimpleDateFormat;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.CreateGameActivity;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.service.GameService;
 
@@ -21,34 +21,44 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	private String mId;
 
-	private String errorString;
+	private String mMessageToShow;
 
-	private ProgressDialog loadingDialog;
+	private GameService mGameService;
+
+	private boolean doInBackgroundSuccessful = false;
+
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity
-				.getResources().getString(R.string.loading), mCurrentActivity
-				.getResources().getString(R.string.loading_message));
-
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public EditGameDetails(CreateGameActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
+
+		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override
 	protected GameExtendedInfo doInBackground(Void... params) {
-		GameService gameService = new GameService(mCurrentActivity);
 		GameExtendedInfo result = null;
 		try {
-			result = gameService.getGameDetails(mId);
-
+			result = mGameService.getGameDetails(mId);
+			doInBackgroundSuccessful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_details_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
 		return result;
 	}
@@ -56,26 +66,19 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	@Override
 	protected void onPostExecute(GameExtendedInfo result) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
-					.show();
-		} else {
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if (doInBackgroundSuccessful == true) {
 			mCurrentActivity.mEditGameName.setText(result.getName());
-			mCurrentActivity.mEditGameDescription.setText(result
-					.getDescription());
-			mCurrentActivity.mEditPlayingTime.setText(Long.toString(result
-					.getDuration()));
-			mCurrentActivity.mEditLocationName.setText(result.getLocalization()
-					.getName());
-			mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result
-					.getPlayersMax()));
-			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result
-					.getPointsMax()));
+			mCurrentActivity.mEditGameDescription.setText(result.getDescription());
+			mCurrentActivity.mEditPlayingTime.setText(Long.toString(result.getDuration()));
+			mCurrentActivity.mEditLocationName.setText(result.getLocalization().getName());
+			mCurrentActivity.mEditMaxPlayers.setText(Integer.toString(result.getPlayersMax()));
+			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mBtnStartDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT).format(result.getTimeStart()));
 			mCurrentActivity.mBtnStartTime.setText(new SimpleDateFormat(Constants.TIME_FORMAT).format(result.getTimeStart()));
 			mCurrentActivity.latitude = result.getLocalization().getLatLng().latitude;
-            mCurrentActivity.longitude= result.getLocalization().getLatLng().longitude;
-            mCurrentActivity.radius = result.getLocalization().getRadius();
+			mCurrentActivity.longitude = result.getLocalization().getLatLng().longitude;
+			mCurrentActivity.radius = result.getLocalization().getRadius();
 		}
 	}
 

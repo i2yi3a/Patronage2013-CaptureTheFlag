@@ -1,12 +1,12 @@
 package com.blstream.ctf1.asynchronous;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.service.PlayerService;
 import com.blstream.ctf1.service.StorageService;
@@ -15,7 +15,7 @@ import com.blstream.ctf1.service.StorageService;
  * @author Adrian Swarcewicz
  * @author Rafal Olichwer
  */
-public class Login extends AsyncTask<Void, Void, Void> {
+public class Login extends AsyncTask<Void, Void, Boolean> {
 
 	private Activity mCurrentActivity;
 
@@ -24,17 +24,21 @@ public class Login extends AsyncTask<Void, Void, Void> {
 	private String mUsername;
 
 	private String mPassword;
+	
+	private String mMessageToShow;
+	
+	private PlayerService mPlayerService;
+	
+	private StorageService mStorageService;
 
-	private String errorString;
-
-	private ProgressDialog loadingDialog;
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity
-				.getResources().getString(R.string.loading), mCurrentActivity
-				.getResources().getString(R.string.loading_message));
-
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mPlayerService);
+		loadingDialog.show();
 	}
 
 	public Login(Activity currentActivity, Class<?> successfullActivity,
@@ -43,35 +47,42 @@ public class Login extends AsyncTask<Void, Void, Void> {
 		mSuccessfullActivity = successfullActivity;
 		mUsername = username;
 		mPassword = password;
+		
+		mMessageToShow = mCurrentActivity.getResources().getString(R.string.login_successful);
+		mPlayerService = new PlayerService(mCurrentActivity);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
+		mStorageService = new StorageService(mCurrentActivity);
+		
 	}
 
 	@Override
-	protected Void doInBackground(Void... params) {
-		PlayerService playerService = new PlayerService(mCurrentActivity);
+	protected Boolean doInBackground(Void... params) {
+		Boolean successful = false;
 		try {
-			LoggedPlayer loggedPlayer = playerService.login(mUsername,
+			LoggedPlayer loggedPlayer = mPlayerService.login(mUsername,
 					mPassword);
-			StorageService storageService = new StorageService(mCurrentActivity);
-			storageService.open();
-			storageService.saveLoggedPlayer(loggedPlayer);
-			storageService.close();
+			mStorageService.open();
+			mStorageService.saveLoggedPlayer(loggedPlayer);
+			mStorageService.close();
+			successful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mPlayerService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.login_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
-		return null;
+		return successful;
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
+	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT)
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT)
 					.show();
-		} else {
-			Toast.makeText(mCurrentActivity, R.string.login_successful,
-					Toast.LENGTH_SHORT).show();
+		if(successful == true) {
 			Intent intent = new Intent(mCurrentActivity, mSuccessfullActivity);
 			mCurrentActivity.startActivity(intent);
 		}

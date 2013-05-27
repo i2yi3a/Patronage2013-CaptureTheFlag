@@ -2,13 +2,13 @@ package com.blstream.ctf1.asynchronous;
 
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.list.Helper;
 import com.blstream.ctf1.list.PlayersListAdapter;
 import com.blstream.ctf1.service.GameService;
@@ -22,33 +22,45 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 
 	private String mId;
 
-	private String errorString;
+	private String mMessageToShow;
 
-	private ProgressDialog loadingDialog;
+	private GameService mGameService;
+
+	private Boolean doInBackgroundSuccessful = false;
+
+	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
 	protected void onPreExecute() {
-		loadingDialog = ProgressDialog.show(mCurrentActivity, mCurrentActivity.getResources().getString(R.string.loading), mCurrentActivity.getResources()
-				.getString(R.string.loading_message));
-
+		loadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
+		loadingDialog.setMessage(mCurrentActivity.getResources().getString(R.string.loading_message));
+		loadingDialog.setNetworkOperationService(mGameService);
+		loadingDialog.show();
 	}
 
 	public RefreshPlayersList(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
+
+		mGameService = new GameService(mCurrentActivity);
+		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
 	@Override
 	protected List<String> doInBackground(Void... params) {
-		GameService gameService = new GameService(mCurrentActivity);
 		List<String> result = null;
-		try {
-			result = gameService.getPlayersForGame(mId);
 
+		try {
+			result = mGameService.getPlayersForGame(mId);
+			doInBackgroundSuccessful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
-			errorString = e.getLocalizedMessage();
+			if (mGameService.isNetworkOperationAborted()) {
+				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_leave_canceled);
+			} else {
+				mMessageToShow = e.getLocalizedMessage();
+			}
 		}
 		return result;
 	}
@@ -56,15 +68,12 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 	@Override
 	protected void onPostExecute(List<String> result) {
 		loadingDialog.dismiss();
-		if (errorString != null) {
-			Toast.makeText(mCurrentActivity, errorString, Toast.LENGTH_SHORT).show();
-		} else {
-			
-			 mCurrentActivity.setListAdapter(new
-			 PlayersListAdapter(mCurrentActivity,
-			 result));
-			 ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
-			 Helper.getListViewSize(playersList);
+		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if (doInBackgroundSuccessful == true) {
+
+			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity, result));
+			ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
+			Helper.getListViewSize(playersList);
 		}
 	}
 

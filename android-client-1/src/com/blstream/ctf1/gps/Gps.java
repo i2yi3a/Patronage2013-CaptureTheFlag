@@ -35,6 +35,7 @@ public abstract class Gps {
 		mLocationManager.removeGpsStatusListener(mGpsStatusListener);
 		locationUpdatesActive = false;
 		mGpsLocationListener.setFix(false);
+		onStopLocationUpdates();
 	}
 
 	public final boolean isLocationUpdatesActive() {
@@ -60,6 +61,8 @@ public abstract class Gps {
 	public final LatLng getLatLng() {
 		return new LatLng(getLatitude(), getLongitude());
 	}
+	
+	protected abstract void onStopLocationUpdates();
 
 	protected abstract void onGpsDisabled();
 	
