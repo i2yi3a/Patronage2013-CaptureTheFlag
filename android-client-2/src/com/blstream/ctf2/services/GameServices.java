@@ -50,6 +50,8 @@ public class GameServices extends Services {
 	public final static String RED_TEAM_BASE = "red_team_base";
 	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
+	public final static String GAMES = "games";
+	public final static String PLAYERS = "players";
 
 	private String playerToken = "";
 	private String typeToken = "";
@@ -75,6 +77,7 @@ public class GameServices extends Services {
 		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gamePlayersActivity);
 		getGamePlayersTask.execute(mGameId);
 	}
+
 	public void joinTheGame(GameDetailsActivity mGameDetailsActivity, String mGameId) {
 		JoinTheGame joinTheGame = new JoinTheGame(mGameDetailsActivity);
 		joinTheGame.execute(mGameId);
@@ -99,7 +102,7 @@ public class GameServices extends Services {
 			mProgressDialog = new ProgressDialog(mGameDetailsActivity);
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage("Connecting...");
+			mProgressDialog.setMessage(mGameDetailsActivity.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -250,7 +253,7 @@ public class GameServices extends Services {
 			mProgressDialog = new ProgressDialog(mGameListActivity);
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage("Connecting...");
+			mProgressDialog.setMessage(mGameListActivity.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -259,7 +262,8 @@ public class GameServices extends Services {
 			JSONArray result = null;
 			String response = getGames();
 			try {
-				result = new JSONArray(response);
+				JSONObject jsonResponse = new JSONObject(response);
+				result = jsonResponse.getJSONArray(GAMES);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -351,7 +355,7 @@ public class GameServices extends Services {
 			mProgressDialog = new ProgressDialog(mGamePlayersActivity);
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage("Connecting...");
+			mProgressDialog.setMessage(mGamePlayersActivity.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -366,7 +370,8 @@ public class GameServices extends Services {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			try {
-				JSONArray jsonArray = new JSONArray(result);
+				JSONObject jsonResponse = new JSONObject(result);
+				JSONArray jsonArray = jsonResponse.getJSONArray(PLAYERS);
 				fillPlayersList(jsonArray);
 			} catch (JSONException e) {
 				e.printStackTrace();

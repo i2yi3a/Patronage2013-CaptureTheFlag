@@ -66,6 +66,7 @@
     <string name="team_red">Red team</string>
     <string name="team_blue">Blue Team</string>
     <string name="team_base_localization">Base localization</string>
+    <string name="connecting">Connecting..</string>
     <!-- Error Codes -->
     <string name="error_code_1">Bad request</string>
 	<string name="error_code_2">Internal error</string>
@@ -80,4 +81,5 @@
 	<string name="error_code_105">Game reached maximum of players</string>
 	<string name="google_services_not_available">Google services are not currently avalible at this device</string>
     
+	
 </resources>
