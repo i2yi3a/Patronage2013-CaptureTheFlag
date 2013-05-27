@@ -10,11 +10,12 @@ import com.blstream.ctf1.listener.GpsDefaultDialogActionListener;
 
 /**
  * Call startLocationUpdates(), progress dialog will be show if waiting for gps
- * or fix. Waiting can be cancel by user, then attemptToCancelGpsMessage will be
- * show. And after cancel, GpsListener.onGpsCanceled will be call. If cancel
- * should be make programmatically instead by user call stopLocationUpdates().
- * Status of location updates can be check by isLocationUpdatesActive. Fix and
- * Gps status can be check too.
+ * or fix. Waiting can be cancel by user, then dialog with
+ * string.gps_default_dialog_message will be show. And after accept cancel,
+ * GpsListener.onGpsCanceled will be call. If cancel should be make
+ * programmatically instead by user call stopLocationUpdates(). Status of
+ * location updates can be check by isLocationUpdatesActive. Fix and Gps status
+ * can be check too.
  * 
  * @author Adrian Swarcewicz
  */

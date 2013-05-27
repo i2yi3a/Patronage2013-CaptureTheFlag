@@ -10,7 +10,6 @@ class GpsStatusListener implements GpsStatus.Listener {
 
 	private static long GPS_FIX_CHECK_IN_MILIS = 10000;
 	GpsLocationListener mGpsLocationListener;
-	boolean fix;
 
 	public GpsStatusListener(GpsLocationListener gpsLocationListener) {
 		this.mGpsLocationListener = gpsLocationListener;
@@ -19,7 +18,7 @@ class GpsStatusListener implements GpsStatus.Listener {
 	@Override
 	public void onGpsStatusChanged(int event) {
 		if (event == GpsStatus.GPS_EVENT_SATELLITE_STATUS && isFixChange()) {
-			if (fix == true) {
+			if (mGpsLocationListener.isFix() == true) {
 				mGpsLocationListener.onFoundFix();
 			} else {
 				mGpsLocationListener.onLostFix();
@@ -30,11 +29,11 @@ class GpsStatusListener implements GpsStatus.Listener {
 	private boolean isFixChange() {
 		boolean result = false;
 		boolean currentFix = SystemClock.elapsedRealtime() - mGpsLocationListener.getLastLocationChange() < GPS_FIX_CHECK_IN_MILIS;
-		if (currentFix == true && fix == false) {
-			fix = true;
+		if (currentFix == true && mGpsLocationListener.isFix() == false) {
+			mGpsLocationListener.setFix(true);
 			result = true;
-		} else if (currentFix == false && fix == true) {
-			fix = false;
+		} else if (currentFix == false && mGpsLocationListener.isFix() == true) {
+			mGpsLocationListener.setFix(false);
 			result = true;
 		}
 		return result;

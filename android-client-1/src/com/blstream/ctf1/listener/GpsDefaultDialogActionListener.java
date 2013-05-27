@@ -24,7 +24,7 @@ public class GpsDefaultDialogActionListener implements OnCancelListener, OnDismi
 	private Gps mGps;
 	private GpsListener mGpsListener;
 	private ConfirmDialog mConfirmDialog;
-	private boolean afterOnCancel;
+	private boolean mAfterOnCancel;
 	private String dialogTitle;
 	private String dialogMessage;
 	private String dialogAcceptButton;
@@ -81,17 +81,17 @@ public class GpsDefaultDialogActionListener implements OnCancelListener, OnDismi
 		// foreground and progress dialog in background
 		mDialog.show();
 		mConfirmDialog.show();
-		afterOnCancel = true;
+		mAfterOnCancel = true;
 	}
 
 	@Override
 	public void onDismiss(DialogInterface dialog) {
 		// on dismiss progress dialog and confirm dialog will be dismissed,
 		// except dismiss after cancel
-		if (afterOnCancel == false) {
+		if (mAfterOnCancel == false) {
 			mConfirmDialog.dismiss();
 		}
-		afterOnCancel = false;
+		mAfterOnCancel = false;
 	}
 
 	// Prevent dismiss dialog by menu key
