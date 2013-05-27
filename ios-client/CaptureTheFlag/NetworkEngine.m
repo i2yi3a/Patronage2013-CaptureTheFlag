@@ -59,10 +59,15 @@
         NSDictionary* response = operation.responseJSON;
         
         NSNumber* errorCode = response[@"error_code"];
+        NSInteger code=[errorCode integerValue];
+
         
         if (!errorCode || [errorCode integerValue] != 0)
         {
-            completionBlock([NSError errorWithDescription:@"Failed to register new user."]);
+            //completionBlock([NSError errorWithDescription:@"Failed to register new user."]);
+            NSError *error=[self errorFromServerErrorCode:code];
+            [ShowInformation showError:error.localizedDescription];
+
         }
         else
         {
@@ -89,9 +94,16 @@
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
         self.token = response[@"access_token"];
+        
+        NSNumber* errorCode = response[@"error_code"];
+        NSInteger code=[errorCode integerValue];
+
         if (error!=nil ||  _token == nil)
         {
-            completionBlock([NSError errorWithDescription:@"Failed to log in."]);
+            //completionBlock([NSError errorWithDescription:@"Failed to log in."]);
+            NSError *error=[self errorFromServerErrorCode:code];
+            [ShowInformation showError:error.localizedDescription];
+
         }
         else
         {
@@ -131,15 +143,22 @@
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
+        
+        NSNumber* errorCode = response[@"error_code"];
+        NSInteger code=[errorCode integerValue];
+
         if (error==nil)
         {
             completionBlock(nil);
         }
         else
         {
-            completionBlock([NSError errorWithDescription:@"Failed to create a new game."]);
+            //completionBlock([NSError errorWithDescription:@"Failed to create a new game."]);
+            NSError *error=[self errorFromServerErrorCode:code];
+            [ShowInformation showError:error.localizedDescription];
+
         }
-            
+        
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
         completionBlock(error);
     } ];
