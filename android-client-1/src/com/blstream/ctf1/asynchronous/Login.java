@@ -52,7 +52,6 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
 		mPlayerService = new PlayerService(mCurrentActivity);
 		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 		mStorageService = new StorageService(mCurrentActivity);
-		
 	}
 
 	@Override
