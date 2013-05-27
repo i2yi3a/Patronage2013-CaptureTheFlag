@@ -43,7 +43,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	public GameDetails(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
-
+		mMessageToShow = Constants.EMPTY_STRING;
 		mGameService = new GameService(mCurrentActivity);
 		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
@@ -70,7 +70,8 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 	@Override
 	protected void onPostExecute(GameExtendedInfo result) {
 		loadingDialog.dismiss();
-		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if(!mMessageToShow.isEmpty())
+			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		if (doInBackgroundSuccessful == true) {
 			mCurrentActivity.mTextGameName.setText(result.getName());
 			mCurrentActivity.mTextGameDescription.setText(result.getDescription());

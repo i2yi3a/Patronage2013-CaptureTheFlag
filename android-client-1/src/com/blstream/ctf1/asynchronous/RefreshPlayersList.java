@@ -6,8 +6,8 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
-import com.blstream.ctf1.ProgressDialogNetworkOperation;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.list.Helper;
@@ -44,7 +44,7 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 		mId = id;
 
 		mGameService = new GameService(mCurrentActivity);
-		
+		mMessageToShow = Constants.EMPTY_STRING;
 		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
 
@@ -70,7 +70,8 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 	@Override
 	protected void onPostExecute(List<String> result) {
 		loadingDialog.dismiss();
-		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
+		if(!mMessageToShow.isEmpty())
+			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		if (doInBackgroundSuccessful == true) {
 
 			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity, result));
