@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Capture The Flag :: Application</name>
+    <groupId>com.blstream.patronage.ctf</groupId>
+    <artifactId>ctf-portal</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+
+        <project.build.war.finalName>demo</project.build.war.finalName>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.6</java.version>
+
+        <spring.version>3.2.0.RELEASE</spring.version>
+        <spring.security.version>3.1.3.RELEASE</spring.security.version>
+        <spring.security.oauth.version>1.0.1.RELEASE</spring.security.oauth.version>
+        <spring.data.common>1.4.0.RELEASE</spring.data.common>
+        <spring.data.mongo.version>1.1.1.RELEASE</spring.data.mongo.version>
+        <mongo.version>2.9.3</mongo.version>
+        <!--<mongo.version>2.10.1</mongo.version>-->
+
+        <javax.servlet.api.version>3.0.1</javax.servlet.api.version>
+        <!--<javax.validation.api.version>1.0.0.GA</javax.validation.api.version>-->
+        <javax.inject.version>1</javax.inject.version>
+
+        <mongo.version>2.9.3</mongo.version>
+
+        <jackson.version>2.1.1</jackson.version>
+        <jackson.mapper.asl.version>1.9.11</jackson.mapper.asl.version>
+        <woodstox.version>4.1.4</woodstox.version>
+
+        <logback.version>1.0.7</logback.version>
+        <slf4j.version>1.7.2</slf4j.version>
+
+        <testng.version>6.8</testng.version>
+        <fest.assert.version>2.0M8</fest.assert.version>
+        <mockito.version>1.9.5</mockito.version>
+
+        <jetty.version>8.1.3.v20120416</jetty.version>
+        <jetty.port>8080</jetty.port>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>server</id>
+            <modules>
+                <module>ctf-server</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>web</id>
+            <modules>
+                <module>ctf-web</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>portal</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>ctf-server</module>
+                <module>ctf-web</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>
