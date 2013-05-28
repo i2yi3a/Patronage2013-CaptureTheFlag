@@ -47,6 +47,7 @@
     <string name="game_localization_pick">Pick localization</string>
     <string name="game_flag_quantity">Flag quantity</string>
     <string name="game_flag_quantity_hint">12</string>
+    <string name="game_radius_hint">1000</string>
     <string name="game_team">Team</string>
     <string name="game_team_hint">Red</string>
     <string name="game_create_game">Create game</string>
@@ -62,24 +63,36 @@
     <string name="game_players_name">Players</string>
     <string name="game_players_list">Players list</string>
     <string name="game_no_players">The game does not yet have players</string>
-     <string name="game_sign_in">You joined the game!!</string>
+    <string name="game_sign_in">You joined the game!!</string>
     <string name="team_red">Red team</string>
     <string name="team_blue">Blue Team</string>
     <string name="team_base_localization">Base localization</string>
     <string name="connecting">Connecting..</string>
+    <string name="wrong_date">Wrong date</string>
+    <string name="choose_date">Choose date</string>
+    <string name="choose_time">Choose time</string>
+    <string name="please_enter_gamename">Please enter name</string>
+    <string name="please_enter_description">Please enter description</string>
+    <string name="please_enter_duration">Please enter duration</string>
+    <string name="please_enter_points">Please enter max points</string>
+    <string name="please_enter_players">Please enter max players</string>
+    <string name="please_enter_radius">Please enter radius</string>
+    <string name="please_enter_loc_name">Please enter localization name</string>
+    <string name="game_loc_name">Localization name</string>
+    <string name="game_created">Game created successfully</string>
+    <string name="game_loc_name_hint">Localization</string>
     <!-- Error Codes -->
     <string name="error_code_1">Bad request</string>
-	<string name="error_code_2">Internal error</string>
-	<string name="error_code_3">Resource not found</string>
-	<string name="error_code_4">Resource already exists</string>
-	<string name="error_code_5">Resource cannot be deleted</string>
-	<string name="error_code_100">Cannot create a new player</string>
-	<string name="error_code_101">Player already exists</string>
-	<string name="error_code_102">Player cannot be sign in</string>
-	<string name="error_code_103">Player cannot be sign out</string>
-	<string name="error_code_104">Player is already signed in</string>
-	<string name="error_code_105">Game reached maximum of players</string>
-	<string name="google_services_not_available">Google services are not currently avalible at this device</string>
-    
-	
+    <string name="error_code_2">Internal error</string>
+    <string name="error_code_3">Resource not found</string>
+    <string name="error_code_4">Resource already exists</string>
+    <string name="error_code_5">Resource cannot be deleted</string>
+    <string name="error_code_100">Cannot create a new player</string>
+    <string name="error_code_101">Player already exists</string>
+    <string name="error_code_102">Player cannot be sign in</string>
+    <string name="error_code_103">Player cannot be sign out</string>
+    <string name="error_code_104">Player is already signed in</string>
+    <string name="error_code_105">Game reached maximum of players</string>
+    <string name="google_services_not_available">Google services are not currently avalible at this device</string>
+
 </resources>

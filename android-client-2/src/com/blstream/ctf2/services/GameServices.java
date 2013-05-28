@@ -1,14 +1,18 @@
 package com.blstream.ctf2.services;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.http.Header;
+import org.apache.http.ParseException;
 import org.apache.http.message.BasicHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -81,6 +85,11 @@ public class GameServices extends Services {
 	public void joinTheGame(GameDetailsActivity mGameDetailsActivity, String mGameId) {
 		JoinTheGame joinTheGame = new JoinTheGame(mGameDetailsActivity);
 		joinTheGame.execute(mGameId);
+	}
+
+	public void createGame(Activity activityForCtx, JSONObject params) {
+		CreateGameTask createGameTask = new CreateGameTask(activityForCtx);
+		createGameTask.execute(params);
 	}
 
 	/**
@@ -482,6 +491,53 @@ public class GameServices extends Services {
 				Log.e("joinTheGame ERROR", e.toString());
 			}
 			return result;
+		}
+	}
+
+	/**
+	 * @author Lukasz Dmitrowski
+	 */
+
+	private class CreateGameTask extends AsyncTask<JSONObject, Void, JSONObject> {
+		private HttpServices mHttpServices;
+		private Context mCtx;
+
+		public CreateGameTask(Activity activityForCtx) {
+			mCtx = activityForCtx;
+		}
+
+		@Override
+		protected JSONObject doInBackground(JSONObject... params) {
+			JSONObject gameData = params[0];
+			JSONObject jsonResponse = null;
+			String body = gameData.toString();
+			List<Header> headersList = new LinkedList<Header>();
+			headersList.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+			headersList.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+			headersList.add(new BasicHeader("Authorization", typeToken + " " + playerToken));
+			String response = "";
+			mHttpServices = new HttpServices(mCtx);
+			try {
+				if (mHttpServices.isOnline()) {
+					response = mHttpServices.postRequest(Constants.URI_GAMES, body, headersList);
+					jsonResponse = new JSONObject(response);
+				}
+			} catch (IllegalArgumentException e) {
+				Log.e("CreateGameTask IllegalArgumentException", e.toString());
+			} catch (ParseException e) {
+				Log.e("CreateGameTask ParseException", e.toString());
+			} catch (IOException e) {
+				Log.e("CreateGameTask IOException", e.toString());
+			} catch (Exception e) {
+				Log.e("CreateGameTask", e.toString());
+			}
+			return jsonResponse;
+		}
+
+		@Override
+		protected void onPostExecute(JSONObject jsonResponse) {
+			super.onPostExecute(jsonResponse);
+			Log.i("CreateGameTask response", jsonResponse.toString());
 		}
 	}
 }
