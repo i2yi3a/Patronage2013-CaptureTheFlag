@@ -201,7 +201,7 @@ public class GameService implements NetworkOperationService {
 		
 		return JSONConverter.toGameBasicInfo(jsonObject.getJSONArray(JSONFields.GAMES));
 	}
-
+	
 	/**
 	 * @author Adrian Swarcewicz
 	 */
@@ -211,6 +211,40 @@ public class GameService implements NetworkOperationService {
 				String.format(URL_GAME_LIST_BY_LOCALIZATION, GameLocalizationListFilterConverter.toQueryString(gameFilter)), getGameHeaders());
 
 		return JSONConverter.toGameBasicInfo(jsonArrayResult);
+	}
+
+	/**
+	 * Method perform request to server use abortNetworkOperation() to abort.
+	 * 
+	 * @author Adrian Swarcewicz
+	 * @param gameFilter
+	 *            - null to skip
+	 */
+	public List<GameExtendedInfo> getGameDetailList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
+		List<GameExtendedInfo> gameExtendedInfos = new LinkedList<GameExtendedInfo>();
+		List<GameBasicInfo> gameBasicInfos = getGameList(gameFilter);
+		
+		for (GameBasicInfo gbi : gameBasicInfos) {
+			GameExtendedInfo gameExtendedInfo = getGameDetails(gbi.getId());
+			gameExtendedInfos.add(gameExtendedInfo);
+		}
+		
+		return gameExtendedInfos;
+	}
+	
+	/**
+	 * @author Adrian Swarcewicz
+	 */
+	public List<GameExtendedInfo> getGameDetailListByLocalization(GameLocalizationListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
+		List<GameExtendedInfo> gameExtendedInfos = new LinkedList<GameExtendedInfo>();
+		List<GameBasicInfo> gameBasicInfos = getGameListByLocalization(gameFilter);
+		
+		for (GameBasicInfo gbi : gameBasicInfos) {
+			GameExtendedInfo gameExtendedInfo = getGameDetails(gbi.getId());
+			gameExtendedInfos.add(gameExtendedInfo);
+		}
+		
+		return gameExtendedInfos;
 	}
 
 	/**
