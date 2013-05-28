@@ -13,6 +13,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -75,7 +76,15 @@ public class HttpServices {
 		httpPut.setHeaders(headersList.toArray(new Header[headersList.size()]));
 		HttpResponse response = httpClient.execute(httpPut);
 		return EntityUtils.toString(response.getEntity());
-		
+	}
+	
+	public String putRequest(String URI, List<Header> headersList, JSONObject json) throws ClientProtocolException, IOException, CtfException {
+		isOnline();
+		HttpPut httpPut = new HttpPut(Constants.URL_SERVER + URI);
+		httpPut.setHeaders(headersList.toArray(new Header[headersList.size()]));
+		httpPut.setEntity(new StringEntity(json.toString()));
+		HttpResponse response = httpClient.execute(httpPut);
+		return EntityUtils.toString(response.getEntity());
 	}
 
 	
