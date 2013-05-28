@@ -18,4 +18,6 @@
 
     #import "UIColor+customColors.h"
 
+    #import "FlatButton.h"
+
 #endif
