@@ -47,6 +47,7 @@
     <string name="game_localization_pick">Pick localization</string>
     <string name="game_flag_quantity">Flag quantity</string>
     <string name="game_flag_quantity_hint">12</string>
+    <string name="game_radius_hint">1000</string>	
     <string name="game_team">Team</string>
     <string name="game_team_hint">Red</string>
     <string name="game_create_game">Create game</string>
@@ -67,6 +68,19 @@
     <string name="team_blue">Blue Team</string>
     <string name="team_base_localization">Base localization</string>
     <string name="connecting">Connecting..</string>
+    <string name="wrong_date">Wrong date</string>
+	<string name="choose_date">Choose date</string>
+	<string name="choose_time">Choose time</string>
+	<string name="please_enter_gamename">Please enter name</string>
+	<string name="please_enter_description">Please enter description</string>
+	<string name="please_enter_duration">Please enter duration</string>
+	<string name="please_enter_points">Please enter max points</string>
+	<string name="please_enter_players">Please enter max players</string>
+	<string name="please_enter_radius">Please enter radius</string>
+	<string name="please_enter_loc_name">Please enter localization name</string>
+	<string name="game_loc_name">Localization name</string>
+	<string name="game_created">Game created successfully</string>
+	<string name="game_loc_name_hint">Localization</string>
     <!-- Error Codes -->
     <string name="error_code_1">Bad request</string>
 	<string name="error_code_2">Internal error</string>
@@ -80,6 +94,5 @@
 	<string name="error_code_104">Player is already signed in</string>
 	<string name="error_code_105">Game reached maximum of players</string>
 	<string name="google_services_not_available">Google services are not currently avalible at this device</string>
-    
 	
 </resources>

@@ -48,11 +48,23 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/game_time_start" />
+                android:text="@string/choose_date" />
+
+            <DatePicker
+                android:id="@+id/datePickerTimeStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false" />
+            
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_time" />
 
             <TimePicker
                 android:id="@+id/timePickerTimeStart"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -62,12 +74,12 @@
                 android:text="@string/game_duration" />
 
             <EditText
-                android:id="@+id/editGameDuration"
+                android:id="@+id/editTextGameDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time" />
-
+            
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
@@ -79,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:hint="@string/game_points_max_hint" />
 
             <TextView
@@ -88,24 +101,59 @@
                 android:text="@string/game_players_max" />
 
             <EditText
-                android:id="@+id/editTextPlayersMax"
+                android:id="@+id/editTextGamePlayersMax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:hint="@string/game_players_max_hint" />
-
-            <Button
-                android:id="@+id/buttonPickLocalization"
+            
+            <TextView
+                android:id="@+id/textView63"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/game_loc_name" />
+
+            <EditText
+                android:id="@+id/editTextLocalizationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/game_loc_name_hint" />
+            
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_radius" />
+
+            <EditText
+                android:id="@+id/editTextGameRadius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/game_radius_hint" />
+         
+            <Button
+                android:id="@+id/buttonPickLocalization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickPickLocalization"
                 android:text="@string/game_localization_pick" />
+
+            <TextView
+                android:id="@+id/localizationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             
             <Button
                 android:id="@+id/buttonCreateGame"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onClickCreateGameButton"
                 android:text="@string/game_create_game" />
-         
+  
         </LinearLayout>
 
     </ScrollView>
