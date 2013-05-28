@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="9"
         android:targetSdkVersion="17" />
 
     <permission
@@ -27,12 +27,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/splash_ico"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.blstream.ctf2.SplashScreen"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -99,7 +98,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blstream.ctf2.PickLocalizationActivity"
+            android:name="com.blstream.ctf2.activity.game.PickLocalizationActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.blstream.ctf2.PICKLOCALIZATIONACTIVITY" />
@@ -122,6 +121,16 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.blstream.ctf2.GAMEPLAYERSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.blstream.ctf2.activity.game.EditGameActivity"
+            android:label="@string/edit_game"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.EDITGAMEACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
