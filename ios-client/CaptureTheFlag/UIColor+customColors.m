@@ -10,6 +10,16 @@
 
 @implementation UIColor (customColors)
 
++ (UIColor*)ctfPressedButtonBrownColor
+{
+    return [UIColor colorWithRed:169.0/255.0 green:78.0/255.0 blue:24.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)ctfNormalButtonAndLabelCarrotColor
+{
+    return [UIColor colorWithRed:225.0/255.0 green:104.0/255.0 blue:32.0/255.0 alpha:1.0];
+}
+
 + (UIColor*)ctfTextColor
 {
     return [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0];
