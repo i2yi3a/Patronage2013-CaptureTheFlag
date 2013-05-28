@@ -21,6 +21,7 @@ import android.net.ParseException;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
+import com.blstream.ctf2.exception.CtfException;
 
 /**
  * 
@@ -38,17 +39,17 @@ public class HttpServices {
 		httpClient=new DefaultHttpClient();
 	}
 
-	public boolean isOnline() throws Exception {
+	public boolean isOnline() throws CtfException {
 		ConnectivityManager connMgr = (ConnectivityManager) mCtx.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
 		} else {
-			throw new Exception(mCtx.getString(R.string.no_connection));
+			throw new CtfException(mCtx.getString(R.string.no_connection));
 		}
 	}
 
-	public String postRequest(String URI, String params, List<Header> headersList) throws Exception, IllegalArgumentException, IOException, ParseException {
+	public String postRequest(String URI, String params, List<Header> headersList) throws CtfException, IllegalArgumentException, IOException, ParseException {
 		isOnline();
 //		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(Constants.URL_SERVER + URI);
@@ -59,7 +60,7 @@ public class HttpServices {
 		return EntityUtils.toString(response.getEntity());
 	}
 
-	public String getRequest(String URI, List<Header> headersList) throws ClientProtocolException, IOException, Exception {
+	public String getRequest(String URI, List<Header> headersList) throws ClientProtocolException, IOException, CtfException {
 		isOnline();
 //		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(Constants.URL_SERVER + URI);
@@ -68,9 +69,8 @@ public class HttpServices {
 		return EntityUtils.toString(response.getEntity());
 	}
 	
-	public String putRequest(String URI, List<Header> headersList) throws ClientProtocolException, IOException, Exception {
+	public String putRequest(String URI, List<Header> headersList) throws ClientProtocolException, IOException, CtfException {
 		isOnline();
-		
 		HttpPut httpPut = new HttpPut(Constants.URL_SERVER + URI);
 		httpPut.setHeaders(headersList.toArray(new Header[headersList.size()]));
 		HttpResponse response = httpClient.execute(httpPut);
