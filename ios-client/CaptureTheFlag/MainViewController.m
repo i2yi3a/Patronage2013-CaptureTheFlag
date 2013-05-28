@@ -83,7 +83,7 @@
     }
     if (indexPath.row == 4)
     {
-        [self performSegueWithIdentifier:@"segueLogout" sender:self];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 
 }
