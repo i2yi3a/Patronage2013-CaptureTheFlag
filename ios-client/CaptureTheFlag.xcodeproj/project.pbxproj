@@ -356,7 +356,6 @@
 				233035C5170DAAC9002E1A92 /* Sources */,
 				233035C6170DAAC9002E1A92 /* Frameworks */,
 				233035C7170DAAC9002E1A92 /* Resources */,
-				23E2A689171C7F6100F8BD10 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -456,19 +455,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		23E2A689171C7F6100F8BD10 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "python localize.py --mainIdiom=en --mainStoryboard=CaptureTheFlag/en.lproj/MainStoryboard.storyboard en pl";
 		};
 /* End PBXShellScriptBuildPhase section */
 
