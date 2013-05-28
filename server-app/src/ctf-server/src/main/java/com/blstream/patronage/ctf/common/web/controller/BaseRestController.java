@@ -8,6 +8,7 @@ import com.blstream.patronage.ctf.common.service.CrudService;
 import com.blstream.patronage.ctf.model.BaseModel;
 import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
 import com.blstream.patronage.ctf.web.ui.BaseUI;
+import com.blstream.patronage.ctf.web.ui.MessageUI;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import org.slf4j.Logger;
@@ -21,27 +22,29 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Copyright 2013 BLStream
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ * <p/>
  * User: mkr
  * Date: 1/16/13
- *
+ * <p/>
  * This is a representation of base REST controller with CRUD logic model. It's an implementation
  * of RestController interface.
  *
@@ -62,23 +65,41 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
         this.uiClassType = uiClassType;
     }
 
-    private ErrorCodeType validator(UI request){
-        Validator  validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(request);
-        if (violations.size()>0){
-            return ErrorCodeType.VALIDATION_ERROR;
+    @Inject
+    @Named(value = "validator")
+    private Validator validator;
+
+
+    boolean validate(MessageUI message, UI request) {
+        List<ConstraintViolation> errors = validator.validate(request);
+        if (errors.size() > 0) {
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < errors.size(); i++) {
+                ConstraintViolation error = errors.get(i);
+
+                buffer.append(error.getMessage());
+
+                if (i < errors.size() - 1)
+                    buffer.append(",");
+            }
+            message.setErrorCode(ErrorCodeType.VALIDATION_ERROR);
+            message.setError(ErrorCodeType.VALIDATION_ERROR.getMessage());
+            message.setErrorDescription(buffer.toString());
+            return true;
         }
-        return  null;
+        return false;
     }
 
     /**
      * This is an abstract method where service is set.
+     *
      * @param service
      */
     protected abstract void setService(S service);
 
     /**
      * This is an abstract method where UI converter is set.
+     *
      * @param converter
      */
     protected abstract void setConverter(BaseUIConverter<UI, T, ID> converter);
@@ -94,8 +115,9 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
         UI response;
         T resource = converter.convert(request);
-        if(ErrorCodeType.VALIDATION_ERROR.equals(validator(request))){
-            return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
+        MessageUI message = new MessageUI();
+        if (validate(message, request)) {
+            return createResponseErrorMessage(message.getErrorCodeType(), message.getErrorDescription());
         }
         try {
             resource = service.create(resource);
@@ -126,8 +148,9 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
         UI response;
         T resource = converter.convert(request);
-        if(ErrorCodeType.VALIDATION_ERROR.equals(validator(request))){
-            return createResponseErrorMessage(ErrorCodeType.VALIDATION_ERROR);
+        MessageUI message = new MessageUI();
+        if (validate(message, request)) {
+            return createResponseErrorMessage(message.getErrorCodeType(), message.getErrorDescription());
         }
         try {
             resource = service.update(id, resource);
@@ -221,12 +244,15 @@ public abstract class BaseRestController<UI extends BaseUI<ID>, T extends BaseMo
 
     /**
      * This is a test method which always returns simple It's alive! text.
+     *
      * @return "It's alive!"
      */
     @RequestMapping("/isAlive")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')")
-    public @ResponseBody String isAlive() {
+    public
+    @ResponseBody
+    String isAlive() {
         if (logger.isDebugEnabled()) {
             logger.debug("---- isAlive method invoked ----");
         }

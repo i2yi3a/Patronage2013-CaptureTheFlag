@@ -1,8 +1,10 @@
 package com.blstream.patronage.ctf.web.converter;
 
 import com.blstream.patronage.ctf.model.Game;
+import com.blstream.patronage.ctf.model.Localization;
 import com.blstream.patronage.ctf.model.TeamBase;
 import com.blstream.patronage.ctf.web.ui.GameUI;
+import com.blstream.patronage.ctf.web.ui.LocalizationUI;
 import com.blstream.patronage.ctf.web.ui.TeamBaseUI;
 
 import javax.inject.Named;
@@ -30,10 +32,17 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
         target.setDuration(source.getDuration());
         target.setPointsMax(source.getPointsMax());
         target.setPlayersMax(source.getPlayersMax());
-        target.setLocalization(source.getLocalization());
         target.setStatus(source.getStatus());
         target.setPlayers(source.getPlayers());
         target.setOwner(source.getOwner());
+
+        if (source.getLocalization() != null) {
+            Localization localization = new Localization();
+            localization.setName(source.getLocalization().getName());
+            localization.setRadius(source.getLocalization().getRadius());
+            localization.setLatLng(source.getLocalization().getLatLng());
+            target.setLocalization(localization);
+        }
 
         if (source.getRedTeamBase() != null) {
             TeamBase redTeamBase = new TeamBase();
@@ -64,10 +73,17 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
             target.setDuration(source.getDuration());
             target.setPointsMax(source.getPointsMax());
             target.setPlayersMax(source.getPlayersMax());
-            target.setLocalization(source.getLocalization());
             target.setStatus(source.getStatus());
             target.setPlayers(source.getPlayers());
             target.setOwner(source.getOwner());
+
+            if (source.getLocalization() != null) {
+                LocalizationUI localization = new LocalizationUI();
+                localization.setName(source.getLocalization().getName());
+                localization.setRadius(source.getLocalization().getRadius());
+                localization.setLatLng(source.getLocalization().getLatLng());
+                target.setLocalization(localization);
+            }
 
             if (source.getRedTeamBase() != null) {
                 TeamBaseUI redTeamBase = new TeamBaseUI();

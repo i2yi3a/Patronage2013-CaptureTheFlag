@@ -1,6 +1,7 @@
 package com.blstream.patronage.ctf.web.ui;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * User: mkr
@@ -8,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class TeamBaseUI {
 
-    @JsonProperty("name")
+    @NotNull(message = "Team name cannot be Null")
+    @NotEmpty(message = "Team name cannot be empty")
     private String name;
 
-    @JsonProperty("latLng")
+    @NotNull(message = "Team latLng cannot be Null")
+    @NotEmpty(message = "Team latLng cannot be empty")
     private Double[] latLng;
 
 

@@ -47,9 +47,11 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         super.converter = converter;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody GameUI create(@RequestBody GameUI request) {
+    public
+    @ResponseBody
+    GameUI create(@RequestBody GameUI request) {
         if (logger.isDebugEnabled())
             logger.debug("---- create");
 
@@ -59,19 +61,22 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (logger.isInfoEnabled()) {
             logger.info(String.format("User: %s tries to create a new game: %s", currentUser, request.getName()));
         }
-
+        GameUI response = new GameUI();
         request.setStatus(GameStatusType.NEW);
         request.setOwner(currentUser);
 
         GameUI gameUI = super.create(request);
 
         if (!ErrorCodeType.SUCCESS.equals(gameUI.getErrorCodeType())) {
-            return gameUI;
+            response.setErrorCode(gameUI.getErrorCodeType());
+            response.setError(gameUI.getError());
+            response.setErrorDescription(gameUI.getErrorDescription());
+
+        } else {
+            response.setId(gameUI.getId());
+            response.setMessage(String.format("Game with id: %s was created successfully.", response.getId()));
         }
 
-        GameUI response = new GameUI();
-        response.setId(gameUI.getId());
-        response.setMessage(String.format("Game with id: %s was created successfully.", response.getId()));
 
         if (logger.isDebugEnabled())
             logger.debug("---- /create");
@@ -79,8 +84,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         return response;
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody GameUI update(@PathVariable String id, @RequestBody GameUI request) {
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    GameUI update(@PathVariable String id, @RequestBody GameUI request) {
         if (logger.isDebugEnabled())
             logger.debug("---- update");
 
@@ -90,15 +97,19 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (logger.isInfoEnabled()) {
             logger.info(String.format("User: %s tries to update an existing game: %s", currentUser, request.getName()));
         }
-        GameUI response;
+        GameUI response = new GameUI();
         Game resource = service.findById(id);
         if (GameStatusType.NEW.equals(resource.getStatus())) {
             if (currentUser.equals(resource.getOwner())) {
                 request.setOwner(currentUser);
-                response = super.update(id, request);
-                if (ErrorCodeType.SUCCESS.equals(response)) {
+                GameUI gameUI = super.update(id, request);
+                if (ErrorCodeType.SUCCESS.equals(gameUI.getErrorCodeType())) {
+                    response.setErrorCode(gameUI.getErrorCodeType());
                     response.setMessage(String.format("Game with id: %s was updated successfully.", resource.getId()));
-                }
+                } else
+                    response.setErrorCode(gameUI.getErrorCodeType());
+                response.setError(gameUI.getError());
+                response.setErrorDescription(gameUI.getErrorDescription());
             } else {
                 response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_UPDATED, "Only game owner can update game");
             }
@@ -112,8 +123,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         return response;
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody GameUI delete(@PathVariable String id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    GameUI delete(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- delete");
@@ -129,26 +142,28 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         }
 
         if (currentUser.equals(resource.getOwner())) {
-            if (resource.getStatus().equals(GameStatusType.NEW))   {
+            if (resource.getStatus().equals(GameStatusType.NEW)) {
                 response = super.delete(id);
-                if (ErrorCodeType.SUCCESS.equals(response)) {
-                response.setMessage(String.format("Game with id: %s was deleted successfully.", resource.getId()));
+                if (ErrorCodeType.SUCCESS.equals(response.getErrorCodeType())) {
+                    response.setMessage(String.format("Game with id: %s was deleted successfully.", resource.getId()));
                 }
-            }else {
+            } else {
                 response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only New Games can be deleted");
             }
-        }else {
+        } else {
             response = createResponseErrorMessage(ErrorCodeType.RESOURCE_CANNOT_BE_DELETED, "Only Game Owner can delete game");
-              }
+        }
         if (logger.isDebugEnabled())
             logger.debug("---- /delete");
 
-         return response;
+        return response;
     }
 
 
-    @RequestMapping(value = "{id}/players", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody List<String> players(@PathVariable String id) {
+    @RequestMapping(value = "{id}/players", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    List<String> players(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- players");
@@ -165,8 +180,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
     }
 
-    @RequestMapping(value = "{id}/signIn", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody GameUI playerSignIn(@PathVariable String id) {
+    @RequestMapping(value = "{id}/signIn", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    GameUI playerSignIn(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- SignIn");
@@ -202,8 +219,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         return response;
     }
 
-    @RequestMapping(value = "{id}/signOut", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody GameUI playerSignOut(@PathVariable String id) {
+    @RequestMapping(value = "{id}/signOut", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    GameUI playerSignOut(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- SignOut");
@@ -230,8 +249,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
     }
 
 
-    @RequestMapping(value = "", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
+    @RequestMapping(value = "", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- filter");
@@ -254,8 +275,10 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         return response;
     }
 
-    @RequestMapping(value = "/nearest", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody Iterable<GameUI> findNearest(
+    @RequestMapping(value = "/nearest", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    Iterable<GameUI> findNearest(
             @RequestParam(value = "latLng", required = true) Double[] latLng,
             @RequestParam(value = "range", required = false) Double range,
             @RequestParam(value = "status", required = false) GameStatusType status) {

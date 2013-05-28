@@ -12,19 +12,21 @@
     <import resource="spring/applicationContext-security-oauth.xml"/>
     <import resource="spring/applicationContext-web.xml"/>
 
-    <context:annotation-config />
-    <context:component-scan base-package="com.blstream.patronage.ctf" />
+    <context:annotation-config/>
+    <context:component-scan base-package="com.blstream.patronage.ctf"/>
 
     <context:property-placeholder file-encoding="utf-8" location="classpath:error-codes.properties"/>
 
+
+    <bean id="validator" class="net.sf.oval.Validator"></bean>
     <!-- TODO: add properties files -->
     <!--<bean id="messages" class="org.springframework.context.support.ResourceBundleMessageSource">-->
-        <!--<property name="basename" value="message"/>-->
+    <!--<property name="basename" value="message"/>-->
     <!--</bean>-->
     <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="locations">-->
-            <!--<value>classpath:application.properties</value>-->
-        <!--</property>-->
+    <!--<property name="locations">-->
+    <!--<value>classpath:application.properties</value>-->
+    <!--</property>-->
     <!--</bean>-->
 
 </beans>

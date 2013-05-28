@@ -1,13 +1,13 @@
 package com.blstream.patronage.ctf.web.ui;
 
+
 import com.blstream.patronage.ctf.model.GameStatusType;
-import com.blstream.patronage.ctf.model.Localization;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import net.sf.oval.constraint.Length;
-import net.sf.oval.constraint.NotEmpty;
-import net.sf.oval.constraint.NotNull;
+
+import net.sf.oval.constraint.*;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,23 +20,25 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GameUI extends BaseUI<String> {
 
-    @JsonProperty(required = true)
+
+    @NotEmpty(message = "Id cannot be empty")
     private String id;
 
-
+    @NotNull(message = "Game name cannot be Null")
     @NotEmpty(message = "Game name cannot be empty")
     @Length(min = 5, max = 60, message = "Name between 5 and 60 characters")
     private String name;
 
     private String description;
 
-
+    @NotNull(message = "TimeStart cannot be Null")
     @NotEmpty(message = "time start cannot be empty")
-    @JsonProperty(value ="time_start")
+    @JsonProperty(value = "time_start")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeStart;
 
-    @JsonProperty(required = true)
+    @NotNull(message = "Duration cannot be Null")
+    @NotEmpty(message = "Duration cannot be empty")
     private Long duration;
 
     @JsonProperty("points_max")
@@ -45,9 +47,8 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty("players_max")
     private Integer playersMax;
 
-
-    @NotEmpty(message = "localization cannot be empty")
-    private Localization localization;
+    @AssertValid(message = "Name, latLng and radius in Localization cannot be Null or Empty")
+    private LocalizationUI localization;
 
     private GameStatusType status;
 
@@ -55,9 +56,11 @@ public class GameUI extends BaseUI<String> {
 
     private String owner;
 
+    @AssertValid(message = "Name and latLng in RedTeamBase cannot be Null or Empty")
     @JsonProperty("red_team_base")
     private TeamBaseUI redTeamBase;
 
+    @AssertValid(message = "Name and latLng in BlueTeamBase cannot be Null or Empty")
     @JsonProperty("blue_team_base")
     private TeamBaseUI blueTeamBase;
 
@@ -118,11 +121,11 @@ public class GameUI extends BaseUI<String> {
         this.playersMax = playersMax;
     }
 
-    public Localization getLocalization() {
+    public LocalizationUI getLocalization() {
         return localization;
     }
 
-    public void setLocalization(Localization localization) {
+    public void setLocalization(LocalizationUI localization) {
         this.localization = localization;
     }
 
