@@ -62,30 +62,30 @@
     <string name="team_base_localization">Lokalizacja bazy</string>
     <string name="connecting">Trwa łączenie..</string>
     <string name="wrong_date">Nieprawidłowa data</string>
-	<string name="choose_date">Wybierz datę</string>
-	<string name="choose_time">Wybierz czas</string>
-	<string name="please_enter_gamename">Proszę podać nazwę</string>
-	<string name="please_enter_description">Proszę podać opis</string>
-	<string name="please_enter_duration">Proszę podać czas trwania</string>
-	<string name="please_enter_points">Proszę podać maksymalną liczbę punktów</string>
-	<string name="please_enter_players">Proszę podać maksymalną liczbę graczy</string>
-	<string name="please_enter_radius">Proszę podać promień</string>
-	<string name="please_enter_loc_name">Proszę podać nazwę lokalizacji</string>
-	<string name="game_loc_name">Nazwa lokalizacji</string>
-	<string name="game_created">Gra została stworzona</string>
-	<string name="game_loc_name_hint">Lokalizacja</string>
+    <string name="choose_date">Wybierz datę</string>
+    <string name="choose_time">Wybierz czas</string>
+    <string name="please_enter_gamename">Proszę podać nazwę</string>
+    <string name="please_enter_description">Proszę podać opis</string>
+    <string name="please_enter_duration">Proszę podać czas trwania</string>
+    <string name="please_enter_points">Proszę podać maksymalną liczbę punktów</string>
+    <string name="please_enter_players">Proszę podać maksymalną liczbę graczy</string>
+    <string name="please_enter_radius">Proszę podać promień</string>
+    <string name="please_enter_loc_name">Proszę podać nazwę lokalizacji</string>
+    <string name="game_loc_name">Nazwa lokalizacji</string>
+    <string name="game_created">Gra została stworzona</string>
+    <string name="game_loc_name_hint">Lokalizacja</string>
     <!-- Error Codes -->
     <string name="error_code_1">Niepoprawne żądanie</string>
-	<string name="error_code_2">Błąd wewnętrzny servera</string>
-	<string name="error_code_3">Zasób nie został znaleziony</string>
-	<string name="error_code_4">Zasób już istnieje</string>
-	<string name="error_code_5">Zasób nie może zostać usunięty</string>
-	<string name="error_code_100">Nie można stworzyć nowego gracza</string>
-	<string name="error_code_101">Gracz już istnieje</string>
-	<string name="error_code_102">Gracz nie może zostać zapisany</string>
-	<string name="error_code_103">Gracz nie może zostać wypisany</string>
-	<string name="error_code_104">Gracz już jest zapisany</string>
-	<string name="error_code_105">Maksymalna liczba graczy w grze została osiągnięta</string>
-	<string name="google_services_not_available">Brak google services na urządzeniu</string>
-	
+    <string name="error_code_2">Błąd wewnętrzny servera</string>
+    <string name="error_code_3">Zasób nie został znaleziony</string>
+    <string name="error_code_4">Zasób już istnieje</string>
+    <string name="error_code_5">Zasób nie może zostać usunięty</string>
+    <string name="error_code_100">Nie można stworzyć nowego gracza</string>
+    <string name="error_code_101">Gracz już istnieje</string>
+    <string name="error_code_102">Gracz nie może zostać zapisany</string>
+    <string name="error_code_103">Gracz nie może zostać wypisany</string>
+    <string name="error_code_104">Gracz już jest zapisany</string>
+    <string name="error_code_105">Maksymalna liczba graczy w grze została osiągnięta</string>
+    <string name="google_services_not_available">Brak google services na urządzeniu</string>
+
 </resources>
