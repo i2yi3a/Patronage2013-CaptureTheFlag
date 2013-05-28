@@ -19,7 +19,7 @@
 
 - (IBAction)switchcontrol:(id)sender{
     if (control.selectedSegmentIndex == 0) {
-        [self performSegueWithIdentifier:@"segueToMainScreenAfterRegister" sender:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
