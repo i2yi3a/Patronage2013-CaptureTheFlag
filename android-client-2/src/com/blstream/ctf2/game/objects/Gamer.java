@@ -21,9 +21,12 @@ public class Gamer extends GameObject {
 	
 	public void hasTakenFlag(){
 		mHasFlag = true;
+		changeGamerImage(getTeam(), true);
+		
 	}
 	public void hasLostFlag(){
 		mHasFlag = false;
+		changeGamerImage(getTeam(), false);
 	}
 	
 }

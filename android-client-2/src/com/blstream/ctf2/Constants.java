@@ -45,6 +45,7 @@ public class Constants {
 	}
 	public static enum GAME_OBJECT_TYPE{
 		FLAG,
-		GAMER
+		GAMER,
+		BASE
 	}
 }

@@ -43,4 +43,8 @@ public abstract class GameObject {
 	public Bitmap getImage(){
 		return mImage.getImage();
 	}
+	
+	public void changeGamerImage(Constants.TEAM team, boolean hasFlag){
+		mImage.changeGamerImage(team, hasFlag);
+	}
 }

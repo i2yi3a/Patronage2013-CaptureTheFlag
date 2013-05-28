@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.Constants.TEAM;
 import com.blstream.ctf2.R;
 
 /**
@@ -26,17 +27,21 @@ public class AndroidGameObjectImage implements GameObjectImage {
 		case FLAG:
 			loadFlagImage(team);
 			break;
+
+		case BASE:
+			loadBaseImage(team);
 		}
 	}
-	//TODO change commented lines when assets become available
+
+	// TODO change commented lines when assets become available
 	@Override
 	public void loadGamerImage(Constants.TEAM team) {
 		switch (team) {
 		case TEAM_RED:
-			//mImage = BitmapFactory.decodeResource(mCtx.getResources(), R.drawable.redGamer);
+			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamer);
 			break;
 		case TEAM_BLUE:
-			//mImage = BitmapFactory.decodeResource(mCtx.getResources(), R.drawable.blueGamer);
+			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamer);
 			break;
 		}
 
@@ -54,8 +59,45 @@ public class AndroidGameObjectImage implements GameObjectImage {
 		}
 	}
 
+	@Override
+	public void loadBaseImage(TEAM team) {
+		switch (team) {
+		case TEAM_RED:
+			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redBase);
+			break;
+		case TEAM_BLUE:
+			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueBase);
+			break;
+		}
+	}
+
 	public Bitmap getImage() {
 		return mImage;
+	}
+
+	@Override
+	public void changeGamerImage(TEAM team, boolean hasFlag) {
+		if(hasFlag){
+			switch (team) {
+			case TEAM_RED:
+				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamerWithFlag);
+				break;
+			case TEAM_BLUE:
+				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamerWithFlag);
+				break;
+			}
+		}
+		else{
+			switch (team) {
+			case TEAM_RED:
+				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamerWithoutFlag);
+				break;
+			case TEAM_BLUE:
+				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamerWithoutFlag);
+				break;
+			}
+		}
+		
 	}
 
 }
