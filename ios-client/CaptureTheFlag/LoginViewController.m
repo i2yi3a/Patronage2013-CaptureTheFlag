@@ -11,18 +11,25 @@
 
 
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userEmailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIView *emailBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *passwordBackgroundView;
+@property (weak, nonatomic) IBOutlet FlatButton *loginButton;
+@property (weak, nonatomic) IBOutlet FlatButton *loginSwitchButton;
+@property (weak, nonatomic) IBOutlet FlatButton *registerSwitchButton;
+@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIView *emailIconBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *passwordIconBackgroundView;
+
+- (IBAction)login:(id)sender;
+
 @property (nonatomic, retain) UIAlertView *loginAlertView;
+
 @end
+
 @implementation LoginViewController
-
-- (IBAction)switchcontrol:(id)sender{
-    if (control.selectedSegmentIndex == 1) {
-        [self performSegueWithIdentifier:@"segueToRegister" sender:self];
-    }
-
-}
 
 - (void)viewDidLoad
 {
@@ -37,6 +44,25 @@
                                                        delegate:self
                                               cancelButtonTitle:nil
                                               otherButtonTitles:nil, nil];
+ 
+    self.view.backgroundColor = [UIColor ctfApplicationBackgroundLighterColor];
+    
+    _emailBackgroundView.backgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
+    _passwordBackgroundView.backgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
+    
+    _loginSwitchButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _loginSwitchButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+
+    _registerSwitchButton.buttonBackgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
+    _registerSwitchButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+
+    _loginButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _loginButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _emailIconBackgroundView.backgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _passwordIconBackgroundView.backgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    
+    _topBar.backgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
     
 }
 
@@ -82,21 +108,6 @@
 }
 
 
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterLogin"])
-    {
-        
-    }
-    if ([[segue identifier] isEqualToString:@"segueToRegister"])
-    {
-        
-    }
-
-}
-
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.userEmailField) {
         [textField resignFirstResponder];
@@ -116,4 +127,15 @@
     [_passwordField resignFirstResponder];
 }
 
+- (void)viewDidUnload {
+    [self setEmailBackgroundView:nil];
+    [self setPasswordBackgroundView:nil];
+    [self setLoginButton:nil];
+    [self setLoginSwitchButton:nil];
+    [self setRegisterSwitchButton:nil];
+    [self setTopBar:nil];
+    [self setEmailIconBackgroundView:nil];
+    [self setPasswordIconBackgroundView:nil];
+    [super viewDidUnload];
+}
 @end
