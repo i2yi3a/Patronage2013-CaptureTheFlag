@@ -193,16 +193,18 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
         List<String> players = resource.getPlayers();
-        GameUI response;
+        GameUI response = new GameUI();
 
         if (resource.getStatus().equals(GameStatusType.NEW) || resource.getStatus().equals(GameStatusType.IN_PROGRESS)) {
             if (resource.getPlayers().size() < resource.getPlayersMax()) {
                 if (!resource.getPlayers().contains(currentUser)) {
 
                     players.add(currentUser);
-                    GameUI gameUI = converter.convert(resource);
-                    update(id, gameUI);
-                    response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+                    GameUI convert = converter.convert(resource);
+                    GameUI gameUI = update(id, convert);
+                    response.setErrorCode(gameUI.getErrorCodeType());
+                    response.setError(gameUI.getError());
+                    response.setErrorDescription(gameUI.getErrorDescription());
                 } else {
                     response = createResponseErrorMessage(ErrorCodeType.PLAYER_IS_ALREADY_SIGNED_IN);
                 }
@@ -232,13 +234,15 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
         List<String> players = resource.getPlayers();
-        GameUI response;
+        GameUI response = new GameUI();
 
         if (resource.getPlayers().contains(currentUser)) {
             players.remove(currentUser);
             GameUI convert = converter.convert(resource);
-            update(id, convert);
-            response = createResponseErrorMessage(ErrorCodeType.SUCCESS);
+            GameUI gameUI = update(id, convert);
+            response.setErrorCode(gameUI.getErrorCodeType());
+            response.setError(gameUI.getError());
+            response.setErrorDescription(gameUI.getErrorDescription());
         } else {
             response = createResponseErrorMessage(ErrorCodeType.PLAYER_CANNOT_BE_SIGN_OUT);
         }
