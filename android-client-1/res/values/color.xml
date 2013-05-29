@@ -3,4 +3,5 @@
     <color name="white">#ffffffff</color>
     <color name="red">#ffff0000</color>
     <color name="background">#DBDBDB</color>
+    <color name="pressed_tab">#3F858E</color>
 </resources>

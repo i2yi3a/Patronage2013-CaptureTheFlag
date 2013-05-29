@@ -5,17 +5,16 @@ package com.blstream.ctf1;
  */
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,31 +26,35 @@ import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
-
-public class GameListActivity extends ListActivity implements OnClickListener, OnTabChangeListener{
+public class GameListActivity extends ListActivity implements OnClickListener,
+		OnTabChangeListener {
 
 	private Button mBtnCreateGame;
 	private GameBasicListFilter gameBasicListFilter;
 	private TabHost mTabHost;
 	private TabSpec mTab1, mTab2, mTab3, mTab4;
+	private TextView tv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_list);
-		
+
 		mBtnCreateGame = (Button) findViewById(R.id.btnCreateGame);
 		mBtnCreateGame.setOnClickListener(this);
 		gameBasicListFilter = new GameBasicListFilter();
-		
+
 		mTabHost = (TabHost) findViewById(R.id.tabHost);
 		mTabHost.setup();
-		mTab1 = createTabHost("TAB1", R.id.tab1,"Moje");
-		mTab2 = createTabHost("TAB2", R.id.tab2,"Najbli¿ej");
-		mTab3 = createTabHost("TAB3", R.id.tab3,"Zakoñczone");
-		mTab4 = createTabHost("TAB4", R.id.tab4,"Wszystkie");
+		mTabHost.getTabWidget().setDividerDrawable(R.drawable.tab_divider);
+
+		mTab1 = setupTabHost(new TextView(this), "Moje");
+		mTab2 = setupTabHost(new TextView(this), "Najbli¿ej");
+		mTab3 = setupTabHost(new TextView(this), "Zakoñczone");
+		mTab4 = setupTabHost(new TextView(this), "Wszystkie");
+
 		mTabHost.setOnTabChangedListener(this);
-		
+
 		ListView lv = getListView();
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -65,14 +68,6 @@ public class GameListActivity extends ListActivity implements OnClickListener, O
 				startActivity(intent);
 			}
 		});
-	}
-
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.context_menu, menu);
 	}
 
 	@Override
@@ -94,44 +89,43 @@ public class GameListActivity extends ListActivity implements OnClickListener, O
 		}
 	}
 
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.Profile:
-			return true;
-		case R.id.Settings:
-			return true;
-		case R.id.Logout:
-			finish();
-			return true;
-		default:
-			return super.onContextItemSelected(item);
-		}
+	private TabSpec setupTabHost(final View view, String tag) {
+		View tabView = createTabView(mTabHost.getContext(), tag);
+		TabSpec setContent = mTabHost.newTabSpec(tag).setIndicator(tabView)
+				.setContent(new TabContentFactory() {
+					public View createTabContent(String tag) {
+						return view;
+					}
+				});
+		mTabHost.addTab(setContent);
+		return setContent;
 	}
 
-	public TabSpec createTabHost(String tag, int id, String label) {
-		TabSpec tabSpec;
-		tabSpec = mTabHost.newTabSpec(tag).setContent(id).setIndicator(label);
-		mTabHost.addTab(tabSpec);
-		return tabSpec;
+	private View createTabView(final Context context, final String text) {
+		View view = LayoutInflater.from(context)
+				.inflate(R.layout.tabs_bg, null);
+		tv = (TextView) view.findViewById(R.id.tabsText);
+		tv.setText(text);
+		return view;
 	}
 
 	@Override
 	public void onTabChanged(String tabId) {
-		if(tabId == mTab1.getTag().toString()) {
+		if (tabId == mTab1.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, true);
 			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
 		}
-		if(tabId == mTab2.getTag().toString()) {
-			//Filtruj po najblizszych lokalizacjach
+		if (tabId == mTab2.getTag().toString()) {
+			// Filtruj po najblizszych lokalizacjach
 		}
-		if(tabId == mTab3.getTag().toString()) {
-			gameBasicListFilter = new GameBasicListFilter(GameStatusType.COMPLETED.toString(), null, null);
+		if (tabId == mTab3.getTag().toString()) {
+			gameBasicListFilter = new GameBasicListFilter(
+					GameStatusType.COMPLETED.toString(), null, null);
 			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
 		}
-		if(tabId == mTab4.getTag().toString()) {
+		if (tabId == mTab4.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, null);
 			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
