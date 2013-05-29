@@ -38,19 +38,19 @@ public class ListAdapter extends ArrayAdapter<GameBasicInfo> {
 		if (value != null) {
 			TextView gameID = (TextView) rowView.findViewById(R.id.id);
 			TextView gameName = (TextView) rowView.findViewById(R.id.game_name);
-			TextView gameOwner = (TextView) rowView.findViewById(R.id.game_owner);
-			TextView gameStatus = (TextView) rowView.findViewById(R.id.game_status);
+			TextView gameLocalization = (TextView) rowView.findViewById(R.id.game_localization);
+			TextView gameTime = (TextView) rowView.findViewById(R.id.game_time);
 			if (gameID != null) {
 				gameID.setText(value.getId());
 			}
 			if (gameName != null) {
 				gameName.setText(value.getName());
 			}
-			if (gameOwner != null) {
-				gameOwner.setText(value.getOwner());
+			if (gameLocalization != null) {
+				gameLocalization.setText(value.getOwner());
 			}
-			if (gameStatus != null) {
-				gameStatus.setText(value.getGameStatusType().toString());
+			if (gameTime != null) {
+				gameTime.setText(value.getGameStatusType().toString());
 			}
 		}
 		return rowView;

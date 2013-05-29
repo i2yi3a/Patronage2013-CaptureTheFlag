@@ -108,7 +108,7 @@
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
-    <string name="create_new_game">Nowa gra</string>
+    <string name="create_new_game">+</string>
     <string name="logout">Wyloguj</string>
     <string name="player_profile">Profil</string>
     <string name="settings">Ustawienia</string>

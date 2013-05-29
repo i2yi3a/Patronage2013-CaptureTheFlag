@@ -106,7 +106,7 @@
 
     <!-- Game List -->
     <string name="title_activity_game_list">GameListActivity</string>
-    <string name="create_new_game">New game</string>
+    <string name="create_new_game">+</string>
     <string name="logout">Logout</string>
     <string name="player_profile">Profile</string>
     <string name="settings">Settings</string>
