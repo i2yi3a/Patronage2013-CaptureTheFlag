@@ -113,6 +113,10 @@
     <string name="search">Search</string>
     <string name="logout_succesful">You are logged out</string>
     <string name="get_game_list_canceled">Getting game list canceled</string>
+    <string name="tab_my_games">My Games</string>
+    <string name="tab_closest_games">Closest</string>
+    <string name="tab_finished_games">Finished</string>
+    <string name="tab_all_games">All Games</string>
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>

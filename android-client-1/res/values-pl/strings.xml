@@ -115,6 +115,10 @@
     <string name="search">Szukaj</string>
     <string name="logout_succesful">Wylogowałeś się</string>
     <string name="get_game_list_canceled">Anulowano pobieranie listy gier</string>
+    <string name="tab_my_games">Moje</string>
+    <string name="tab_closest_games">Najbliżej</string>
+    <string name="tab_finished_games">Zakończone</string>
+    <string name="tab_all_games">Wszystkie</string>
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>

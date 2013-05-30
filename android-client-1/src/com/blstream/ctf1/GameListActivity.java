@@ -22,7 +22,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
+import com.blstream.ctf1.asynchronous.GameListByLocalization;
 import com.blstream.ctf1.domain.GameBasicListFilter;
+import com.blstream.ctf1.domain.GameLocalizationListFilter;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
@@ -31,9 +33,10 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 
 	private Button mBtnCreateGame;
 	private GameBasicListFilter gameBasicListFilter;
+	private GameLocalizationListFilter gameLocalizationListFilter;
 	private TabHost mTabHost;
 	private TabSpec mTab1, mTab2, mTab3, mTab4;
-	private TextView tv;
+	private TextView mTabTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,13 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 		mTabHost = (TabHost) findViewById(R.id.tabHost);
 		mTabHost.setup();
 		mTabHost.getTabWidget().setDividerDrawable(R.drawable.tab_divider);
-
-		mTab1 = setupTabHost(new TextView(this), "Moje");
-		mTab2 = setupTabHost(new TextView(this), "Najbli¿ej");
-		mTab3 = setupTabHost(new TextView(this), "Zakoñczone");
-		mTab4 = setupTabHost(new TextView(this), "Wszystkie");
-
+		
+		mTab1 = setupTabHost(new TextView(this), R.string.tab_my_games);
+		mTab2 = setupTabHost(new TextView(this), R.string.tab_closest_games);
+		mTab3 = setupTabHost(new TextView(this), R.string.tab_finished_games);
+		mTab4 = setupTabHost(new TextView(this), R.string.tab_all_games);
+		
+		mTabHost.setCurrentTabByTag(mTab4.getTag());
 		mTabHost.setOnTabChangedListener(this);
 
 		ListView lv = getListView();
@@ -71,13 +75,6 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 	}
 
 	@Override
-	protected void onResume() {
-		GameList gameList = new GameList(this, gameBasicListFilter);
-		gameList.execute();
-		super.onResume();
-	}
-
-	@Override
 	public void onClick(View view) {
 		Intent intent = null;
 		switch (view.getId()) {
@@ -89,9 +86,9 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 		}
 	}
 
-	private TabSpec setupTabHost(final View view, String tag) {
+	private TabSpec setupTabHost(final View view, Integer tag) {
 		View tabView = createTabView(mTabHost.getContext(), tag);
-		TabSpec setContent = mTabHost.newTabSpec(tag).setIndicator(tabView)
+		TabSpec setContent = mTabHost.newTabSpec(tag.toString()).setIndicator(tabView)
 				.setContent(new TabContentFactory() {
 					public View createTabContent(String tag) {
 						return view;
@@ -101,14 +98,21 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 		return setContent;
 	}
 
-	private View createTabView(final Context context, final String text) {
+	private View createTabView(Context context, Integer text) {
 		View view = LayoutInflater.from(context)
 				.inflate(R.layout.tabs_bg, null);
-		tv = (TextView) view.findViewById(R.id.tabsText);
-		tv.setText(text);
+		mTabTextView = (TextView) view.findViewById(R.id.tabsText);
+		mTabTextView.setText(text);
 		return view;
 	}
 
+	@Override
+	protected void onResume() {
+		GameList gameList = new GameList(this, gameBasicListFilter);
+		gameList.execute();
+		super.onResume();
+	}
+	
 	@Override
 	public void onTabChanged(String tabId) {
 		if (tabId == mTab1.getTag().toString()) {
@@ -117,7 +121,9 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 			gameList.execute();
 		}
 		if (tabId == mTab2.getTag().toString()) {
-			// Filtruj po najblizszych lokalizacjach
+		/*	gameLocalizationListFilter = new GameLocalizationListFilter(null);
+			GameListByLocalization gameList = new GameListByLocalization(this, gameLocalizationListFilter);
+			gameList.execute(); */
 		}
 		if (tabId == mTab3.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(
