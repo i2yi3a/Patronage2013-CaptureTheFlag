@@ -80,6 +80,12 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.latitude = result.getLocalization().getLatLng().latitude;
 			mCurrentActivity.longitude = result.getLocalization().getLatLng().longitude;
 			mCurrentActivity.radius = result.getLocalization().getRadius();
+			mCurrentActivity.mEditRedNameBase.setText(result.getRedTeamName());
+			mCurrentActivity.mEditBlueNameBase.setText(result.getBlueTeamName());
+			mCurrentActivity.latitudeBlue = result.getBlueBase().latitude;
+			mCurrentActivity.longitudeBlue = result.getBlueBase().latitude;
+			mCurrentActivity.latitudeRed = result.getRedBase().latitude;
+			mCurrentActivity.longitudeRed = result.getRedBase().latitude;
 		}
 	}
 

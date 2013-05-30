@@ -24,7 +24,7 @@ public class JSONFields {
 	
 	public final static String RED_TEAM_BASE = "red_team_base";
 	
-	public final static String BLUE_TEAM_BASE = "blue_tam_base";
+	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	
 	public final static String OWNER = "owner";
 	

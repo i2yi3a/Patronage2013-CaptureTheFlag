@@ -225,6 +225,10 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
                 gameInfo.setDuration(mPlayingTime);
                 gameInfo.setPlayersMax(mMaxPlayers);
                 gameInfo.setPointsMax(mMaxPoints);
+                gameInfo.setBlueTeamName(mBlueBaseName);
+                gameInfo.setRedTeamName(mRedBaseName);
+                gameInfo.setRedBase(new LatLng(latitudeRed,longitudeRed));
+                gameInfo.setBlueBase(new LatLng(latitudeBlue,longitudeBlue));
 
                 if (mId == null) {
                     CreateGame createGame = new CreateGame(this, gameInfo);

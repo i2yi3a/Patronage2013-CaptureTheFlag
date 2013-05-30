@@ -85,6 +85,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mTextGamePointsMax.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mTextGameID.setText(result.getId());
 			mCurrentActivity.isStatusNew(result.getGameStatusType().toString());
+			mCurrentActivity.isUserOwner(result.getOwner());
 
 			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity, result.getPlayersList()));
 			ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);

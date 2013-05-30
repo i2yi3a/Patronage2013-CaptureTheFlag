@@ -3,26 +3,32 @@ package com.blstream.ctf1;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
-
 import android.widget.Toast;
+
 import com.blstream.ctf1.asynchronous.DeleteGame;
 import com.blstream.ctf1.asynchronous.GameDetails;
 import com.blstream.ctf1.asynchronous.JoinGame;
 import com.blstream.ctf1.asynchronous.LeaveGame;
 import com.blstream.ctf1.asynchronous.RefreshPlayersList;
 import com.blstream.ctf1.domain.GameStatusType;
+import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.service.NetworkService;
+import com.blstream.ctf1.service.StorageService;
 import com.blstream.ctf1.tracker.IssueTracker;
 
 /**
  * @author Rafal_Olichwer, Piotr Marczycki, Mateusz Wisniewski
  */
 
-public class GameDetailsActivity extends ListActivity implements OnClickListener {
+public class GameDetailsActivity extends ListActivity implements OnClickListener, OnTabChangeListener {
 
 	public TextView mTextGameName;
 	public TextView mTextGameDescription;
@@ -40,6 +46,11 @@ public class GameDetailsActivity extends ListActivity implements OnClickListener
 	public Button mBtnEdit;
 	public Button mBtnDelete;
 	private String mId;
+	private TabHost mTabHost;
+	private TabSpec mTab1, mTab2, mTab3, mTab4;
+	public double longitude;
+	public double latitude;
+	public long radius;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +87,21 @@ public class GameDetailsActivity extends ListActivity implements OnClickListener
         } else {
             Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
         }
+        
+        
+        mTabHost = (TabHost) findViewById(R.id.tabhostDetails);
+		mTabHost.setup();
+		mTab1 = createTabHost("TAB1", R.id.ScrollView,"Wszystkie");
+		mTab4  = mTabHost.newTabSpec("TAB4").setIndicator("mapa");
+		
+		Intent intent = new Intent(this,GameDetailsMapActivity.class);
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
+        intent.putExtra("radius", radius);
+		mTab4.setContent(intent);
+		mTabHost.addTab(mTab4);
+        mTabHost.setCurrentTab(0);
+		mTabHost.setOnTabChangedListener(this);
 	}
 
 	@Override
@@ -128,5 +154,43 @@ public class GameDetailsActivity extends ListActivity implements OnClickListener
 			mBtnEdit.setEnabled(true);
 		else
 			mBtnEdit.setEnabled(false);
+	}
+	
+	public void isUserOwner(String owner) {
+		StorageService storageService = new StorageService(this);
+		storageService.open();
+		LoggedPlayer loggedPlayer = storageService.getLoggedPlayer();
+		if(loggedPlayer.getLogin().equals(owner)) {
+			mBtnEdit.setVisibility(View.VISIBLE);
+			mBtnDelete.setVisibility(View.VISIBLE);
+		} else {
+			mBtnEdit.setVisibility(View.GONE);
+			mBtnDelete.setVisibility(View.GONE);
+			
+		}
+			
+			
+	}
+	
+	public TabSpec createTabHost(String tag, int id, String label) {
+		TabSpec tabSpec;
+		tabSpec = mTabHost.newTabSpec(tag).setContent(id).setIndicator(label);
+		mTabHost.addTab(tabSpec);
+		
+		return tabSpec;
+	}
+
+	@Override
+	public void onTabChanged(String tabId) {
+		if(tabId == mTab1.getTag().toString()) {
+			
+		}
+		if(tabId == mTab2.getTag().toString())
+			Log.v("TAB2", "TAB2 WCISNIETY!");
+		if(tabId == mTab3.getTag().toString())
+			Log.v("TAB3", "TAB3 WCISNIETY!");
+		if(tabId == mTab4.getTag().toString()) {
+			
+		}
 	}
 }

@@ -13,6 +13,7 @@ import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.service.GameService;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Rafal Olichwer
@@ -45,10 +46,18 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 
 	private double mRadius;
 
+	private String mRedTeamName;
+
+	private String mBlueTeamName;
+
+	private LatLng mRedBase;
+
+	private LatLng mBlueBase;
+
 	private String mMessageToShow;
 
 	private GameService mGameService;
-	
+
 	private NetworkOperationProgressDialog loadingDialog;
 
 	@Override
@@ -75,6 +84,10 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 		mLat = localization.getLatLng().latitude;
 		mLng = localization.getLatLng().longitude;
 		mRadius = localization.getRadius();
+		mRedTeamName = gameInfo.getRedTeamName();
+		mBlueTeamName = gameInfo.getBlueTeamName();
+		mRedBase = gameInfo.getRedBase();
+		mBlueBase = gameInfo.getBlueBase();
 
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_edited);
 		mGameService = new GameService(mCurrentActivity);
@@ -85,8 +98,8 @@ public class EditGame extends AsyncTask<Void, Void, Boolean> {
 	protected Boolean doInBackground(Void... params) {
 		Boolean successful = false;
 		try {
-			mGameService
-					.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
+			mGameService.editGame(mId, mStatus, mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng,
+					mRadius, mRedTeamName, mBlueTeamName, mRedBase, mBlueBase);
 			successful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way

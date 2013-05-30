@@ -3,6 +3,8 @@ package com.blstream.ctf1.domain;
 import java.util.Date;
 import java.util.List;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * @author Adrian Swarcewicz
  */
@@ -28,13 +30,22 @@ public class GameExtendedInfo {
 
 	Integer playersMax;
 	
+	String redTeamName;
+	
+	String blueTeamName;
+	
+	LatLng redBase;
+	
+	LatLng blueBase;
+	
 	List<String> playersList;
 
 	public GameExtendedInfo() {
 	}
 
 	public GameExtendedInfo(String id, String name, String description, Long duration, Localization localization, GameStatusType gameStatusType, String owner,
-			Date timeStart, Integer pointsMax, Integer playersMax) {
+			Date timeStart, Integer pointsMax, Integer playersMax, String redTeamName,
+			String blueTeamName, LatLng redBase, LatLng blueBase) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -45,6 +56,10 @@ public class GameExtendedInfo {
 		this.timeStart = timeStart;
 		this.pointsMax = pointsMax;
 		this.playersMax = playersMax;
+		this.redTeamName = redTeamName;
+		this.blueTeamName = blueTeamName;
+		this.redBase = redBase;
+		this.blueBase = blueBase;
 	}
 
 	public String getId() {
@@ -133,6 +148,35 @@ public class GameExtendedInfo {
 
 	public void setPlayersList(List<String> playersList) {
 		this.playersList = playersList;
+	}
+	
+	public String getBlueTeamName() {
+		return blueTeamName;
+	}
+	
+	public void setBlueTeamName(String blueTeamName) {
+		this.blueTeamName = blueTeamName;
+	}
+	public String getRedTeamName() {
+		return redTeamName;
+	}
+	
+	public void setRedTeamName(String redTeamName) {
+		this.redTeamName = redTeamName;
+	}
+	public LatLng getRedBase() {
+		return redBase;
+	}
+	
+	public void setRedBase(LatLng redBase) {
+		this.redBase = redBase;
+	}
+	public LatLng getBlueBase() {
+		return blueBase;
+	}
+	
+	public void setBlueBase(LatLng blueBase) {
+		this.blueBase = blueBase;
 	}
 
 	@Override

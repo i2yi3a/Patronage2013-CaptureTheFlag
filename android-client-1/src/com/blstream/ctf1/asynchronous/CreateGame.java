@@ -13,6 +13,7 @@ import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.Localization;
 import com.blstream.ctf1.service.GameService;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Rafal Olichwer
@@ -41,8 +42,16 @@ public class CreateGame extends AsyncTask<Void, Void, Boolean> {
 
 	private double mRadius;
 
+	private String mRedTeamName;
+
+	private String mBlueTeamName;
+
+	private LatLng mRedBase;
+
+	private LatLng mBlueBase;
+
 	private String mMessageToShow;
-	
+
 	private GameService mGameService;
 
 	private NetworkOperationProgressDialog loadingDialog;
@@ -69,7 +78,11 @@ public class CreateGame extends AsyncTask<Void, Void, Boolean> {
 		mLat = localization.getLatLng().latitude;
 		mLng = localization.getLatLng().longitude;
 		mRadius = localization.getRadius();
-		
+		mRedTeamName = gameInfo.getRedTeamName();
+		mBlueTeamName = gameInfo.getBlueTeamName();
+		mRedBase = gameInfo.getRedBase();
+		mBlueBase = gameInfo.getBlueBase();
+
 		mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_created);
 		mGameService = new GameService(mCurrentActivity);
 		loadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
@@ -79,7 +92,8 @@ public class CreateGame extends AsyncTask<Void, Void, Boolean> {
 	protected Boolean doInBackground(Void... params) {
 		Boolean successful = false;
 		try {
-			mGameService.createGame(mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius);
+			mGameService.createGame(mGameName, mDescription, mTimeStart, mDuration, mPointsMax, mPlayersMax, mLocalizationName, mLat, mLng, mRadius,
+					mRedTeamName, mBlueTeamName, mRedBase, mBlueBase);
 			successful = true;
 			// no sense to catch others exceptions all are handled in that same
 			// way
@@ -97,7 +111,7 @@ public class CreateGame extends AsyncTask<Void, Void, Boolean> {
 	protected void onPostExecute(Boolean successful) {
 		loadingDialog.dismiss();
 		Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
-		if(successful == true){
+		if (successful == true) {
 			mCurrentActivity.finish();
 		}
 	}

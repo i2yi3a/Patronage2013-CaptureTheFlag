@@ -1,209 +1,228 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context=".GameDetailsActivity" >
-
-<LinearLayout
-        android:id="@+id/forScroll"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    
-
-        <TextView
-            android:id="@+id/textDetailsDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_description"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/DetailsDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textDetailsDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/playing_time"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/DetailsDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textLocName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/location_name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/LocName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_id"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textOwner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_owner"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/Owner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textDetailsGameName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/DetailsGameName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-        
-        <TextView
-            android:id="@+id/textDetailsGameDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_date"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/DetailsGameDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textGamePointsMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/maximum_scoring"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/GamePointsMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textGamePlayersMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/maximum_players"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/GamePlayersMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textGameStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_status"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/GameStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-
-        <TextView
-            android:id="@+id/textLocRadius"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_radius"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/LocRadius"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="true" />
-	<TextView
-            android:id="@+id/textPlayers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_players"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        
-
-    <ListView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:clickable="false" >
-    </ListView>
-
-	
-        <Button
-            android:id="@+id/btnJoin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_join" />
-
-        <Button
-            android:id="@+id/btnLeave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_leave" />
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_edit" />
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_delete" />
-
+   android:id="@+id/tabhostDetails"
+   android:layout_width="fill_parent" android:layout_height="fill_parent"
+ 	tools:context=".GameDetailsActivity" >
+   <LinearLayout android:orientation="vertical"
+     android:layout_width="fill_parent" android:layout_height="fill_parent">
+      <TabWidget android:id="@android:id/tabs"
+         android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+      <FrameLayout android:id="@android:id/tabcontent"
+         android:layout_width="fill_parent" android:layout_height="fill_parent">
+	          <RelativeLayout android:id="@+id/emptylayout1" android:orientation="vertical"
+	             android:layout_width="fill_parent" android:layout_height="fill_parent"/>	
+				
+				
+				<ScrollView 
+				    android:id="@+id/ScrollView"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:orientation="vertical">
+				
+				<LinearLayout
+				        android:id="@+id/forScroll"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical" >
+				    
+				
+				        <TextView
+				            android:id="@+id/textDetailsDescription"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_description"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/DetailsDescription"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textDetailsDuration"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/playing_time"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/DetailsDuration"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textLocName"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/location_name"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/LocName"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textID"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_id"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/ID"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textOwner"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_owner"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/Owner"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textDetailsGameName"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_name"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/DetailsGameName"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				        
+				        <TextView
+				            android:id="@+id/textDetailsGameDate"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_date"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/DetailsGameDate"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textGamePointsMax"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/maximum_scoring"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/GamePointsMax"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textGamePlayersMax"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/maximum_players"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/GamePlayersMax"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textGameStatus"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_status"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/GameStatus"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+				
+				        <TextView
+				            android:id="@+id/textLocRadius"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_radius"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				        <TextView
+				            android:id="@+id/LocRadius"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:textAppearance="?android:attr/textAppearanceMedium"
+				            android:textIsSelectable="true" />
+					<TextView
+				            android:id="@+id/textPlayers"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_players"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				        
+				
+				    <ListView
+				            android:id="@android:id/list"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content" 
+				            android:clickable="false" >
+				    </ListView>
+				
+					
+				        <Button
+				            android:id="@+id/btnJoin"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_join" />
+				
+				        <Button
+				            android:id="@+id/btnLeave"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_leave" />
+				
+				        <Button
+				            android:id="@+id/btnEdit"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_edit" />
+				
+				        <Button
+				            android:id="@+id/btnDelete"
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/game_delete" />
+				
+					</LinearLayout>
+				</ScrollView>
+		</FrameLayout>
 	</LinearLayout>
-</ScrollView>
+</TabHost>
+				

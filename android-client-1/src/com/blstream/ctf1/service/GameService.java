@@ -28,6 +28,7 @@ import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameLocalizationListFilter;
 import com.blstream.ctf1.domain.LoggedPlayer;
 import com.blstream.ctf1.exception.CTFException;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author Adrian Swarcewicz, Rafał Olichwer, Piotr Marczycki
@@ -101,8 +102,8 @@ public class GameService implements NetworkOperationService {
 	}
 
 	public JSONObject toJSONObject(String id, String status, String gameName, String description, String timeStart, long duration, int pointsMax,
-			int playersMax, String localizationName, double lat, double lng, double radius) throws JSONException, ClientProtocolException, IOException,
-			CTFException {
+			int playersMax, String localizationName, double lat, double lng, double radius, String redTeamName, String blueTeamName, LatLng redBase,
+			LatLng blueBase) throws JSONException, ClientProtocolException, IOException, CTFException {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONObject localizationObject = new JSONObject();
@@ -123,6 +124,20 @@ public class GameService implements NetworkOperationService {
 		localizationObject.put(JSONFields.LAT_LNG, latLng);
 		localizationObject.put(JSONFields.RADIUS, radius);
 		jsonObject.put(JSONFields.LOCALIZATION, localizationObject);
+		JSONObject redTeam = new JSONObject();
+		JSONObject blueTeam = new JSONObject();
+		redTeam.put(JSONFields.NAME, redTeamName);
+		JSONArray latLngRed = new JSONArray();
+		latLngRed.put(redBase.latitude);
+		latLngRed.put(redBase.longitude);
+		redTeam.put(JSONFields.LAT_LNG, latLngRed);
+		blueTeam.put(JSONFields.NAME, blueTeamName);
+		JSONArray latLngBlue = new JSONArray();
+		latLngBlue.put(blueBase.latitude);
+		latLngBlue.put(blueBase.longitude);
+		blueTeam.put(JSONFields.LAT_LNG, latLngRed);
+		jsonObject.put(JSONFields.RED_TEAM_BASE, redTeam);
+		jsonObject.put(JSONFields.BLUE_TEAM_BASE, blueTeam);
 
 		return jsonObject;
 	}
@@ -131,8 +146,10 @@ public class GameService implements NetworkOperationService {
 	 * Method perform request to server use abortNetworkOperation() to abort.
 	 */
 	public void createGame(String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax, String localizationName,
-			double lat, double lng, double radius) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONObject jsonObject = toJSONObject(null, null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
+			double lat, double lng, double radius, String redTeamName, String blueTeamName, LatLng redBase, LatLng blueBase) throws JSONException,
+			ClientProtocolException, IOException, CTFException {
+		JSONObject jsonObject = toJSONObject(null, null, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius,
+				redTeamName, blueTeamName, redBase, blueBase);
 
 		JSONArray jsonArrayResult = mNetworkService.requestPost(URL_GAME_API, getGameHeaders(), jsonObject.toString());
 
@@ -149,8 +166,10 @@ public class GameService implements NetworkOperationService {
 	 * Method perform request to server use abortNetworkOperation() to abort.
 	 */
 	public void editGame(String id, String status, String gameName, String description, String timeStart, long duration, int pointsMax, int playersMax,
-			String localizationName, double lat, double lng, double radius) throws JSONException, ClientProtocolException, IOException, CTFException {
-		JSONObject jsonObject = toJSONObject(id, status, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius);
+			String localizationName, double lat, double lng, double radius, String redTeamName, String blueTeamName, LatLng redBase, LatLng blueBase)
+			throws JSONException, ClientProtocolException, IOException, CTFException {
+		JSONObject jsonObject = toJSONObject(id, status, gameName, description, timeStart, duration, pointsMax, playersMax, localizationName, lat, lng, radius,
+				redTeamName, blueTeamName, redBase, blueBase);
 
 		JSONArray jsonArrayResult = mNetworkService.requestPut(String.format(URL_GAME_DETAILS, id), getGameHeaders(), jsonObject.toString());
 
@@ -162,7 +181,7 @@ public class GameService implements NetworkOperationService {
 
 		JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(0);
 
-		if (jsonObjectResult.has(SERVER_RESPONSE_ERROR_CODE)) {
+		if (jsonObjectResult.getInt(SERVER_RESPONSE_ERROR_CODE)!=0) {
 			throw new CTFException(mContext.getResources(), jsonObjectResult.getInt(SERVER_RESPONSE_ERROR_CODE),
 					jsonObjectResult.getString(SERVER_RESPONSE_ERROR_DESCRIPTION));
 		}
@@ -198,10 +217,10 @@ public class GameService implements NetworkOperationService {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_GAME_LIST, GameBasicListFilterConverter.toQueryString(gameFilter)),
 				getGameHeaders());
 		JSONObject jsonObject = jsonArrayResult.getJSONObject(0);
-		
+
 		return JSONConverter.toGameBasicInfo(jsonObject.getJSONArray(JSONFields.GAMES));
 	}
-	
+
 	/**
 	 * @author Adrian Swarcewicz
 	 */
@@ -220,30 +239,32 @@ public class GameService implements NetworkOperationService {
 	 * @param gameFilter
 	 *            - null to skip
 	 */
-	public List<GameExtendedInfo> getGameDetailList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
+	public List<GameExtendedInfo> getGameDetailList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException,
+			ParseException {
 		List<GameExtendedInfo> gameExtendedInfos = new LinkedList<GameExtendedInfo>();
 		List<GameBasicInfo> gameBasicInfos = getGameList(gameFilter);
-		
+
 		for (GameBasicInfo gbi : gameBasicInfos) {
 			GameExtendedInfo gameExtendedInfo = getGameDetails(gbi.getId());
 			gameExtendedInfos.add(gameExtendedInfo);
 		}
-		
+
 		return gameExtendedInfos;
 	}
-	
+
 	/**
 	 * @author Adrian Swarcewicz
 	 */
-	public List<GameExtendedInfo> getGameDetailListByLocalization(GameLocalizationListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException, ParseException {
+	public List<GameExtendedInfo> getGameDetailListByLocalization(GameLocalizationListFilter gameFilter) throws JSONException, ClientProtocolException,
+			IOException, CTFException, ParseException {
 		List<GameExtendedInfo> gameExtendedInfos = new LinkedList<GameExtendedInfo>();
 		List<GameBasicInfo> gameBasicInfos = getGameListByLocalization(gameFilter);
-		
+
 		for (GameBasicInfo gbi : gameBasicInfos) {
 			GameExtendedInfo gameExtendedInfo = getGameDetails(gbi.getId());
 			gameExtendedInfos.add(gameExtendedInfo);
 		}
-		
+
 		return gameExtendedInfos;
 	}
 

@@ -120,6 +120,14 @@ public class JSONConverter {
 			result.setPointsMax(jsonObject.getInt(JSONFields.POINTS_MAX));
 			Date timeStart = new SimpleDateFormat(Constants.DATE_FORMAT + " " + Constants.TIME_FORMAT).parse(jsonObject.getString("time_start"));
 			result.setTimeStart(timeStart);
+			JSONObject redTeam = jsonObject.getJSONObject(JSONFields.RED_TEAM_BASE);
+			JSONObject blueTeam = jsonObject.getJSONObject(JSONFields.BLUE_TEAM_BASE);
+			result.setRedTeamName(redTeam.getString(JSONFields.NAME));
+			result.setBlueTeamName(blueTeam.getString(JSONFields.NAME));
+			JSONArray redBase = redTeam.getJSONArray(JSONFields.LAT_LNG);
+			JSONArray blueBase = blueTeam.getJSONArray(JSONFields.LAT_LNG);
+			result.setRedBase(new LatLng(redBase.getDouble(0),redBase.getDouble(1)));
+			result.setBlueBase(new LatLng(blueBase.getDouble(0),blueBase.getDouble(1)));
 		} catch (JSONException e) {
 			// if game doesn't have all required fields will be ignored
 		}

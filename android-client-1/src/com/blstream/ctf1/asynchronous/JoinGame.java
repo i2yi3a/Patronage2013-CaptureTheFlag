@@ -38,11 +38,11 @@ public class JoinGame extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			if (!mGameService.isLoggedPlayerSignedInForGame(mGameId)) {
+			//if (!mGameService.isLoggedPlayerSignedInForGame(mGameId)) {
 				mGameService.signInForGame(mGameId);
-			} else {
+			/*} else {
 				mMessageToShow = mCurrentActivity.getResources().getString(R.string.error_code_already_signed);
-			}
+			}*/
 		} catch (Exception e) {
 			if (mGameService.isNetworkOperationAborted()) {
 				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_join_canceled);

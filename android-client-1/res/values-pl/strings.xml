@@ -81,11 +81,9 @@
 
     <!-- JoinGame -->
     <string name="game_joined">Dołączyłeś do gry</string>
-    <string name="game_already_joined">Już jesteś zapisany do gry</string>
 
     <!-- LeaveGame -->
     <string name="game_left">Opuściłeś grę</string>
-    <string name="game_notyet_joined">Nie dołączyłeś jeszcze do gry</string>
 
     <!-- DeleteGame -->
     <string name="game_deleted">Usunałeś grę</string>
@@ -97,9 +95,10 @@
     <string name="error_code_5">Tylko właściciel gry może ją usunąć</string>
     <string name="error_code_101">Podany login jest już zajęty</string>
     <string name="error_code_102">Nie możesz dołączyć do gry już rozpoczętej</string>
+    <string name="error_code_103">Nie wyraziłeś wcześniej chęci wzięcia udziału w tej grze</string>
+    <string name="error_code_104">Już jesteś zapisany do gry</string>
     <string name="error_code_105">Maksymalna ilość graczy została osiągnięta</string>
      <string name="error_code_already_signed">Jesteś już zapisany do tej gry</string>
-    <string name="error_code_103">Nie wyraziłeś wcześniej chęci wzięcia udziału w tej grze</string>
     <string name="error_code_500">Wewnętrzny błąd serwera</string>
     <string name="error_code_201">Niepoprawne hasło</string>
     <string name="error_code_202">Niepoprawny login</string>
