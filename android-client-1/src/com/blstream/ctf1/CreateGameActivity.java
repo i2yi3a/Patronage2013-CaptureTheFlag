@@ -46,11 +46,17 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
     public EditText mEditPlayingTime;
     public EditText mEditMaxPlayers;
     public EditText mEditMaxPoints;
+    public EditText mEditRedNameBase;
+    public EditText mEditBlueNameBase;
 
     // default values
     public double latitude = 53.432766;
     public double longitude = 14.548001;
     public double radius = 1000;
+    public double latitudeRed = 53.4;
+    public double longitudeRed = 14.5;
+    public double latitudeBlue = 53.5;
+    public double longitudeBlue = 14.6;
 
     private String info;
     private String mId;
@@ -94,6 +100,8 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         mEditPlayingTime = (EditText) findViewById(R.id.editPlayingTime);
         mEditMaxPlayers = (EditText) findViewById(R.id.editMaxPlayers);
         mEditMaxPoints = (EditText) findViewById(R.id.editMaxPoints);
+        mEditRedNameBase = (EditText) findViewById(R.id.editRedBaseName);
+        mEditBlueNameBase = (EditText) findViewById(R.id.editBlueBaseName);
 
         Intent intent = getIntent();
         mId = intent.getStringExtra(Constants.EXTRA_KEY_ID);
@@ -146,6 +154,10 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
                 intent.putExtra("latitude", latitude);
                 intent.putExtra("longitude", longitude);
                 intent.putExtra("radius", radius);
+                intent.putExtra("latitudeRed", latitudeRed);
+                intent.putExtra("longitudeRed", longitudeRed);
+                intent.putExtra("latitudeBlue", latitudeBlue);
+                intent.putExtra("longitudeBlue", longitudeBlue);
                 startActivityForResult(intent, code);
                 break;
         }
@@ -157,10 +169,13 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         Log.d("CTF", "CTF onActivityResult");
         Bundle bundle = data.getExtras();
         if (bundle != null) {
-
             latitude = bundle.getDouble("latitude");
             longitude = bundle.getDouble("longitude");
             radius = bundle.getDouble("radius");
+            latitudeRed = bundle.getDouble("latitudeRed");
+            longitudeRed = bundle.getDouble("longitudeRed");
+            latitudeBlue = bundle.getDouble("latitudeBlue");
+            longitudeBlue = bundle.getDouble("longitudeBlue");
             Log.d("CTF", "Last settings");
             Log.d("CTF", "latitude: " + latitude + " longitude: " + longitude + " radius: " + radius);
         }
@@ -176,6 +191,8 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         String mPlayingTimeTmp = mEditPlayingTime.getText().toString();
         String mMaxPlayersTmp = mEditMaxPlayers.getText().toString();
         String mMaxPointsTmp = mEditMaxPoints.getText().toString();
+        String mRedBaseName = mEditRedNameBase.getText().toString();
+        String mBlueBaseName = mEditBlueNameBase.getText().toString();
 
         boolean correct = correctDateTime(mStartDate, mStartTime);
         boolean correct2 = correctData(mGameName, mLocationName, mPlayingTimeTmp);

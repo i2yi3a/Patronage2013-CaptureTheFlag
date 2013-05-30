@@ -1,140 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".CreateGameActivity" >
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:context=".CreateGameActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textGameName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/game_name" />
-
-        <EditText
-            android:id="@+id/editGameName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="@string/game_name"
-            android:singleLine="true"
-            android:width="160dp" />
+            android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textGameDescription"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/game_description" />
+                android:id="@+id/textGameName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/game_name"/>
 
         <EditText
-            android:id="@+id/editGameDescription"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="@string/game_description"
-            android:singleLine="false"
-            android:width="160dp" />
+                android:id="@+id/editGameName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/game_name"
+                android:singleLine="true"
+                android:width="160dp"/>
 
         <TextView
-            android:id="@+id/textLocationName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/location_name" />
+                android:id="@+id/textGameDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/game_description"/>
 
         <EditText
-            android:id="@+id/editLocationName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="@string/location_name"
-            android:singleLine="true"
-            android:width="160dp" />
+                android:id="@+id/editGameDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/game_description"
+                android:singleLine="false"
+                android:width="160dp"/>
 
         <TextView
-            android:id="@+id/textPlayingTime"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/playing_time" />
+                android:id="@+id/textLocationName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/location_name"/>
 
         <EditText
-            android:id="@+id/editPlayingTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+                android:id="@+id/editLocationName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/location_name"
+                android:singleLine="true"
+                android:width="160dp"/>
 
         <TextView
-            android:id="@+id/textMaxPlayers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/maximum_players" />
+                android:id="@+id/textPlayingTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/playing_time"/>
 
         <EditText
-            android:id="@+id/editMaxPlayers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+                android:id="@+id/editPlayingTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"/>
 
         <TextView
-            android:id="@+id/textMaxPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/maximum_scoring" />
+                android:id="@+id/textMaxPlayers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/maximum_players"/>
 
         <EditText
-            android:id="@+id/editMaxPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+                android:id="@+id/editMaxPlayers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"/>
+
+        <TextView
+                android:id="@+id/textMaxPoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/maximum_scoring"/>
+
+        <EditText
+                android:id="@+id/editMaxPoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"/>
+
+        <TextView
+                android:id="@+id/textRedBaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_red_team_base"/>
+
+        <EditText
+                android:id="@+id/editRedBaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"/>
+
+        <TextView
+                android:id="@+id/textBlueBaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_blue_team_base"/>
+
+        <EditText
+                android:id="@+id/editBlueBaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"/>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btnStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    android:id="@+id/btnStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/btnStartTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true" />
+                    android:id="@+id/btnStartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"/>
 
             <Button
-                android:id="@+id/btnMap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="@string/map" />
+                    android:id="@+id/btnMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/map"/>
 
             <Button
-                android:id="@+id/btnCreate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/btnMap"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true" />
+                    android:id="@+id/btnCreate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/btnMap"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"/>
 
             <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignRight="@+id/btnStartDate"
-                android:layout_below="@+id/btnStartDate"
-                android:text="@string/cancel" />
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignRight="@+id/btnStartDate"
+                    android:layout_below="@+id/btnStartDate"
+                    android:text="@string/cancel"/>
 
         </RelativeLayout>
     </LinearLayout>

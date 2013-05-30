@@ -31,8 +31,12 @@ public class    GameAreaMapActivity extends FragmentActivity {
 	private GoogleMap mGoogleMap;
 	private SupportMapFragment mSupportMapFragment;
 	private double latitude;
-	private double longitude;
+    private double longitude;
 	private double radius;
+    private double latitudeRed;
+    private double longitudeRed;
+    private double latitudeBlue;
+    private double longitudeBlue;
 	private Marker marker;
 	private Circle circle;
 
@@ -47,6 +51,11 @@ public class    GameAreaMapActivity extends FragmentActivity {
 		latitude = intent.getDoubleExtra("latitude", 0.0);
 		longitude = intent.getDoubleExtra("longitude", 0.0);
 		radius = intent.getDoubleExtra("radius", 0.0);
+        latitudeRed = intent.getDoubleExtra("latitudeRed", 0.0);
+        longitudeRed = intent.getDoubleExtra("longitudeRed", 0.0);
+        latitudeBlue = intent.getDoubleExtra("latitudeBlue", 0.0);
+        longitudeBlue = intent.getDoubleExtra("longitudeBlue", 0.0);
+
 
 		LatLng coords = new LatLng(latitude, longitude);
 
@@ -64,6 +73,10 @@ public class    GameAreaMapActivity extends FragmentActivity {
 		bundle.putDouble("latitude", latitude);
 		bundle.putDouble("longitude", longitude);
 		bundle.putDouble("radius", radius);
+        bundle.putDouble("latitudeRed", latitudeRed);
+        bundle.putDouble("longitudeRed", longitudeRed);
+        bundle.putDouble("latitudeBlue", latitudeBlue);
+        bundle.putDouble("longitudeBlue", longitudeBlue);
 		Intent myIntent = new Intent();
 		myIntent.putExtras(bundle);
 		setResult(RESULT_OK, myIntent);
