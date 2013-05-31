@@ -4,6 +4,8 @@
     <string name="app_name">CaptureTheFlagAndroid1</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Zapisz obszar gry</string>
+    <string name="action_red_base">Wybierz baze czerwona</string>
+    <string name="action_blue_base">Wybierz baze niebieska</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="splash_screen">SplashScreen</string>
@@ -58,6 +60,8 @@
     <string name="location_name_too_short">Nazwa lokalizacji jest wymaganym polem</string>
     <string name="playing_time_too_short">Czas rozgrywki jest wymaganym polem</string>
     <string name="start_date_past">Nie można zakładać gry w przeszłości</string>
+    <string name="red_base_too_far">Czerwona baza jest za daleko</string>
+    <string name="blue_base_too_far">Niebieska baza jest za daleko</string>
     <string name="map">Mapa</string>
     <string name="name_red_team_base">Nazwa drużyny czerwonej</string>
     <string name="name_blue_team_base">Nazwa drużyny niebieskiej</string>

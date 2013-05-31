@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -50,17 +51,17 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
     public EditText mEditBlueNameBase;
 
     // default values
-    public double latitude = 53.432766;
-    public double longitude = 14.548001;
-    public double radius = 1000;
-    public double latitudeRed = 53.4;
-    public double longitudeRed = 14.5;
-    public double latitudeBlue = 53.5;
-    public double longitudeBlue = 14.6;
+    public double mLatitude = 53.432766;
+    public double mLongitude = 14.548001;
+    public double mRadius = 1000;
+    public double mLatitudeRed = 53.432;
+    public double mLongitudeRed = 14.547;
+    public double mLatitudeBlue = 53.433;
+    public double mLongitudeBlue = 14.549;
 
-    private String info;
+    private String mInfo;
     private String mId;
-    private int code = 1;
+    private int mCode = 1;
 
     Handler handlerTime = new Handler() {
         @Override
@@ -151,14 +152,14 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
 
             case R.id.btnMap:
                 Intent intent = new Intent(this, GameAreaMapActivity.class);
-                intent.putExtra("latitude", latitude);
-                intent.putExtra("longitude", longitude);
-                intent.putExtra("radius", radius);
-                intent.putExtra("latitudeRed", latitudeRed);
-                intent.putExtra("longitudeRed", longitudeRed);
-                intent.putExtra("latitudeBlue", latitudeBlue);
-                intent.putExtra("longitudeBlue", longitudeBlue);
-                startActivityForResult(intent, code);
+                intent.putExtra("latitude", mLatitude);
+                intent.putExtra("longitude", mLongitude);
+                intent.putExtra("radius", mRadius);
+                intent.putExtra("latitudeRed", mLatitudeRed);
+                intent.putExtra("longitudeRed", mLongitudeRed);
+                intent.putExtra("latitudeBlue", mLatitudeBlue);
+                intent.putExtra("longitudeBlue", mLongitudeBlue);
+                startActivityForResult(intent, mCode);
                 break;
         }
     }
@@ -169,15 +170,15 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         Log.d("CTF", "CTF onActivityResult");
         Bundle bundle = data.getExtras();
         if (bundle != null) {
-            latitude = bundle.getDouble("latitude");
-            longitude = bundle.getDouble("longitude");
-            radius = bundle.getDouble("radius");
-            latitudeRed = bundle.getDouble("latitudeRed");
-            longitudeRed = bundle.getDouble("longitudeRed");
-            latitudeBlue = bundle.getDouble("latitudeBlue");
-            longitudeBlue = bundle.getDouble("longitudeBlue");
+            mLatitude = bundle.getDouble("latitude");
+            mLongitude = bundle.getDouble("longitude");
+            mRadius = bundle.getDouble("radius");
+            mLatitudeRed = bundle.getDouble("latitudeRed");
+            mLongitudeRed = bundle.getDouble("longitudeRed");
+            mLatitudeBlue = bundle.getDouble("latitudeBlue");
+            mLongitudeBlue = bundle.getDouble("longitudeBlue");
             Log.d("CTF", "Last settings");
-            Log.d("CTF", "latitude: " + latitude + " longitude: " + longitude + " radius: " + radius);
+            Log.d("CTF", "latitude: " + mLatitude + " longitude: " + mLongitude + " radius: " + mRadius);
         }
     }
 
@@ -212,8 +213,8 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
                 gameInfo.setName(mEditGameName.getText().toString());
                 gameInfo.setDescription(mEditGameDescription.getText().toString());
                 localization.setName(mEditLocationName.getText().toString());
-                localization.setRadius(radius);
-                localization.setLatLng(new LatLng(latitude, longitude));
+                localization.setRadius(mRadius);
+                localization.setLatLng(new LatLng(mLatitude, mLongitude));
                 gameInfo.setLocalization(localization);
                 Date timeStart = null;
                 try {
@@ -227,8 +228,8 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
                 gameInfo.setPointsMax(mMaxPoints);
                 gameInfo.setBlueTeamName(mBlueBaseName);
                 gameInfo.setRedTeamName(mRedBaseName);
-                gameInfo.setRedBase(new LatLng(latitudeRed,longitudeRed));
-                gameInfo.setBlueBase(new LatLng(latitudeBlue,longitudeBlue));
+                gameInfo.setRedBase(new LatLng(mLatitudeRed, mLongitudeRed));
+                gameInfo.setBlueBase(new LatLng(mLatitudeBlue, mLongitudeBlue));
 
                 if (mId == null) {
                     CreateGame createGame = new CreateGame(this, gameInfo);
@@ -248,7 +249,7 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
     }
 
     private boolean correctDateTime(String mStartDate, String mStartTime) {
-        info = Constants.EMPTY_STRING;
+        mInfo = Constants.EMPTY_STRING;
         final Calendar c = Calendar.getInstance();
         int actualYear = c.get(Calendar.YEAR);
         int actualMonth = c.get(Calendar.MONTH);
@@ -266,31 +267,31 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         if (year > actualYear)
             return true;
         if (year < actualYear) {
-            info += getResources().getString(R.string.start_date_past);
+            mInfo += getResources().getString(R.string.start_date_past);
             return false;
         }
         if (month > actualMonth)
             return true;
         if (month < actualMonth) {
-            info += getResources().getString(R.string.start_date_past);
+            mInfo += getResources().getString(R.string.start_date_past);
             return false;
         }
         if (day > actualDay)
             return true;
         if (day < actualDay) {
-            info += getResources().getString(R.string.start_date_past);
+            mInfo += getResources().getString(R.string.start_date_past);
             return false;
         }
         if (hour > actualHour)
             return true;
         if (hour < actualHour) {
-            info += getResources().getString(R.string.start_date_past);
+            mInfo += getResources().getString(R.string.start_date_past);
             return false;
         }
         if (minute > actualMinute)
             return true;
 
-        info += getResources().getString(R.string.start_date_past);
+        mInfo += getResources().getString(R.string.start_date_past);
         return false;
     }
 
@@ -298,27 +299,43 @@ public class CreateGameActivity extends FragmentActivity implements OnClickListe
         boolean result = false;
 
         if (gameName.isEmpty()) {
-            if (!info.isEmpty())
-                info += Constants.NEW_LINE;
-            info += getResources().getString(R.string.game_name_too_short);
+            if (!mInfo.isEmpty())
+                mInfo += Constants.NEW_LINE;
+            mInfo += getResources().getString(R.string.game_name_too_short);
         }
 
         if (locationName.isEmpty()) {
-            if (!info.isEmpty())
-                info += Constants.NEW_LINE;
-            info += getResources().getString(R.string.location_name_too_short);
+            if (!mInfo.isEmpty())
+                mInfo += Constants.NEW_LINE;
+            mInfo += getResources().getString(R.string.location_name_too_short);
         }
 
         if (playingTime.isEmpty()) {
-            if (!info.isEmpty())
-                info += Constants.NEW_LINE;
-            info += getResources().getString(R.string.playing_time_too_short);
+            if (!mInfo.isEmpty())
+                mInfo += Constants.NEW_LINE;
+            mInfo += getResources().getString(R.string.playing_time_too_short);
         }
 
-        if (info.isEmpty()) {
+        float[] results = new float[1];
+        Location.distanceBetween(mLatitude, mLongitude, mLatitudeRed, mLongitudeRed, results);
+        if(results[0] > mRadius){
+            if (!mInfo.isEmpty())
+                mInfo += Constants.NEW_LINE;
+            mInfo += getResources().getString(R.string.red_base_too_far);
+        }
+
+        float[] results2 = new float[1];
+        Location.distanceBetween(mLatitude, mLongitude, mLatitudeBlue, mLongitudeBlue, results2);
+        if(results2[0] > mRadius){
+            if (!mInfo.isEmpty())
+                mInfo += Constants.NEW_LINE;
+            mInfo += getResources().getString(R.string.blue_base_too_far);
+        }
+
+        if (mInfo.isEmpty()) {
             result = true;
         } else {
-            Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, mInfo, Toast.LENGTH_SHORT).show();
         }
 
         return result;

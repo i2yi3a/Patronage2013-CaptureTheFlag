@@ -1,9 +1,21 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+            android:id="@+id/action_save"
+            android:orderInCategory="100"
+            android:showAsAction="never"
+            android:title="@string/action_save"/>
+
+    <item
+            android:id="@+id/action_red_base"
+            android:orderInCategory="100"
+            android:showAsAction="never"
+            android:title="@string/action_red_base"/>
+
+    <item
+            android:id="@+id/action_blue_base"
+            android:orderInCategory="100"
+            android:showAsAction="never"
+            android:title="@string/action_blue_base"/>
 
 </menu>

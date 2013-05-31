@@ -77,15 +77,15 @@ public class EditGameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.mEditMaxPoints.setText(Integer.toString(result.getPointsMax()));
 			mCurrentActivity.mBtnStartDate.setText(new SimpleDateFormat(Constants.DATE_FORMAT).format(result.getTimeStart()));
 			mCurrentActivity.mBtnStartTime.setText(new SimpleDateFormat(Constants.TIME_FORMAT).format(result.getTimeStart()));
-			mCurrentActivity.latitude = result.getLocalization().getLatLng().latitude;
-			mCurrentActivity.longitude = result.getLocalization().getLatLng().longitude;
-			mCurrentActivity.radius = result.getLocalization().getRadius();
+			mCurrentActivity.mLatitude = result.getLocalization().getLatLng().latitude;
+			mCurrentActivity.mLongitude = result.getLocalization().getLatLng().longitude;
+			mCurrentActivity.mRadius = result.getLocalization().getRadius();
 			mCurrentActivity.mEditRedNameBase.setText(result.getRedTeamName());
 			mCurrentActivity.mEditBlueNameBase.setText(result.getBlueTeamName());
-			mCurrentActivity.latitudeBlue = result.getBlueBase().latitude;
-			mCurrentActivity.longitudeBlue = result.getBlueBase().latitude;
-			mCurrentActivity.latitudeRed = result.getRedBase().latitude;
-			mCurrentActivity.longitudeRed = result.getRedBase().latitude;
+			mCurrentActivity.mLatitudeBlue = result.getBlueBase().latitude;
+			mCurrentActivity.mLongitudeBlue = result.getBlueBase().latitude;
+			mCurrentActivity.mLatitudeRed = result.getRedBase().latitude;
+			mCurrentActivity.mLongitudeRed = result.getRedBase().latitude;
 		}
 	}
 
