@@ -9,4 +9,64 @@
         android:layout_height="match_parent"
         class="com.google.android.gms.maps.SupportMapFragment" />
 
+    <Button
+        android:id="@+id/buttonTeleport2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonTeleport1"
+        android:layout_alignBottom="@+id/buttonTeleport1"
+        android:layout_toRightOf="@+id/buttonTeleport1"
+        android:onClick="onClickButton"
+        android:text="2" />
+
+    <Button
+        android:id="@+id/buttonTeleport3"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonTeleport2"
+        android:layout_toRightOf="@+id/buttonTeleport2"
+        android:onClick="onClickButton"
+        android:text="3" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="arrow"
+        android:scaleType="matrix"
+        android:src="@drawable/arrow_up" />
+
+    <TextView
+        android:id="@+id/textViewDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageViewArrow"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/buttonTeleport1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="17dp"
+        android:onClick="onClickButton"
+        android:text="Teleport 1" />
+
+    <TextView
+        android:id="@+id/textViewInfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonTeleport3"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp" />
+
 </RelativeLayout>
