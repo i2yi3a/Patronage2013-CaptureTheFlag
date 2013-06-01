@@ -113,6 +113,10 @@ public class GameDetailsActivity extends FragmentActivity {
 			intent.putExtra(Constants.ID, mGameId);
 			startActivity(intent);
 			break;
+		case R.id.startButton:
+			Intent game_intent = new Intent("com.blstream.ctf2.GAMEACTIVITY");
+			startActivity(game_intent);
+			break;			
 		}
 	}
 
