@@ -22,6 +22,8 @@
 @interface NetworkEngine()
 
 @property (nonatomic, strong) NSString* token;
+@property (nonatomic, strong) NSNumber* gameID;
+
 
 @end
 
@@ -143,6 +145,8 @@
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
+        self.gameID = response[@"id"];
+
         
         NSNumber* errorCode = response[@"error_code"];
         NSInteger code=[errorCode integerValue];
@@ -183,5 +187,47 @@
     }
     return [NSError errorWithDescription:msg];
 }
+
+-(void)getGameDeatails: (NetworkEngineCompletionBlock)completionBlock
+{
+    MKNetworkOperation *op=[self operationWithPath:@"/api/secured/games/" params: @{@"id" : _gameID}  httpMethod:@"GET" ssl:NO];
+    
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *operation){
+        
+        NSDictionary* response = operation.responseJSON;
+        NSArray* games = response[@"games"];
+        NSMutableArray* a;
+        
+        for (NSDictionary *g in games)
+        {
+            CTFGame *game = [[CTFGame alloc] init];
+            game.name = g[@"name"];
+            game.gameDescription = g[@"description"];
+            game.timeStart = g[@"time_start"];
+            game.duration = g[@"duration"];
+            game.pointsMax = g[@"points_max"];
+            game.playersMax = g[@"players_max"];
+            game.localizationName = g[@[@"localization" "name"]];
+            game.localization = g[@[@"localization" "latLng"]];
+            game.localizationRadius = g[@[@"localization" "name"]];
+            game.redTeamBaseName = g[@[@"red_team_base" "name"]];
+            game.redTeamBaseLocalization = g[@[@"red_team_base" "latLng"]];
+            game.blueTeamBaseName = g[@[@"blue_team_base" "name"]];
+            game.blueTeamBaseLocalization = g[@[@"blue_team_base" "latLng"]];
+            [a addObject:game];
+            
+        }
+        
+        completionBlock(a);
+        
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        //
+    }];
+    
+}
+
+
 
 @end 
