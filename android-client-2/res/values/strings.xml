@@ -15,6 +15,7 @@
     <string name="recorded">Recorded</string>
     <string name="registration_successful">Registration successful!</string>
     <string name="error">Error!</string>
+    <string name="error_incomplete_data">Server returned incomplete data!</string>
     <string name="player_already_exists">Player already exists</string>
     <string name="unknown_error">Unknow error</string>
     <string name="cannot_create_new_player">Cannot create a new player</string>

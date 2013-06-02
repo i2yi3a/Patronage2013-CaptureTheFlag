@@ -15,6 +15,7 @@
     <string name="recorded">Zarejestrowano</string>
     <string name="registration_successful">Rejestracja przebiegła pomyślnie!</string>
     <string name="error">Błąd!</string>
+    <string name="error_incomplete_data">Serwer zwrócił niekompletne dane!</string>
     <string name="player_already_exists">Gracz już istnieje</string>
     <string name="unknown_error">Nieznany błąd</string>
     <string name="cannot_create_new_player">Nie można utworzyć nowego gracza</string>

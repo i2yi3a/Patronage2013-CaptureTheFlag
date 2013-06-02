@@ -75,18 +75,6 @@ public class GameDetailsActivity extends FragmentActivity {
 		}
 	}
 
-	public void setGameDetails(GameDetails gameDetails) {
-		mGameDetails = gameDetails;
-		mTabHost.clearAllTabs();
-		if (mGameDetails != null) {
-			initializeTabs();
-		} else {
-			Toast.makeText(this, R.string.server_error, Toast.LENGTH_SHORT).show();
-			//new DialogServices(this).showAlert(R.string.server_error);
-			this.finish();
-		}
-	}
-	
 	// ON CHANGE TABS
 	TabHost.OnTabChangeListener listener = new TabHost.OnTabChangeListener() {
 		public void onTabChanged(String tabId) {
@@ -125,6 +113,18 @@ public class GameDetailsActivity extends FragmentActivity {
 		args.putStringArrayList("key", playersList);
 		mGameDetailsPlayersFragment.setArguments(args);
 		pushFragments(mGameDetailsPlayersFragment);
+	}
+
+	public void setGameDetails(GameDetails gameDetails) {
+		mGameDetails = gameDetails;
+		mTabHost.clearAllTabs();
+		if (mGameDetails != null) {
+			initializeTabs();
+		} else {
+			Toast.makeText(this, R.string.error_incomplete_data, Toast.LENGTH_SHORT).show();
+			// new DialogServices(this).showAlert(R.string.server_error);
+			this.finish();
+		}
 	}
 
 	public void pushFragments(Fragment fragment) {
