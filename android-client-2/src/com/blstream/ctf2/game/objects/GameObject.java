@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.game.objects.image.AndroidGameObjectImage;
-import com.google.android.gms.maps.model.LatLng;
 /**
  * 
  * @author Karol Firmanty

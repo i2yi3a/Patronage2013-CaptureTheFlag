@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.domain.Localization;
-import com.google.android.gms.maps.model.LatLng;
 
 /**
  * 

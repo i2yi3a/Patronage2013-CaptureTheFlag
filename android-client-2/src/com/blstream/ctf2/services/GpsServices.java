@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 		areServicesAvailable();
 		LocationManager locationManager = (LocationManager) mCtx.getSystemService(Context.LOCATION_SERVICE);
 		Location location = (Location) locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if(location == null) throw new CtfException("getLastKnownLocation returned null");
 		return new LatLng(location.getLatitude(), location.getLongitude());
 	}
 
