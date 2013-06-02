@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="application_name">Capture The Flag</string>
     <string name="app_name">CaptureTheFlagAndroid1</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Zapisz obszar gry</string>

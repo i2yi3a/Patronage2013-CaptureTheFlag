@@ -1,39 +1,38 @@
 package com.blstream.ctf1.asynchronous;
 
-/**
- * @author Mateusz Wisniewski
- */
-
 import java.util.List;
-
-import com.blstream.ctf1.GameListActivity;
-import com.blstream.ctf1.R;
-import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
-import com.blstream.ctf1.domain.GameBasicInfo;
-import com.blstream.ctf1.domain.GameLocalizationListFilter;
-import com.blstream.ctf1.list.ListAdapter;
-import com.blstream.ctf1.service.GameService;
 
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class GameListByLocalization extends AsyncTask<Void, Void, List<GameBasicInfo>>{
+import com.blstream.ctf1.GameListActivity;
+import com.blstream.ctf1.R;
+import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
+import com.blstream.ctf1.domain.GameBasicListFilter;
+import com.blstream.ctf1.domain.GameExtendedInfo;
+import com.blstream.ctf1.list.ListAdapter;
+import com.blstream.ctf1.service.GameService;
+
+/**
+ * @author Adrian Swarcewicz
+ */
+public class GameListByDetails extends AsyncTask<Void, Void, List<GameExtendedInfo>> {
 
 	private GameListActivity mCurrentActivity;
-	private GameLocalizationListFilter gameLocalizationListFilter;
+	private GameBasicListFilter gameBasicListFilter;
 	private NetworkOperationProgressDialog mLoadingDialog;
 	private GameService mGameService;
 	private String mMessageToShow;
 	private boolean doInBackgrounSuccessful = false;
-	
-	public GameListByLocalization(GameListActivity currentActivity, GameLocalizationListFilter gLLF) {
+
+	public GameListByDetails(GameListActivity currentActivity, GameBasicListFilter gameBasicListFilter) {
 		this.mCurrentActivity = currentActivity;
-		this.gameLocalizationListFilter = gLLF;
-		
+		this.gameBasicListFilter = gameBasicListFilter;
+
 		mGameService = new GameService(mCurrentActivity);
 		mLoadingDialog = new NetworkOperationProgressDialog(mCurrentActivity, this);
 	}
-	
+
 	@Override
 	protected void onPreExecute() {
 		mLoadingDialog.setTitle(mCurrentActivity.getResources().getString(R.string.loading));
@@ -43,11 +42,11 @@ public class GameListByLocalization extends AsyncTask<Void, Void, List<GameBasic
 	}
 
 	@Override
-	protected List<GameBasicInfo> doInBackground(Void... params) {
-		
-		List<GameBasicInfo> gameBasicInfo = null;
+	protected List<GameExtendedInfo> doInBackground(Void... params) {
+
+		List<GameExtendedInfo> gameBasicInfos = null;
 		try {
-			gameBasicInfo = mGameService.getGameListByLocalization(gameLocalizationListFilter);
+			gameBasicInfos = mGameService.getGameDetailList(gameBasicListFilter);
 			doInBackgrounSuccessful = true;
 		} catch (Exception e) {
 			if (mGameService.isNetworkOperationAborted()) {
@@ -56,17 +55,18 @@ public class GameListByLocalization extends AsyncTask<Void, Void, List<GameBasic
 				mMessageToShow = e.getLocalizedMessage();
 			}
 		}
-		return gameBasicInfo;
+
+		return gameBasicInfos;
 	}
-	
+
 	@Override
-	protected void onPostExecute(List<GameBasicInfo> result) {
+	protected void onPostExecute(List<GameExtendedInfo> result) {
 		mLoadingDialog.dismiss();
 		if (doInBackgrounSuccessful == false) {
 			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		} else {
-			//mCurrentActivity.setListAdapter(new ListAdapter(mCurrentActivity, result));
+			mCurrentActivity.setListAdapter(new ListAdapter(mCurrentActivity, result));
 		}
 	}
-}
 
+}

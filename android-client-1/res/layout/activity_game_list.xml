@@ -4,27 +4,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E16820"
-        android:orientation="horizontal" >
+        android:layout_height="48dp"
+        android:background="@color/orange_light" >
 
-        <TextView
-            android:id="@+id/textView1"
+        <ImageView
+            android:id="@+id/imageIcon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.09"
-            android:text="" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textHeadline"
+            android:contentDescription="@string/picture"
+            android:src="@drawable/actionbar" />
 
         <Button
             android:id="@+id/btnCreateGame"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.01"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/button_orange"
             android:text="@string/create_new_game" />
-    </LinearLayout>
+
+        <View
+            android:id="@+id/buttonDivider"
+            android:layout_width="1dp"
+            android:layout_height="48dp"
+            android:layout_alignLeft="@+id/btnCreateGame"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/tab_divider" />
+
+        <TextView
+            android:id="@+id/textHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/btnCreateGame"
+            android:text="@string/application_name"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -22,9 +22,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
-import com.blstream.ctf1.asynchronous.GameListByLocalization;
+import com.blstream.ctf1.asynchronous.GameListByDetails;
 import com.blstream.ctf1.domain.GameBasicListFilter;
-import com.blstream.ctf1.domain.GameLocalizationListFilter;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
 
@@ -33,7 +32,6 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 
 	private Button mBtnCreateGame;
 	private GameBasicListFilter gameBasicListFilter;
-	private GameLocalizationListFilter gameLocalizationListFilter;
 	private TabHost mTabHost;
 	private TabSpec mTab1, mTab2, mTab3, mTab4;
 	private TextView mTabTextView;
@@ -108,7 +106,7 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-		GameList gameList = new GameList(this, gameBasicListFilter);
+		GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
 		gameList.execute();
 		super.onResume();
 	}
@@ -117,23 +115,21 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 	public void onTabChanged(String tabId) {
 		if (tabId == mTab1.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, true);
-			GameList gameList = new GameList(this, gameBasicListFilter);
+			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
 			gameList.execute();
 		}
 		if (tabId == mTab2.getTag().toString()) {
-		/*	gameLocalizationListFilter = new GameLocalizationListFilter(null);
-			GameListByLocalization gameList = new GameListByLocalization(this, gameLocalizationListFilter);
-			gameList.execute(); */
+
 		}
 		if (tabId == mTab3.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(
 					GameStatusType.COMPLETED.toString(), null, null);
-			GameList gameList = new GameList(this, gameBasicListFilter);
+			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
 			gameList.execute();
 		}
 		if (tabId == mTab4.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, null);
-			GameList gameList = new GameList(this, gameBasicListFilter);
+			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
 			gameList.execute();
 		}
 	}
