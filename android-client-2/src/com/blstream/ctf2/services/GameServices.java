@@ -23,9 +23,7 @@ import android.widget.Toast;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.activity.game.GameDetailsActivity;
-import com.blstream.ctf2.activity.game.GameDetailsTabsActivity;
 import com.blstream.ctf2.activity.game.GameListActivity;
-import com.blstream.ctf2.activity.game.GamePlayersActivity;
 import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.domain.GameLocalization;
 import com.blstream.ctf2.domain.Localization;
@@ -50,8 +48,6 @@ public class GameServices extends Services {
 	public final static String LOCALIZATION = "localization";
 	public final static String RADIUS = "radius";
 	public final static String LAT_LNG = "latLng";
-	//public final static String STATUS_NEW = "NEW";
-	//public final static String STATUS_IN_PROGRESS = "IN_PROGRESS";
 	public final static String RED_TEAM_BASE = "red_team_base";
 	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
@@ -73,12 +69,12 @@ public class GameServices extends Services {
 		getGamesTask.execute("");
 	}
 
-	public void getGameDetails(GameDetailsTabsActivity gameDetailsTabsActivity, String mGameId) {
+	public void getGameDetails(GameDetailsActivity gameDetailsTabsActivity, String mGameId) {
 		GetGameDetails getGameDetailsTask = new GetGameDetails(gameDetailsTabsActivity);
 		getGameDetailsTask.execute(mGameId);
 	}
 
-	public void getGamePlayers(GameDetailsTabsActivity gameDetailsTabsActivity, String mGameId) {
+	public void getGamePlayers(GameDetailsActivity gameDetailsTabsActivity, String mGameId) {
 		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gameDetailsTabsActivity);
 		getGamePlayersTask.execute(mGameId);
 	}
@@ -99,10 +95,10 @@ public class GameServices extends Services {
 	 */
 	private class GetGameDetails extends AsyncTask<String, Void, JSONObject> {
 
-		private GameDetailsTabsActivity mGameDetailsTabsActivity;
+		private GameDetailsActivity mGameDetailsTabsActivity;
 		private ProgressDialog mProgressDialog;
 
-		public GetGameDetails(GameDetailsTabsActivity gameDetailsTabsActivity) {
+		public GetGameDetails(GameDetailsActivity gameDetailsTabsActivity) {
 			mGameDetailsTabsActivity = gameDetailsTabsActivity;
 		}
 
@@ -158,34 +154,6 @@ public class GameServices extends Services {
 		public void fillGameDetailsActivity(GameDetails gameDetails) {
 			mGameDetailsTabsActivity.setGameDetails(gameDetails);
 		}
-		/*
-		public void fillGameDetailsActivity(GameDetails gameDetails) {
-			mGameDetailsActivity.mGameNameTextView.setText(gameDetails.getName());
-			mGameDetailsActivity.mGameIdTextView.setText(gameDetails.getId());
-			mGameDetailsActivity.mDescriptionTextView.setText(gameDetails.getDescription());
-			mGameDetailsActivity.mDurationIdTextView.setText(gameDetails.getDuration().toString());
-			mGameDetailsActivity.mLocalizationTextView.setText(gameDetails.getLocalization().getName());
-			mGameDetailsActivity.mLatitudeTextView.setText(gameDetails.getLocalization().getLat().toString());
-			mGameDetailsActivity.mLongitudeTextView.setText(gameDetails.getLocalization().getLng().toString());
-			mGameDetailsActivity.mRadiusTextView.setText(gameDetails.getLocalization().getRadius().toString());
-			mGameDetailsActivity.mStatusTextView.setText(gameDetails.getStatus());
-			mGameDetailsActivity.mOwnerTextView.setText(gameDetails.getOwner());
-			mGameDetailsActivity.mTimeStartTextView.setText(gameDetails.getTimeStart());
-			mGameDetailsActivity.mPointsMaxTextView.setText(gameDetails.getPointsMax().toString());
-			mGameDetailsActivity.mPlayersMaxTextView.setText(gameDetails.getPlayersMax().toString());
-			mGameDetailsActivity.mTeamRedName.setText(gameDetails.getTeamRed().getName());
-			mGameDetailsActivity.mTeamRedBaseLocalization.setText(gameDetails.getTeamRed().getBaseLocalization().toString());
-			mGameDetailsActivity.mTeamBlueName.setText(gameDetails.getTeamBlue().getName());
-			mGameDetailsActivity.mTeamBlueBaseLocalization.setText(gameDetails.getTeamBlue().getBaseLocalization().toString());
-			mGameDetailsActivity.setMapElements(gameDetails);
-			if (gameDetails.getStatus().equals(STATUS_NEW) || gameDetails.getStatus().equals(STATUS_IN_PROGRESS)) {
-				mGameDetailsActivity.mJoinButton.setEnabled(true);
-				if (gameDetails.getOwner().equals(new UserServices(mGameDetailsActivity).getUser().getName())) {
-					mGameDetailsActivity.mEditButton.setEnabled(true);
-				}
-			}
-		}
-		*/
 
 		public GameDetails jsonToGameDetails(JSONObject jsonObject) throws JSONException {
 
@@ -358,10 +326,10 @@ public class GameServices extends Services {
 	 */
 	private class GetGamePlayers extends AsyncTask<String, Void, String> {
 
-		private GameDetailsTabsActivity mGameDetailsTabsActivity;
+		private GameDetailsActivity mGameDetailsTabsActivity;
 		private ProgressDialog mProgressDialog;
 
-		public GetGamePlayers(GameDetailsTabsActivity gameDetailsTabsActivity) {
+		public GetGamePlayers(GameDetailsActivity gameDetailsTabsActivity) {
 			mGameDetailsTabsActivity = gameDetailsTabsActivity;
 		}
 

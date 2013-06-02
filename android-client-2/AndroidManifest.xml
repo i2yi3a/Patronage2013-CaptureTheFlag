@@ -141,7 +141,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blstream.ctf2.activity.game.GameDetailsTabsActivity"
+            android:name="com.blstream.ctf2.activity.game.GameDetailsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>

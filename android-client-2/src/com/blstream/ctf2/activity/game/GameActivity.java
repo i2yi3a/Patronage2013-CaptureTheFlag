@@ -3,21 +3,27 @@ package com.blstream.ctf2.activity.game;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import com.blstream.ctf2.Constants;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.v4.app.FragmentActivity;
+import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
+
 import com.blstream.ctf2.Constants.GAME_OBJECT_TYPE;
 import com.blstream.ctf2.Constants.TEAM;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.domain.Team;
-import com.blstream.ctf2.exception.CtfException;
 import com.blstream.ctf2.game.objects.Base;
 import com.blstream.ctf2.game.objects.Gamer;
-import com.blstream.ctf2.services.GameServices;
-import com.blstream.ctf2.services.GpsServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -27,19 +33,6 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.v4.app.FragmentActivity;
-import android.text.format.DateUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
 
 /**
  * 
@@ -149,11 +142,11 @@ public class GameActivity extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 		/*
-		 * TODO get player GPS localization (GpsService), post player
-		 * localization to server, get game data from server CTFPAT-360,
+		 * TODO get player GPS localization (GpsService),
+		 *  post player localization to server, 
+		 * get game data from server CTFPAT-360,
 		 */
 		// demo
-
 		updateMapBeforeGame(myPosition1, gameAreaPosition, gameRadius);
 	}
 
@@ -183,7 +176,6 @@ public class GameActivity extends FragmentActivity {
 
 		drawGameArea(game, radius);
 		drawPlayerMarker(player);
-
 
 		// TODO time to start
 		updateNavigationInfoBeforeGame(player, game, radius);
@@ -280,8 +272,8 @@ public class GameActivity extends FragmentActivity {
 	}
 
 	/**
-	 * @author Rafal Tatol - return distance in meters, between two LatLng
-	 *         points
+	 * @author Rafal Tatol 
+	 * - return distance in meters, between two LatLng points
 	 */
 	public int getDistance(LatLng start, LatLng end) {
 		final double earthRadius = 3958.75;
@@ -299,8 +291,8 @@ public class GameActivity extends FragmentActivity {
 	}
 
 	/**
-	 * @author Rafal Tatol - return bearing in the range 0° - 360° between two
-	 *         LatLng points
+	 * @author Rafal Tatol 
+	 * - return bearing in the range 0° - 360° between two LatLng points
 	 */
 	public double getBearing(LatLng player, LatLng destination) {
 		double bearing = 0;
