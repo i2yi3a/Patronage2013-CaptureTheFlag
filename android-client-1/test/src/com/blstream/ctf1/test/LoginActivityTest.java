@@ -6,8 +6,6 @@ import android.widget.EditText;
 
 import com.blstream.ctf1.LoginActivity;
 import com.blstream.ctf1.R;
-import com.blstream.ctf1.RegisterActivity;
-import com.blstream.ctf1.test.utils.Constants;
 import com.blstream.ctf1.test.utils.Orientation;
 import com.blstream.ctf1.test.utils.Preconditions;
 import com.jayway.android.robotium.solo.Solo;
@@ -124,17 +122,6 @@ public class LoginActivityTest extends
 				mSolo.searchText(mLoginLong));
 		Assert.assertTrue("Typed password not preserved.",
 				mSolo.searchText(mPasswordLong));
-	}
-
-	public void testRegistrationTransition() {
-		mSolo.clickOnButton(mRegistrationButton);
-		if (mSolo.waitForActivity(RegisterActivity.class, Constants.DELAY)) {
-			Assert.assertSame("Did not transition to RegisterActivity",
-					RegisterActivity.class, mSolo.getCurrentActivity()
-							.getClass());
-		} else {
-			fail("Did not transition in time.");
-		}
 	}
 
 	@Override

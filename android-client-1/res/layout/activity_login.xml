@@ -4,22 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity" >
 
-    <EditText
-        android:id="@+id/editPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editLogin"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editLogin"
-        android:layout_marginTop="33dp"
-        android:ems="10"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:singleLine="true" >
-
-        <requestFocus android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"/>
-    </EditText>
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -45,39 +29,47 @@
                 android:contentDescription="@string/picture"/>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnRegistration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/registration"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="48dp"/>
-
     <EditText
         android:id="@+id/editLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnRegistration"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginTop="84dp"
         android:layout_toRightOf="@+id/imageView1"
         android:ems="10"
+        android:layout_marginRight="48dp"
         android:hint="@string/hint_login"
         android:singleLine="true" />
 
+    <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editLogin"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editLogin"
+            android:layout_marginTop="36dp"
+            android:layout_marginRight="48dp"
+            android:ems="10"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            android:singleLine="true" >
+    </EditText>
+
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editPassword"
-        android:layout_marginTop="35dp"
         android:background="@drawable/button_blue"
-        android:minHeight="72dp"
+        android:minHeight="48dp"
         android:text="@string/login"
-        android:textSize="36sp" />
+        android:textSize="22sp"
+        android:layout_marginTop="84dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/editPassword"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -131,5 +123,23 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/login"
+            android:id="@+id/textLogin"
+            android:layout_above="@+id/imageView1"
+            android:layout_alignLeft="@+id/imageView1"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/password"
+            android:id="@+id/textPassword"
+            android:layout_above="@+id/btnLogin"
+            android:layout_alignLeft="@+id/imageView2"/>
 
 </RelativeLayout>

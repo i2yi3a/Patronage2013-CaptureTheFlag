@@ -67,12 +67,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.blstream.ctf1.RegisterActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_register"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.blstream.ctf1.CreateGameActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_create_game"

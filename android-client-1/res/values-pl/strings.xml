@@ -17,6 +17,7 @@
 
     <!-- Register & Login -->
     <string name="registration">Rejestracja</string>
+    <string name="logging">Logowanie</string>
     <string name="registration_canceled">Rejestracja anulowana</string>
     <string name="registration_successful">Rejestracja została ukończona pomyślnie</string>
     <string name="login">Login</string>
