@@ -44,8 +44,7 @@ public class GameListActivity extends Activity implements OnClickListener {
 		list.setClickable(true);
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//Intent game_details_intent = new Intent("com.blstream.ctf2.GAMEDETAILSACTIVITY");
-				Intent game_details_intent = new Intent("com.blstream.ctf2.GAMEDETAILSTABSACTIVITY");
+				Intent game_details_intent = new Intent("com.blstream.ctf2.GAMEDETAILSACTIVITY");
 				game_details_intent.putExtra(Constants.ID, games.get(position).getId());
 				startActivity(game_details_intent);
 			}
