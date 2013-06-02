@@ -46,6 +46,8 @@ public class GameServices extends Services {
 	public final static String POINTS_MAX = "points_max";
 	public final static String PLAYERS_MAX = "players_max";
 	public final static String LOCALIZATION = "localization";
+	public final static String LAT = "latitude";
+	public final static String LNG = "longitude";
 	public final static String RADIUS = "radius";
 	public final static String LAT_LNG = "latLng";
 	public final static String RED_TEAM_BASE = "red_team_base";
@@ -87,6 +89,11 @@ public class GameServices extends Services {
 	public void createGame(Activity activityForCtx, JSONObject params) {
 		CreateGameTask createGameTask = new CreateGameTask(activityForCtx);
 		createGameTask.execute(params);
+	}
+
+	public void editGame(Activity activityForCtx, JSONObject params) {
+		EditGameTask editGameTask = new EditGameTask(activityForCtx);
+		editGameTask.execute(params);
 	}
 
 	/**
@@ -476,9 +483,17 @@ public class GameServices extends Services {
 	private class CreateGameTask extends AsyncTask<JSONObject, Void, JSONObject> {
 		private HttpServices mHttpServices;
 		private Context mCtx;
+		private DialogServices mDialog;
 
 		public CreateGameTask(Activity activityForCtx) {
 			mCtx = activityForCtx;
+			mDialog = new DialogServices(mCtx);
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mDialog.showConnectingDialog();
 		}
 
 		@Override
@@ -513,6 +528,68 @@ public class GameServices extends Services {
 		protected void onPostExecute(JSONObject jsonResponse) {
 			super.onPostExecute(jsonResponse);
 			Log.i("CreateGameTask response", jsonResponse.toString());
+			if (mDialog.checkConnectingDialog()) {
+				mDialog.disableConnectingDialog();
+			}
+		}
+	}
+
+	private class EditGameTask extends AsyncTask<JSONObject, Void, JSONObject> {
+		private HttpServices mHttpServices;
+		private Context mCtx;
+		private DialogServices mDialog;
+
+		public EditGameTask(Activity activityForCtx) {
+			mCtx = activityForCtx;
+			mDialog = new DialogServices(mCtx);
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mDialog.showConnectingDialog();
+		}
+
+		@Override
+		protected JSONObject doInBackground(JSONObject... params) {
+			JSONObject gameData = params[0];
+			JSONObject jsonResponse = null;
+			String gameId = null;
+			try {
+				gameId = gameData.getString(Constants.ID);
+			} catch (JSONException e) {
+				Log.e("EditGameTask getString gameId from JSON ", e.toString());
+			}
+			List<Header> headersList = new LinkedList<Header>();
+			headersList.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
+			headersList.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
+			headersList.add(new BasicHeader("Authorization", typeToken + " " + playerToken));
+			String response = null;
+			mHttpServices = new HttpServices(mCtx);
+			try {
+				if (mHttpServices.isOnline()) {
+					response = mHttpServices.putRequest(Constants.URI_GAMES + "/" + gameId, headersList, gameData);
+					jsonResponse = new JSONObject(response);
+				}
+			} catch (IllegalArgumentException e) {
+				Log.e("EditGameTask IllegalArgumentException", e.toString());
+			} catch (ParseException e) {
+				Log.e("EditGameTask ParseException", e.toString());
+			} catch (IOException e) {
+				Log.e("EditGameTask IOException", e.toString());
+			} catch (Exception e) {
+				Log.e("EditGameTask", e.toString());
+			}
+			return jsonResponse;
+		}
+
+		@Override
+		protected void onPostExecute(JSONObject jsonResponse) {
+			super.onPostExecute(jsonResponse);
+			Log.i("EditGameTask response", jsonResponse.toString());
+			if (mDialog.checkConnectingDialog()) {
+				mDialog.disableConnectingDialog();
+			}
 		}
 	}
 }
