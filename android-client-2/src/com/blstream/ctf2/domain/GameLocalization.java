@@ -5,6 +5,13 @@ package com.blstream.ctf2.domain;
  */
 public class GameLocalization extends Localization {
 	
+	public GameLocalization(double lat, double lng) {
+		super(lat, lng);
+	}
+
+	public GameLocalization() {
+	}
+
 	private String name;
 	private Integer radius;
 	

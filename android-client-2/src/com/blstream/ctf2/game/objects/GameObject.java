@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.game.objects.image.AndroidGameObjectImage;
 import com.google.android.gms.maps.model.LatLng;
 /**
@@ -12,12 +13,12 @@ import com.google.android.gms.maps.model.LatLng;
  *
  */
 public abstract class GameObject {
-	private LatLng mLocalization;
+	private Localization mLocalization;
 	private Constants.GAME_OBJECT_TYPE mType;
 	private Constants.TEAM mTeam;
 	private AndroidGameObjectImage mImage;
 
-	public GameObject(Constants.GAME_OBJECT_TYPE type, Constants.TEAM team, LatLng localization,Context context) {
+	public GameObject(Constants.GAME_OBJECT_TYPE type, Constants.TEAM team, Localization localization,Context context) {
 		mType = type;
 		mTeam = team;
 		mLocalization = localization;
@@ -28,11 +29,11 @@ public abstract class GameObject {
 		return mTeam;
 	}
 
-	public void setLocalization(LatLng latLng) {
+	public void setLocalization(Localization latLng) {
 		mLocalization = latLng;
 	}
 
-	public LatLng getLocalization() {
+	public Localization getLocalization() {
 		return mLocalization;
 	}
 

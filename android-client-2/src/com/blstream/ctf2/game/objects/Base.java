@@ -4,7 +4,8 @@ import android.content.Context;
 
 import com.blstream.ctf2.Constants.GAME_OBJECT_TYPE;
 import com.blstream.ctf2.Constants.TEAM;
-import com.google.android.gms.maps.model.LatLng;
+import com.blstream.ctf2.domain.Localization;
+
 /**
  * 
  * @author Karol Firmanty
@@ -12,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class Base extends GameObject{
 	private long mRadius;
-	public Base(GAME_OBJECT_TYPE type, TEAM team, LatLng localization, Context context, long radius) {
+	public Base(GAME_OBJECT_TYPE type, TEAM team, Localization localization, Context context, long radius) {
 		super(type, team, localization, context);
 		mRadius = radius;
 	}

@@ -3,6 +3,7 @@ package com.blstream.ctf2.game.objects;
 import android.content.Context;
 
 import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.domain.Localization;
 import com.google.android.gms.maps.model.LatLng;
 /**
  * 
@@ -11,9 +12,9 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class Flag extends GameObject{
 	private boolean mIsCarried;
-	private LatLng mBaseLocalization;
+	private Localization mBaseLocalization;
 	
-	public Flag(Constants.TEAM team, LatLng localization, LatLng BaseLocalization, Context context) {
+	public Flag(Constants.TEAM team, Localization localization, Localization BaseLocalization, Context context) {
 		super(Constants.GAME_OBJECT_TYPE.FLAG, team, localization, context);
 		mIsCarried = false;
 		mBaseLocalization = BaseLocalization;
