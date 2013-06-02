@@ -36,6 +36,11 @@ public class Constants {
 	public final static int ERROR_CODE_CANNOT_CREATE_NEW_PLAYER = 100;
 	public final static int ERROR_CODE_PLAYER_ALREADY_EXISTS = 101;
 	public final static String ID = "id";
+	
+	public final static String KEY_GAME_AREA = "gameArea";
+	public final static String KEY_GAME_DETAILS = "gameDetails";
+	public final static String KEY_TEAM_BLUE = "teamBlue";
+	public final static String KEY_TEAM_RED = "teamRed";
 
 	public final static String ERROR_CODE_PREFIX = "error_code_";
 	

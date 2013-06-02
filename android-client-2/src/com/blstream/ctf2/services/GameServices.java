@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.activity.game.GameDetailsActivity;
+import com.blstream.ctf2.activity.game.GameDetailsTabsActivity;
 import com.blstream.ctf2.activity.game.GameListActivity;
 import com.blstream.ctf2.activity.game.GamePlayersActivity;
 import com.blstream.ctf2.domain.GameDetails;
@@ -49,8 +50,8 @@ public class GameServices extends Services {
 	public final static String LOCALIZATION = "localization";
 	public final static String RADIUS = "radius";
 	public final static String LAT_LNG = "latLng";
-	public final static String STATUS_NEW = "NEW";
-	public final static String STATUS_IN_PROGRESS = "IN_PROGRESS";
+	//public final static String STATUS_NEW = "NEW";
+	//public final static String STATUS_IN_PROGRESS = "IN_PROGRESS";
 	public final static String RED_TEAM_BASE = "red_team_base";
 	public final static String BLUE_TEAM_BASE = "blue_team_base";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
@@ -72,13 +73,13 @@ public class GameServices extends Services {
 		getGamesTask.execute("");
 	}
 
-	public void getGameDetails(GameDetailsActivity gameDetailsActivity, String mGameId) {
-		GetGameDetails getGameDetailsTask = new GetGameDetails(gameDetailsActivity);
+	public void getGameDetails(GameDetailsTabsActivity gameDetailsTabsActivity, String mGameId) {
+		GetGameDetails getGameDetailsTask = new GetGameDetails(gameDetailsTabsActivity);
 		getGameDetailsTask.execute(mGameId);
 	}
 
-	public void getGamePlayers(GamePlayersActivity gamePlayersActivity, String mGameId) {
-		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gamePlayersActivity);
+	public void getGamePlayers(GameDetailsTabsActivity gameDetailsTabsActivity, String mGameId) {
+		GetGamePlayers getGamePlayersTask = new GetGamePlayers(gameDetailsTabsActivity);
 		getGamePlayersTask.execute(mGameId);
 	}
 
@@ -98,20 +99,20 @@ public class GameServices extends Services {
 	 */
 	private class GetGameDetails extends AsyncTask<String, Void, JSONObject> {
 
-		private GameDetailsActivity mGameDetailsActivity;
+		private GameDetailsTabsActivity mGameDetailsTabsActivity;
 		private ProgressDialog mProgressDialog;
 
-		public GetGameDetails(GameDetailsActivity gameDetailsActivity) {
-			mGameDetailsActivity = gameDetailsActivity;
+		public GetGameDetails(GameDetailsTabsActivity gameDetailsTabsActivity) {
+			mGameDetailsTabsActivity = gameDetailsTabsActivity;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mProgressDialog = new ProgressDialog(mGameDetailsActivity);
+			mProgressDialog = new ProgressDialog(mGameDetailsTabsActivity);
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage(mGameDetailsActivity.getResources().getString(R.string.connecting));
+			mProgressDialog.setMessage(mGameDetailsTabsActivity.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -130,12 +131,12 @@ public class GameServices extends Services {
 		@Override
 		protected void onPostExecute(JSONObject jsonResult) {
 			super.onPostExecute(jsonResult);
+			GameDetails gameDetails = null;
 			try {
 				if (!jsonResult.has(Constants.ERROR)) {
-					GameDetails gameDetails = jsonToGameDetails(jsonResult);
-					fillGameDetailsActivity(gameDetails);
+					gameDetails = jsonToGameDetails(jsonResult);
 				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(mGameDetailsActivity);
+					AlertDialog.Builder builder = new AlertDialog.Builder(mGameDetailsTabsActivity);
 					AlertDialog dialog;
 					builder.setMessage(jsonResult.getString(Constants.ERROR_DESCRIPTION));
 					builder.setTitle(jsonResult.getString(Constants.ERROR));
@@ -148,11 +149,16 @@ public class GameServices extends Services {
 			} catch (Exception e) {
 				Log.e("onPostExecute Exception", e.toString());
 			}
+			fillGameDetailsActivity(gameDetails);
 			if (mProgressDialog.isShowing()) {
 				mProgressDialog.dismiss();
 			}
 		}
-
+		
+		public void fillGameDetailsActivity(GameDetails gameDetails) {
+			mGameDetailsTabsActivity.setGameDetails(gameDetails);
+		}
+		/*
 		public void fillGameDetailsActivity(GameDetails gameDetails) {
 			mGameDetailsActivity.mGameNameTextView.setText(gameDetails.getName());
 			mGameDetailsActivity.mGameIdTextView.setText(gameDetails.getId());
@@ -179,6 +185,7 @@ public class GameServices extends Services {
 				}
 			}
 		}
+		*/
 
 		public GameDetails jsonToGameDetails(JSONObject jsonObject) throws JSONException {
 
@@ -233,7 +240,7 @@ public class GameServices extends Services {
 				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
 				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
 
-				HttpServices httpService = new HttpServices(mGameDetailsActivity);
+				HttpServices httpService = new HttpServices(mGameDetailsTabsActivity);
 				result = httpService.getRequest(Constants.URI_GAMES + "/" + gameId, headers);
 				Log.i("getGameDetails result: ", result);
 			} catch (Exception e) {
@@ -351,20 +358,20 @@ public class GameServices extends Services {
 	 */
 	private class GetGamePlayers extends AsyncTask<String, Void, String> {
 
-		private GamePlayersActivity mGamePlayersActivity;
+		private GameDetailsTabsActivity mGameDetailsTabsActivity;
 		private ProgressDialog mProgressDialog;
 
-		public GetGamePlayers(GamePlayersActivity gamePlayersActivity) {
-			mGamePlayersActivity = gamePlayersActivity;
+		public GetGamePlayers(GameDetailsTabsActivity gameDetailsTabsActivity) {
+			mGameDetailsTabsActivity = gameDetailsTabsActivity;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mProgressDialog = new ProgressDialog(mGamePlayersActivity);
+			mProgressDialog = new ProgressDialog(mGameDetailsTabsActivity);
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage(mGamePlayersActivity.getResources().getString(R.string.connecting));
+			mProgressDialog.setMessage(mGameDetailsTabsActivity.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -398,7 +405,7 @@ public class GameServices extends Services {
 				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
 				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
 
-				HttpServices httpService = new HttpServices(mGamePlayersActivity);
+				HttpServices httpService = new HttpServices(mGameDetailsTabsActivity);
 				result = httpService.getRequest(Constants.URI_GAMES + "/" + gameId + Constants.PLAYERS, headers);
 				Log.i("getGamePlayers result: ", result);
 			} catch (Exception e) {
@@ -415,7 +422,7 @@ public class GameServices extends Services {
 				}
 			}
 			Log.i("playersList.size = ", String.valueOf(playersList.size()));
-			mGamePlayersActivity.setListView(playersList);
+			mGameDetailsTabsActivity.showPlayersFragment(playersList);
 		}
 	}
 

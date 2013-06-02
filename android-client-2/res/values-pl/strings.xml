@@ -74,6 +74,9 @@
     <string name="game_loc_name">Nazwa lokalizacji</string>
     <string name="game_created">Gra została stworzona</string>
     <string name="game_loc_name_hint">Lokalizacja</string>
+    <string name="game_details">Szczegóły</string>
+    <string name="game_players">Gracze</string>
+    <string name="game_map">Mapa</string>
     <!-- Error Codes -->
     <string name="error_code_1">Niepoprawne żądanie</string>
     <string name="error_code_2">Błąd wewnętrzny servera</string>

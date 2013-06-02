@@ -81,6 +81,9 @@
     <string name="game_loc_name">Localization name</string>
     <string name="game_created">Game created successfully</string>
     <string name="game_loc_name_hint">Localization</string>
+    <string name="game_details">Details</string>
+    <string name="game_players">Players</string>
+    <string name="game_map">Map</string>
     <!-- Error Codes -->
     <string name="error_code_1">Bad request</string>
     <string name="error_code_2">Internal error</string>

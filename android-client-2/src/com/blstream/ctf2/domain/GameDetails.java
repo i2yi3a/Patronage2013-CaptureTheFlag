@@ -1,11 +1,14 @@
 package com.blstream.ctf2.domain;
 
+import java.io.Serializable;
+
 /**
  * @author Rafal Tatol 
  * [mod] Marcin Sareło
  */
-public class GameDetails extends Game {
+public class GameDetails extends Game implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String description;
 	private Integer duration;
 	private GameLocalization localization;

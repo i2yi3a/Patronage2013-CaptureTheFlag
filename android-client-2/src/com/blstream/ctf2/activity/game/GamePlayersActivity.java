@@ -38,8 +38,8 @@ public class GamePlayersActivity extends ListActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		GameServices mGameServices = new GameServices(this);
-		mGameServices.getGamePlayers(GamePlayersActivity.this, mGameId);
+		//GameServices mGameServices = new GameServices(this);
+		//mGameServices.getGamePlayers(GamePlayersActivity.this, mGameId);
 	}
 
 	@Override

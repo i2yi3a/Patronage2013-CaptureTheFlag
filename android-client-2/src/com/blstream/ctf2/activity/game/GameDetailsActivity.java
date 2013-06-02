@@ -84,8 +84,8 @@ public class GameDetailsActivity extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 		mGameIdTextView.setText(mGameId);
-		GameServices mGameServices = new GameServices(this);
-		mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
+		//GameServices mGameServices = new GameServices(this);
+		//mGameServices.getGameDetails(GameDetailsActivity.this, mGameId);
 	}
 
 	@Override
