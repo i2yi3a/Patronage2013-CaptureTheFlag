@@ -45,7 +45,7 @@ public class EditGameActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.acitivity_editgame);
+		setContentView(R.layout.activity_editgame);
 
 		mGameNameEditText = (EditText) findViewById(R.id.editTextGameName);
 		mGameDescriptionEditText = (EditText) findViewById(R.id.editTextGameDescription);
