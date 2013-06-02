@@ -58,9 +58,8 @@ public class GameActivity extends FragmentActivity {
 	private List<Base> mBases = new ArrayList<Base>();
 
 	private String mGameId;// need to take data from server
-	private String TIME_TO_START;
 	private CountDownTimer mCountDownTimer;
-	private GameServices mGameServices;
+
 
 	// mockups xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	int gameRadius = 2000;
@@ -72,7 +71,7 @@ public class GameActivity extends FragmentActivity {
 	LatLng myPosition2 = new LatLng(53.440864, 14.499547);
 	LatLng myPosition3 = new LatLng(53.440864, 14.529547);
 
-	private long startTime = 30 * 1000;
+	private long startTime =0;
 	private final long interval = 1 * 1000;
 
 	// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -86,20 +85,12 @@ public class GameActivity extends FragmentActivity {
 		mArrowImageView = (ImageView) findViewById(R.id.imageViewArrow);
 		mDistanceTextView = (TextView) findViewById(R.id.textViewDistance);
 		mInfoTextView = (TextView) findViewById(R.id.textViewInfo1);
-
-		mGameServices = new GameServices(this);
-
-		mockData(); // only for demo
-	}
-
-	// mockups xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	private void mockData() {
-
-		String string = "2013-06-23 18:30:00";
+		
+		String date = "2013-06-23 18:30:00";
 		Date dateToStart = null;
 
 		try {
-			dateToStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(string);
+			dateToStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
 			Date now = new Date();
 
 			startTime = dateToStart.getTime() - now.getTime();
@@ -107,6 +98,12 @@ public class GameActivity extends FragmentActivity {
 
 			e.printStackTrace();
 		}
+	}
+
+	// mockups xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	private void mockData() {
+
+		
 
 		Localization palyerRed1LL = new Localization(53.442775, 14.537806);
 		Localization palyerRed2LL = new Localization(53.443567, 14.547204);
@@ -173,6 +170,11 @@ public class GameActivity extends FragmentActivity {
 		case R.id.buttonTeleport3:
 			updateMapBeforeGame(myPosition1, gameAreaPosition2, gameRadius2);
 			break;
+		case R.id.ButtonShowObjects:
+			mockData();
+			drawPlayersMarkers();
+			drawBasesMarkers();
+			break;
 		// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		}
 	}
@@ -182,8 +184,6 @@ public class GameActivity extends FragmentActivity {
 		drawGameArea(game, radius);
 		drawPlayerMarker(player);
 
-		drawPlayersMarkers();
-		drawBasesMarkers();
 
 		// TODO time to start
 		updateNavigationInfoBeforeGame(player, game, radius);
