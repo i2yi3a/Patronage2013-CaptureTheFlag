@@ -24,7 +24,7 @@ import com.blstream.ctf2.services.GameServices;
 /**
  * 
  * @author Rafal Tatol
- * 
+ * @author Lukasz Dmitrowski
  */
 public class GameDetailsActivity extends FragmentActivity {
 
@@ -67,6 +67,7 @@ public class GameDetailsActivity extends FragmentActivity {
 			mGameServices.joinTheGame(GameDetailsActivity.this, mGameId);
 			break;
 		case R.id.editButton:
+			startEdit();
 			break;
 		case R.id.startButton:
 			Intent game_intent = new Intent("com.blstream.ctf2.GAMEACTIVITY");
@@ -170,6 +171,22 @@ public class GameDetailsActivity extends FragmentActivity {
 		View view = LayoutInflater.from(this).inflate(R.layout.game_details_tabs, null);
 		((TextView) view.findViewById(R.id.tab_text)).setText(id);
 		return view;
+	}
+	
+	private void startEdit(){
+		Intent editIntent = new Intent("com.blstream.ctf2.EDITGAMEACTIVITY");
+		editIntent.putExtra(Constants.ID, mGameDetailsFragment.mGameIdTextView.getText().toString());
+		editIntent.putExtra(GameServices.NAME, mGameDetailsFragment.mGameNameTextView.getText().toString());
+		editIntent.putExtra(GameServices.DESCRIPTION, mGameDetailsFragment.mDescriptionTextView.getText().toString());
+		editIntent.putExtra(GameServices.DURATION, mGameDetailsFragment.mDurationIdTextView.getText().toString());
+		editIntent.putExtra(GameServices.LOCALIZATION, mGameDetailsFragment.mLocalizationTextView.getText().toString());
+		editIntent.putExtra(GameServices.LAT, mGameDetailsFragment.mLatitudeTextView.getText().toString());
+		editIntent.putExtra(GameServices.LNG, mGameDetailsFragment.mLongitudeTextView.getText().toString());
+		editIntent.putExtra(GameServices.RADIUS, mGameDetailsFragment.mRadiusTextView.getText().toString());
+		editIntent.putExtra(GameServices.TIME_START, mGameDetailsFragment.mTimeStartTextView.getText().toString());
+		editIntent.putExtra(GameServices.POINTS_MAX, mGameDetailsFragment.mPointsMaxTextView.getText().toString());
+		editIntent.putExtra(GameServices.PLAYERS_MAX, mGameDetailsFragment.mPlayersMaxTextView.getText().toString());
+		startActivity(editIntent);
 	}
 
 }
