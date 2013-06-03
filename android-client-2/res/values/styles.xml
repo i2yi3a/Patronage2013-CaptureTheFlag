@@ -17,4 +17,25 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+     <style name="Theme" parent="android:Theme.Light">
+        <item name="android:windowBackground">@color/application_background</item>
+        <item name="android:editTextStyle">@style/ThemeEditText</item>
+         <item name="android:buttonStyle">@style/ThemeButtonBlue</item>
+         <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:colorBackgroundCacheHint">#54B2BD</item>
+        
+    </style>
+     <style name="ThemeEditText" parent="android:style/Widget.EditText">
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:background">@color/input_background</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+       <style name="ThemeButtonBlue" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/button_blue</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/light_text</item>
+    </style>
+
+     
 </resources>

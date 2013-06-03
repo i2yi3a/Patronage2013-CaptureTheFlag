@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="application_background">#DBDBDB</color>
+    <color name="dark_text">#444444</color>
+    <color name="light_text">#FFFFFF</color>
+    <color name="input_background">#BEBEBE</color>
+    <color name="orange_light">#E16820</color>
+    <color name="orange_dark">#A94E18</color>
+    <color name="blue_light">#54B2BD</color>
+    <color name="blue_dark">#3F858E</color>
+</resources>
