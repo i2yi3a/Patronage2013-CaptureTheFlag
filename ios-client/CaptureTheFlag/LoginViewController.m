@@ -7,7 +7,7 @@
 //
 
 
- #import "LoginViewController.h"
+#import "LoginViewController.h"
 
 
 @interface LoginViewController ()
@@ -25,6 +25,7 @@
 
 - (IBAction)login:(id)sender;
 
+
 @property (nonatomic, retain) UIAlertView *loginAlertView;
 
 @end
@@ -41,10 +42,10 @@
     [self.view addGestureRecognizer:tap];
 	// Do any additional setup after loading the view, typically from a nib.
     self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:nil, nil];
- 
+                                                    delegate:self
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:nil, nil];
+    
     self.view.backgroundColor = [UIColor ctfApplicationBackgroundLighterColor];
     
     _emailBackgroundView.backgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
@@ -52,10 +53,10 @@
     
     _loginSwitchButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
     _loginSwitchButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
-
+    
     _registerSwitchButton.buttonBackgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
     _registerSwitchButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
-
+    
     _loginButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
     _loginButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
     
@@ -77,25 +78,25 @@
 -(void)loginWithUserEmail:(NSString *)userEmail andPassword:(NSString *)password
 {
     [[NetworkEngine getInstance]
-                                 loginWithEmail:userEmail
-                                 withPassword:(NSString *)password
-                                 completionBlock:^(NSObject *response) {
-                                  if ([response isKindOfClass:[NSError class]])
-                                  {
-                                      [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                      [ShowInformation showError:@"Incorrect user name or password"];                                  }
-                                  else
-                                  {
-                                      [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
-                                      [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                  }
-                              }];
+     loginWithEmail:userEmail
+     withPassword:(NSString *)password
+     completionBlock:^(NSObject *response) {
+         if ([response isKindOfClass:[NSError class]])
+         {
+             [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+             [ShowInformation showError:@"Incorrect user name or password"];                                  }
+         else
+         {
+             [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
+             [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+         }
+     }];
 }
 
 
 - (IBAction)login:(id)sender{
-        [self beginLogin];
-        [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
+    [self beginLogin];
+    [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
     [_loginAlertView show];
 }
 
@@ -104,7 +105,7 @@
 {
     [self.userEmailField resignFirstResponder];
     [self.passwordField resignFirstResponder];
-       
+    
 }
 
 

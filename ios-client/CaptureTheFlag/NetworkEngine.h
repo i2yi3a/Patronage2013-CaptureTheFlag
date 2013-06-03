@@ -30,7 +30,7 @@ typedef void (^NetworkEngineCompletionBlock)(NSObject* object);
 - (void)logout:(NetworkEngineCompletionBlock)completionBlock;
 
 - (void)createNewGame:(CTFGame *) game
-        completionBlock:(NetworkEngineCompletionBlock)completionBlock;
+      completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 
 -(NSError *)errorFromServerErrorCode:(NSInteger)code;
 

@@ -15,9 +15,9 @@
     #import "NSError+Description.h"
     #import "NetworkEngine.h"
     #import "ShowInformation.h"
+    #import "CTFGame.h"
 
     #import "UIColor+customColors.h"
-
     #import "FlatButton.h"
 
 #endif

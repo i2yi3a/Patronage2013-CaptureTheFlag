@@ -12,8 +12,9 @@
 @interface NewGameViewController : UIViewController <MKMapViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate> {
     IBOutlet UIScrollView * Scroller;
 }
-- (IBAction)createNewGame:(id)sender;
 - (IBAction)geolocate:(id)sender;
+- (IBAction)createNewGame:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -22,3 +23,5 @@
 @property (strong, nonatomic) NSArray *secondColumnList;
 
 @end
+
+extern NSString *locationNameFromGeo;

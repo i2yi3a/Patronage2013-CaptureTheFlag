@@ -9,8 +9,5 @@
  #import <UIKit/UIKit.h>
 
 @interface RegisterViewController : UIViewController{
-    IBOutlet UISegmentedControl *control;
 }
-- (IBAction)reginster:(id)sender;
-- (IBAction)switchcontrol:(id)sender;
 @end
