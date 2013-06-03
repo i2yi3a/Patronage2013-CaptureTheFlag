@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 
 public class GameDetailsPlayersFragment extends Fragment {
@@ -28,7 +29,7 @@ public class GameDetailsPlayersFragment extends Fragment {
 		mListView = (ListView) view.findViewById(R.id.list_players);
 		mListView.setEmptyView(view.findViewById(R.id.list_empty));
 		
-		mPlayersList = (List<String>) getArguments().getStringArrayList("key");
+		mPlayersList = (List<String>) getArguments().getStringArrayList(Constants.KEY_PLAYERS);
 		mListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.players_list_item, mPlayersList);
 		mListView.setAdapter(mListAdapter);
 		

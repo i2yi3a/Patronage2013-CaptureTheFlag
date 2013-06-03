@@ -111,7 +111,7 @@ public class GameDetailsActivity extends FragmentActivity {
 	public void showPlayersFragment(ArrayList<String> playersList) {
 		mGameDetailsPlayersFragment = new GameDetailsPlayersFragment();
 		Bundle args = new Bundle();
-		args.putStringArrayList("key", playersList);
+		args.putStringArrayList(Constants.KEY_PLAYERS, playersList);
 		mGameDetailsPlayersFragment.setArguments(args);
 		pushFragments(mGameDetailsPlayersFragment);
 	}
