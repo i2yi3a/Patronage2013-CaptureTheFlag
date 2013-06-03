@@ -187,7 +187,7 @@ public class EditGameActivity extends Activity {
 		try {
 			editGame();
 		} catch (Exception e) {
-			Log.e("onClickCreateGameButton", e.toString());
+			Log.e("onClickEditGameButton", e.toString());
 		}
 	}
 }
