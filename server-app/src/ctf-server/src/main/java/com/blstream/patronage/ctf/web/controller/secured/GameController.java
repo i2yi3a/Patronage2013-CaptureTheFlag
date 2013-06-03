@@ -6,7 +6,9 @@ import com.blstream.patronage.ctf.model.Game;
 import com.blstream.patronage.ctf.model.GameStatusType;
 import com.blstream.patronage.ctf.service.GameService;
 import com.blstream.patronage.ctf.web.converter.BaseUIConverter;
+import com.blstream.patronage.ctf.web.ui.GameListUI;
 import com.blstream.patronage.ctf.web.ui.GameUI;
+import com.blstream.patronage.ctf.web.ui.PlayerListUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -161,9 +163,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
 
     @RequestMapping(value = "{id}/players", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public
-    @ResponseBody
-    List<String> players(@PathVariable String id) {
+    public @ResponseBody PlayerListUI players(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- players");
@@ -171,12 +171,13 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         Assert.notNull(id, "ID cannot be null");
         Game resource = service.findById(id);
 
-        List<String> players = resource.getPlayers();
+        PlayerListUI response = new PlayerListUI();
+        response.setPlayers(resource.getPlayers());
 
         if (logger.isDebugEnabled())
             logger.debug("---- /players");
 
-        return players;
+        return response;
 
     }
 
@@ -254,9 +255,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
 
     @RequestMapping(value = "", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public
-    @ResponseBody
-    Iterable<GameUI> find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
+    public @ResponseBody GameListUI find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- filter");
@@ -264,14 +263,17 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         String currentUser = super.getCurrentUsername();
         Assert.notNull(currentUser, "Current username cannot be null");
 
-        Iterable<GameUI> response;
+        GameListUI response = new GameListUI();
+        Iterable<GameUI> games;
 
         if (name == null && status == null && myGamesOnly == null) {
-            response = super.findAll();
+            games = super.findAll();
         } else {
             List<Game> resource = service.findByCriteria(name, status, myGamesOnly, currentUser);
-            response = converter.convertModelList(resource);
+            games = converter.convertModelList(resource);
         }
+
+        response.setGames(games);
 
         if (logger.isDebugEnabled())
             logger.debug("---- /filter");
@@ -280,9 +282,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
     }
 
     @RequestMapping(value = "/nearest", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public
-    @ResponseBody
-    Iterable<GameUI> findNearest(
+    public @ResponseBody GameListUI findNearest(
             @RequestParam(value = "latLng", required = true) Double[] latLng,
             @RequestParam(value = "range", required = false) Double range,
             @RequestParam(value = "status", required = false) GameStatusType status) {
@@ -290,7 +290,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (logger.isDebugEnabled())
             logger.debug("---- findNearest");
 
-        Iterable<GameUI> response;
+        GameListUI response = new GameListUI();
         List<Game> games;
 
         if (logger.isDebugEnabled()) {
@@ -312,7 +312,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (logger.isDebugEnabled())
             logger.debug(String.format("Count of nearest games: %d", games.size()));
 
-        response = converter.convertModelList(games);
+        response.setGames(converter.convertModelList(games));
 
         if (logger.isDebugEnabled())
             logger.debug("---- /findNearest");
