@@ -112,11 +112,19 @@ public class GameUIConverter extends BaseUIConverter<GameUI, Game, String> {
                 target.setId(source.getId());
                 target.setName(source.getName());
 //                target.setDescription(source.getDescription());
-//                target.setTimeStart(source.getTimeStart());
+                target.setTimeStart(source.getTimeStart());
 //                target.setDuration(source.getDuration());
 //                target.setPointsMax(source.getPointsMax());
-//                target.setPlayersMax(source.getPlayersMax());
-//                target.setLocalization(source.getLocalization());
+                target.setPlayersMax(source.getPlayersMax());
+
+                if (source.getLocalization() != null) {
+                    LocalizationUI loc = new LocalizationUI();
+                    loc.setName(source.getLocalization().getName());
+                    loc.setLatLng(source.getLocalization().getLatLng());
+                    loc.setRadius(source.getLocalization().getRadius());
+                    target.setLocalization(loc);
+                }
+
                 target.setStatus(source.getStatus());
 //                target.setPlayers(source.getPlayers());
                 target.setOwner(source.getOwner());

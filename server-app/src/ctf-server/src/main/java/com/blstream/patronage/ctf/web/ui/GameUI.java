@@ -170,4 +170,9 @@ public class GameUI extends BaseUI<String> {
     public void setBlueTeamBase(TeamBaseUI blueTeamBase) {
         this.blueTeamBase = blueTeamBase;
     }
+
+    @JsonProperty("players_count")
+    public Integer getPlayersCount() {
+        return players != null ? players.size() : 0;
+    }
 }
