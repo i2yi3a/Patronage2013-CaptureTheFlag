@@ -318,10 +318,10 @@ public class GameServices extends Services {
 					game.setName(jsonObject.getString(NAME));
 					game.setStatus(jsonObject.getString(STATUS));
 					game.setOwner(jsonObject.getString(OWNER));
+					games.add(game); //TODO
 				} catch (JSONException e) {
 					Log.e("getGame ERROR", e.toString());
 				}
-				games.add(game);
 			}
 			return games;
 		}
@@ -360,9 +360,14 @@ public class GameServices extends Services {
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
+			JSONArray jsonArray = null;
 			try {
 				JSONObject jsonResponse = new JSONObject(result);
-				JSONArray jsonArray = jsonResponse.getJSONArray(PLAYERS);
+				jsonArray = jsonResponse.getJSONArray(PLAYERS);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			try {
 				fillPlayersList(jsonArray);
 			} catch (JSONException e) {
 				e.printStackTrace();
