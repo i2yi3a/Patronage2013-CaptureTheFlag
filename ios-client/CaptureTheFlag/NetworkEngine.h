@@ -34,4 +34,9 @@ typedef void (^NetworkEngineCompletionBlock)(NSObject* object);
 
 -(NSError *)errorFromServerErrorCode:(NSInteger)code;
 
+-(void)getGameDeatails:(NetworkEngineCompletionBlock)completionBlock;
+
+-(void)getGames;
+
+
 @end
