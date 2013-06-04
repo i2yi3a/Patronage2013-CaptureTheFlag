@@ -47,6 +47,8 @@ public class GameUI extends BaseUI<String> {
     @JsonProperty("players_max")
     private Integer playersMax;
 
+    @NotNull(message = "Localization cannot be Null")
+    @NotEmpty(message = "Localization cannot be empty")
     @AssertValid(message = "Name, latLng and radius in Localization cannot be Null or Empty")
     private LocalizationUI localization;
 
@@ -56,10 +58,14 @@ public class GameUI extends BaseUI<String> {
 
     private String owner;
 
+    @NotNull(message = "redTeamBase cannot be Null")
+    @NotEmpty(message = "redTeamBase cannot be Empty")
     @AssertValid(message = "Name and latLng in RedTeamBase cannot be Null or Empty")
     @JsonProperty("red_team_base")
     private TeamBaseUI redTeamBase;
 
+    @NotNull(message = "blueTeamBase cannot be Null")
+    @NotEmpty(message = "blueTeamBase cannot be Empty")
     @AssertValid(message = "Name and latLng in BlueTeamBase cannot be Null or Empty")
     @JsonProperty("blue_team_base")
     private TeamBaseUI blueTeamBase;

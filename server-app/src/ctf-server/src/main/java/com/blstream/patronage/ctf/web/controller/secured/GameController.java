@@ -163,7 +163,9 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
 
     @RequestMapping(value = "{id}/players", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody PlayerListUI players(@PathVariable String id) {
+    public
+    @ResponseBody
+    PlayerListUI players(@PathVariable String id) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- players");
@@ -202,7 +204,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
                     players.add(currentUser);
                     GameUI convert = converter.convert(resource);
-                    GameUI gameUI = update(id, convert);
+                    GameUI gameUI = super.update(id, convert);
                     response.setErrorCode(gameUI.getErrorCodeType());
                     response.setError(gameUI.getError());
                     response.setErrorDescription(gameUI.getErrorDescription());
@@ -240,7 +242,7 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
         if (resource.getPlayers().contains(currentUser)) {
             players.remove(currentUser);
             GameUI convert = converter.convert(resource);
-            GameUI gameUI = update(id, convert);
+            GameUI gameUI = super.update(id, convert);
             response.setErrorCode(gameUI.getErrorCodeType());
             response.setError(gameUI.getError());
             response.setErrorDescription(gameUI.getErrorDescription());
@@ -255,7 +257,9 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
 
 
     @RequestMapping(value = "", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody GameListUI find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
+    public
+    @ResponseBody
+    GameListUI find(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "myGamesOnly", required = false) Boolean myGamesOnly) {
 
         if (logger.isDebugEnabled())
             logger.debug("---- filter");
@@ -282,7 +286,9 @@ public class GameController extends BaseRestController<GameUI, Game, String, Gam
     }
 
     @RequestMapping(value = "/nearest", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody GameListUI findNearest(
+    public
+    @ResponseBody
+    GameListUI findNearest(
             @RequestParam(value = "latLng", required = true) Double[] latLng,
             @RequestParam(value = "range", required = false) Double range,
             @RequestParam(value = "status", required = false) GameStatusType status) {
