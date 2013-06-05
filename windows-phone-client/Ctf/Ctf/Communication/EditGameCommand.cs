@@ -12,7 +12,7 @@ using Ctf.Communication.DataObjects;
 
 namespace Ctf.Communication
 {
-    class EditGameCommand : BaseCommand
+    class EditGameCommand : BaseCommand<ServerResponse>
     {
         public EditGameCommand(String gameId) : base()
         {
@@ -23,7 +23,7 @@ namespace Ctf.Communication
             request.RequestFormat = DataFormat.Json;
         }
 
-        public void RequestCallbackOnSuccess(IRestResponse<ServerJsonResponse> response)
+        public void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -37,16 +37,16 @@ namespace Ctf.Communication
             }
         }
 
-        public void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
-        }
+        //public void RequestCallbackOnFail(String errorMessage)
+        //{
+        //    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
+        //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
+        //}
 
         public async Task<RestRequestAsyncHandle> EditGame(Game GameInfo)
         {
             request.AddBody(GameInfo);
-            return await requestHandler.ExecuteAsync<ServerJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

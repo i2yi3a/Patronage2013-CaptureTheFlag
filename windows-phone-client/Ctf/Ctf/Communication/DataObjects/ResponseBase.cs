@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ctf.Communication.DataObjects
 {
-    public class JsonResponse : BaseModel
+    public class ResponseBase : BindableBase
     {
         public string error { get; set; }
         public string error_description { get; set; }
@@ -20,7 +20,7 @@ namespace Ctf.Communication.DataObjects
         /// </returns>
         public bool HasError()
         {
-            return !(String.IsNullOrEmpty(error_description));
+            return !(String.IsNullOrWhiteSpace(error_description) || String.IsNullOrWhiteSpace(error));
         }
     }
 }

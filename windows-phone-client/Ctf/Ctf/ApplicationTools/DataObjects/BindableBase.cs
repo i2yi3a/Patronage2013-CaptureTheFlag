@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Ctf.ApplicationTools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ctf.ViewModels
+namespace Ctf.Models
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    //public delegate void PropertyChangedEventHandler(object sender, PropertyChangedEventArgs e);
+
+    public class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -16,6 +21,7 @@ namespace Ctf.ViewModels
             PropertyChangedEventHandler handler = this.PropertyChanged;
             if (handler != null)
             {
+                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Property changed: " + propertyName));
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }

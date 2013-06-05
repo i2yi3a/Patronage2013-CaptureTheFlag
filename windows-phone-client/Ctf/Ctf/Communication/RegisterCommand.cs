@@ -12,20 +12,8 @@ using Ctf.ApplicationTools;
 
 namespace Ctf.Communication
 {
-    class RegisterCommand : BaseCommand
+    class RegisterCommand : BaseCommand<ServerResponse>
     {
-        //private RequestHandler requestHandler;
-        //private RestRequest request;
-
-        //public event EventHandler<EventArgs> MessengerSent;
-
-        //protected virtual void OnMessengerSent(EventArgs e)
-        //{
-        //    var MessengerSentThreadPrivate = MessengerSent;
-        //    if (MessengerSentThreadPrivate != null)
-        //        MessengerSentThreadPrivate(this, e);
-        //}
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Registration"/> class.
         /// </summary>
@@ -42,7 +30,7 @@ namespace Ctf.Communication
         /// Requests the callback on success.
         /// </summary>
         /// <param name="response">The response.</param>
-        private void RequestCallbackOnSuccess(IRestResponse<ServerJsonResponse> response)
+        private void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -57,16 +45,16 @@ namespace Ctf.Communication
         /// Requests the callback on fail.
         /// </summary>
         /// <param name="errorMessage">The error message.</param>
-        private void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
-        }
+        //private void RequestCallbackOnFail(String errorMessage)
+        //{
+        //    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
+        //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
+        //}
 
-        public async Task<RestRequestAsyncHandle> Register(UserCredentials user)
+        public async Task<RestRequestAsyncHandle> RegisterAs(UserCredentials user)
         {
             request.AddBody(new { username = user.username, password = user.password });
-            return await requestHandler.ExecuteAsync<ServerJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

@@ -161,4 +161,49 @@
   <data name="MainpageRegsiterPassword" xml:space="preserve">
     <value>Hasło</value>
   </data>
+  <data name="TestDebug" xml:space="preserve">
+    <value>Test dla debug</value>
+  </data>
+  <data name="MainPageMatchingPasswords" xml:space="preserve">
+    <value>Podane hasła muszą być takie same.</value>
+  </data>
+  <data name="MainPageMinimalPasswordLength" xml:space="preserve">
+    <value>Minimalna długość hasła to {0} znakow.</value>
+  </data>
+  <data name="MainPageMinimalUsernameLength" xml:space="preserve">
+    <value>Minimalna długość nazwy użytkownika to {0} znakow.</value>
+  </data>
+  <data name="ListGamesLoggedAs" xml:space="preserve">
+    <value>Jesteś zalogowany jako: {0}</value>
+  </data>
+  <data name="ListGamesAllGames" xml:space="preserve">
+    <value>Wszystkie</value>
+  </data>
+  <data name="ListGamesApplicationBarButtonCreate" xml:space="preserve">
+    <value>Utwórz</value>
+  </data>
+  <data name="ListGamesApplicationBarButtonRefresh" xml:space="preserve">
+    <value>Odśwież</value>
+  </data>
+  <data name="ListGamesApplicationBarButtonSearch" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="ListGamesApplicationBarMenuItemLogout" xml:space="preserve">
+    <value>Wyloguj</value>
+  </data>
+  <data name="ListGamesApplicationBarMenuItemProfile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ListGamesApplicationBarMenuItemSettings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="ListGamesCompletedGames" xml:space="preserve">
+    <value>Zakończone</value>
+  </data>
+  <data name="ListGamesMyGames" xml:space="preserve">
+    <value>Moje</value>
+  </data>
+  <data name="ListGamesNearestGames" xml:space="preserve">
+    <value>Najbliższe</value>
+  </data>
 </root>

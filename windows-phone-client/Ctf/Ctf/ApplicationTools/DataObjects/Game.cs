@@ -9,7 +9,7 @@ using Ctf.Communication.DataObjects;
 namespace Ctf.ApplicationTools.DataObjects
 {
 
-    public class Game : ServerJsonResponse
+    public class Game : ServerResponse
     {
         public string id { get; set; }
         public string name { get; set; }

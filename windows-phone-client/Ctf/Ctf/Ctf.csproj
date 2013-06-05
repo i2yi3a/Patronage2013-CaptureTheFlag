@@ -95,25 +95,33 @@
     </Compile>
     <Compile Include="ApplicationTools\DataObjects\ApplicationError.cs" />
     <Compile Include="ApplicationTools\DataObjects\Game.cs" />
+    <Compile Include="ApplicationTools\DataObjects\LoginCredentials.cs" />
+    <Compile Include="ApplicationTools\NetworkService.cs" />
     <Compile Include="Communication\BaseCommand.cs" />
     <Compile Include="Communication\CreateCommand.cs" />
-    <Compile Include="Communication\DataObjects\JsonResponse.cs" />
+    <Compile Include="Communication\DataObjects\GameIdentificator.cs" />
+    <Compile Include="Communication\DataObjects\GameStatus.cs" />
+    <Compile Include="Communication\DataObjects\Localization.cs" />
+    <Compile Include="Communication\DataObjects\LocationFilter.cs" />
+    <Compile Include="Communication\DataObjects\ResponseBase.cs" />
     <Compile Include="ApplicationTools\DataObjects\ApplicationEventArgs.cs" />
     <Compile Include="ApplicationTools\DebugInfo.cs" />
+    <Compile Include="Communication\DataObjects\TeamBase.cs" />
     <Compile Include="Communication\EditGameCommand.cs" />
     <Compile Include="Communication\GameInfoCommand.cs" />
     <Compile Include="Communication\SignInCommand.cs" />
     <Compile Include="Communication\SignOutCommand.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\GameDetails.cs" />
-    <Compile Include="Models\GameHeader.cs" />
-    <Compile Include="Models\JsonGames.cs" />
-    <Compile Include="Pages\LoggedIn.xaml.cs">
-      <DependentUpon>LoggedIn.xaml</DependentUpon>
+    <Compile Include="ApplicationTools\DataObjects\BindableBase.cs" />
+    <Compile Include="Communication\DataObjects\PlayersList.cs" />
+    <Compile Include="Communication\DataObjects\GameDetails.cs" />
+    <Compile Include="Communication\DataObjects\GameHeader.cs" />
+    <Compile Include="Communication\DataObjects\GamesList.cs" />
+    <Compile Include="Pages\CreateGamePage.xaml.cs">
+      <DependentUpon>CreateGamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Communication\LoginCommand.cs" />
-    <Compile Include="Communication\DataObjects\LoginJsonResponse.cs" />
+    <Compile Include="Communication\DataObjects\AuthorizationToken.cs" />
     <Compile Include="ApplicationTools\CustomUriMapper.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -126,17 +134,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Communication\RequestHandler.cs" />
     <Compile Include="ApplicationTools\ApplicationSettings.cs" />
-    <Compile Include="Communication\DataObjects\ServerJsonResponse.cs" />
+    <Compile Include="Communication\DataObjects\ServerResponse.cs" />
     <Compile Include="ApplicationTools\DataObjects\User.cs" />
     <Compile Include="ApplicationTools\DataObjects\UserCredentials.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\DelegateCommand.cs" />
-    <Compile Include="ViewModels\FetchGamesCommand.cs" />
-    <Compile Include="ViewModels\ListGamesViewModel.cs" />
-    <Compile Include="Views\ListGames.xaml.cs">
+    <Compile Include="Communication\FetchGamesCommand.cs" />
+    <Compile Include="Pages\ListGames.xaml.cs">
       <DependentUpon>ListGames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameDetailsPage.xaml.cs">
+      <DependentUpon>GameDetailsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +151,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Pages\LoggedIn.xaml">
+    <Page Include="Pages\CreateGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,7 +159,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ListGames.xaml">
+    <Page Include="Pages\ListGames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GameDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,6 +195,10 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\favs.addto.png" />
+    <Content Include="Images\feature.search.png" />
+    <Content Include="Images\new.png" />
+    <Content Include="Images\refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

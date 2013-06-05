@@ -16,7 +16,7 @@ namespace Ctf.Communication
     /// <summary>
     /// 
     /// </summary>
-    class LoginCommand : BaseCommand
+    class LoginCommand : BaseCommand<AuthorizationToken>
     {
         private string username;
 
@@ -37,7 +37,7 @@ namespace Ctf.Communication
         /// Requests the callback on success.
         /// </summary>
         /// <param name="response">The response.</param>
-        public void RequestCallbackOnSuccess(IRestResponse<LoginJsonResponse> response)
+        public void RequestCallbackOnSuccess(IRestResponse<AuthorizationToken> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -50,16 +50,6 @@ namespace Ctf.Communication
             }
         }
 
-        /// <summary>
-        /// Requests the callback on fail.
-        /// </summary>
-        /// <param name="errorMessage">The error message.</param>
-        public void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
-        }
-
         //TODO: Check if is async
         /// <summary>
         /// Logs the in as.
@@ -67,7 +57,7 @@ namespace Ctf.Communication
         /// <param name="user">The user.</param>
         /// <param name="secret">The secret.</param>
         /// <returns></returns>
-        public async Task<RestRequestAsyncHandle> LogInAs(UserCredentials user, string secret)
+        public async Task<RestRequestAsyncHandle> LoginAs(UserCredentials user, string secret)
         {
             //Secret could be: System.Guid.NewGuid().ToString()
             //TODO: get method name
@@ -76,7 +66,7 @@ namespace Ctf.Communication
             request.AddParameter("password", user.password);
             request.AddParameter("client_secret", secret);
             username = user.username;
-            return await requestHandler.ExecuteAsync<LoginJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
         /// <summary>

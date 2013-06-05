@@ -15,7 +15,7 @@ namespace Ctf.ApplicationTools
             {
                 if (ApplicationSettings.Instance.HasLoginInfo())
                 {
-                    uri = new Uri("/Pages/LoggedIn.xaml", UriKind.Relative);
+                    uri = new Uri("/Pages/ListGames.xaml", UriKind.Relative);
                 }
                 else
                 {

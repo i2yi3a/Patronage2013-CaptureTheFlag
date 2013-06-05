@@ -7,7 +7,7 @@ using Ctf.Communication.DataObjects;
 
 namespace Ctf.ApplicationTools.DataObjects
 {
-    public class ApplicationError : ServerJsonResponse
+    public class ApplicationError : ServerResponse
     {
         public const int APPLICATION_ERROR = -2;
         public const int SUCCESS = -1;

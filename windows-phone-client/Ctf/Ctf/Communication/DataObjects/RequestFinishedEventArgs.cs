@@ -8,9 +8,9 @@ namespace Ctf.Communication.DataObjects
 {
     public class RequestFinishedEventArgs : EventArgs
     {
-        public JsonResponse Response { get; set; }
+        public ResponseBase Response { get; set; }
 
-        public RequestFinishedEventArgs(JsonResponse response)
+        public RequestFinishedEventArgs(ResponseBase response)
         {
             Response = response;
         }

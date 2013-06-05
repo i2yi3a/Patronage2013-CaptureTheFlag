@@ -1,0 +1,6 @@
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate stub for AppBarUtils.ExtensionMethods: type is sealed.
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate stub for AppBarUtils.AppBarItemType: type is a value type.
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate shim for AppBarUtils.ExtensionMethods+<>c__DisplayClass4: type is not supported because of internal limitations.
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate shim for AppBarUtils.SelectionChangedTriggerBase`1+<>c__DisplayClass1: type is not supported because of internal limitations.
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate shim for AppBarUtils.SwitchAppBarAction+<>c__DisplayClass1: type is not supported because of internal limitations.
+D:\GitHub\WindowsPhoneCTF\CaptureTheFlag\windows-phone-client\Ctf\Ctf\Fakes\AppBarUtils.fakes : warning : Cannot generate shim for AppBarUtils.AppBarItemType: type is an enum.

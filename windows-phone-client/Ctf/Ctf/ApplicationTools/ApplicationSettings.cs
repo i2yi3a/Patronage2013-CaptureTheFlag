@@ -24,6 +24,14 @@ namespace Ctf.ApplicationTools
         private const string userKeyword = "user";
         public event UserChangedEventHandler UserChanged;
 
+        public string LoggedUsername
+        { 
+            get
+            {
+                return RetriveLoggedUser().username;
+            }
+        }
+
         /// <summary>
         /// Raises the <see cref="E:UserChanged" /> event.
         /// </summary>

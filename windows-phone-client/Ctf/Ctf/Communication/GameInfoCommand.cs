@@ -9,10 +9,11 @@ using System.Reflection;
 using Ctf.Communication.DataObjects;
 using Ctf.ApplicationTools.DataObjects;
 using Ctf.ApplicationTools;
+using Ctf.Models.DataObjects;
 
 namespace Ctf.Communication
 {
-    class GameInfoCommand : BaseCommand
+    class GameInfoCommand : BaseCommand<GameDetails>
     {
         public GameInfoCommand(String gameId)
             : base()
@@ -24,7 +25,7 @@ namespace Ctf.Communication
             //request.RequestFormat = DataFormat.Json;
         }
 
-        private void RequestCallbackOnSuccess(IRestResponse<Game> response)
+        private void RequestCallbackOnSuccess(IRestResponse<GameDetails> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -35,15 +36,15 @@ namespace Ctf.Communication
             }
         }
 
-        private void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
-        }
+        //private void RequestCallbackOnFail(String errorMessage)
+        //{
+        //    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
+        //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
+        //}
 
         public async Task<RestRequestAsyncHandle> GetGameInfo()
         {
-            return await requestHandler.ExecuteAsync<Game>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

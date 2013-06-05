@@ -1,0 +1,1754 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AppBarUtils.1.0.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:AppBarUtils.Fakes.ShimAppBar">
+            <summary>Shim type of AppBarUtils.AppBar</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBar.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBar.#ctor(AppBarUtils.AppBar)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBar.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBar.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.BackgroundColorGet">
+            <summary>Sets the shim of AppBar.get_BackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.BackgroundColorPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.BackgroundColorPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.BackgroundColorSetColor">
+            <summary>Sets the shim of AppBar.set_BackgroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ButtonsGet">
+            <summary>Sets the shim of AppBar.get_Buttons()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ButtonsSetDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.set_Buttons(DependencyObjectCollection`1&lt;AppBarButton&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.Buttons_CollectionChangedObjectNotifyCollectionChangedEventArgs">
+            <summary>Sets the shim of AppBar.Buttons_CollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeBackgroundColor">
+            <summary>Sets the shim of AppBar.ChangeBackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeForegroundColor">
+            <summary>Sets the shim of AppBar.ChangeForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeIsMenuEnabled">
+            <summary>Sets the shim of AppBar.ChangeIsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeIsVisible">
+            <summary>Sets the shim of AppBar.ChangeIsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeMode">
+            <summary>Sets the shim of AppBar.ChangeMode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ChangeOpacity">
+            <summary>Sets the shim of AppBar.ChangeOpacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.Constructor">
+            <summary>Sets the shim of AppBar.AppBar()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ForegroundColorGet">
+            <summary>Sets the shim of AppBar.get_ForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ForegroundColorPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.ForegroundColorPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ForegroundColorSetColor">
+            <summary>Sets the shim of AppBar.set_ForegroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleButtonsPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.HandleButtonsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleMenuItemsPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.HandleMenuItemsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleNewButtonsDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.HandleNewButtons(DependencyObjectCollection`1&lt;AppBarButton&gt; buttons)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleNewMenuItemsDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.HandleNewMenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; menuItems)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleOldButtonsDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.HandleOldButtons(DependencyObjectCollection`1&lt;AppBarButton&gt; buttons)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.HandleOldMenuItemsDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.HandleOldMenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; menuItems)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IdGet">
+            <summary>Sets the shim of AppBar.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IdSetInt32">
+            <summary>Sets the shim of AppBar.set_Id(Int32 value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsMenuEnabledGet">
+            <summary>Sets the shim of AppBar.get_IsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsMenuEnabledPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.IsMenuEnabledPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsMenuEnabledSetBoolean">
+            <summary>Sets the shim of AppBar.set_IsMenuEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsVisibleGet">
+            <summary>Sets the shim of AppBar.get_IsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsVisiblePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.IsVisiblePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.IsVisibleSetBoolean">
+            <summary>Sets the shim of AppBar.set_IsVisible(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.MenuItemsGet">
+            <summary>Sets the shim of AppBar.get_MenuItems()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.MenuItemsSetDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.set_MenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.MenuItems_CollectionChangedObjectNotifyCollectionChangedEventArgs">
+            <summary>Sets the shim of AppBar.MenuItems_CollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ModeGet">
+            <summary>Sets the shim of AppBar.get_Mode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ModePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.ModePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ModeSetApplicationBarMode">
+            <summary>Sets the shim of AppBar.set_Mode(ApplicationBarMode value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.OpacityGet">
+            <summary>Sets the shim of AppBar.get_Opacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.OpacityPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBar.OpacityPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.OpacitySetDouble">
+            <summary>Sets the shim of AppBar.set_Opacity(Double value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.StaticConstructor">
+            <summary>Sets the shim of AppBar.AppBar()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.ToApplicationBar">
+            <summary>Sets the shim of AppBar.ToApplicationBar()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBar.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.BackgroundColorGet">
+            <summary>Sets the shim of AppBar.get_BackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.BackgroundColorSetColor">
+            <summary>Sets the shim of AppBar.set_BackgroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ButtonsGet">
+            <summary>Sets the shim of AppBar.get_Buttons()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ButtonsSetDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.set_Buttons(DependencyObjectCollection`1&lt;AppBarButton&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.Buttons_CollectionChangedObjectNotifyCollectionChangedEventArgs">
+            <summary>Sets the shim of AppBar.Buttons_CollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeBackgroundColor">
+            <summary>Sets the shim of AppBar.ChangeBackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeForegroundColor">
+            <summary>Sets the shim of AppBar.ChangeForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeIsMenuEnabled">
+            <summary>Sets the shim of AppBar.ChangeIsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeIsVisible">
+            <summary>Sets the shim of AppBar.ChangeIsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeMode">
+            <summary>Sets the shim of AppBar.ChangeMode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ChangeOpacity">
+            <summary>Sets the shim of AppBar.ChangeOpacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ForegroundColorGet">
+            <summary>Sets the shim of AppBar.get_ForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ForegroundColorSetColor">
+            <summary>Sets the shim of AppBar.set_ForegroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.HandleNewButtonsDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.HandleNewButtons(DependencyObjectCollection`1&lt;AppBarButton&gt; buttons)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.HandleNewMenuItemsDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.HandleNewMenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; menuItems)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.HandleOldButtonsDependencyObjectCollectionOfAppBarButton">
+            <summary>Sets the shim of AppBar.HandleOldButtons(DependencyObjectCollection`1&lt;AppBarButton&gt; buttons)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.HandleOldMenuItemsDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.HandleOldMenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; menuItems)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IdGet">
+            <summary>Sets the shim of AppBar.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IdSetInt32">
+            <summary>Sets the shim of AppBar.set_Id(Int32 value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IsMenuEnabledGet">
+            <summary>Sets the shim of AppBar.get_IsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IsMenuEnabledSetBoolean">
+            <summary>Sets the shim of AppBar.set_IsMenuEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IsVisibleGet">
+            <summary>Sets the shim of AppBar.get_IsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.IsVisibleSetBoolean">
+            <summary>Sets the shim of AppBar.set_IsVisible(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.MenuItemsGet">
+            <summary>Sets the shim of AppBar.get_MenuItems()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.MenuItemsSetDependencyObjectCollectionOfAppBarMenuItem">
+            <summary>Sets the shim of AppBar.set_MenuItems(DependencyObjectCollection`1&lt;AppBarMenuItem&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.MenuItems_CollectionChangedObjectNotifyCollectionChangedEventArgs">
+            <summary>Sets the shim of AppBar.MenuItems_CollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ModeGet">
+            <summary>Sets the shim of AppBar.get_Mode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ModeSetApplicationBarMode">
+            <summary>Sets the shim of AppBar.set_Mode(ApplicationBarMode value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.OpacityGet">
+            <summary>Sets the shim of AppBar.get_Opacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.OpacitySetDouble">
+            <summary>Sets the shim of AppBar.set_Opacity(Double value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBar.AllInstances.ToApplicationBar">
+            <summary>Sets the shim of AppBar.ToApplicationBar()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarButton">
+            <summary>Shim type of AppBarUtils.AppBarButton</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarButton.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarButton.#ctor(AppBarUtils.AppBarButton)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarButton.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarButton.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.ChangeIconUri">
+            <summary>Sets the shim of AppBarButton.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.Constructor">
+            <summary>Sets the shim of AppBarButton.AppBarButton()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.IconUriGet">
+            <summary>Sets the shim of AppBarButton.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.IconUriPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarButton.IconUriPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.IconUriSetUri">
+            <summary>Sets the shim of AppBarButton.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.StaticConstructor">
+            <summary>Sets the shim of AppBarButton.AppBarButton()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.ToApplicationBarIconButton">
+            <summary>Sets the shim of AppBarButton.ToApplicationBarIconButton()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarButton.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.AllInstances.ChangeIconUri">
+            <summary>Sets the shim of AppBarButton.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.AllInstances.IconUriGet">
+            <summary>Sets the shim of AppBarButton.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.AllInstances.IconUriSetUri">
+            <summary>Sets the shim of AppBarButton.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarButton.AllInstances.ToApplicationBarIconButton">
+            <summary>Sets the shim of AppBarButton.ToApplicationBarIconButton()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemBase">
+            <summary>Shim type of AppBarUtils.AppBarItemBase</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBase.#ctor(AppBarUtils.AppBarItemBase)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBase.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBase.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CanExecuteChangedObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBase.CanExecuteChanged(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemBase.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.ChangeText">
+            <summary>Sets the shim of AppBarItemBase.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CommandGet">
+            <summary>Sets the shim of AppBarItemBase.get_Command()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CommandParameterGet">
+            <summary>Sets the shim of AppBarItemBase.get_CommandParameter()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CommandParameterSetObject">
+            <summary>Sets the shim of AppBarItemBase.set_CommandParameter(Object value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CommandPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBase.CommandPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.CommandSetICommand">
+            <summary>Sets the shim of AppBarItemBase.set_Command(ICommand value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.Constructor">
+            <summary>Sets the shim of AppBarItemBase.AppBarItemBase()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.IsEnablePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBase.IsEnablePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.IsEnabledGet">
+            <summary>Sets the shim of AppBarItemBase.get_IsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.IsEnabledSetBoolean">
+            <summary>Sets the shim of AppBarItemBase.set_IsEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.OnCommandChangedDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBase.OnCommandChanged(DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.StaticConstructor">
+            <summary>Sets the shim of AppBarItemBase.AppBarItemBase()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.SubscribeClickEvent">
+            <summary>Sets the shim of AppBarItemBase.SubscribeClickEvent()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.TextGet">
+            <summary>Sets the shim of AppBarItemBase.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.TextPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBase.TextPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.TextSetString">
+            <summary>Sets the shim of AppBarItemBase.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase._SubscribeClickEventb__0ObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBase.&lt;SubscribeClickEvent&gt;b__0(Object o, EventArgs e)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.CanExecuteChangedObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBase.CanExecuteChanged(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemBase.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.ChangeText">
+            <summary>Sets the shim of AppBarItemBase.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.CommandGet">
+            <summary>Sets the shim of AppBarItemBase.get_Command()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.CommandParameterGet">
+            <summary>Sets the shim of AppBarItemBase.get_CommandParameter()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.CommandParameterSetObject">
+            <summary>Sets the shim of AppBarItemBase.set_CommandParameter(Object value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.CommandSetICommand">
+            <summary>Sets the shim of AppBarItemBase.set_Command(ICommand value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.IsEnabledGet">
+            <summary>Sets the shim of AppBarItemBase.get_IsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.IsEnabledSetBoolean">
+            <summary>Sets the shim of AppBarItemBase.set_IsEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.OnCommandChangedDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBase.OnCommandChanged(DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.SubscribeClickEvent">
+            <summary>Sets the shim of AppBarItemBase.SubscribeClickEvent()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.TextGet">
+            <summary>Sets the shim of AppBarItemBase.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances.TextSetString">
+            <summary>Sets the shim of AppBarItemBase.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBase.AllInstances._SubscribeClickEventb__0ObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBase.&lt;SubscribeClickEvent&gt;b__0(Object o, EventArgs e)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemBehavior">
+            <summary>Shim type of AppBarUtils.AppBarItemBehavior</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBehavior.#ctor(AppBarUtils.AppBarItemBehavior)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBehavior.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBehavior.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemBehavior.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.ChangeIconUri">
+            <summary>Sets the shim of AppBarItemBehavior.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.ChangeText">
+            <summary>Sets the shim of AppBarItemBehavior.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.Constructor">
+            <summary>Sets the shim of AppBarItemBehavior.AppBarItemBehavior()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.IconUriGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.IconUriPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBehavior.IconUriPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.IconUriSetUri">
+            <summary>Sets the shim of AppBarItemBehavior.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.IdGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.IdSetString">
+            <summary>Sets the shim of AppBarItemBehavior.set_Id(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.ItemClickObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBehavior.ItemClick(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.OnAttached">
+            <summary>Sets the shim of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.OnDetaching">
+            <summary>Sets the shim of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.StaticConstructor">
+            <summary>Sets the shim of AppBarItemBehavior.AppBarItemBehavior()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.TextGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.TextPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemBehavior.TextPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.TextSetString">
+            <summary>Sets the shim of AppBarItemBehavior.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.TypeGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Type()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.TypeSetAppBarItemType">
+            <summary>Sets the shim of AppBarItemBehavior.set_Type(AppBarItemType value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.ChangeIconUri">
+            <summary>Sets the shim of AppBarItemBehavior.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.ChangeText">
+            <summary>Sets the shim of AppBarItemBehavior.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.IconUriGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.IconUriSetUri">
+            <summary>Sets the shim of AppBarItemBehavior.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.IdGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.IdSetString">
+            <summary>Sets the shim of AppBarItemBehavior.set_Id(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.ItemClickObjectEventArgs">
+            <summary>Sets the shim of AppBarItemBehavior.ItemClick(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.OnAttached">
+            <summary>Sets the shim of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.OnDetaching">
+            <summary>Sets the shim of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.TextGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.TextSetString">
+            <summary>Sets the shim of AppBarItemBehavior.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.TypeGet">
+            <summary>Sets the shim of AppBarItemBehavior.get_Type()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemBehavior.AllInstances.TypeSetAppBarItemType">
+            <summary>Sets the shim of AppBarItemBehavior.set_Type(AppBarItemType value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemCommand">
+            <summary>Shim type of AppBarUtils.AppBarItemCommand</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemCommand.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemCommand.#ctor(AppBarUtils.AppBarItemCommand)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemCommand.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemCommand.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemCommand.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CanExecuteChangedObjectEventArgs">
+            <summary>Sets the shim of AppBarItemCommand.CanExecuteChanged(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemCommand.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CommandGet">
+            <summary>Sets the shim of AppBarItemCommand.get_Command()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CommandParameterGet">
+            <summary>Sets the shim of AppBarItemCommand.get_CommandParameter()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CommandParameterSetObject">
+            <summary>Sets the shim of AppBarItemCommand.set_CommandParameter(Object value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CommandPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemCommand.CommandPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.CommandSetICommand">
+            <summary>Sets the shim of AppBarItemCommand.set_Command(ICommand value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.Constructor">
+            <summary>Sets the shim of AppBarItemCommand.AppBarItemCommand()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.OnAttached">
+            <summary>Sets the shim of AppBarItemCommand.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.OnCommandChangedDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemCommand.OnCommandChanged(DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.OnDetaching">
+            <summary>Sets the shim of AppBarItemCommand.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.OnItemClick">
+            <summary>Sets the shim of AppBarItemCommand.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.StaticConstructor">
+            <summary>Sets the shim of AppBarItemCommand.AppBarItemCommand()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.CanExecuteChangedObjectEventArgs">
+            <summary>Sets the shim of AppBarItemCommand.CanExecuteChanged(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemCommand.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.CommandGet">
+            <summary>Sets the shim of AppBarItemCommand.get_Command()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.CommandParameterGet">
+            <summary>Sets the shim of AppBarItemCommand.get_CommandParameter()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.CommandParameterSetObject">
+            <summary>Sets the shim of AppBarItemCommand.set_CommandParameter(Object value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.CommandSetICommand">
+            <summary>Sets the shim of AppBarItemCommand.set_Command(ICommand value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.OnAttached">
+            <summary>Sets the shim of AppBarItemCommand.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.OnCommandChangedDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemCommand.OnCommandChanged(DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.OnDetaching">
+            <summary>Sets the shim of AppBarItemCommand.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemCommand.AllInstances.OnItemClick">
+            <summary>Sets the shim of AppBarItemCommand.OnItemClick()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemNavigation">
+            <summary>Shim type of AppBarUtils.AppBarItemNavigation</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemNavigation.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemNavigation.#ctor(AppBarUtils.AppBarItemNavigation)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemNavigation.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemNavigation.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemNavigation.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.Constructor">
+            <summary>Sets the shim of AppBarItemNavigation.AppBarItemNavigation()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.OnItemClick">
+            <summary>Sets the shim of AppBarItemNavigation.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.StaticConstructor">
+            <summary>Sets the shim of AppBarItemNavigation.AppBarItemNavigation()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.TargetPageGet">
+            <summary>Sets the shim of AppBarItemNavigation.get_TargetPage()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.TargetPageSetString">
+            <summary>Sets the shim of AppBarItemNavigation.set_TargetPage(String value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemNavigation.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.AllInstances.OnItemClick">
+            <summary>Sets the shim of AppBarItemNavigation.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.AllInstances.TargetPageGet">
+            <summary>Sets the shim of AppBarItemNavigation.get_TargetPage()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemNavigation.AllInstances.TargetPageSetString">
+            <summary>Sets the shim of AppBarItemNavigation.set_TargetPage(String value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemTrigger">
+            <summary>Shim type of AppBarUtils.AppBarItemTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemTrigger.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemTrigger.#ctor(AppBarUtils.AppBarItemTrigger)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemTrigger.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemTrigger.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarItemTrigger.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.ChangeIconUri">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.ChangeText">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.Constructor">
+            <summary>Sets the shim of AppBarItemTrigger.AppBarItemTrigger()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IconUriGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IconUriPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemTrigger.IconUriPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IconUriSetUri">
+            <summary>Sets the shim of AppBarItemTrigger.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IdGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IdSetString">
+            <summary>Sets the shim of AppBarItemTrigger.set_Id(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IsEnablePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemTrigger.IsEnablePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IsEnabledGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_IsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.IsEnabledSetBoolean">
+            <summary>Sets the shim of AppBarItemTrigger.set_IsEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.ItemClickObjectEventArgs">
+            <summary>Sets the shim of AppBarItemTrigger.ItemClick(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.OnAttached">
+            <summary>Sets the shim of AppBarItemTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.OnDetaching">
+            <summary>Sets the shim of AppBarItemTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.StaticConstructor">
+            <summary>Sets the shim of AppBarItemTrigger.AppBarItemTrigger()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.TextGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.TextPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarItemTrigger.TextPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.TextSetString">
+            <summary>Sets the shim of AppBarItemTrigger.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.TypeGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Type()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.TypeSetAppBarItemType">
+            <summary>Sets the shim of AppBarItemTrigger.set_Type(AppBarItemType value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.ChangeIconUri">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeIconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.ChangeIsEnabled">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeIsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.ChangeText">
+            <summary>Sets the shim of AppBarItemTrigger.ChangeText()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IconUriGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_IconUri()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IconUriSetUri">
+            <summary>Sets the shim of AppBarItemTrigger.set_IconUri(Uri value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IdGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Id()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IdSetString">
+            <summary>Sets the shim of AppBarItemTrigger.set_Id(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IsEnabledGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_IsEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.IsEnabledSetBoolean">
+            <summary>Sets the shim of AppBarItemTrigger.set_IsEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.ItemClickObjectEventArgs">
+            <summary>Sets the shim of AppBarItemTrigger.ItemClick(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.OnAttached">
+            <summary>Sets the shim of AppBarItemTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.OnDetaching">
+            <summary>Sets the shim of AppBarItemTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.TextGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Text()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.TextSetString">
+            <summary>Sets the shim of AppBarItemTrigger.set_Text(String value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.TypeGet">
+            <summary>Sets the shim of AppBarItemTrigger.get_Type()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarItemTrigger.AllInstances.TypeSetAppBarItemType">
+            <summary>Sets the shim of AppBarItemTrigger.set_Type(AppBarItemType value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarMenuItem">
+            <summary>Shim type of AppBarUtils.AppBarMenuItem</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarMenuItem.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarMenuItem.#ctor(AppBarUtils.AppBarMenuItem)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarMenuItem.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarMenuItem.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarMenuItem.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarMenuItem.Constructor">
+            <summary>Sets the shim of AppBarMenuItem.AppBarMenuItem()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarMenuItem.ToApplicationBarMenuItem">
+            <summary>Sets the shim of AppBarMenuItem.ToApplicationBarMenuItem()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarMenuItem.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarMenuItem.AllInstances.ToApplicationBarMenuItem">
+            <summary>Sets the shim of AppBarMenuItem.ToApplicationBarMenuItem()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarPropertyBinder">
+            <summary>Shim type of AppBarUtils.AppBarPropertyBinder</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarPropertyBinder.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarPropertyBinder.#ctor(AppBarUtils.AppBarPropertyBinder)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarPropertyBinder.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarPropertyBinder.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimAppBarPropertyBinder.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.BackgroundColorGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_BackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.BackgroundColorPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.BackgroundColorPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.BackgroundColorSetColor">
+            <summary>Sets the shim of AppBarPropertyBinder.set_BackgroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeBackgroundColor">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeBackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeForegroundColor">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeIsMenuEnabled">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeIsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeIsVisible">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeIsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeMode">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeMode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ChangeOpacity">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeOpacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.Constructor">
+            <summary>Sets the shim of AppBarPropertyBinder.AppBarPropertyBinder()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ForegroundColorGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_ForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ForegroundColorPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.ForegroundColorPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ForegroundColorSetColor">
+            <summary>Sets the shim of AppBarPropertyBinder.set_ForegroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsMenuEnabledGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_IsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsMenuEnabledPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.IsMenuEnabledPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsMenuEnabledSetBoolean">
+            <summary>Sets the shim of AppBarPropertyBinder.set_IsMenuEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsVisibleGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_IsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsVisiblePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.IsVisiblePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.IsVisibleSetBoolean">
+            <summary>Sets the shim of AppBarPropertyBinder.set_IsVisible(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ModeGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_Mode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ModePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.ModePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.ModeSetApplicationBarMode">
+            <summary>Sets the shim of AppBarPropertyBinder.set_Mode(ApplicationBarMode value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.OnAttached">
+            <summary>Sets the shim of AppBarPropertyBinder.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.OpacityGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_Opacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.OpacityPropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of AppBarPropertyBinder.OpacityPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.OpacitySetDouble">
+            <summary>Sets the shim of AppBarPropertyBinder.set_Opacity(Double value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.StaticConstructor">
+            <summary>Sets the shim of AppBarPropertyBinder.AppBarPropertyBinder()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.BackgroundColorGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_BackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.BackgroundColorSetColor">
+            <summary>Sets the shim of AppBarPropertyBinder.set_BackgroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeBackgroundColor">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeBackgroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeForegroundColor">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeIsMenuEnabled">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeIsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeIsVisible">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeIsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeMode">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeMode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ChangeOpacity">
+            <summary>Sets the shim of AppBarPropertyBinder.ChangeOpacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ForegroundColorGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_ForegroundColor()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ForegroundColorSetColor">
+            <summary>Sets the shim of AppBarPropertyBinder.set_ForegroundColor(Color value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.IsMenuEnabledGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_IsMenuEnabled()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.IsMenuEnabledSetBoolean">
+            <summary>Sets the shim of AppBarPropertyBinder.set_IsMenuEnabled(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.IsVisibleGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_IsVisible()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.IsVisibleSetBoolean">
+            <summary>Sets the shim of AppBarPropertyBinder.set_IsVisible(Boolean value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ModeGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_Mode()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.ModeSetApplicationBarMode">
+            <summary>Sets the shim of AppBarPropertyBinder.set_Mode(ApplicationBarMode value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.OnAttached">
+            <summary>Sets the shim of AppBarPropertyBinder.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.OpacityGet">
+            <summary>Sets the shim of AppBarPropertyBinder.get_Opacity()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimAppBarPropertyBinder.AllInstances.OpacitySetDouble">
+            <summary>Sets the shim of AppBarPropertyBinder.set_Opacity(Double value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimExtensionMethods">
+            <summary>Shim type of AppBarUtils.ExtensionMethods</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimExtensionMethods.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimExtensionMethods.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimExtensionMethods.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimExtensionMethods.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimExtensionMethods.FindItemIApplicationBarAppBarItemTypeString">
+            <summary>Sets the shim of ExtensionMethods.FindItem(IApplicationBar appBar, AppBarItemType type, String id)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimExtensionMethods.FindPageDependencyObject">
+            <summary>Sets the shim of ExtensionMethods.FindPage(DependencyObject reference)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger">
+            <summary>Shim type of AppBarUtils.SelectedPanoItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.#ctor(AppBarUtils.SelectedPanoItemChangedTrigger)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AssociatedObject_SelectionChangedObjectSelectionChangedEventArgs">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.AssociatedObject_SelectionChanged(Object sender, SelectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.Constructor">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.SelectedPanoItemChangedTrigger()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.OnAttached">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.OnDetaching">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AllInstances.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AllInstances.AssociatedObject_SelectionChangedObjectSelectionChangedEventArgs">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.AssociatedObject_SelectionChanged(Object sender, SelectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AllInstances.OnAttached">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPanoItemChangedTrigger.AllInstances.OnDetaching">
+            <summary>Sets the shim of SelectedPanoItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger">
+            <summary>Shim type of AppBarUtils.SelectedPivotItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.#ctor(AppBarUtils.SelectedPivotItemChangedTrigger)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AssociatedObject_SelectionChangedObjectSelectionChangedEventArgs">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.AssociatedObject_SelectionChanged(Object sender, SelectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.Constructor">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.SelectedPivotItemChangedTrigger()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.OnAttached">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.OnDetaching">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AllInstances.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AllInstances.AssociatedObject_SelectionChangedObjectSelectionChangedEventArgs">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.AssociatedObject_SelectionChanged(Object sender, SelectionChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AllInstances.OnAttached">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectedPivotItemChangedTrigger.AllInstances.OnDetaching">
+            <summary>Sets the shim of SelectedPivotItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1">
+            <summary>Shim type of AppBarUtils.SelectionChangedTriggerBase`1</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.#ctor(AppBarUtils.SelectionChangedTriggerBase{`0})">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.ChangeTargetInt32">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.ChangeTarget(Int32 selectedIndex)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.Constructor">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.SelectionChangedTriggerBase`1()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.GetTargetIndexInt32">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.GetTargetIndex(Int32 selectedIndex)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.SelectionMappingsGet">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.get_SelectionMappings()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.SelectionMappingsSetListOfSelectionMapping">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.set_SelectionMappings(List`1&lt;SelectionMapping&gt; value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.AllInstances.ChangeTargetInt32">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.ChangeTarget(Int32 selectedIndex)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.AllInstances.GetTargetIndexInt32">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.GetTargetIndex(Int32 selectedIndex)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.AllInstances.SelectionMappingsGet">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.get_SelectionMappings()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionChangedTriggerBase`1.AllInstances.SelectionMappingsSetListOfSelectionMapping">
+            <summary>Sets the shim of SelectionChangedTriggerBase`1.set_SelectionMappings(List`1&lt;SelectionMapping&gt; value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectionMapping">
+            <summary>Shim type of AppBarUtils.SelectionMapping</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionMapping.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionMapping.#ctor(AppBarUtils.SelectionMapping)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionMapping.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSelectionMapping.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.Constructor">
+            <summary>Sets the shim of SelectionMapping.SelectionMapping()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.SourceIndexGet">
+            <summary>Sets the shim of SelectionMapping.get_SourceIndex()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.SourceIndexSetInt32">
+            <summary>Sets the shim of SelectionMapping.set_SourceIndex(Int32 value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.TargetIndexGet">
+            <summary>Sets the shim of SelectionMapping.get_TargetIndex()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.TargetIndexSetInt32">
+            <summary>Sets the shim of SelectionMapping.set_TargetIndex(Int32 value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSelectionMapping.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.AllInstances.SourceIndexGet">
+            <summary>Sets the shim of SelectionMapping.get_SourceIndex()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.AllInstances.SourceIndexSetInt32">
+            <summary>Sets the shim of SelectionMapping.set_SourceIndex(Int32 value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.AllInstances.TargetIndexGet">
+            <summary>Sets the shim of SelectionMapping.get_TargetIndex()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSelectionMapping.AllInstances.TargetIndexSetInt32">
+            <summary>Sets the shim of SelectionMapping.set_TargetIndex(Int32 value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimStateChangedTrigger">
+            <summary>Shim type of AppBarUtils.StateChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimStateChangedTrigger.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimStateChangedTrigger.#ctor(AppBarUtils.StateChangedTrigger)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimStateChangedTrigger.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimStateChangedTrigger.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimStateChangedTrigger.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of StateChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.ChangeTargetObject">
+            <summary>Sets the shim of StateChangedTrigger.ChangeTarget(Object state)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.Constructor">
+            <summary>Sets the shim of StateChangedTrigger.StateChangedTrigger()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.HandleStatePropertyChangedDependencyObjectDependencyPropertyChangedEventArgs">
+            <summary>Sets the shim of StateChangedTrigger.HandleStatePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.OnAttached">
+            <summary>Sets the shim of StateChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.OnDetaching">
+            <summary>Sets the shim of StateChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.StateGet">
+            <summary>Sets the shim of StateChangedTrigger.get_State()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.StateSetObject">
+            <summary>Sets the shim of StateChangedTrigger.set_State(Object value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.StaticConstructor">
+            <summary>Sets the shim of StateChangedTrigger.StateChangedTrigger()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.AssociatedObject_LoadedObjectRoutedEventArgs">
+            <summary>Sets the shim of StateChangedTrigger.AssociatedObject_Loaded(Object sender, RoutedEventArgs e)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.ChangeTargetObject">
+            <summary>Sets the shim of StateChangedTrigger.ChangeTarget(Object state)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.OnAttached">
+            <summary>Sets the shim of StateChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.OnDetaching">
+            <summary>Sets the shim of StateChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.StateGet">
+            <summary>Sets the shim of StateChangedTrigger.get_State()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimStateChangedTrigger.AllInstances.StateSetObject">
+            <summary>Sets the shim of StateChangedTrigger.set_State(Object value)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSwitchAppBarAction">
+            <summary>Shim type of AppBarUtils.SwitchAppBarAction</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSwitchAppBarAction.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSwitchAppBarAction.#ctor(AppBarUtils.SwitchAppBarAction)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSwitchAppBarAction.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSwitchAppBarAction.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.ShimSwitchAppBarAction.Bind(System.Windows.Interactivity.IAttachedObject)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AppBarsGet">
+            <summary>Sets the shim of SwitchAppBarAction.get_AppBars()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AppBarsSetDependencyObjectCollectionOfAppBar">
+            <summary>Sets the shim of SwitchAppBarAction.set_AppBars(DependencyObjectCollection`1&lt;AppBar&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.Constructor">
+            <summary>Sets the shim of SwitchAppBarAction.SwitchAppBarAction()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.FindAppBarInt32">
+            <summary>Sets the shim of SwitchAppBarAction.FindAppBar(Int32 id)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.InvokeObject">
+            <summary>Sets the shim of SwitchAppBarAction.Invoke(Object o)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.StaticConstructor">
+            <summary>Sets the shim of SwitchAppBarAction.SwitchAppBarAction()</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.ShimSwitchAppBarAction.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AllInstances.AppBarsGet">
+            <summary>Sets the shim of SwitchAppBarAction.get_AppBars()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AllInstances.AppBarsSetDependencyObjectCollectionOfAppBar">
+            <summary>Sets the shim of SwitchAppBarAction.set_AppBars(DependencyObjectCollection`1&lt;AppBar&gt; value)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AllInstances.FindAppBarInt32">
+            <summary>Sets the shim of SwitchAppBarAction.FindAppBar(Int32 id)</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.ShimSwitchAppBarAction.AllInstances.InvokeObject">
+            <summary>Sets the shim of SwitchAppBarAction.Invoke(Object o)</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBar">
+            <summary>Stub type of AppBarUtils.AppBar</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBar.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBar.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBar</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBar.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBar.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBar.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarButton">
+            <summary>Stub type of AppBarUtils.AppBarButton</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarButton.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarButton.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarButton</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarButton.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarButton.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarButton.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarItemBase">
+            <summary>Stub type of AppBarUtils.AppBarItemBase</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBase.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBase.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarItemBase</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBase.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBase.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBase.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarItemBehavior">
+            <summary>Stub type of AppBarUtils.AppBarItemBehavior</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBehavior.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBehavior.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarItemBehavior</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBehavior.OnAttached">
+            <summary>Sets the stub of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemBehavior.OnAttached01">
+            <summary>Sets the stub of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBehavior.OnDetaching">
+            <summary>Sets the stub of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemBehavior.OnDetaching01">
+            <summary>Sets the stub of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemBehavior.OnItemClick">
+            <summary>Sets the stub of AppBarItemBehavior.OnItemClick()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemBehavior.OnItemClick01">
+            <summary>Sets the stub of AppBarItemBehavior.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBehavior.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBehavior.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemBehavior.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarItemCommand">
+            <summary>Stub type of AppBarUtils.AppBarItemCommand</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemCommand.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemCommand.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarItemCommand</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemCommand.OnAttached">
+            <summary>Sets the stub of AppBarItemCommand.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemCommand.OnAttached01">
+            <summary>Sets the stub of AppBarItemCommand.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemCommand.OnDetaching">
+            <summary>Sets the stub of AppBarItemCommand.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemCommand.OnDetaching01">
+            <summary>Sets the stub of AppBarItemCommand.OnDetaching()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemCommand.OnItemClick">
+            <summary>Sets the stub of AppBarItemCommand.OnItemClick()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemCommand.OnItemClick01">
+            <summary>Sets the stub of AppBarItemCommand.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemCommand.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemCommand.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemCommand.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarItemNavigation">
+            <summary>Stub type of AppBarUtils.AppBarItemNavigation</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemNavigation.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemNavigation.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarItemNavigation</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemNavigation.OnAttached">
+            <summary>Sets the stub of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemNavigation.OnAttached01">
+            <summary>Sets the stub of AppBarItemBehavior.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemNavigation.OnDetaching">
+            <summary>Sets the stub of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemNavigation.OnDetaching01">
+            <summary>Sets the stub of AppBarItemBehavior.OnDetaching()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemNavigation.OnItemClick">
+            <summary>Sets the stub of AppBarItemNavigation.OnItemClick()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemNavigation.OnItemClick01">
+            <summary>Sets the stub of AppBarItemNavigation.OnItemClick()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemNavigation.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemNavigation.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemNavigation.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarItemTrigger">
+            <summary>Stub type of AppBarUtils.AppBarItemTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemTrigger.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemTrigger.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarItemTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemTrigger.OnAttached">
+            <summary>Sets the stub of AppBarItemTrigger.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemTrigger.OnAttached01">
+            <summary>Sets the stub of AppBarItemTrigger.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarItemTrigger.OnDetaching">
+            <summary>Sets the stub of AppBarItemTrigger.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarItemTrigger.OnDetaching01">
+            <summary>Sets the stub of AppBarItemTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemTrigger.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemTrigger.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarItemTrigger.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarMenuItem">
+            <summary>Stub type of AppBarUtils.AppBarMenuItem</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarMenuItem.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarMenuItem.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarMenuItem</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarMenuItem.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarMenuItem.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarMenuItem.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubAppBarPropertyBinder">
+            <summary>Stub type of AppBarUtils.AppBarPropertyBinder</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarPropertyBinder.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarPropertyBinder.InitializeStub">
+            <summary>Initializes a new instance of type StubAppBarPropertyBinder</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarPropertyBinder.OnAttached">
+            <summary>Sets the stub of AppBarPropertyBinder.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarPropertyBinder.OnAttached01">
+            <summary>Sets the stub of AppBarPropertyBinder.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubAppBarPropertyBinder.OnDetaching">
+            <summary>Sets the stub of Behavior.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubAppBarPropertyBinder.OnDetaching01">
+            <summary>Sets the stub of Behavior.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarPropertyBinder.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarPropertyBinder.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubAppBarPropertyBinder.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger">
+            <summary>Stub type of AppBarUtils.SelectedPanoItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.InitializeStub">
+            <summary>Initializes a new instance of type StubSelectedPanoItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.OnAttached">
+            <summary>Sets the stub of SelectedPanoItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.OnAttached01">
+            <summary>Sets the stub of SelectedPanoItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.OnDetaching">
+            <summary>Sets the stub of SelectedPanoItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.OnDetaching01">
+            <summary>Sets the stub of SelectedPanoItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPanoItemChangedTrigger.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger">
+            <summary>Stub type of AppBarUtils.SelectedPivotItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.InitializeStub">
+            <summary>Initializes a new instance of type StubSelectedPivotItemChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.OnAttached">
+            <summary>Sets the stub of SelectedPivotItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.OnAttached01">
+            <summary>Sets the stub of SelectedPivotItemChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.OnDetaching">
+            <summary>Sets the stub of SelectedPivotItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.OnDetaching01">
+            <summary>Sets the stub of SelectedPivotItemChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectedPivotItemChangedTrigger.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1">
+            <summary>Stub type of AppBarUtils.SelectionChangedTriggerBase`1</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.InitializeStub">
+            <summary>Initializes a new instance of type StubSelectionChangedTriggerBase</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.OnAttached">
+            <summary>Sets the stub of TriggerBase.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.OnAttached01">
+            <summary>Sets the stub of TriggerBase.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.OnDetaching">
+            <summary>Sets the stub of TriggerBase.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.OnDetaching01">
+            <summary>Sets the stub of TriggerBase.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionChangedTriggerBase`1.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubSelectionMapping">
+            <summary>Stub type of AppBarUtils.SelectionMapping</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionMapping.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSelectionMapping.InitializeStub">
+            <summary>Initializes a new instance of type StubSelectionMapping</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionMapping.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionMapping.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSelectionMapping.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubStateChangedTrigger">
+            <summary>Stub type of AppBarUtils.StateChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubStateChangedTrigger.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubStateChangedTrigger.InitializeStub">
+            <summary>Initializes a new instance of type StubStateChangedTrigger</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubStateChangedTrigger.OnAttached">
+            <summary>Sets the stub of StateChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubStateChangedTrigger.OnAttached01">
+            <summary>Sets the stub of StateChangedTrigger.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubStateChangedTrigger.OnDetaching">
+            <summary>Sets the stub of StateChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubStateChangedTrigger.OnDetaching01">
+            <summary>Sets the stub of StateChangedTrigger.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubStateChangedTrigger.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubStateChangedTrigger.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubStateChangedTrigger.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:AppBarUtils.Fakes.StubSwitchAppBarAction">
+            <summary>Stub type of AppBarUtils.SwitchAppBarAction</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSwitchAppBarAction.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSwitchAppBarAction.InitializeStub">
+            <summary>Initializes a new instance of type StubSwitchAppBarAction</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSwitchAppBarAction.Invoke(System.Object)">
+            <summary>Sets the stub of SwitchAppBarAction.Invoke(Object o)</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSwitchAppBarAction.InvokeObject">
+            <summary>Sets the stub of SwitchAppBarAction.Invoke(Object o)</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSwitchAppBarAction.OnAttached">
+            <summary>Sets the stub of TriggerAction.OnAttached()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSwitchAppBarAction.OnAttached01">
+            <summary>Sets the stub of TriggerAction.OnAttached()</summary>
+        </member>
+        <member name="M:AppBarUtils.Fakes.StubSwitchAppBarAction.OnDetaching">
+            <summary>Sets the stub of TriggerAction.OnDetaching()</summary>
+        </member>
+        <member name="F:AppBarUtils.Fakes.StubSwitchAppBarAction.OnDetaching01">
+            <summary>Sets the stub of TriggerAction.OnDetaching()</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSwitchAppBarAction.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSwitchAppBarAction.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:AppBarUtils.Fakes.StubSwitchAppBarAction.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+    </members>
+</doc>

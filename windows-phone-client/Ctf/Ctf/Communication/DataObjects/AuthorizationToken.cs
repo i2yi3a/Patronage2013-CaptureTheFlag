@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ctf.Communication.DataObjects
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class LoginJsonResponse : JsonResponse
+    public class AuthorizationToken : ResponseBase
     {
         public string access_token { get; set; }
         public string token_type { get; set; }

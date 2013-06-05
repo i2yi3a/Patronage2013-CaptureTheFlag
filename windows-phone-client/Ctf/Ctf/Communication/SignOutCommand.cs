@@ -12,7 +12,7 @@ using Ctf.ApplicationTools;
 
 namespace Ctf.Communication
 {
-    class SignOutCommand : BaseCommand
+    class SignOutCommand : BaseCommand<ServerResponse>
     {
         public SignOutCommand(String gameId)
             : base()
@@ -24,7 +24,7 @@ namespace Ctf.Communication
             request.RequestFormat = DataFormat.Json;
         }
 
-        private void RequestCallbackOnSuccess(IRestResponse<ServerJsonResponse> response)
+        private void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -35,15 +35,15 @@ namespace Ctf.Communication
             }
         }
 
-        private void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
-        }
+        //private void RequestCallbackOnFail(String errorMessage)
+        //{
+        //    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
+        //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
+        //}
 
         public async Task<RestRequestAsyncHandle> SignOut()
         {
-            return await requestHandler.ExecuteAsync<ServerJsonResponse>(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

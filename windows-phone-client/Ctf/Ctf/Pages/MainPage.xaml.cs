@@ -18,13 +18,15 @@ namespace Ctf.Pages
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        //TODO: Map server error/success response to localized strings
+        //TODO XAML: Text in LoginErrorBlock does not fit, is there an auto scroll?
+        private const string TEMPORARY_SECRET = "secret";
+
         public MainPage()
         {
             InitializeComponent();
-            loginButton.IsEnabled = false;
-            registerButton.IsEnabled = false;
-
-            ApplicationSettings.Instance.UserChanged += UserHasChanged;
+            LoginButton.IsEnabled = false;
+            RegisterButton.IsEnabled = false;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -39,118 +41,113 @@ namespace Ctf.Pages
             base.OnNavigatedTo(e);
         }
 
-        public void UserHasChanged(object sender, EventArgs e)
+        private void LoginTextBox_Changed(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("AppSett EVENT!. User has changed.");
-        }
-
-        public void SomeMessage(object sender, EventArgs e)
-        {
-            Debug.WriteLine("MESSAGE.");
-        }
-
-        private void txtChanged(object sender, RoutedEventArgs e)
-        {
-            String info = String.Empty;
-            loginButton.IsEnabled = false;
-            if (usernameBox.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH && passwordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH)
+            String errorInfo = String.Empty;
+            LoginButton.IsEnabled = false;
+            if (!String.IsNullOrWhiteSpace(LoginUsernameBox.Text) &&
+                LoginUsernameBox.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
+                LoginPasswordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH)
             {
-                loginButton.IsEnabled = true;
+                LoginButton.IsEnabled = true;
             }
             else
             {
-                if (usernameBox.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
+                if (!String.IsNullOrWhiteSpace(LoginUsernameBox.Text) &&
+                    LoginUsernameBox.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
                 {
-                    info += "Minimalna dlugosc loginu to " + UserCredentials.MINIMAL_USERNAME_LENGTH + " znakow.";
-                    info += "\n";
+                    errorInfo += String.Format(AppResources.MainPageMinimalUsernameLength, UserCredentials.MINIMAL_USERNAME_LENGTH);
+                    errorInfo += Environment.NewLine;
                 }
-                if (passwordBox.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
+                if (!String.IsNullOrEmpty(LoginPasswordBox.Password) &&
+                    LoginPasswordBox.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
                 {
-                    info += "Minimalna dlugosc hasla to " + UserCredentials.MINIMAL_PASSWORD_LENGTH + " znakow.";
+                    errorInfo += String.Format(AppResources.MainPageMinimalPasswordLength, UserCredentials.MINIMAL_PASSWORD_LENGTH);
                 }
             }
-            LoginErrorBlock.Text = info;
-            //TODO do not display error info after login
+            LoginErrorBlock.Text = errorInfo;
         }
 
-        private void txtChangedRegister(object sender, RoutedEventArgs e)
+        private void RegisterTextBox_Changed(object sender, RoutedEventArgs e)
         {
-            String info = String.Empty;
-            registerButton.IsEnabled = false;
-            if (userNameRegister.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
-                passwordRegister1.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
-                passwordRegister2.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
-                passwordRegister1.Password.Equals(passwordRegister2.Password))
+            String errorInfo = String.Empty;
+            RegisterButton.IsEnabled = false;
+            if (!String.IsNullOrWhiteSpace(RegisterUsernameBox.Text) &&
+                RegisterUsernameBox.Text.Length >= UserCredentials.MINIMAL_USERNAME_LENGTH &&
+                RegisterFirstPasswordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                RegisterSecondPasswordBox.Password.Length >= UserCredentials.MINIMAL_PASSWORD_LENGTH &&
+                RegisterFirstPasswordBox.Password.Equals(RegisterSecondPasswordBox.Password))
             {
-                registerButton.IsEnabled = true;
+                RegisterButton.IsEnabled = true;
             }
             else
             {
-                if (userNameRegister.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
+                if (!String.IsNullOrWhiteSpace(RegisterUsernameBox.Text) &&
+                    RegisterUsernameBox.Text.Length < UserCredentials.MINIMAL_USERNAME_LENGTH)
                 {
-                    info += "Minimalna dlugosc loginu to " + UserCredentials.MINIMAL_USERNAME_LENGTH + " znakow.";
-                    info += "\n";
+                    errorInfo += String.Format(AppResources.MainPageMinimalUsernameLength, UserCredentials.MINIMAL_USERNAME_LENGTH);
+                    errorInfo += Environment.NewLine;
                 }
-                if (passwordRegister1.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
+                if (!String.IsNullOrEmpty(RegisterFirstPasswordBox.Password) &&
+                    RegisterFirstPasswordBox.Password.Length < UserCredentials.MINIMAL_PASSWORD_LENGTH)
                 {
-                    info += "Minimalna dlugosc hasla to " + UserCredentials.MINIMAL_PASSWORD_LENGTH + " znakow.";
-                    info += "\n";
+                    errorInfo += String.Format(AppResources.MainPageMinimalPasswordLength, UserCredentials.MINIMAL_PASSWORD_LENGTH);
+                    errorInfo += Environment.NewLine;
                 }
-                if (!passwordRegister1.Password.Equals(passwordRegister2.Password))
+                if (!String.IsNullOrEmpty(RegisterSecondPasswordBox.Password) &&
+                    !RegisterFirstPasswordBox.Password.Equals(RegisterSecondPasswordBox.Password))
                 {
-                    info += "Podane haslamusza byc takie same.";
+                    errorInfo += AppResources.MainPageMatchingPasswords;
                 }
             }
-            RegisterErrorBlock.Text = info;
+            RegisterErrorBlock.Text = errorInfo;
         }
 
-        private void LogIn(object sender, RoutedEventArgs e)
+        private void Login_Action(object sender, RoutedEventArgs e)
         {
-            waitIndicator.Visibility = Visibility.Visible;
+            WaitIndicator.Visibility = Visibility.Visible;
             LoginCommand Logger = new LoginCommand();
-            Logger.RequestFinished += new RequestFinishedEventHandler(Logger_MessengerSent);
-            Logger.LogInAs(new UserCredentials(usernameBox.Text, passwordBox.Password), "secret");
-            usernameBox.Text = String.Empty;
-            passwordBox.Password = String.Empty;
+            Logger.RequestFinished += new RequestFinishedEventHandler(Login_Event);
+            Logger.LoginAs(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
         }
 
-        void Logger_MessengerSent(object sender, RequestFinishedEventArgs e)
+        private void Register_Action(object sender, RoutedEventArgs e)
         {
-            LoginJsonResponse x = e.Response as LoginJsonResponse;
-            waitIndicator.Visibility = Visibility.Collapsed;
-            if (!e.Response.HasError())
+            WaitIndicator.Visibility = Visibility.Visible;
+            RegisterCommand Register = new RegisterCommand();
+            Register.RequestFinished += new RequestFinishedEventHandler(Register_Event);
+            Register.RegisterAs(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
+        }
+
+        void Login_Event(object sender, RequestFinishedEventArgs e)
+        {
+            AuthorizationToken x = e.Response as AuthorizationToken;
+            WaitIndicator.Visibility = Visibility.Collapsed;
+            if (!x.HasError())
             {
-                //MessageBoxResult m = MessageBox.Show(ApplicationSettings.Instance.RetriveLoggedUser().username, x.access_token.ToString(), MessageBoxButton.OK);
-                NavigationService.Navigate(new Uri("/Pages/LoggedIn.xaml?", UriKind.Relative));
+                LoginUsernameBox.Text = String.Empty;
+                LoginPasswordBox.Password = String.Empty;
+                NavigationService.Navigate(new Uri("/Pages/ListGames.xaml?", UriKind.Relative));
             }
             else
             {
                 MessageBoxResult m = MessageBox.Show(x.error_description.ToString(), x.error.ToString(), MessageBoxButton.OK);
-                NavigationService.Navigate(new Uri("/Pages/MainPage.xaml?", UriKind.Relative));
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Register_Event(object sender, RequestFinishedEventArgs e)
         {
-            waitIndicator.Visibility = Visibility.Visible;
-            RegisterCommand Registers = new RegisterCommand();
-            Registers.RequestFinished += new RequestFinishedEventHandler(Registers_MessengerSent);
-            Registers.Register(new UserCredentials(userNameRegister.Text, passwordRegister1.Password));
-            
-        }
-
-        private void Registers_MessengerSent(object sender, RequestFinishedEventArgs e)
-        {
-            ServerJsonResponse x = e.Response as ServerJsonResponse;
-            waitIndicator.Visibility = Visibility.Collapsed;
-            if (!e.Response.HasError())
+            ServerResponse x = e.Response as ServerResponse;
+            WaitIndicator.Visibility = Visibility.Collapsed;
+            if (!x.HasError())
             {
                 MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.error_code.ToString(), MessageBoxButton.OK);
-                pano.DefaultItem = pano.Items[0];
-                usernameBox.Text = userNameRegister.Text;
-                userNameRegister.Text = String.Empty;
-                passwordRegister1.Password = String.Empty;
-                passwordRegister2.Password = String.Empty;
+                LoginUsernameBox.Text = RegisterUsernameBox.Text;
+                LoginPasswordBox.Password = RegisterFirstPasswordBox.Password;
+                RegisterUsernameBox.Text = String.Empty;
+                RegisterFirstPasswordBox.Password = String.Empty;
+                RegisterSecondPasswordBox.Password = String.Empty;
+                MainPanorama.DefaultItem = MainPanorama.Items.First();
             }
             else
             {
