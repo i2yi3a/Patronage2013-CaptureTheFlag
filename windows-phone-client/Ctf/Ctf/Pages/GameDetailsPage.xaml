@@ -28,7 +28,7 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <ListBox x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Id:" Margin="10,0,0,0"/>
                 <TextBlock Text="{Binding Id, Mode=OneWay}" />
@@ -79,7 +79,7 @@
                 <ListBox x:Name="PlayersList">
                 </ListBox>
             </StackPanel>
-        </ListBox>
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>
