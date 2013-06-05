@@ -92,8 +92,8 @@
                               {
                                   [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
                                   [ShowInformation showMessage:@"Your registration proces is complete" withTitle:nil];
-                                  [self performSegueWithIdentifier:@"segueToMainScreenAfterRegister" sender:self];
-                              }
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                            }
                           }];
 }
 
@@ -151,13 +151,6 @@ else
     [_userEmailField resignFirstResponder];
     [_passwordField resignFirstResponder];
     [_passwordField2 resignFirstResponder];
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"segueToMainScreenAfterRegister"])
-    {
-        
-    }
 }
 
 - (void)viewDidUnload {

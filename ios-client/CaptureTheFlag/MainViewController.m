@@ -77,41 +77,13 @@
     {
       [tableView beginUpdates];
       [tableView endUpdates];
-        //[self performSegueWithIdentifier:@"segueToProfile" sender:self];
     }
     if (indexPath.row == 4)
     {
-        [self logout:nil];
-        [self performSegueWithIdentifier:@"segueLogout" sender:self];
+        [self dismissModalViewControllerAnimated:YES];
     }
 
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-        {
-            if ([[segue identifier] isEqualToString:@"segueToNewGame"])
-            {
-                
-            }
-            if ([[segue identifier] isEqualToString:@"segueToGames"])
-            {
-                
-            }
-            if ([[segue identifier] isEqualToString:@"segueToMyGames"])
-            {
-                
-            }
-            if ([[segue identifier] isEqualToString:@"segueToProfile"])
-            {
-
-            }
-            if ([[segue identifier] isEqualToString:@"segueLogout"])
-            {
-                
-            }
-
-        }
-
 
 #pragma mark - Table view data source
 
@@ -172,8 +144,7 @@
     return 85.0f;
 }
 
-- (void)logout:(NetworkEngineCompletionBlock)completionBlock{
-}
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
