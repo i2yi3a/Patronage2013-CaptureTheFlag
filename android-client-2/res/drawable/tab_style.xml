@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- state selected -->
+    <item android:state_selected="true"><shape android:shape="rectangle">
+            <solid android:color="#54B2BD" />
+
+            <stroke android:width="1dip" android:color="#555555" />
+        </shape></item>
+    <!-- state pressed -->
+    <item android:state_pressed="true"><shape>
+            <solid android:color="#3F858E" />
+
+            <stroke android:width="1dip" android:color="#222222" />
+        </shape></item>
+    <!-- state normal -->
+    <item><shape android:shape="rectangle">
+            <solid android:color="#8F8F8F" />
+
+            <stroke android:width="1dip" android:color="#222222" />
+        </shape></item>
+
+</selector>
