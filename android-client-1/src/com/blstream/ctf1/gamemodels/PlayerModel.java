@@ -2,7 +2,6 @@ package com.blstream.ctf1.gamemodels;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 
 /**
  * @author Piotr Marczycki

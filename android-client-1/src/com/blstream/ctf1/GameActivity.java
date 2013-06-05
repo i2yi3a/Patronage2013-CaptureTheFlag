@@ -168,6 +168,8 @@ public class GameActivity extends FragmentActivity implements OnMapClickListener
     	setFlagInBase(!isFlagCarried(mGameModel,BLUE_TEAM),BLUE_TEAM);
     	
     	if(!isInGameArea(mGameModel.getPlayers().get(0).getLatLng())) {
+    		if(mLine != null)
+    			mLine.remove();
     		mLine = mGoogleMap.addPolyline(new PolylineOptions()
     	     .add(mGameModel.getPlayers().get(0).getLatLng(), new LatLng(mLatitude,mLongitude))
     	     .width(5)

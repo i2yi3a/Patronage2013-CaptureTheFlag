@@ -3,14 +3,12 @@ package com.blstream.ctf1.asynchronous;
 import java.util.List;
 
 import android.os.AsyncTask;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.GameDetailsActivity;
 import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
-import com.blstream.ctf1.list.Helper;
 import com.blstream.ctf1.list.PlayersListAdapter;
 import com.blstream.ctf1.service.GameService;
 
@@ -58,6 +56,7 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 			// no sense to catch others exceptions all are handled in that same
 			// way
 		} catch (Exception e) {
+			
 			if (mGameService.isNetworkOperationAborted()) {
 				mMessageToShow = mCurrentActivity.getResources().getString(R.string.game_leave_canceled);
 			} else {

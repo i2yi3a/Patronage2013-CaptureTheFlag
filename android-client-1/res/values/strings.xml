@@ -86,6 +86,7 @@
     <string name="game_players_red">Red Team Players</string>
     <string name="game_players_blue">Blue Team Players</string>
     <string name="game_play">PLAY</string>
+    <string name="game_players_none">Nobody has joined this game</string>
 
     <!-- JoinGame -->
     <string name="game_joined">You have successfully joined this game</string>

@@ -86,6 +86,7 @@
     <string name="game_players_red">Czerwoni</string>
     <string name="game_players_blue">Niebiescy</string>
     <string name="game_play">GRAJ</string>
+    <string name="game_players_none">Nikt jeszcze się nie zapisa do tej gry</string>
     
 
     <!-- JoinGame -->

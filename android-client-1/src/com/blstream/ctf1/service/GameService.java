@@ -5,6 +5,7 @@ import static com.blstream.ctf1.Constants.SERVER_RESPONSE_ERROR_DESCRIPTION;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import android.content.Context;
 
 import com.blstream.ctf1.Constants;
 import com.blstream.ctf1.JSONFields;
+import com.blstream.ctf1.R;
 import com.blstream.ctf1.converter.GameBasicListFilterConverter;
 import com.blstream.ctf1.converter.GameLocalizationListFilterConverter;
 import com.blstream.ctf1.converter.JSONConverter;
@@ -275,9 +277,12 @@ public class GameService implements NetworkOperationService {
 	public List<String> getPlayersForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_GAME_DETAILS, gameId), getGameHeaders());
 		JSONObject jsonObject = jsonArrayResult.getJSONObject(0);
-		
-
-		return JSONConverter.toPlayerNameStrings(jsonObject.getJSONArray(JSONFields.PLAYERS));
+		if(!jsonObject.has(JSONFields.PLAYERS)) {
+			List<String> result = new ArrayList<String>();
+			result.add(mContext.getResources().getString(R.string.game_players_none));
+			return result;
+		} else
+			return JSONConverter.toPlayerNameStrings(jsonObject.getJSONArray(JSONFields.PLAYERS));
 	}
 
 	/**

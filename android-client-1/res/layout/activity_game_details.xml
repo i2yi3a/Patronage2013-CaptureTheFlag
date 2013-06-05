@@ -201,12 +201,6 @@
 				            android:layout_height="wrap_content"
 				            android:textAppearance="?android:attr/textAppearanceMedium"
 				            android:textIsSelectable="true" />
-					<TextView
-				            android:id="@+id/textPlayers"
-				            android:layout_width="match_parent"
-				            android:layout_height="wrap_content"
-				            android:text="@string/game_players"
-				            android:textAppearance="?android:attr/textAppearanceMedium" />
 				
 					
 				        <Button
