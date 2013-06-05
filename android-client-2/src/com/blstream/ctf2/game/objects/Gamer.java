@@ -13,10 +13,21 @@ import com.blstream.ctf2.domain.Localization;
 public class Gamer extends GameObject {
 
 	private boolean mHasFlag;
+	private String mName;
 
 	public Gamer(Constants.TEAM team, Localization localization,Context context) {
 		super(Constants.GAME_OBJECT_TYPE.GAMER, team, localization, context);
 		mHasFlag = false;
+	}
+	
+	public Gamer(String name, Constants.TEAM team, Localization localization,Context context) {
+		super(Constants.GAME_OBJECT_TYPE.GAMER, team, localization, context);
+		mHasFlag = false;
+		mName = name;
+	}
+	
+	public String getName(){
+		return mName;
 	}
 	
 	public void hasTakenFlag(){

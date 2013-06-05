@@ -13,10 +13,10 @@ public class Flag extends GameObject{
 	private boolean mIsCarried;
 	private Localization mBaseLocalization;
 	
-	public Flag(Constants.TEAM team, Localization localization, Localization BaseLocalization, Context context) {
+	public Flag(Constants.TEAM team, Localization localization, Localization baseLocalization, Context context) {
 		super(Constants.GAME_OBJECT_TYPE.FLAG, team, localization, context);
 		mIsCarried = false;
-		mBaseLocalization = BaseLocalization;
+		mBaseLocalization = baseLocalization;
 	}
 	
 	public void hasBeenDropped(){

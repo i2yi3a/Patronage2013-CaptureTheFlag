@@ -2,7 +2,7 @@ package com.blstream.ctf2.game.objects;
 
 import android.content.Context;
 
-import com.blstream.ctf2.Constants.GAME_OBJECT_TYPE;
+import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.Constants.TEAM;
 import com.blstream.ctf2.domain.Localization;
 
@@ -13,8 +13,8 @@ import com.blstream.ctf2.domain.Localization;
  */
 public class Base extends GameObject{
 	private long mRadius;
-	public Base(GAME_OBJECT_TYPE type, TEAM team, Localization localization, Context context, long radius) {
-		super(type, team, localization, context);
+	public Base(TEAM team, Localization localization, Context context, long radius) {
+		super(Constants.GAME_OBJECT_TYPE.BASE, team, localization, context);
 		mRadius = radius;
 	}
 	

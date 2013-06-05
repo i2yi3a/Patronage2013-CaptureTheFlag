@@ -117,8 +117,8 @@ public class GameActivity extends FragmentActivity {
 		blueTeam.setBaseLocalization(baseBlueLL);
 		blueTeam.setName("Górnicy");
 
-		Base redBase = new Base(GAME_OBJECT_TYPE.BASE, TEAM.TEAM_RED, redTeam.getBaseLocalization(), this, 1l);
-		Base blueBase = new Base(GAME_OBJECT_TYPE.BASE, TEAM.TEAM_BLUE, blueTeam.getBaseLocalization(), this, 1l);
+		Base redBase = new Base(TEAM.TEAM_RED, redTeam.getBaseLocalization(), this, 1l);
+		Base blueBase = new Base(TEAM.TEAM_BLUE, blueTeam.getBaseLocalization(), this, 1l);
 		mBases.add(redBase);
 		mBases.add(blueBase);
 
