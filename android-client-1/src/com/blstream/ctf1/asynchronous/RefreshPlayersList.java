@@ -74,9 +74,8 @@ public class RefreshPlayersList extends AsyncTask<Void, Void, List<String>> {
 			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		if (doInBackgroundSuccessful == true) {
 
-			mCurrentActivity.setListAdapter(new PlayersListAdapter(mCurrentActivity, result));
-			ListView playersList = (ListView) mCurrentActivity.findViewById(android.R.id.list);
-			Helper.getListViewSize(playersList);
+			mCurrentActivity.mListFragment.setListAdapter(new PlayersListAdapter(mCurrentActivity, result));
+			
 		}
 	}
 

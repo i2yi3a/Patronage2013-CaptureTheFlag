@@ -39,7 +39,6 @@ public class GameService implements NetworkOperationService {
 	private static final String URL_GAME_LIST = URL_GAME_API + "?%s";
 	private static final String URL_GAME_LIST_BY_LOCALIZATION = URL_GAME_API + "/nearest?%s";
 	private static final String URL_GAME_DETAILS = URL_GAME_API + "/%s";
-	private static final String URL_PLAYERS_FOR_GAME = URL_GAME_DETAILS + "/players";
 	private static final String URL_SIGN_IN_FOR_GAME = URL_GAME_DETAILS + "/signIn";
 	private static final String URL_SIGN_OUT_FROM_GAME = URL_GAME_DETAILS + "/signOut";
 	private static final String URL_DELETE_GAME = URL_GAME_DETAILS;
@@ -135,7 +134,7 @@ public class GameService implements NetworkOperationService {
 		JSONArray latLngBlue = new JSONArray();
 		latLngBlue.put(blueBase.latitude);
 		latLngBlue.put(blueBase.longitude);
-		blueTeam.put(JSONFields.LAT_LNG, latLngRed);
+		blueTeam.put(JSONFields.LAT_LNG, latLngBlue);
 		jsonObject.put(JSONFields.RED_TEAM_BASE, redTeam);
 		jsonObject.put(JSONFields.BLUE_TEAM_BASE, blueTeam);
 
@@ -274,8 +273,9 @@ public class GameService implements NetworkOperationService {
 	 * @author Adrian Swarcewicz
 	 */
 	public List<String> getPlayersForGame(String gameId) throws ClientProtocolException, IOException, JSONException, CTFException {
-		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_PLAYERS_FOR_GAME, gameId), getGameHeaders());
+		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_GAME_DETAILS, gameId), getGameHeaders());
 		JSONObject jsonObject = jsonArrayResult.getJSONObject(0);
+		
 
 		return JSONConverter.toPlayerNameStrings(jsonObject.getJSONArray(JSONFields.PLAYERS));
 	}

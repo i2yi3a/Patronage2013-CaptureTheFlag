@@ -17,7 +17,7 @@ import com.blstream.ctf1.service.GameService;
 /**
  * @author Rafal Olichwer
  */
-public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
+public class GamePlay extends AsyncTask<Void, Void, GameExtendedInfo> {
 
 	private GameDetailsActivity mCurrentActivity;
 
@@ -39,7 +39,7 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 		loadingDialog.show();
 	}
 
-	public GameDetails(GameDetailsActivity currentActivity, String id) {
+	public GamePlay(GameDetailsActivity currentActivity, String id) {
 		mCurrentActivity = currentActivity;
 		mId = id;
 		mMessageToShow = Constants.EMPTY_STRING;
@@ -88,10 +88,6 @@ public class GameDetails extends AsyncTask<Void, Void, GameExtendedInfo> {
 			mCurrentActivity.latitude = result.getLocalization().getLatLng().latitude;
 			mCurrentActivity.longitude = result.getLocalization().getLatLng().longitude;
 			mCurrentActivity.radius = result.getLocalization().getRadius();
-			mCurrentActivity.latitudeBlue = result.getBlueBase().latitude;
-			mCurrentActivity.longitudeBlue = result.getBlueBase().longitude;
-			mCurrentActivity.latitudeRed = result.getRedBase().latitude;
-			mCurrentActivity.longitudeRed = result.getRedBase().longitude;
 			mCurrentActivity.setupMap();
 		}
 	}

@@ -40,4 +40,10 @@ public class GameMapMarker {
 			mMarker.setPosition(position);
 		}
 	}
+	
+	public void setVisible(boolean visible) {
+		if (mMarker != null) {
+			mMarker.setVisible(visible);
+		}
+	}
 }
