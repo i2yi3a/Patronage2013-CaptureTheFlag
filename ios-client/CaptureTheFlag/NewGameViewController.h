@@ -23,5 +23,3 @@
 @property (strong, nonatomic) NSArray *secondColumnList;
 
 @end
-
-extern NSString *locationNameFromGeo;

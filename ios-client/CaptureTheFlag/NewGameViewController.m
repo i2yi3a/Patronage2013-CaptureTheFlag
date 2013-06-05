@@ -18,17 +18,17 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *gamePicker;
 @property (weak, nonatomic) IBOutlet UITextField *gameRedName;
 @property (weak, nonatomic) IBOutlet UITextField *gameBlueName;
-
-
+@property (strong, nonatomic) NSString *locationNameFromGeo;
+@property (strong, nonatomic) CLLocation *gameLocation;
+@property (strong, nonatomic) CLLocation *redTeamBaseLocalization;
+@property (strong, nonatomic) CLLocation *blueTeamBaseLocalization;
+@property (strong, nonatomic) NSNumber * gameRadius;
 
 @end
 
-@implementation NewGameViewController
 
-//nie dzialaja zmienne globalne?(nslog nic nie zwraca po wczesniejszym przypisaniu do zmiennej. 
+@implementation NewGameViewController
 int counter;
-NSString *locationNameFromGeo;
-CLLocation *gameLocation;
 
 - (void)viewDidLoad
 {
@@ -69,12 +69,14 @@ CLLocation *gameLocation;
 
 - (void)mapView:(MKMapView *)mapView1 regionDidChangeAnimated:(BOOL)animated
 {
+  //  NSNumber *radius [[NSNumber alloc] initWithInt:([span.latitudeDelta*111*1000/2])];
     if (![self.locationField.text isEqualToString:@""]) {
     [self.mapView removeOverlays:self.mapView.overlays];
     [self removeAllAnnotations];
     MKCoordinateSpan span = _mapView.region.span;
     CLLocationCoordinate2D centre = [_mapView centerCoordinate];
     MKCircle *circle = [MKCircle circleWithCenterCoordinate:centre radius:span.latitudeDelta*111*1000/2];
+    NSNumber *gameRadius = [NSNumber numberWithDouble:(circle.radius)];
     [_mapView addOverlay:circle];
     
     MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
@@ -112,7 +114,6 @@ CLLocation *gameLocation;
                               CLLocation *gameLocation = [[CLLocation alloc] initWithLatitude:coordinate.coordinate.latitude
                                                                         longitude:coordinate.coordinate.longitude];
                               NSString *locationNameFromGeo = [NSString stringWithFormat:@"%@, %@, %@", locationName, locationCityNameFromGeo, locationCountryNameFromGeo];
-                              NSLog(@"%@", locationNameFromGeo);
                               MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate.coordinate radius:450];
                               [_mapView addOverlay:circle];
                               
@@ -281,15 +282,15 @@ didUpdateUserLocation:
         playersMaxFromPicker = [_secondColumnList objectAtIndex:row2];
         myNewGame.pointsMax = [NSNumber numberWithInteger:[pointsMaxFromPicker integerValue]];
         myNewGame.playersMax = [NSNumber numberWithInteger:[playersMaxFromPicker integerValue]];
-        myNewGame.localizationName = locationNameFromGeo;
-        NSLog(@"%@", locationNameFromGeo);
-        myNewGame.localization = gameLocation;
-        myNewGame.localizationRadius = nil;//trzeba dopisac
+        myNewGame.localizationName = _locationNameFromGeo;
+        myNewGame.localization = _gameLocation;
+        myNewGame.localizationRadius = _gameRadius;
         myNewGame.redTeamBaseName = _gameRedName.text;
-        myNewGame.redTeamBaseLocalization = nil;//trzeba dopisac
+        myNewGame.redTeamBaseLocalization = _redTeamBaseLocalization;
         myNewGame.blueTeamBaseName = _gameBlueName.text;
-        myNewGame.blueTeamBaseLocalization = nil;//trzeba dopisac
-
+        myNewGame.blueTeamBaseLocalization =_blueTeamBaseLocalization;
+        NSLog(@"%@nazwa", _locationNameFromGeo);
+        NSLog(@"%@lokacja", _gameLocation);
     
    /* [[NetworkEngine getInstance] createNewGame:myNewGame completionBlock:^(NSObject *response){
     createNewGame:myNewGame
@@ -303,36 +304,5 @@ didUpdateUserLocation:
     }}];
 */}
 
-    /*if (counter % 2) {
-    MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
-    annotationPoint.coordinate = coordinate;
-    annotationPoint.title = @"RED"; 
-    id userAnnotation = self.mapView.userLocation;
-    
-    NSMutableArray *annotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
-    [annotations removeObject:userAnnotation];
-    [annotations removeObject:annotationPoint];
-    [annotations removeObjectAtIndex:0];
-    [self.mapView removeAnnotations:annotations];
-    annotations = nil;
-    [_mapView addAnnotation:annotationPoint];
-    }
-    
-    if (!(counter % 2)) {
-        MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
-        annotationPoint.coordinate = coordinate;
-        annotationPoint.title = @"BLUE"; 
-        id userAnnotation = self.mapView.userLocation;
-        NSMutableArray *annotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
-        [annotations removeObject:userAnnotation];
-        [annotations removeObject:annotationPoint];
-        [annotations removeObjectAtIndex:1];
-        
-        [self.mapView removeAnnotations:annotations];
-        annotations = nil;
-        [_mapView addAnnotation:annotationPoint];
-    }
-    }
-//remove old annotation and add new, or change coordinate in old annotation.
-    */
+
 @end
