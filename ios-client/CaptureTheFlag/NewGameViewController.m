@@ -46,7 +46,7 @@ CLLocation *gameLocation;
     
     //scrolling
     [Scroller setScrollEnabled:YES];
-    [Scroller setContentSize:CGSizeMake(320, 1400)];
+    [Scroller setContentSize:CGSizeMake(320, 1500)];
     //dissmising keybord after return
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
     
