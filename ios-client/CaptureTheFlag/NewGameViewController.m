@@ -260,6 +260,8 @@ didUpdateUserLocation:
         if ((counter % 3)==1) {
             MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
             annotationPoint.coordinate = coordinate;
+            self.redTeamBaseLocalization = [[CLLocation alloc] initWithLatitude:annotationPoint.coordinate.latitude
+                                                                                   longitude:annotationPoint.coordinate.longitude];
             annotationPoint.title = @"RED";
             [_mapView addAnnotation:annotationPoint];
         }
@@ -267,6 +269,8 @@ didUpdateUserLocation:
         if ((counter % 3)==2) {
             MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
             annotationPoint.coordinate = coordinate;
+            self.blueTeamBaseLocalization = [[CLLocation alloc] initWithLatitude:annotationPoint.coordinate.latitude
+                                                                      longitude:annotationPoint.coordinate.longitude];
             annotationPoint.title = @"BLUE";
             [_mapView addAnnotation:annotationPoint];
         }
