@@ -22,8 +22,10 @@ namespace Ctf.Pages
 
         private void CreateGame_ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
-            CreateCommand CreateGame = new CreateCommand();
-            CreateGame.RequestFinished += new RequestFinishedEventHandler(CreateGame_RequestFinished);
+            //CreateCommand CreateGame = new CreateCommand();
+            //CreateGame.RequestFinished += new RequestFinishedEventHandler(CreateGame_RequestFinished);
+            //CreateGame.CreateGame(new Game("zzzzz", "zzzzzz", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new List<double> { 15, 12 }, 1500)
+            //    , new TeamBase("kociaki", new List<double> { 20, 15 }), new TeamBase("miczikoty", new List<double> { 35, 14 })));
             //gaame.CreateGame(new Game("sproba", "jasna", "10-06-2013 10:13:00", 5400000, 12, 10, new Localization("Jasne błonia, Szczecin, Polska", new LatLng(15, 15), 1500)));
         }
 
@@ -39,6 +41,14 @@ namespace Ctf.Pages
             {
                 MessageBoxResult m = MessageBox.Show(e.Response.error_description.ToString(), e.Response.error.ToString(), MessageBoxButton.OK);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            CreateCommand CreateGame = new CreateCommand();
+            CreateGame.RequestFinished += new RequestFinishedEventHandler(CreateGame_RequestFinished);
+            CreateGame.CreateGame(new Game("zzzzz", "zzzzzz", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new List<double> { 15, 12 }, 1500)
+                , new TeamBase("kociaki", new List<double> { 20, 15 }), new TeamBase("miczikoty", new List<double> { 35, 14 })));
         }
     }
 }
