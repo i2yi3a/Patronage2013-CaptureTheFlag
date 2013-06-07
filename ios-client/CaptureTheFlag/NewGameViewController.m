@@ -10,6 +10,11 @@
 #import "CTFGame.h"
 #import <AddressBookUI/AddressBookUI.h>
 
+static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
+static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
+static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+
 
 @interface NewGameViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *gameName;
@@ -24,6 +29,8 @@
 @property (strong, nonatomic) CLLocation *redTeamBaseLocalization;
 @property (strong, nonatomic) CLLocation *blueTeamBaseLocalization;
 @property (strong, nonatomic) NSNumber * gameRadius;
+
+@property (readwrite) CGFloat animatedDistance;
 
 @end
 
@@ -144,20 +151,21 @@ int counter;
     }
     else if (textField == self.gameDescription) {
         [textField resignFirstResponder];
-        [self.locationField becomeFirstResponder];
+        [self.gameRedName becomeFirstResponder];
     }
-    else if (textField == self.locationField) {
-        [textField resignFirstResponder];
-        [self geolocate:(nil)];
-    }
-    else if (textField == self.gameRedName) {
+       else if (textField == self.gameRedName) {
         [textField resignFirstResponder];
         [self.gameBlueName becomeFirstResponder];
     }
     else if (textField == self.gameBlueName) {
         [textField resignFirstResponder];
-        [self createNewGame:nil];
+        
     }
+    else if (textField == self.locationField) {
+        [textField resignFirstResponder];
+        [self geolocate:(nil)];
+    }
+
 
     return YES;
 }
@@ -308,6 +316,19 @@ didUpdateUserLocation:
         myNewGame.redTeamBaseLocalization = _redTeamBaseLocalization;
         myNewGame.blueTeamBaseName = _gameBlueName.text;
         myNewGame.blueTeamBaseLocalization =_blueTeamBaseLocalization;
+    NSLog(@"%@",myNewGame.name);
+    NSLog(@"%@",myNewGame.gameDescription);
+    NSLog(@"%@",myNewGame.timeStart);
+    NSLog(@"%@",myNewGame.duration);
+    NSLog(@"%@",myNewGame.pointsMax);
+    NSLog(@"%@",myNewGame.playersMax);
+    NSLog(@"%@",myNewGame.localizationName);
+    NSLog(@"%@",myNewGame.localization);
+    NSLog(@"%@",myNewGame.localizationRadius);
+    NSLog(@"%@",myNewGame.redTeamBaseName);
+    NSLog(@"%@",myNewGame.redTeamBaseLocalization);
+    NSLog(@"%@",myNewGame.blueTeamBaseName);
+    NSLog(@"%@",myNewGame.blueTeamBaseLocalization);
    
     [[NetworkEngine getInstance] createNewGame:myNewGame completionBlock:^(NSObject *response){
         if ([response isKindOfClass:[NSError class]])
@@ -321,6 +342,55 @@ didUpdateUserLocation:
 
     }];
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGRect textFieldRect =
+    [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect =
+    [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
+    CGFloat numerator =
+    midline - viewRect.origin.y
+    - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator =
+    (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION)
+    * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;if (heightFraction < 0.0)
+    {
+        heightFraction = 0.0;
+    }
+    else if (heightFraction > 1.0)
+    {
+        heightFraction = 1.0;
+    }
+    _animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= _animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += _animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
 
 
 @end
