@@ -132,7 +132,7 @@
 {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mma:ss"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSString *dateString = [dateFormat stringFromDate:game.timeStart];
     
     MKNetworkOperation *op = [self operationWithPath:@"/api/secured/games"
@@ -140,7 +140,7 @@
                                           httpMethod:@"POST"
                                                  ssl:NO];
     
-    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : [NSString stringWithFormat:@"Bearer %@", _token]}];
     [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
