@@ -26,5 +26,8 @@
 @property (strong, nonatomic) CLLocation *redTeamBaseLocalization;
 @property (strong, nonatomic) NSString *blueTeamBaseName;
 @property (strong, nonatomic) CLLocation *blueTeamBaseLocalization;
+@property (strong, nonatomic) NSString *gameId;
+@property (strong, nonatomic) NSString *status;
+@property (strong, nonatomic) NSString *owner;
 
 @end
