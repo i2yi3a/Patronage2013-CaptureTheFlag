@@ -22,7 +22,6 @@
 @interface NetworkEngine()
 
 @property (nonatomic, strong) NSString* token;
-@property (nonatomic, strong) NSNumber* gameID;
 
 
 @end
@@ -143,7 +142,7 @@
     [op addCompletionHandler:^(MKNetworkOperation *operation) {
         NSDictionary* response = operation.responseJSON;
         NSString *error = response[@"error"];
-        self.gameID = response[@"id"];
+        game.gameId = response[@"id"];
 
         
         NSNumber* errorCode = response[@"error_code"];
@@ -185,42 +184,38 @@
     return [NSError errorWithDescription:msg];
 }
 
--(void)getGameDeatails: (NetworkEngineCompletionBlock)completionBlock
+-(void)getGameDetails: (CTFGame*)game
+      completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
-    MKNetworkOperation *op=[self operationWithPath:@"/api/secured/games/" params: @{@"id" : _gameID}  httpMethod:@"GET" ssl:NO];
+    MKNetworkOperation *op=[self operationWithPath:@"/api/secured/games/" params: @{@"id" : game.gameId}  httpMethod:@"GET" ssl:NO];
     
     [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
     
     [op addCompletionHandler:^(MKNetworkOperation *operation){
         
         NSDictionary* response = operation.responseJSON;
-        NSArray* games = response[@"games"];
-        NSMutableArray* a;
-        
-        for (NSDictionary *g in games)
-        {
-            CTFGame *game = [[CTFGame alloc] init];
-            game.name = g[@"name"];
-            game.gameDescription = g[@"description"];
-            game.timeStart = g[@"time_start"];
-            game.duration = g[@"duration"];
-            game.pointsMax = g[@"points_max"];
-            game.playersMax = g[@"players_max"];
-            game.localizationName = g[@[@"localization" "name"]];
-            game.localization = g[@[@"localization" "latLng"]];
-            game.localizationRadius = g[@[@"localization" "name"]];
-            game.redTeamBaseName = g[@[@"red_team_base" "name"]];
-            game.redTeamBaseLocalization = g[@[@"red_team_base" "latLng"]];
-            game.blueTeamBaseName = g[@[@"blue_team_base" "name"]];
-            game.blueTeamBaseLocalization = g[@[@"blue_team_base" "latLng"]];
-            [a addObject:game];
-            
-        }
-        
-        completionBlock(a);
+           
+            game.gameId=response[@"id"];
+            game.name = response[@"name"];
+            game.gameDescription = response[@"description"];
+            game.timeStart = response[@"time_start"];
+            game.duration = response[@"duration"];
+            game.pointsMax = response[@"points_max"];
+            game.playersMax = response[@"players_max"];
+            game.status = response[@"status"];
+            game.owner = response[@"owner"];
+            game.localizationName = response[@[@"localization" "name"]];
+            game.localization = response[@[@"localization" "latLng"]];
+            game.localizationRadius = response[@[@"localization" "name"]];
+            game.redTeamBaseName = response[@[@"red_team_base" "name"]];
+            game.redTeamBaseLocalization = response[@[@"red_team_base" "latLng"]];
+            game.blueTeamBaseName = response[@[@"blue_team_base" "name"]];
+            game.blueTeamBaseLocalization = response[@[@"blue_team_base" "latLng"]];
+           
+        completionBlock(game);
         
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        //
+        completionBlock(error);
     }];
     
 }
