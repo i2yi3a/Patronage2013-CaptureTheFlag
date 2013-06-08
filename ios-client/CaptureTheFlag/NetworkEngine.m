@@ -205,12 +205,25 @@
             game.status = response[@"status"];
             game.owner = response[@"owner"];
             game.localizationName = response[@[@"localization" "name"]];
-            game.localization = response[@[@"localization" "latLng"]];
+            NSArray* a = response[@"localization"];
+            NSNumber* lat = a[0];
+            NSNumber* lon = a[1];
+            game.localization = [[CLLocation alloc]
+                             initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
             game.localizationRadius = response[@[@"localization" "name"]];
             game.redTeamBaseName = response[@[@"red_team_base" "name"]];
-            game.redTeamBaseLocalization = response[@[@"red_team_base" "latLng"]];
+            NSArray* b = response[@[@"red_team_base" "latLng"]];
+            NSNumber* latR = b[0];
+            NSNumber* lonR = b[1];
+            game.redTeamBaseLocalization = [[CLLocation alloc]
+                             initWithLatitude:[latR doubleValue] longitude:[lonR doubleValue]];
+
             game.blueTeamBaseName = response[@[@"blue_team_base" "name"]];
-            game.blueTeamBaseLocalization = response[@[@"blue_team_base" "latLng"]];
+           NSArray* c = response[@[@"blue_team_base" "latLng"]];
+           NSNumber* latB = c[0];
+           NSNumber* lonB = c[1];
+           game.blueTeamBaseLocalization = [[CLLocation alloc]
+                                        initWithLatitude:[latB doubleValue] longitude:[lonB doubleValue]];
            
         completionBlock(game);
         
