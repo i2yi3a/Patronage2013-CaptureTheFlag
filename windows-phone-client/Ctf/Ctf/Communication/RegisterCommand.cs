@@ -30,7 +30,7 @@ namespace Ctf.Communication
         /// Requests the callback on success.
         /// </summary>
         /// <param name="response">The response.</param>
-        private void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -51,10 +51,10 @@ namespace Ctf.Communication
         //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         //}
 
-        public async Task<RestRequestAsyncHandle> RegisterAs(UserCredentials user)
+        public RestRequestAsyncHandle RegisterAs(UserCredentials user)
         {
             request.AddBody(new { username = user.username, password = user.password });
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

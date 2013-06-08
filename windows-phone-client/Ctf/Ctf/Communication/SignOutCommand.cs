@@ -24,7 +24,7 @@ namespace Ctf.Communication
             request.RequestFormat = DataFormat.Json;
         }
 
-        private void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -41,9 +41,9 @@ namespace Ctf.Communication
         //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         //}
 
-        public async Task<RestRequestAsyncHandle> SignOut()
+        public RestRequestAsyncHandle SignOut()
         {
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

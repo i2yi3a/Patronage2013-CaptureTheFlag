@@ -24,14 +24,14 @@ namespace Ctf.Communication
             request.RequestFormat = DataFormat.Json;
         }
 
-        public Task<RestRequestAsyncHandle> CreateGame(Game game)
+        public RestRequestAsyncHandle CreateGame(Game game)
         {
             request.AddBody(game);
             return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
 
-        private void RequestCallbackOnSuccess(IRestResponse<Game> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<Game> response)
         {
             if ((response != null) && (response.Data != null))
             {

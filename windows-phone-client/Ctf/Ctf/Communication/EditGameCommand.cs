@@ -23,7 +23,7 @@ namespace Ctf.Communication
             request.RequestFormat = DataFormat.Json;
         }
 
-        public void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -43,10 +43,10 @@ namespace Ctf.Communication
         //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         //}
 
-        public async Task<RestRequestAsyncHandle> EditGame(Game GameInfo)
+        public RestRequestAsyncHandle EditGame(Game GameInfo)
         {
             request.AddBody(GameInfo);
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

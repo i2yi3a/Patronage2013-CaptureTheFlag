@@ -96,6 +96,8 @@
     <Compile Include="ApplicationTools\DataObjects\ApplicationError.cs" />
     <Compile Include="ApplicationTools\DataObjects\Game.cs" />
     <Compile Include="ApplicationTools\DataObjects\LoginCredentials.cs" />
+    <Compile Include="ApplicationTools\Filterer.cs" />
+    <Compile Include="ApplicationTools\Geo.cs" />
     <Compile Include="ApplicationTools\NetworkService.cs" />
     <Compile Include="Communication\BaseCommand.cs" />
     <Compile Include="Communication\CreateCommand.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Communication\GameInfoCommand.cs" />
     <Compile Include="Communication\SignInCommand.cs" />
     <Compile Include="Communication\SignOutCommand.cs" />
+    <Compile Include="FilterNext.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="ApplicationTools\DataObjects\BindableBase.cs" />
     <Compile Include="Communication\DataObjects\PlayersList.cs" />
@@ -171,7 +174,9 @@
   <ItemGroup>
     <None Include="Docs\Ctf_WP8.pdf" />
     <None Include="packages.config" />
-    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\AppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>

@@ -15,12 +15,13 @@
     shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicaitonPage_BackKeyPress">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <StackPanel x:Name="LayoutRoot" Background="Transparent">
+        <TextBox HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height ="68" Width="456" TextChanged="FilterBox_TextChanged"/>
         <!--Pivot Control-->
-        <phone:Pivot x:Name="MainPivot" Title="{Binding LocalizedResources.ListGamesLoggedAs, Source={StaticResource LocalizedStrings}}">
+        <phone:Pivot x:Name="MainPivot" Title="{Binding LocalizedResources.ListGamesLoggedAs, Source={StaticResource LocalizedStrings}}" Height="620">
             <!--Pivot item one-->
-            <phone:PivotItem Header="{Binding LocalizedResources.ListGamesMyGames, Source={StaticResource LocalizedStrings}}">
-                <ListBox x:Name="MyGamesListControl"  SelectionChanged="GamesList_SelectionChanged" Height="526" BorderThickness="2" BorderBrush="White" >
+            <phone:PivotItem Header="{Binding LocalizedResources.ListGamesMyGames, Source={StaticResource LocalizedStrings}}" Height="454" VerticalAlignment="Top">
+                <ListBox x:Name="MyGamesListControl"  SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" Height="454" VerticalAlignment="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border BorderBrush="White" BorderThickness="1" >
@@ -40,8 +41,8 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="{Binding LocalizedResources.ListGamesNearest, Source={StaticResource LocalizedStrings}}">
-                <ListBox x:Name="NearestGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" Height="526" BorderThickness="2" BorderBrush="White" >
+            <phone:PivotItem Header="{Binding LocalizedResources.ListGamesNearestGames, Source={StaticResource LocalizedStrings}}">
+                <ListBox x:Name="NearestGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border BorderBrush="White" BorderThickness="1" >
@@ -62,7 +63,7 @@
 
             <!--Pivot item three-->
             <phone:PivotItem Header="{Binding LocalizedResources.ListGamesAllGames, Source={StaticResource LocalizedStrings}}" Margin="12,28,12,1">
-                <ListBox x:Name="AllGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" Height="526" BorderThickness="2" BorderBrush="White" >
+                <ListBox x:Name="AllGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border BorderBrush="White" BorderThickness="1" >
@@ -83,7 +84,7 @@
 
             <!--Pivot item four-->
             <phone:PivotItem Header="{Binding LocalizedResources.ListGamesCompletedGames, Source={StaticResource LocalizedStrings}}">
-                <ListBox x:Name="CompletedGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" Height="526" BorderThickness="2" BorderBrush="White" >
+                <ListBox x:Name="CompletedGamesListControl" ItemsSource="{Binding GamesDataSource}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}" SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border BorderBrush="White" BorderThickness="1" >
@@ -102,12 +103,14 @@
                 </ListBox>
             </phone:PivotItem>
         </phone:Pivot>
-        
-    </Grid>
 
-    <!--Application bar
+
+    </StackPanel>
+
+
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar x:Name="localApplicationBar" IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar>
+        <!--<shell:ApplicationBar x:Name="localApplicationBar" IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/new.png" Text="create" Click="CreateGame_ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Images/feature.search.png" Text="szukaj" Click="Search_ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Images/refresh.png" Text="refresh" Click="Refresh_ApplicationBarIconButton_Click"/>
@@ -115,9 +118,9 @@
                 <shell:ApplicationBarMenuItem Text="profil"/>
                 <shell:ApplicationBarMenuItem Text="ustawienia"/>
                 <shell:ApplicationBarMenuItem Text="wyloguj" Click="Logout_ApplicationBarMenuItem_Click" />
-            </shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems>-->
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--<phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="AllGamesTemplate">

@@ -9,11 +9,6 @@ namespace Ctf.Communication.DataObjects
 {
     public class LocationFilter : BindableBase
     {
-        private double p1;
-        private double p2;
-        private double p3;
-        private GameStatus gameStatus;
-
         public List<double> latLng { get; set; }
         public double range { get; set; }
         public string status { get; set; }

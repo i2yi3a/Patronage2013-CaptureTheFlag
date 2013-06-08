@@ -14,6 +14,10 @@ namespace Ctf.ApplicationTools.DataObjects
 
         public ApplicationError(string errorDescription, int errorCode = APPLICATION_ERROR)
         {
+            if (errorCode == APPLICATION_ERROR)
+                error = "Application error";
+            else if (errorCode == SUCCESS)
+                error = "Application success";
             error_code = errorCode;
             error_description = errorDescription;
         }

@@ -28,10 +28,9 @@ namespace Ctf.Communication
             client = new RestClient(CAPTURE_THE_FLAG_URL);
         }
 
-        protected virtual async Task<RestRequestAsyncHandle> ExecuteAsync(RestRequest request, Action<IRestResponse<T>> CallbackOnSuccess, Action<String> CallbackOnFail)
+        protected virtual RestRequestAsyncHandle ExecuteAsync(RestRequest request, Action<IRestResponse<T>> CallbackOnSuccess, Action<String> CallbackOnFail)
         {
-
-            RestRequestAsyncHandle asyncHandler = client.ExecuteAsync<T>(request, (response) =>
+            RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, (response) =>
             {
                 if (response != null && response.ResponseStatus == ResponseStatus.Error)
                 {
@@ -42,7 +41,67 @@ namespace Ctf.Communication
                     CallbackOnSuccess(response);
                 }
             });
-            return asyncHandler;
+            return restRequestAsyncHandle;
+        }
+
+        protected virtual RestRequestAsyncHandle ExecuteTrueAsync(RestRequest request, Action<IRestResponse<T>> CallbackOnFinish)
+        {
+            RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, CallbackOnFinish);
+            return restRequestAsyncHandle;
+        }
+
+        protected virtual void RequestCallbackOnFinish(IRestResponse<T> response)
+        {
+            String responseMessage = String.Empty;
+            if (response != null)
+            {
+                if (response.ResponseStatus == ResponseStatus.Completed)
+                {
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
+                    OnRequestFinished(new RequestFinishedEventArgs(response.Data));
+                }
+                else if (response.ResponseStatus == ResponseStatus.Error)
+                {
+                    responseMessage = "Error message: ";
+                    responseMessage += response.ErrorMessage;
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+                }
+                else if (response.ResponseStatus == ResponseStatus.Aborted)
+                {
+                    response.ErrorMessage = "Request aborted.";
+                    responseMessage += response.ErrorMessage;
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+                }
+                else if (response.ResponseStatus == ResponseStatus.TimedOut)
+                {
+                    response.ErrorMessage = "Request time out.";
+                    responseMessage += response.ErrorMessage;
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+                }
+                else if (response.ResponseStatus == ResponseStatus.None)
+                {
+                    response.ErrorMessage = "Request None(?)";
+                    responseMessage += response.ErrorMessage;
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+                }
+                else
+                {
+                    responseMessage = "Request unknown error(?) and: ";
+                    responseMessage += response.ErrorMessage;
+                    Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+                }
+            }
+            else
+            {
+                responseMessage = "response == null";
+                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
+                OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
+            }
         }
 
         protected virtual void RequestCallbackOnSuccess(IRestResponse<T> response)

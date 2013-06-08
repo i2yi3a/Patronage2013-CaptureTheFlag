@@ -37,7 +37,7 @@ namespace Ctf.Communication
         /// Requests the callback on success.
         /// </summary>
         /// <param name="response">The response.</param>
-        public void RequestCallbackOnSuccess(IRestResponse<AuthorizationToken> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<AuthorizationToken> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -57,7 +57,7 @@ namespace Ctf.Communication
         /// <param name="user">The user.</param>
         /// <param name="secret">The secret.</param>
         /// <returns></returns>
-        public async Task<RestRequestAsyncHandle> LoginAs(UserCredentials user, string secret)
+        public RestRequestAsyncHandle LoginAs(UserCredentials user, string secret)
         {
             //Secret could be: System.Guid.NewGuid().ToString()
             //TODO: get method name
@@ -66,7 +66,7 @@ namespace Ctf.Communication
             request.AddParameter("password", user.password);
             request.AddParameter("client_secret", secret);
             username = user.username;
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
 
         /// <summary>

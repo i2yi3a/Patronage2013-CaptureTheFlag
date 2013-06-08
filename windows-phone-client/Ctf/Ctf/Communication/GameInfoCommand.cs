@@ -25,7 +25,7 @@ namespace Ctf.Communication
             //request.RequestFormat = DataFormat.Json;
         }
 
-        private void RequestCallbackOnSuccess(IRestResponse<GameDetails> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<GameDetails> response)
         {
             if ((response != null) && (response.Data != null))
             {
@@ -42,9 +42,9 @@ namespace Ctf.Communication
         //    OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         //}
 
-        public async Task<RestRequestAsyncHandle> GetGameInfo()
+        public RestRequestAsyncHandle GetGameInfo()
         {
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Ctf.Communication.DataObjects
         /// </returns>
         public bool HasError()
         {
-            return !(String.IsNullOrWhiteSpace(error_description) || String.IsNullOrWhiteSpace(error));
+            return !String.IsNullOrWhiteSpace(error_description);
         }
     }
 }

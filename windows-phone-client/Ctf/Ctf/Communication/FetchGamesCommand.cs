@@ -52,9 +52,17 @@ namespace Ctf.ViewModels
             request.OnBeforeDeserialization = response => { response.Content = "{ \"games\" : " + response.Content + "}"; };
         }
 
-        public async Task<RestRequestAsyncHandle> ExcecuteAsyncCommand()
+        public RestRequestAsyncHandle ExcecuteAsyncCommand()
         {
-            return await ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
+            //return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
+        }
+
+        public virtual RestRequestAsyncHandle ExcecuteAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
+            return base.ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
     }
 }
