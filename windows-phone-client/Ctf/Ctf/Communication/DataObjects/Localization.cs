@@ -12,5 +12,19 @@ namespace Ctf.Communication.DataObjects
         public string name { get; set; }
         public double radius { get; set; }
         public List<double> latLng { get; set; }
+
+         public Localization()
+        {
+
+        }
+
+         public Localization(string name, List<double> latLng, int radius)
+         {
+             this.name = name;
+             this.latLng = latLng;
+             this.radius = radius;
+         }
     }
+
+
 }

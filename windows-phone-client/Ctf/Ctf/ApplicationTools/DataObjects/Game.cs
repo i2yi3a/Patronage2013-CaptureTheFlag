@@ -22,8 +22,7 @@ namespace Ctf.ApplicationTools.DataObjects
         public Localization localization { get; set; }
         public TeamBase red_team_base { get; set; }
         public TeamBase blue_team_base { get; set; }
-        //public int flag_quantity { get; set; }
-        //public Flag flag { get; set; }
+
 
         public Game()
         {
@@ -41,8 +40,6 @@ namespace Ctf.ApplicationTools.DataObjects
             this.localization = localization;
             this.red_team_base = red_team_base;
             this.blue_team_base = blue_team_base;
-            //this.flag_quantity = flag_quantity;
-            //this.flag = flag;
         }
 
 
@@ -55,63 +52,12 @@ namespace Ctf.ApplicationTools.DataObjects
             this.points_max = points_max;
             this.players_max = players_max;
             this.localization = localization;
-            //this.flag_quantity = flag_quantity;
-            //this.flag = flag;
+            this.red_team_base = red_team_base;
+            this.blue_team_base = blue_team_base;
         }
     }
 
-    public class Localization
-    {
-        public string name { get; set; }
-        public List<double> latLng { get; set; }
-        public int radius { get; set; }
-
-
-        public Localization()
-        {
-
-        }
-
-        public Localization(string name, List<double> latLng, int radius)
-        {
-            this.name = name;
-            this.latLng = latLng;
-            this.radius = radius;
-        }
-    }
-
-    public class TeamBase
-    {
-        public string name { get; set; }
-        public List<double> latLng { get; set; }
-
-        public TeamBase()
-        { }
-
-        public TeamBase(string name, List<double> latLng)
-        {
-            this.name = name;
-            this.latLng = latLng;
-        }
-    }
-
-
-    //public class Flag
-    //{
-    //    public string team { get; set; }
-    //    public LatLng latLng { get; set; }
-
-    //    public Flag()
-    //    {
-
-    //    }
-
-    //    public Flag(string team, LatLng latLng)
-    //    {
-    //        this.team = team;
-    //        this.latLng = latLng;
-    //    }
-    //}
+   
 
 
 }

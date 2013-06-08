@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Ctf.Communication;
 using Ctf.ApplicationTools.DataObjects;
 using Ctf.Communication.DataObjects;
+using System.Diagnostics;
 
 namespace Ctf.Pages
 {
@@ -47,8 +48,12 @@ namespace Ctf.Pages
         {
             CreateCommand CreateGame = new CreateCommand();
             CreateGame.RequestFinished += new RequestFinishedEventHandler(CreateGame_RequestFinished);
-            CreateGame.CreateGame(new Game("zzzzz", "zzzzzz", "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new List<double> { 15, 12 }, 1500)
-                , new TeamBase("kociaki", new List<double> { 20, 15 }), new TeamBase("miczikoty", new List<double> { 35, 14 })));
+            //CreateGame.CreateGame(new Game("Politika", "krotki opis", "12-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new List<double> {15, 12 } , 1500), new TeamBase("kociaki", new List<double> { 20.00, 15.00 }), new TeamBase("miczikoty", new List<double> { 35.00, 14.00 })));
+            CreateGame.CreateGame(new Game(CGNameBox.Text, CGDescriptionBox.Text, CGTime_StartBox.Text, Convert.ToInt32(CGDurationBox.Text), int.Parse(CGPoints_maxBox.Text),int.Parse(CGPlayers_maxBox.Text), new Localization(CGLocalizationNameBox.Text,
+                new List<double> { Double.Parse(CGLocalizationLatLngBox.Text), Double.Parse(CGLocalizationLatLngBox.Text) }, int.Parse(CGLocalizationRadiusBox.Text)),
+                new TeamBase(CGRedNameBox.Text, new List<double> { Double.Parse(CGRedLatLng.Text), Double.Parse(CGRedLatLng.Text) }),
+                new TeamBase(CGBlueNameBox.Text, new List<double> { Double.Parse(CGBlueLatLngBox.Text), Double.Parse(CGBlueLatLngBox.Text) })));
+
         }
     }
 }
