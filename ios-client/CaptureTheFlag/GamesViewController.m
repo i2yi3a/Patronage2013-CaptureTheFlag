@@ -43,13 +43,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.LoginViewCellLabels= [[NSArray alloc]
-                               initWithObjects:@"login",
-                               @"password", nil];
-    self.LoginViewCellImages = [[NSArray alloc]
-                                initWithObjects:@"BLstream.png",
-                                @"BLstream.png", nil];
-     self.view.backgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    self.GamesViewCellTitleLabels= [[NSArray alloc]
+                               initWithObjects:@"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", nil];
+    self.GamesViewCellTimeLabels= [[NSArray alloc]
+                               initWithObjects:@"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", nil];
+    self.GamesViewCellLocationLabels= [[NSArray alloc]
+                               initWithObjects:@"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", @"1,4 KM - SZCZECIN", nil];
+    self.GamesViewCellRoundImages = [[NSArray alloc]
+                                initWithObjects:@"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", @"BLstream.png", nil];
+    self.view.backgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    self.table.backgroundColor = [UIColor ctfApplicationBackgroundLighterColor];
     _CreateNewGameButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
     
     
@@ -200,7 +203,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.LoginViewCellLabels count];
+    return [self.GamesViewCellTitleLabels count];
 }
 
 
@@ -216,13 +219,18 @@
                 reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    cell.LoginViewCellLabel.text = [self.LoginViewCellLabels
+    cell.GamesViewCellTitleLabel.text = [self.GamesViewCellTitleLabels
                                              objectAtIndex: [indexPath row]];
     
-    UIImage *menuImage = [UIImage imageNamed:
-                          [self.LoginViewCellImages objectAtIndex: [indexPath row]]];
+    cell.GamesViewCellTimeLabel.text = [self.GamesViewCellTimeLabels
+                                         objectAtIndex: [indexPath row]];
     
-    cell.LoginViewCellImage.image = menuImage;
+    cell.GamesViewCellLocationLabel.text = [self.GamesViewCellLocationLabels
+                                         objectAtIndex: [indexPath row]];
+    UIImage *menuImage = [UIImage imageNamed:
+                          [self.GamesViewCellRoundImages objectAtIndex: [indexPath row]]];
+    
+    cell.GamesViewCellRoundImage.image = menuImage;
     
     return cell;
 }

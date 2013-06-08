@@ -339,7 +339,7 @@ didUpdateUserLocation:
         }
         else
         {
-            [ShowInformation showError:@"Game created sucesfully!"];
+            [ShowInformation showMessage:@"Congratulations" withTitle:@"Game created sucesfully!"];
         }
 
     }];

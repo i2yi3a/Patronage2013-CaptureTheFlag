@@ -695,23 +695,47 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6FW-ZE-s3d">
-                                                    <rect key="frame" x="20" y="0.0" width="204" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Mvw-B2-Vss">
+                                                    <rect key="frame" x="250" y="14" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="GamesListBackupLogo.png" id="WeZ-6S-iqc">
+                                                    <rect key="frame" x="20" y="55" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pZd-A5-bKV">
+                                                    <rect key="frame" x="45" y="55" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fQT-PF-IKt">
-                                                    <rect key="frame" x="20" y="29" width="41" height="41"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6FW-ZE-s3d">
+                                                    <rect key="frame" x="20" y="0.0" width="250" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ket-Cw-1tr">
+                                                    <rect key="frame" x="45" y="30" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="GamesListCompas.png" id="fQT-PF-IKt">
+                                                    <rect key="frame" x="20" y="30" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="LoginViewCellImage" destination="fQT-PF-IKt" id="WNh-8O-sMt"/>
-                                            <outlet property="LoginViewCellLabel" destination="6FW-ZE-s3d" id="tjO-Qz-HQ4"/>
+                                            <outlet property="GamesViewCellLocationLabel" destination="ket-Cw-1tr" id="Wn4-RY-lmL"/>
+                                            <outlet property="GamesViewCellRoundImage" destination="Mvw-B2-Vss" id="FG6-JS-UmS"/>
+                                            <outlet property="GamesViewCellTimeLabel" destination="pZd-A5-bKV" id="2jF-Jb-vWD"/>
+                                            <outlet property="GamesViewCellTitleLabel" destination="6FW-ZE-s3d" id="OJe-cS-gD5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -796,6 +820,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="GamesListBackupLogo.png" width="32" height="32"/>
+        <image name="GamesListCompas.png" width="34" height="30"/>
         <image name="GamesListGame.png" width="49" height="41"/>
         <image name="GamesListSettings.png" width="44" height="43"/>
         <image name="gamesListProfile.png" width="48" height="45"/>
@@ -811,8 +837,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="GamesViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="LoginViewCellImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="LoginViewCellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="GamesViewCellLocationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="GamesViewCellRoundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GamesViewCellTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="GamesViewCellTitleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="GamesViewController" superclassName="UIViewController">

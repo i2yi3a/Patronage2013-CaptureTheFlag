@@ -11,8 +11,10 @@
 @interface GamesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
 }
 
-@property (nonatomic, strong) NSArray *LoginViewCellImages;
-@property (nonatomic, strong) NSArray *LoginViewCellLabels;
+@property (nonatomic, strong) NSArray *GamesViewCellRoundImages;
+@property (nonatomic, strong) NSArray *GamesViewCellTitleLabels;
+@property (nonatomic, strong) NSArray *GamesViewCellLocationLabels;
+@property (nonatomic, strong) NSArray *GamesViewCellTimeLabels;
 
 
 @end
