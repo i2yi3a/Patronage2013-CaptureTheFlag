@@ -92,8 +92,9 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                           completionBlock:^(NSObject *response) {
                               if ([response isKindOfClass:[NSError class]])
                               {
+                                  NSError *error = (NSError *)response;
                                   [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                  [ShowInformation showError:@"Failed to register new user"];
+                                  [ShowInformation showError:error.localizedDescription];
                               }
                               else
                               {

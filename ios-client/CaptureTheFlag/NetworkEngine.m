@@ -66,9 +66,8 @@
         
         if (!errorCode || [errorCode integerValue] != 0)
         {
-            //completionBlock([NSError errorWithDescription:@"Failed to register new user."]);
             NSError *error=[self errorFromServerErrorCode:code];
-            [ShowInformation showError:error.localizedDescription];
+            completionBlock(error);
             
         }
         else
@@ -102,9 +101,8 @@
         
         if (error!=nil ||  _token == nil)
         {
-            //completionBlock([NSError errorWithDescription:@"Failed to log in."]);
             NSError *error=[self errorFromServerErrorCode:code];
-            [ShowInformation showError:error.localizedDescription];
+            completionBlock(error);
             
         }
         else
@@ -157,9 +155,8 @@
         }
         else
         {
-            //completionBlock([NSError errorWithDescription:@"Failed to create a new game."]);
             NSError *error=[self errorFromServerErrorCode:code];
-            [ShowInformation showError:error.localizedDescription];
+            completionBlock(error);
             
         }
         

@@ -334,7 +334,8 @@ didUpdateUserLocation:
     [[NetworkEngine getInstance] createNewGame:myNewGame completionBlock:^(NSObject *response){
         if ([response isKindOfClass:[NSError class]])
         {
-            [ShowInformation showError:@"Failed to create a new game!"];
+            NSError *error = (NSError *)response;
+            [ShowInformation showError:error.localizedDescription];
         }
         else
         {
