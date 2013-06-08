@@ -1,8 +1,8 @@
 //
-//  SearchViewController.m
+//  GamesViewController.m
 //  CaptureTheFlag
 //
-//  Created by Konrad Gnoinski on 29.04.2013.
+//  Created by Konrad Gnoinski on 08.06.2013.
 //  Copyright (c) 2013 BLStream. All rights reserved.
 //
 
@@ -10,28 +10,59 @@
 
 @interface GamesViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet FlatButton *CreateNewGameButton;
+@property (weak, nonatomic) IBOutlet FlatButton *MyButton;
+@property (weak, nonatomic) IBOutlet FlatButton *NearestButton;
+@property (weak, nonatomic) IBOutlet FlatButton *EndedButton;
+@property (weak, nonatomic) IBOutlet FlatButton *AllButton;
+@property (weak, nonatomic) IBOutlet FlatButton *ProfileButton;
+@property (weak, nonatomic) IBOutlet FlatButton *GameButton;
+@property (weak, nonatomic) IBOutlet FlatButton *SettingsButton;
+
+- (IBAction)My:(id)sender;
+- (IBAction)Nearest:(id)sender;
+- (IBAction)Ended:(id)sender;
+- (IBAction)All:(id)sender;
+- (IBAction)Profile:(id)sender;
+- (IBAction)Game:(id)sender;
+- (IBAction)Settings:(id)sender;
+
+
 @end
 
 @implementation GamesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     self.view.backgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _CreateNewGameButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+    
+    _MyButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _MyButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _NearestButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _NearestButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _EndedButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _EndedButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _ProfileButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _ProfileButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+
+    _GameButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _GameButton.buttonHighlightedBackgroundColor = [UIColor ctfTabColor];
+    
+    _SettingsButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+
+
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,82 +71,111 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+- (IBAction)My:(id)sender{
+    _MyButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _MyButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
     
-    // Configure the cell...
+    _NearestButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _NearestButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
     
-    return cell;
+    _EndedButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _EndedButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)Nearest:(id)sender{
+    _MyButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _MyButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _NearestButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _NearestButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _EndedButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _EndedButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (IBAction)Ended:(id)sender{
+    _MyButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _MyButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _NearestButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _NearestButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _EndedButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _EndedButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (IBAction)All:(id)sender{
+    _MyButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _MyButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _NearestButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _NearestButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _EndedButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _EndedButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _AllButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
+    _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (IBAction)Profile:(id)sender{
+    _ProfileButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _ProfileButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+    _GameButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _GameButton.buttonHighlightedBackgroundColor = [UIColor ctfTabColor];
+    
+    _SettingsButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
 }
-*/
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (IBAction)Game:(id)sender{
+    _ProfileButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _ProfileButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+    _GameButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _GameButton.buttonHighlightedBackgroundColor = [UIColor ctfTabColor];
+    
+    _SettingsButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
 }
+
+- (IBAction)Settings:(id)sender{
+    _ProfileButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _ProfileButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+    _GameButton.buttonBackgroundColor = [UIColor ctfTabColor];
+    _GameButton.buttonHighlightedBackgroundColor = [UIColor ctfTabColor];
+    
+    _SettingsButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+}
+
+
+
+- (void)viewDidUnload {
+    [self setTopBar:nil];
+    [self setMyButton:nil];
+    [self setNearestButton:nil];
+    [self setAllButton:nil];
+    [self setEndedButton:nil];
+    [self setGameButton:nil];
+    [self setProfileButton:nil];
+    [self setSettingsButton:nil];
+    [super viewDidUnload];
+}
+
 
 @end

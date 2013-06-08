@@ -130,7 +130,7 @@
                         <outlet property="registerSwitchButton" destination="aFw-H8-OXo" id="DGB-56-be0"/>
                         <outlet property="topBar" destination="buI-jZ-Y1d" id="XBk-bZ-hTt"/>
                         <outlet property="userEmailField" destination="8kS-vy-JiN" id="3t8-5a-Eov"/>
-                        <segue destination="KUj-m3-CXs" kind="modal" identifier="segueToMainScreenAfterLogin" id="H1j-cG-nZz"/>
+                        <segue destination="aEt-SU-YGL" kind="modal" identifier="segueToMainScreenAfterLogin" id="DVe-xl-NbQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -295,7 +295,7 @@
             <objects>
                 <tableViewController id="XH6-7E-n3P" customClass="MainViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="p2D-HJ-n9y">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -332,52 +332,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="main menu" id="N34-mq-cAi"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <segue destination="VHk-TG-yfd" kind="push" identifier="segueToNewGame" id="seA-nD-wg3"/>
-                        <segue destination="2Mm-Gh-XdM" kind="push" identifier="segueToGames" id="yuz-GB-HE4"/>
                         <segue destination="ZTr-7S-aQl" kind="push" identifier="segueToMyGames" id="AAp-yr-TRy"/>
+                        <segue destination="aEt-SU-YGL" kind="push" identifier="segueToGames" id="0Nd-f9-ocy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XjW-FD-DZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288" y="-366"/>
-        </scene>
-        <!--Games View Contoller - Game's list-->
-        <scene sceneID="mF7-Ti-0YD">
-            <objects>
-                <tableViewController id="2Mm-Gh-XdM" customClass="GamesViewContoller" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="92d-6b-x0Q">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="m7t-lq-kqL">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="2Mm-Gh-XdM" id="eYY-X7-8kc"/>
-                            <outlet property="delegate" destination="2Mm-Gh-XdM" id="Ghh-Md-Z8Q"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Game's list" id="sez-J0-xyh"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SPU-9Y-E1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="809" y="433"/>
+            <point key="canvasLocation" x="-212" y="384"/>
         </scene>
         <!--New Game View Controller - Creating new game-->
         <scene sceneID="LhH-kY-RZ5">
             <objects>
                 <viewController id="VHk-TG-yfd" customClass="NewGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZB-Or-bpq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="1500"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="1500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6wY-L4-tq7">
@@ -607,12 +578,208 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="809" y="-1216"/>
         </scene>
+        <!--Games View Controller-->
+        <scene sceneID="Akb-k3-FMu">
+            <objects>
+                <viewController id="aEt-SU-YGL" customClass="GamesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tg3-UU-kYB">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H84-6a-KBz" customClass="FlatButton">
+                                <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.78696556959999997" green="1" blue="0.36064161109999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VHk-TG-yfd" kind="modal" id="GcB-2E-I2o"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="R2q-Lw-XR2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Game's list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xha-E7-O9b">
+                                        <rect key="frame" x="113" y="11" width="126" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ios-retina-title-bar-icon.png" id="pEI-yO-Rwa">
+                                        <rect key="frame" x="8" y="8" width="24" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="bfN-md-6mR">
+                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zaR-rR-msR" customClass="FlatButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="My">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="My:" destination="aEt-SU-YGL" eventType="touchUpInside" id="unV-ff-gH2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bLS-d3-QZd" customClass="FlatButton">
+                                        <rect key="frame" x="80" y="0.0" width="80" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Nearest">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Nearest:" destination="aEt-SU-YGL" eventType="touchUpInside" id="ehR-b9-QsQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4bR-Wg-v5V" customClass="FlatButton">
+                                        <rect key="frame" x="160" y="0.0" width="80" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Ended">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Ended:" destination="aEt-SU-YGL" eventType="touchUpInside" id="tEO-Rl-0U5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EO5-Bi-WE8" customClass="FlatButton">
+                                        <rect key="frame" x="240" y="0.0" width="80" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="All">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="All:" destination="aEt-SU-YGL" eventType="touchUpInside" id="3M6-Q5-YMr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="CyT-Oi-ZKj">
+                                <rect key="frame" x="0.0" y="417" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DnZ-hg-vK5" customClass="FlatButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="25" maxX="20" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="45" minY="5" maxX="35" maxY="20"/>
+                                        <state key="normal" title="Profile" image="gamesListProfile.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Profile:" destination="aEt-SU-YGL" eventType="touchUpInside" id="xIq-wH-40J"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rZa-LT-QRX" customClass="FlatButton">
+                                        <rect key="frame" x="107" y="0.0" width="106" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="25" maxX="20" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="45" minY="5" maxX="35" maxY="20"/>
+                                        <state key="normal" title="Game" image="GamesListGame.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Game:" destination="aEt-SU-YGL" eventType="touchUpInside" id="IG8-aL-B4S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NnU-r0-GIm" customClass="FlatButton">
+                                        <rect key="frame" x="213" y="0.0" width="108" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="25" maxX="20" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="45" minY="5" maxX="35" maxY="20"/>
+                                        <state key="normal" title="Settings" image="GamesListSettings.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Settings:" destination="aEt-SU-YGL" eventType="touchUpInside" id="e9Y-BS-xEN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="su6-Lq-Yau">
+                                <rect key="frame" x="0.0" y="88" width="320" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="PoV-Tr-x1f" customClass="GamesViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="83"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="p18-mr-jpE"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="AllButton" destination="EO5-Bi-WE8" id="fE1-fC-VlL"/>
+                        <outlet property="CreateNewGameButton" destination="H84-6a-KBz" id="bcq-ly-bR6"/>
+                        <outlet property="EndedButton" destination="4bR-Wg-v5V" id="FYd-gl-EzW"/>
+                        <outlet property="GameButton" destination="rZa-LT-QRX" id="et2-Rt-uOW"/>
+                        <outlet property="MyButton" destination="zaR-rR-msR" id="wVe-AI-z1g"/>
+                        <outlet property="NearestButton" destination="bLS-d3-QZd" id="6OD-wc-VFE"/>
+                        <outlet property="ProfileButton" destination="DnZ-hg-vK5" id="wgO-sO-CXQ"/>
+                        <outlet property="SettingsButton" destination="NnU-r0-GIm" id="AX5-Kc-VMQ"/>
+                        <outlet property="topBar" destination="R2q-Lw-XR2" id="6k3-w8-7RF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VSY-jV-h1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="-366"/>
+        </scene>
         <!--My Games View Controller - My games-->
         <scene sceneID="WJD-Wy-82C">
             <objects>
                 <tableViewController id="ZTr-7S-aQl" customClass="MyGamesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aue-nb-94z">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -635,7 +802,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfT-SA-ijv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="1183"/>
+            <point key="canvasLocation" x="220" y="905"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qhe-ut-4VE">
@@ -674,17 +841,45 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5G-xq-DIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-672" y="-366"/>
+            <point key="canvasLocation" x="-758" y="384"/>
         </scene>
     </scenes>
     <resources>
+        <image name="GamesListGame.png" width="49" height="41"/>
+        <image name="GamesListSettings.png" width="44" height="43"/>
+        <image name="gamesListProfile.png" width="48" height="45"/>
         <image name="ios-login-ico.png" width="25" height="24"/>
         <image name="ios-pass-ico.png" width="25" height="24"/>
+        <image name="ios-retina-title-bar-icon.png" width="49" height="53"/>
         <image name="ios-title-bar-icon.png" width="24" height="27"/>
     </resources>
     <classes>
         <class className="FlatButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlatButton.h"/>
+        </class>
+        <class className="GamesViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewCell.h"/>
+        </class>
+        <class className="GamesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="All:"/>
+                <relationship kind="action" name="Ended:"/>
+                <relationship kind="action" name="Game:"/>
+                <relationship kind="action" name="My:"/>
+                <relationship kind="action" name="Nearest:"/>
+                <relationship kind="action" name="Profile:"/>
+                <relationship kind="action" name="Settings:"/>
+                <relationship kind="outlet" name="AllButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="CreateNewGameButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="EndedButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="GameButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="MyButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="NearestButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="ProfileButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="SettingsButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="topBar" candidateClass="UIView"/>
+            </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
@@ -758,4 +953,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="DVe-xl-NbQ"/>
+        <segue reference="GcB-2E-I2o"/>
+    </inferredMetricsTieBreakers>
 </document>

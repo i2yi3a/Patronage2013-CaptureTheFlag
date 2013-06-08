@@ -1,5 +1,5 @@
 //
-//  GamesViewController.h
+//  GamesViewCell.h
 //  CaptureTheFlag
 //
 //  Created by Konrad Gnoinski on 08.06.2013.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GamesViewController : UIViewController{
-}
+@interface GamesViewCell : UITableViewCell
 
 @end

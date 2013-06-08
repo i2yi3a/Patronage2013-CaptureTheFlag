@@ -58,7 +58,6 @@
 		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
 		C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A87AB21759D2D300C1A220 /* FlatButton.m */; };
 		C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5D1CA175F343100743D92 /* CTFGame.m */; };
-		C8B5D1D0175F343200743D92 /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5D1CC175F343100743D92 /* GamesViewController.m */; };
 		C8B5D1D1175F343200743D92 /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5D1CE175F343200743D92 /* NewGameViewController.m */; };
 		C8B5D1E0175F34C100743D92 /* BLstream.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1D2175F34C000743D92 /* BLstream.png */; };
 		C8B5D1E1175F34C100743D92 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1D3175F34C100743D92 /* Icon-Small-50.png */; };
@@ -80,6 +79,11 @@
 		C8B5D1F5175F36F600743D92 /* pinRed.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1F4175F36F600743D92 /* pinRed.png */; };
 		C8C840B1173F7CB400A5D656 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C840B0173F7CB400A5D656 /* MapKit.framework */; };
 		C8C840B3173F899C00A5D656 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C840B2173F899C00A5D656 /* CoreLocation.framework */; };
+		C8D7CA0617631E0D002B980D /* GamesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7CA0517631E0D002B980D /* GamesViewCell.m */; };
+		C8D7CA0917631E60002B980D /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7CA0817631E60002B980D /* GamesViewController.m */; };
+		C8D7CA0B17633498002B980D /* gamesListProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0A17633498002B980D /* gamesListProfile.png */; };
+		C8D7CA0E17633A2A002B980D /* GamesListGame.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0C17633A2A002B980D /* GamesListGame.png */; };
+		C8D7CA0F17633A2A002B980D /* GamesListSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0D17633A2A002B980D /* GamesListSettings.png */; };
 		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
 /* End PBXBuildFile section */
 
@@ -160,8 +164,6 @@
 		C8A87AB21759D2D300C1A220 /* FlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		C8B5D1C9175F343100743D92 /* CTFGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFGame.h; sourceTree = "<group>"; };
 		C8B5D1CA175F343100743D92 /* CTFGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFGame.m; sourceTree = "<group>"; };
-		C8B5D1CB175F343100743D92 /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
-		C8B5D1CC175F343100743D92 /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
 		C8B5D1CD175F343200743D92 /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		C8B5D1CE175F343200743D92 /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		C8B5D1D2175F34C000743D92 /* BLstream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BLstream.png; path = gfx/BLstream.png; sourceTree = "<group>"; };
@@ -184,6 +186,13 @@
 		C8B5D1F4175F36F600743D92 /* pinRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinRed.png; path = gfx/pinRed.png; sourceTree = "<group>"; };
 		C8C840B0173F7CB400A5D656 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8C840B2173F899C00A5D656 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C8D7CA0417631E0D002B980D /* GamesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewCell.h; sourceTree = "<group>"; };
+		C8D7CA0517631E0D002B980D /* GamesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewCell.m; sourceTree = "<group>"; };
+		C8D7CA0717631E60002B980D /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
+		C8D7CA0817631E60002B980D /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
+		C8D7CA0A17633498002B980D /* gamesListProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gamesListProfile.png; path = gfx/gamesListProfile.png; sourceTree = "<group>"; };
+		C8D7CA0C17633A2A002B980D /* GamesListGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListGame.png; path = gfx/GamesListGame.png; sourceTree = "<group>"; };
+		C8D7CA0D17633A2A002B980D /* GamesListSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListSettings.png; path = gfx/GamesListSettings.png; sourceTree = "<group>"; };
 		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
 		E765073C171C744A00799648 /* ShowInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowInformation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,8 +284,10 @@
 				C81313B7172D35DD000172BF /* MainTableViewCell.m */,
 				C8B5D1CD175F343200743D92 /* NewGameViewController.h */,
 				C8B5D1CE175F343200743D92 /* NewGameViewController.m */,
-				C8B5D1CB175F343100743D92 /* GamesViewController.h */,
-				C8B5D1CC175F343100743D92 /* GamesViewController.m */,
+				C8D7CA0717631E60002B980D /* GamesViewController.h */,
+				C8D7CA0817631E60002B980D /* GamesViewController.m */,
+				C8D7CA0417631E0D002B980D /* GamesViewCell.h */,
+				C8D7CA0517631E0D002B980D /* GamesViewCell.m */,
 				C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */,
 				C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */,
 				234A9D1A174A8A4100D6D5AB /* UIColor+customColors.h */,
@@ -295,8 +306,11 @@
 		233035D3170DAAC9002E1A92 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8D7CA0C17633A2A002B980D /* GamesListGame.png */,
+				C8D7CA0D17633A2A002B980D /* GamesListSettings.png */,
 				C8B5D1D2175F34C000743D92 /* BLstream.png */,
 				C8B5D1D3175F34C100743D92 /* Icon-Small-50.png */,
+				C8D7CA0A17633498002B980D /* gamesListProfile.png */,
 				C8B5D1D4175F34C100743D92 /* Icon-Small.png */,
 				C8B5D1D5175F34C100743D92 /* Icon-Small@2x.png */,
 				C8B5D1D6175F34C100743D92 /* Icon.png */,
@@ -478,6 +492,9 @@
 				C8B5D1F2175F35B900743D92 /* Default.png in Resources */,
 				C8B5D1F3175F35B900743D92 /* Default@2x.png in Resources */,
 				C8B5D1F5175F36F600743D92 /* pinRed.png in Resources */,
+				C8D7CA0B17633498002B980D /* gamesListProfile.png in Resources */,
+				C8D7CA0E17633A2A002B980D /* GamesListGame.png in Resources */,
+				C8D7CA0F17633A2A002B980D /* GamesListSettings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,8 +552,9 @@
 				234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 				C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */,
 				C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */,
-				C8B5D1D0175F343200743D92 /* GamesViewController.m in Sources */,
 				C8B5D1D1175F343200743D92 /* NewGameViewController.m in Sources */,
+				C8D7CA0617631E0D002B980D /* GamesViewCell.m in Sources */,
+				C8D7CA0917631E60002B980D /* GamesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

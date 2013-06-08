@@ -136,6 +136,7 @@ int counter;
                               ABCreateStringWithAddressDictionary(addressDictionary, NO);
                               self.addres = [address
                                          stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+                              counter=0;
                           }
                           else
                           {
