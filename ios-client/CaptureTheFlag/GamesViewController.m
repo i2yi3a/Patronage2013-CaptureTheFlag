@@ -7,10 +7,15 @@
 //
 
 #import "GamesViewController.h"
+#import "GamesViewCell.h"
 
 @interface GamesViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *table;
+
 @property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIView *SettingsView;
 @property (weak, nonatomic) IBOutlet FlatButton *CreateNewGameButton;
 @property (weak, nonatomic) IBOutlet FlatButton *MyButton;
 @property (weak, nonatomic) IBOutlet FlatButton *NearestButton;
@@ -19,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet FlatButton *ProfileButton;
 @property (weak, nonatomic) IBOutlet FlatButton *GameButton;
 @property (weak, nonatomic) IBOutlet FlatButton *SettingsButton;
+@property (weak, nonatomic) IBOutlet FlatButton *LogoutButton;
 
 - (IBAction)My:(id)sender;
 - (IBAction)Nearest:(id)sender;
@@ -27,6 +33,7 @@
 - (IBAction)Profile:(id)sender;
 - (IBAction)Game:(id)sender;
 - (IBAction)Settings:(id)sender;
+- (IBAction)Logout:(id)sender;
 
 
 @end
@@ -36,6 +43,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.LoginViewCellLabels= [[NSArray alloc]
+                               initWithObjects:@"login",
+                               @"password", nil];
+    self.LoginViewCellImages = [[NSArray alloc]
+                                initWithObjects:@"BLstream.png",
+                                @"BLstream.png", nil];
      self.view.backgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
     _CreateNewGameButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
     
@@ -60,6 +73,8 @@
     
     _SettingsButton.buttonBackgroundColor = [UIColor ctfTabColor];
     _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    
+    _SettingsView.alpha=0;
 
 
 	// Do any additional setup after loading the view.
@@ -148,7 +163,8 @@
     
     _SettingsButton.buttonBackgroundColor = [UIColor ctfTabColor];
     _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
-    
+    _mainView.alpha=1;
+    _SettingsView.alpha=0;
 }
 
 - (IBAction)Settings:(id)sender{
@@ -160,9 +176,56 @@
     
     _SettingsButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
     _SettingsButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _mainView.alpha=0;
+    _SettingsView.alpha=1;
+    
+    _LogoutButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+    _LogoutButton.buttonHighlightedBackgroundColor = [UIColor ctfNormalButtonAndLabelCarrotColor];
+
     
 }
 
+- (IBAction)Logout:(id)sender{
+    [[NetworkEngine getInstance] logout:^(NSObject *object) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.LoginViewCellLabels count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"GamesCell";
+    
+    GamesViewCell *cell = [tableView
+                           dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[GamesViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:CellIdentifier];
+    }
+    // Configure the cell...
+    cell.LoginViewCellLabel.text = [self.LoginViewCellLabels
+                                             objectAtIndex: [indexPath row]];
+    
+    UIImage *menuImage = [UIImage imageNamed:
+                          [self.LoginViewCellImages objectAtIndex: [indexPath row]]];
+    
+    cell.LoginViewCellImage.image = menuImage;
+    
+    return cell;
+}
 
 
 - (void)viewDidUnload {
@@ -174,6 +237,8 @@
     [self setGameButton:nil];
     [self setProfileButton:nil];
     [self setSettingsButton:nil];
+    [self setCreateNewGameButton:nil];
+    [self setLogoutButton:nil];
     [super viewDidUnload];
 }
 

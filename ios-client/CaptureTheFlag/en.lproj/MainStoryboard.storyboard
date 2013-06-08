@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="tEW-dO-ufz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -67,7 +67,7 @@
                                 <rect key="frame" x="88" y="250" width="188" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="hsx-5d-GQE"/>
                                 </connections>
@@ -289,59 +289,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C6w-B4-XOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="320" y="-1389"/>
-        </scene>
-        <!--Main View Controller - main menu-->
-        <scene sceneID="wLK-o8-jdr">
-            <objects>
-                <tableViewController id="XH6-7E-n3P" customClass="MainViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="p2D-HJ-n9y">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="MainViewCell" rowHeight="83" id="z5B-rF-ZMr" customClass="MainTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="82"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="gXl-9f-KDQ">
-                                            <rect key="frame" x="20" y="3" width="79" height="79"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vca-uh-b3F">
-                                            <rect key="frame" x="107" y="23" width="193" height="39"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="mainViewControllerCellImage" destination="gXl-9f-KDQ" id="Eja-y9-bbJ"/>
-                                    <outlet property="mainViewControllerCellLabel" destination="Vca-uh-b3F" id="6Gr-BZ-Ytd"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="XH6-7E-n3P" id="O9X-TL-HBi"/>
-                            <outlet property="delegate" destination="XH6-7E-n3P" id="gGG-QU-Mzt"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="main menu" id="N34-mq-cAi"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <segue destination="VHk-TG-yfd" kind="push" identifier="segueToNewGame" id="seA-nD-wg3"/>
-                        <segue destination="ZTr-7S-aQl" kind="push" identifier="segueToMyGames" id="AAp-yr-TRy"/>
-                        <segue destination="aEt-SU-YGL" kind="push" identifier="segueToGames" id="0Nd-f9-ocy"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XjW-FD-DZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-212" y="384"/>
         </scene>
         <!--New Game View Controller - Creating new game-->
         <scene sceneID="LhH-kY-RZ5">
@@ -741,17 +688,67 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="PoV-Tr-x1f" customClass="GamesViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="GamesCell" id="PoV-Tr-x1f" customClass="GamesViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6FW-ZE-s3d">
+                                                    <rect key="frame" x="20" y="0.0" width="204" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fQT-PF-IKt">
+                                                    <rect key="frame" x="20" y="29" width="41" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="LoginViewCellImage" destination="fQT-PF-IKt" id="WNh-8O-sMt"/>
+                                            <outlet property="LoginViewCellLabel" destination="6FW-ZE-s3d" id="tjO-Qz-HQ4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aEt-SU-YGL" id="eLv-BQ-jug"/>
+                                    <outlet property="delegate" destination="aEt-SU-YGL" id="u2O-ZA-zO2"/>
+                                </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" id="xJ3-eN-xAN">
+                                <rect key="frame" x="0.0" y="44" width="320" height="374"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Do you want to logout?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="abF-N7-uIk">
+                                        <rect key="frame" x="58" y="54" width="205" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3vs-KD-Qt7" customClass="FlatButton">
+                                        <rect key="frame" x="20" y="121" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Logout:" destination="aEt-SU-YGL" eventType="touchUpInside" id="NCb-2c-uai"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -763,46 +760,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="CreateNewGameButton" destination="H84-6a-KBz" id="bcq-ly-bR6"/>
                         <outlet property="EndedButton" destination="4bR-Wg-v5V" id="FYd-gl-EzW"/>
                         <outlet property="GameButton" destination="rZa-LT-QRX" id="et2-Rt-uOW"/>
+                        <outlet property="LogoutButton" destination="3vs-KD-Qt7" id="YwO-5d-wdT"/>
                         <outlet property="MyButton" destination="zaR-rR-msR" id="wVe-AI-z1g"/>
                         <outlet property="NearestButton" destination="bLS-d3-QZd" id="6OD-wc-VFE"/>
                         <outlet property="ProfileButton" destination="DnZ-hg-vK5" id="wgO-sO-CXQ"/>
                         <outlet property="SettingsButton" destination="NnU-r0-GIm" id="AX5-Kc-VMQ"/>
+                        <outlet property="SettingsView" destination="xJ3-eN-xAN" id="Ngm-aK-U8D"/>
+                        <outlet property="mainView" destination="su6-Lq-Yau" id="MyQ-kb-q61"/>
+                        <outlet property="table" destination="su6-Lq-Yau" id="z6C-8W-8rj"/>
                         <outlet property="topBar" destination="R2q-Lw-XR2" id="6k3-w8-7RF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSY-jV-h1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="220" y="-366"/>
-        </scene>
-        <!--My Games View Controller - My games-->
-        <scene sceneID="WJD-Wy-82C">
-            <objects>
-                <tableViewController id="ZTr-7S-aQl" customClass="MyGamesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aue-nb-94z">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="h0O-Ne-Ka1">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ZTr-7S-aQl" id="urh-y9-glg"/>
-                            <outlet property="delegate" destination="ZTr-7S-aQl" id="dCk-gF-myD"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="My games" id="t1V-B8-8WZ"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TfT-SA-ijv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="220" y="905"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qhe-ut-4VE">
@@ -823,26 +794,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-785" y="-1389"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="s17-Bq-j8W">
-            <objects>
-                <navigationController id="KUj-m3-CXs" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="eSu-hq-uop"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vn9-Da-Snf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XH6-7E-n3P" kind="relationship" relationship="rootViewController" id="O7t-rg-tee"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q5G-xq-DIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-758" y="384"/>
-        </scene>
     </scenes>
     <resources>
         <image name="GamesListGame.png" width="49" height="41"/>
@@ -859,6 +810,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </class>
         <class className="GamesViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LoginViewCellImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="LoginViewCellLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="GamesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewController.h"/>
@@ -866,6 +821,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="All:"/>
                 <relationship kind="action" name="Ended:"/>
                 <relationship kind="action" name="Game:"/>
+                <relationship kind="action" name="Logout:"/>
                 <relationship kind="action" name="My:"/>
                 <relationship kind="action" name="Nearest:"/>
                 <relationship kind="action" name="Profile:"/>
@@ -874,10 +830,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="CreateNewGameButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="EndedButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="GameButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="LogoutButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="MyButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="NearestButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="ProfileButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="SettingsButton" candidateClass="FlatButton"/>
+                <relationship kind="outlet" name="SettingsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="topBar" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -896,19 +856,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="topBar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="userEmailField" candidateClass="UITextField"/>
             </relationships>
-        </class>
-        <class className="MainTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mainViewControllerCellImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="mainViewControllerCellLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="MyGamesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyGamesViewController.h"/>
         </class>
         <class className="NewGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGameViewController.h"/>
@@ -953,8 +900,4 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="DVe-xl-NbQ"/>
-        <segue reference="GcB-2E-I2o"/>
-    </inferredMetricsTieBreakers>
 </document>

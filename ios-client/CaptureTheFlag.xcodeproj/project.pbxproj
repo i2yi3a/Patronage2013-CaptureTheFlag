@@ -52,8 +52,6 @@
 		23D22901171353F700073C0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228FF171353E900073C0B /* SystemConfiguration.framework */; };
 		23E2A685171C7F3100F8BD10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23E2A687171C7F3100F8BD10 /* Localizable.strings */; };
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
-		C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C81313B7172D35DD000172BF /* MainTableViewCell.m */; };
-		C881A483171AA52E00C7F09E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C881A482171AA52E00C7F09E /* MainViewController.m */; };
 		C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889D840175FE1DB008FC092 /* AddressBookUI.framework */; };
 		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
 		C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A87AB21759D2D300C1A220 /* FlatButton.m */; };
@@ -84,6 +82,8 @@
 		C8D7CA0B17633498002B980D /* gamesListProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0A17633498002B980D /* gamesListProfile.png */; };
 		C8D7CA0E17633A2A002B980D /* GamesListGame.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0C17633A2A002B980D /* GamesListGame.png */; };
 		C8D7CA0F17633A2A002B980D /* GamesListSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA0D17633A2A002B980D /* GamesListSettings.png */; };
+		C8D7CA1117637069002B980D /* GamesListBackupLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA1017637069002B980D /* GamesListBackupLogo.png */; };
+		C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA1217637089002B980D /* GamesListCompas.png */; };
 		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
 /* End PBXBuildFile section */
 
@@ -153,10 +153,6 @@
 		C80556761718799B00C43A1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		C80556771718991A00C43A1C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		C81313B6172D35DD000172BF /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
-		C81313B7172D35DD000172BF /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
-		C881A481171AA52E00C7F09E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		C881A482171AA52E00C7F09E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C889D840175FE1DB008FC092 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
 		C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
@@ -193,6 +189,8 @@
 		C8D7CA0A17633498002B980D /* gamesListProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gamesListProfile.png; path = gfx/gamesListProfile.png; sourceTree = "<group>"; };
 		C8D7CA0C17633A2A002B980D /* GamesListGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListGame.png; path = gfx/GamesListGame.png; sourceTree = "<group>"; };
 		C8D7CA0D17633A2A002B980D /* GamesListSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListSettings.png; path = gfx/GamesListSettings.png; sourceTree = "<group>"; };
+		C8D7CA1017637069002B980D /* GamesListBackupLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListBackupLogo.png; path = gfx/GamesListBackupLogo.png; sourceTree = "<group>"; };
+		C8D7CA1217637089002B980D /* GamesListCompas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListCompas.png; path = gfx/GamesListCompas.png; sourceTree = "<group>"; };
 		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
 		E765073C171C744A00799648 /* ShowInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowInformation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,10 +276,6 @@
 				C80556781718991A00C43A1C /* LoginViewController.m */,
 				C80556761718799B00C43A1C /* RegisterViewController.h */,
 				233035E8170DAAC9002E1A92 /* RegisterViewController.m */,
-				C881A481171AA52E00C7F09E /* MainViewController.h */,
-				C881A482171AA52E00C7F09E /* MainViewController.m */,
-				C81313B6172D35DD000172BF /* MainTableViewCell.h */,
-				C81313B7172D35DD000172BF /* MainTableViewCell.m */,
 				C8B5D1CD175F343200743D92 /* NewGameViewController.h */,
 				C8B5D1CE175F343200743D92 /* NewGameViewController.m */,
 				C8D7CA0717631E60002B980D /* GamesViewController.h */,
@@ -306,11 +300,13 @@
 		233035D3170DAAC9002E1A92 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8D7CA1017637069002B980D /* GamesListBackupLogo.png */,
 				C8D7CA0C17633A2A002B980D /* GamesListGame.png */,
 				C8D7CA0D17633A2A002B980D /* GamesListSettings.png */,
 				C8B5D1D2175F34C000743D92 /* BLstream.png */,
 				C8B5D1D3175F34C100743D92 /* Icon-Small-50.png */,
 				C8D7CA0A17633498002B980D /* gamesListProfile.png */,
+				C8D7CA1217637089002B980D /* GamesListCompas.png */,
 				C8B5D1D4175F34C100743D92 /* Icon-Small.png */,
 				C8B5D1D5175F34C100743D92 /* Icon-Small@2x.png */,
 				C8B5D1D6175F34C100743D92 /* Icon.png */,
@@ -495,6 +491,8 @@
 				C8D7CA0B17633498002B980D /* gamesListProfile.png in Resources */,
 				C8D7CA0E17633A2A002B980D /* GamesListGame.png in Resources */,
 				C8D7CA0F17633A2A002B980D /* GamesListSettings.png in Resources */,
+				C8D7CA1117637069002B980D /* GamesListBackupLogo.png in Resources */,
+				C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,9 +543,7 @@
 				23D228F317134EE900073C0B /* NetworkEngine.m in Sources */,
 				23D228F7171352CF00073C0B /* NSError+Description.m in Sources */,
 				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
-				C881A483171AA52E00C7F09E /* MainViewController.m in Sources */,
 				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
-				C81313B8172D35DD000172BF /* MainTableViewCell.m in Sources */,
 				C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */,
 				234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 				C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */,

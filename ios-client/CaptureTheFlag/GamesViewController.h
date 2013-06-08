@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GamesViewController : UIViewController{
+@interface GamesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
 }
+
+@property (nonatomic, strong) NSArray *LoginViewCellImages;
+@property (nonatomic, strong) NSArray *LoginViewCellLabels;
+
 
 @end

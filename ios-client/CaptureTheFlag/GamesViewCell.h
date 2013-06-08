@@ -10,4 +10,7 @@
 
 @interface GamesViewCell : UITableViewCell
 
+@property (nonatomic, strong) IBOutlet UIImageView *LoginViewCellImage;
+@property (nonatomic, strong) IBOutlet UILabel *LoginViewCellLabel;
+
 @end
