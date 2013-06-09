@@ -9,6 +9,34 @@ import com.google.android.gms.maps.model.LatLng;
  * @author Piotr Marczycki
  */
 public class GameModel {
+	private GameModelInfo info;
+	private List<BaseModel> markers;
+
+	public GameModel(GameModelInfo info, List<BaseModel> markers) {
+		this.info = info;
+		this.markers = markers;
+	}
+
+	public GameModel() {
+	}
+
+	public GameModelInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(GameModelInfo info) {
+		this.info = info;
+	}
+
+	public List<BaseModel> getMarkers() {
+		return markers;
+	}
+
+	public void setMarkers(List<BaseModel> markers) {
+		this.markers = markers;
+	}
+
+	// ------------------------------------ deprecated:
 	private LatLng gameCenter;
 	private boolean gameStarted;
 	private String id;
@@ -16,9 +44,6 @@ public class GameModel {
 	private List<PlayerModel> players;
 	private int redTeamScore;
 	private int blueTeamScore;
-
-	public GameModel() {
-	}
 
 	public GameModel(LatLng gameCenter, boolean gameStarted, String id, Date timestamp, List<PlayerModel> players, int redTeamScore, int blueTeamScore) {
 		this.gameCenter = gameCenter;
@@ -85,4 +110,5 @@ public class GameModel {
 	public void setBlueTeamScore(int blueTeamScore) {
 		this.blueTeamScore = blueTeamScore;
 	}
+	// ^------------------------------------ deprecated.
 }

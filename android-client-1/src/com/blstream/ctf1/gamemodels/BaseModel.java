@@ -8,6 +8,15 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class BaseModel extends GameMapMarker implements GameEntity {
 	private LatLng latLng;
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public BaseModel() {
 		super(new LatLng(0.0, 0.0));
