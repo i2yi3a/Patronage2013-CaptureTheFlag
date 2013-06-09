@@ -479,7 +479,6 @@ public class GameServices extends Services {
 					game.setStatus(jsonObject.getString(STATUS));
 					game.setOwner(jsonObject.getString(OWNER));
 					
-					Log.d("dljkfghkdfngdklgb", jsonObject.getString(STATUS));
 
 					JSONObject jsonObjectLocalization = jsonObject.getJSONObject(LOCALIZATION);
 

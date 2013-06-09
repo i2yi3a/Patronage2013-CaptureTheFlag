@@ -24,6 +24,8 @@
     <string name="login_progress">Łączenie z serverem</string>
     <string name="login_failed">Logowanie nie udane</string>
     <string name="login_successful">Logowanie udane</string>
+    <string name="logout">Wyloguj</string>
+    <string name="logout_succesful">Wylogowano</string>
     <string name="no_connection">Brak połączenia z serverem. Sprawdź swoje połączenie</string>
     <string name="no_internet_connection">Brak połączenia z internetem</string>
     <string name="server_error">Serwer zwrócił błąd</string>
