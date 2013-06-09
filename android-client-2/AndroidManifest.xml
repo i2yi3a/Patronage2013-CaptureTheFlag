@@ -61,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blstream.ctf2.activity.game.GameListActivity"
+            android:name="com.blstream.ctf2.activity.game.list.GameListActivity"
             android:label="@string/gamelist"
             android:screenOrientation="portrait" >
             <intent-filter>

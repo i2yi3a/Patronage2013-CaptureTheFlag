@@ -65,6 +65,10 @@
     <string name="game_players_list">Players list</string>
     <string name="game_no_players">The game does not yet have players</string>
     <string name="game_sign_in">You joined the game!!</string>
+    <string name="game_list_my">My</string>
+    <string name="game_list_nearest">Nearest</string>
+    <string name="game_list_Completed">Completed</string>
+    <string name="game_list_all">All</string>
     <string name="team_red">Red team</string>
     <string name="team_blue">Blue Team</string>
     <string name="team_base_localization">Base localization</string>

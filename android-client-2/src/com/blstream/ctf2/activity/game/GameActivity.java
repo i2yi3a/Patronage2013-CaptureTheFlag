@@ -320,22 +320,22 @@ public class GameActivity extends FragmentActivity {
 		}
 
 		@Override
-		public void onTick(long millisUntilFinished) {
+		public void onTick(long millisUntilCompleted) {
 
 			StringBuilder time = new StringBuilder();
 
 			time.setLength(0);
-			if (millisUntilFinished > DateUtils.DAY_IN_MILLIS) {
-				long count = millisUntilFinished / DateUtils.DAY_IN_MILLIS;
+			if (millisUntilCompleted > DateUtils.DAY_IN_MILLIS) {
+				long count = millisUntilCompleted / DateUtils.DAY_IN_MILLIS;
 				if (count > 1)
 					time.append(count).append(" dni ");
 				else
 					time.append(count).append(" dzień ");
 
-				millisUntilFinished %= DateUtils.DAY_IN_MILLIS;
+				millisUntilCompleted %= DateUtils.DAY_IN_MILLIS;
 			}
 
-			time.append(DateUtils.formatElapsedTime(Math.round(millisUntilFinished / 1000d)));
+			time.append(DateUtils.formatElapsedTime(Math.round(millisUntilCompleted / 1000d)));
 
 			mInfoTextView.setText("Jesteś w obszarze rozgrywki czekaj na rozpoczęcie rozgrywki - czas do rozpoczęcia " + time.toString());
 

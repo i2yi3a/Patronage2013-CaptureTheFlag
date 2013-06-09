@@ -13,6 +13,19 @@ public class Constants {
 	public final static String URI_PLAYERS_ADD = "/api/players/add";
 	public final static String URI_LOGIN = "/oauth/token";
 	public final static String URI_GAMES = "/api/secured/games";
+	
+	public final static String GAME_STATUS_NEW = "NEW";
+	public final static String GAME_STATUS_IN_PROGRESS = "IN_PROGRESS";
+	public final static String GAME_STATUS_COMPLETED = "COMPLETED";
+	
+	public final static String URI_GAMES_ALL=URI_GAMES;
+	public final static String URI_GAMES_MY=URI_GAMES+"?myGamesOnly=true";
+	public final static String URI_GAMES_COMPLETED=URI_GAMES+"?status="+GAME_STATUS_COMPLETED;
+	public final static String URI_GAMES_NEW=URI_GAMES+"?status="+GAME_STATUS_NEW;
+	public final static String URI_GAMES_IN_PROGRESS=URI_GAMES+"?status="+GAME_STATUS_IN_PROGRESS;
+	public final static String URI_GAMES_NEAREST=URI_GAMES+"/nearest";
+
+	
 	public final static String PLAYERS = "/players";
 	public final static String SIGN_IN = "/signIn";
 

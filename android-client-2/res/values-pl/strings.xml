@@ -58,6 +58,10 @@
     <string name="game_players_name">Gracze</string>
     <string name="game_players_list">Lista graczy</string>
     <string name="game_no_players">Gra nie posiada jeszcze graczy</string>
+     <string name="game_list_my">Moje</string>
+    <string name="game_list_nearest">Najbliższe</string>
+    <string name="game_list_Completed">Zakończone</string>
+    <string name="game_list_all">Wszystkie</string>
     <string name="team_red">Drużyna Red</string>
     <string name="team_blue">Drużyna Blue</string>
     <string name="team_base_localization">Lokalizacja bazy</string>

@@ -15,6 +15,7 @@ public class GameDetails extends Game implements Serializable {
 	private String timeStart;
 	private Integer pointsMax;
 	private Integer playersMax;
+	private Integer playersCount;
 	private Team teamRed;
 	private Team teamBlue;
 
@@ -64,6 +65,14 @@ public class GameDetails extends Game implements Serializable {
 
 	public void setPlayersMax(Integer playersMax) {
 		this.playersMax = playersMax;
+	}
+
+	public Integer getPlayersCount() {
+		return playersCount;
+	}
+
+	public void setPlayersCount(Integer playersCount) {
+		this.playersCount = playersCount;
 	}
 
 	public Team getTeamRed() {

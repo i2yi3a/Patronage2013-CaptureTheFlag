@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,12 +24,13 @@ import android.widget.Toast;
 import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.activity.game.GameDetailsActivity;
-import com.blstream.ctf2.activity.game.GameListActivity;
+import com.blstream.ctf2.activity.game.list.GameListBaseActivity;
 import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.domain.GameLocalization;
 import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.domain.Team;
-import com.blstream.ctf2.storage.entity.Game;
+import com.blstream.ctf2.exception.CtfException;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * 
@@ -45,6 +47,7 @@ public class GameServices extends Services {
 	public final static String TIME_START = "time_start";
 	public final static String POINTS_MAX = "points_max";
 	public final static String PLAYERS_MAX = "players_max";
+	public final static String PLAYERS_COUNT = "players_count";
 	public final static String LOCALIZATION = "localization";
 	public final static String LAT = "latitude";
 	public final static String LNG = "longitude";
@@ -66,9 +69,28 @@ public class GameServices extends Services {
 		Log.i("my token ", this.playerToken);
 	}
 
-	public void getGames(GameListActivity gameListActivity) {
-		GetGames getGamesTask = new GetGames(gameListActivity);
+	public void getAllGames(GameListBaseActivity fragment) {
+		GetGames getGamesTask = new GetGames(fragment, Constants.URI_GAMES_ALL);
 		getGamesTask.execute("");
+	}
+
+	public void getMyGames(GameListBaseActivity fragment) {
+		GetGames getGamesTask = new GetGames(fragment, Constants.URI_GAMES_MY);
+		getGamesTask.execute("");
+	}
+	public void getCompletedGames(GameListBaseActivity fragment) {
+		GetGames getGamesTask = new GetGames(fragment, Constants.URI_GAMES_COMPLETED);
+		getGamesTask.execute("");
+	}
+	
+	public void getNearestGames(GameListBaseActivity fragment) {
+		GpsServices mGpsServices = new GpsServices(fragment.getActivity());
+//		Location currentPosition;
+//		currentPosition = mGpsServices.getLocation();
+//		Log.d("sdfsfsf", Constants.URI_GAMES_NEAREST+"?latLng=53.4214,14.499708&range=10000&status="+Constants.GAME_STATUS_NEW);
+		GetGames getGamesTask = new GetGames(fragment, Constants.URI_GAMES_NEAREST+"?latLng=53.440864,14.539547&range=2000&status="+Constants.GAME_STATUS_NEW);
+		getGamesTask.execute("");
+			
 	}
 
 	public void getGameDetails(GameDetailsActivity gameDetailsTabsActivity, String mGameId) {
@@ -157,7 +179,7 @@ public class GameServices extends Services {
 				mProgressDialog.dismiss();
 			}
 		}
-		
+
 		public void fillGameDetailsActivity(GameDetails gameDetails) {
 			mGameDetailsTabsActivity.setGameDetails(gameDetails);
 		}
@@ -229,22 +251,156 @@ public class GameServices extends Services {
 	 * 
 	 * @author Marcin Sareło [mod] Rafal Tatol
 	 */
+	// private class GetGames extends AsyncTask<String, Void, JSONArray> {
+	//
+	// private GameListActivity mGameListActivity;
+	// private ProgressDialog mProgressDialog;
+	// private String URL;
+	//
+	// public GetGames(GameListActivity gameListActivity, String URL) {
+	// mGameListActivity = gameListActivity;
+	// }
+	//
+	// @Override
+	// protected void onPreExecute() {
+	// super.onPreExecute();
+	// mProgressDialog = new ProgressDialog(mGameListActivity);
+	// mProgressDialog.setIndeterminate(true);
+	// mProgressDialog.setCancelable(false);
+	// mProgressDialog.setMessage(mGameListActivity.getResources().getString(R.string.connecting));
+	// mProgressDialog.show();
+	// }
+	//
+	// @Override
+	// protected JSONArray doInBackground(String... params) {
+	// JSONArray result = null;
+	// String response = getGames();
+	// try {
+	// JSONObject jsonResponse = new JSONObject(response);
+	// result = jsonResponse.getJSONArray(GAMES);
+	// } catch (JSONException e) {
+	// e.printStackTrace();
+	// }
+	// return result;
+	// }
+	//
+	// @Override
+	// protected void onPostExecute(JSONArray jsonResult) {
+	// super.onPostExecute(jsonResult);
+	// try {
+	// if (jsonResult != null && jsonResult.length() > 0) {
+	// List<GameDetails> games = getGamesFromJson(jsonResult);
+	//
+	// fillGameListActivity(games);
+	// } else {
+	// AlertDialog.Builder builder = new AlertDialog.Builder(mGameListActivity);
+	// AlertDialog dialog;
+	// builder.setMessage(GAME_LIST_EMPTY);
+	// builder.setTitle(Constants.ERROR);
+	// builder.setPositiveButton(R.string.ok, null);
+	// dialog = builder.create();
+	// dialog.show();
+	// }
+	// } catch (Exception e) {
+	// Log.e("onPostExecute Exception", e.toString());
+	// }
+	// if (mProgressDialog.isShowing()) {
+	// mProgressDialog.dismiss();
+	// }
+	// }
+	//
+	// public void fillGameListActivity(List<GameDetails> games) {
+	// mGameListActivity.setGames(games);
+	// }
+	//
+	// public String getGames() {
+	// String result = null;
+	// try {
+	// List<Header> headers = new ArrayList<Header>();
+	// headers.add(new BasicHeader(Constants.ACCEPT,
+	// Constants.APPLICATION_JSON));
+	// headers.add(new BasicHeader(Constants.CONTENT_TYPE,
+	// Constants.APPLICATION_JSON));
+	// headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " +
+	// playerToken));
+	// HttpServices httpService = new HttpServices(mGameListActivity);
+	//
+	// result = httpService.getRequest(URL, headers);
+	// Log.i("getGames result: ", result);
+	// } catch (Exception e) {
+	// Log.e("getGames ERROR", e.toString());
+	// }
+	// return result;
+	// }
+	//
+	// public List<GameDetails> getGamesFromJson(JSONArray jsonArray) {
+	// List<GameDetails> games = new ArrayList<GameDetails>();
+	//
+	// for (int i = 0; i < jsonArray.length(); i++) {
+	// GameDetails game = new GameDetails();
+	// JSONObject jsonObject;
+	// try {
+	//
+	// jsonObject = jsonArray.getJSONObject(i);
+	// game.setId(jsonObject.getString(Constants.ID));
+	// game.setName(jsonObject.getString(NAME));
+	// game.setStatus(jsonObject.getString(STATUS));
+	// game.setOwner(jsonObject.getString(OWNER));
+	//
+	//
+	//
+	// JSONObject jsonObjectLocalization=jsonObject.getJSONObject(LOCALIZATION);
+	//
+	// GameLocalization gameLocalization = new GameLocalization();
+	// gameLocalization.setName(jsonObjectLocalization.getString(NAME));
+	// gameLocalization.setRadius(jsonObjectLocalization.getInt(RADIUS));
+	//
+	// JSONArray latLng= jsonObjectLocalization.getJSONArray(LAT_LNG);
+	//
+	// // String[] latLng=jsonObjectLocalization.getString(LAT_LNG).split(",");
+	// double lat=latLng.getDouble(0);
+	// double lng=latLng.getDouble(1);
+	//
+	// gameLocalization.setLat(lat);
+	// gameLocalization.setLng(lng);
+	//
+	// game.setLocalization(gameLocalization);
+	// game.setTimeStart(jsonObject.getString(TIME_START));
+	// game.setPlayersMax(jsonObject.getInt(PLAYERS_MAX));
+	// game.setPlayersCount(jsonObject.getInt(PLAYERS_COUNT));
+	//
+	// games.add(game);
+	// } catch (JSONException e) {
+	// Log.e("getGame ERROR", e.toString());
+	// }
+	// }
+	// return games;
+	// }
+	// }
+	//
+
+	/**
+	 * 
+	 * @author Marcin Sareło [mod] Rafal Tatol
+	 */
 	private class GetGames extends AsyncTask<String, Void, JSONArray> {
 
-		private GameListActivity mGameListActivity;
+		private GameListBaseActivity mFragment;
 		private ProgressDialog mProgressDialog;
+		private String mURL;
 
-		public GetGames(GameListActivity gameListActivity) {
-			mGameListActivity = gameListActivity;
+		public GetGames(GameListBaseActivity fragment, String URL) {
+			mFragment = fragment;
+			mURL = URL;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mProgressDialog = new ProgressDialog(mGameListActivity);
+			mProgressDialog = new ProgressDialog(mFragment.getActivity());
 			mProgressDialog.setIndeterminate(true);
 			mProgressDialog.setCancelable(false);
-			mProgressDialog.setMessage(mGameListActivity.getResources().getString(R.string.connecting));
+			mProgressDialog.setMessage(mFragment.getResources().getString(R.string.connecting));
 			mProgressDialog.show();
 		}
 
@@ -253,8 +409,11 @@ public class GameServices extends Services {
 			JSONArray result = null;
 			String response = getGames();
 			try {
-				JSONObject jsonResponse = new JSONObject(response);
-				result = jsonResponse.getJSONArray(GAMES);
+				if(response!=null){
+					JSONObject jsonResponse = new JSONObject(response);
+					result = jsonResponse.getJSONArray(GAMES);
+				}
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -266,10 +425,11 @@ public class GameServices extends Services {
 			super.onPostExecute(jsonResult);
 			try {
 				if (jsonResult != null && jsonResult.length() > 0) {
-					List<Game> games = getGamesFromJson(jsonResult);
+					List<GameDetails> games = getGamesFromJson(jsonResult);
+
 					fillGameListActivity(games);
 				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(mGameListActivity);
+					AlertDialog.Builder builder = new AlertDialog.Builder(mFragment.getActivity());
 					AlertDialog dialog;
 					builder.setMessage(GAME_LIST_EMPTY);
 					builder.setTitle(Constants.ERROR);
@@ -285,8 +445,8 @@ public class GameServices extends Services {
 			}
 		}
 
-		public void fillGameListActivity(List<Game> games) {
-			mGameListActivity.setGames(games);
+		public void fillGameListActivity(List<GameDetails> games) {
+			mFragment.setGames(games);
 		}
 
 		public String getGames() {
@@ -296,9 +456,8 @@ public class GameServices extends Services {
 				headers.add(new BasicHeader(Constants.ACCEPT, Constants.APPLICATION_JSON));
 				headers.add(new BasicHeader(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON));
 				headers.add(new BasicHeader(Constants.AUTHORIZATION, typeToken + " " + playerToken));
-				HttpServices httpService = new HttpServices(mGameListActivity);
-
-				result = httpService.getRequest(Constants.URI_GAMES, headers);
+				HttpServices httpService = new HttpServices(mFragment.getActivity());
+				result = httpService.getRequest(mURL, headers);
 				Log.i("getGames result: ", result);
 			} catch (Exception e) {
 				Log.e("getGames ERROR", e.toString());
@@ -306,19 +465,42 @@ public class GameServices extends Services {
 			return result;
 		}
 
-		public List<Game> getGamesFromJson(JSONArray jsonArray) {
-			List<Game> games = new ArrayList<Game>();
+		public List<GameDetails> getGamesFromJson(JSONArray jsonArray) {
+			List<GameDetails> games = new ArrayList<GameDetails>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
-				Game game = new Game();
+				GameDetails game = new GameDetails();
 				JSONObject jsonObject;
 				try {
+
 					jsonObject = jsonArray.getJSONObject(i);
 					game.setId(jsonObject.getString(Constants.ID));
 					game.setName(jsonObject.getString(NAME));
 					game.setStatus(jsonObject.getString(STATUS));
 					game.setOwner(jsonObject.getString(OWNER));
-					games.add(game); //TODO
+					
+					Log.d("dljkfghkdfngdklgb", jsonObject.getString(STATUS));
+
+					JSONObject jsonObjectLocalization = jsonObject.getJSONObject(LOCALIZATION);
+
+					GameLocalization gameLocalization = new GameLocalization();
+					gameLocalization.setName(jsonObjectLocalization.getString(NAME));
+					gameLocalization.setRadius(jsonObjectLocalization.getInt(RADIUS));
+
+					JSONArray latLng = jsonObjectLocalization.getJSONArray(LAT_LNG);
+
+					double lat = latLng.getDouble(0);
+					double lng = latLng.getDouble(1);
+
+					gameLocalization.setLat(lat);
+					gameLocalization.setLng(lng);
+
+					game.setLocalization(gameLocalization);
+					game.setTimeStart(jsonObject.getString(TIME_START));
+					game.setPlayersMax(jsonObject.getInt(PLAYERS_MAX));
+					game.setPlayersCount(jsonObject.getInt(PLAYERS_COUNT));
+
+					games.add(game);
 				} catch (JSONException e) {
 					Log.e("getGame ERROR", e.toString());
 				}
@@ -597,4 +779,6 @@ public class GameServices extends Services {
 			}
 		}
 	}
+
+
 }
