@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 
 namespace Ctf.ApplicationTools
 {
@@ -23,5 +25,23 @@ namespace Ctf.ApplicationTools
                   Math.Cos(lon2 - lon1)) * R;
             return Math.Round(d, 2);
         }
+
+        //Check if working properly
+        public async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 50, int maximumAge = 10, int timeout = 60)
+        {
+            return await Task.Run(async () =>
+            {
+                List<double> latLng = new List<double>();
+                Geolocator geolocator = new Geolocator();
+                geolocator.DesiredAccuracyInMeters = accuracyMeters;
+
+                Geoposition geoposition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));
+
+                latLng.Add(geoposition.Coordinate.Latitude);
+                latLng.Add(geoposition.Coordinate.Longitude);
+                return latLng;
+            });
+        }
+
     }
 }

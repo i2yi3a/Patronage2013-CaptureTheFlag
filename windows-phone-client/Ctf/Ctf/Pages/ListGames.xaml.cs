@@ -39,7 +39,9 @@ namespace Ctf.Pages
         //private Task otherTask;
         Filterer f;
         List<double> MyPosition;
+        Geo g;
         double range;
+        Dictionary<int, string> pivotsText;
 
         public ListGames()
         {
@@ -48,14 +50,24 @@ namespace Ctf.Pages
             this.MainPivot.SelectionChanged += ThisPivot_SelectionChanged;
 
             AllGamesBase = new ObservableCollection<GameHeader>();
-            AllGamesBase.CollectionChanged += AllGamesBase_CollectionChanged;
-            FetchAllGamesBase();
+            //AllGamesBase.CollectionChanged += AllGamesBase_CollectionChanged;
 
+
+            g = new Geo();
             filter = new FilterNext();
             collection = new ObservableCollection<GameHeader>();
             collection = AllGamesBase;
             filteredCollection = new ObservableCollection<GameHeader>();
-
+            MyGames = new ObservableCollection<GameHeader>();
+            NearestGames = new ObservableCollection<GameHeader>();
+            AllGames = new ObservableCollection<GameHeader>();
+            CompletedGames = new ObservableCollection<GameHeader>();
+            pivotsText = new Dictionary<int, string>();
+            //how tosee ppivot item count ? replace constant
+            for (int i = 0; i < 4; i++)
+            {
+                pivotsText.Add(i, String.Empty);
+            }
 
             f = new Filterer();
             //NetworkService.DoInBackground();
@@ -70,33 +82,84 @@ namespace Ctf.Pages
 
             MyPosition = new List<double>() { 53.0, 14.0 };
             range = 1000;
+
         }
 
         void AllGamesBase_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            InitializeCollectionsAndBind();
+            //InitializeCollectionsAndBind();
         }
 
         private void InitializeCollectionsAndBind()
         {
-            if (MyGames == null)
-                MyGames = new ObservableCollection<GameHeader>();
-            if (NearestGames == null)
-                NearestGames = new ObservableCollection<GameHeader>();
-            if (AllGames == null)
-                AllGames = new ObservableCollection<GameHeader>();
-            if (CompletedGames == null)
-                CompletedGames = new ObservableCollection<GameHeader>();
-
+            //TODO: do in background thread
             InitializeCollection(AllGamesBase, MyGames);
             InitializeCollection(AllGamesBase, NearestGames);
             InitializeCollection(AllGamesBase, AllGames);
             InitializeCollection(AllGamesBase, CompletedGames);
 
+            //TODO: do on UI thread
             MyGamesListControl.ItemsSource = MyGames;
             NearestGamesListControl.ItemsSource = NearestGames;
             AllGamesListControl.ItemsSource = AllGames;
             CompletedGamesListControl.ItemsSource = CompletedGames;
+        }
+
+        private async Task InitializeCollectionsAndBindAsync()
+        {
+            //await Task.Delay(10000);
+            //TODO: do in background thread
+            await InitializeCollectionAsync(AllGamesBase, MyGames);
+            MyGamesListControl.ItemsSource = MyGames;
+
+            await InitializeCollectionAsync(AllGamesBase, NearestGames);
+            NearestGamesListControl.ItemsSource = NearestGames;
+
+            await InitializeCollectionAsync(AllGamesBase, AllGames);
+            AllGamesListControl.ItemsSource = AllGames;
+
+            await InitializeCollectionAsync(AllGamesBase, CompletedGames);
+            CompletedGamesListControl.ItemsSource = CompletedGames;
+
+            //TODO: do on UI thread
+        }
+
+        private async Task InitializeCollectionAsync(ObservableCollection<GameHeader> sourceList, ObservableCollection<GameHeader> destinationList)
+        {
+            ObservableCollection<GameHeader> filteredCollection = null;
+            if (sourceList == null)
+                throw new ArgumentNullException();
+            if (destinationList == null)
+                throw new ArgumentNullException();
+            destinationList.Clear();
+
+            if (destinationList == MyGames)
+            {
+                filteredCollection = await filter.ByOwnerAsync(sourceList, ApplicationSettings.Instance.LoggedUsername);
+                Debug.WriteLine("MyGames elements:" + filteredCollection.Count);
+            }
+            else if (destinationList == NearestGames)
+            {
+                filteredCollection = await filter.ByDistanceAsync(sourceList, MyPosition, range);
+                Debug.WriteLine("NearestGames elements:" + filteredCollection.Count);
+            }
+            else if (destinationList == CompletedGames)
+            {
+                filteredCollection = await filter.ByStatusAsync(sourceList, "COMPLETED");
+                Debug.WriteLine("CompletedGames elements:" + filteredCollection.Count);
+            }
+            else
+            {
+                filteredCollection = sourceList;
+                Debug.WriteLine("AllGames elements:" + filteredCollection.Count);
+            }
+
+
+
+            foreach (GameHeader item in filteredCollection)
+            {
+                destinationList.Add(item);
+            }
         }
 
         private void InitializeCollection(ObservableCollection<GameHeader> sourceList, ObservableCollection<GameHeader> destinationList)
@@ -120,13 +183,32 @@ namespace Ctf.Pages
                 FetchGamesOnce_Action();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        private async Task FetchAllGamesBaseAsync()
+        {
+            if (AllGamesBase == null)
+                throw new ArgumentNullException();
+            if (!AllGamesBase.Any())
+                await FetchGamesOnce_ActionAsync();
+        }
+
+        //protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedTo(e);
+        //    if (ApplicationSettings.Instance.HasLoginInfo())
+        //    {
+        //        MainPivot.Title = String.Format(AppResources.ListGamesLoggedAs, ApplicationSettings.Instance.LoggedUsername);
+        //    }
+        //    FetchAllGamesBase();
+        //}
+
+        protected async override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (ApplicationSettings.Instance.HasLoginInfo())
             {
                 MainPivot.Title = String.Format(AppResources.ListGamesLoggedAs, ApplicationSettings.Instance.LoggedUsername);
             }
+            await FetchAllGamesBaseAsync();
         }
 
         private void FetchMyGames_Action()
@@ -170,11 +252,25 @@ namespace Ctf.Pages
             System.Diagnostics.Debug.WriteLine("Fetch for pivot item: " + this.MainPivot.SelectedIndex);
             FetchGamesCommand<GamesList> FetchAllGamesOnce = new FetchGamesCommand<GamesList>();
             FetchAllGamesOnce.RequestFinished += new RequestFinishedEventHandler(FetchAllGamesOnce_Event);
-            FetchAllGamesOnce.ExcecuteAsyncCommand();
+            RestRequestAsyncHandle handle = FetchAllGamesOnce.ExcecuteAsyncCommand();
+            System.Diagnostics.Debug.WriteLine("Pass async");
+            //handle.Abort();
 
         }
 
-        private void FetchAllGamesOnce_Event(object sender, RequestFinishedEventArgs e)
+        private Task FetchGamesOnce_ActionAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("Fetch for pivot item: " + this.MainPivot.SelectedIndex);
+            FetchGamesCommand<GamesList> FetchAllGamesOnce = new FetchGamesCommand<GamesList>();
+            FetchAllGamesOnce.RequestFinished += new RequestFinishedEventHandler(FetchAllGamesOnce_Event);
+            RestRequestAsyncHandle handle = FetchAllGamesOnce.ExcecuteAsyncCommand();
+            System.Diagnostics.Debug.WriteLine("Pass async");
+                    //handle.Abort();
+            //Obejście warninga:
+            return Task.Run(() => { });
+        }
+
+        private async void FetchAllGamesOnce_Event(object sender, RequestFinishedEventArgs e)
         {
             if (!e.Response.HasError())
             {
@@ -182,9 +278,10 @@ namespace Ctf.Pages
                 AllGamesBase.Clear();
                 foreach (GameHeader g in gs.games)
                 {
-                    Debug.WriteLine("id:" + g.Id + ", name:" + g.Name + ", owner:" + g.Owner + ", status:" + g.Status);
+                    Debug.WriteLine("id:" + g.Id + ", name:" + g.Name + ", owner:" + g.Owner + ", status:" + g.Status + ", time start:" + g.TimeStart + ", players count:" + g.PlayersCount + ", players max:" + g.PlayersMax);
                     AllGamesBase.Add(g);
                 }
+                await InitializeCollectionsAndBindAsync();
             }
             else
             {
@@ -337,10 +434,34 @@ namespace Ctf.Pages
             }
         }
 
-        private void ThisPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        private async void ThisPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Displayed pivot item: " + this.MainPivot.SelectedIndex);
+            String textBlock = FilterTextBox.Text;
+            int index = this.MainPivot.SelectedIndex;
+            String text = String.Empty;
+            System.Diagnostics.Debug.WriteLine("Displayed pivot item: " + index);
             //ChooseFetchGamesCommand(this.MainPivot.SelectedIndex);
+            if (pivotsText.TryGetValue(index, out text) && !text.Equals(textBlock))
+            {
+                switch (index)
+                {
+                    case 0:
+                        pivotsText[0] = textBlock;
+                        break;
+                    case 1:
+                        pivotsText[1] = textBlock;
+                        break;
+                    case 2:
+                        pivotsText[2] = textBlock;
+                        break;
+                    case 3:
+                        pivotsText[3] = textBlock;
+                        break;
+                }
+                System.Diagnostics.Debug.WriteLine("Filtering on pivot: " + index + ", with text: " + textBlock);
+                await FilterCollections();
+            }
         }
 
         private void Logout_ApplicationBarMenuItem_Click(object sender, EventArgs e)
@@ -362,11 +483,12 @@ namespace Ctf.Pages
             }
         }
 
-        private void Refresh_ApplicationBarIconButton_Click(object sender, EventArgs e)
+        private async void Refresh_ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             //task.Result.Abort();
             //InitializeCollectionsAndBind();
-
+            List<double> latLng = await g.GetPhoneLocationAsync();
+            Debug.WriteLine("My position is : " + latLng[0] + ", " + latLng[1]);
         }
 
         private void Search_ApplicationBarIconButton_Click(object sender, EventArgs e)
@@ -377,6 +499,84 @@ namespace Ctf.Pages
         private void CreateGame_ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri(String.Format("/Pages/CreateGamePage.xaml"), UriKind.Relative));
+        }
+
+
+
+        private FilterNext filter;
+        private ObservableCollection<GameHeader> collection;
+        private ObservableCollection<GameHeader> filteredCollection;
+
+        private async Task FilterCollections()
+        {
+            String text = FilterTextBox.Text;
+            switch (this.MainPivot.SelectedIndex)
+            {
+                case 0:
+                    filteredCollection = await filter.ByOwnerAsync(MyGames, ApplicationSettings.Instance.LoggedUsername);
+                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
+                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+                    MyGamesListControl.ItemsSource = filteredCollection;
+                    break;
+                case 1:
+                    filteredCollection = await filter.ByDistanceAsync(NearestGames, MyPosition, range);
+                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
+                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+                    NearestGamesListControl.ItemsSource = filteredCollection;
+                    break;
+                case 2:
+                    filteredCollection = await filter.ByNameAsync(AllGames, text);
+                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+                    AllGamesListControl.ItemsSource = filteredCollection;
+                    break;
+                case 3:
+                    filteredCollection = await filter.ByStatusAsync(CompletedGames, "COMPLETED");
+                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
+                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+                    CompletedGamesListControl.ItemsSource = filteredCollection;
+                    break;
+            }
+        }
+
+
+        // Same functionality as private void ThisPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            await FilterCollections();
+            //String text = (sender as TextBox).Text;
+            //switch (this.MainPivot.SelectedIndex)
+            //{
+            //    case 0:
+            //        filteredCollection = await filter.ByOwnerAsync(MyGames, ApplicationSettings.Instance.LoggedUsername);
+            //        filteredCollection = await filter.ByNameAsync(filteredCollection, text);
+            //        System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+            //        System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+            //        MyGamesListControl.ItemsSource = filteredCollection;
+            //        break;
+            //    case 1:
+            //        filteredCollection = await filter.ByDistanceAsync(NearestGames, MyPosition, range);
+            //        System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+            //        System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+            //        NearestGamesListControl.ItemsSource = filteredCollection;
+            //        break;
+            //    case 2:
+            //        filteredCollection = await filter.ByNameAsync(AllGames, text);
+            //        System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+            //        System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+            //        AllGamesListControl.ItemsSource = filteredCollection;
+            //        break;
+            //    case 3:
+            //        filteredCollection = await filter.ByStatusAsync(CompletedGames, "COMPLETED");
+            //        filteredCollection = await filter.ByNameAsync(filteredCollection, text);
+            //        System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
+            //        System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
+            //        CompletedGamesListControl.ItemsSource = filteredCollection;
+            //        break;
+            //}
         }
 
         protected void InitializeApplicationBar()
@@ -405,167 +605,5 @@ namespace Ctf.Pages
             ApplicationBarMenuItemsLogout.Click += Logout_ApplicationBarMenuItem_Click;
             ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLogout);
         }
-
-        private FilterNext filter;
-        private ObservableCollection<GameHeader> collection;
-        private ObservableCollection<GameHeader> filteredCollection;
-        
-        private async void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            String text = (sender as TextBox).Text;
-            switch (this.MainPivot.SelectedIndex)
-            {
-                case 0:
-                    filteredCollection = await filter.ByOwnerAsync(collection, ApplicationSettings.Instance.LoggedUsername);
-                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
-                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
-                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
-                    MyGamesListControl.ItemsSource = filteredCollection;
-                    break;
-                case 1:
-                    filteredCollection = await filter.ByDistanceAsync(collection, MyPosition, range);
-                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
-                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
-                    NearestGamesListControl.ItemsSource = filteredCollection;
-                    break;
-                case 2:
-                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
-                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
-                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
-                    AllGamesListControl.ItemsSource = filteredCollection;
-                    break;
-                case 3:
-                    filteredCollection = await filter.ByStatusAsync(collection, "COMPLETED");
-                    filteredCollection = await filter.ByNameAsync(filteredCollection, text);
-                    System.Diagnostics.Debug.WriteLine("Collection for " + text + ":");
-                    System.Diagnostics.Debug.WriteLine(filteredCollection.Count);
-                    CompletedGamesListControl.ItemsSource = filteredCollection;
-                    break;
-            }
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox s = sender as TextBox;
-
-            System.Diagnostics.Debug.WriteLine("START:" + s.Text);
-            //System.Diagnostics.Debug.WriteLine("Cancel task.");
-
-            //if (Filterer.isRunning && !Filterer.cancellationTokenSource.IsCancellationRequested)
-            //    Filterer.cancellationTokenSource.Cancel();
-
-            System.Diagnostics.Debug.WriteLine("Before await Async." + s.Text);
-
-
-            if (f.bw.WorkerSupportsCancellation == true && f.bw.IsBusy == true)
-            {
-                f.bw.CancelAsync();
-                f.bw.RunWorkerAsync();
-            }
-
-            if (f.bw.IsBusy != true)
-            {
-                f.bw.RunWorkerAsync();
-            }
-
-
-            //try
-            //{
-            //    MyGamesListControl.ItemsSource = await Filterer.FilterAsyncCritical(AllGamesBase, s.Text, Filterer.cancellationTokenSource.Token);
-            //}
-            //catch (Exception)
-            //{
-            //}
-            System.Diagnostics.Debug.WriteLine("DONE." + s.Text);
-        }
-
-        //Task currentTask;
-        //CancellationTokenSource cancelTokenSource;
-        //CancellationToken cancelToken;
-        //Task newTask;
-        //CancellationTokenSource newCancelTokenSource;
-        //CancellationToken newCancelToken;
-
-        //private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (currentTask != null && currentTask.Status == TaskStatus.Running)
-        //    {
-        //        //Cancel the running task
-        //        cancelTokenSource.Cancel();
-        //        //Prepare a new Task to be triggered when the other cancels
-        //        //You could store new tasks/tokens in a dictionary if you wanted,also
-        //        //A new cancel token is always needed since the old stays cancelled
-        //        newCancelTokenSource = new CancellationTokenSource();
-        //        newCancelToken = newCancelTokenSource.Token;
-        //        newTask = new Task(() => LongRunningTask(), newCancelToken);
-
-        //        //Continue that deals with both cancel and completion
-        //        //There is a different way to deal with this below, also
-        //        newTask.ContinueWith((previousTask) =>
-        //        {
-        //            if (previousTask.Status == TaskStatus.Canceled)
-        //            {
-        //                //label1.Text = "New Task Cancelled, Another New Starting";
-        //                BeginNewTask();
-        //            }
-        //        },
-        //            //If cancelled token is passed, it will autoskip the continue
-        //        new CancellationTokenSource().Token, TaskContinuationOptions.None,
-        //            //This is to auto invoke the UI thread
-        //        TaskScheduler.FromCurrentSynchronizationContext());
-        //    }
-        //    else
-        //    {
-        //        cancelTokenSource = new CancellationTokenSource();
-        //        cancelToken = cancelTokenSource.Token;
-        //        //Start a fresh task since none running
-        //        currentTask = Task.Factory.StartNew(() => LongRunningTask(),
-        //            cancelToken);
-
-        //        //OnCancelContinue
-        //        currentTask.ContinueWith((previousTask) =>
-        //        {
-
-        //            BeginNewTask();
-        //        },
-        //            //If cancelled token is passed, it will autoskip the continue
-        //        new CancellationTokenSource().Token,
-        //        TaskContinuationOptions.OnlyOnCanceled,
-        //            //This is to auto invoke the UI thread
-        //        TaskScheduler.FromCurrentSynchronizationContext());
-
-        //        //OnCompleteContinue
-        //        currentTask.ContinueWith((previousTask) =>
-        //        {
-
-        //        },
-        //            //If cancelled token is passed, it will autoskip the continue
-        //        new CancellationTokenSource().Token,
-        //        TaskContinuationOptions.OnlyOnRanToCompletion,
-        //            //This is to auto invoke the UI thread
-        //        TaskScheduler.FromCurrentSynchronizationContext());
-        //    }
-        //}
-
-        //private void LongRunningTask()
-        //{
-        //    for (int i = 0; i < 60; i++)
-        //    {
-        //        if (cancelToken.IsCancellationRequested)
-        //            cancelToken.ThrowIfCancellationRequested();
-        //        Thread.Sleep(1000);
-        //    }
-        //}
-
-        //private void BeginNewTask()
-        //{
-        //    //Since the old task is cancelled, reset it with the new one
-        //    //Probably should do some error checks
-        //    currentTask = newTask;
-        //    cancelTokenSource = newCancelTokenSource;
-        //    cancelToken = newCancelToken;
-        //    //This is to make sure this task does not run on the UI thread
-        //    currentTask.Start(TaskScheduler.Default);
-        //}
     }
 }

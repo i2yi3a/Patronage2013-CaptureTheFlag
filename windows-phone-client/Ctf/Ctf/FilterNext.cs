@@ -93,7 +93,7 @@ namespace PhoneApp3
             {
                 foreach (GameHeader input in source)
                 {
-                    if (input.localization != null && input.localization.latLng != null)
+                    if (input.localization != null && input.localization.latLng != null && (input.localization.latLng.Count >= 2))
                     {
                         if (Geo.Distance(filter, input.localization.latLng) <= range)
                             filtered.Add(input);
@@ -130,11 +130,8 @@ namespace PhoneApp3
             {
                 foreach (GameHeader input in source)
                 {
-                    if (input.PlayersCount != null && input.PlayersMax != null)
-                    {
-                        if (input.PlayersCount + slots <= input.PlayersMax)
-                            filtered.Add(input);
-                    }
+                    if (input.PlayersCount + slots <= input.PlayersMax)
+                        filtered.Add(input);
                 }
                 return filtered;
             });

@@ -16,7 +16,7 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <StackPanel x:Name="LayoutRoot" Background="Transparent">
-        <TextBox HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height ="68" Width="456" TextChanged="FilterBox_TextChanged"/>
+        <TextBox x:Name="FilterTextBox" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height ="68" Width="456" TextChanged="FilterBox_TextChanged"/>
         <!--Pivot Control-->
         <phone:Pivot x:Name="MainPivot" Title="{Binding LocalizedResources.ListGamesLoggedAs, Source={StaticResource LocalizedStrings}}" Height="620">
             <!--Pivot item one-->
