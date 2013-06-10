@@ -5,6 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -27,7 +28,7 @@
             	<LineBreak/>
             	<Run/>
             </TextBlock>
-
+           
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -36,49 +37,53 @@
                 <TextBlock Text="Name:" TextWrapping="Wrap" Height="33">
                     	
                 </TextBlock>
-                <TextBox x:Name="CGNameBox" Height="72" TextWrapping="Wrap" Margin="0,0,196,0"/>
+                <TextBox x:Name="CGNameBox" Height="72" TextChanged="RequiredBoxes_Changed" TextWrapping="Wrap" Margin="0,0,196,0"/>
                 <TextBlock Text="Description:" TextWrapping="Wrap" Height="35">
                     
                 </TextBlock>
-                <TextBox x:Name="CGDescriptionBox" Height="73" TextWrapping="Wrap" Margin="0,0,178,0"/>
+                <TextBox x:Name="CGDescriptionBox" Height="73" TextChanged="RequiredBoxes_Changed" TextWrapping="Wrap" Margin="0,0,178,0"/>
                 <TextBlock Text="Time start:" TextWrapping="Wrap" Height="32">
                     	
                 </TextBlock>
-                <TextBox x:Name="CGTime_StartBox" Height="72" TextWrapping="Wrap"  Margin="0,0,99,0"/>
+                
+                <!--<TextBox x:Name="CGTime_StartBox" Height="72" TextWrapping="Wrap"  Margin="0,0,99,0"/>-->
+                <toolkit:DatePicker  x:Name="Date_Picker"  ValueChanged="DatePicker_ValueChanged"   />
+                 <toolkit:TimePicker x:Name="TimeePicker" ValueChanged="TimePicker_ValueChanged" ValueStringFormat="{}{0:T}" />
                 <TextBlock Text="Duration:" TextWrapping="Wrap">
                     	
                 </TextBlock>
-                <TextBox x:Name="CGDurationBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGDurationBox" Height="72" InputScope="Number" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown"/>
                 <TextBlock Text="Points max:" TextWrapping="Wrap">
 
                 </TextBlock>
-                <TextBox x:Name="CGPoints_maxBox" Height="72" TextWrapping="Wrap" Margin="0,0,87,0"/>
+                <TextBox x:Name="CGPoints_maxBox" InputScope="Number" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown"/>
                 <TextBlock TextWrapping="Wrap" Text="Players max:">
                     	
                 </TextBlock>
-                <TextBox x:Name="CGPlayers_maxBox" Height="72" TextWrapping="Wrap" Margin="0,0,87,0"/>
+                <TextBox x:Name="CGPlayers_maxBox" Height="72" InputScope="Number" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown"/>
                 <TextBlock TextWrapping="Wrap" Text="Localization:"/>
                 <TextBlock Text="Name:" TextWrapping="Wrap">
                    
                 </TextBlock>
-                <TextBox x:Name="CGLocalizationNameBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGLocalizationNameBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0"/>
                 <TextBlock TextWrapping="Wrap" Text="LatLng:"/>
-                <TextBox x:Name="CGLocalizationLatLngBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGLocalizationLatLngBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed"  Margin="0,0,87,0" IsReadOnly="True"/>
                 <TextBlock TextWrapping="Wrap" Text="Radius:"/>
-                <TextBox x:Name="CGLocalizationRadiusBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGLocalizationRadiusBox" Height="72" InputScope="Number" TextWrapping="Wrap"  TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown" />
 
                 <TextBlock TextWrapping="Wrap" Text="Red Team Base::"/>
                 <TextBlock TextWrapping="Wrap" Text="Name:"/>
-                <TextBox x:Name="CGRedNameBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGRedNameBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed"  Margin="0,0,87,0"/>
                 <TextBlock TextWrapping="Wrap" Text="LatLng:"/>
-                <TextBox x:Name="CGRedLatLng" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGRedLatLng" Height="72" TextWrapping="Wrap"  TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" IsReadOnly="True"/>
 
                 <TextBlock TextWrapping="Wrap" Text="Blue Team Base:"/>
                 <TextBlock TextWrapping="Wrap" Text="Name:"/>
-                <TextBox x:Name="CGBlueNameBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
+                <TextBox x:Name="CGBlueNameBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0"/>
                 <TextBlock TextWrapping="Wrap" Text="LatLng:"/>
-                <TextBox x:Name="CGBlueLatLngBox" Height="72" TextWrapping="Wrap"  Margin="0,0,87,0"/>
-                <Button Content="Button" Click="Button_Click_1" Height="72" VerticalAlignment="Bottom" Margin="0,0,304,0"/>
+                <TextBox x:Name="CGBlueLatLngBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" IsReadOnly="True"/>
+                <Button x:Name="CreateGameButton" Content="Create" Click="Button_Click_1" Height="72" VerticalAlignment="Bottom" Margin="0,0,304,0"/>
+                <Button Content="Mapa" HorizontalAlignment="Left" Width="154" Click="Button_Click_2"/>
 
             </StackPanel>
         </ScrollViewer>
