@@ -18,7 +18,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
@@ -91,17 +90,14 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
-        </ScrollViewer>
 
-        <StackPanel Grid.Row="2">
-            <Button Content="Join" Click="GameSignIn_Button_Click"/>
-            <Button Content="Leave" Click="GameSignOut_Button_Click"/>
-            <Button Content="Map" />
-            <Button Content="Edit" />
-            <Button Content="Delete" Click="DeleteGame_Button_Click"/>
-        </StackPanel>
-        
+                <Button Content="Join" Click="GameSignIn_Button_Click"/>
+                <Button Content="Leave" Click="GameSignOut_Button_Click"/>
+                <Button Content="Map" />
+                <Button Content="Edit" />
+                <Button Content="Delete" Click="DeleteGame_Button_Click"/>
+            </StackPanel>  
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>

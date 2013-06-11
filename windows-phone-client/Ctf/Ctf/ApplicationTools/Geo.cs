@@ -27,12 +27,13 @@ namespace Ctf.ApplicationTools
         }
 
         //Check if working properly
-        public async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 50, int maximumAge = 10, int timeout = 60)
+        public async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
         {
             return await Task.Run(async () =>
             {
                 List<double> latLng = new List<double>();
                 Geolocator geolocator = new Geolocator();
+                //geolocator.DesiredAccuracy = PositionAccuracy.High;
                 geolocator.DesiredAccuracyInMeters = accuracyMeters;
 
                 Geoposition geoposition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));

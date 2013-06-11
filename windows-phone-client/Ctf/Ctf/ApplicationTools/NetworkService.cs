@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Ctf.Communication.DataObjects;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,10 +13,15 @@ namespace Ctf.ApplicationTools
     public class NetworkService
     {
         public static List<Task<RestRequestAsyncHandle>> RestRequestTasks;
+        volatile static bool cancel;
+        static int delay = 300;
+        static volatile int disableNetworkCount;
 
         static NetworkService()
         {
             RestRequestTasks = new List<Task<RestRequestAsyncHandle>>();
+            cancel = false;
+            disableNetworkCount = 0;
         }
 
         //Preferably this method
@@ -29,6 +35,34 @@ namespace Ctf.ApplicationTools
         public static Task<bool> IsNetworkEnabledAsync()
         {
             return Task.Run(() => IsNetworkEnabled());
+        }
+
+        //Preferably this method
+        public static void RequestFinished_Event(object sender, RequestFinishedEventArgs e)
+        {
+            cancel = true;
+        }
+
+        //Preferably this method
+        public static async Task AbortIfNoNetworkAsync(RestRequestAsyncHandle requestHandle)
+        {
+            bool networkEnabled;
+            while (!cancel)
+            {
+                Debug.WriteLine("IsNetworkEnabled(): " + IsNetworkEnabled());
+                networkEnabled = await IsNetworkEnabledAsync();
+                //if (disableNetworkCount >= 3)
+                //    networkEnabled = false;
+                Debug.WriteLine("networkEnabled: " + networkEnabled);
+                if (!networkEnabled)
+                {
+                    requestHandle.Abort();
+                    Debug.WriteLine("requestHandle.Abort()");
+                    return;
+                }
+                await Task.Delay(delay);
+                disableNetworkCount++;
+            }
         }
 
         public static void DoInBackground()

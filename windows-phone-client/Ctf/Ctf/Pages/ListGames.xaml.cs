@@ -258,16 +258,19 @@ namespace Ctf.Pages
 
         }
 
-        private Task FetchGamesOnce_ActionAsync()
+        private async Task FetchGamesOnce_ActionAsync()
         {
             System.Diagnostics.Debug.WriteLine("Fetch for pivot item: " + this.MainPivot.SelectedIndex);
             FetchGamesCommand<GamesList> FetchAllGamesOnce = new FetchGamesCommand<GamesList>();
             FetchAllGamesOnce.RequestFinished += new RequestFinishedEventHandler(FetchAllGamesOnce_Event);
+            FetchAllGamesOnce.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
             RestRequestAsyncHandle handle = FetchAllGamesOnce.ExcecuteAsyncCommand();
             System.Diagnostics.Debug.WriteLine("Pass async");
+            await NetworkService.AbortIfNoNetworkAsync(handle);
+            
                     //handle.Abort();
             //Obejście warninga:
-            return Task.Run(() => { });
+            //return Task.Run(() => { });
         }
 
         private async void FetchAllGamesOnce_Event(object sender, RequestFinishedEventArgs e)
