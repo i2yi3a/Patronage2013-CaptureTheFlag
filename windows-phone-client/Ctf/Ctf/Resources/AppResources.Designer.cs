@@ -88,6 +88,15 @@ namespace Ctf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Szczegóły gry.
+        /// </summary>
+        public static string GameDetailsHeader {
+            get {
+                return ResourceManager.GetString("GameDetailsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wszystkie.
         /// </summary>
         public static string ListGamesAllGames {
@@ -309,15 +318,6 @@ namespace Ctf.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Test dla debug.
-        /// </summary>
-        public static string TestDebug {
-            get {
-                return ResourceManager.GetString("TestDebug", resourceCulture);
             }
         }
     }

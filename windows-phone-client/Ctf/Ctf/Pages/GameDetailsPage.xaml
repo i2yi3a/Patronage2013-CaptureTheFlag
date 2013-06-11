@@ -22,71 +22,73 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.TestDebug, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.GameDetailsHeader, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <!--<TextBlock Text="{Binding Name, Mode=OneWay}"/>-->
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Id:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Id, Mode=OneWay}" />
-                <TextBlock Text="Name:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Name, Mode=OneWay}" />
-                <TextBlock Text="Owner:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Owner, Mode=OneWay}" />
-                <TextBlock Text="Status:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Status, Mode=OneWay}" />
-                <TextBlock Text="Points max:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding points_max, Mode=OneWay}" />
-                <TextBlock Text="Players count:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding PlayersCount, Mode=OneWay}" />
-                <TextBlock Text="Players max:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding PlayersMax, Mode=OneWay}" />
-                <TextBlock Text="Time start:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding TimeStart, Mode=OneWay}" />
-                
-                
-                <TextBlock Text="Localization:" Margin="10,0,0,0"/>
+                <TextBlock Text="Id:" />
+                <TextBlock Text="{Binding Id, Mode=OneWay}" Margin="20,0,0,0"/>
+                <TextBlock Text="Name:" />
+                <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Owner:" />
+                <TextBlock Text="{Binding Owner, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Status:" />
+                <TextBlock Text="{Binding Status, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Points max:" />
+                <TextBlock Text="{Binding points_max, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Players count:" />
+                <TextBlock Text="{Binding PlayersCount, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Players max:" />
+                <TextBlock Text="{Binding PlayersMax, Mode=OneWay}" Margin="20,0,0,0" />
+                <TextBlock Text="Time start:" />
+                <TextBlock Text="{Binding TimeStart, Mode=OneWay}" Margin="20,0,0,0" />
+
+
+                <TextBlock Text="Localization:" />
                 <TextBlock Text="Name:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding localization.name, Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding localization.name, Mode=OneWay}" Margin="40,0,0,0" />
                 <TextBlock Text="Radius:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding localization.radius, Mode=OneWay}" Margin="10,0,0,0" />
-                <TextBlock Text="latLng:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding localization.latLng[0], Mode=OneWay}" Margin="10,0,0,0" />
-                <TextBlock Text="{Binding localization.latLng[1], Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding localization.radius, Mode=OneWay}" Margin="40,0,0,0" />
 
-                <TextBlock Text="Duration:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding duration, Mode=OneWay}" />
-                <TextBlock Text="Description:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding description, Mode=OneWay}" />
-                
-                <TextBlock Text="Red team base:" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding localization.latLng[0], Mode=OneWay}" Margin="40,0,0,0" />
+                <TextBlock Text="Longitude:" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding localization.latLng[1], Mode=OneWay}" Margin="40,0,0,0" />
+
+                <TextBlock Text="Duration:" />
+                <TextBlock Text="{Binding duration, Mode=OneWay}" Margin="20,0,0,0"/>
+                <TextBlock Text="Description:" />
+                <TextBlock Text="{Binding description, Mode=OneWay}" Margin="20,0,0,0"/>
+
+                <TextBlock Text="Red team base:" />
                 <TextBlock Text="Name:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding red_team_base.name, Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding red_team_base.name, Mode=OneWay}" Margin="40,0,0,0" />
                 <!--<TextBlock Text="Radius:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding red_team_base.radius, Mode=OneWay}" Margin="10,0,0,0" />-->
-                <TextBlock Text="Latitude and longitude:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding red_team_base.latLng[0], Mode=OneWay}" Margin="10,0,0,0" />
-                <TextBlock Text="{Binding red_team_base.latLng[1], Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding red_team_base.radius, Mode=OneWay}" Margin="40,0,0,0" />-->
+                <TextBlock Text="Latitude:" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding red_team_base.latLng[0], Mode=OneWay}" Margin="40,0,0,0" />
+                <TextBlock Text="Longitude:" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding red_team_base.latLng[1], Mode=OneWay}" Margin="40,0,0,0" />
 
-                <TextBlock Text="Blue team base:" Margin="10,0,0,0"/>
+                <TextBlock Text="Blue team base:"/>
                 <TextBlock Text="Name:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding blue_team_base.name, Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding blue_team_base.name, Mode=OneWay}" Margin="40,0,0,0" />
                 <!--<TextBlock Text="Radius:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding blue_team_base.radius, Mode=OneWay}" Margin="10,0,0,0" />-->
-                <TextBlock Text="Latitude and longitude:" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding blue_team_base.latLng[0], Mode=OneWay}" Margin="10,0,0,0" />
-                <TextBlock Text="{Binding blue_team_base.latLng[1], Mode=OneWay}" Margin="10,0,0,0" />
+                <TextBlock Text="{Binding blue_team_base.radius, Mode=OneWay}" Margin="40,0,0,0" />-->
+                <TextBlock Text="Latitude:" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding blue_team_base.latLng[0], Mode=OneWay}" Margin="40,0,0,0" />
+                <TextBlock Text="Longitude:" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding blue_team_base.latLng[1], Mode=OneWay}" Margin="40,0,0,0" />
 
-                <TextBlock Text="Players:" Margin="10,0,0,0"/>
+                <TextBlock Text="Players:" />
                 <ListBox x:Name="PlayersList" ItemsSource="{Binding players}"  >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding}" Margin="2" />
-                                </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding}" Margin="20,0,0,0" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -96,7 +98,7 @@
                 <Button Content="Map" />
                 <Button Content="Edit" />
                 <Button Content="Delete" Click="DeleteGame_Button_Click"/>
-            </StackPanel>  
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 

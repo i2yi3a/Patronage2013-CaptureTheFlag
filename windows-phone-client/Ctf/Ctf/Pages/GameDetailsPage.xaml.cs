@@ -24,6 +24,7 @@ namespace Ctf.Views
             InitializeComponent();
             gameDetails = new GameDetails();
             //this.DataContext = gameDetails;
+            InitializeApplicationBar();
             
         }
         
@@ -39,7 +40,6 @@ namespace Ctf.Views
         private void GetGameInfo(string gid)
         {
             System.Diagnostics.Debug.WriteLine("Detials of game id: " + gid);
-            System.Diagnostics.Debug.WriteLine(AppResources.TestDebug);
             GameInfoCommand GameInfo = new GameInfoCommand(gid);
             GameInfo.RequestFinished += new RequestFinishedEventHandler(Page_RequestFinished);
             GameInfo.GetGameInfo();
@@ -90,7 +90,7 @@ namespace Ctf.Views
             if (!e.Response.HasError())
             {
                 GameDetails x = e.Response as GameDetails;
-                MessageBoxResult m = MessageBox.Show(x.Name.ToString(), x.Id.ToString(), MessageBoxButton.OK);
+                //MessageBoxResult m = MessageBox.Show(x.Name.ToString(), x.Id.ToString(), MessageBoxButton.OK);
                 //gameDetails.Name = x.Name;
                 gameDetails = x;
                 this.DataContext = gameDetails;
@@ -102,6 +102,33 @@ namespace Ctf.Views
             {
                 MessageBoxResult m = MessageBox.Show(e.Response.error_description.ToString(), e.Response.error.ToString(), MessageBoxButton.OK);
             }
+        }
+
+        protected void InitializeApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar { IsVisible = true, IsMenuEnabled = true };
+
+            var ApplicationBarButtonCreate = new ApplicationBarIconButton(new Uri("/Images/new.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonCreate };
+            //ApplicationBarButtonCreate.Click += CreateGame_ApplicationBarIconButton_Click;
+            ApplicationBar.Buttons.Add(ApplicationBarButtonCreate);
+
+            var ApplicationBarButtonSearch = new ApplicationBarIconButton(new Uri("/Images/feature.search.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
+            //ApplicationBarButtonSearch.Click += Search_ApplicationBarIconButton_Click;
+            ApplicationBar.Buttons.Add(ApplicationBarButtonSearch);
+
+            var ApplicationBarButtonRefresh = new ApplicationBarIconButton(new Uri("/Images/refresh.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonRefresh };
+            //ApplicationBarButtonRefresh.Click += Refresh_ApplicationBarIconButton_Click;
+            ApplicationBar.Buttons.Add(ApplicationBarButtonRefresh);
+
+            var ApplicationBarMenuItemsProfile = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemProfile };
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsProfile);
+
+            var ApplicationBarMenuItemsSettings = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemSettings };
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsSettings);
+
+            var ApplicationBarMenuItemsLogout = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemLogout };
+            //ApplicationBarMenuItemsLogout.Click += Logout_ApplicationBarMenuItem_Click;
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLogout);
         }
     }
 }

@@ -161,9 +161,6 @@
   <data name="MainpageRegsiterPassword" xml:space="preserve">
     <value>Hasło</value>
   </data>
-  <data name="TestDebug" xml:space="preserve">
-    <value>Test dla debug</value>
-  </data>
   <data name="MainPageMatchingPasswords" xml:space="preserve">
     <value>Podane hasła muszą być takie same.</value>
   </data>
@@ -205,5 +202,8 @@
   </data>
   <data name="ListGamesNearestGames" xml:space="preserve">
     <value>Najbliższe</value>
+  </data>
+  <data name="GameDetailsHeader" xml:space="preserve">
+    <value>Szczegóły gry</value>
   </data>
 </root>
