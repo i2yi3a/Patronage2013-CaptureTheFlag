@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ctf.Communication
 {
-    public class DeleteCommand : BaseCommand<DeleteResponse>
+    public class DeleteCommand : BaseCommand<ServerResponse>
     {
         public DeleteCommand(String gameId)
             : base()
@@ -25,7 +25,7 @@ namespace Ctf.Communication
             request.AddUrlSegment("id", gameId);
         }
 
-        protected override void RequestCallbackOnSuccess(IRestResponse<DeleteResponse> response)
+        protected override void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
         {
             if ((response != null) && (response.Data != null))
             {

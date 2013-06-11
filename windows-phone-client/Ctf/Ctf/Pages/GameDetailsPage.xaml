@@ -93,11 +93,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <Button Content="Join" Click="GameSignIn_Button_Click"/>
-                <Button Content="Leave" Click="GameSignOut_Button_Click"/>
-                <Button Content="Map" />
-                <Button Content="Edit" />
-                <Button Content="Delete" Click="DeleteGame_Button_Click"/>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

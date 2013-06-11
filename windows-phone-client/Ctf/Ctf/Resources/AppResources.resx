@@ -206,4 +206,19 @@
   <data name="GameDetailsHeader" xml:space="preserve">
     <value>Szczegóły gry</value>
   </data>
+  <data name="GameDetailsApplicationBarMenuItemDelete" xml:space="preserve">
+    <value>Usuń grę</value>
+  </data>
+  <data name="GameDetailsApplicationBarMenuItemEdit" xml:space="preserve">
+    <value>Edytuj grę</value>
+  </data>
+  <data name="GameDetailsApplicationBarMenuItemJoin" xml:space="preserve">
+    <value>Dołącz do gry</value>
+  </data>
+  <data name="GameDetailsApplicationBarMenuItemLeave" xml:space="preserve">
+    <value>Opuść grę</value>
+  </data>
+  <data name="GameDetailsApplicationBarMenuItemMap" xml:space="preserve">
+    <value>Mapa gry</value>
+  </data>
 </root>

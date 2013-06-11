@@ -88,6 +88,51 @@ namespace Ctf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuń grę.
+        /// </summary>
+        public static string GameDetailsApplicationBarMenuItemDelete {
+            get {
+                return ResourceManager.GetString("GameDetailsApplicationBarMenuItemDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edytuj grę.
+        /// </summary>
+        public static string GameDetailsApplicationBarMenuItemEdit {
+            get {
+                return ResourceManager.GetString("GameDetailsApplicationBarMenuItemEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dołącz do gry.
+        /// </summary>
+        public static string GameDetailsApplicationBarMenuItemJoin {
+            get {
+                return ResourceManager.GetString("GameDetailsApplicationBarMenuItemJoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opuść grę.
+        /// </summary>
+        public static string GameDetailsApplicationBarMenuItemLeave {
+            get {
+                return ResourceManager.GetString("GameDetailsApplicationBarMenuItemLeave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapa gry.
+        /// </summary>
+        public static string GameDetailsApplicationBarMenuItemMap {
+            get {
+                return ResourceManager.GetString("GameDetailsApplicationBarMenuItemMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Szczegóły gry.
         /// </summary>
         public static string GameDetailsHeader {

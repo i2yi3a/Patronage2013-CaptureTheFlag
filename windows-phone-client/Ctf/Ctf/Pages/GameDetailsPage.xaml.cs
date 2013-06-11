@@ -45,27 +45,27 @@ namespace Ctf.Views
             GameInfo.GetGameInfo();
         }
 
-        private void EditGame_Button_Click(object sender, RoutedEventArgs e)
+        private void EditGame_Button_Click(object sender, EventArgs e)
         {
             EditGameCommand EditGame = new EditGameCommand(gameDetails.Id);
             //EditGame.EditGame(new Game("zzzzz", "zzzzzz", "519a6d6de4b06da65947762a" , "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new LatLng(15, 15), 1500)));    
         }
 
-        private void DeleteGame_Button_Click(object sender, RoutedEventArgs e)
+        private void DeleteGame_Button_Click(object sender, EventArgs e)
         {
             DeleteCommand DeleteGameO = new DeleteCommand(gameDetails.Id);
             DeleteGameO.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
             DeleteGameO.DeleteGame();
         }
 
-        private void GameSignIn_Button_Click(object sender, RoutedEventArgs e)
+        private void GameSignIn_Button_Click(object sender, EventArgs e)
         {
             SignInCommand SignInGame = new SignInCommand(gameDetails.Id);
             SignInGame.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
             SignInGame.SignIn();
         }
 
-        private void GameSignOut_Button_Click(object sender, RoutedEventArgs e)
+        private void GameSignOut_Button_Click(object sender, EventArgs e)
         {
             SignOutCommand SignOutGame = new SignOutCommand(gameDetails.Id);
             SignOutGame.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
@@ -108,27 +108,23 @@ namespace Ctf.Views
         {
             ApplicationBar = new ApplicationBar { IsVisible = true, IsMenuEnabled = true };
 
-            var ApplicationBarButtonCreate = new ApplicationBarIconButton(new Uri("/Images/new.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonCreate };
-            //ApplicationBarButtonCreate.Click += CreateGame_ApplicationBarIconButton_Click;
-            ApplicationBar.Buttons.Add(ApplicationBarButtonCreate);
+            var ApplicationBarMenuItemsJoin = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemJoin };
+            ApplicationBarMenuItemsJoin.Click += GameSignIn_Button_Click;
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsJoin);
 
-            var ApplicationBarButtonSearch = new ApplicationBarIconButton(new Uri("/Images/feature.search.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
-            //ApplicationBarButtonSearch.Click += Search_ApplicationBarIconButton_Click;
-            ApplicationBar.Buttons.Add(ApplicationBarButtonSearch);
+            var ApplicationBarMenuItemsLeave = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemLeave };
+            ApplicationBarMenuItemsLeave.Click += GameSignOut_Button_Click;
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLeave);
 
-            var ApplicationBarButtonRefresh = new ApplicationBarIconButton(new Uri("/Images/refresh.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonRefresh };
-            //ApplicationBarButtonRefresh.Click += Refresh_ApplicationBarIconButton_Click;
-            ApplicationBar.Buttons.Add(ApplicationBarButtonRefresh);
+            var ApplicationBarMenuItemsMap = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemMap };
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsMap);
 
-            var ApplicationBarMenuItemsProfile = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemProfile };
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsProfile);
+            var ApplicationBarMenuItemsEdit = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemEdit };
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsEdit);
 
-            var ApplicationBarMenuItemsSettings = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemSettings };
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsSettings);
-
-            var ApplicationBarMenuItemsLogout = new ApplicationBarMenuItem() { Text = AppResources.ListGamesApplicationBarMenuItemLogout };
-            //ApplicationBarMenuItemsLogout.Click += Logout_ApplicationBarMenuItem_Click;
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLogout);
+            var ApplicationBarMenuItemsDelete = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemDelete };
+            ApplicationBarMenuItemsDelete.Click += DeleteGame_Button_Click;
+            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsDelete);
         }
     }
 }
