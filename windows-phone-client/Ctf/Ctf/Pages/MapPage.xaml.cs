@@ -154,6 +154,14 @@ namespace Ctf
         NavigationService.Navigate(new Uri(uri, UriKind.Relative));
     }
 
+    private void MyMap_ZoomLevelChanged(object sender, MapZoomLevelChangedEventArgs e)
+    {
+        if (MyMap.ZoomLevel > 16)
+        {
+            MyMap.ZoomLevel = 16;
+        }
+    }
+
 
     }
 }

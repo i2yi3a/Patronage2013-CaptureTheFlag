@@ -212,7 +212,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\favs.addto.png" />
-    <Content Include="Pages\feature.search.png" />
+    <Content Include="Images\feature.search.png" />
     <Content Include="Images\new.png" />
     <Content Include="Images\refresh.png" />
     <Content Include="README_FIRST.txt" />
