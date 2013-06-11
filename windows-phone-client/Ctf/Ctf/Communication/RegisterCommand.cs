@@ -56,5 +56,11 @@ namespace Ctf.Communication
             request.AddBody(new { username = user.username, password = user.password });
             return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
         }
+
+        public RestRequestAsyncHandle ExecuteCommand(UserCredentials user)
+        {
+            request.AddBody(new { username = user.username, password = user.password });
+            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
+        }
     }
 }

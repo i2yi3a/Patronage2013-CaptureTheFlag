@@ -110,7 +110,7 @@ namespace Ctf.Pages
             LoginCommand Logger = new LoginCommand();
             Logger.RequestFinished += new RequestFinishedEventHandler(Login_Event);
             Logger.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
-            RestRequestAsyncHandle handle = Logger.LoginAs(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
+            RestRequestAsyncHandle handle = Logger.ExecuteCommand(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
             await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
@@ -120,7 +120,7 @@ namespace Ctf.Pages
             RegisterCommand Register = new RegisterCommand();
             Register.RequestFinished += new RequestFinishedEventHandler(Register_Event);
             Register.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
-            RestRequestAsyncHandle handle = Register.RegisterAs(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
+            RestRequestAsyncHandle handle = Register.ExecuteCommand(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
             await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
