@@ -12,6 +12,8 @@ using Ctf.Communication;
 using Ctf.Communication.DataObjects;
 using Ctf.Models.DataObjects;
 using Ctf.Resources;
+using RestSharp;
+using Ctf.ApplicationTools;
 
 namespace Ctf.Views
 {
@@ -37,12 +39,15 @@ namespace Ctf.Views
             }
         }
 
-        private void GetGameInfo(string gid)
+        //why no Task to return?
+        private async void GetGameInfo(string gid)
         {
             System.Diagnostics.Debug.WriteLine("Detials of game id: " + gid);
             GameInfoCommand GameInfo = new GameInfoCommand(gid);
             GameInfo.RequestFinished += new RequestFinishedEventHandler(Page_RequestFinished);
-            GameInfo.GetGameInfo();
+            GameInfo.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = GameInfo.GetGameInfo();
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
         private void EditGame_Button_Click(object sender, EventArgs e)
@@ -51,25 +56,31 @@ namespace Ctf.Views
             //EditGame.EditGame(new Game("zzzzz", "zzzzzz", "519a6d6de4b06da65947762a" , "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new LatLng(15, 15), 1500)));    
         }
 
-        private void DeleteGame_Button_Click(object sender, EventArgs e)
+        private async void DeleteGame_Button_Click(object sender, EventArgs e)
         {
             DeleteCommand DeleteGameO = new DeleteCommand(gameDetails.Id);
             DeleteGameO.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
-            DeleteGameO.DeleteGame();
+            DeleteGameO.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = DeleteGameO.DeleteGame();
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
-        private void GameSignIn_Button_Click(object sender, EventArgs e)
+        private async void GameSignIn_Button_Click(object sender, EventArgs e)
         {
             SignInCommand SignInGame = new SignInCommand(gameDetails.Id);
             SignInGame.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
-            SignInGame.SignIn();
+            SignInGame.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = SignInGame.SignIn();
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
-        private void GameSignOut_Button_Click(object sender, EventArgs e)
+        private async void GameSignOut_Button_Click(object sender, EventArgs e)
         {
             SignOutCommand SignOutGame = new SignOutCommand(gameDetails.Id);
             SignOutGame.RequestFinished += new RequestFinishedEventHandler(Sign_RequestFinished);
-            SignOutGame.SignOut();
+            SignOutGame.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = SignOutGame.SignOut();
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
         void Sign_RequestFinished(object sender, RequestFinishedEventArgs e)

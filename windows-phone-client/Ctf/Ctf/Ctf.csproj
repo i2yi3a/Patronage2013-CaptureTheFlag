@@ -101,7 +101,6 @@
     <Compile Include="ApplicationTools\NetworkService.cs" />
     <Compile Include="Communication\BaseCommand.cs" />
     <Compile Include="Communication\CreateCommand.cs" />
-    <Compile Include="Communication\DataObjects\DeleteResponse.cs" />
     <Compile Include="Communication\DataObjects\GameIdentificator.cs" />
     <Compile Include="Communication\DataObjects\GameStatus.cs" />
     <Compile Include="Communication\DataObjects\Localization.cs" />

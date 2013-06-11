@@ -13,6 +13,7 @@ using System.Diagnostics;
 using Ctf.Communication.DataObjects;
 using Ctf.ApplicationTools.DataObjects;
 using Ctf.ApplicationTools;
+using RestSharp;
 
 namespace Ctf.Pages
 {
@@ -103,20 +104,24 @@ namespace Ctf.Pages
             RegisterErrorBlock.Text = errorInfo;
         }
 
-        private void Login_Action(object sender, RoutedEventArgs e)
+        private async void Login_Action(object sender, RoutedEventArgs e)
         {
             WaitIndicator.Visibility = Visibility.Visible;
             LoginCommand Logger = new LoginCommand();
             Logger.RequestFinished += new RequestFinishedEventHandler(Login_Event);
-            Logger.LoginAs(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
+            Logger.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = Logger.LoginAs(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
-        private void Register_Action(object sender, RoutedEventArgs e)
+        private async void Register_Action(object sender, RoutedEventArgs e)
         {
             WaitIndicator.Visibility = Visibility.Visible;
             RegisterCommand Register = new RegisterCommand();
             Register.RequestFinished += new RequestFinishedEventHandler(Register_Event);
-            Register.RegisterAs(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
+            Register.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
+            RestRequestAsyncHandle handle = Register.RegisterAs(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
+            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
         void Login_Event(object sender, RequestFinishedEventArgs e)
