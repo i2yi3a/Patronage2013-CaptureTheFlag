@@ -16,9 +16,13 @@ namespace Ctf.Communication
         public DeleteCommand(String gameId)
             : base()
         {
-            request = new RestRequest(String.Format("/api/secured/games/{0}", gameId), Method.DELETE);
+            //request = new RestRequest(String.Format("/api/secured/games/{0}", gameId), Method.DELETE);
+            request = new RestRequest("/api/secured/games/{id}", Method.DELETE);
             request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-type", "application/json");
+          
             request.AddHeader("Authorization", String.Format("{0} {1}", ApplicationSettings.Instance.RetriveLoggedUser().token_type, ApplicationSettings.Instance.RetriveLoggedUser().access_token));
+            request.AddUrlSegment("id", gameId);
         }
 
         protected override void RequestCallbackOnSuccess(IRestResponse<DeleteResponse> response)

@@ -24,7 +24,7 @@
 
             <!--Pivot item one-->
             <phone:PivotItem Header="{Binding LocalizedResources.ListGamesMyGames, Source={StaticResource LocalizedStrings}}" Height="454" VerticalAlignment="Top">
-
+                <!--<ProgressBar x:Name="WaitIndicator" Visibility="Collapsed" IsIndeterminate="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="{Binding ActualWidth, ElementName=MyGamesListControl}" Height="{Binding ActualHeight, ElementName=MyGamesListControl}" Background="Transparent"/>-->
                 <ListBox x:Name="MyGamesListControl"  SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" Height="454" VerticalAlignment="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate >
@@ -41,7 +41,7 @@
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ProgressBar x:Name="WaitIndicator" Visibility="Collapsed" IsIndeterminate="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="{Binding ActualWidth, ElementName=MyGamesListControl}" Height="{Binding ActualHeight, ElementName=MyGamesListControl}" Background="Transparent"/>-->
+                    
                 </ListBox>
 
             </phone:PivotItem>
