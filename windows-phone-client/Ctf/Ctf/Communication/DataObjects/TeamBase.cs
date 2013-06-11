@@ -11,5 +11,14 @@ namespace Ctf.Communication.DataObjects
     {
         public string name { get; set; }
         public List<double> latLng { get; set; }
+
+         public TeamBase()
+        { }
+
+         public TeamBase(string name, List<double> latLng)
+         {
+             this.name = name;
+             this.latLng = latLng;
+         }
     }
 }
