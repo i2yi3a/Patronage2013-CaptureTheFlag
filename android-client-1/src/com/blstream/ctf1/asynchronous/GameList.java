@@ -65,7 +65,7 @@ public class GameList extends AsyncTask<Void, Void, List<GameBasicInfo>> {
 		if (doInBackgrounSuccessful == false) {
 			Toast.makeText(mCurrentActivity, mMessageToShow, Toast.LENGTH_SHORT).show();
 		} else {
-			//mCurrentActivity.setListAdapter(new ListAdapter(mCurrentActivity, result));
+			mCurrentActivity.setListAdapter(new ListAdapter(mCurrentActivity, result));
 		}
 	}
 
