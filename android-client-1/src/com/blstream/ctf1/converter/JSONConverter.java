@@ -76,30 +76,28 @@ public class JSONConverter {
 		List<GameBasicInfo> gameBasicInfos = new LinkedList<GameBasicInfo>();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			GameBasicInfo gameBasicInfo = new GameBasicInfo();
-			JSONObject jo = jsonArray.getJSONObject(i);
+		GameBasicInfo gameBasicInfo = new GameBasicInfo();
+		JSONObject jo = jsonArray.getJSONObject(i);
 
-			try {
-				gameBasicInfo.setId(jo.getString(JSONFields.ID));
-				gameBasicInfo.setName(jo.getString(JSONFields.NAME));
-				gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString(JSONFields.STATUS)));
-				gameBasicInfo.setOwner(jo.getString(JSONFields.OWNER));
-				gameBasicInfo.setPlayersCount(jo.getInt(JSONFields.PLAYERS_COUNT));
-				gameBasicInfo.setPlayersMax(jo.getInt(JSONFields.PLAYERS_MAX));
-				gameBasicInfo.setTimeStart(jo.getString(JSONFields.TIME_START));
-				JSONArray latLng = jo.getJSONArray(JSONFields.LAT_LNG);
-				LatLng loc = new LatLng(latLng.getDouble(0), latLng.getDouble(1));
-				JSONObject jsonLocalization = jo.getJSONObject(JSONFields.LOCALIZATION);
-				Localization localization = new Localization(jsonLocalization.getString(JSONFields.NAME),jsonLocalization.getDouble(JSONFields.RADIUS),loc);
-				gameBasicInfo.setLocalization(localization);
-				gameBasicInfos.add(gameBasicInfo);
-			} catch (JSONException e) {
-				// if game doesn't have all required fields will be ignored
-			}
-
-			
+		try {
+		gameBasicInfo.setId(jo.getString(JSONFields.ID));
+		gameBasicInfo.setName(jo.getString(JSONFields.NAME));
+		gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString(JSONFields.STATUS)));
+		gameBasicInfo.setOwner(jo.getString(JSONFields.OWNER));
+		gameBasicInfo.setPlayersCount(jo.getInt(JSONFields.PLAYERS_COUNT));
+		gameBasicInfo.setPlayersMax(jo.getInt(JSONFields.PLAYERS_MAX));
+		gameBasicInfo.setTimeStart(jo.getString(JSONFields.TIME_START));
+		JSONObject jsonLocalization = jo.getJSONObject(JSONFields.LOCALIZATION);
+		JSONArray latLng = jsonLocalization.getJSONArray(JSONFields.LAT_LNG);
+		LatLng loc = new LatLng(latLng.getDouble(0), latLng.getDouble(1));
+		Localization localization = new Localization(jsonLocalization.getString(JSONFields.NAME),jsonLocalization.getDouble(JSONFields.RADIUS),loc);
+		gameBasicInfo.setLocalization(localization);
+		gameBasicInfos.add(gameBasicInfo);
+		} catch (JSONException e) {
+		// if game doesn't have all required fields will be ignored
 		}
 
+		}
 		return gameBasicInfos;
 	}
 
@@ -161,12 +159,10 @@ public class JSONConverter {
 			JSONObject info = jsonObjectResult.getJSONObject(JSONFields.INFO);
 			result.setBlueTeamScore(info.getInt(JSONFields.BLUE_POINTS));
 			result.setRedTeamScore(info.getInt(JSONFields.RED_POINTS));
-			result.setTimestamp(info.getLong(JSONFields.TIMESTAMP));
+			//result.setTimestamp(info.getLong(JSONFields.TIMESTAMP));
 			
 		}
-		
-			
-			
+
 		return result;
 	}
 

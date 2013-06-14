@@ -22,7 +22,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.blstream.ctf1.asynchronous.GameList;
-import com.blstream.ctf1.asynchronous.GameListByDetails;
 import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.tracker.IssueTracker;
@@ -106,7 +105,7 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-		GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
+		GameList gameList = new GameList(this, gameBasicListFilter);
 		gameList.execute();
 		super.onResume();
 	}
@@ -115,7 +114,7 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 	public void onTabChanged(String tabId) {
 		if (tabId == mTab1.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, true);
-			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
+			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
 		}
 		if (tabId == mTab2.getTag().toString()) {
@@ -124,12 +123,12 @@ public class GameListActivity extends ListActivity implements OnClickListener,
 		if (tabId == mTab3.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(
 					GameStatusType.COMPLETED.toString(), null, null);
-			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
+			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
 		}
 		if (tabId == mTab4.getTag().toString()) {
 			gameBasicListFilter = new GameBasicListFilter(null, null, null);
-			GameListByDetails gameList = new GameListByDetails(this, gameBasicListFilter);
+			GameList gameList = new GameList(this, gameBasicListFilter);
 			gameList.execute();
 		}
 	}

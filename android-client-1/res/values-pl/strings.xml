@@ -130,6 +130,8 @@
     <string name="tab_closest_games">Najbliżej</string>
     <string name="tab_finished_games">Zakończone</string>
     <string name="tab_all_games">Wszystkie</string>
+    <string name="players_circle">Okrag Graczy</string>
+    <string name="signed_label">Etykieta dołączenia</string>
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>

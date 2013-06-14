@@ -10,7 +10,6 @@ import com.blstream.ctf1.R;
 import com.blstream.ctf1.dialog.NetworkOperationProgressDialog;
 import com.blstream.ctf1.domain.GameBasicListFilter;
 import com.blstream.ctf1.domain.GameExtendedInfo;
-import com.blstream.ctf1.list.ListAdapter;
 import com.blstream.ctf1.service.GameService;
 
 /**

@@ -129,6 +129,8 @@
     <string name="tab_closest_games">Closest</string>
     <string name="tab_finished_games">Finished</string>
     <string name="tab_all_games">All Games</string>
+    <string name="players_circle">Players Circle</string>
+    <string name="signed_label">Signed Label</string>
     
     <!-- GameAreaMap -->
     <string name="title_activity_game_area_map">GameAreaMapActivity</string>

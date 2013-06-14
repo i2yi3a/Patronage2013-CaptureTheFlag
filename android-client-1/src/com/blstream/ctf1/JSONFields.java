@@ -60,5 +60,5 @@ public class JSONFields {
 
 	public final static String TIMESTAMP = "timestamp";
 
-	public final static String PLAYERS_COUNT = "plaers_count";
+	public final static String PLAYERS_COUNT = "players_count";
 }

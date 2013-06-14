@@ -216,11 +216,11 @@ public class GameService implements NetworkOperationService {
 	 */
 	public List<GameBasicInfo> getGameList(GameBasicListFilter gameFilter) throws JSONException, ClientProtocolException, IOException, CTFException {
 		JSONArray jsonArrayResult = mNetworkService.requestGet(String.format(URL_GAME_LIST, GameBasicListFilterConverter.toQueryString(gameFilter)),
-				getGameHeaders());
+		getGameHeaders());
 		JSONObject jsonObject = jsonArrayResult.getJSONObject(0);
 
 		return JSONConverter.toGameBasicInfo(jsonObject.getJSONArray(JSONFields.GAMES));
-	}
+		}
 
 	/**
 	 * @author Adrian Swarcewicz
