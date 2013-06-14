@@ -17,6 +17,8 @@ import com.blstream.ctf1.domain.GameBasicInfo;
 import com.blstream.ctf1.domain.GameExtendedInfo;
 import com.blstream.ctf1.domain.GameStatusType;
 import com.blstream.ctf1.domain.Localization;
+import com.blstream.ctf1.gamemodels.GameModel;
+import com.blstream.ctf1.gamemodels.PlayerModel;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
@@ -82,6 +84,14 @@ public class JSONConverter {
 				gameBasicInfo.setName(jo.getString(JSONFields.NAME));
 				gameBasicInfo.setGameStatusType(GameStatusType.fromString(jo.getString(JSONFields.STATUS)));
 				gameBasicInfo.setOwner(jo.getString(JSONFields.OWNER));
+				gameBasicInfo.setPlayersCount(jo.getInt(JSONFields.PLAYERS_COUNT));
+				gameBasicInfo.setPlayersMax(jo.getInt(JSONFields.PLAYERS_MAX));
+				gameBasicInfo.setTimeStart(jo.getString(JSONFields.TIME_START));
+				JSONArray latLng = jo.getJSONArray(JSONFields.LAT_LNG);
+				LatLng loc = new LatLng(latLng.getDouble(0), latLng.getDouble(1));
+				JSONObject jsonLocalization = jo.getJSONObject(JSONFields.LOCALIZATION);
+				Localization localization = new Localization(jsonLocalization.getString(JSONFields.NAME),jsonLocalization.getDouble(JSONFields.RADIUS),loc);
+				gameBasicInfo.setLocalization(localization);
 				gameBasicInfos.add(gameBasicInfo);
 			} catch (JSONException e) {
 				// if game doesn't have all required fields will be ignored
@@ -136,5 +146,37 @@ public class JSONConverter {
 
 	public static Long toMinutes(Long milis) {
 		return milis / 60000;
+	}
+
+	public static GameModel toGameModel(JSONObject jsonObjectResult) throws Exception {
+		GameModel result = new GameModel();
+		if(jsonObjectResult.has(JSONFields.MARKERS)) {
+			JSONArray markers = jsonObjectResult.getJSONArray(JSONFields.MARKERS);
+			List<PlayerModel> players = new LinkedList<PlayerModel>();
+			for (int i = 0; i < markers.length(); i++) {
+				JSONObject player = markers.getJSONObject(i);
+				players.add(toPlayerModel(player));
+			}
+			result.setPlayers(players);
+			JSONObject info = jsonObjectResult.getJSONObject(JSONFields.INFO);
+			result.setBlueTeamScore(info.getInt(JSONFields.BLUE_POINTS));
+			result.setRedTeamScore(info.getInt(JSONFields.RED_POINTS));
+			result.setTimestamp(info.getLong(JSONFields.TIMESTAMP));
+			
+		}
+		
+			
+			
+		return result;
+	}
+
+
+	private static PlayerModel toPlayerModel(JSONObject player) throws Exception {
+		PlayerModel result = new PlayerModel();
+		JSONArray loc = player.getJSONArray(JSONFields.LOC);
+		result.setLatLng(new LatLng(loc.getDouble(0),loc.getDouble(1)));
+		if(player.has(JSONFields.HAS_FLAG))
+			result.setHasFlag(player.getBoolean(JSONFields.HAS_FLAG));
+		return result;
 	}
 }

@@ -43,4 +43,22 @@ public class JSONFields {
 	public final static String GAMES = "games";
 
 	public final static String PLAYERS = "players";
+
+	public final static String LOC = "loc";
+
+	public final static String MARKERS = "markers";
+
+	public final static String HAS_FLAG = "has_flag";
+
+	public final static String TYPE = "type";
+
+	public final static String RED_POINTS = "red_points";
+
+	public final static String INFO = "info";
+
+	public final static String BLUE_POINTS = "blue_points";
+
+	public final static String TIMESTAMP = "timestamp";
+
+	public final static String PLAYERS_COUNT = "plaers_count";
 }
