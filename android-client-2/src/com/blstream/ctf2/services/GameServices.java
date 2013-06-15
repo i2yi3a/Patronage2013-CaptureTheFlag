@@ -16,7 +16,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,8 +28,6 @@ import com.blstream.ctf2.domain.GameDetails;
 import com.blstream.ctf2.domain.GameLocalization;
 import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.domain.Team;
-import com.blstream.ctf2.exception.CtfException;
-import com.google.android.gms.maps.model.LatLng;
 
 /**
  * 
@@ -54,7 +51,11 @@ public class GameServices extends Services {
 	public final static String RADIUS = "radius";
 	public final static String LAT_LNG = "latLng";
 	public final static String RED_TEAM_BASE = "red_team_base";
+	public final static String RED_BASE_LAT = "red_base_lat";
+	public final static String RED_BASE_LNG = "red_base_lng";
 	public final static String BLUE_TEAM_BASE = "blue_team_base";
+	public final static String BLUE_BASE_LAT = "blue_base_lat";
+	public final static String BLUE_BASE_LNG = "blue_base_lng";
 	public final static String GAME_LIST_EMPTY = "Game list is empty";
 	public final static String GAMES = "games";
 	public final static String PLAYERS = "players";
