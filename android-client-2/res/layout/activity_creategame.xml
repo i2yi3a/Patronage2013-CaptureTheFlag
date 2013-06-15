@@ -6,11 +6,19 @@
     android:overScrollMode="ifContentScrolls"
     android:scrollbars="vertical" >
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+    </ListView>
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/game_name" >
-
             </EditText>
 
             <TextView
@@ -55,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false" />
-            
+
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
@@ -79,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time" />
-            
+
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
@@ -91,8 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_points_max_hint" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -105,9 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_players_max_hint" />
-            
+                android:inputType="number" />
+
             <TextView
                 android:id="@+id/textView63"
                 android:layout_width="wrap_content"
@@ -118,9 +123,8 @@
                 android:id="@+id/editTextLocalizationName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/game_loc_name_hint" />
-            
+                android:ems="10" />
+
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
@@ -132,9 +136,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_radius_hint" />
-         
+                android:inputType="number" />
+
             <Button
                 android:id="@+id/buttonPickLocalization"
                 android:layout_width="match_parent"
@@ -146,16 +149,14 @@
                 android:id="@+id/localizationTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            
+
             <Button
                 android:id="@+id/buttonCreateGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onClickCreateGameButton"
                 android:text="@string/game_create_game" />
-  
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>

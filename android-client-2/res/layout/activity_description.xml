@@ -46,70 +46,42 @@
             android:layout_toLeftOf="@+id/buttonDelete"
             android:layout_toRightOf="@+id/iconActionBar"
             android:gravity="center_vertical"
-            android:text="@string/edit_game"
+            android:text="@string/game_description"
             android:textColor="#FFFFFF"
             android:textSize="19sp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/locinfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "center"
+            android:text="@string/game_description" />
 
-        <fragment
-            android:id="@+id/map"
-            android:layout_alignTop="@+id/locinfo"
-            android:layout_width="match_parent"
-            android:layout_height="380sp"
-            class="com.google.android.gms.maps.SupportMapFragment" />
+        <EditText
+            android:id="@+id/editTextGameDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:ems="12"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
             android:ems="12"
             android:onClick="onClickSaveButton"
             android:text="@string/save_changes" />
-
-        <Button
-            android:id="@+id/button1"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/buttonSave"
-            android:layout_alignLeft="@+id/buttonSave"
-            android:onClick="onClickRedButton"
-            android:text="RED" />
-
-        <Button
-            android:id="@+id/button2"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/map"
-            android:layout_centerHorizontal="true"
-            android:onClick="onClickLocButton"
-            android:text="LOC" />
-
-        <Button
-            android:id="@+id/button3"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button2"
-            android:layout_alignBottom="@+id/button2"
-            android:layout_alignRight="@+id/buttonSave"
-            android:onClick="onClickBlueButton"
-            android:text="BLUE" />
-
-    </RelativeLayout>
-
+        
+    </LinearLayout>
 </RelativeLayout>

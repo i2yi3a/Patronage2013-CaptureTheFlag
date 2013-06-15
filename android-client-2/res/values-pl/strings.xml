@@ -39,8 +39,6 @@
     <string name="game_duration">Czas trwania gry</string>
     <string name="game_points_max">Maksymalna ilość punktów</string>
     <string name="game_players_max">Maksymalna ilość graczy w drużynie</string>
-    <string name="game_points_max_hint">12</string>
-    <string name="game_players_max_hint">12</string>
     <string name="game_localization">Nazwa lokalizacji</string>
     <string name="game_localization_pick">Wybierz lokalizację</string>
     <string name="game_flag_quantity">Ilość flag</string>
@@ -60,7 +58,7 @@
     <string name="game_players_name">Gracze</string>
     <string name="game_players_list">Lista graczy</string>
     <string name="game_no_players">Gra nie posiada jeszcze graczy</string>
-     <string name="game_list_my">Moje</string>
+    <string name="game_list_my">Moje</string>
     <string name="game_list_nearest">Najbliższe</string>
     <string name="game_list_Completed">Zakończone</string>
     <string name="game_list_all">Wszystkie</string>
@@ -80,10 +78,14 @@
     <string name="please_enter_loc_name">Proszę podać nazwę lokalizacji</string>
     <string name="game_loc_name">Nazwa lokalizacji</string>
     <string name="game_created">Gra została stworzona</string>
-    <string name="game_loc_name_hint">Lokalizacja</string>
     <string name="game_details">Szczegóły</string>
     <string name="game_players">Gracze</string>
     <string name="game_map">Mapa</string>
+    <string name="delete">Usuń</string>
+    <string name="cancel">Anuluj</string>
+    <string name="save">Zapisz</string>
+    <string name="save_changes">Zapisz zmiany</string>
+    <string name="basic_data">Podstawowe dane</string>
     <!-- Error Codes -->
     <string name="error_code_1">Niepoprawne żądanie</string>
     <string name="error_code_2">Błąd wewnętrzny servera</string>

@@ -1,161 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:overScrollMode="ifContentScrolls"
     android:scrollbars="vertical" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        <LinearLayout
+        android:layout_height="48dp"
+        android:layout_marginTop="0dp"
+        android:background="#E16820"
+        android:orientation="vertical" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/border" >
+
+        <ImageView
+            android:id="@+id/iconActionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="1dp"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/splash_ico" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="80dp"
+            android:layout_height="105dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/border"
+            android:onClick="onClickDeleteButton"
+            android:text="@string/delete" />
+
+        <TextView
+            android:layout_width="240dp"
+            android:layout_height="105dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/buttonDelete"
+            android:layout_toRightOf="@+id/iconActionBar"
+            android:gravity="center_vertical"
+            android:text="@string/edit_game"
+            android:textColor="#FFFFFF"
+            android:textSize="19sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:divider="#8F8F8F"
+            android:dividerHeight="0.5dp" >
+        </ListView>
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_name" />
+        <Button
+            android:id="@+id/buttonEditGame"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:onClick="onClickEditGameButton"
+            android:text="@string/save" />
+    </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextGameName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/game_name" >
-
-            </EditText>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_description" />
-
-            <EditText
-                android:id="@+id/editTextGameDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/game_description" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/choose_date" />
-
-            <DatePicker
-                android:id="@+id/datePickerTimeStart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:calendarViewShown="false" />
-            
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/choose_time" />
-
-            <TimePicker
-                android:id="@+id/timePickerTimeStart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_duration" />
-
-            <EditText
-                android:id="@+id/editTextGameDuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-            
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_points_max" />
-
-            <EditText
-                android:id="@+id/editTextGamePointsMax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_points_max_hint" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_players_max" />
-
-            <EditText
-                android:id="@+id/editTextGamePlayersMax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_players_max_hint" />
-            
-            <TextView
-                android:id="@+id/textView63"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_loc_name" />
-
-            <EditText
-                android:id="@+id/editTextLocalizationName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/game_loc_name_hint" />
-            
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_radius" />
-
-            <EditText
-                android:id="@+id/editTextGameRadius"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="@string/game_radius_hint" />
-         
-            <Button
-                android:id="@+id/buttonPickLocalization"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClickPickLocalization"
-                android:text="@string/game_localization_pick" />
-
-            <TextView
-                android:id="@+id/localizationTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            
-            <Button
-                android:id="@+id/buttonCreateGame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClickCreateGameButton"
-                android:text="@string/ok" />
-  
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
+</RelativeLayout>
