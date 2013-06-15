@@ -127,8 +127,8 @@ public class CreateGameActivity extends Activity {
 	}
 
 	public void onClickPickLocalization(View v) {
-		Intent intentGetMessage = new Intent(this, PickLocalizationActivity.class);
-		startActivityForResult(intentGetMessage, 2);
+		//Intent intentGetMessage = new Intent(this, PickLocalizationActivity.class);
+		//startActivityForResult(intentGetMessage, 2);
 	}
 
 	private void createGame() {

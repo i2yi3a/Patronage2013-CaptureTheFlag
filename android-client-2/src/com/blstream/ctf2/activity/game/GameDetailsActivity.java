@@ -172,8 +172,8 @@ public class GameDetailsActivity extends FragmentActivity {
 		((TextView) view.findViewById(R.id.tab_text)).setText(id);
 		return view;
 	}
-	
-	private void startEdit(){
+
+	private void startEdit() {
 		Intent editIntent = new Intent("com.blstream.ctf2.EDITGAMEACTIVITY");
 		editIntent.putExtra(Constants.ID, mGameDetailsFragment.mGameIdTextView.getText().toString());
 		editIntent.putExtra(GameServices.NAME, mGameDetailsFragment.mGameNameTextView.getText().toString());
@@ -186,6 +186,12 @@ public class GameDetailsActivity extends FragmentActivity {
 		editIntent.putExtra(GameServices.TIME_START, mGameDetailsFragment.mTimeStartTextView.getText().toString());
 		editIntent.putExtra(GameServices.POINTS_MAX, mGameDetailsFragment.mPointsMaxTextView.getText().toString());
 		editIntent.putExtra(GameServices.PLAYERS_MAX, mGameDetailsFragment.mPlayersMaxTextView.getText().toString());
+		editIntent.putExtra(GameServices.LAT, mGameDetailsFragment.mLatitudeTextView.getText().toString());
+		editIntent.putExtra(GameServices.LNG, mGameDetailsFragment.mLongitudeTextView.getText().toString());
+		editIntent.putExtra(GameServices.RED_BASE_LAT, mGameDetails.getTeamRed().getBaseLocalization().getLat().toString());
+		editIntent.putExtra(GameServices.RED_BASE_LNG, mGameDetails.getTeamRed().getBaseLocalization().getLng().toString());
+		editIntent.putExtra(GameServices.BLUE_BASE_LAT, mGameDetails.getTeamBlue().getBaseLocalization().getLat().toString());
+		editIntent.putExtra(GameServices.BLUE_BASE_LNG, mGameDetails.getTeamBlue().getBaseLocalization().getLng().toString());
 		startActivity(editIntent);
 	}
 
