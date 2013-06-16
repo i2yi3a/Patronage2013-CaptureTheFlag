@@ -30,14 +30,14 @@
             android:src="@drawable/splash_ico" />
 
         <Button
-            android:id="@+id/buttonDelete"
+            android:id="@+id/buttonSave1"
             android:layout_width="80dp"
             android:layout_height="105dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/border"
-            android:onClick="onClickDeleteButton"
-            android:text="@string/delete" />
+            android:onClick="onClickSaveButton"
+            android:text="@string/save" />
 
         <TextView
             android:layout_width="240dp"
@@ -73,7 +73,7 @@
             android:inputType="text" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonSave2"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
