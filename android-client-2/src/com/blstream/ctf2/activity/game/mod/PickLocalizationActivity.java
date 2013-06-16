@@ -34,22 +34,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class PickLocalizationActivity extends FragmentActivity implements OnMapClickListener {
 	private GoogleMap mMap;
-	private Marker centerMarker;
-	private Marker blueMarker;
-	private Marker redMarker;
-	byte markerFlag;
-	int radius;
-	Localization redFlag;
-	Localization blueFlag;
-	Localization center;
-	Circle circle;
+	private Marker mCenterMarker;
+	private Marker mBlueMarker;
+	private Marker mRedMarker;
+	byte mMarkerFlag;
+	int mRadius;
+	Localization mRedFlag;
+	Localization mBlueFlag;
+	Localization mCenter;
+	Circle mCircle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_picklocalization);
 
-		markerFlag = 0;
+		mMarkerFlag = 0;
 		FragmentManager myFragmentManager = getSupportFragmentManager();
 		SupportMapFragment mySupportMapFragment = (SupportMapFragment) myFragmentManager.findFragmentById(R.id.map);
 		mMap = mySupportMapFragment.getMap();
@@ -59,72 +59,72 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(53.428976, 14.556434)));
 		mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
-		redFlag = new Localization(0, 0);
-		blueFlag = new Localization(0, 0);
-		center = new Localization(0, 0);
-		radius = getIntent().getExtras().getInt(GameServices.RADIUS);
+		mRedFlag = new Localization(0, 0);
+		mBlueFlag = new Localization(0, 0);
+		mCenter = new Localization(0, 0);
+		mRadius = getIntent().getExtras().getInt(GameServices.RADIUS);
 	}
 
 	@Override
 	public void onMapClick(LatLng touchedPoint) {
 
-		if (markerFlag == 1) {
-			if (null != redMarker)
-				redMarker.remove();
-			redMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint).icon(BitmapDescriptorFactory.fromResource(R.drawable.red))
+		if (mMarkerFlag == 1) {
+			if (null != mRedMarker)
+				mRedMarker.remove();
+			mRedMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint).icon(BitmapDescriptorFactory.fromResource(R.drawable.red))
 					.title(Constants.KEY_TEAM_RED));
-			redFlag.setLat(redMarker.getPosition().latitude);
-			redFlag.setLng(redMarker.getPosition().longitude);
-		} else if (markerFlag == 2) {
-			if (null != blueMarker)
-				blueMarker.remove();
-			blueMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue))
+			mRedFlag.setLat(mRedMarker.getPosition().latitude);
+			mRedFlag.setLng(mRedMarker.getPosition().longitude);
+		} else if (mMarkerFlag == 2) {
+			if (null != mBlueMarker)
+				mBlueMarker.remove();
+			mBlueMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue))
 					.title(Constants.KEY_TEAM_BLUE));
-			blueFlag.setLat(blueMarker.getPosition().latitude);
-			blueFlag.setLng(blueMarker.getPosition().longitude);
-		} else if (markerFlag == 0) {
-			if (null != centerMarker)
-				centerMarker.remove();
-			centerMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint)
+			mBlueFlag.setLat(mBlueMarker.getPosition().latitude);
+			mBlueFlag.setLng(mBlueMarker.getPosition().longitude);
+		} else if (mMarkerFlag == 0) {
+			if (null != mCenterMarker)
+				mCenterMarker.remove();
+			mCenterMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint)
 					.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title(Constants.KEY_GAME_AREA));
 			
-			if (null != circle)
-				circle.remove();
-			circle = mMap.addCircle(new CircleOptions().center(centerMarker.getPosition()).radius(2000).strokeColor(Color.RED));
+			if (null != mCircle)
+				mCircle.remove();
+			mCircle = mMap.addCircle(new CircleOptions().center(mCenterMarker.getPosition()).radius(mRadius).strokeColor(Color.RED));
 			
-			center.setLat(centerMarker.getPosition().latitude);
-			center.setLng(centerMarker.getPosition().longitude);
+			mCenter.setLat(mCenterMarker.getPosition().latitude);
+			mCenter.setLng(mCenterMarker.getPosition().longitude);
 		}
 	}
 
 	public void onClickRedButton(View v) {
-		markerFlag = 1;
+		mMarkerFlag = 1;
 	}
 
 	public void onClickLocButton(View v) {
-		markerFlag = 0;
+		mMarkerFlag = 0;
 	}
 
 	public void onClickBlueButton(View v) {
-		markerFlag = 2;
+		mMarkerFlag = 2;
 	}
 
 	public void onClickSaveButton(View v) {
 		String sLat, sLng;
 		Intent intentMessage = new Intent();
 
-		sLat = redFlag.getLat().toString();
-		sLng = redFlag.getLng().toString();
+		sLat = mRedFlag.getLat().toString();
+		sLng = mRedFlag.getLng().toString();
 		intentMessage.putExtra(GameServices.RED_BASE_LAT, sLat);
 		intentMessage.putExtra(GameServices.RED_BASE_LNG, sLng);
 
-		sLat = blueFlag.getLat().toString();
-		sLng = blueFlag.getLng().toString();
+		sLat = mBlueFlag.getLat().toString();
+		sLng = mBlueFlag.getLng().toString();
 		intentMessage.putExtra(GameServices.BLUE_BASE_LAT, sLat);
 		intentMessage.putExtra(GameServices.BLUE_BASE_LNG, sLng);
 
-		sLat = center.getLat().toString();
-		sLng = center.getLng().toString();
+		sLat = mCenter.getLat().toString();
+		sLng = mCenter.getLng().toString();
 		intentMessage.putExtra(GameServices.LAT, sLat);
 		intentMessage.putExtra(GameServices.LNG, sLng);
 
