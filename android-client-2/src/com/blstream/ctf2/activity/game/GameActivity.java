@@ -5,19 +5,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
-import com.blstream.ctf2.Constants.GAME_OBJECT_TYPE;
 import com.blstream.ctf2.Constants.TEAM;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.domain.Localization;
@@ -35,10 +38,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * 
  * @author Rafal Tatol
- * 
+ * @author Lukasz Dmitrowski
  */
+
 public class GameActivity extends FragmentActivity {
 
 	private GoogleMap mMap;
@@ -47,12 +50,17 @@ public class GameActivity extends FragmentActivity {
 	private ImageView mArrowImageView;
 	private TextView mDistanceTextView;
 	private TextView mInfoTextView;
-	private List<Gamer> mGamers = new ArrayList<Gamer>();
-	private List<Base> mBases = new ArrayList<Base>();
+	public List<Marker> mPositionMarkers = new ArrayList<Marker>();
+	public List<Marker> mBasesMarkers = new ArrayList<Marker>();
+	public List<Gamer> mGamers = new ArrayList<Gamer>();
+	public List<Base> mBases = new ArrayList<Base>();
 
 	private String mGameId;// need to take data from server
 	private CountDownTimer mCountDownTimer;
 
+	Timer mTimer;
+	String uri;
+	int i;
 
 	// mockups xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	int gameRadius = 2000;
@@ -64,7 +72,7 @@ public class GameActivity extends FragmentActivity {
 	LatLng myPosition2 = new LatLng(53.440864, 14.499547);
 	LatLng myPosition3 = new LatLng(53.440864, 14.529547);
 
-	private long startTime =0;
+	private long startTime = 0;
 	private final long interval = 1 * 1000;
 
 	// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -78,7 +86,9 @@ public class GameActivity extends FragmentActivity {
 		mArrowImageView = (ImageView) findViewById(R.id.imageViewArrow);
 		mDistanceTextView = (TextView) findViewById(R.id.textViewDistance);
 		mInfoTextView = (TextView) findViewById(R.id.textViewInfo1);
-		
+		mTimer = new Timer();
+		i = 1;
+
 		String date = "2013-06-23 18:30:00";
 		Date dateToStart = null;
 
@@ -95,9 +105,6 @@ public class GameActivity extends FragmentActivity {
 
 	// mockups xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	private void mockData() {
-
-		
-
 		Localization palyerRed1LL = new Localization(53.442775, 14.537806);
 		Localization palyerRed2LL = new Localization(53.443567, 14.547204);
 		Localization palyerRed3LL = new Localization(53.432984, 14.547976);
@@ -135,6 +142,7 @@ public class GameActivity extends FragmentActivity {
 		mGamers.add(r1);
 		mGamers.add(r2);
 		mGamers.add(r3);
+
 	}
 
 	// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -142,9 +150,8 @@ public class GameActivity extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 		/*
-		 * TODO get player GPS localization (GpsService),
-		 *  post player localization to server, 
-		 * get game data from server CTFPAT-360,
+		 * TODO get player GPS localization (GpsService), post player
+		 * localization to server, get game data from server CTFPAT-360,
 		 */
 		// demo
 		updateMapBeforeGame(myPosition1, gameAreaPosition, gameRadius);
@@ -167,6 +174,9 @@ public class GameActivity extends FragmentActivity {
 			mockData();
 			drawPlayersMarkers();
 			drawBasesMarkers();
+			break;
+		case R.id.buttonStartLoop:
+			startGameLoop();
 			break;
 		// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		}
@@ -272,8 +282,8 @@ public class GameActivity extends FragmentActivity {
 	}
 
 	/**
-	 * @author Rafal Tatol 
-	 * - return distance in meters, between two LatLng points
+	 * @author Rafal Tatol - return distance in meters, between two LatLng
+	 *         points
 	 */
 	public int getDistance(LatLng start, LatLng end) {
 		final double earthRadius = 3958.75;
@@ -291,8 +301,8 @@ public class GameActivity extends FragmentActivity {
 	}
 
 	/**
-	 * @author Rafal Tatol 
-	 * - return bearing in the range 0° - 360° between two LatLng points
+	 * @author Rafal Tatol - return bearing in the range 0° - 360° between two
+	 *         LatLng points
 	 */
 	public double getBearing(LatLng player, LatLng destination) {
 		double bearing = 0;
@@ -337,12 +347,89 @@ public class GameActivity extends FragmentActivity {
 
 			time.append(DateUtils.formatElapsedTime(Math.round(millisUntilCompleted / 1000d)));
 
-			mInfoTextView.setText("Jesteś w obszarze rozgrywki czekaj na rozpoczęcie rozgrywki - czas do rozpoczęcia " + time.toString());
+			mInfoTextView.setText("Jestes w obszarze rozgrywki czekaj na rozpoczecie rozgrywki - czas do rozpoczecia " + time.toString());
 
 			// mInfoTextView.setText("Jesteś w obszarze rozgrywki czekaj na rozpoczęcie rozgrywki - czas do rozpoczęcia"
 			// + new
 			// SimpleDateFormat("dd d HH:mm:ss").format(calendar.getTime()));
 
 		}
+	}
+
+	/*
+	 * 
+	 * @author Lukasz Dmitrowski
+	 */
+
+	private void startGameLoop() {
+		final Handler handler = new Handler();
+		TimerTask doAsynchronousTask = new TimerTask() {
+			@Override
+			public void run() {
+				handler.post(new Runnable() {
+					public void run() {
+						if (!mBasesMarkers.isEmpty())
+							clearBases();
+						if (!mPositionMarkers.isEmpty())
+							clearGamers();
+						GameLoopTask gameLoop = new GameLoopTask(GameActivity.this);
+						i++;
+						uri = "data" + i;
+						gameLoop.execute(uri);
+						if (i >= 17) {
+							i = 1;
+						}
+					}
+				});
+			}
+		};
+		mTimer.schedule(doAsynchronousTask, 1000, 3000);
+	}
+
+	public void drawPlayers() {
+		for (Gamer gamer : mGamers) {
+			mPositionMarkers.add(mMap.addMarker(new MarkerOptions().position(gamer.getLocalization().getLatLang()).icon(
+					BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))));
+			Log.i("Dodaje", "Marker");
+			Log.i("Lokalizacja", gamer.getLocalization().toString());
+		}
+	}
+
+	public void drawBases() {
+		for (Base base : mBases) {
+			if (base.getTeam().equals(TEAM.TEAM_RED)) {
+				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title("Base")
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.red))));
+			} else {
+				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title("Base2")
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.blue))));
+			}
+			Log.i("Dodaje", "Base");
+			Log.i("Team", base.getTeam().toString());
+			Log.i("Loc", base.getLocalization().getLatLang().toString());
+		}
+	}
+
+	public void clearGamers() {
+		for (Marker marker : mPositionMarkers) {
+			Log.i("Usuwam", "Marker");
+			marker.remove();
+		}
+		mPositionMarkers.removeAll(mPositionMarkers);
+		mGamers.removeAll(mGamers);
+	}
+
+	public void clearBases() {
+		for (Marker marker : mBasesMarkers) {
+			Log.i("Usuwam", "Baze");
+			marker.remove();
+		}
+		mBasesMarkers.removeAll(mBasesMarkers);
+		mBases.removeAll(mBases);
+	}
+
+	@Override
+	public void onBackPressed() {
+		mTimer.cancel();
 	}
 }
