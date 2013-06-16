@@ -4,7 +4,7 @@ package com.blstream.ctf2;
  * Constants class. Stores variables.
  * 
  * @author Marcin Szmit [mod] Rafal Tatol
- * [mod] Karol Firmanty
+ * [mod] Karol Firmanty 
  */
 public class Constants {
 	public final static int SPLASH_SHOW_TIME = 2000;
@@ -55,6 +55,8 @@ public class Constants {
 	public final static String KEY_TEAM_BLUE = "teamBlue";
 	public final static String KEY_TEAM_RED = "teamRed";
 	public final static String KEY_PLAYERS = "players";
+	
+	public final static String URL_MOCKUPS = "http://patronage.tk/json/";
 
 	public final static String ERROR_CODE_PREFIX = "error_code_";
 	
