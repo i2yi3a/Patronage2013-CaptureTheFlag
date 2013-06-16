@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -37,9 +38,11 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 	private Marker blueMarker;
 	private Marker redMarker;
 	byte markerFlag;
+	int radius;
 	Localization redFlag;
 	Localization blueFlag;
 	Localization center;
+	Circle circle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 		redFlag = new Localization(0, 0);
 		blueFlag = new Localization(0, 0);
 		center = new Localization(0, 0);
-
+		radius = getIntent().getExtras().getInt(GameServices.RADIUS);
 	}
 
 	@Override
@@ -84,6 +87,11 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 				centerMarker.remove();
 			centerMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint)
 					.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title(Constants.KEY_GAME_AREA));
+			
+			if (null != circle)
+				circle.remove();
+			circle = mMap.addCircle(new CircleOptions().center(centerMarker.getPosition()).radius(2000).strokeColor(Color.RED));
+			
 			center.setLat(centerMarker.getPosition().latitude);
 			center.setLng(centerMarker.getPosition().longitude);
 		}

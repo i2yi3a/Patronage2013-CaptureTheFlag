@@ -86,7 +86,6 @@ public class DateTimeServices {
 		hour = Integer.parseInt(time.substring(0,2));
 		minute = Integer.parseInt(time.substring(3,5));
 
-		timeP.setIs24HourView(true);
 		timeP.setCurrentHour(hour);
 		timeP.setCurrentMinute(minute);
 	}

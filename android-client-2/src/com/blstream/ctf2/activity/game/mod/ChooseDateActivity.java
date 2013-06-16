@@ -3,7 +3,6 @@ package com.blstream.ctf2.activity.game.mod;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
@@ -25,7 +24,8 @@ public class ChooseDateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_date);
 		mGameDatePicker = (DatePicker) findViewById(R.id.datePickerTimeStart);
-		fillFields();
+		if (!(getIntent().getExtras().getString(GameServices.TIME_START)).isEmpty())
+				fillFields();
 	}
 
 	@Override
@@ -42,7 +42,6 @@ public class ChooseDateActivity extends Activity {
 
 	private void fillFields() {
 		String date = getIntent().getExtras().getString(GameServices.TIME_START);
-		Log.i("DateInEdit:",date);
 		DateTimeServices.setDefaultDate(date, mGameDatePicker);
 	}
 

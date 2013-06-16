@@ -25,7 +25,9 @@ public class ChooseTimeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_time);
 		mGameTimePicker = (TimePicker) findViewById(R.id.timePickerTimeStart);
-		fillFields();
+		mGameTimePicker.setIs24HourView(true);
+		if (!(getIntent().getExtras().getString(GameServices.TIME_START)).isEmpty())
+			fillFields();
 	}
 
 	@Override

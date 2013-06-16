@@ -76,7 +76,7 @@ public class EditGameActivity extends Activity {
 				String listElement = ((TextView) view).getText().toString();
 
 				Intent intent = null;
-				if (listElement.equals("Dane gry")) {
+				if (listElement.equals(getString(R.string.basic_data))) {
 					intent = new Intent("com.blstream.ctf2.BASICDATAACTIVITY");
 					intent.putExtra(GameServices.NAME, mGameName);
 					intent.putExtra(GameServices.POINTS_MAX, mGameMaxPoints);
@@ -103,6 +103,7 @@ public class EditGameActivity extends Activity {
 				}
 				if (listElement.equals(getString(R.string.game_map))) {
 					intent = new Intent("com.blstream.ctf2.PICKLOCALIZATIONACTIVITY");
+					intent.putExtra(GameServices.RADIUS, mGameRadius);
 					startActivityForResult(intent, 6);
 				}
 
@@ -240,7 +241,7 @@ public class EditGameActivity extends Activity {
 				editedGame.put(GameServices.DESCRIPTION, mGameDescription);
 				editedGame.put(GameServices.TIME_START, mGameDateTime);
 				editedGame.put(GameServices.STATUS, "NEW");
-				editedGame.put(GameServices.DURATION, mGameDuration);
+				editedGame.put(GameServices.DURATION, "20");
 				editedGame.put(GameServices.POINTS_MAX, mGameMaxPoints);
 				editedGame.put(GameServices.PLAYERS_MAX, mGameMaxPlayers);
 				localization.put(GameServices.NAME, mGameLocalizationName);
