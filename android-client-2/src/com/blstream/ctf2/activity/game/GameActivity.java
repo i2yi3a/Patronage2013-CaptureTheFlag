@@ -431,5 +431,6 @@ public class GameActivity extends FragmentActivity {
 	@Override
 	public void onBackPressed() {
 		mTimer.cancel();
+		finish();
 	}
 }

@@ -104,6 +104,7 @@ public class CreateGameActivity extends Activity {
 				}
 				if (listElement.equals(getString(R.string.game_map))) {
 					intent = new Intent("com.blstream.ctf2.PICKLOCALIZATIONACTIVITY");
+					intent.putExtra(GameServices.RADIUS, mGameRadius);
 					startActivityForResult(intent, 6);
 				}
 
@@ -186,7 +187,7 @@ public class CreateGameActivity extends Activity {
 		mGameMaxPoints = "";
 		mGameMaxPlayers = "";
 		mGameLocalizationName = "";
-		mGameRadius = "";
+		mGameRadius = "2000";
 		mGameDate = "";
 		mGameTime = "";
 		mGameLat = "53.439516";

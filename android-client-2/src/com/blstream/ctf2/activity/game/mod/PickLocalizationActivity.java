@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 
 import com.blstream.ctf2.Constants;
@@ -38,7 +39,8 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 	private Marker mBlueMarker;
 	private Marker mRedMarker;
 	byte mMarkerFlag;
-	int mRadius;
+	String sRadius;
+	double mRadius;
 	Localization mRedFlag;
 	Localization mBlueFlag;
 	Localization mCenter;
@@ -62,7 +64,9 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 		mRedFlag = new Localization(0, 0);
 		mBlueFlag = new Localization(0, 0);
 		mCenter = new Localization(0, 0);
-		mRadius = getIntent().getExtras().getInt(GameServices.RADIUS);
+		sRadius = getIntent().getExtras().getString(GameServices.RADIUS);
+		Log.i("Radius",sRadius);
+		mRadius = Double.parseDouble(sRadius);
 	}
 
 	@Override
@@ -87,13 +91,13 @@ public class PickLocalizationActivity extends FragmentActivity implements OnMapC
 				mCenterMarker.remove();
 			mCenterMarker = mMap.addMarker(new MarkerOptions().position(touchedPoint)
 					.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title(Constants.KEY_GAME_AREA));
+
+			mCenter.setLat(mCenterMarker.getPosition().latitude);
+			mCenter.setLng(mCenterMarker.getPosition().longitude);
 			
 			if (null != mCircle)
 				mCircle.remove();
 			mCircle = mMap.addCircle(new CircleOptions().center(mCenterMarker.getPosition()).radius(mRadius).strokeColor(Color.RED));
-			
-			mCenter.setLat(mCenterMarker.getPosition().latitude);
-			mCenter.setLng(mCenterMarker.getPosition().longitude);
 		}
 	}
 
