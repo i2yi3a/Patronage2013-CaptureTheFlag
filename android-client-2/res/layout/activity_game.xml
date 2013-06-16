@@ -79,4 +79,14 @@
         android:onClick="onClickButton"
         android:text="ShowObjects" />
 
+    <Button
+        android:id="@+id/buttonStartLoop"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ButtonShowObjects"
+        android:onClick="onClickButton"
+        android:text="StartGameLoop" />
+
 </RelativeLayout>
