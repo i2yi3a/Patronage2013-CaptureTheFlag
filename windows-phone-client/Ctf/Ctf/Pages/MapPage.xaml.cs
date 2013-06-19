@@ -11,7 +11,6 @@ using Microsoft.Phone.Maps.Toolkit;
 using System.Device.Location;
 using Microsoft.Phone.Maps.Controls;
 using Windows.Devices.Geolocation;
-using System.Device.Location;
 using Microsoft.Phone.Maps.Services;
 using System.Windows.Shapes;
 using System.Windows.Media;

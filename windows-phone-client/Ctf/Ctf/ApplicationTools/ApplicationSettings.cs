@@ -113,7 +113,7 @@ namespace Ctf.ApplicationTools
         {
             if (settings.Contains(keyword))
             {
-                string username;
+                string username = null;
                 Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), String.Format("Removing user {0} from storage.", username = RetriveLoggedUser().username)));
                 settings.Remove(keyword);
                 // TDOD Localize string

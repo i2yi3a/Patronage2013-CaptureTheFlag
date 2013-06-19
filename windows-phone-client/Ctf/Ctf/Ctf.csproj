@@ -182,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Ctf_2013_06_15_16_09_47.sap" />
+    <None Include="Ctf_2013_06_15_16_13_15.sap" />
     <None Include="Docs\Ctf_WP8.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
