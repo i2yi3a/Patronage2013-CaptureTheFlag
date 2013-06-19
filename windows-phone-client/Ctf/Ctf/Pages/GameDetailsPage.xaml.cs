@@ -26,7 +26,7 @@ namespace Ctf.Views
             InitializeComponent();
             gameDetails = new GameDetails();
             //this.DataContext = gameDetails;
-            InitializeApplicationBar();
+            //InitializeApplicationBar();
             
         }
         
@@ -108,6 +108,7 @@ namespace Ctf.Views
                 //ContentPanel.DataContext = x;
                 //gameDetails = x;
                 //PlayersList.DataContext = x.players;
+                InitializeApplicationBar(gameDetails);
             }
             else
             {
@@ -115,27 +116,44 @@ namespace Ctf.Views
             }
         }
 
-        protected void InitializeApplicationBar()
+        protected void InitializeApplicationBar(GameDetails gameDetails)
         {
             ApplicationBar = new ApplicationBar { IsVisible = true, IsMenuEnabled = true };
 
-            var ApplicationBarMenuItemsJoin = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemJoin };
-            ApplicationBarMenuItemsJoin.Click += GameSignIn_Button_Click;
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsJoin);
+            ApplicationBarIconButton ApplicationBarButtonDetails = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
+            ApplicationBar.Buttons.Add(ApplicationBarButtonDetails);
 
-            var ApplicationBarMenuItemsLeave = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemLeave };
-            ApplicationBarMenuItemsLeave.Click += GameSignOut_Button_Click;
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLeave);
+            ApplicationBarIconButton ApplicationBarButtonPlayers = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
+            ApplicationBar.Buttons.Add(ApplicationBarButtonPlayers);
+
+            ApplicationBarIconButton ApplicationBarButtonMap = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
+            ApplicationBar.Buttons.Add(ApplicationBarButtonMap);
+
+            if (gameDetails.players != null && gameDetails.players.Contains(ApplicationSettings.Instance.LoggedUsername))
+            {
+                var ApplicationBarMenuItemsLeave = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemLeave };
+                ApplicationBarMenuItemsLeave.Click += GameSignOut_Button_Click;
+                ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsLeave);
+            }
+            else
+            {
+                var ApplicationBarMenuItemsJoin = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemJoin };
+                ApplicationBarMenuItemsJoin.Click += GameSignIn_Button_Click;
+                ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsJoin);
+            }
 
             var ApplicationBarMenuItemsMap = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemMap };
             ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsMap);
 
-            var ApplicationBarMenuItemsEdit = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemEdit };
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsEdit);
+            if (gameDetails.Owner.Equals(ApplicationSettings.Instance.LoggedUsername))
+            {
+                var ApplicationBarMenuItemsEdit = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemEdit };
+                ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsEdit);
 
-            var ApplicationBarMenuItemsDelete = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemDelete };
-            ApplicationBarMenuItemsDelete.Click += DeleteGame_Button_Click;
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsDelete);
+                var ApplicationBarMenuItemsDelete = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemDelete };
+                ApplicationBarMenuItemsDelete.Click += DeleteGame_Button_Click;
+                ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsDelete);
+            }
         }
     }
 }

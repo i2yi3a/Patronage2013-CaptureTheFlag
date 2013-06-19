@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace Ctf.ApplicationTools
 {
@@ -24,12 +25,20 @@ namespace Ctf.ApplicationTools
             disableNetworkCount = 0;
         }
 
+        ////Preferably this method
+        //public static bool IsNetworkEnabled()
+        //{
+        //    return (Microsoft.Phone.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType !=
+        //        Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceType.None);
+        //}
+
         //Preferably this method
         public static bool IsNetworkEnabled()
         {
-            return (Microsoft.Phone.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType !=
-                Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceType.None);
+            return DeviceNetworkInformation.IsWiFiEnabled || DeviceNetworkInformation.IsCellularDataEnabled;
         }
+
+         
 
         //Preferably this method
         public static Task<bool> IsNetworkEnabledAsync()
