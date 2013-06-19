@@ -63,7 +63,7 @@ namespace Ctf.Pages
                 new List<double>(zArray), int.Parse(CGLocalizationRadiusBox.Text)),
                 new TeamBase(CGRedNameBox.Text, new List<double>(yArray)),
                 new TeamBase(CGBlueNameBox.Text, new List<double>(xArray))));
-
+           
         }
         private void DatePicker_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
