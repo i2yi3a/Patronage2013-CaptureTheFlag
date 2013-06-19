@@ -490,7 +490,7 @@ namespace Ctf.Pages
         {
             //task.Result.Abort();
             //InitializeCollectionsAndBind();
-            List<double> latLng = await g.GetPhoneLocationAsync();
+            List<double> latLng = await Geo.GetPhoneLocationAsync();
             Debug.WriteLine("My position is : " + latLng[0] + ", " + latLng[1]);
         }
 

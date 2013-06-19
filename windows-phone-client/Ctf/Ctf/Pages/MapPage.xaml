@@ -27,7 +27,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,112">
 
-            <maps:Map x:Name="MyMap" Center="  53.4317, 014.5589" ZoomLevel="13" Margin="0,29,0,53" ZoomLevelChanged="MyMap_ZoomLevelChanged">
+            <maps:Map x:Name="MyMap" Margin="0,29,0,53" ZoomLevelChanged="MyMap_ZoomLevelChanged">
             </maps:Map>
             
 

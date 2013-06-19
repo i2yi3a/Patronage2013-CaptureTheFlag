@@ -27,7 +27,7 @@ namespace Ctf.ApplicationTools
         }
 
         //Check if working properly
-        public async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
+        public static async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
         {
             return await Task.Run(async () =>
             {
