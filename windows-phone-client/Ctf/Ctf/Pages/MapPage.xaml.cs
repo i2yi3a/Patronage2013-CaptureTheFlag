@@ -15,6 +15,7 @@ using Microsoft.Phone.Maps.Services;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Input;
+using Microsoft.Phone.Controls.Maps.Platform;
 
 namespace Ctf
 {
@@ -24,8 +25,9 @@ namespace Ctf
         MapLayer centerlayer;
         MapLayer redFlag;
         MapLayer blueFlag;
-        
-
+        GeoCoordinateCollection locations = new GeoCoordinateCollection();
+        MapPolyline myMapPolyline = new MapPolyline();
+        double Radius = 1;
 
 
         public MapPage()
@@ -34,6 +36,8 @@ namespace Ctf
             InitializeComponent();
 
         }
+
+
 
 
     private void MyMapCenter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -47,9 +51,9 @@ namespace Ctf
 
         Ellipse myCircle = new Ellipse();
         myCircle.Fill = new SolidColorBrush(Colors.Green);
-        myCircle.Height = 20;
-        myCircle.Width = 20;
-        myCircle.Opacity = 50;
+        myCircle.Height = 10;
+        myCircle.Width = 10;
+        myCircle.Opacity = 20;
 
         MapOverlay myLocationOverlay = new MapOverlay();
         myLocationOverlay.Content = myCircle;
@@ -63,8 +67,28 @@ namespace Ctf
         MyMap.Layers.Add(centerlayer);
         ApplicationBarIconButton b = (ApplicationBarIconButton)ApplicationBar.Buttons[1];
         b.IsEnabled = true;
-       
+
+
+        RadiusPlusButton.IsEnabled = true;
+        RadiusMinusButton.IsEnabled = true;
+
+        if (locations != null)
+        {
+            MyMap.MapElements.Remove(myMapPolyline);
+        }
+
+
         
+
+        locations = CreateCircle(s, Radius);
+        
+        myMapPolyline.Path = locations;
+        myMapPolyline.StrokeThickness = 5;
+        myMapPolyline.StrokeColor = Colors.Red;
+
+
+        MyMap.MapElements.Add(myMapPolyline);
+
     }
 
     private void MyMapRed_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -160,6 +184,59 @@ namespace Ctf
             MyMap.ZoomLevel = 16;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+        //dodane teraz
+    public static GeoCoordinateCollection CreateCircle(GeoCoordinate center, double radius)
+    {
+        var earthRadius = 6367.0; // radius w kilometrach
+        var lat = center.Latitude * Math.PI / 180.0;                                    
+        var lng = center.Longitude * Math.PI / 180.0; //radians                                                         
+        var d = radius / earthRadius; 
+        var locations = new GeoCoordinateCollection();
+
+        for (var x = 0; x <= 360; x++)
+        {
+            var brng = x * Math.PI / 180.0; ;
+            var latRadians = Math.Asin(Math.Sin(lat) * Math.Cos(d) + Math.Cos(lat) * Math.Sin(d) * Math.Cos(brng));
+            var lngRadians = lng + Math.Atan2(Math.Sin(brng) * Math.Sin(d) * Math.Cos(lat), Math.Cos(d) - Math.Sin(lat) * Math.Sin(latRadians));
+            locations.Add(new GeoCoordinate(180.0 * latRadians / Math.PI, 180.0 * lngRadians / Math.PI));
+        }
+        
+        return locations;
+    }
+
+
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        Radius= Radius+0.5;
+    }
+
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+        if (Radius >= 1)
+        {
+            Radius = Radius - 0.5;
+            
+        }
+        else
+        {
+        Radius = 0.5;
+        }
+        
+    }
+        
 
 
     }
