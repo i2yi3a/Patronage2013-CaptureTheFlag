@@ -21,21 +21,28 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class GameDetailsMapFragment extends Fragment {
 
 	private GoogleMap mMap;
+	private TextView mGameNameTextView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.game_details_map_fragment, container, false);
 		mMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+		mGameNameTextView = (TextView) view.findViewById(R.id.textViewGameName);
 		
 		GameLocalization gameArea = (GameLocalization) getArguments().getSerializable(Constants.KEY_GAME_AREA);
 		Team teamRed = (Team) getArguments().getSerializable(Constants.KEY_TEAM_RED);
 		Team teamBlue = (Team) getArguments().getSerializable(Constants.KEY_TEAM_BLUE);
 		
 		drawMarkers(gameArea,teamRed,teamBlue);
+		
+		String gameName = getArguments().getString(Constants.KEY_GAME_NAME);
+		mGameNameTextView.setText(gameName);
+		mGameNameTextView.setSelected(true);
 		
 		return view;
 	}

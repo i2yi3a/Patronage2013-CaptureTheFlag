@@ -86,6 +86,8 @@
     <string name="save">Zapisz</string>
     <string name="save_changes">Zapisz zmiany</string>
     <string name="basic_data">Podstawowe dane</string>
+    <string name="play">Graj</string>
+    <string name="leave">Opuść</string>
     <!-- Error Codes -->
     <string name="error_code_1">Niepoprawne żądanie</string>
     <string name="error_code_2">Błąd wewnętrzny servera</string>

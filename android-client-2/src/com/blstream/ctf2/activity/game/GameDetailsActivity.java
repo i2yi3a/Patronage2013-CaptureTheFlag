@@ -104,6 +104,7 @@ public class GameDetailsActivity extends FragmentActivity {
 		args.putSerializable(Constants.KEY_GAME_AREA, mGameDetails.getLocalization());
 		args.putSerializable(Constants.KEY_TEAM_RED, mGameDetails.getTeamRed());
 		args.putSerializable(Constants.KEY_TEAM_BLUE, mGameDetails.getTeamBlue());
+		args.putString(Constants.KEY_GAME_NAME, mGameDetails.getName());
 		mGameDetailsMapFragment.setArguments(args);
 		pushFragments(mGameDetailsMapFragment);
 	}
@@ -112,6 +113,7 @@ public class GameDetailsActivity extends FragmentActivity {
 		mGameDetailsPlayersFragment = new GameDetailsPlayersFragment();
 		Bundle args = new Bundle();
 		args.putStringArrayList(Constants.KEY_PLAYERS, playersList);
+		args.putString(Constants.KEY_GAME_NAME, mGameDetails.getName());
 		mGameDetailsPlayersFragment.setArguments(args);
 		pushFragments(mGameDetailsPlayersFragment);
 	}

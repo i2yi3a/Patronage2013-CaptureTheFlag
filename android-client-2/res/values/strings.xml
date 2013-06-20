@@ -91,6 +91,8 @@
     <string name="save">Save</string>
     <string name="save_changes">Save changes</string>
     <string name="basic_data">Basic Data</string>
+    <string name="play">Play</string>
+    <string name="leave">Leave</string>
     <!-- Error Codes -->
     <string name="error_code_1">Bad request</string>
     <string name="error_code_2">Internal error</string>

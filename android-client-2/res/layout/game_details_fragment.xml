@@ -4,36 +4,47 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="0dp"
-        android:background="#E16820"
-        android:orientation="vertical" >
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
-        android:layout_height="48dp" >
+        android:layout_height="48dp"
+        android:background="@color/orange_light" >
 
-        <Button
-            android:id="@+id/joinButton"
+        <TextView
+            android:id="@+id/textViewGameName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iconActionBar"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="center|center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/light_text"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/iconActionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="1dp"
+            android:scaleType="center"
+            android:src="@drawable/splash_ico" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
-            android:enabled="false"
+            android:background="@drawable/button_orange"
             android:onClick="onClickButton"
-            android:text="@string/game_join" />
-
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:enabled="false"
-            android:onClick="onClickButton"
-            android:text="@string/game_edit" />
+            android:text="@string/play"
+            android:textSize="15sp"  />
     </RelativeLayout>
 
     <RelativeLayout
@@ -43,13 +54,22 @@
         android:layout_marginTop="96dp" >
 
         <Button
-            android:id="@+id/startButton"
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:enabled="false"
+            android:onClick="onClickButton"
+            android:text="@string/game_edit" />
+
+        <Button
+            android:id="@+id/joinButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:enabled="false"
             android:onClick="onClickButton"
-            android:text="Start demo" /> <!-- TODO res strings, button enabled -->
-
+            android:text="@string/game_join" />
     </RelativeLayout>
 
     <ScrollView
@@ -62,19 +82,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_name"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewGameName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
 
             <TextView
                 android:id="@+id/textView2"

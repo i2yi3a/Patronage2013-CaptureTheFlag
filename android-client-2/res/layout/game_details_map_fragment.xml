@@ -4,13 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical"
         android:background="@color/orange_light" >
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewGameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iconActionBar"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="center|center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/light_text"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/iconActionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="1dp"
+            android:scaleType="center"
+            android:src="@drawable/splash_ico" />
+
+
+    </RelativeLayout>
     
     <fragment
         android:id="@+id/map"

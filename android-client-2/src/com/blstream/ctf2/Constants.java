@@ -55,6 +55,7 @@ public class Constants {
 	public final static String KEY_TEAM_BLUE = "teamBlue";
 	public final static String KEY_TEAM_RED = "teamRed";
 	public final static String KEY_PLAYERS = "players";
+	public final static String KEY_GAME_NAME = "game name";
 	
 	public final static String URL_MOCKUPS = "http://patronage.tk/json/";
 

@@ -52,6 +52,7 @@ public class GameDetailsFragment extends Fragment {
 			return view;
 		}
 		mGameNameTextView = (TextView) view.findViewById(R.id.textViewGameName);
+		mGameNameTextView.setSelected(true);
 		mGameIdTextView = (TextView) view.findViewById(R.id.textViewGameId);
 		mDescriptionTextView = (TextView) view.findViewById(R.id.textViewDescription);
 		mDurationIdTextView = (TextView) view.findViewById(R.id.textViewDuration);
