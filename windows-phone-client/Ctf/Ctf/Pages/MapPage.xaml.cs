@@ -30,7 +30,9 @@ namespace Ctf
         GeoCoordinateCollection locations = new GeoCoordinateCollection();
         MapPolyline myMapPolyline = new MapPolyline();
         double Radius = 1;
-
+        string center;
+        string redflag;
+        string blueflag;
 
 
         public MapPage()
@@ -72,7 +74,7 @@ namespace Ctf
             myLocationOverlay.Content = myCircle;
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
-            center.Text = s.ToString();
+            center = s.ToString();
 
             centerlayer = new MapLayer();
             centerlayer.Add(myLocationOverlay);
@@ -92,13 +94,11 @@ namespace Ctf
 
 
 
-
             locations = CreateCircle(s, Radius);
 
             myMapPolyline.Path = locations;
             myMapPolyline.StrokeThickness = 5;
             myMapPolyline.StrokeColor = Colors.Red;
-
 
             MyMap.MapElements.Add(myMapPolyline);
 
@@ -106,7 +106,7 @@ namespace Ctf
 
         private void MyMapRed_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (blueFlag != null)
+            if (redFlag != null)
             {
                 MyMap.Layers.Remove(redFlag);
             }
@@ -123,7 +123,7 @@ namespace Ctf
             myLocationOverlay.Content = myCircle;
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
-            redflag.Text = s.ToString();
+            redflag = s.ToString();
 
             redFlag = new MapLayer();
             redFlag.Add(myLocationOverlay);
@@ -134,6 +134,7 @@ namespace Ctf
         }
         private void MyMapBlue_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+
             if (blueFlag != null)
             {
                 MyMap.Layers.Remove(blueFlag);
@@ -151,7 +152,7 @@ namespace Ctf
             myLocationOverlay.Content = myCircle;
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
-            blueflag.Text = s.ToString();
+            blueflag = s.ToString();
 
             blueFlag = new MapLayer();
             blueFlag.Add(myLocationOverlay);
@@ -171,6 +172,7 @@ namespace Ctf
 
         private void ApplicationBarIconButton_Click_2(object sender, EventArgs e)
         {
+
             MyMap.Tap -= MyMapBlue_Tap;
             MyMap.Tap -= MyMapCenter_Tap;
             MyMap.Tap += MyMapRed_Tap;
@@ -185,7 +187,7 @@ namespace Ctf
 
         private void okAppBarButton_Click(object sender, EventArgs e)
         {
-            string uri = string.Format("/Pages/CreateGamePage.xaml?parametr1=" + center.Text + "&parametr2=" + redflag.Text + "&parametr3=" + blueflag.Text);
+            string uri = string.Format("/Pages/CreateGamePage.xaml?parametr1=" + center + "&parametr2=" + redflag + "&parametr3=" + blueflag + "&radius=" + Radius);
 
             NavigationService.Navigate(new Uri(uri, UriKind.Relative));
         }

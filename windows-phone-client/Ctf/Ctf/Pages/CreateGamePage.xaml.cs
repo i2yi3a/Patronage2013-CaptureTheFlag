@@ -63,7 +63,7 @@ namespace Ctf.Pages
                 new List<double>(zArray), int.Parse(CGLocalizationRadiusBox.Text)),
                 new TeamBase(CGRedNameBox.Text, new List<double>(yArray)),
                 new TeamBase(CGBlueNameBox.Text, new List<double>(xArray))));
-           
+
         }
         private void DatePicker_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
@@ -86,30 +86,31 @@ namespace Ctf.Pages
             var uri = NavigationService.CurrentSource;
             Debug.WriteLine(uri);
             if (!uri.ToString().Equals("/Pages/CreateGamePage.xaml"))
-          {
+            {
                 string x = NavigationContext.QueryString["parametr1"];
                 Debug.WriteLine(x);
                 CGLocalizationLatLngBox.Text = x;
-                
+
                 CGRedLatLng.Text = NavigationContext.QueryString["parametr2"];
                 CGBlueLatLngBox.Text = NavigationContext.QueryString["parametr3"];
-                
+                CGLocalizationRadiusBox.Text = NavigationContext.QueryString["radius"];
+
             }
         }
 
-       
+
         private void RequiredBoxes_Changed(object sender, RoutedEventArgs e)
         {
             String errorInfo = String.Empty;
             CreateGameButton.IsEnabled = false;
-            if (!String.IsNullOrWhiteSpace(CGNameBox.Text) &&!String.IsNullOrWhiteSpace(CGDescriptionBox.Text) &&!String.IsNullOrWhiteSpace(CGDurationBox.Text) &&
-                !String.IsNullOrWhiteSpace(CGPoints_maxBox.Text) &&!String.IsNullOrWhiteSpace(CGPlayers_maxBox.Text) &&!String.IsNullOrWhiteSpace(CGLocalizationNameBox.Text) &&
-                !String.IsNullOrWhiteSpace(CGLocalizationLatLngBox.Text) &&!String.IsNullOrWhiteSpace(CGLocalizationRadiusBox.Text) &&!String.IsNullOrWhiteSpace(CGRedNameBox.Text) &&
-                !String.IsNullOrWhiteSpace(CGRedLatLng.Text) &&!String.IsNullOrWhiteSpace(CGBlueNameBox.Text) &&!String.IsNullOrWhiteSpace(CGBlueLatLngBox.Text))
+            if (!String.IsNullOrWhiteSpace(CGNameBox.Text) && !String.IsNullOrWhiteSpace(CGDescriptionBox.Text) && !String.IsNullOrWhiteSpace(CGDurationBox.Text) &&
+                !String.IsNullOrWhiteSpace(CGPoints_maxBox.Text) && !String.IsNullOrWhiteSpace(CGPlayers_maxBox.Text) && !String.IsNullOrWhiteSpace(CGLocalizationNameBox.Text) &&
+                !String.IsNullOrWhiteSpace(CGLocalizationLatLngBox.Text) && !String.IsNullOrWhiteSpace(CGLocalizationRadiusBox.Text) && !String.IsNullOrWhiteSpace(CGRedNameBox.Text) &&
+                !String.IsNullOrWhiteSpace(CGRedLatLng.Text) && !String.IsNullOrWhiteSpace(CGBlueNameBox.Text) && !String.IsNullOrWhiteSpace(CGBlueLatLngBox.Text))
             {
                 CreateGameButton.IsEnabled = true;
             }
-           
+
         }
 
         private void CGPoints_maxBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

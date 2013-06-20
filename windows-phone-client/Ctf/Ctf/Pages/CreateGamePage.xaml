@@ -69,7 +69,7 @@
                 <TextBlock TextWrapping="Wrap" Text="LatLng:"/>
                 <TextBox x:Name="CGLocalizationLatLngBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed"  Margin="0,0,87,0" IsReadOnly="True"/>
                 <TextBlock TextWrapping="Wrap" Text="Radius:"/>
-                <TextBox x:Name="CGLocalizationRadiusBox" Height="72" InputScope="Number" TextWrapping="Wrap"  TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown" />
+                <TextBox x:Name="CGLocalizationRadiusBox" Height="72"  TextWrapping="Wrap"  TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" KeyDown="CGPoints_maxBox_KeyDown" IsReadOnly="True"/>
 
                 <TextBlock TextWrapping="Wrap" Text="Red Team Base::"/>
                 <TextBlock TextWrapping="Wrap" Text="Name:"/>

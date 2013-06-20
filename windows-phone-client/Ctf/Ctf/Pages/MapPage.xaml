@@ -32,9 +32,6 @@
             
 
         </Grid>
-        <TextBlock x:Name="center" HorizontalAlignment="Left" Margin="31,591,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="417" FontSize="16"/>
-        <TextBlock x:Name="redflag" HorizontalAlignment="Left" Margin="33,608,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="426" FontSize="16"/>
-        <TextBlock x:Name="blueflag" HorizontalAlignment="Left" Margin="35,626,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="420" FontSize="16"/>
         <Slider HorizontalAlignment="Left" Margin="39,8,0,0" VerticalAlignment="Top" Width="356" Height="86" Grid.RowSpan="2" Minimum="2" Value="2"/>
         <Button IsEnabled="False" x:Name="RadiusPlusButton" Content="+" HorizontalAlignment="Left" Margin="24,517,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Click="Button_Click_1"/>
         <Button IsEnabled="False" x:Name="RadiusMinusButton" Content="-" HorizontalAlignment="Left" Margin="133,515,0,0" Grid.Row="1" VerticalAlignment="Top" Width="91" Click="Button_Click_2"/>
