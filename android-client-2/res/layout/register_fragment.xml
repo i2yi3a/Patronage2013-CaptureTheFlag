@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="96dp" >
+
+    <EditText
+        android:id="@+id/editTextUserame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextPassword"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:padding="3dp" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextRepeatPassword"
+        android:layout_margin="38dp"
+        android:onClick="onClickButton"
+        android:text="@string/register" />
+
+    <EditText
+        android:id="@+id/editTextRepeatPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/registerButton"
+        android:layout_below="@+id/textView3"
+        android:layout_toRightOf="@+id/imageView1"
+        android:ems="10"
+        android:hint="@string/repeat_password"
+        android:inputType="textPassword"
+        android:padding="3dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextRepeatPassword"
+        android:layout_alignRight="@+id/editTextRepeatPassword"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="3dp" />
+
+    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/editTextPassword"
+        android:background="#54B2BD"
+        android:scaleType="center"
+        android:src="@drawable/icons_pass" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/registerButton"
+        android:layout_alignLeft="@+id/registerButton"
+        android:layout_alignTop="@+id/editTextRepeatPassword"
+        android:background="#54B2BD"
+        android:scaleType="center"
+        android:src="@drawable/icons_pass" />
+
+    <ImageView
+        android:id="@+id/ImageView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_below="@+id/textView1"
+        android:layout_toLeftOf="@+id/editTextUserame"
+        android:background="#54B2BD"
+        android:scaleType="center"
+        android:src="@drawable/icons_login" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView02"
+        android:layout_marginTop="24dp"
+        android:text="@string/username" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_below="@+id/editTextUserame"
+        android:text="@string/password" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_below="@+id/editTextPassword"
+        android:text="@string/repeat_password" />
+
+</RelativeLayout>

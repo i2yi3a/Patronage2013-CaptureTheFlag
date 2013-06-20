@@ -24,7 +24,8 @@ public class SplashScreen extends Activity {
 		handler.postDelayed(thread = new Thread() {
 			@Override
 			public void run() {
-				Intent login = new Intent(SplashScreen.this, LoginActivity.class);
+				//Intent login = new Intent(SplashScreen.this, LoginActivity.class);
+				Intent login = new Intent(SplashScreen.this, LoginRegisterActivity.class);
 				SplashScreen.this.startActivity(login);
 				SplashScreen.this.finish();
 			}

@@ -7,10 +7,12 @@ import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
 import com.blstream.ctf2.Constants;
+import com.blstream.ctf2.LoginRegisterActivity;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.exception.CtfException;
 import com.blstream.ctf2.services.HttpServices;
@@ -26,6 +28,7 @@ public class Login extends AsyncTask<String, Void, String> {
 	private Context mCtx;
 	private String mUserName;
 	private HttpServices mHttpServices;
+	private ProgressDialog mProgressDialog;
 
 	public Login(Context ctx) {
 		mCtx = ctx;
@@ -68,13 +71,15 @@ public class Login extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
+		mProgressDialog = new ProgressDialog(mCtx);
 	}
 
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		LoginActivity loginActivity = (LoginActivity) mCtx;
+		LoginRegisterActivity loginActivity = (LoginRegisterActivity) mCtx;
 		loginActivity.loginResultNotification(result);
+		mProgressDialog.dismiss();
 	}
 
 }

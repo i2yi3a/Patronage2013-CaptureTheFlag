@@ -9,7 +9,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="0dp"
         android:orientation="vertical"
-        android:background="#E16820" >
+        android:background="@color/orange_light" >
     </LinearLayout>
     
     <fragment

@@ -170,6 +170,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.blstream.ctf2.LoginRegisterActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.blstream.ctf2.LOGINREGISTERACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
