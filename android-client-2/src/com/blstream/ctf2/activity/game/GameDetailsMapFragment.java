@@ -23,6 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Rafal Tatol
+ * 
+ */
 public class GameDetailsMapFragment extends Fragment {
 
 	private GoogleMap mMap;
@@ -33,17 +38,17 @@ public class GameDetailsMapFragment extends Fragment {
 		View view = inflater.inflate(R.layout.game_details_map_fragment, container, false);
 		mMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		mGameNameTextView = (TextView) view.findViewById(R.id.textViewGameName);
-		
+
 		GameLocalization gameArea = (GameLocalization) getArguments().getSerializable(Constants.KEY_GAME_AREA);
 		Team teamRed = (Team) getArguments().getSerializable(Constants.KEY_TEAM_RED);
 		Team teamBlue = (Team) getArguments().getSerializable(Constants.KEY_TEAM_BLUE);
-		
-		drawMarkers(gameArea,teamRed,teamBlue);
-		
+
+		drawMarkers(gameArea, teamRed, teamBlue);
+
 		String gameName = getArguments().getString(Constants.KEY_GAME_NAME);
 		mGameNameTextView.setText(gameName);
 		mGameNameTextView.setSelected(true);
-		
+
 		return view;
 	}
 
@@ -59,7 +64,7 @@ public class GameDetailsMapFragment extends Fragment {
 		super.onDestroyView();
 	}
 
-	public void drawMarkers(GameLocalization gameArea, Team teamRed, Team teamBlue ) {
+	public void drawMarkers(GameLocalization gameArea, Team teamRed, Team teamBlue) {
 		int radius = gameArea.getRadius();
 		LatLng centerPoint = gameArea.getLatLang();
 		LatLng pointBaseRed = teamRed.getBaseLocalization().getLatLang();
