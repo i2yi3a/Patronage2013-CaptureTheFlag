@@ -49,7 +49,7 @@ public class GameDetailsActivity extends FragmentActivity {
 		mGameId = getIntent().getExtras().getString(Constants.ID);
 
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-		mTabHost.setOnTabChangedListener(listener);
+		mTabHost.setOnTabChangedListener(mTabListener);
 		mTabHost.setup();
 	}
 
@@ -77,7 +77,7 @@ public class GameDetailsActivity extends FragmentActivity {
 	}
 
 	// ON CHANGE TABS
-	TabHost.OnTabChangeListener listener = new TabHost.OnTabChangeListener() {
+	TabHost.OnTabChangeListener mTabListener = new TabHost.OnTabChangeListener() {
 		public void onTabChanged(String tabId) {
 			if (tabId.equals(TAB_DETAILS)) {
 				showDetails();
