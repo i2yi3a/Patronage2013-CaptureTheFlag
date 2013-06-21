@@ -101,7 +101,7 @@ namespace Ctf
             myMapPolyline.StrokeColor = Colors.Red;
 
             MyMap.MapElements.Add(myMapPolyline);
-
+            
         }
 
         private void MyMapRed_Tap(object sender, System.Windows.Input.GestureEventArgs e)
