@@ -7,16 +7,18 @@
 //
 
 #import "NewGame2ViewController.h"
+#import "NewGame3ViewController.h"
 #import "CTFGame.h"
 
 @interface NewGame2ViewController ()
 
-
 @property (weak, nonatomic) IBOutlet FlatButton *backButton;
 @property (weak, nonatomic) IBOutlet FlatButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIDatePicker *gameStart;
 
 - (IBAction)goToCreatingNewGame1:(id)sender;
+- (IBAction)goNext:(id)sender;
 @end
 
 @implementation NewGame2ViewController
@@ -45,6 +47,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)goNext:(id)sender{
+[self performSegueWithIdentifier:@"goToNewGame3" sender:self];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"goToNewGame3"]){
+        NewGame3ViewController *ng = [segue destinationViewController];
+        _game.timeStart = _gameStart.date;
+        ng.game = _game;
+        
+    }
 }
 
 @end

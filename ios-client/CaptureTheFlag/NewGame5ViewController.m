@@ -252,45 +252,19 @@ didUpdateUserLocation:
     return YES;
 }
 
-/*- (IBAction)createNewGame:(id)sender{
-    CTFGame *myNewGame = [[CTFGame alloc] init];
-    myNewGame.name = ;// ????
-    myNewGame.gameDescription = _gameDescription.text;
-    myNewGame.timeStart = _gameStart.date;
-    NSNumber *durarionInMs = [NSNumber numberWithDouble:_gameDuration.countDownDuration];
-    myNewGame.duration = durarionInMs;
-    NSInteger row1, row2;
-    NSString *pointsMaxFromPicker;
-    NSString *playersMaxFromPicker;
+- (IBAction)createNewGame:(id)sender{
     
-    row1 = [_gamePicker selectedRowInComponent:0];
-    row2 = [_gamePicker selectedRowInComponent:1];
-    pointsMaxFromPicker = [_oneColumnList objectAtIndex:row1];
-    playersMaxFromPicker = [_secondColumnList objectAtIndex:row2];
-    myNewGame.pointsMax = [NSNumber numberWithInteger:[pointsMaxFromPicker integerValue]];
-    myNewGame.playersMax = [NSNumber numberWithInteger:[playersMaxFromPicker integerValue]];
-    myNewGame.localizationName = _addres;
-    myNewGame.localization = _gameLocation;
-    myNewGame.localizationRadius = _gameRadius;
-    myNewGame.redTeamBaseName = _gameRedName.text;
-    myNewGame.redTeamBaseLocalization = _redTeamBaseLocalization;
-    myNewGame.blueTeamBaseName = _gameBlueName.text;
-    myNewGame.blueTeamBaseLocalization =_blueTeamBaseLocalization;
-    NSLog(@"%@",myNewGame.name);
-    NSLog(@"%@",myNewGame.gameDescription);
-    NSLog(@"%@",myNewGame.timeStart);
-    NSLog(@"%@",myNewGame.duration);
-    NSLog(@"%@",myNewGame.pointsMax);
-    NSLog(@"%@",myNewGame.playersMax);
-    NSLog(@"%@",myNewGame.localizationName);
-    NSLog(@"%@",myNewGame.localization);
-    NSLog(@"%@",myNewGame.localizationRadius);
-    NSLog(@"%@",myNewGame.redTeamBaseName);
-    NSLog(@"%@",myNewGame.redTeamBaseLocalization);
-    NSLog(@"%@",myNewGame.blueTeamBaseName);
-    NSLog(@"%@",myNewGame.blueTeamBaseLocalization);
+    _game.localizationName = _addres;
+    _game.localization = _gameLocation;
+    _game.localizationRadius = _gameRadius;
+    _game.redTeamBaseLocalization = _redTeamBaseLocalization;
+    _game.blueTeamBaseLocalization =_blueTeamBaseLocalization;
+    NSLog(@"%@",_game.name);
+    NSLog(@"%@",_game.duration);
+    NSLog(@"%@",_game.timeStart );
+    NSLog(@"%@",_game.playersMax);
     
-    [[NetworkEngine getInstance] createNewGame:myNewGame completionBlock:^(NSObject *response){
+    [[NetworkEngine getInstance] createNewGame:_game completionBlock:^(NSObject *response){
         if ([response isKindOfClass:[NSError class]])
         {
             NSError *error = (NSError *)response;
@@ -303,7 +277,6 @@ didUpdateUserLocation:
         
     }];
 }
-*/
 
 
 

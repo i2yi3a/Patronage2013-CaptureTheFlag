@@ -921,7 +921,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="eDf-KG-E2D" kind="push" id="Xk9-hA-phO"/>
+                                            <action selector="goNext:" destination="hgH-6e-hcK" eventType="touchUpInside" id="JUM-sw-v4B"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aNP-ff-gpE" customClass="FlatButton">
@@ -986,6 +986,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="gameStart" destination="DDT-3c-DYH" id="Dbf-Yi-Ayt"/>
                         <outlet property="nextButton" destination="CFo-nl-vH8" id="CeD-tr-Qdd"/>
                         <outlet property="topBar" destination="QFJ-cI-Gbe" id="p9t-47-vEt"/>
+                        <segue destination="eDf-KG-E2D" kind="push" identifier="goToNewGame3" id="qXW-6h-ClR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zg0-ct-Amm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1046,7 +1047,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Wew-3S-4lj" kind="push" id="tld-gb-bcD"/>
+                                            <action selector="goNext:" destination="eDf-KG-E2D" eventType="touchUpInside" id="JRH-Aj-SLv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K1n-cf-lF0" customClass="FlatButton">
@@ -1105,11 +1106,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KTS-NM-Jon"/>
                     <connections>
                         <outlet property="backButton" destination="K1n-cf-lF0" id="8He-Uo-dC5"/>
                         <outlet property="gameDuration" destination="pmS-tm-DdF" id="Uhj-3K-vbF"/>
                         <outlet property="nextButton" destination="GQg-xB-M8h" id="ZYr-Mc-e7M"/>
                         <outlet property="topBar" destination="gB2-Iw-KaI" id="Ihv-KM-eqF"/>
+                        <segue destination="Wew-3S-4lj" kind="push" identifier="goToNewGame4" id="Xif-G7-ncD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKD-SO-tda" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1151,7 +1154,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="OgX-xJ-9Qh" kind="push" id="xOk-2k-wSy"/>
+                                            <action selector="goNext:" destination="Wew-3S-4lj" eventType="touchUpInside" id="s7S-n8-jVm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xYa-Hy-nsY" customClass="FlatButton">
@@ -1197,16 +1200,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="H0g-PS-BfT"/>
                     <connections>
                         <outlet property="backButton" destination="xYa-Hy-nsY" id="hVf-5s-u5z"/>
                         <outlet property="gamePicker" destination="uoK-7J-nzt" id="Qjc-Wz-Mxe"/>
                         <outlet property="nextButton" destination="LZM-kt-dVO" id="Pfe-zQ-5Gi"/>
                         <outlet property="topBar" destination="hPF-O4-Qcb" id="yfg-qG-24H"/>
+                        <segue destination="OgX-xJ-9Qh" kind="push" identifier="goToNewGame5" id="J9A-WO-nVA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDP-sl-d5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="-563"/>
+            <point key="canvasLocation" x="1551" y="-563"/>
         </scene>
         <!--New Game5 View Controller-->
         <scene sceneID="7tg-nv-bn6">
@@ -1321,6 +1326,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3S8-DD-NqT"/>
                     <connections>
                         <outlet property="MapHideView" destination="pJB-wo-XZM" id="dYB-rT-k0J"/>
                         <outlet property="backButton" destination="keV-Rb-svu" id="Ja5-Tr-nQv"/>
@@ -1444,6 +1450,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="NewGame2ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGame2ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goNext:"/>
                 <relationship kind="action" name="goToCreatingNewGame1:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="gameStart" candidateClass="UIDatePicker"/>
@@ -1454,6 +1461,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="NewGame3ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGame3ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goNext:"/>
                 <relationship kind="action" name="goToCreatingNewGame2:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="gameDuration" candidateClass="UIDatePicker"/>
@@ -1464,6 +1472,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="NewGame4ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGame4ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goNext:"/>
                 <relationship kind="action" name="goToCreatingNewGame3:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="FlatButton"/>
                 <relationship kind="outlet" name="gamePicker" candidateClass="UIPickerView"/>

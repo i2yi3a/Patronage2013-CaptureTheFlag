@@ -7,6 +7,7 @@
 //
 
 #import "NewGame4ViewController.h"
+#import "NewGame5ViewController.h"
 #import "CTFGame.h"
 
 @interface NewGame4ViewController ()
@@ -16,8 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIView *topBar;
 @property (strong, nonatomic) NSArray *oneColumnList;
 @property (strong, nonatomic) NSArray *secondColumnList;
+@property (weak, nonatomic) IBOutlet UIPickerView *gamePicker;
 
 - (IBAction)goToCreatingNewGame3:(id)sender;
+- (IBAction)goNext:(id)sender;
 @end
 
 @implementation NewGame4ViewController
@@ -83,6 +86,27 @@
     }
     
     
+}
+
+- (IBAction)goNext:(id)sender{
+    [self performSegueWithIdentifier:@"goToNewGame5" sender:self];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"goToNewGame5"]){
+        NewGame5ViewController *ng = [segue destinationViewController];
+        NSInteger row1, row2;
+        NSString *pointsMaxFromPicker;
+        NSString *playersMaxFromPicker;
+        row1 = [_gamePicker selectedRowInComponent:0];
+        row2 = [_gamePicker selectedRowInComponent:1];
+        pointsMaxFromPicker = [_oneColumnList objectAtIndex:row1];
+        playersMaxFromPicker = [_secondColumnList objectAtIndex:row2];
+        _game.pointsMax = [NSNumber numberWithInteger:[pointsMaxFromPicker integerValue]];
+        _game.playersMax = [NSNumber numberWithInteger:[playersMaxFromPicker integerValue]];
+        ng.game = _game;
+        
+    }
 }
 
 

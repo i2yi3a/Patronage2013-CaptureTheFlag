@@ -11,6 +11,6 @@
 @interface NewGame4ViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate> {
 }
 
-@property (weak, nonatomic) IBOutlet UIPickerView *gamePicker;
+@property (strong, nonatomic) CTFGame *game;
 
 @end

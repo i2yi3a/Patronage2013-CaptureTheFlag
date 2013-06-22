@@ -10,6 +10,6 @@
 
 @interface NewGame3ViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *gameDuration;
+@property (strong, nonatomic) CTFGame *game;
 
 @end

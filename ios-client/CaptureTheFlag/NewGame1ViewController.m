@@ -7,6 +7,7 @@
 //
 
 #import "NewGame1ViewController.h"
+#import "NewGame2ViewController.h"
 #import "CTFGame.h"
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -170,7 +171,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
         myNewGame.gameDescription = _gameDescription.text;
         myNewGame.redTeamBaseName =_gameRedName.text;
         myNewGame.blueTeamBaseName = _gameBlueName.text;
-        NewGame1ViewController *ng = [segue destinationViewController];
+        NewGame2ViewController *ng = [segue destinationViewController];
         ng.game = myNewGame;
 
     }

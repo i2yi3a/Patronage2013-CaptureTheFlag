@@ -11,4 +11,6 @@
 
 @interface NewGame5ViewController : UIViewController <MKMapViewDelegate>
 
+@property (strong, nonatomic) CTFGame *game;
+
 @end

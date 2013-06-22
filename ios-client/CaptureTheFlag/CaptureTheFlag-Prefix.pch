@@ -19,5 +19,6 @@
 
     #import "UIColor+customColors.h"
     #import "FlatButton.h"
+    #import "CustomAlertView.h"
 
 #endif
