@@ -12,6 +12,7 @@
 
 + (void)showError:(NSString *)error
 {
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:error
                                                      delegate:nil
