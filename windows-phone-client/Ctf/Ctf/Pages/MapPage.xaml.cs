@@ -29,7 +29,7 @@ namespace Ctf
         MapLayer blueFlag;
         GeoCoordinateCollection locations = new GeoCoordinateCollection();
         MapPolyline myMapPolyline = new MapPolyline();
-        double Radius = 1;
+        double Radius = 100;
         string center;
         string redflag;
         string blueflag;
@@ -68,7 +68,7 @@ namespace Ctf
             myCircle.Fill = new SolidColorBrush(Colors.Green);
             myCircle.Height = 10;
             myCircle.Width = 10;
-            myCircle.Opacity = 20;
+            myCircle.Opacity = 40;
 
             MapOverlay myLocationOverlay = new MapOverlay();
             myLocationOverlay.Content = myCircle;
@@ -99,6 +99,7 @@ namespace Ctf
             myMapPolyline.Path = locations;
             myMapPolyline.StrokeThickness = 5;
             myMapPolyline.StrokeColor = Colors.Red;
+            
 
             MyMap.MapElements.Add(myMapPolyline);
             
@@ -115,8 +116,8 @@ namespace Ctf
 
             Ellipse myCircle = new Ellipse();
             myCircle.Fill = new SolidColorBrush(Colors.Red);
-            myCircle.Height = 20;
-            myCircle.Width = 20;
+            myCircle.Height = 10;
+            myCircle.Width = 10;
             myCircle.Opacity = 50;
 
             MapOverlay myLocationOverlay = new MapOverlay();
@@ -144,8 +145,8 @@ namespace Ctf
 
             Ellipse myCircle = new Ellipse();
             myCircle.Fill = new SolidColorBrush(Colors.Blue);
-            myCircle.Height = 20;
-            myCircle.Width = 20;
+            myCircle.Height = 10;
+            myCircle.Width = 10;
             myCircle.Opacity = 50;
 
             MapOverlay myLocationOverlay = new MapOverlay();
@@ -240,7 +241,7 @@ namespace Ctf
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (Radius >= 100)
+            if (Radius >= 200)
             {
                 Radius = Radius - 100;
 
