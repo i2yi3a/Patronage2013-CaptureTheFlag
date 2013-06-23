@@ -235,19 +235,19 @@ namespace Ctf
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Radius = Radius + 0.5;
+            Radius = Radius + 1;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             if (Radius >= 1)
             {
-                Radius = Radius - 0.5;
+                Radius = Radius - 1;
 
             }
             else
             {
-                Radius = 0.5;
+                Radius = 1;
             }
 
         }
