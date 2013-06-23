@@ -29,7 +29,7 @@ namespace Ctf
         MapLayer blueFlag;
         GeoCoordinateCollection locations = new GeoCoordinateCollection();
         MapPolyline myMapPolyline = new MapPolyline();
-        double Radius = 100;
+        double Radius = 2000;
         string center;
         string redflag;
         string blueflag;
@@ -98,7 +98,7 @@ namespace Ctf
 
             myMapPolyline.Path = locations;
             myMapPolyline.StrokeThickness = 5;
-            myMapPolyline.StrokeColor = Colors.Red;
+            myMapPolyline.StrokeColor = Colors.Orange;
             
 
             MyMap.MapElements.Add(myMapPolyline);
@@ -241,14 +241,14 @@ namespace Ctf
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (Radius >= 200)
+            if (Radius >= 2100)
             {
                 Radius = Radius - 100;
 
             }
             else
             {
-                Radius = 100;
+                Radius = 2000;
             }
 
         }
