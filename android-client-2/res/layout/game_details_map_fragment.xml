@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
@@ -36,9 +36,18 @@
             android:scaleType="center"
             android:src="@drawable/splash_ico" />
 
-
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_orange"
+            android:enabled="false"
+            android:onClick="onClickButton"
+            android:text="@string/game_edit"
+            android:textSize="15sp" />
     </RelativeLayout>
-    
+
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"

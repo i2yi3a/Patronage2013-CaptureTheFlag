@@ -44,7 +44,19 @@
             android:background="@drawable/button_orange"
             android:onClick="onClickButton"
             android:text="@string/leave"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/joinButton"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_orange"
+            android:onClick="onClickButton"
+            android:text="@string/game_join"
+            android:textSize="15sp"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <LinearLayout

@@ -4,6 +4,7 @@ import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.domain.GameLocalization;
 import com.blstream.ctf2.domain.Team;
+import com.blstream.ctf2.services.UserServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -21,6 +22,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -32,22 +34,31 @@ public class GameDetailsMapFragment extends Fragment {
 
 	private GoogleMap mMap;
 	private TextView mGameNameTextView;
+	private Button mEditButton;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.game_details_map_fragment, container, false);
 		mMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		mGameNameTextView = (TextView) view.findViewById(R.id.textViewGameName);
+		mEditButton = (Button) view.findViewById(R.id.editButton);
 
 		GameLocalization gameArea = (GameLocalization) getArguments().getSerializable(Constants.KEY_GAME_AREA);
 		Team teamRed = (Team) getArguments().getSerializable(Constants.KEY_TEAM_RED);
 		Team teamBlue = (Team) getArguments().getSerializable(Constants.KEY_TEAM_BLUE);
-
 		drawMarkers(gameArea, teamRed, teamBlue);
 
 		String gameName = getArguments().getString(Constants.KEY_GAME_NAME);
 		mGameNameTextView.setText(gameName);
 		mGameNameTextView.setSelected(true);
+
+		String gameOwner = getArguments().getString(Constants.KEY_GAME_OWNER);
+		String gameStatus = getArguments().getString(Constants.KEY_GAME_STATUS);
+		if (gameStatus.equals(Constants.GAME_STATUS_NEW) || gameStatus.equals(Constants.GAME_STATUS_IN_PROGRESS)) {
+			if (gameOwner.equals(new UserServices(getActivity()).getUser().getName())) {
+				mEditButton.setEnabled(true);
+			}
+		}
 
 		return view;
 	}
