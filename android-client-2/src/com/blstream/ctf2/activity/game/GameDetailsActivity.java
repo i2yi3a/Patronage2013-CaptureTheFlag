@@ -73,6 +73,9 @@ public class GameDetailsActivity extends FragmentActivity {
 			Intent game_intent = new Intent("com.blstream.ctf2.GAMEACTIVITY");
 			startActivity(game_intent);
 			break;
+		case R.id.leaveButton:
+			// TODO leaving the game
+			break;
 		}
 	}
 
@@ -82,8 +85,7 @@ public class GameDetailsActivity extends FragmentActivity {
 			if (tabId.equals(TAB_DETAILS)) {
 				showDetails();
 			} else if (tabId.equals(TAB_PLAYERS)) {
-				GameServices mGameServices = new GameServices(mContext);
-				mGameServices.getGamePlayers(GameDetailsActivity.this, mGameId);
+				showPlayers();
 			} else if (tabId.equals(TAB_MAP)) {
 				showMap();
 			}
@@ -105,8 +107,15 @@ public class GameDetailsActivity extends FragmentActivity {
 		args.putSerializable(Constants.KEY_TEAM_RED, mGameDetails.getTeamRed());
 		args.putSerializable(Constants.KEY_TEAM_BLUE, mGameDetails.getTeamBlue());
 		args.putString(Constants.KEY_GAME_NAME, mGameDetails.getName());
+		args.putString(Constants.KEY_GAME_OWNER, mGameDetails.getOwner());
+		args.putString(Constants.KEY_GAME_STATUS, mGameDetails.getStatus());
 		mGameDetailsMapFragment.setArguments(args);
 		pushFragments(mGameDetailsMapFragment);
+	}
+
+	public void showPlayers() {
+		GameServices mGameServices = new GameServices(mContext);
+		mGameServices.getGamePlayers(GameDetailsActivity.this, mGameId);
 	}
 
 	public void showPlayersFragment(ArrayList<String> playersList) {
@@ -114,6 +123,7 @@ public class GameDetailsActivity extends FragmentActivity {
 		Bundle args = new Bundle();
 		args.putStringArrayList(Constants.KEY_PLAYERS, playersList);
 		args.putString(Constants.KEY_GAME_NAME, mGameDetails.getName());
+		args.putString(Constants.KEY_GAME_STATUS, mGameDetails.getStatus());
 		mGameDetailsPlayersFragment.setArguments(args);
 		pushFragments(mGameDetailsPlayersFragment);
 	}
@@ -177,19 +187,17 @@ public class GameDetailsActivity extends FragmentActivity {
 
 	private void startEdit() {
 		Intent editIntent = new Intent("com.blstream.ctf2.EDITGAMEACTIVITY");
-		editIntent.putExtra(Constants.ID, mGameDetailsFragment.mGameIdTextView.getText().toString());
-		editIntent.putExtra(GameServices.NAME, mGameDetailsFragment.mGameNameTextView.getText().toString());
-		editIntent.putExtra(GameServices.DESCRIPTION, mGameDetailsFragment.mDescriptionTextView.getText().toString());
-		editIntent.putExtra(GameServices.DURATION, mGameDetailsFragment.mDurationIdTextView.getText().toString());
-		editIntent.putExtra(GameServices.LOCALIZATION, mGameDetailsFragment.mLocalizationTextView.getText().toString());
-		editIntent.putExtra(GameServices.LAT, mGameDetailsFragment.mLatitudeTextView.getText().toString());
-		editIntent.putExtra(GameServices.LNG, mGameDetailsFragment.mLongitudeTextView.getText().toString());
-		editIntent.putExtra(GameServices.RADIUS, mGameDetailsFragment.mRadiusTextView.getText().toString());
-		editIntent.putExtra(GameServices.TIME_START, mGameDetailsFragment.mTimeStartTextView.getText().toString());
-		editIntent.putExtra(GameServices.POINTS_MAX, mGameDetailsFragment.mPointsMaxTextView.getText().toString());
-		editIntent.putExtra(GameServices.PLAYERS_MAX, mGameDetailsFragment.mPlayersMaxTextView.getText().toString());
-		editIntent.putExtra(GameServices.LAT, mGameDetailsFragment.mLatitudeTextView.getText().toString());
-		editIntent.putExtra(GameServices.LNG, mGameDetailsFragment.mLongitudeTextView.getText().toString());
+		editIntent.putExtra(Constants.ID, mGameDetails.getId().toString());
+		editIntent.putExtra(GameServices.NAME, mGameDetails.getName().toString());
+		editIntent.putExtra(GameServices.DESCRIPTION, mGameDetails.getDescription().toString());
+		editIntent.putExtra(GameServices.DURATION, mGameDetails.getDuration().toString());
+		editIntent.putExtra(GameServices.LOCALIZATION, mGameDetails.getLocalization().getName().toString());
+		editIntent.putExtra(GameServices.LAT, mGameDetails.getLocalization().getLat().toString());
+		editIntent.putExtra(GameServices.LNG, mGameDetails.getLocalization().getLng().toString());
+		editIntent.putExtra(GameServices.RADIUS, mGameDetails.getLocalization().getRadius().toString());
+		editIntent.putExtra(GameServices.TIME_START, mGameDetails.getTimeStart().toString());
+		editIntent.putExtra(GameServices.POINTS_MAX, mGameDetails.getPointsMax().toString());
+		editIntent.putExtra(GameServices.PLAYERS_MAX, mGameDetails.getPlayersMax().toString());
 		editIntent.putExtra(GameServices.RED_BASE_LAT, mGameDetails.getTeamRed().getBaseLocalization().getLat().toString());
 		editIntent.putExtra(GameServices.RED_BASE_LNG, mGameDetails.getTeamRed().getBaseLocalization().getLng().toString());
 		editIntent.putExtra(GameServices.BLUE_BASE_LAT, mGameDetails.getTeamBlue().getBaseLocalization().getLat().toString());

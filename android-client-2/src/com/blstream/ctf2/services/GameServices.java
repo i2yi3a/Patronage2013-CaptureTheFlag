@@ -626,7 +626,7 @@ public class GameServices extends Services {
 				jsonResult = new JSONObject(result);
 				if (!jsonResult.has(Constants.ERROR)) {
 					Toast.makeText(mGameDetailsActivity, R.string.game_sign_in, Toast.LENGTH_SHORT).show();
-
+					mGameDetailsActivity.showPlayers(); // RT
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(mGameDetailsActivity);
 					AlertDialog dialog;
