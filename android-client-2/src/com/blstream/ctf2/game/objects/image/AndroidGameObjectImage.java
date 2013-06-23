@@ -38,10 +38,10 @@ public class AndroidGameObjectImage implements GameObjectImage {
 	public void loadGamerImage(Constants.TEAM team) {
 		switch (team) {
 		case TEAM_RED:
-			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamer);
+			 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.red_single);
 			break;
 		case TEAM_BLUE:
-			// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamer);
+			 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blue_single);
 			break;
 		}
 
@@ -80,20 +80,20 @@ public class AndroidGameObjectImage implements GameObjectImage {
 		if(hasFlag){
 			switch (team) {
 			case TEAM_RED:
-				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamerWithFlag);
+				 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.red_with_blue);
 				break;
 			case TEAM_BLUE:
-				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamerWithFlag);
+				 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blue_with_red);
 				break;
 			}
 		}
 		else{
 			switch (team) {
 			case TEAM_RED:
-				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.redGamerWithoutFlag);
+				 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.red_single);
 				break;
 			case TEAM_BLUE:
-				// mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blueGamerWithoutFlag);
+				 mImage = BitmapFactory.decodeResource(mCtx.getResources(),R.drawable.blue_single);
 				break;
 			}
 		}

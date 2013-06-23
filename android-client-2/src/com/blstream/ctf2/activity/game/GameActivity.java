@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
+import com.blstream.ctf2.Constants;
 import com.blstream.ctf2.Constants.TEAM;
 import com.blstream.ctf2.R;
 import com.blstream.ctf2.domain.Localization;
@@ -40,6 +41,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * @author Rafal Tatol
  * @author Lukasz Dmitrowski
+ * @author Marcin Sareło
  */
 
 public class GameActivity extends FragmentActivity {
@@ -50,10 +52,23 @@ public class GameActivity extends FragmentActivity {
 	private ImageView mArrowImageView;
 	private TextView mDistanceTextView;
 	private TextView mInfoTextView;
-	public List<Marker> mPositionMarkers = new ArrayList<Marker>();
+	public List<Marker> mGamerMarkers = new ArrayList<Marker>();
 	public List<Marker> mBasesMarkers = new ArrayList<Marker>();
 	public List<Gamer> mGamers = new ArrayList<Gamer>();
 	public List<Base> mBases = new ArrayList<Base>();
+	public Boolean mRedHasTaken=false;
+	public Boolean mBlueHasTaken=false;
+	
+	String mRedScore;
+	String mBlueScore;
+	private TextView mRedScoreTextView;
+	private TextView mBlueScoreTextView;
+	private TextView mGameTimeTextView;
+	private TextView mLifeTextView;
+	
+	public List<Marker> mTmpBasesMarkers = new ArrayList<Marker>();
+	public List<Gamer> mTmpGamers = new ArrayList<Gamer>();
+	public List<Base> mTmpBases = new ArrayList<Base>();
 
 	private String mGameId;// need to take data from server
 	private CountDownTimer mCountDownTimer;
@@ -86,6 +101,13 @@ public class GameActivity extends FragmentActivity {
 		mArrowImageView = (ImageView) findViewById(R.id.imageViewArrow);
 		mDistanceTextView = (TextView) findViewById(R.id.textViewDistance);
 		mInfoTextView = (TextView) findViewById(R.id.textViewInfo1);
+		
+		mRedScoreTextView= (TextView) findViewById(R.id.scoreRed);
+		mBlueScoreTextView= (TextView) findViewById(R.id.scoreBlue);
+		mGameTimeTextView= (TextView) findViewById(R.id.gameTime);
+		mLifeTextView= (TextView) findViewById(R.id.life);
+		
+		
 		mTimer = new Timer();
 		i = 1;
 
@@ -341,17 +363,14 @@ public class GameActivity extends FragmentActivity {
 					time.append(count).append(" dni ");
 				else
 					time.append(count).append(" dzień ");
-
+				
 				millisUntilCompleted %= DateUtils.DAY_IN_MILLIS;
 			}
 
 			time.append(DateUtils.formatElapsedTime(Math.round(millisUntilCompleted / 1000d)));
 
 			mInfoTextView.setText("Jestes w obszarze rozgrywki czekaj na rozpoczecie rozgrywki - czas do rozpoczecia " + time.toString());
-
-			// mInfoTextView.setText("Jesteś w obszarze rozgrywki czekaj na rozpoczęcie rozgrywki - czas do rozpoczęcia"
-			// + new
-			// SimpleDateFormat("dd d HH:mm:ss").format(calendar.getTime()));
+			mGameTimeTextView.setText(time.toString());
 
 		}
 	}
@@ -368,10 +387,10 @@ public class GameActivity extends FragmentActivity {
 			public void run() {
 				handler.post(new Runnable() {
 					public void run() {
-						if (!mBasesMarkers.isEmpty())
-							clearBases();
-						if (!mPositionMarkers.isEmpty())
-							clearGamers();
+
+						mTmpBases.clear();
+						mTmpGamers.clear();
+						
 						GameLoopTask gameLoop = new GameLoopTask(GameActivity.this);
 						i++;
 						uri = "data" + i;
@@ -379,6 +398,7 @@ public class GameActivity extends FragmentActivity {
 						if (i >= 17) {
 							i = 1;
 						}
+
 					}
 				});
 			}
@@ -388,8 +408,18 @@ public class GameActivity extends FragmentActivity {
 
 	public void drawPlayers() {
 		for (Gamer gamer : mGamers) {
-			mPositionMarkers.add(mMap.addMarker(new MarkerOptions().position(gamer.getLocalization().getLatLang()).icon(
-					BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))));
+			mGamerMarkers.add(mMap.addMarker(new MarkerOptions().position(gamer.getLocalization().getLatLang()).icon(
+					BitmapDescriptorFactory.fromBitmap(gamer.getImage()))));
+			
+			if(gamer.isHasFlag()&&gamer.getTeam().equals(TEAM.TEAM_RED)){
+				Log.i("ugdoighdlighbdlifhg", "blue has taken");
+				mBlueHasTaken=true;
+			}
+
+			if(gamer.isHasFlag()&&gamer.getTeam().equals(TEAM.TEAM_BLUE)){
+				Log.i("ugdoighdlighbdlifhg", "red has taken");
+				mRedHasTaken=true;
+		}
 			Log.i("Dodaje", "Marker");
 			Log.i("Lokalizacja", gamer.getLocalization().toString());
 		}
@@ -397,11 +427,12 @@ public class GameActivity extends FragmentActivity {
 
 	public void drawBases() {
 		for (Base base : mBases) {
-			if (base.getTeam().equals(TEAM.TEAM_RED)) {
-				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title("Base")
+			if (base.getTeam().equals(TEAM.TEAM_RED)&&!mRedHasTaken) {
+				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title(Constants.KEY_TEAM_RED)
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.red))));
-			} else {
-				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title("Base2")
+			} 
+			if(base.getTeam().equals(TEAM.TEAM_BLUE)&&!mBlueHasTaken) {
+				mBasesMarkers.add(mMap.addMarker(new MarkerOptions().position(base.getLocalization().getLatLang()).title(Constants.KEY_TEAM_BLUE)
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.blue))));
 			}
 			Log.i("Dodaje", "Base");
@@ -409,13 +440,31 @@ public class GameActivity extends FragmentActivity {
 			Log.i("Loc", base.getLocalization().getLatLang().toString());
 		}
 	}
+	
+	public void drawAllMarkers(){
+		
+
+		mRedScoreTextView.setText(mRedScore);
+		mBlueScoreTextView.setText(mBlueScore);
+		
+		if (!mBasesMarkers.isEmpty())
+			clearBases();
+		if (!mGamerMarkers.isEmpty())
+			clearGamers();
+		
+		mGamers.addAll(mTmpGamers);
+		mBases.addAll(mTmpBases);
+		
+		drawPlayers();
+		drawBases();
+	}
 
 	public void clearGamers() {
-		for (Marker marker : mPositionMarkers) {
+		for (Marker marker : mGamerMarkers) {
 			Log.i("Usuwam", "Marker");
 			marker.remove();
 		}
-		mPositionMarkers.removeAll(mPositionMarkers);
+		mGamerMarkers.removeAll(mGamerMarkers);
 		mGamers.removeAll(mGamers);
 	}
 
@@ -426,6 +475,8 @@ public class GameActivity extends FragmentActivity {
 		}
 		mBasesMarkers.removeAll(mBasesMarkers);
 		mBases.removeAll(mBases);
+		mBlueHasTaken=false;
+		mRedHasTaken=false;
 	}
 
 	@Override
@@ -433,4 +484,5 @@ public class GameActivity extends FragmentActivity {
 		mTimer.cancel();
 		finish();
 	}
+	
 }

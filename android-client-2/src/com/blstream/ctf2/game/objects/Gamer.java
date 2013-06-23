@@ -39,5 +39,11 @@ public class Gamer extends GameObject {
 		mHasFlag = false;
 		changeGamerImage(getTeam(), false);
 	}
+
+	public boolean isHasFlag() {
+		return mHasFlag;
+	}
+	
+	
 	
 }

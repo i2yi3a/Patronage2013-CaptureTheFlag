@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/input_background" >
 
     <fragment
         android:id="@+id/map"
@@ -29,16 +30,6 @@
         android:layout_toRightOf="@+id/buttonTeleport2"
         android:onClick="onClickButton"
         android:text="3" />
-
-    <ImageView
-        android:id="@+id/imageViewArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="arrow"
-        android:scaleType="matrix"
-        android:src="@drawable/arrow_up" />
 
     <TextView
         android:id="@+id/textViewDistance"
@@ -69,13 +60,73 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="14sp" />
 
+    <ImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="68dp"
+        android:layout_toLeftOf="@+id/textViewDistance"
+        android:contentDescription="arrow"
+        android:scaleType="matrix"
+        android:src="@drawable/arrow_up" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:id="@+id/gameTime"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:background="@color/input_background"
+            android:gravity="center"
+            android:text="0h 0min"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/scoreBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:background="@color/score_dark_blue"
+            android:gravity="center"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/scoreRed"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:background="@color/score_dark_red"
+            android:gravity="center"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/life"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".25"
+            android:background="@color/input_background"
+            android:gravity="center"
+            android:text="100%"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/ButtonShowObjects"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/linearLayout1"
         android:onClick="onClickButton"
         android:text="ShowObjects" />
 
@@ -84,8 +135,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ButtonShowObjects"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_toRightOf="@+id/ButtonShowObjects"
         android:onClick="onClickButton"
         android:text="StartGameLoop" />
 

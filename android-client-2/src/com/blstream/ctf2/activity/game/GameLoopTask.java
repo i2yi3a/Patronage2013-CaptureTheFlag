@@ -1,5 +1,8 @@
 package com.blstream.ctf2.activity.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -17,6 +20,7 @@ import com.blstream.ctf2.domain.Localization;
 import com.blstream.ctf2.domain.Team;
 import com.blstream.ctf2.game.objects.Base;
 import com.blstream.ctf2.game.objects.Gamer;
+import com.google.android.gms.maps.model.Marker;
 
 /**
  * @author Lukasz Dmitrowski
@@ -29,6 +33,9 @@ public class GameLoopTask extends AsyncTask<String, Void, String> {
 	private Localization localization;
 	private Gamer player;
 	private Base base;
+	public List<Marker> mTmpBasesMarkers = new ArrayList<Marker>();
+	public List<Gamer> mTmpGamers = new ArrayList<Gamer>();
+	public List<Base> mTmpBases = new ArrayList<Base>();
 
 	public GameLoopTask(GameActivity gameActivity) {
 		this.gameActivity = gameActivity;
@@ -58,6 +65,9 @@ public class GameLoopTask extends AsyncTask<String, Void, String> {
 			jsonMarkers = jsonResponse.getJSONArray("markers");
 			jsonInfo = jsonResponse.getJSONObject("info");
 
+			gameActivity.mRedScore = jsonInfo.get("red_points").toString();
+			gameActivity.mBlueScore = jsonInfo.get("blue_points").toString();
+
 			while (!(jsonMarkers.isNull(i))) {
 				jsonActual = jsonMarkers.getJSONObject(i);
 				if (jsonActual.get("type").equals("PLAYER")) {
@@ -74,19 +84,19 @@ public class GameLoopTask extends AsyncTask<String, Void, String> {
 						if (jsonActual.getString("has_flag").equals("true"))
 							player.hasTakenFlag();
 
-					gameActivity.mGamers.add(player);
+					gameActivity.mTmpGamers.add(player);
 
 				} else if (jsonActual.get("type").equals("RED_FLAG")) {
 					jsonLocalization = jsonActual.getJSONArray("loc");
 					localization = new Localization(jsonLocalization.getDouble(0), jsonLocalization.getDouble(1));
 					base = new Base(TEAM.TEAM_RED, localization, gameActivity, 1l);
-					gameActivity.mBases.add(base);
+					gameActivity.mTmpBases.add(base);
 
 				} else if (jsonActual.get("type").equals("BLUE_FLAG")) {
 					jsonLocalization = jsonActual.getJSONArray("loc");
 					localization = new Localization(jsonLocalization.getDouble(0), jsonLocalization.getDouble(1));
 					base = new Base(TEAM.TEAM_BLUE, localization, gameActivity, 1l);
-					gameActivity.mBases.add(base);
+					gameActivity.mTmpBases.add(base);
 				}
 				i++;
 			}
@@ -101,8 +111,9 @@ public class GameLoopTask extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		gameActivity.drawPlayers();
-		gameActivity.drawBases();
+
+		gameActivity.drawAllMarkers();
+
 	}
 
 }
