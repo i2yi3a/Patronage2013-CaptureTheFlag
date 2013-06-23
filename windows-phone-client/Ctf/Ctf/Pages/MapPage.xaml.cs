@@ -29,7 +29,7 @@ namespace Ctf
         MapLayer blueFlag;
         GeoCoordinateCollection locations = new GeoCoordinateCollection();
         MapPolyline myMapPolyline = new MapPolyline();
-        double Radius = 1;
+        double Radius = 2000;
         string center;
         string redflag;
         string blueflag;
@@ -68,7 +68,7 @@ namespace Ctf
             myCircle.Fill = new SolidColorBrush(Colors.Green);
             myCircle.Height = 10;
             myCircle.Width = 10;
-            myCircle.Opacity = 20;
+            myCircle.Opacity = 40;
 
             MapOverlay myLocationOverlay = new MapOverlay();
             myLocationOverlay.Content = myCircle;
@@ -98,10 +98,11 @@ namespace Ctf
 
             myMapPolyline.Path = locations;
             myMapPolyline.StrokeThickness = 5;
-            myMapPolyline.StrokeColor = Colors.Red;
+            myMapPolyline.StrokeColor = Colors.Orange;
+            
 
             MyMap.MapElements.Add(myMapPolyline);
-
+            
         }
 
         private void MyMapRed_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -115,8 +116,8 @@ namespace Ctf
 
             Ellipse myCircle = new Ellipse();
             myCircle.Fill = new SolidColorBrush(Colors.Red);
-            myCircle.Height = 20;
-            myCircle.Width = 20;
+            myCircle.Height = 10;
+            myCircle.Width = 10;
             myCircle.Opacity = 50;
 
             MapOverlay myLocationOverlay = new MapOverlay();
@@ -144,8 +145,8 @@ namespace Ctf
 
             Ellipse myCircle = new Ellipse();
             myCircle.Fill = new SolidColorBrush(Colors.Blue);
-            myCircle.Height = 20;
-            myCircle.Width = 20;
+            myCircle.Height = 10;
+            myCircle.Width = 10;
             myCircle.Opacity = 50;
 
             MapOverlay myLocationOverlay = new MapOverlay();
@@ -214,7 +215,7 @@ namespace Ctf
         //dodane teraz
         public static GeoCoordinateCollection CreateCircle(GeoCoordinate center, double radius)
         {
-            var earthRadius = 6367.0; // radius w kilometrach
+            var earthRadius = 6367000.0;// radius w metrach
             var lat = center.Latitude * Math.PI / 180.0;
             var lng = center.Longitude * Math.PI / 180.0; //radians                                                         
             var d = radius / earthRadius;
@@ -235,19 +236,19 @@ namespace Ctf
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Radius = Radius + 0.5;
+            Radius = Radius + 100;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (Radius >= 1)
+            if (Radius >= 2100)
             {
-                Radius = Radius - 0.5;
+                Radius = Radius - 100;
 
             }
             else
             {
-                Radius = 0.5;
+                Radius = 2000;
             }
 
         }

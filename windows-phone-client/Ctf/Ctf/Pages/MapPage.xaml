@@ -38,9 +38,9 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="centerAppBarButton" IconUri="/Assets/AppBar/basecircle.png" Text="Center" Click="ApplicationBarIconButton_Click_1" />
-            <shell:ApplicationBarIconButton x:Name="redAppBarButton" IconUri="/Images/appbar_button2.png" Text="Red" Click="ApplicationBarIconButton_Click_2" IsEnabled="False" />
-            <shell:ApplicationBarIconButton x:Name="blueAppBarButton" IconUri="/Images/appbar_button3.png" Text="Blue" Click="ApplicationBarIconButton_Click_3" IsEnabled="False" />
+            <shell:ApplicationBarIconButton x:Name="centerAppBarButton" IconUri="/Images/center.png" Text="Center" Click="ApplicationBarIconButton_Click_1" />
+            <shell:ApplicationBarIconButton x:Name="redAppBarButton" IconUri="/Images/redflag.png" Text="Red" Click="ApplicationBarIconButton_Click_2" IsEnabled="False" />
+            <shell:ApplicationBarIconButton x:Name="blueAppBarButton" IconUri="/Images/blueflag.png" Text="Blue" Click="ApplicationBarIconButton_Click_3" IsEnabled="False" />
             <shell:ApplicationBarIconButton x:Name="okAppBarButton" IconUri="/Assets/AppBar/check.png" Text="OK" IsEnabled="False" Click="okAppBarButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

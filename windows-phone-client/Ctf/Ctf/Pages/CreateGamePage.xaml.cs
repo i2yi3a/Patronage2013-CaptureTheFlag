@@ -41,6 +41,7 @@ namespace Ctf.Pages
             {
                 Game x = e.Response as Game;
                 MessageBoxResult m = MessageBox.Show(x.message.ToString(), x.id.ToString(), MessageBoxButton.OK);
+                NavigationService.Navigate(new Uri("/Pages/ListGames.xaml?", UriKind.Relative));
             }
             else
             {
@@ -52,8 +53,7 @@ namespace Ctf.Pages
         {
             CreateCommand CreateGame = new CreateCommand();
             CreateGame.RequestFinished += new RequestFinishedEventHandler(CreateGame_RequestFinished);
-            //CreateGame.CreateGame(new Game("Politika", "krotki opis", "12-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new List<double> {15, 12 } , 1500), new TeamBase("kociaki", new List<double> { 20.00, 15.00 }), new TeamBase("miczikoty", new List<double> { 35.00, 14.00 })));
-
+            
             var yArray = CGRedLatLng.Text.Split(',').Select(m => Double.Parse(m.Trim())).ToArray();
             var xArray = CGBlueLatLngBox.Text.Split(',').Select(m => Double.Parse(m.Trim())).ToArray();
             var zArray = CGLocalizationLatLngBox.Text.Split(',').Select(m => Double.Parse(m.Trim())).ToArray();
