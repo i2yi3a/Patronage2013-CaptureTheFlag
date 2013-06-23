@@ -214,7 +214,7 @@ namespace Ctf
         //dodane teraz
         public static GeoCoordinateCollection CreateCircle(GeoCoordinate center, double radius)
         {
-            var earthRadius = 6367.0; // radius w kilometrach
+            var earthRadius = 6367000.0;// radius w metrach
             var lat = center.Latitude * Math.PI / 180.0;
             var lng = center.Longitude * Math.PI / 180.0; //radians                                                         
             var d = radius / earthRadius;
@@ -235,19 +235,19 @@ namespace Ctf
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Radius = Radius + 1;
+            Radius = Radius + 100;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (Radius >= 1)
+            if (Radius >= 100)
             {
-                Radius = Radius - 1;
+                Radius = Radius - 100;
 
             }
             else
             {
-                Radius = 1;
+                Radius = 100;
             }
 
         }
