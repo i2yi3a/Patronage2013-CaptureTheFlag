@@ -120,15 +120,6 @@ namespace Ctf.Views
         {
             ApplicationBar = new ApplicationBar { IsVisible = true, IsMenuEnabled = true };
 
-            ApplicationBarIconButton ApplicationBarButtonDetails = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
-            ApplicationBar.Buttons.Add(ApplicationBarButtonDetails);
-
-            ApplicationBarIconButton ApplicationBarButtonPlayers = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
-            ApplicationBar.Buttons.Add(ApplicationBarButtonPlayers);
-
-            ApplicationBarIconButton ApplicationBarButtonMap = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.Relative)) { Text = AppResources.ListGamesApplicationBarButtonSearch };
-            ApplicationBar.Buttons.Add(ApplicationBarButtonMap);
-
             if (gameDetails.players != null && gameDetails.players.Contains(ApplicationSettings.Instance.LoggedUsername))
             {
                 var ApplicationBarMenuItemsLeave = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemLeave };
@@ -141,9 +132,6 @@ namespace Ctf.Views
                 ApplicationBarMenuItemsJoin.Click += GameSignIn_Button_Click;
                 ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsJoin);
             }
-
-            var ApplicationBarMenuItemsMap = new ApplicationBarMenuItem() { Text = AppResources.GameDetailsApplicationBarMenuItemMap };
-            ApplicationBar.MenuItems.Add(ApplicationBarMenuItemsMap);
 
             if (gameDetails.Owner.Equals(ApplicationSettings.Instance.LoggedUsername))
             {
