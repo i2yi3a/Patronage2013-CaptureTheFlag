@@ -28,32 +28,6 @@ namespace Ctf.Communication
             client = new RestClient(CAPTURE_THE_FLAG_URL);
         }
 
-        protected virtual RestRequestAsyncHandle ExecuteAsync(RestRequest request, Action<IRestResponse<T>> CallbackOnSuccess, Action<String> CallbackOnFail)
-        {
-            RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, (response) =>
-            {
-                if (response != null && response.ResponseStatus == ResponseStatus.Error)
-                {
-                    CallbackOnFail(response.ErrorMessage);
-                }
-                else
-                {
-                    CallbackOnSuccess(response);
-                }
-            });
-            return restRequestAsyncHandle;
-        }
-
-        protected virtual Task<RestRequestAsyncHandle> ExecuteTrueAsyncNew(RestRequest request, Action<IRestResponse<T>> CallbackOnFinish)
-        {
-            return Task.Run(() =>
-                {
-                    for (short i = short.MinValue; i < short.MaxValue; i++) ;
-                    RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, CallbackOnFinish);
-                    return restRequestAsyncHandle;
-                }); 
-        }
-
         protected virtual RestRequestAsyncHandle ExcecuteAsyncCommand(RestRequest request, Action<IRestResponse<T>> CallbackOnFinish)
         {
             RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, CallbackOnFinish);
@@ -112,21 +86,6 @@ namespace Ctf.Communication
                 Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), responseMessage));
                 OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(responseMessage, ApplicationError.APPLICATION_ERROR)));
             }
-        }
-
-        protected virtual void RequestCallbackOnSuccess(IRestResponse<T> response)
-        {
-            if ((response != null) && (response.Data != null))
-            {
-                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
-                OnRequestFinished(new RequestFinishedEventArgs(response.Data));
-            }
-        }
-
-        protected virtual void RequestCallbackOnFail(String errorMessage)
-        {
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Error message: " + errorMessage));
-            OnRequestFinished(new RequestFinishedEventArgs(new ApplicationError(errorMessage)));
         }
 
         protected virtual void OnRequestFinished(RequestFinishedEventArgs e)

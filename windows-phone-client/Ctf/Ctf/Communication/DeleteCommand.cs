@@ -20,20 +20,8 @@ namespace Ctf.Communication
             request = new RestRequest("/api/secured/games/{id}", Method.DELETE);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-type", "application/json");
-          
             request.AddHeader("Authorization", String.Format("{0} {1}", ApplicationSettings.Instance.RetriveLoggedUser().token_type, ApplicationSettings.Instance.RetriveLoggedUser().access_token));
             request.AddUrlSegment("id", gameId);
-        }
-
-        protected override void RequestCallbackOnSuccess(IRestResponse<ServerResponse> response)
-        {
-            if ((response != null) && (response.Data != null))
-            {
-                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
-                Debug.WriteLineIf(response.Data.HasError(), DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response is an Error."));
-                Debug.WriteLineIf(!response.Data.HasError(), DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response is a Success."));
-                OnRequestFinished(new RequestFinishedEventArgs(response.Data));
-            }
         }
 
         public RestRequestAsyncHandle DeleteGame()

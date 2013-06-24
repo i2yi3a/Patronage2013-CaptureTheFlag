@@ -34,23 +34,6 @@ namespace Ctf.Communication
         }
 
         /// <summary>
-        /// Requests the callback on success.
-        /// </summary>
-        /// <param name="response">The response.</param>
-        protected override void RequestCallbackOnSuccess(IRestResponse<AuthorizationToken> response)
-        {
-            if ((response != null) && (response.Data != null))
-            {
-                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
-                if (!response.Data.HasError())
-                {
-                    ApplicationSettings.Instance.SaveLoggedUser(new User(username, response.Data.access_token, response.Data.token_type, response.Data.scope));
-                }
-                OnRequestFinished(new RequestFinishedEventArgs(response.Data));
-            }
-        }
-
-        /// <summary>
         /// Logs the out.
         /// </summary>
         /// <returns></returns>
