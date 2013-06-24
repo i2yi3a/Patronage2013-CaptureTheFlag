@@ -38,7 +38,7 @@ namespace Ctf.Communication
 
         public RestRequestAsyncHandle DeleteGame()
         {
-            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
+            return ExcecuteAsyncCommand(request, RequestCallbackOnFinish);
         }
     }
 }

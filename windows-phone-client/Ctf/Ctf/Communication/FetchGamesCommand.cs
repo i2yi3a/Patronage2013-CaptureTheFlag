@@ -55,7 +55,7 @@ namespace Ctf.ViewModels
         public RestRequestAsyncHandle ExcecuteAsyncCommand()
         {
             System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
-            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
+            return ExcecuteAsyncCommand(request, RequestCallbackOnFinish);
         }
     }
 }

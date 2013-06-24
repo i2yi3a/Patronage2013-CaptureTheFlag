@@ -54,9 +54,8 @@ namespace Ctf.Communication
                 }); 
         }
 
-        protected virtual RestRequestAsyncHandle ExecuteTrueAsync(RestRequest request, Action<IRestResponse<T>> CallbackOnFinish)
+        protected virtual RestRequestAsyncHandle ExcecuteAsyncCommand(RestRequest request, Action<IRestResponse<T>> CallbackOnFinish)
         {
-            for (short i = short.MinValue; i < short.MaxValue; i++) ;
             RestRequestAsyncHandle restRequestAsyncHandle = client.ExecuteAsync<T>(request, CallbackOnFinish);
             return restRequestAsyncHandle;
         }

@@ -66,7 +66,7 @@ namespace Ctf.Communication
             request.AddParameter("password", user.password);
             request.AddParameter("client_secret", secret);
             username = user.username;
-            return ExecuteTrueAsync(request, this.RequestCallbackOnFinish);
+            return ExcecuteAsyncCommand(request, this.RequestCallbackOnFinish);
         }
 
         protected override void RequestCallbackOnFinish(IRestResponse<AuthorizationToken> response)

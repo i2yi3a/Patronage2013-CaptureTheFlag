@@ -60,7 +60,7 @@ namespace Ctf.Communication
         public RestRequestAsyncHandle ExecuteCommand(UserCredentials user)
         {
             request.AddBody(new { username = user.username, password = user.password });
-            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
+            return ExcecuteAsyncCommand(request, RequestCallbackOnFinish);
         }
     }
 }
