@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ctf.ApplicationTools
 {
-    public class FilterNext
+    public class CollectionFilter
     {
-        public FilterNext()
+        public CollectionFilter()
         {
 
         }

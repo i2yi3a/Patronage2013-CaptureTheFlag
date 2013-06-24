@@ -115,7 +115,7 @@
     <Compile Include="Communication\GameInfoCommand.cs" />
     <Compile Include="Communication\SignInCommand.cs" />
     <Compile Include="Communication\SignOutCommand.cs" />
-    <Compile Include="ApplicationTools\FilterNext.cs" />
+    <Compile Include="ApplicationTools\CollectionFilter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="ApplicationTools\DataObjects\BindableBase.cs" />
     <Compile Include="Communication\DataObjects\PlayersList.cs" />

@@ -36,7 +36,6 @@ namespace Ctf.Pages
         //private Task<RestRequestAsyncHandle> task;
         //private Task networkTask;
         //private Task otherTask;
-        Filterer f;
         List<double> MyPosition;
         Geo g;
         double range;
@@ -53,7 +52,7 @@ namespace Ctf.Pages
 
 
             g = new Geo();
-            filter = new FilterNext();
+            filter = new CollectionFilter();
             collection = new ObservableCollection<GameHeader>();
             collection = AllGamesBase;
             filteredCollection = new ObservableCollection<GameHeader>();
@@ -68,7 +67,6 @@ namespace Ctf.Pages
                 pivotsText.Add(i, String.Empty);
             }
 
-            f = new Filterer();
             //NetworkService.DoInBackground();
             //networkTask = NetworkService.WorkAsync();
             //Debug.WriteLine("Before calling OtherAsync()");
@@ -505,7 +503,7 @@ namespace Ctf.Pages
 
 
 
-        private FilterNext filter;
+        private CollectionFilter filter;
         private ObservableCollection<GameHeader> collection;
         private ObservableCollection<GameHeader> filteredCollection;
 
