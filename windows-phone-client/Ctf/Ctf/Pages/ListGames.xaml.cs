@@ -22,7 +22,6 @@ using RestSharp;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using PhoneApp3;
 
 namespace Ctf.Pages
 {
