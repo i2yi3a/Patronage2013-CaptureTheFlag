@@ -473,7 +473,7 @@ namespace Ctf.Pages
                 Debug.WriteLine("Logout SUCCESSFUL");
             else
                 Debug.WriteLine("Logout FAILED");
-            Debug.WriteLineIf(Logger.LoggedAs().username != null, "Logged as:" + Logger.LoggedAs().username);
+            Debug.WriteLineIf(ApplicationSettings.Instance.LoggedUsername != null, "Logged as:" + ApplicationSettings.Instance.LoggedUsername);
 
             if (NavigationService.CanGoBack)
             {
