@@ -33,7 +33,7 @@ namespace Ctf
         string center;
         string redflag;
         string blueflag;
-
+        GeoCoordinate testing = new GeoCoordinate();
 
         public MapPage()
         {
@@ -75,7 +75,7 @@ namespace Ctf
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
             center = s.ToString();
-
+            testing = s;
             centerlayer = new MapLayer();
             centerlayer.Add(myLocationOverlay);
 
@@ -94,13 +94,13 @@ namespace Ctf
 
 
 
-            locations = CreateCircle(s, Radius);
+            locations = CreateCircle(testing, Radius);
 
             myMapPolyline.Path = locations;
             myMapPolyline.StrokeThickness = 5;
             myMapPolyline.StrokeColor = Colors.Orange;
-            
 
+            
             MyMap.MapElements.Add(myMapPolyline);
             
         }
@@ -125,13 +125,19 @@ namespace Ctf
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
             redflag = s.ToString();
-
+            if (isInRectangle(testing.Latitude,testing.Longitude, Radius, s.Latitude, s.Longitude)==true)
+            {
             redFlag = new MapLayer();
             redFlag.Add(myLocationOverlay);
 
             MyMap.Layers.Add(redFlag);
             ApplicationBarIconButton b = (ApplicationBarIconButton)ApplicationBar.Buttons[2];
-            b.IsEnabled = true;
+            b.IsEnabled = true;}
+
+            else
+            {
+            MessageBox.Show("Marker outside gamearea","Error",MessageBoxButton.OK);
+            }
         }
         private void MyMapBlue_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -154,13 +160,20 @@ namespace Ctf
             myLocationOverlay.PositionOrigin = new Point(0, 0);
             myLocationOverlay.GeoCoordinate = s;
             blueflag = s.ToString();
-
+            if (isInRectangle(testing.Latitude,testing.Longitude, Radius, s.Latitude, s.Longitude)==true)
+            {
             blueFlag = new MapLayer();
             blueFlag.Add(myLocationOverlay);
 
             MyMap.Layers.Add(blueFlag);
             ApplicationBarIconButton b = (ApplicationBarIconButton)ApplicationBar.Buttons[3];
             b.IsEnabled = true;
+            }
+
+            else
+            {
+                MessageBox.Show("Marker outside gamearea", "Error", MessageBoxButton.OK);
+            }
 
         }
         private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
@@ -202,17 +215,15 @@ namespace Ctf
         }
 
 
+        public bool isInRectangle(double centerX, double centerY, double radius, double x, double y)
+        {
+            return x >= centerX - radius / 6367000 * 180 / Math.PI && x <= centerX + radius / 6367000 * 180 / Math.PI &&
+            y >= centerY - radius / 6367000 * 180 / Math.PI && y <= centerY + radius / 6367000 * 180 / Math.PI;
+        
+        }
 
 
 
-
-
-
-
-
-
-
-        //dodane teraz
         public static GeoCoordinateCollection CreateCircle(GeoCoordinate center, double radius)
         {
             var earthRadius = 6367000.0;// radius w metrach
@@ -228,7 +239,7 @@ namespace Ctf
                 var lngRadians = lng + Math.Atan2(Math.Sin(brng) * Math.Sin(d) * Math.Cos(lat), Math.Cos(d) - Math.Sin(lat) * Math.Sin(latRadians));
                 locations.Add(new GeoCoordinate(180.0 * latRadians / Math.PI, 180.0 * lngRadians / Math.PI));
             }
-
+            Debug.WriteLine(d);
             return locations;
         }
 
