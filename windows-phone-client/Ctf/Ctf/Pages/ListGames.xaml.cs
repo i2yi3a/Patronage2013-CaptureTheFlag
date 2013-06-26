@@ -92,7 +92,7 @@ namespace Ctf.Pages
             }
             else if (destinationList == NearestGames)
             {
-                List<double> myPosition = await Geo.GetPhoneLocationAsync();
+                List<double> myPosition = await Geo.GetPhoneLocationListAsync();
                 filteredCollection = await filter.ByDistanceAsync(sourceList, myPosition, LOCATION_PROXIMITY);
                 Debug.WriteLine(DebugInfo.LongFormat(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "async Task InitializeCollectionAsync()", "NearestGames elements:" + filteredCollection.Count));
             }
@@ -168,7 +168,7 @@ namespace Ctf.Pages
                     MyGamesListControl.ItemsSource = filteredCollection;
                     break;
                 case 1:
-                    List<double> myPosition = await Geo.GetPhoneLocationAsync();
+                    List<double> myPosition = await Geo.GetPhoneLocationListAsync();
                     filteredCollection = await filter.ByDistanceAsync(NearestGames, myPosition, LOCATION_PROXIMITY);
                     filteredCollection = await filter.ByNameAsync(filteredCollection, text);
                     Debug.WriteLine(DebugInfo.LongFormat(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "async Task FilterCollectionsAsync()", "Collection for pivot: " + this.MainPivot.SelectedIndex + " with text: " + text + " has elements: " + filteredCollection.Count));
