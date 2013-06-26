@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Ctf.Resources;
-using Ctf.Communication;
-using System.Diagnostics;
-using Ctf.Communication.DataObjects;
+﻿using Ctf.ApplicationTools;
 using Ctf.ApplicationTools.DataObjects;
-using Ctf.ApplicationTools;
+using Ctf.Communication;
+using Ctf.Communication.DataObjects;
+using Ctf.Resources;
+using Microsoft.Phone.Controls;
 using RestSharp;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Navigation;
 
 namespace Ctf.Pages
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        //TODO: Map server error/success response to localized strings
-        //TODO XAML: Text in LoginErrorBlock does not fit, is there an auto scroll?
         private const string TEMPORARY_SECRET = "secret";
 
         public MainPage()
@@ -104,24 +97,20 @@ namespace Ctf.Pages
             RegisterErrorBlock.Text = errorInfo;
         }
 
-        private async void Login_Action(object sender, RoutedEventArgs e)
+        private void Login_Action(object sender, RoutedEventArgs e)
         {
             WaitIndicator.Visibility = Visibility.Visible;
             LoginCommand Logger = new LoginCommand();
             Logger.RequestFinished += new RequestFinishedEventHandler(Login_Event);
-            Logger.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
-            RestRequestAsyncHandle handle = Logger.ExecuteCommand(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
-            await NetworkService.AbortIfNoNetworkAsync(handle);
+            RestRequestAsyncHandle RequestHandle = Logger.ExecuteCommand(new UserCredentials(LoginUsernameBox.Text, LoginPasswordBox.Password), TEMPORARY_SECRET);
         }
 
-        private async void Register_Action(object sender, RoutedEventArgs e)
+        private void Register_Action(object sender, RoutedEventArgs e)
         {
             WaitIndicator.Visibility = Visibility.Visible;
             RegisterCommand Register = new RegisterCommand();
             Register.RequestFinished += new RequestFinishedEventHandler(Register_Event);
-            Register.RequestFinished += new RequestFinishedEventHandler(NetworkService.RequestFinished_Event);
             RestRequestAsyncHandle handle = Register.ExecuteCommand(new UserCredentials(RegisterUsernameBox.Text, RegisterFirstPasswordBox.Password));
-            await NetworkService.AbortIfNoNetworkAsync(handle);
         }
 
         void Login_Event(object sender, RequestFinishedEventArgs e)

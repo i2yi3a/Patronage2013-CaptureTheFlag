@@ -55,21 +55,7 @@ namespace Ctf.ViewModels
         public RestRequestAsyncHandle ExcecuteAsyncCommand()
         {
             System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
-            //return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
-            return ExecuteTrueAsync(request, RequestCallbackOnFinish);
-        }
-
-        public async Task<RestRequestAsyncHandle> ExcecuteAsyncCommandNew()
-        {
-            System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
-            //return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
-            return await ExecuteTrueAsyncNew(request, RequestCallbackOnFinish);
-        }
-
-        public virtual RestRequestAsyncHandle ExcecuteAsync()
-        {
-            System.Diagnostics.Debug.WriteLine("public RestRequestAsyncHandle ExcecuteAsyncCommand()");
-            return base.ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
+            return ExcecuteAsyncCommand(request, RequestCallbackOnFinish);
         }
     }
 }

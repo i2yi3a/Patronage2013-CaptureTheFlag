@@ -22,7 +22,6 @@ using RestSharp;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using PhoneApp3;
 
 namespace Ctf.Pages
 {
@@ -37,7 +36,6 @@ namespace Ctf.Pages
         //private Task<RestRequestAsyncHandle> task;
         //private Task networkTask;
         //private Task otherTask;
-        Filterer f;
         List<double> MyPosition;
         Geo g;
         double range;
@@ -54,7 +52,7 @@ namespace Ctf.Pages
 
 
             g = new Geo();
-            filter = new FilterNext();
+            filter = new CollectionFilter();
             collection = new ObservableCollection<GameHeader>();
             collection = AllGamesBase;
             filteredCollection = new ObservableCollection<GameHeader>();
@@ -69,7 +67,6 @@ namespace Ctf.Pages
                 pivotsText.Add(i, String.Empty);
             }
 
-            f = new Filterer();
             //NetworkService.DoInBackground();
             //networkTask = NetworkService.WorkAsync();
             //Debug.WriteLine("Before calling OtherAsync()");
@@ -474,7 +471,7 @@ namespace Ctf.Pages
                 Debug.WriteLine("Logout SUCCESSFUL");
             else
                 Debug.WriteLine("Logout FAILED");
-            Debug.WriteLineIf(Logger.LoggedAs().username != null, "Logged as:" + Logger.LoggedAs().username);
+            Debug.WriteLineIf(ApplicationSettings.Instance.LoggedUsername != null, "Logged as:" + ApplicationSettings.Instance.LoggedUsername);
 
             if (NavigationService.CanGoBack)
             {
@@ -506,7 +503,7 @@ namespace Ctf.Pages
 
 
 
-        private FilterNext filter;
+        private CollectionFilter filter;
         private ObservableCollection<GameHeader> collection;
         private ObservableCollection<GameHeader> filteredCollection;
 

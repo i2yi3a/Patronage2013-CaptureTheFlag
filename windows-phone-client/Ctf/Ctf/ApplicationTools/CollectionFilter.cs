@@ -1,18 +1,14 @@
-﻿using Ctf.ApplicationTools;
-using Ctf.Models.DataObjects;
-using System;
+﻿using Ctf.Models.DataObjects;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace PhoneApp3
+namespace Ctf.ApplicationTools
 {
-    public class FilterNext
+    public class CollectionFilter
     {
-        public FilterNext()
+        public CollectionFilter()
         {
 
         }

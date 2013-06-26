@@ -27,32 +27,7 @@ namespace Ctf.Communication
         public RestRequestAsyncHandle CreateGame(Game game)
         {
             request.AddBody(game);
-            //request.AddBody(new
-            //{
-            //    name = game.name,
-            //    description = game.description,
-            //    time_start = game.time_start,
-            //    duration = game.duration,
-            //    points_max = game.points_max,
-            //    players_max = game.players_max,
-            //    localization = new
-            //    {
-            //        name = game.localization.name,
-            //        latLng = new { game.localization.latLng },
-            //        radius = game.localization.radius
-            //    },
-            //}); 
-            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
-        }
-
-
-        protected override void RequestCallbackOnSuccess(IRestResponse<Game> response)
-        {
-            if ((response != null) && (response.Data != null))
-            {
-                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
-                OnRequestFinished(new RequestFinishedEventArgs(response.Data));
-            }
+            return ExcecuteAsyncCommand(request, RequestCallbackOnFinish);
         }
     }
 }

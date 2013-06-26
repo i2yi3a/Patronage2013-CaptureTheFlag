@@ -34,51 +34,6 @@ namespace Ctf.Communication
         }
 
         /// <summary>
-        /// Requests the callback on success.
-        /// </summary>
-        /// <param name="response">The response.</param>
-        protected override void RequestCallbackOnSuccess(IRestResponse<AuthorizationToken> response)
-        {
-            if ((response != null) && (response.Data != null))
-            {
-                Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, MethodInfo.GetCurrentMethod(), "Response content: " + response.Content));
-                if (!response.Data.HasError())
-                {
-                    ApplicationSettings.Instance.SaveLoggedUser(new User(username, response.Data.access_token, response.Data.token_type, response.Data.scope));
-                }
-                OnRequestFinished(new RequestFinishedEventArgs(response.Data));
-            }
-        }
-
-        //TODO: Check if is async
-        /// <summary>
-        /// Logs the in as.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <param name="secret">The secret.</param>
-        /// <returns></returns>
-        public RestRequestAsyncHandle LoginAs(UserCredentials user, string secret)
-        {
-            //Secret could be: System.Guid.NewGuid().ToString()
-            //TODO: get method name
-            Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, "async Task<RestRequestAsyncHandle> LogInAs(UserCredentials user, string secret)", "Launching request as: \\" + user.username + "\\ pswd: \\" + user.password + "\\ secret: \\" + secret + "\\"));
-            request.AddParameter("username", user.username);
-            request.AddParameter("password", user.password);
-            request.AddParameter("client_secret", secret);
-            username = user.username;
-            return ExecuteAsync(request, RequestCallbackOnSuccess, RequestCallbackOnFail);
-        }
-
-        /// <summary>
-        /// Loggeds as.
-        /// </summary>
-        /// <returns></returns>
-        public User LoggedAs()
-        {
-            return ApplicationSettings.Instance.RetriveLoggedUser();
-        }
-
-        /// <summary>
         /// Logs the out.
         /// </summary>
         /// <returns></returns>
@@ -89,14 +44,12 @@ namespace Ctf.Communication
 
         public RestRequestAsyncHandle ExecuteCommand(UserCredentials user, string secret)
         {
-            //Secret could be: System.Guid.NewGuid().ToString()
-            //TODO: get method name
             Debug.WriteLine(DebugInfo.Format(DateTime.Now, this, "async Task<RestRequestAsyncHandle> LogInAs(UserCredentials user, string secret)", "Launching request as: \\" + user.username + "\\ pswd: \\" + user.password + "\\ secret: \\" + secret + "\\"));
             request.AddParameter("username", user.username);
             request.AddParameter("password", user.password);
             request.AddParameter("client_secret", secret);
             username = user.username;
-            return ExecuteTrueAsync(request, this.RequestCallbackOnFinish);
+            return ExcecuteAsyncCommand(request, this.RequestCallbackOnFinish);
         }
 
         protected override void RequestCallbackOnFinish(IRestResponse<AuthorizationToken> response)

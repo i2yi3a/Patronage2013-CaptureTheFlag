@@ -11,6 +11,7 @@ using Microsoft.Phone.Net.NetworkInformation;
 
 namespace Ctf.ApplicationTools
 {
+    //TODO: Write NetworkService and test when device is avalible
     public class NetworkService
     {
         public static List<Task<RestRequestAsyncHandle>> RestRequestTasks;
