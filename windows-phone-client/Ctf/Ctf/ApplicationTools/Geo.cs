@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Ctf.ApplicationTools
         }
 
         //Check if working properly
-        public static async Task<List<double>> GetPhoneLocationAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
+        public static async Task<List<double>> GetPhoneLocationListAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
         {
             return await Task.Run(async () =>
             {
@@ -44,5 +45,17 @@ namespace Ctf.ApplicationTools
             });
         }
 
+        //Check if working properly
+        public static async Task<Geoposition> GetPhoneLocationGeopositionAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
+        {
+            return await Task.Run(async () =>
+            {
+                Geolocator geolocator = new Geolocator();
+                //geolocator.DesiredAccuracy = PositionAccuracy.High;
+                geolocator.DesiredAccuracyInMeters = accuracyMeters;
+
+                return await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));
+            });
+        }
     }
 }

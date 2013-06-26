@@ -25,13 +25,12 @@
             <!--Pivot item one-->
             <phone:PivotItem Header="{Binding LocalizedResources.ListGamesMyGames, Source={StaticResource LocalizedStrings}}" Height="454" VerticalAlignment="Top">
                 <!--<ProgressBar x:Name="WaitIndicator" Visibility="Collapsed" IsIndeterminate="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="{Binding ActualWidth, ElementName=MyGamesListControl}" Height="{Binding ActualHeight, ElementName=MyGamesListControl}" Background="Transparent"/>-->
-                <ListBox x:Name="MyGamesListControl"  SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" Height="454" VerticalAlignment="Top" >
+                <ListBox x:Name="MyGamesListControl"  SelectionChanged="GamesList_SelectionChanged" BorderThickness="2" BorderBrush="White" Height="454" VerticalAlignment="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border BorderBrush="White" BorderThickness="1" >
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="{Binding Name}" Margin="2" />
-                                    <!--<TextBlock Text="{Binding Localization.Name}" Margin="2" />-->
                                     <TextBlock Text="{Binding Status}" Margin="2"/>
                                     <TextBlock Text="{Binding Owner}" Margin="2" />
                                     <TextBlock Text="{Binding TimeStart}" Margin="2" />
@@ -41,7 +40,6 @@
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    
                 </ListBox>
 
             </phone:PivotItem>
@@ -128,16 +126,18 @@
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
-    <!--<phone:PhoneApplicationPage.Resources>
-        <DataTemplate x:Key="AllGamesTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Name:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Name}" />
-                <TextBlock Text="Owner:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Owner}" />
-                <TextBlock Text="Status:" Margin="10,0,0,0"/>
-                <TextBlock Text="{Binding Status}" />
-            </StackPanel>
-        </DataTemplate>
-    </phone:PhoneApplicationPage.Resources>-->
+    <phone:PhoneApplicationPage.Resources>
+        <!--<DataTemplate x:Key="GamesListTemplate">
+            <Border BorderBrush="White" BorderThickness="1" >
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Name}" Margin="2" />
+                    <TextBlock Text="{Binding Status}" Margin="2"/>
+                    <TextBlock Text="{Binding Owner}" Margin="2" />
+                    <TextBlock Text="{Binding TimeStart}" Margin="2" />
+                    <TextBlock Text="{Binding PlayersMax}" Margin="2" />
+                    <TextBlock Text="{Binding PlayersCount}" Margin="2" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>-->
+    </phone:PhoneApplicationPage.Resources>
 </phone:PhoneApplicationPage>
