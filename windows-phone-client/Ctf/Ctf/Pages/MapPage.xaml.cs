@@ -87,21 +87,7 @@ namespace Ctf
             RadiusPlusButton.IsEnabled = true;
             RadiusMinusButton.IsEnabled = true;
 
-            if (locations != null)
-            {
-                MyMap.MapElements.Remove(myMapPolyline);
-            }
-
-
-
-            locations = CreateCircle(testing, Radius);
-
-            myMapPolyline.Path = locations;
-            myMapPolyline.StrokeThickness = 5;
-            myMapPolyline.StrokeColor = Colors.Orange;
-
-            
-            MyMap.MapElements.Add(myMapPolyline);
+            GenerateRadius(MyMap, testing, Radius);
             
         }
 
@@ -250,10 +236,27 @@ namespace Ctf
         }
 
 
+        public void GenerateRadius(Map map, GeoCoordinate point, double rad)
+        {
+            if (locations != null)
+            {
+                map.MapElements.Remove(myMapPolyline);
+            }
+            locations = CreateCircle(point, rad);
+
+            myMapPolyline.Path = locations;
+            myMapPolyline.StrokeThickness = 5;
+            myMapPolyline.StrokeColor = Colors.Orange;
+
+
+            map.MapElements.Add(myMapPolyline);
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
             Radius = Radius + 100;
+            GenerateRadius(MyMap, testing, Radius);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -267,6 +270,7 @@ namespace Ctf
             {
                 Radius = 2000;
             }
+            GenerateRadius(MyMap, testing, Radius);
 
         }
 

@@ -97,7 +97,6 @@
     <Compile Include="ApplicationTools\DataObjects\ApplicationError.cs" />
     <Compile Include="ApplicationTools\DataObjects\Game.cs" />
     <Compile Include="ApplicationTools\DataObjects\LoginCredentials.cs" />
-    <Compile Include="ApplicationTools\Filterer.cs" />
     <Compile Include="ApplicationTools\Geo.cs" />
     <Compile Include="ApplicationTools\NetworkService.cs" />
     <Compile Include="Communication\BaseCommand.cs" />
