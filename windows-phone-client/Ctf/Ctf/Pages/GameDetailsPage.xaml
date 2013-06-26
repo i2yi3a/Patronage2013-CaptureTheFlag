@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -104,8 +106,15 @@
                     </ListBox>
                 </StackPanel>
             </phone:PanoramaItem>
-
+            
             <phone:PanoramaItem>
+                <Grid x:Name="mapPanel" Grid.Row="1" Margin="12,0,12,112">
+
+                    <maps:Map x:Name="mMap" Margin="0,29,0,53" >
+                    </maps:Map>
+
+
+                </Grid>
             </phone:PanoramaItem>
 
 
