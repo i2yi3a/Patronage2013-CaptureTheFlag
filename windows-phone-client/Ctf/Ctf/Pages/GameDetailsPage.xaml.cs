@@ -31,9 +31,7 @@ namespace Ctf.Views
         {
             InitializeComponent();
             gameDetails = new GameDetails();
-            //mMap.ZoomLevel = 10.0;
-            //GeoCoordinate x = new GeoCoordinate(System.Convert.ToDouble(gameDetails.localization.latLng[0]), System.Convert.ToDouble(gameDetails.localization.latLng[1]));
-            //mMap.Center = x;
+            mMap.ZoomLevel = 10.0;
             //this.DataContext = gameDetails;
             //InitializeApplicationBar();
             
@@ -45,6 +43,7 @@ namespace Ctf.Views
             if (NavigationContext.QueryString.TryGetValue("gid", out gid))
             {
                 GetGameInfo(gid);
+
             }
         }
 
@@ -62,6 +61,7 @@ namespace Ctf.Views
         private void EditGame_Button_Click(object sender, EventArgs e)
         {
             EditGameCommand EditGame = new EditGameCommand(gameDetails.Id);
+            MessageBox.Show("kliknałems", "tak", MessageBoxButton.OK);
             //EditGame.EditGame(new Game("zzzzz", "zzzzzz", "519a6d6de4b06da65947762a" , "01-06-2013 10:13:00", 5400000, 12, 10, new Localization("Warsaw, Polska", new LatLng(15, 15), 1500)));    
         }
 
@@ -118,6 +118,7 @@ namespace Ctf.Views
                 //gameDetails = x;
                 //PlayersList.DataContext = x.players;
                 InitializeApplicationBar(gameDetails);
+                mMap.Center = Geo.ListToGeoCoordinate(gameDetails.localization.latLng);
             }
             else
             {
