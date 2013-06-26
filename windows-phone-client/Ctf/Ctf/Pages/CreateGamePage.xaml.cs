@@ -16,6 +16,8 @@ namespace Ctf.Pages
 {
     public partial class CreateGamePage : PhoneApplicationPage
     {
+
+
         public CreateGamePage()
         {
             InitializeComponent();

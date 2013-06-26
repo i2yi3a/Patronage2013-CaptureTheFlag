@@ -14,6 +14,12 @@ using Ctf.Models.DataObjects;
 using Ctf.Resources;
 using RestSharp;
 using Ctf.ApplicationTools;
+using Microsoft.Phone.Controls.Maps.Platform;
+using Microsoft.Phone.Maps.Toolkit;
+using System.Device.Location;
+using Microsoft.Phone.Maps.Controls;
+using Windows.Devices.Geolocation;
+using Microsoft.Phone.Maps.Services;
 
 namespace Ctf.Views
 {
@@ -25,6 +31,9 @@ namespace Ctf.Views
         {
             InitializeComponent();
             gameDetails = new GameDetails();
+            //mMap.ZoomLevel = 10.0;
+            //GeoCoordinate x = new GeoCoordinate(System.Convert.ToDouble(gameDetails.localization.latLng[0]), System.Convert.ToDouble(gameDetails.localization.latLng[1]));
+            //mMap.Center = x;
             //this.DataContext = gameDetails;
             //InitializeApplicationBar();
             
