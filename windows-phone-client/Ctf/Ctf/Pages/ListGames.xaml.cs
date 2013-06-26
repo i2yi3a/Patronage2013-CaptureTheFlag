@@ -64,6 +64,7 @@ namespace Ctf.Pages
             await InitializeCollectionAsync(AllGamesBase, MyGames);
             MyGamesListControl.ItemsSource = MyGames;
 
+            //blocks other list inits
             await InitializeCollectionAsync(AllGamesBase, NearestGames);
             NearestGamesListControl.ItemsSource = NearestGames;
 

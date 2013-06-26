@@ -15,13 +15,41 @@ namespace Ctf.ApplicationTools
 
         public static double Distance(List<double> latLng1, List<double> latLng2)
         {
-
             double lat1 = DegreeToRadian(latLng1[0]), lon1 = DegreeToRadian(latLng1[1]), lat2 = DegreeToRadian(latLng2[0]), lon2 = DegreeToRadian(latLng2[1]);
             double R = 6371.0; // km
             double d = Math.Acos(Math.Sin(lat1) * Math.Sin(lat2) +
                   Math.Cos(lat1) * Math.Cos(lat2) *
                   Math.Cos(lon2 - lon1)) * R;
             return Math.Round(d, 2);
+        }
+
+        public static List<double> GeoCoordinateToList(GeoCoordinate geoCoordinate)
+        {
+            if (geoCoordinate == null)
+                throw new ArgumentNullException();
+            List<double> latLng = new List<double>();
+            latLng.Add(geoCoordinate.Latitude);
+            latLng.Add(geoCoordinate.Longitude);
+            return latLng;
+        }
+
+        public static List<double> GeoPositionToList(Geoposition geoPosition)
+        {
+            if (geoPosition == null)
+                throw new ArgumentNullException();
+            List<double> latLng = new List<double>();
+            latLng.Add(geoPosition.Coordinate.Latitude);
+            latLng.Add(geoPosition.Coordinate.Longitude);
+            return latLng;
+        }
+
+        public static GeoCoordinate ListToGeoCoordinate(List<double> latLng)
+        {
+            if (latLng == null)
+                throw new ArgumentNullException();
+            if (latLng.Count < 2)
+                throw new IndexOutOfRangeException();
+            return new GeoCoordinate(latLng[0], latLng[1]);
         }
 
         public static async Task<Geoposition> GetPhoneGeopositionAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
