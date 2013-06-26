@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Device.Location;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 
@@ -27,34 +24,34 @@ namespace Ctf.ApplicationTools
             return Math.Round(d, 2);
         }
 
-        //Check if working properly
+        public static async Task<Geoposition> GetPhoneGeopositionAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
+        {
+            return await Task.Run(async () =>
+            {
+                Geolocator geolocator = new Geolocator();
+                geolocator.DesiredAccuracyInMeters = accuracyMeters;
+                return await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));
+            });
+        }
+
         public static async Task<List<double>> GetPhoneLocationListAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
         {
             return await Task.Run(async () =>
             {
                 List<double> latLng = new List<double>();
-                Geolocator geolocator = new Geolocator();
-                //geolocator.DesiredAccuracy = PositionAccuracy.High;
-                geolocator.DesiredAccuracyInMeters = accuracyMeters;
-
-                Geoposition geoposition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));
-
-                latLng.Add(geoposition.Coordinate.Latitude);
-                latLng.Add(geoposition.Coordinate.Longitude);
+                Geoposition geoPosition = await GetPhoneGeopositionAsync(accuracyMeters, maximumAge, timeout);
+                latLng.Add(geoPosition.Coordinate.Latitude);
+                latLng.Add(geoPosition.Coordinate.Longitude);
                 return latLng;
             });
         }
 
-        //Check if working properly
-        public static async Task<Geoposition> GetPhoneLocationGeopositionAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
+        public static async Task<GeoCoordinate> GetPhoneGeoCoordinateAsync(uint accuracyMeters = 10, int maximumAge = 10, int timeout = 60)
         {
             return await Task.Run(async () =>
             {
-                Geolocator geolocator = new Geolocator();
-                //geolocator.DesiredAccuracy = PositionAccuracy.High;
-                geolocator.DesiredAccuracyInMeters = accuracyMeters;
-
-                return await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(maximumAge), TimeSpan.FromSeconds(timeout));
+                Geoposition geoPosition = await GetPhoneGeopositionAsync(accuracyMeters, maximumAge, timeout);
+                return new GeoCoordinate(geoPosition.Coordinate.Latitude, geoPosition.Coordinate.Longitude);
             });
         }
     }

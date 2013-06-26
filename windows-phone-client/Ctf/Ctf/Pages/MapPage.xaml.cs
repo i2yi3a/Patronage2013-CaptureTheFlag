@@ -50,9 +50,9 @@ namespace Ctf
 
         private async void Zoom()
         {
-            Geoposition position  = await Geo.GetPhoneLocationGeopositionAsync();
-            Debug.WriteLine("My position is : " + position.Coordinate.Latitude + ", " + position.Coordinate.Longitude);
-            MyMap.SetView(new GeoCoordinate(position.Coordinate.Latitude, position.Coordinate.Longitude), MyMap.ZoomLevel);
+            GeoCoordinate geoCoordinate = await Geo.GetPhoneGeoCoordinateAsync();
+            Debug.WriteLine("My position is : " + geoCoordinate.Latitude + ", " + geoCoordinate.Longitude);
+            MyMap.SetView(geoCoordinate, MyMap.ZoomLevel);
         }
 
         private void MyMapCenter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
