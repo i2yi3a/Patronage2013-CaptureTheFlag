@@ -20,7 +20,7 @@
 
 
         <!--Pivot Control-->
-        <phone:Pivot x:Name="MainPivot" Title="{Binding LocalizedResources.ListGamesLoggedAs, Source={StaticResource LocalizedStrings}}" Height="620">
+        <phone:Pivot x:Name="MainPivot" Title="{Binding LocalizedResources.ListGamesLoggedAs, Source={StaticResource LocalizedStrings}}" SelectionChanged="ThisPivot_SelectionChanged" Height="620">
 
             <!--Pivot item one-->
             <phone:PivotItem Header="{Binding LocalizedResources.ListGamesMyGames, Source={StaticResource LocalizedStrings}}" Height="454" VerticalAlignment="Top">

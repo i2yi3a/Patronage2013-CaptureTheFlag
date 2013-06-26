@@ -219,7 +219,6 @@
     <Content Include="Images\blueflag.png" />
     <Content Include="Images\center.png" />
     <Content Include="Images\favs.addto.png" />
-    <Content Include="Images\feature.search.png" />
     <Content Include="Images\new.png" />
     <Content Include="Images\questionmark.png" />
     <Content Include="Images\redflag.png" />
