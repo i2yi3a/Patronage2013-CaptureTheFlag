@@ -34,6 +34,8 @@
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Width="445" Margin="6,0,5,158">
+                <Button Content="Mapa" HorizontalAlignment="Left" Width="154" Click="Button_Click_2"/>
+
                 <TextBlock Text="Name:" TextWrapping="Wrap" Height="33">
                     	
                 </TextBlock>
@@ -83,7 +85,6 @@
                 <TextBlock TextWrapping="Wrap" Text="LatLng:"/>
                 <TextBox x:Name="CGBlueLatLngBox" Height="72" TextWrapping="Wrap" TextChanged="RequiredBoxes_Changed" Margin="0,0,87,0" IsReadOnly="True"/>
                 <Button x:Name="CreateGameButton" Content="Create" Click="Button_Click_1" Height="72" VerticalAlignment="Bottom" Margin="0,0,304,0"/>
-                <Button Content="Mapa" HorizontalAlignment="Left" Width="154" Click="Button_Click_2"/>
 
             </StackPanel>
         </ScrollViewer>
