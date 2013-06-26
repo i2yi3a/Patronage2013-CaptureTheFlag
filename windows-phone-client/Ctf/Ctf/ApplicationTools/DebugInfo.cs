@@ -10,10 +10,16 @@ namespace Ctf.ApplicationTools
 {
     public static class DebugInfo
     {
+        public static string LongFormat(DateTime t, Object o, MethodBase m, String mstr, String msg)
+        {
+            return "[" + t.ToString("HH:mm:ss") + "](" + o.GetHashCode() + "){ " + m.ToString() + " <=> " + mstr + " } >> " + msg;
+        }
+
         public static string Format(DateTime t, Object o, MethodBase m, String msg)
         {
             return "[" + t.ToString("HH:mm:ss") + "](" + o.GetHashCode() + "){ " + m.ToString() + " } >> " + msg;
         }
+
         public static string Format(DateTime t, Object o, String m, String msg)
         {
             return "[" + t.ToString("HH:mm:ss") + "](" + o.GetHashCode() + "){ " + m.ToString() + " } >> " + msg;

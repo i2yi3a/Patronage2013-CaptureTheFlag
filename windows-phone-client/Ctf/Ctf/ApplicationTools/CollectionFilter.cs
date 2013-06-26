@@ -13,18 +13,6 @@ namespace Ctf.ApplicationTools
 
         }
 
-        public ObservableCollection<GameHeader> Execute(ObservableCollection<GameHeader> source, string filter)
-        {
-            ObservableCollection<GameHeader> filtered = new ObservableCollection<GameHeader>();
-            Regex match = new Regex(filter, RegexOptions.IgnoreCase);
-            foreach (GameHeader input in source)
-            {
-                if (match.IsMatch(input.Name))
-                    filtered.Add(input);
-            }
-            return filtered;
-        }
-
         public Task<ObservableCollection<GameHeader>> ByNameAsync(ObservableCollection<GameHeader> source, string filter)
         {
             ObservableCollection<GameHeader> filtered = new ObservableCollection<GameHeader>();
