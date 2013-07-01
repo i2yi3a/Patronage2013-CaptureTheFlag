@@ -151,7 +151,6 @@
 		23D228F6171352CF00073C0B /* NSError+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Description.m"; sourceTree = "<group>"; };
 		23D228F91713536100073C0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		23D228FF171353E900073C0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		23E2A680171C7F1200F8BD10 /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = pl; path = pl.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		23E2A681171C7F1200F8BD10 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23E2A682171C7F1200F8BD10 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23E2A686171C7F3100F8BD10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -633,7 +632,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				233035E5170DAAC9002E1A92 /* en */,
-				23E2A680171C7F1200F8BD10 /* pl */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
