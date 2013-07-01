@@ -100,7 +100,7 @@ int counter;
         
         MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
         annotationPoint.coordinate = centre;
-        annotationPoint.title = @"placemark.name"; //??
+        annotationPoint.title = @"center"; 
         [_mapView addAnnotation:annotationPoint];
         MKCoordinateRegion region =
         MKCoordinateRegionMakeWithDistance(centre, span.latitudeDelta*111*1000, span.latitudeDelta*111*1000);
@@ -142,7 +142,7 @@ int counter;
                               
                               MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
                               annotationPoint.coordinate = coordinate.coordinate;
-                              annotationPoint.title = @"placemark.name"; //??
+                              annotationPoint.title = @"center"; //??
                               [_mapView addAnnotation:annotationPoint];
                               MKCoordinateRegion region =
                               MKCoordinateRegionMakeWithDistance (
@@ -178,7 +178,7 @@ didUpdateUserLocation:
     }
     
     MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
-    if ([[annotation title] isEqualToString:@"placemark.name"])
+    if ([[annotation title] isEqualToString:@"center"])
         annView.image = [ UIImage imageNamed:@"BLstream.png" ];
     else
         annView.image = [ UIImage imageNamed:@"pinRed.png" ];
@@ -217,15 +217,18 @@ didUpdateUserLocation:
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     
     if ((counter % 3)==1) {
+                _mapView.scrollEnabled = NO;
         MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
         annotationPoint.coordinate = coordinate;
         self.redTeamBaseLocalization = [[CLLocation alloc] initWithLatitude:annotationPoint.coordinate.latitude
                                                                   longitude:annotationPoint.coordinate.longitude];
         annotationPoint.title = @"RED";
         [_mapView addAnnotation:annotationPoint];
+
     }
     
     if ((counter % 3)==2) {
+                _mapView.scrollEnabled = NO;
         MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
         annotationPoint.coordinate = coordinate;
         self.blueTeamBaseLocalization = [[CLLocation alloc] initWithLatitude:annotationPoint.coordinate.latitude
@@ -235,6 +238,7 @@ didUpdateUserLocation:
     }
     if ((counter % 3)==0)
     {
+                _mapView.scrollEnabled = YES;
         id userAnnotation = self.mapView.userLocation;
         NSMutableArray *annotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         [annotations removeObject:userAnnotation];
@@ -253,16 +257,15 @@ didUpdateUserLocation:
 }
 
 - (IBAction)createNewGame:(id)sender{
+    if (_blueTeamBaseLocalization!=nil) {
+        
+    
     
     _game.localizationName = _addres;
     _game.localization = _gameLocation;
     _game.localizationRadius = _gameRadius;
     _game.redTeamBaseLocalization = _redTeamBaseLocalization;
     _game.blueTeamBaseLocalization =_blueTeamBaseLocalization;
-    NSLog(@"%@",_game.name);
-    NSLog(@"%@",_game.duration);
-    NSLog(@"%@",_game.timeStart );
-    NSLog(@"%@",_game.playersMax);
     
     [[NetworkEngine getInstance] createNewGame:_game completionBlock:^(NSObject *response){
         if ([response isKindOfClass:[NSError class]])
@@ -276,9 +279,9 @@ didUpdateUserLocation:
         }
         
     }];
+    }
+    {
+       [ShowInformation showError:@"Some informations are not given"];
+    }
 }
-
-
-
-
 @end

@@ -53,12 +53,12 @@
 		23E2A685171C7F3100F8BD10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23E2A687171C7F3100F8BD10 /* Localizable.strings */; };
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
 		C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889D840175FE1DB008FC092 /* AddressBookUI.framework */; };
+		C89718BB17819F4E00DA0CA9 /* AlertWithProgressIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89718BA17819F4E00DA0CA9 /* AlertWithProgressIndicator.xib */; };
 		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
 		C89B1DE817745147008F488C /* NewGame2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89B1DE717745147008F488C /* NewGame2ViewController.m */; };
 		C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A87AB21759D2D300C1A220 /* FlatButton.m */; };
 		C8B1A9C017744129004E2EED /* NewGame1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B1A9BF17744129004E2EED /* NewGame1ViewController.m */; };
 		C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5D1CA175F343100743D92 /* CTFGame.m */; };
-		C8B5D1D1175F343200743D92 /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B5D1CE175F343200743D92 /* NewGameViewController.m */; };
 		C8B5D1E0175F34C100743D92 /* BLstream.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1D2175F34C000743D92 /* BLstream.png */; };
 		C8B5D1E1175F34C100743D92 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1D3175F34C100743D92 /* Icon-Small-50.png */; };
 		C8B5D1E2175F34C100743D92 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1D4175F34C100743D92 /* Icon-Small.png */; };
@@ -161,6 +161,7 @@
 		C80556771718991A00C43A1C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C889D840175FE1DB008FC092 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		C89718BA17819F4E00DA0CA9 /* AlertWithProgressIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertWithProgressIndicator.xib; sourceTree = "<group>"; };
 		C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
 		C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
 		C89B1DE617745147008F488C /* NewGame2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGame2ViewController.h; sourceTree = "<group>"; };
@@ -171,8 +172,6 @@
 		C8B1A9BF17744129004E2EED /* NewGame1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGame1ViewController.m; sourceTree = "<group>"; };
 		C8B5D1C9175F343100743D92 /* CTFGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFGame.h; sourceTree = "<group>"; };
 		C8B5D1CA175F343100743D92 /* CTFGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFGame.m; sourceTree = "<group>"; };
-		C8B5D1CD175F343200743D92 /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
-		C8B5D1CE175F343200743D92 /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		C8B5D1D2175F34C000743D92 /* BLstream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BLstream.png; path = gfx/BLstream.png; sourceTree = "<group>"; };
 		C8B5D1D3175F34C100743D92 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "gfx/Icon-Small-50.png"; sourceTree = "<group>"; };
 		C8B5D1D4175F34C100743D92 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "gfx/Icon-Small.png"; sourceTree = "<group>"; };
@@ -296,8 +295,6 @@
 				C80556781718991A00C43A1C /* LoginViewController.m */,
 				C80556761718799B00C43A1C /* RegisterViewController.h */,
 				233035E8170DAAC9002E1A92 /* RegisterViewController.m */,
-				C8B5D1CD175F343200743D92 /* NewGameViewController.h */,
-				C8B5D1CE175F343200743D92 /* NewGameViewController.m */,
 				C8B1A9BE17744129004E2EED /* NewGame1ViewController.h */,
 				C8B1A9BF17744129004E2EED /* NewGame1ViewController.m */,
 				C89B1DE617745147008F488C /* NewGame2ViewController.h */,
@@ -321,6 +318,7 @@
 				C8A87AB11759D2D300C1A220 /* FlatButton.h */,
 				C8A87AB21759D2D300C1A220 /* FlatButton.m */,
 				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
+				C89718BA17819F4E00DA0CA9 /* AlertWithProgressIndicator.xib */,
 				23D228C517134EE900073C0B /* MKNetworkKit */,
 				23D228DD17134EE900073C0B /* NetworkEngine.h */,
 				23D228DE17134EE900073C0B /* NetworkEngine.m */,
@@ -527,6 +525,7 @@
 				C8D7CA1117637069002B980D /* GamesListBackupLogo.png in Resources */,
 				C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */,
 				C8C9C67217749C0F00E0B2F0 /* arrowUp.png in Resources */,
+				C89718BB17819F4E00DA0CA9 /* AlertWithProgressIndicator.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +581,6 @@
 				234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 				C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */,
 				C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */,
-				C8B5D1D1175F343200743D92 /* NewGameViewController.m in Sources */,
 				C8D7CA0617631E0D002B980D /* GamesViewCell.m in Sources */,
 				C8D7CA0917631E60002B980D /* GamesViewController.m in Sources */,
 				C8BB97441763E9C900271D5F /* CustomAlertView.m in Sources */,
