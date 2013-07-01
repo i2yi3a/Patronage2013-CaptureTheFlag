@@ -233,6 +233,75 @@
     
 }
 
+-(void)getGames: (CTFGame*) game
+completionBlock:(NetworkEngineCompletionBlock)completionBlock
+{
+    NSMutableString *path;//="/api/secured/games"; - błąd
+    if (game.name)
+        [path appendFormat: @"name=%@&", game.name];
+    if (game.status)
+        [path appendFormat: @"status=%@&", game.status];
+    //myGamesOnly - ?
+    //localization
+    //range
+    [path replaceOccurrencesOfString:@"&" withString:@"" options:0 range:NSMakeRange(path.length-1, 1)];
+
+    
+    MKNetworkOperation *op=[self operationWithPath:path params:nil httpMethod:@"GET" ssl:NO];
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
+    
+     [op addCompletionHandler:^(MKNetworkOperation *operation){
+          NSDictionary* response = operation.responseJSON;
+          NSArray* games=response[@"games"];
+         NSMutableArray* a;
+         for(NSDictionary *g in games)
+         {
+             CTFGame *game = [[CTFGame alloc]init];
+             
+             if ([path isEqualToString:@"/api/secured/games"])
+             {
+                 game.gameId=g[@"id"];
+                 game.name = g[@"name"];
+                 game.timeStart = g[@"time_start"];
+                 game.duration = g[@"duration"];
+                 game.playersMax = g[@"players_max"];
+                 //playersCount
+                 game.status = g[@"status"];
+                 game.owner = g[@"owner"];
+                 game.localizationName = g[@[@"localization" "name"]];
+                 NSArray* a = g[@"localization"];
+                 NSNumber* lat = a[0];
+                 NSNumber* lon = a[1];
+                 game.localization = [[CLLocation alloc]
+                                      initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
+                 game.localizationRadius = response[@[@"localization" "name"]];
+             }
+             else
+             {
+                 game.gameId=g[@"id"];
+                 game.name = g[@"name"];
+                 game.localizationName = g[@[@"localization" "name"]];
+                 NSArray* a = g[@"localization"];
+                 NSNumber* lat = a[0];
+                 NSNumber* lon = a[1];
+                 game.localization = [[CLLocation alloc]
+                                      initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
+                 game.localizationRadius = g[@[@"localization" "name"]];
+                 game.status = g[@"status"];
+                 game.owner = g[@"owner"];
+                 game.timeStart = g[@"time_start"];
+                 game.playersMax = g[@"players_max"];
+                 //playersCount
+             }
+             
+             completionBlock(a);
+         }}
+                 errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                     completionBlock(error);
+                 }];
+}
+
+
 
 
 @end 
