@@ -121,10 +121,12 @@ int counter;
 
 - (IBAction)geolocate:(id)sender
 {
+    [self.locationField resignFirstResponder];
     if ([_locationField.text isEqualToString:@""]){
         [ShowInformation showError:@"Fill empty field"];
     }
     else{
+    
      _MapHideView.alpha=0;
     [self.mapView removeOverlays:self.mapView.overlays];
     [self removeAllAnnotations];
@@ -177,15 +179,21 @@ didUpdateUserLocation:
         return nil;
     }
     
-    MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
+    MKPinAnnotationView *annView = [[MKPinAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
     if ([[annotation title] isEqualToString:@"center"])
-        annView.image = [ UIImage imageNamed:@"BLstream.png" ];
+        annView.image = nil;
     else
+        if ([[annotation title] isEqualToString:@"RED"])
         annView.image = [ UIImage imageNamed:@"pinRed.png" ];
+    else
+    if ([[annotation title] isEqualToString:@"BLUE"])
+        annView.image = [ UIImage imageNamed:@"pinBlue.png" ];
+    else
+           annView.pinColor = MKPinAnnotationColorRed;
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     [infoButton addTarget:self action:@selector(showDetailsView)
          forControlEvents:UIControlEventTouchUpInside];
-    annView.canShowCallout = YES;
+    annView.canShowCallout = NO;
     return annView;
 }
 
@@ -254,6 +262,10 @@ didUpdateUserLocation:
         [self geolocate:nil];
     }
     return YES;
+}
+
+-(void)dismissKeyboard {
+    [_locationField resignFirstResponder];
 }
 
 - (IBAction)createNewGame:(id)sender{

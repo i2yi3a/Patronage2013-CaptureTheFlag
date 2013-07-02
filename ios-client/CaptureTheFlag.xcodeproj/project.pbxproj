@@ -52,6 +52,7 @@
 		23D22901171353F700073C0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D228FF171353E900073C0B /* SystemConfiguration.framework */; };
 		23E2A685171C7F3100F8BD10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23E2A687171C7F3100F8BD10 /* Localizable.strings */; };
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
+		C81E18371782B1AC00C21211 /* pinBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E18361782B1AC00C21211 /* pinBlue.png */; };
 		C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889D840175FE1DB008FC092 /* AddressBookUI.framework */; };
 		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
 		C89B1DE817745147008F488C /* NewGame2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89B1DE717745147008F488C /* NewGame2ViewController.m */; };
@@ -76,7 +77,6 @@
 		C8B5D1F2175F35B900743D92 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1EF175F35B900743D92 /* Default.png */; };
 		C8B5D1F3175F35B900743D92 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1F0175F35B900743D92 /* Default@2x.png */; };
 		C8B5D1F5175F36F600743D92 /* pinRed.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B5D1F4175F36F600743D92 /* pinRed.png */; };
-		C8BB97441763E9C900271D5F /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BB97431763E9C900271D5F /* CustomAlertView.m */; };
 		C8C840B1173F7CB400A5D656 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C840B0173F7CB400A5D656 /* MapKit.framework */; };
 		C8C840B3173F899C00A5D656 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C840B2173F899C00A5D656 /* CoreLocation.framework */; };
 		C8C9C6681774774C00E0B2F0 /* NewGame3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C9C6671774774C00E0B2F0 /* NewGame3ViewController.m */; };
@@ -158,6 +158,7 @@
 		C80556761718799B00C43A1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		C80556771718991A00C43A1C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C81E18361782B1AC00C21211 /* pinBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinBlue.png; path = gfx/pinBlue.png; sourceTree = "<group>"; };
 		C889D840175FE1DB008FC092 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
 		C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
@@ -187,8 +188,6 @@
 		C8B5D1EF175F35B900743D92 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = gfx/Default.png; sourceTree = "<group>"; };
 		C8B5D1F0175F35B900743D92 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "gfx/Default@2x.png"; sourceTree = "<group>"; };
 		C8B5D1F4175F36F600743D92 /* pinRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinRed.png; path = gfx/pinRed.png; sourceTree = "<group>"; };
-		C8BB97421763E9C900271D5F /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
-		C8BB97431763E9C900271D5F /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		C8C840B0173F7CB400A5D656 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8C840B2173F899C00A5D656 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C8C9C6661774774C00E0B2F0 /* NewGame3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGame3ViewController.h; sourceTree = "<group>"; };
@@ -310,8 +309,6 @@
 				C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */,
 				234A9D1A174A8A4100D6D5AB /* UIColor+customColors.h */,
 				234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */,
-				C8BB97421763E9C900271D5F /* CustomAlertView.h */,
-				C8BB97431763E9C900271D5F /* CustomAlertView.m */,
 				C8A87AB11759D2D300C1A220 /* FlatButton.h */,
 				C8A87AB21759D2D300C1A220 /* FlatButton.m */,
 				233035E4170DAAC9002E1A92 /* MainStoryboard.storyboard */,
@@ -344,6 +341,7 @@
 				C8B5D1DB175F34C100743D92 /* ios-retina-splash-logo.png */,
 				C8B5D1DC175F34C100743D92 /* ios-retina-title-bar-icon.png */,
 				C8B5D1EE175F35B900743D92 /* Default-568h@2x.png */,
+				C81E18361782B1AC00C21211 /* pinBlue.png */,
 				C8B5D1EF175F35B900743D92 /* Default.png */,
 				C8B5D1F0175F35B900743D92 /* Default@2x.png */,
 				C8B5D1DD175F34C100743D92 /* ios-splash-logo.png */,
@@ -521,6 +519,7 @@
 				C8D7CA1117637069002B980D /* GamesListBackupLogo.png in Resources */,
 				C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */,
 				C8C9C67217749C0F00E0B2F0 /* arrowUp.png in Resources */,
+				C81E18371782B1AC00C21211 /* pinBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +577,6 @@
 				C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */,
 				C8D7CA0617631E0D002B980D /* GamesViewCell.m in Sources */,
 				C8D7CA0917631E60002B980D /* GamesViewController.m in Sources */,
-				C8BB97441763E9C900271D5F /* CustomAlertView.m in Sources */,
 				C8B1A9C017744129004E2EED /* NewGame1ViewController.m in Sources */,
 				C89B1DE817745147008F488C /* NewGame2ViewController.m in Sources */,
 				C8C9C6681774774C00E0B2F0 /* NewGame3ViewController.m in Sources */,
