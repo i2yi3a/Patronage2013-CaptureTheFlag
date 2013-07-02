@@ -54,7 +54,6 @@
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
 		C81E18371782B1AC00C21211 /* pinBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E18361782B1AC00C21211 /* pinBlue.png */; };
 		C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889D840175FE1DB008FC092 /* AddressBookUI.framework */; };
-		C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */; };
 		C89B1DE817745147008F488C /* NewGame2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89B1DE717745147008F488C /* NewGame2ViewController.m */; };
 		C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A87AB21759D2D300C1A220 /* FlatButton.m */; };
 		C8B1A9C017744129004E2EED /* NewGame1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B1A9BF17744129004E2EED /* NewGame1ViewController.m */; };
@@ -160,8 +159,6 @@
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C81E18361782B1AC00C21211 /* pinBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinBlue.png; path = gfx/pinBlue.png; sourceTree = "<group>"; };
 		C889D840175FE1DB008FC092 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
-		C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
 		C89B1DE617745147008F488C /* NewGame2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGame2ViewController.h; sourceTree = "<group>"; };
 		C89B1DE717745147008F488C /* NewGame2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGame2ViewController.m; sourceTree = "<group>"; };
 		C8A87AB11759D2D300C1A220 /* FlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
@@ -305,8 +302,6 @@
 				C8D7CA0817631E60002B980D /* GamesViewController.m */,
 				C8D7CA0417631E0D002B980D /* GamesViewCell.h */,
 				C8D7CA0517631E0D002B980D /* GamesViewCell.m */,
-				C8999F4D172E5C1B0079B0A7 /* MyGamesViewController.h */,
-				C8999F4E172E5C1B0079B0A7 /* MyGamesViewController.m */,
 				234A9D1A174A8A4100D6D5AB /* UIColor+customColors.h */,
 				234A9D1B174A8A4100D6D5AB /* UIColor+customColors.m */,
 				C8A87AB11759D2D300C1A220 /* FlatButton.h */,
@@ -571,7 +566,6 @@
 				23D228F7171352CF00073C0B /* NSError+Description.m in Sources */,
 				C80556791718991A00C43A1C /* LoginViewController.m in Sources */,
 				E765073D171C744A00799648 /* ShowInformation.m in Sources */,
-				C8999F4F172E5C1B0079B0A7 /* MyGamesViewController.m in Sources */,
 				234A9D1C174A8A4100D6D5AB /* UIColor+customColors.m in Sources */,
 				C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */,
 				C8B5D1CF175F343200743D92 /* CTFGame.m in Sources */,
