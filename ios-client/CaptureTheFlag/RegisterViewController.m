@@ -30,7 +30,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 @property (readwrite) CGFloat animatedDistance;
 
 
-@property (nonatomic, retain) UIAlertView *loginAlertView;
+@property (nonatomic, retain) CustomAlert *loginAlertView;
 
 - (IBAction)reginster:(id)sender;
 - (IBAction)goToLogin:(id)sender;
@@ -51,11 +51,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-    self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
-                                                    delegate:self
-                                           cancelButtonTitle:nil
-                                           otherButtonTitles:nil, nil];
-    
     self.view.backgroundColor = [UIColor ctfApplicationBackgroundLighterColor];
     
     _emailBackgroundView.backgroundColor = [UIColor ctfInputBackgroundAndDisabledButtonColor];
@@ -93,13 +88,12 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                               if ([response isKindOfClass:[NSError class]])
                               {
                                   NSError *error = (NSError *)response;
-                                  [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                  [ShowInformation showError:error.localizedDescription];
+                                  [ShowInformation dissmisLoading:_loginAlertView];                                  [ShowInformation showError:error.localizedDescription inView:self.view];
                               }
                               else
                               {
-                                  [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                                  [ShowInformation showMessage:@"Your registration proces is complete" withTitle:nil];
+                                  [ShowInformation dissmisLoading:_loginAlertView];
+                                  [ShowInformation showMessage:@"Your registration proces is complete" withTitle:nil inView:self.view];
                                   [self dismissViewControllerAnimated:YES completion:nil];
                             }
                           }];
@@ -107,16 +101,16 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 
 
 - (IBAction)reginster:(id)sender{
-            [_loginAlertView show];
-if ([self.passwordField.text isEqualToString:self.passwordField2.text])
+    _loginAlertView=[ShowInformation showLoading:self.view];
+    if ([self.passwordField.text isEqualToString:self.passwordField2.text])
 {
     [self beginReginster];
     [self reginsterWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
 }
 else
 {
-    [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-    [ShowInformation showError:@"passwords didn't match"];
+    [ShowInformation dissmisLoading:_loginAlertView];
+    [ShowInformation showError:@"passwords didn't match" inView:self.view];
 }
 }
 
@@ -139,7 +133,7 @@ else
         }
         else if (textField == self.passwordField2) {
             [textField resignFirstResponder];
-            [_loginAlertView show];
+            _loginAlertView=[ShowInformation showLoading:self.view];
             if ([self.passwordField.text isEqualToString:self.passwordField2.text])
             {
                 [self beginReginster];
@@ -147,8 +141,8 @@ else
             }
             else
             {
-                [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                [ShowInformation showError:@"passwords didn't match"];
+                [ShowInformation dissmisLoading:_loginAlertView];
+                [ShowInformation showError:@"passwords didn't match" inView:self.view];
             }
 
     }

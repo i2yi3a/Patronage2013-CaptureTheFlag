@@ -155,7 +155,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 
 - (IBAction)goNext:(id)sender{
     if ([_gameName.text isEqualToString:@""] || [_gameDescription.text isEqualToString:@""] || [_gameRedName.text isEqualToString:@""] || [_gameBlueName.text isEqualToString:@""]) {
-        [ShowInformation showError:@"Fill empty fields"];
+        [ShowInformation showError:@"Fill empty fields" inView:self.view];
     }
     else
     {

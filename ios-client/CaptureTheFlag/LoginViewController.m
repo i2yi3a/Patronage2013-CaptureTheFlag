@@ -27,10 +27,9 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 @property (weak, nonatomic) IBOutlet UIView *passwordIconBackgroundView;
 @property (readwrite) CGFloat animatedDistance;
 
+@property (nonatomic, retain) CustomAlert *loginAlertView;
+
 - (IBAction)login:(id)sender;
-
-
-@property (nonatomic, retain) UIAlertView *loginAlertView;
 
 @end
 
@@ -45,10 +44,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     
     [self.view addGestureRecognizer:tap];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.loginAlertView = [[UIAlertView alloc] initWithTitle:@"Please wait" message:nil
-                                                    delegate:self
-                                           cancelButtonTitle:nil
-                                           otherButtonTitles:nil, nil];
     
     self.view.backgroundColor = [UIColor ctfApplicationBackgroundLighterColor];
     
@@ -87,22 +82,23 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
          if ([response isKindOfClass:[NSError class]])
          {
              NSError *error = (NSError *)response;
-             [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
-             [ShowInformation showError:error.localizedDescription];
+             [ShowInformation dissmisLoading:_loginAlertView];
+             [ShowInformation showError:error.localizedDescription inView:self.view];
          }
          else
          {
              [self performSegueWithIdentifier:@"segueToMainScreenAfterLogin" sender:self];
-             [_loginAlertView dismissWithClickedButtonIndex:0 animated:YES];
+             [ShowInformation dissmisLoading:_loginAlertView];
          }
      }];
 }
 
 
 - (IBAction)login:(id)sender{
+    
     [self beginLogin];
     [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
-    [_loginAlertView show];
+    _loginAlertView=[ShowInformation showLoading:self.view];
 }
 
 -(void)beginLogin
@@ -123,7 +119,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
         [textField resignFirstResponder];
         [self beginLogin];
         [self loginWithUserEmail:self.userEmailField.text andPassword:self.passwordField.text];
-        [_loginAlertView show];
+        _loginAlertView=[ShowInformation showLoading:self.view];
     }
     return YES;
 }

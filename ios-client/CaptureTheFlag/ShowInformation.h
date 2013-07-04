@@ -11,7 +11,8 @@
 
 @interface ShowInformation : UIViewController <CustomAlertDelegate>
 
-+ (void)showError:(NSString *)error;
-+ (void)showMessage:(NSString *)message withTitle:(NSString *)title;
-
++ (void)showError:(NSString *)error inView:(UIView *)view;
++ (void)showMessage:(NSString *)message withTitle:(NSString *)title inView:(UIView *)view;
++ (CustomAlert *)showLoading: (UIView *)view;
++ (void)dissmisLoading:(CustomAlert*)alert;
 @end

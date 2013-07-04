@@ -134,9 +134,14 @@
             
             alert_height += OtherBtn.frame.size.height + 15.0;
         }
-        else
-            alert_height += 15.0;
-        
+        else if (otherButtonTitle == nil && cancelButtonTitle ==nil){
+            alert_height += 100;
+            UIActivityIndicatorView  *av = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            av.frame = CGRectMake(125, 80, 25, 25);
+            av.tag  = 1;
+            [AlertImgView addSubview:av];
+            [av startAnimating];
+        }
         AlertView = [[UIView alloc] initWithFrame:CGRectMake((int)((self.frame.size.width-alert_width)/2.0), (int)((self.frame.size.height-alert_height)/2.0), alert_width, alert_height)];
         AlertView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         AlertImgView.frame = AlertView.bounds;

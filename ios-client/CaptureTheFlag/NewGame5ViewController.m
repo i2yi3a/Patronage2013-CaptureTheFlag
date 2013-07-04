@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (weak, nonatomic) IBOutlet UIView *MapHideView;
+@property (nonatomic, retain) CustomAlert *loginAlertView;
 
 - (IBAction)geolocate:(id)sender;
 - (IBAction)createNewGame:(id)sender;
@@ -123,7 +124,7 @@ int counter;
 {
     [self.locationField resignFirstResponder];
     if ([_locationField.text isEqualToString:@""]){
-        [ShowInformation showError:@"Fill empty field"];
+        [ShowInformation showError:@"Fill empty field" inView:self.view];
     }
     else{
     
@@ -269,6 +270,7 @@ didUpdateUserLocation:
 }
 
 - (IBAction)createNewGame:(id)sender{
+    _loginAlertView=[ShowInformation showLoading:self.view];
     if (_blueTeamBaseLocalization!=nil) {
         
     
@@ -283,17 +285,20 @@ didUpdateUserLocation:
         if ([response isKindOfClass:[NSError class]])
         {
             NSError *error = (NSError *)response;
-            [ShowInformation showError:error.localizedDescription];
+            [ShowInformation dissmisLoading:_loginAlertView];
+            [ShowInformation showError:error.localizedDescription inView:self.view];
         }
         else
         {
-            [ShowInformation showMessage:@"Congratulations" withTitle:@"Game created sucesfully!"];
+            [ShowInformation dissmisLoading:_loginAlertView];
+            [ShowInformation showMessage:@"Congratulations" withTitle:@"Game created sucesfully!" inView:self.view];
         }
         
     }];
     }
     {
-       [ShowInformation showError:@"Some informations are not given"];
+       [ShowInformation dissmisLoading:_loginAlertView];
+       [ShowInformation showError:@"Some informations are not given" inView:self.view];
     }
 }
 @end

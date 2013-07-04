@@ -18,6 +18,7 @@
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)AlertDelegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitle:(NSString *)otherButtonTitle;
 - (void)showInView:(UIView*)view;
+- (void)animateHide;
 @end
 
 @protocol CustomAlertDelegate

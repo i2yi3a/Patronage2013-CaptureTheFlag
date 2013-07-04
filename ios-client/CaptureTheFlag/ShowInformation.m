@@ -11,25 +11,21 @@
 
 @implementation ShowInformation
 
-/*+ (void)showError:(NSString *)error
++ (void)showError:(NSString *)error inView:(UIView *)view
 {
-    CustomAlert *alert = [[CustomAlert alloc] initWithTitle:@"Warning" message:@"eihteprj iregj peioeg joeireg hio" delegate:self cancelButtonTitle:@"cancel" otherButtonTitle:@"ok"];
-    [alert showInView:RootViewController];
-}
-*/
-+ (void)showError:(NSString *)error
-{
-    
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                      message:error
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [message show];
+    CustomAlert *alert = [[CustomAlert alloc] initWithTitle:@"Error"
+                                                    message:error delegate:self
+                                          cancelButtonTitle:nil otherButtonTitle:@"ok"];
+    [alert showInView:view];
 }
 
-+ (void)showMessage:(NSString *)message withTitle:(NSString *)title
++ (void)showMessage:(NSString *)message withTitle:(NSString *)title inView:(UIView *)view
 {
+    CustomAlert *alert = [[CustomAlert alloc] initWithTitle:title
+                                                    message:message delegate:self
+                                          cancelButtonTitle:nil otherButtonTitle:@"ok"];
+    [alert showInView:view];
+    
     UIAlertView *pop_up = [[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
@@ -37,5 +33,18 @@
                                            otherButtonTitles:nil];
     [pop_up show];
  
+}
+
++ (CustomAlert *)showLoading: (UIView *)view
+{
+    CustomAlert *alert = [[CustomAlert alloc] initWithTitle:@"LOADING" 
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:nil otherButtonTitle:nil];
+    [alert showInView:view];
+    return alert;
+}
++ (void)dissmisLoading:(CustomAlert*)alert{
+    [alert animateHide];
 }
 @end
