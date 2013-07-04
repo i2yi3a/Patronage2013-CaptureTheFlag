@@ -39,9 +39,11 @@ typedef void (^NetworkEngineCompletionBlock)(NSObject* object);
 -(void)getGameDetails: (NSString *)gameId
       completionBlock:(NetworkEngineCompletionBlock)completionBlock;
 
--(void)getGames: (CTFGame*) game
-completionBlock:(NetworkEngineCompletionBlock)completionBlock;
-
+-(void)getGames: (CLLocation *)location
+           name: (NSString *)name
+         status: (NSString *)status
+        myGames: (BOOL)myGames
+completionBlock: (NetworkEngineCompletionBlock)completionBlock;
 
 
 @end
