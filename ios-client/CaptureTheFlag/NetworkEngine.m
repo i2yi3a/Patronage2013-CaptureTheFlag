@@ -185,6 +185,44 @@
 }
 
 -(void)getGameDetails: (CTFGame*)game
+- (CTFGame *)gameFromDictionary:(NSDictionary *)response
+{
+    CTFGame *game=[[CTFGame alloc]init];
+    game.gameId=response[@"id"];
+    game.name = response[@"name"];
+    game.gameDescription = response[@"description"];
+    game.timeStart = response[@"time_start"];
+    game.duration = response[@"duration"];
+    game.pointsMax = response[@"points_max"];
+    game.playersMax = response[@"players_max"];
+    game.status = response[@"status"];
+    game.owner = response[@"owner"];
+    game.localizationName = response[@[@"localization" "name"]];
+    NSArray* a = response[@"localization"];
+    NSNumber* lat = a[0];
+    NSNumber* lon = a[1];
+    game.localization = [[CLLocation alloc]
+                         initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
+    game.localizationRadius = response[@[@"localization" "name"]];
+    game.redTeamBaseName = response[@[@"red_team_base" "name"]];
+    NSArray* b = response[@[@"red_team_base" "latLng"]];
+    NSNumber* latR = b[0];
+    NSNumber* lonR = b[1];
+    game.redTeamBaseLocalization = [[CLLocation alloc]
+                                    initWithLatitude:[latR doubleValue] longitude:[lonR doubleValue]];
+    
+    game.blueTeamBaseName = response[@[@"blue_team_base" "name"]];
+    NSArray* c = response[@[@"blue_team_base" "latLng"]];
+    NSNumber* latB = c[0];
+    NSNumber* lonB = c[1];
+    game.blueTeamBaseLocalization = [[CLLocation alloc]
+                                     initWithLatitude:[latB doubleValue] longitude:[lonB doubleValue]];
+    
+    game.playersCount = response[@"players_count"];
+    
+    return game;
+}
+
       completionBlock:(NetworkEngineCompletionBlock)completionBlock
 {
     MKNetworkOperation *op=[self operationWithPath:@"/api/secured/games/" params: @{@"id" : game.gameId}  httpMethod:@"GET" ssl:NO];

@@ -29,5 +29,6 @@
 @property (strong, nonatomic) NSString *gameId;
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSString *owner;
+@property (strong, nonatomic) NSNumber *playersCount;
 
 @end
