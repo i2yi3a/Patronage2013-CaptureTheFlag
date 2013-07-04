@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LoginViewController : UIViewController{
-}
+@interface LoginViewController : UIViewController
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CustomAlert.h"
 
-@interface ShowInformation : NSObject
+@interface ShowInformation : UIViewController <CustomAlertDelegate>
 
 + (void)showError:(NSString *)error;
 + (void)showMessage:(NSString *)message withTitle:(NSString *)title;

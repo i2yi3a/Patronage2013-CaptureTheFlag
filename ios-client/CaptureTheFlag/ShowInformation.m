@@ -7,9 +7,16 @@
 //
 
 #import "ShowInformation.h"
+#import "CustomAlert.h"
 
 @implementation ShowInformation
 
+/*+ (void)showError:(NSString *)error
+{
+    CustomAlert *alert = [[CustomAlert alloc] initWithTitle:@"Warning" message:@"eihteprj iregj peioeg joeireg hio" delegate:self cancelButtonTitle:@"cancel" otherButtonTitle:@"ok"];
+    [alert showInView:RootViewController];
+}
+*/
 + (void)showError:(NSString *)error
 {
     

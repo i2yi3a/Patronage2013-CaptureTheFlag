@@ -53,6 +53,8 @@
 		23E2A685171C7F3100F8BD10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23E2A687171C7F3100F8BD10 /* Localizable.strings */; };
 		C80556791718991A00C43A1C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80556781718991A00C43A1C /* LoginViewController.m */; };
 		C81E18371782B1AC00C21211 /* pinBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E18361782B1AC00C21211 /* pinBlue.png */; };
+		C8894A8817858D5300838931 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8894A8717858D5300838931 /* QuartzCore.framework */; };
+		C8894A8B1785930B00838931 /* CustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C8894A8A1785930B00838931 /* CustomAlert.m */; };
 		C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889D840175FE1DB008FC092 /* AddressBookUI.framework */; };
 		C89B1DE817745147008F488C /* NewGame2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89B1DE717745147008F488C /* NewGame2ViewController.m */; };
 		C8A87AB31759D2D300C1A220 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A87AB21759D2D300C1A220 /* FlatButton.m */; };
@@ -158,6 +160,9 @@
 		C80556771718991A00C43A1C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C80556781718991A00C43A1C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C81E18361782B1AC00C21211 /* pinBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinBlue.png; path = gfx/pinBlue.png; sourceTree = "<group>"; };
+		C8894A8717858D5300838931 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C8894A891785930B00838931 /* CustomAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlert.h; sourceTree = "<group>"; };
+		C8894A8A1785930B00838931 /* CustomAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlert.m; sourceTree = "<group>"; };
 		C889D840175FE1DB008FC092 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C89B1DE617745147008F488C /* NewGame2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGame2ViewController.h; sourceTree = "<group>"; };
 		C89B1DE717745147008F488C /* NewGame2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGame2ViewController.m; sourceTree = "<group>"; };
@@ -212,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8894A8817858D5300838931 /* QuartzCore.framework in Frameworks */,
 				C889D841175FE1DB008FC092 /* AddressBookUI.framework in Frameworks */,
 				C8C840B3173F899C00A5D656 /* CoreLocation.framework in Frameworks */,
 				C8C840B1173F7CB400A5D656 /* MapKit.framework in Frameworks */,
@@ -260,6 +266,7 @@
 		233035CB170DAAC9002E1A92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8894A8717858D5300838931 /* QuartzCore.framework */,
 				C889D840175FE1DB008FC092 /* AddressBookUI.framework */,
 				C8C840B2173F899C00A5D656 /* CoreLocation.framework */,
 				C8C840B0173F7CB400A5D656 /* MapKit.framework */,
@@ -280,6 +287,8 @@
 				233035DC170DAAC9002E1A92 /* AppDelegate.m */,
 				C8B5D1C9175F343100743D92 /* CTFGame.h */,
 				C8B5D1CA175F343100743D92 /* CTFGame.m */,
+				C8894A891785930B00838931 /* CustomAlert.h */,
+				C8894A8A1785930B00838931 /* CustomAlert.m */,
 				23D228F5171352CF00073C0B /* NSError+Description.h */,
 				23D228F6171352CF00073C0B /* NSError+Description.m */,
 				E765073B171C744A00799648 /* ShowInformation.h */,
@@ -576,6 +585,7 @@
 				C8C9C6681774774C00E0B2F0 /* NewGame3ViewController.m in Sources */,
 				C8C9C66B1774797500E0B2F0 /* NewGame4ViewController.m in Sources */,
 				C8C9C66E17747D5A00E0B2F0 /* NewGame5ViewController.m in Sources */,
+				C8894A8B1785930B00838931 /* CustomAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
