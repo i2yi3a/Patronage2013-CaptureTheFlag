@@ -92,6 +92,9 @@
 		C8D7CA1117637069002B980D /* GamesListBackupLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA1017637069002B980D /* GamesListBackupLogo.png */; };
 		C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D7CA1217637089002B980D /* GamesListCompas.png */; };
 		E765073D171C744A00799648 /* ShowInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E765073C171C744A00799648 /* ShowInformation.m */; };
+		E7FAE99C1789A671002A6F74 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FAE99B1789A671002A6F74 /* Icon@2x.png */; };
+		E7FAE99E1789A6A7002A6F74 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FAE99D1789A6A7002A6F74 /* Icon.png */; };
+		E7FAE9A01789A875002A6F74 /* IconR.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FAE99F1789A875002A6F74 /* IconR.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +213,9 @@
 		C8D7CA1217637089002B980D /* GamesListCompas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GamesListCompas.png; path = gfx/GamesListCompas.png; sourceTree = "<group>"; };
 		E765073B171C744A00799648 /* ShowInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowInformation.h; sourceTree = "<group>"; };
 		E765073C171C744A00799648 /* ShowInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowInformation.m; sourceTree = "<group>"; };
+		E7FAE99B1789A671002A6F74 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../../Icon@2x.png"; sourceTree = "<group>"; };
+		E7FAE99D1789A6A7002A6F74 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		E7FAE99F1789A875002A6F74 /* IconR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconR.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +253,8 @@
 		233035C0170DAAC9002E1A92 = {
 			isa = PBXGroup;
 			children = (
+				E7FAE99F1789A875002A6F74 /* IconR.png */,
+				E7FAE99D1789A6A7002A6F74 /* Icon.png */,
 				233035D2170DAAC9002E1A92 /* CaptureTheFlag */,
 				233035F6170DAAC9002E1A92 /* CaptureTheFlagTests */,
 				233035CB170DAAC9002E1A92 /* Frameworks */,
@@ -338,6 +346,7 @@
 				C8B5D1D4175F34C100743D92 /* Icon-Small.png */,
 				C8B5D1D5175F34C100743D92 /* Icon-Small@2x.png */,
 				C8B5D1D6175F34C100743D92 /* Icon.png */,
+				E7FAE99B1789A671002A6F74 /* Icon@2x.png */,
 				C8B5D1D7175F34C100743D92 /* ios-login-ico-retina.png */,
 				C8B5D1D8175F34C100743D92 /* ios-login-ico.png */,
 				C8B5D1D9175F34C100743D92 /* ios-pass-ico-retina.png */,
@@ -524,6 +533,9 @@
 				C8D7CA131763708A002B980D /* GamesListCompas.png in Resources */,
 				C8C9C67217749C0F00E0B2F0 /* arrowUp.png in Resources */,
 				C81E18371782B1AC00C21211 /* pinBlue.png in Resources */,
+				E7FAE99C1789A671002A6F74 /* Icon@2x.png in Resources */,
+				E7FAE99E1789A6A7002A6F74 /* Icon.png in Resources */,
+				E7FAE9A01789A875002A6F74 /* IconR.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
