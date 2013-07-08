@@ -257,14 +257,28 @@ completionBlock: (NetworkEngineCompletionBlock)completionBlock;
         [path appendString: @"/api/secured/games/nearest?"];
         [path appendFormat:@"latLng=%g,%g&",(double)localization.coordinate.latitude, (double)localization.coordinate.longitude];
         [path appendString:@"range=950&"];
-        [path appendFormat:@"status=%@",status];
+        if (status) [path appendFormat:@"status=%@",status];
+        if (name)  [path appendFormat: @"name=%@&", name];
+        if (myGames)
+        {
+            if (myGames==1)
+                [path appendString:@"true"];
+            else
+                [path appendString:@"false"];
+        }
     }
     else
     {
         [path appendString: @"/api/secured/games?"];
-        [path appendFormat: @"name=%@&", name];
-        [path appendFormat: @"status=%@&", status];
-        [path appendFormat: @"myGamesOnly=%c", myGames];
+        if (name)  [path appendFormat: @"name=%@&", name];
+        if (status) [path appendFormat: @"status=%@&", status];
+        if (myGames)
+        {
+            if (myGames==1)
+                [path appendString:@"true"];
+            else
+                [path appendString:@"false"];
+        }
     }
 
     [path replaceOccurrencesOfString:@"&" withString:@"" options:0 range:NSMakeRange(path.length-1, 1)];
