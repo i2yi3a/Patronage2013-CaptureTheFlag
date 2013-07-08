@@ -25,14 +25,6 @@
                                                     message:message delegate:self
                                           cancelButtonTitle:nil otherButtonTitle:@"ok"];
     [alert showInView:view];
-    
-    UIAlertView *pop_up = [[UIAlertView alloc] initWithTitle:title
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles:nil];
-    [pop_up show];
- 
 }
 
 + (CustomAlert *)showLoading: (UIView *)view

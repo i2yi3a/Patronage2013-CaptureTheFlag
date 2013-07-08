@@ -325,7 +325,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ios-retina-title-bar-icon.png" id="pEI-yO-Rwa">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="ios-retina-title-bar-icon.png" id="pEI-yO-Rwa">
                                         <rect key="frame" x="8" y="8" width="24" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -460,11 +460,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Mvw-B2-Vss">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="Mvw-B2-Vss">
                                                     <rect key="frame" x="250" y="14" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="GamesListBackupLogo.png" id="WeZ-6S-iqc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="GamesListBackupLogo.png" id="WeZ-6S-iqc">
                                                     <rect key="frame" x="20" y="55" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -489,7 +489,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="GamesListCompas.png" id="fQT-PF-IKt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="GamesListCompas.png" id="fQT-PF-IKt">
                                                     <rect key="frame" x="20" y="30" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>

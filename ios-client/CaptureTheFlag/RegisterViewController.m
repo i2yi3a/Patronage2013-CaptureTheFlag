@@ -88,7 +88,8 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                               if ([response isKindOfClass:[NSError class]])
                               {
                                   NSError *error = (NSError *)response;
-                                  [ShowInformation dissmisLoading:_loginAlertView];                                  [ShowInformation showError:error.localizedDescription inView:self.view];
+                                  [ShowInformation dissmisLoading:_loginAlertView];
+                                  [ShowInformation showError:error.localizedDescription inView:self.view];
                               }
                               else
                               {

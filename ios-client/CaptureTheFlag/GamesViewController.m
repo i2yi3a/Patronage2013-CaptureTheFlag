@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet FlatButton *GameButton;
 @property (weak, nonatomic) IBOutlet FlatButton *SettingsButton;
 @property (weak, nonatomic) IBOutlet FlatButton *LogoutButton;
+@property(readwrite) NSArray* games;
+@property (nonatomic, retain) CustomAlert *alertView;
 
 - (IBAction)My:(id)sender;
 - (IBAction)Nearest:(id)sender;
@@ -44,7 +46,7 @@
 {
     [super viewDidLoad];
     self.GamesViewCellTitleLabels= [[NSArray alloc]
-                               initWithObjects:@"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", nil];
+                               initWithObjects: @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", @"Nazwa gry capture the flag", nil];
     self.GamesViewCellTimeLabels= [[NSArray alloc]
                                initWithObjects:@"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", @"30 MIN. 14-06-2013", nil];
     self.GamesViewCellLocationLabels= [[NSArray alloc]
@@ -101,6 +103,14 @@
     
     _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
     _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _alertView=[ShowInformation showLoading:self.view];
+    [[NetworkEngine getInstance] getGames:nil name:nil status:@"NEW"
+                                  myGames:YES completionBlock:^(NSObject *object){
+                                      [ShowInformation dissmisLoading:_alertView];
+                                      [self processGamesArray:object];
+                                  }];
+
 }
 
 - (IBAction)Nearest:(id)sender{
@@ -115,6 +125,14 @@
     
     _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
     _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _alertView=[ShowInformation showLoading:self.view];
+    [[NetworkEngine getInstance] getGames:nil name:nil status:@"NEW"
+                                  myGames:NO completionBlock:^(NSObject *object){
+                                      [ShowInformation dissmisLoading:_alertView];
+                                      [self processGamesArray:object];
+                                  }];
+
 }
 
 - (IBAction)Ended:(id)sender{
@@ -129,6 +147,14 @@
     
     _AllButton.buttonBackgroundColor = [UIColor ctfTabColor];
     _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+    _alertView=[ShowInformation showLoading:self.view];
+    [[NetworkEngine getInstance] getGames:nil name:nil status:@"COMPLETED"
+                                  myGames:NO completionBlock:^(NSObject *object){
+                                      [ShowInformation dissmisLoading:_alertView];
+                                      [self processGamesArray:object];
+                                  }];
+
 }
 
 - (IBAction)All:(id)sender{
@@ -143,6 +169,14 @@
     
     _AllButton.buttonBackgroundColor = [UIColor ctfNormalButtonAndLabelTurquoiseColor];
     _AllButton.buttonHighlightedBackgroundColor = [UIColor ctfPressedButtonAndWindowBackgroundColor];
+    
+     _alertView=[ShowInformation showLoading:self.view];
+    [[NetworkEngine getInstance] getGames:nil name:nil status:@"NEW"
+                                  myGames:NO completionBlock:^(NSObject *object){
+    [ShowInformation dissmisLoading:_alertView];
+                                      [self processGamesArray:object];
+                                  }];
+
 }
 
 - (IBAction)Profile:(id)sender{
@@ -235,7 +269,18 @@
     return cell;
 }
 
-
+- (void)processGamesArray:(NSObject *)object
+{
+    if ([object isKindOfClass:[NSError class]])
+    {
+        [ShowInformation showError:@"failed to get data" inView:self.view];
+    }
+    else
+    {
+        self.games = (NSArray *)object;
+        [self.table reloadData];
+    }
+}
 
 
 - (void)viewDidUnload {
