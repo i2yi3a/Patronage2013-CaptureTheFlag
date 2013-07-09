@@ -286,8 +286,8 @@ completionBlock: (NetworkEngineCompletionBlock)completionBlock;
          for(NSDictionary *g in games)
          {
              CTFGame *game = [[CTFGame alloc]init];
-             game=[self gameFromDictionary:response];
-             [a addObject:g];
+             game=[self gameFromDictionary:g];
+             [a addObject:game];
              
          }
          completionBlock(a);
