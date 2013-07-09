@@ -196,22 +196,22 @@
     game.playersMax = response[@"players_max"];
     game.status = response[@"status"];
     game.owner = response[@"owner"];
-    game.localizationName = response[@[@"localization" "name"]];
-    NSArray* a = response[@"localization"];
+    game.localizationName = response[@"localization" ][@"name"];
+    NSArray* a = response[@"localization"][@"latLng"];
     NSNumber* lat = a[0];
     NSNumber* lon = a[1];
     game.localization = [[CLLocation alloc]
                          initWithLatitude:[lat doubleValue] longitude:[lon doubleValue]];
-    game.localizationRadius = response[@[@"localization" "name"]];
+    game.localizationRadius = response[@"localization"] [@"radius"];
     game.redTeamBaseName = response[@[@"red_team_base" "name"]];
-    NSArray* b = response[@[@"red_team_base" "latLng"]];
+    NSArray* b = response[@"red_team_base"] [@"latLng"];
     NSNumber* latR = b[0];
     NSNumber* lonR = b[1];
     game.redTeamBaseLocalization = [[CLLocation alloc]
                                     initWithLatitude:[latR doubleValue] longitude:[lonR doubleValue]];
     
-    game.blueTeamBaseName = response[@[@"blue_team_base" "name"]];
-    NSArray* c = response[@[@"blue_team_base" "latLng"]];
+    game.blueTeamBaseName = response[@"blue_team_base"] [@"name"];
+    NSArray* c = response[@"blue_team_base"] [@"latLng"];
     NSNumber* latB = c[0];
     NSNumber* lonB = c[1];
     game.blueTeamBaseLocalization = [[CLLocation alloc]
@@ -229,7 +229,7 @@
     [path appendFormat:@"/api/secured/games/%@",gameId];
     MKNetworkOperation *op=[self operationWithPath:path params: nil  httpMethod:@"GET" ssl:NO];
     
-    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : [NSString stringWithFormat:@"Bearer %@", _token]}];
     
     [op addCompletionHandler:^(MKNetworkOperation *operation){
         
@@ -242,6 +242,8 @@
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         completionBlock(error);
     }];
+    
+     [self enqueueOperation:op];
     
 }
 
@@ -257,35 +259,25 @@ completionBlock: (NetworkEngineCompletionBlock)completionBlock;
         [path appendString: @"/api/secured/games/nearest?"];
         [path appendFormat:@"latLng=%g,%g&",(double)localization.coordinate.latitude, (double)localization.coordinate.longitude];
         [path appendString:@"range=950&"];
-        if (status) [path appendFormat:@"status=%@",status];
-        if (name)  [path appendFormat: @"name=%@&", name];
-        if (myGames)
-        {
-            if (myGames==1)
-                [path appendString:@"true"];
-            else
-                [path appendString:@"false"];
-        }
     }
+    
     else
     {
         [path appendString: @"/api/secured/games?"];
-        if (name)  [path appendFormat: @"name=%@&", name];
-        if (status) [path appendFormat: @"status=%@&", status];
-        if (myGames)
-        {
-            if (myGames==1)
-                [path appendString:@"true"];
-            else
-                [path appendString:@"false"];
-        }
     }
+    
+    if (status) [path appendFormat:@"status=%@",status];
+    if (name)  [path appendFormat: @"name=%@&", name];
+    if (myGames)
+        [path appendString:@"true"];
+    else
+        [path appendString:@"false"];
 
     [path replaceOccurrencesOfString:@"&" withString:@"" options:0 range:NSMakeRange(path.length-1, 1)];
 
     
     MKNetworkOperation *op=[self operationWithPath:path params:nil httpMethod:@"GET" ssl:NO];
-    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : @[@"Bearer %@", _token]}];
+    [op addHeaders:@{@"Accept" : @"application/json", @"Content-type" : @"application/json", @"Authorization" : [NSString stringWithFormat:@"Bearer %@", _token]}];
     
      [op addCompletionHandler:^(MKNetworkOperation *operation){
           NSDictionary* response = operation.responseJSON;
@@ -295,7 +287,7 @@ completionBlock: (NetworkEngineCompletionBlock)completionBlock;
          {
              CTFGame *game = [[CTFGame alloc]init];
              game=[self gameFromDictionary:response];
-             [a addObject:game];
+             [a addObject:g];
              
          }
          completionBlock(a);
@@ -303,6 +295,8 @@ completionBlock: (NetworkEngineCompletionBlock)completionBlock;
                  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
                      completionBlock(error);
                  }];
+    
+     [self enqueueOperation:op];
 }
 
 
